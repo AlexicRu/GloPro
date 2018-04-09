@@ -69,6 +69,10 @@ gulp.task('adminpro-images', function () {
         .pipe(gulp.dest('admin-pro/build/assets/images'));
 });
 
+gulp.task('adminpro-plugins', function() {
+    return gulp.src('admin-pro/assets/plugins/**/*.*')
+        .pipe(gulp.dest('admin-pro/build/assets/plugins'))
+});
 
 gulp.task('watch', ['build'], function() {
     gulp.watch(srcPath + 'js/**/*.js', ['js']);
@@ -79,5 +83,5 @@ gulp.task('watch', ['build'], function() {
 gulp.task('build', ['css', 'js', 'fonts', 'image']);
 gulp.task('fast', ['css', 'js']);
 gulp.task('images', ['image']);
-gulp.task('adminpro', ['adminpro-css', 'adminpro-js', 'adminpro-images']);
+gulp.task('adminpro', ['adminpro-css', 'adminpro-js', 'adminpro-images', 'adminpro-plugins']);
 gulp.task('default', ['watch']);
