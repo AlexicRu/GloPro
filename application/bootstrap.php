@@ -116,6 +116,7 @@ Kohana::init(array(
 	'base_url'      => '/',
 	'index_file'    => false,
     'errors'        => false,
+    'caching'       => true,
 ));
 
 /**
@@ -137,6 +138,7 @@ $configEnvironment = Common::getEnvironmentConfig();
 Kohana::modules(array(
 	'auth'       => MODPATH.'auth',       // Basic authentication
 	'cache'      => MODPATH.'cache',      // Caching with multiple backends
+    'cache-redis' => MODPATH.'kohana-cache-redis',    // enable redis as a cache engine
 	// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
 	'database'   => MODPATH.'database',   // Database access
 	'image'      => MODPATH.'image',      // Image manipulation
@@ -162,7 +164,7 @@ $sentryClient = new Raven_Client($configEnvironment['sentry_dsn'], [
 ]);
 $sentryClient->install();
 
-Cache::$default = 'memcache';
+Cache::$default = 'redis';
 
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
