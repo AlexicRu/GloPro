@@ -104,7 +104,7 @@ abstract class Controller_Common extends Controller_Template {
             View::set_global($k, $v);
         }
 
-        View::set_global('title', implode(" :: ",$this->title));
+        View::set_global('title', $this->title);
         View::set_global('errors', $this->errors);
 
         if(Auth::instance()->logged_in()) {
@@ -187,7 +187,7 @@ abstract class Controller_Common extends Controller_Template {
     }
 
     /**
-     * подключаем файлы стией и скриптов
+     * подключаем файлы стилей и скриптов, в основном плагинов и корневые
      *
      * @throws Kohana_Exception
      */
@@ -196,36 +196,31 @@ abstract class Controller_Common extends Controller_Template {
         $this->template->styles = [
             Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/css/bootstrap.min.css',
             Common::getAdminProAssetsLink() . 'assets/plugins/prism/prism.css',
-            Common::getAdminProAssetsLink() . 'minimal/css/style.css',
-            Common::getAdminProAssetsLink() . 'minimal/css/colors/default.css',
         ];
+
         $this->template->scripts = [
             'https://www.google.com/recaptcha/api.js',
             Common::getAdminProAssetsLink() . 'assets/plugins/jquery/jquery.min.js',
             Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/js/popper.min.js',
             Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/js/bootstrap.min.js',
-            Common::getAdminProAssetsLink() . 'minimal/js/perfect-scrollbar.jquery.min.js',
-            Common::getAdminProAssetsLink() . 'minimal/js/waves.js',
-            Common::getAdminProAssetsLink() . 'minimal/js/sidebarmenu.js',
+            Common::getAdminProAssetsLink() . 'main/js/perfect-scrollbar.jquery.min.js',
+            Common::getAdminProAssetsLink() . 'main/js/waves.js',
+            Common::getAdminProAssetsLink() . 'main/js/sidebarmenu.js',
             Common::getAdminProAssetsLink() . 'assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',
             Common::getAdminProAssetsLink() . 'assets/plugins/sparkline/jquery.sparkline.min.js',
-            Common::getAdminProAssetsLink() . 'minimal/js/custom.js',
-            Common::getAdminProAssetsLink() . 'minimal/css/icons/font-awesome-5/fa-solid.min.js',
-            Common::getAdminProAssetsLink() . 'minimal/css/icons/font-awesome-5/fontawesome.min.js',
+            Common::getAdminProAssetsLink() . 'main/js/custom.js',
+            Common::getAdminProAssetsLink() . 'main/css/icons/font-awesome-5/fa-solid.min.js',
+            Common::getAdminProAssetsLink() . 'main/css/icons/font-awesome-5/fontawesome.min.js',
         ];
 
         if(Auth::instance()->logged_in()) {
-            $this->template->styles = [
-                '/assets/plugins/jGrowl/jGrowl.css',
-                '/assets/plugins/fancy/jquery.fancybox.css',
-            ];
-            $this->template->scripts = [
-                '/assets/plugins/jquery.2.1.3.min.js',
-                '/assets/plugins/jquery-ui.1.11.2.min.js',
-                '/assets/plugins/jGrowl/jGrowl.js',
-                '/assets/plugins/fancy/jquery.fancybox.js',
-            ];
+            $this->template->styles[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/css/jquery.toast.css';
+            $this->template->scripts[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/js/jquery.toast.js';
         }
+
+        //стили шаблона
+        $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/css/style.css';
+        $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/css/colors/default-dark.css';
     }
 
     private function _appendFiles()
@@ -248,22 +243,20 @@ abstract class Controller_Common extends Controller_Template {
         }
     }
 
+    /**
+     * в конце подключаем кастомные файлы, которые могут переопределить стили и функции в ранее подключенных
+     */
     private function _appendFilesAfter()
     {
         if(Auth::instance()->logged_in()) {
-            $this->_initTooltipster();
-
-            $this->template->styles[] = Common::getAssetsLink() . 'css/ui.css';
-            $this->template->styles[] = Common::getAssetsLink() . 'css/style.css';
-            $this->template->styles[] = Common::getAssetsLink() . 'css/design.css';
+            $this->template->styles[] = Common::getAssetsLink() . 'css/ui.css?t=' . Common::getVersion();
 
             $this->template->scripts[] = Common::getAssetsLink() . 'js/ui.js';
-            $this->template->scripts[] = Common::getAssetsLink() . 'js/common.js';
-            $this->template->scripts[] = Common::getAssetsLink() . 'js/site.js';
-        }else{
-            $this->template->styles[] = Common::getAssetsLink() . 'css/style.css?t=' . Common::getVersion();
-            $this->template->styles[] = Common::getAssetsLink() . 'css/design.css?t=' . Common::getVersion();
+            $this->template->scripts[] = Common::getAssetsLink() . 'js/site.js?t=' . Common::getVersion();
         }
+
+        $this->template->styles[] = Common::getAssetsLink() . 'css/style.css?t=' . Common::getVersion();
+        $this->template->styles[] = Common::getAssetsLink() . 'css/design.css?t=' . Common::getVersion();
     }
 
     /**
@@ -308,6 +301,7 @@ abstract class Controller_Common extends Controller_Template {
 
     /**
      * подключаем Tooltipster
+     * @deprecated
      */
     protected function _initTooltipster()
     {

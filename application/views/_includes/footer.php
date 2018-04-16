@@ -22,12 +22,6 @@
     <?}
 }?>
 
-<script>
-    function onSubmit(token) {
-        $('#login').submit();
-    }
-</script>
-
 </body>
 
 </html>

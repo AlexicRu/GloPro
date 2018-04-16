@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
     <!-- Favicon icon -->
     <?=Common::getFaviconRawData(!empty($customView) ? $customView : false)?>
 
-    <title><?=(!empty($title) ? $title : '')?></title>
+    <title><?=(!empty($title) ? implode(' :: ', $title) : '')?></title>
 
     <?if (!empty($styles)) {
         foreach($styles as $style){?>
@@ -35,7 +35,7 @@
 <div class="preloader">
     <div class="loader">
         <div class="loader__figure"></div>
-        <p class="loader__label"><?=(!empty($title) ? $title : '')?></p>
+        <p class="loader__label"><?=(!empty($title) ? implode(' :: ', $title) : '')?></p>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -57,7 +57,6 @@
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Dark Logo icon -->
                         <i class="logo dark-logo"></i>
-                        <i class="logo light-logo"></i>
                     </b>
                     <!--End Logo icon -->
                 </a>
@@ -65,12 +64,13 @@
             <!-- ============================================================== -->
             <!-- End Logo -->
             <!-- ============================================================== -->
+            <?if (User::loggedIn()) { include 'navigation.php'; }?>
         </nav>
     </header>
     <!-- ============================================================== -->
     <!-- End Topbar header -->
     <!-- ============================================================== -->
-
+    <?if (User::loggedIn()) { include 'sidebar.php'; }?>
     <!-- ============================================================== -->
     <!-- Page wrapper  -->
     <!-- ============================================================== -->

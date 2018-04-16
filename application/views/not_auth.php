@@ -38,6 +38,12 @@
                                         data-callback="onSubmit">
                                     Войти
                                 </button>
+
+                                <script>
+                                    function onSubmit(token) {
+                                        $('#login').submit();
+                                    }
+                                </script>
                                 <?*/?>
                                 <button type="submit" class="btn btn-info waves-effect waves-light">Войти</button>
                             </div>
