@@ -1,74 +1,67 @@
-<!DOCTYPE html>
-<html lang="ru-RU">
-<head>
+<?include '_includes/header.php'?>
 
-    <?=Common::getFaviconRawData($customView)?>
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">Авторизация</h3>
+    </div>
+</div>
 
-	<meta charset="UTF-8">
+<div class="row">
+    <div class="col-md-12">
 
-	<title><?=(!empty($title) ? $title : '')?></title>
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex">
 
-    <?if (!empty($styles)) {
-    	foreach($styles as $style){?>
-		    <link href="<?=$style?>?t=<?=Common::getVersion()?>" rel="stylesheet">
-	    <?}
-    }?>
-	<?if (!empty($scripts)) {
-        foreach($scripts as $script){?>
-            <script src="<?=$script?>?t=<?=Common::getVersion()?>"></script>
-        <?}
-    }?>
-</head>
+                    <form class="form-horizontal" id="login" method="post" action="/login">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 text-right control-label col-form-label">Логин</label>
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="Логин" name="login" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 text-right control-label col-form-label">Пароль</label>
+                            <div class="col-sm-8">
+                                <input type="password" placeholder="Пароль" name="password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0 row">
+                            <div class="col-sm-4">&nbsp;</div>
+                            <div class="col-sm-8">
+                                <?/*
+                                $config = Kohana::$config->load('config');
 
-<body class="custom_view_<?=$customView?>">
-	<header>
-		<div class="logo">
-			<a href="/"></a>
-		</div>
-		<div>&nbsp;</div>
-	</header>
+                                <button type="submit"
+                                        class="g-recaptcha btn btn-info waves-effect waves-light"
+                                        data-sitekey="<?=$config['recaptcha_public']?>"
+                                        data-callback="onSubmit">
+                                    Войти
+                                </button>
+                                <?*/?>
+                                <button type="submit" class="btn btn-info waves-effect waves-light">Войти</button>
+                            </div>
+                        </div>
+                    </form>
 
-	<div class="wrapper">
-		<div class="content">
-			<div class="content_inner">
-				<h1>Авторизация</h1>
-				<div class="block">
-					<form id="login" method="post" action="/login">
-						<input type="text" placeholder="Логин" name="login" class="input_big">
-						<input type="password" placeholder="Пароль" name="password" class="input_big">
+                </div>
+            </div>
+        </div>
 
-                        <?
-                        $config = Kohana::$config->load('config');
-                        ?>
-
-                        <?/*?>
-                        <button
-                                class="g-recaptcha btn"
-                                data-sitekey="<?=$config['recaptcha_public']?>"
-                                data-callback="onSubmit">
-                            Войти
-                        </button>
-                        <?*/?>
-                        <button class="btn">Войти</button>
-					</form>
-				</div>
-
-				<?
-				$messages = Messages::get();
-				if(!empty($messages)){
-					foreach($messages as $message){
-						echo '<div class="message message-'.$message['type'].'">'.$message['text'].'<span class="message_close icon-cancel"></span></div>';
-					}
-				}
-				?>
-			</div>
-		</div>
-	</div>
-
-    <script>
-        function onSubmit(token) {
-            $('#login').submit();
+        <?
+        $messages = Messages::get();
+        if(!empty($messages)){
+            foreach($messages as $message){?>
+                <div class="alert alert-<?=$message['type']?>">
+                    <h3 class="text-<?=$message['type']?>"><i class="fa <?=Messages::$messageIcons[$message['type']]?>"></i> Ошибка</h3>
+                    <?=$message['text']?>
+                </div>
+                <?
+            }
         }
-    </script>
-</body>
-</html>
+        ?>
+
+    </div>
+</div>
+
+<?include '_includes/footer.php'?>

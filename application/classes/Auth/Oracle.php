@@ -44,17 +44,17 @@ class Auth_Oracle extends Auth {
 
         // If the passwords match, perform a login
         if (empty($user['PASSWORD']) || $user['PASSWORD'] !== $password){
-            Messages::put('Неправильный логин или пароль', 'error');
+            Messages::put('Неправильный логин или пароль');
             return false;
         }
 
         if ($user['AGENT_STATE'] != 1){
-            Messages::put('Доступ запрещен', 'error');
+            Messages::put('Доступ запрещен');
             return false;
         }
 
         if($user['STATE_ID'] != 1){
-            Messages::put('Доступ запрещен', 'error');
+            Messages::put('Доступ запрещен');
             return false;
         }
 

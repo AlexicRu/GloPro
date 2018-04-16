@@ -41,7 +41,7 @@ class Controller_Index extends Controller_Common {
         }
 
 		if(empty($post['login']) || empty($post['password'])){
-			Messages::put('Не заполнен логин или пароль', 'error');
+			Messages::put('Не заполнен логин или пароль');
 			$this->redirect('/');
 		}
 

@@ -88,7 +88,10 @@ if (isset($_SERVER['SERVER_PROTOCOL']))
  * saying "Couldn't find constant Kohana::<INVALID_ENV_NAME>"
  */
 
-if (strpos($_SERVER['HTTP_HOST'], 'dev.') !== 0) {
+if (
+    strpos($_SERVER['HTTP_HOST'], 'dev.') !== 0 &&
+    strpos($_SERVER['HTTP_HOST'], 'test.') !== 0
+) {
     // We are live!
     Kohana::$environment = Kohana::PRODUCTION;
 } elseif (isset($_SERVER['KOHANA_ENV'])) {

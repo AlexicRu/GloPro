@@ -2,7 +2,9 @@
 
 class Common
 {
-    const CURRENCY_RUR 		            = 643;
+    const CURRENCY_RUR 		    = 643;
+    const NEW_DESIGN_FOLDER     = 'admin-pro';
+    const DESIGN_DEFAULT        = 'glopro';
 
     /**
      * favicon
@@ -11,33 +13,12 @@ class Common
     {
         switch ($customView) {
             case 'gpn':
-                $favicon = '<link type="image/x-icon" href="/assets/favicon/projects/dealergpncardcom/favicon.ico" rel="icon">';
-                break;
             case 'binoil':
-                $favicon = '<link type="image/x-icon" href="/assets/favicon/projects/lkbinoilcom/favicon.ico" rel="icon">';
+                $favicon = '<link type="image/x-icon" href="'. Common::getAssetsLink() .'img/projects/'. $customView .'/favicon.ico" rel="icon">';
                 break;
             default:
-                $favicon = '
-                    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicon/apple-touch-icon-57x57.png">
-                    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicon/apple-touch-icon-60x60.png">
-                    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicon/apple-touch-icon-72x72.png">
-                    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-touch-icon-76x76.png">
-                    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicon/apple-touch-icon-114x114.png">
-                    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicon/apple-touch-icon-120x120.png">
-                    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicon/apple-touch-icon-144x144.png">
-                    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicon/apple-touch-icon-152x152.png">
-                    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon-180x180.png">
-                    <link rel="icon" type="image/png" href="/assets/favicon/favicon-32x32.png" sizes="32x32">
-                    <link rel="icon" type="image/png" href="/assets/favicon/android-chrome-192x192.png" sizes="192x192">
-                    <link rel="icon" type="image/png" href="/assets/favicon/favicon-16x16.png" sizes="16x16">
-                    <link rel="manifest" href="/assets/favicon/manifest.json">
-                    <link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
-                    <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
-                    <meta name="msapplication-TileColor" content="#da532c">
-                    <meta name="msapplication-TileImage" content="/assets/favicon/mstile-144x144.png">
-                    <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
-                    <meta name="theme-color" content="#ffffff">        
-                ';
+                $favicon = '<link type="image/x-icon" href="'. Common::getAssetsLink() .'img/projects/'. self::DESIGN_DEFAULT .'/favicon.ico" rel="icon">';
+                //$favicon = '<link rel="icon" type="image/png" href="/assets/favicon/favicon-16x16.png" sizes="16x16">';
             }
 
         return $favicon;
@@ -114,13 +95,22 @@ class Common
         View::set_global('css', array_merge($css, [Common::getAssetsLink() . 'css/' . $file]));
     }
 
+    public static function getAdminProAssetsLink()
+    {
+        return self::getAssetsLink(self::NEW_DESIGN_FOLDER);
+    }
+
     /**
      * получаем ссылку на файлы
      *
+     * @param $type
      * @return string
      */
-    public static function getAssetsLink()
+    public static function getAssetsLink($type = '')
     {
+        if ($type == self::NEW_DESIGN_FOLDER) {
+            return self::isProd() ? '/'. self::NEW_DESIGN_FOLDER .'/build/' : '/'. self::NEW_DESIGN_FOLDER .'/';
+        }
         return self::isProd() ? '/assets/build/' : '/assets/';
     }
 

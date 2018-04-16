@@ -2,6 +2,18 @@
 
 class Messages
 {
+    const MESSAGE_TYPE_DANGER   = 'danger';
+    const MESSAGE_TYPE_INFO     = 'info';
+    const MESSAGE_TYPE_WARNING  = 'warning';
+    const MESSAGE_TYPE_SUCCESS  = 'success';
+
+    public static $messageIcons = [
+        self::MESSAGE_TYPE_DANGER   => 'fa-exclamation-square',
+        self::MESSAGE_TYPE_INFO     => 'fa-exclamation-circle',
+        self::MESSAGE_TYPE_WARNING  => 'fa-exclamation-triangle',
+        self::MESSAGE_TYPE_SUCCESS  => 'fa-check-circle',
+    ];
+
     /**
      * получаем список сообщений, которые надо вывести
      * 
@@ -31,7 +43,7 @@ class Messages
      * @param $text
      * @param $type
      */
-    public static function put($text, $type = 'error')
+    public static function put($text, $type = self::MESSAGE_TYPE_DANGER)
     {
         $messages = self::get();
 

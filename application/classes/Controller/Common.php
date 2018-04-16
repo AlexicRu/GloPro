@@ -193,6 +193,27 @@ abstract class Controller_Common extends Controller_Template {
      */
     private function _appendFilesBefore()
     {
+        $this->template->styles = [
+            Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/css/bootstrap.min.css',
+            Common::getAdminProAssetsLink() . 'assets/plugins/prism/prism.css',
+            Common::getAdminProAssetsLink() . 'minimal/css/style.css',
+            Common::getAdminProAssetsLink() . 'minimal/css/colors/default.css',
+        ];
+        $this->template->scripts = [
+            'https://www.google.com/recaptcha/api.js',
+            Common::getAdminProAssetsLink() . 'assets/plugins/jquery/jquery.min.js',
+            Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/js/popper.min.js',
+            Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/js/bootstrap.min.js',
+            Common::getAdminProAssetsLink() . 'minimal/js/perfect-scrollbar.jquery.min.js',
+            Common::getAdminProAssetsLink() . 'minimal/js/waves.js',
+            Common::getAdminProAssetsLink() . 'minimal/js/sidebarmenu.js',
+            Common::getAdminProAssetsLink() . 'assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',
+            Common::getAdminProAssetsLink() . 'assets/plugins/sparkline/jquery.sparkline.min.js',
+            Common::getAdminProAssetsLink() . 'minimal/js/custom.js',
+            Common::getAdminProAssetsLink() . 'minimal/css/icons/font-awesome-5/fa-solid.min.js',
+            Common::getAdminProAssetsLink() . 'minimal/css/icons/font-awesome-5/fontawesome.min.js',
+        ];
+
         if(Auth::instance()->logged_in()) {
             $this->template->styles = [
                 '/assets/plugins/jGrowl/jGrowl.css',
@@ -203,12 +224,6 @@ abstract class Controller_Common extends Controller_Template {
                 '/assets/plugins/jquery-ui.1.11.2.min.js',
                 '/assets/plugins/jGrowl/jGrowl.js',
                 '/assets/plugins/fancy/jquery.fancybox.js',
-            ];
-        }else{
-            $this->template->styles = [];
-            $this->template->scripts = [
-                'https://www.google.com/recaptcha/api.js',
-                '/assets/plugins/jquery.2.1.3.min.js',
             ];
         }
     }
@@ -226,10 +241,10 @@ abstract class Controller_Common extends Controller_Template {
         );
 
         foreach($styles as $style){
-            $this->template->styles[] =  $style;
+            $this->template->styles[] =  $style . '?t=' . Common::getVersion();
         }
         foreach($scripts as $script){
-            $this->template->scripts[] =  $script;
+            $this->template->scripts[] =  $script . '?t=' . Common::getVersion();
         }
     }
 
@@ -246,8 +261,8 @@ abstract class Controller_Common extends Controller_Template {
             $this->template->scripts[] = Common::getAssetsLink() . 'js/common.js';
             $this->template->scripts[] = Common::getAssetsLink() . 'js/site.js';
         }else{
-            $this->template->styles[] = Common::getAssetsLink() . 'css/style.css';
-            $this->template->styles[] = Common::getAssetsLink() . 'css/design.css';
+            $this->template->styles[] = Common::getAssetsLink() . 'css/style.css?t=' . Common::getVersion();
+            $this->template->styles[] = Common::getAssetsLink() . 'css/design.css?t=' . Common::getVersion();
         }
     }
 
