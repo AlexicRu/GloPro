@@ -142,6 +142,10 @@ return [
             Access::ROLE_ADMIN,
             Access::ROLE_SUPERVISOR,
         ],
+        'control_1c-connect' => [
+            Access::ROLE_ADMIN,
+            Access::ROLE_SUPERVISOR,
+        ],
         'control_1c-export' => [
             'a_1',
             'a_2',
@@ -155,9 +159,30 @@ return [
             Access::ROLE_ROOT
         ],
         'administration_cardsTransfer' => [
-            Access::ROLE_ADMIN
+            Access::ROLE_ROOT
         ],
         'system_index' => [
+            Access::ROLE_ROOT,
+        ],
+        'system_deploy' => [
+            Access::ROLE_ROOT,
+        ],
+        'system_db' => [
+            Access::ROLE_ROOT,
+        ],
+        'system_query' => [
+            Access::ROLE_ROOT,
+        ],
+        'system_version-refresh' => [
+            Access::ROLE_ROOT,
+        ],
+        'system_gulp' => [
+            Access::ROLE_ROOT,
+        ],
+        'system_git' => [
+            Access::ROLE_ROOT,
+        ],
+        'system_full' => [
             Access::ROLE_ROOT,
         ],
         // custom
@@ -220,7 +245,7 @@ return [
             Access::ROLE_USER,
             Access::ROLE_USER_SECOND,
             Access::ROLE_MANAGER_SALE,
-            Access::ROLE_MANAGER,
+            Access::ROLE_CLIENT
         ],
         'clients_contract-add' => [
             Access::ROLE_USER,

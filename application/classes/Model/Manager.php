@@ -359,13 +359,14 @@ class Model_Manager extends Model
      * получаем список доступный клиентов по манагеру
      *
      * @param array $params
+     * @param array $columns
      * @return array
      */
-    public static function getClientsList($params = [])
+    public static function getClientsList($params = [], $columns = [])
     {
         $db = Oracle::init();
 
-        $user = Auth::instance()->get_user();
+        $user = User::current();
 
         if (empty($params['manager_id'])) {
             $managerId = $user['MANAGER_ID'];
@@ -379,21 +380,69 @@ class Model_Manager extends Model
             $agentId = $params['agent_id'];
         }
 
-        $sql = "select *
-            from ".Oracle::$prefix."V_WEB_CLIENTS_LIST t 
-            where t.agent_id = ".$agentId."
-            and not exists
-            (
-                select 1 
-                from ".Oracle::$prefix."V_WEB_MANAGER_CLIENTS vwc 
-                where vwc.client_id = t.client_id and vwc.agent_id = t.agent_id and vwc.manager_id = ".$managerId."
-            )";
+        $sql = (new Builder())->select(['t.*'])->distinct()
+            ->from('V_WEB_CLIENTS_LIST t')
+            ->join('V_WEB_MANAGER_CONTRACTS mc', 'mc.client_id = t.client_id')
+            ->where('t.agent_id = ' . $agentId)
+            ->orderBy('t.client_id desc')
+        ;
 
-        if(!empty($params['search'])){
-            $sql .= " and upper(t.NAME) like " . mb_strtoupper(Oracle::quote('%'.$params['search'].'%'));
+        if (!empty($params['only_available_to_add'])) {
+            $subSql = (new Builder())->select('1')
+                ->from('V_WEB_MANAGER_CLIENTS vwc')
+                ->where('vwc.client_id = t.client_id')
+                ->where('vwc.agent_id = t.agent_id')
+                ->where('vwc.manager_id = ' . $managerId)
+            ;
+            $sql->where('not exists ('. $subSql->build() .')');
+        } else {
+            $sql->where('mc.manager_id = ' . $managerId);
         }
 
-        $sql .= " order by t.client_id desc ";
+        if(!empty($params['search'])){
+            $search = mb_strtoupper(Oracle::quote('%'.$params['search'].'%'));
+
+            if (!empty($params['deep_search'])) {
+                $subSql = (new Builder())->select('1')
+                    ->from('V_WEB_CRD_LIST c')
+                    ->where('c.client_id = t.client_id')
+                    ->whereStart()
+                    ->whereOr('c.card_id like '. $search)
+                    ->whereOr("upper(c.contract_name) like ". $search)
+                    ->whereEnd()
+                ;
+
+                $sql
+                    ->whereStart()
+                    ->whereOr('upper(t.CLIENT_NAME) like ' . $search)
+                    ->whereOr('upper(t.LONG_NAME) like ' . $search)
+                    ->whereOr("exists (".$subSql->build().")")
+                    ->whereEnd()
+                ;
+            } else {
+                $sql
+                    ->whereStart()
+                    ->whereOr('upper(t.CLIENT_NAME) like ' . $search)
+                    ->whereOr('upper(t.LONG_NAME) like ' . $search)
+                    ->whereEnd()
+                ;
+            }
+        }
+
+        if (!empty($columns)) {
+            foreach ($columns as &$column){
+                $column = 't.' . $column;
+            }
+            $sql->resetColumns()->columns($columns);
+        }
+
+        if(!empty($params['client_id'])){
+            $sql->where('t.client_id in ('.implode(',', (array)$params['client_id']).')');
+        }
+
+        if (!empty($params['pagination'])){
+            return $db->pagination($sql, $params);
+        }
 
         return $db->query($sql);
     }
@@ -526,25 +575,6 @@ class Model_Manager extends Model
     }
 
     /**
-     * получаем список контрактов менеджера
-     *
-     * @param $managerId
-     * @return array|bool
-     */
-    public static function getContractsIds($managerId)
-    {
-        if (empty($managerId)) {
-            return [];
-        }
-
-        $sql = (new Builder())->select()
-            ->from('v_web_manager_contracts')
-            ->where('MANAGER_ID = ' . (int)$managerId);
-
-        return Oracle::init()->column($sql, 'CONTRACT_ID');
-    }
-
-    /**
      * дерево доступных контрактов
      *
      * @param $managerId
@@ -558,6 +588,7 @@ class Model_Manager extends Model
         $sql = (new Builder())->select()
             ->from('v_web_manager_contracts')
             ->where('MANAGER_ID = '.(int)$managerId)
+            ->where('CONTRACT_ID is not null')
         ;
 
         return Oracle::init()->tree($sql, 'CLIENT_ID', false, 'CONTRACT_ID');

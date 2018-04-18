@@ -14,16 +14,38 @@ class Controller_Clients extends Controller_Common {
 	 */
 	public function action_index()
 	{
-		$search = $this->request->post('search');
+        if ($this->request->is_ajax()) {
+            $params = [
+                'search'            => $this->request->query('search'),
+                'offset' 		    => $this->request->post('offset'),
+                'pagination'        => true
+            ];
 
-		$clients = Model_Client::getClientsList($search);
+            list($clients, $more) = Model_Client::getFullClientsList($params);
 
-        $popupClientAdd = Form::popup('Добавление нового клиента', 'client/add');
+            if(empty($clients)){
+                $this->jsonResult(false);
+            }
 
-        $this->tpl
-            ->bind('clients', $clients)
-            ->bind('popupClientAdd', $popupClientAdd)
-        ;
+            foreach ($clients as &$client) {
+                if (!empty($client['contracts'])) {
+                    foreach ($client['contracts'] as &$contract) {
+                        $contract['contract_state_class']   = Model_Contract::$statusContractClasses[$contract['STATE_ID']];
+                        $contract['contract_state_name']    = Model_Contract::$statusContractNames[$contract['STATE_ID']];
+                        $contract['balance_formatted']      = number_format($contract['BALANCE'], 2, ',', ' ') . ' ' . Text::RUR;
+                    }
+                }
+            }
+
+            $this->jsonResult(true, ['items' => $clients, 'more' => $more]);
+        } else {
+
+            $popupClientAdd = Form::popup('Добавление нового клиента', 'client/add');
+
+            $this->tpl
+                ->bind('popupClientAdd', $popupClientAdd)
+            ;
+        }
 	}
 
 	/**
@@ -626,8 +648,9 @@ class Controller_Clients extends Controller_Common {
     {
         $limits = $this->request->post('limits');
         $contractId = $this->request->post('contract_id');
+        $recalc = $this->request->post('recalc');
 
-        $result = Model_Contract::editLimits($contractId, $limits);
+        $result = Model_Contract::editLimits($contractId, $limits, $recalc);
 
         if(empty($result)){
             $this->jsonResult(false);
