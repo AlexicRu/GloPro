@@ -222,6 +222,7 @@ abstract class Controller_Common extends Controller_Template {
             Common::getAdminProAssetsLink() . 'assets/plugins/sparkline/jquery.sparkline.min.js',
             Common::getAdminProAssetsLink() . 'main/js/custom.js',
             Common::getAdminProAssetsLink() . 'main/css/icons/font-awesome-5/fa-solid.min.js',
+            Common::getAdminProAssetsLink() . 'main/css/icons/font-awesome-5/fa-light.min.js',
             Common::getAdminProAssetsLink() . 'main/css/icons/font-awesome-5/fontawesome.min.js',
         ];
 
@@ -232,7 +233,7 @@ abstract class Controller_Common extends Controller_Template {
 
         //стили шаблона
         $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/css/style.css';
-        $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/css/colors/default-dark.css';
+        $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/css/colors/blue.css';
     }
 
     private function _appendFiles()

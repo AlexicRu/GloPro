@@ -1,10 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access');
 
 return array(
-    'clients'           => ['title' => 'Фирмы', 'icon' => 'icon-clients'],
-    'suppliers'         => ['title' => 'Поставщики', 'icon' => 'icon-drop'],
-    'reports'           => ['title' => 'Отчетность', 'icon' => 'icon-reports'],
-    'control'           => ['title' => 'Управление', 'icon' => 'icon-set', 'children' => [
+    'clients'           => ['title' => 'Фирмы', 'icon' => 'fal fa-users'],
+    'suppliers'         => ['title' => 'Поставщики', 'icon' => 'fal fa-tint'],
+    'reports'           => ['title' => 'Отчетность', 'icon' => 'fal fa-file-alt'],
+    'control'           => ['title' => 'Управление', 'icon' => 'fal fa-cogs', 'children' => [
         'managers'      => 'Менеджеры',
         'tariffs'       => 'Тарифы',
         '1c-connect'    => 'Связь с 1С',
@@ -12,7 +12,7 @@ return array(
         'firms-groups'  => 'Группы фирм',
         'dots-groups'   => 'Группы ТО',
     ]],
-    'references'        => ['title' => 'Справочники', 'icon' => 'icon-contract', 'children' => [
+    'references'        => ['title' => 'Справочники', 'icon' => 'fal fa-clipboard-list', 'children' => [
         'sources'       => 'Источники данных',
         'addresses'     => 'Адреса',
         'currency'      => 'Валюты',
@@ -20,14 +20,14 @@ return array(
         'cards'         => 'Список карт',
         'dots'          => 'Точки обслуживания',
     ]],
-    'administration'    => ['title' => 'Сервис', 'icon' => 'icon-service', 'children' => [
+    'administration'    => ['title' => 'Сервис', 'icon' => 'fal fa-sitemap', 'children' => [
         'transactions'      => 'Транзакции',
         'calc-tariffs'      => 'Расчет тарифов',
         'cards-transfer'    => 'Перенос карт'
     ]],
-    'news'              => ['title' => 'Новости', 'icon' => 'icon-news'],
-    'support'           => ['title' => 'Поддержка', 'icon' => 'icon-question'],
-    'system'            => ['title' => 'System', 'icon' => 'icon-loader', 'children' => [
+    'news'              => ['title' => 'Новости', 'icon' => 'fal fa-bullhorn'],
+    'support'           => ['title' => 'Поддержка', 'icon' => 'fal fa-question-circle'],
+    'system'            => ['title' => 'System', 'icon' => 'fal fa-server', 'children' => [
         'deploy'        => 'Deploy',
         'db'            => 'DB',
     ]],

@@ -26,9 +26,18 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <?if (!empty($scripts)) {
+        foreach($scripts as $script){?>
+            <script src="<?=$script?>"></script>
+        <?}
+    }?>
 </head>
 
-<body class="fix-header card-no-border fix-sidebar design__<?=(!empty($customView) ? $customView : Common::DESIGN_DEFAULT)?>">
+<body class="fix-header card-no-border fix-sidebar design__<?=(!empty($customView) ? $customView : Common::DESIGN_DEFAULT)?> <?=(User::loggedIn() ? 'logged-in' : 'logged-out')?>">
 <!-- ============================================================== -->
 <!-- Preloader - style you can find in spinners.css -->
 <!-- ============================================================== -->
@@ -70,7 +79,7 @@
     <!-- ============================================================== -->
     <!-- End Topbar header -->
     <!-- ============================================================== -->
-    <?if (User::loggedIn()) { include 'sidebar.php'; }?>
+    <?if (User::loggedIn()) { echo $menu; }?>
     <!-- ============================================================== -->
     <!-- Page wrapper  -->
     <!-- ============================================================== -->
