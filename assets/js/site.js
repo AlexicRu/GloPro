@@ -1,4 +1,4 @@
-var LOADER_CLASS = 'block_loading';
+var CLASS_LOADING = 'block_loading';
 
 $(function(){
     $('.mark_read').on('click', function () {
@@ -138,6 +138,6 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
                 outer.find('.ajax_block_more').fadeIn().html('<span class="gray">Данные отсутствуют</span>');
             }
         }
-        block.closest('.block_loading').removeClass(LOADER_CLASS);
+        block.closest('.block_loading').removeClass(CLASS_LOADING);
     });
 }

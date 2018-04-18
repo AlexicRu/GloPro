@@ -27,7 +27,7 @@ return array(
     ]],
     'news'              => ['title' => 'Новости', 'icon' => 'fal fa-bullhorn'],
     'support'           => ['title' => 'Поддержка', 'icon' => 'fal fa-question-circle'],
-    'system'            => ['title' => 'System', 'icon' => 'fal fa-server', 'children' => [
+    'system'            => ['title' => 'System', 'icon' => 'fa fa-poo', 'children' => [
         'deploy'        => 'Deploy',
         'db'            => 'DB',
     ]],

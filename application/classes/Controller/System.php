@@ -58,7 +58,7 @@ class Controller_System extends Controller_Common {
             } else {
                 $headers = array_keys($data[0]);
 
-                $html = '<table class="table table_small">';
+                $html = '<table class="table table-striped">';
                 $html .= '<tr>';
 
                 foreach ($headers as $header) {
