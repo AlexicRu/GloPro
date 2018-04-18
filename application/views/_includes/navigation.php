@@ -7,7 +7,7 @@
         <!-- This is  -->
         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
         <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-        <li class="nav-item hidden-sm-down"><span><?=(!empty($title) ? array_pop($title) : '')?></span></li>
+        <li class="nav-item hidden-sm-down"><?/*?><span><?=(!empty($title) ? array_pop($title) : '')?></span><?*/?></li>
     </ul>
     <!-- ============================================================== -->
     <!-- User profile and search -->

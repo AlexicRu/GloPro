@@ -1,3 +1,5 @@
+var LOADER_CLASS = 'block_loading';
+
 $(function(){
     $('.mark_read').on('click', function () {
         $.post('/messages/make-read', {}, function (data) {
@@ -9,6 +11,10 @@ $(function(){
             }
         });
         return false;
+    });
+
+    $(document).on('click', "[toggle]", function(){
+        $("[toggle_block='"+ $(this).attr('toggle') +"']").toggle();
     });
 });
 
@@ -68,9 +74,9 @@ function paginationAjax(url, name, callback, params)
 {
     var outer = $('.' + name + '_out');
     var block = $('<div class="' + name + '" />');
-    var btnBlock = $('<div class="ajax_block_more" />');
-    var more = $('<button class="btn btn_small ajax_block_load">Загрузить еще...</button>');
-    var all = $('<button class="btn btn_small">Загрузить все</button>');
+    var btnBlock = $('<div class="ajax_block_more text-center" />');
+    var more = $('<button class="btn btn-outline-secondary ajax_block_load m-l-5 m-r-5">Загрузить еще...</button>');
+    var all = $('<button class="btn btn-outline-secondary m-l-5 m-r-5">Загрузить все</button>');
 
     outer.addClass('ajax_pagination_out');
     block.addClass('ajax_pagination');
@@ -132,6 +138,6 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
                 outer.find('.ajax_block_more').fadeIn().html('<span class="gray">Данные отсутствуют</span>');
             }
         }
-        block.closest('.block_loading').removeClass('block_loading');
+        block.closest('.block_loading').removeClass(LOADER_CLASS);
     });
 }

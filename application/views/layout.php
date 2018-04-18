@@ -7,6 +7,9 @@
     }?>
     </script>
 <?}?>
+
+<?include '_includes/breadcrumbs.php'?>
+
 <?=$content?>
 
 <?include '_includes/footer.php'?>

@@ -15,10 +15,10 @@ class Model_Contract extends Model
     ];
 
     public static $statusContractClasses = [
-        self::STATE_CONTRACT_WORK 			=> 'label_success',
-        self::STATE_CONTRACT_NOT_IN_WORK 	=> 'label_info',
-        self::STATE_CONTRACT_BLOCKED 		=> 'label_error',
-        self::STATE_CONTRACT_EXPIRED 		=> 'label_warning',
+        self::STATE_CONTRACT_WORK 			=> 'success',
+        self::STATE_CONTRACT_NOT_IN_WORK 	=> 'info',
+        self::STATE_CONTRACT_BLOCKED 		=> 'danger',
+        self::STATE_CONTRACT_EXPIRED 		=> 'warning',
     ];
 
 	const DEFAULT_DATE_END				= '31.12.2099';
