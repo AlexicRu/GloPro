@@ -45,7 +45,7 @@ if(!empty($_REQUEST['search'])){?>
                 tpl.find('.client-longName').html('<h4>' + client.LONG_NAME + '</h4>');
             }
 
-            if (client.contracts.length) {
+            if (client.contracts && client.contracts.length) {
                 tpl.find('.client-contractsBtn').html(
                     '<span class="btn btn-outline-primary" toggle="client' + client.CLIENT_ID + '">' +
 
