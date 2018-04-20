@@ -34,7 +34,7 @@
                         }
 
                         ?>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i><span class=" <?=$item['icon']?>"></span></i> <span class="hide-menu"><?=$item['title']?></span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0);" aria-expanded="false"><i><span class=" <?=$item['icon']?>"></span></i> <span class="hide-menu"><?=$item['title']?></span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <?foreach($item['children'] as $child => $name) {
                                     $isActiveAction = Text::camelCaseToDashed(Request::current()->action()) == $child ;

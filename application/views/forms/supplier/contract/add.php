@@ -20,8 +20,8 @@
     <tr>
         <td></td>
         <td>
-            <span class="btn btn_reverse" onclick="addSupplierContract($(this))">+ Добавить договор</span>
-            <span class="btn btn_red fancy_close">Отмена</span>
+            <span class="btn waves-effect waves-light btn_reverse" onclick="addSupplierContract($(this))"><i class="fa fa-plus"></i> Добавить договор</span>
+            <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
         </td>
     </tr>
 </table>

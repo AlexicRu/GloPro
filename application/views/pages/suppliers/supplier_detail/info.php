@@ -113,17 +113,17 @@
     </div>
 
     <div class="more_info dn" toggle_block="supplier_info">
-        <a href="#" class="btn btn_gray btn_min_width" toggle="supplier_info">Скрыть информацию о поставщике</a> &nbsp;
+        <a href="#" class="btn waves-effect waves-light btn_gray btn_min_width" toggle="supplier_info">Скрыть информацию о поставщике</a> &nbsp;
 
         <?if(Access::allow('suppliers_supplier-edit')){?>
-        <button class="btn" toggle="edit_supplier" toggle_block="edit_supplier"><i class="icon-pen"></i> Редактировать</button> &nbsp;
+        <button class="btn" toggle="edit_supplier" toggle_block="edit_supplier"><i class="fa fa-pencil-alt"></i> Редактировать</button> &nbsp;
 
-        <button class="btn btn_green dn btn_reverse" toggle_block="edit_supplier" onclick="saveSupplierInfo()"><i class="icon-ok"></i> Сохранить</button>
-        <button class="btn btn_red dn" toggle="edit_supplier" toggle_block="edit_supplier" v-on:click="cancelForm()"><i class="icon-cancel"></i> Отмена</button>
+        <button class="btn waves-effect waves-light btn_green dn btn_reverse" toggle_block="edit_supplier" onclick="saveSupplierInfo()"><i class="fa fa-check"></i> Сохранить</button>
+        <button class="btn waves-effect waves-light btn_red dn" toggle="edit_supplier" toggle_block="edit_supplier" v-on:click="cancelForm()"><i class="fa fa-times"></i> Отмена</button>
         <?}?>
     </div>
     <div class="more_info" toggle_block="supplier_info">
-        <a href="#" class="btn btn_gray btn_min_width" toggle="supplier_info">Информация о поставщике</a>
+        <a href="#" class="btn waves-effect waves-light btn_gray btn_min_width" toggle="supplier_info">Информация о поставщике</a>
     </div>
 
 </div>

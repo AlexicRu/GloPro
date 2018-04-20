@@ -22,13 +22,13 @@
         </td>
         <td>
             <div class="client_contracts_list"></div>
-            <button class="btn btn_small" onclick="renderNewClientForm()">+ Добавить клиента</button>
+            <button class="btn waves-effect waves-light btn_small" onclick="renderNewClientForm()"><i class="fa fa-plus"></i> Добавить клиента</button>
         </td>
     </tr>
     <tr>
         <td></td>
         <td>
-            <button class="btn btn_green btn_reverse btn_manager_settings_go" onclick="export1c()">Выгрузить</button>
+            <button class="btn waves-effect waves-light btn_green btn_reverse btn_manager_settings_go" onclick="export1c()">Выгрузить</button>
         </td>
     </tr>
 </table>

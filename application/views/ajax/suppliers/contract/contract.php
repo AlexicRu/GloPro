@@ -21,10 +21,10 @@
         </span>
     
         <?if(Access::allow('suppliers_contract-edit')){?>
-            <div class="fr" toggle_block="toggle_contract"><button class="btn" toggle="toggle_contract"><i class="icon-pen"></i> Редактировать</button></div>
+            <div class="fr" toggle_block="toggle_contract"><button class="btn" toggle="toggle_contract"><i class="fa fa-pencil-alt"></i> Редактировать</button></div>
             <div class="fr dn" toggle_block="toggle_contract">
-                <button class="btn btn_green btn_reverse" onclick="editSupplierContract()"><i class="icon-ok"></i> Сохранить</button>
-                <button class="btn btn_red" toggle="toggle_contract"><i class="icon-cancel"></i> Отменить</button>
+                <button class="btn btn_green btn_reverse" onclick="editSupplierContract()"><i class="fa fa-check"></i> Сохранить</button>
+                <button class="btn btn_red" toggle="toggle_contract"><i class="fa fa-times"></i> Отменить</button>
             </div>
         <?}?>
     </div>

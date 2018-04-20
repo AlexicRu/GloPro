@@ -9,8 +9,8 @@
     <tr>
         <td></td>
         <td>
-            <span class="btn btn_reverse" onclick="editFirmsGroup()"><i class="icon-ok"></i> Сохранить</span>
-            <span class="btn btn_red fancy_close">Отмена</span>
+            <span class="btn btn_reverse" onclick="editFirmsGroup()"><i class="fa fa-check"></i> Сохранить</span>
+            <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
         </td>
     </tr>
 </table>

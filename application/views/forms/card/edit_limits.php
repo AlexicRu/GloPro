@@ -13,7 +13,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
                     }?>
                     <?if ($settings['canAddLimit']) {?>
                         <tr>
-                            <td><button class="btn btn_green btn_card_edit_add_limit" onclick="cardEditAddLimit_<?=$postfix?>($(this))">+ Добавить ограничение</button></td>
+                            <td><button class="btn btn_green btn_card_edit_add_limit" onclick="cardEditAddLimit_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> Добавить ограничение</button></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -27,9 +27,9 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
             <td></td>
             <td>
                 <?if ($settings['canSave']) {?>
-                    <span class="btn btn_reverse" onclick="cardEditGo_<?=$postfix?>($(this))"><i class="icon-ok"></i> Сохранить лимиты</span>
+                    <span class="btn btn_reverse" onclick="cardEditGo_<?=$postfix?>($(this))"><i class="fa fa-check"></i> Сохранить лимиты</span>
                 <?}?>
-                <span class="btn btn_red fancy_close">Отмена</span>
+                <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
             </td>
         </tr>
     </table>

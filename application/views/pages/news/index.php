@@ -2,7 +2,7 @@
     Новости
 
     <?if(Access::allow('news_news-edit')){?>
-        <a href="#news_edit" class="btn fancy">Добавить новость</a>
+        <a href="#news_edit" class="btn waves-effect waves-light fancy">Добавить новость</a>
     <?}?>
 </h1>
 

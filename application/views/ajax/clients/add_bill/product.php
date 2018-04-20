@@ -1,6 +1,6 @@
 <fieldset class="form_client_add_bill_product">
     <legend>Товар</legend>
-    <span class="btn btn_small btn_icon btn_red ts_remove" onclick="addBillDeleteRow($(this))"><i class="icon-cancel"></i></span>
+    <span class="btn btn_small btn_icon btn_red ts_remove" onclick="addBillDeleteRow($(this))"><i class="fa fa-times"></i></span>
 
     <table>
         <tr>

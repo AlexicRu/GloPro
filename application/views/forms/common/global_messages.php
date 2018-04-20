@@ -9,7 +9,7 @@
 </div>
 
 <div class="center">
-    <span class="btn btn_orange btn_reverse" onclick="globalMessagesMarkAsRead($(this))"><i class="icon-ok"></i> Закрыть</span>
+    <span class="btn btn_orange btn_reverse" onclick="globalMessagesMarkAsRead($(this))"><i class="fa fa-check"></i> Закрыть</span>
 </div>
 
 <script>

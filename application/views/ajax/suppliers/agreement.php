@@ -16,10 +16,10 @@ $toggle = 'agreement'.$agreement['AGREEMENT_ID'];
         </span>
 
         <?if(Access::allow('suppliers_agreement-edit')){?>
-            <div class="fr" toggle_block="<?=$toggle?>"><button class="btn" toggle="<?=$toggle?>"><i class="icon-pen"></i> Редактировать</button></div>
+            <div class="fr" toggle_block="<?=$toggle?>"><button class="btn" toggle="<?=$toggle?>"><i class="fa fa-pencil-alt"></i> Редактировать</button></div>
             <div class="fr dn" toggle_block="<?=$toggle?>">
-                <button class="btn btn_green btn_reverse" onclick="agreementSave($(this))"><i class="icon-ok"></i> Сохранить</button>
-                <button class="btn btn_red" toggle="<?=$toggle?>"><i class="icon-cancel"></i> Отменить</button>
+                <button class="btn btn_green btn_reverse" onclick="agreementSave($(this))"><i class="fa fa-check"></i> Сохранить</button>
+                <button class="btn btn_red" toggle="<?=$toggle?>"><i class="fa fa-times"></i> Отменить</button>
             </div>
         <?}?>
     </div>

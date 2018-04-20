@@ -10,11 +10,11 @@
         foreach($tubesList as $tube) {?>
         tpl = '<div class="reference_sources_tube_name_block">' +
             '<span toggle_block="referenceSourcesTube<?=$tube['TUBE_ID']?>">' +
-            '<span toggle="referenceSourcesTube<?=$tube['TUBE_ID']?>" class="btn btn_small btn_icon"><i class="icon-pen"></i></span> ' +
+            '<span toggle="referenceSourcesTube<?=$tube['TUBE_ID']?>" class="btn waves-effect waves-light btn_small btn_icon"><i class="fa fa-pencil-alt"></i></span> ' +
             '<span class="reference_sources_tube_name"><?=$tube['TUBE_NAME']?></span>'+
             '</span>' +
             '<span toggle_block="referenceSourcesTube<?=$tube['TUBE_ID']?>" style="display:none;">' +
-            '<span onclick="referenceSourcesTubeNameChange($(this), <?=$tube['TUBE_ID']?>)" class="btn btn_small btn_icon btn_green"><i class="icon-ok"></i></span>'+
+            '<span onclick="referenceSourcesTubeNameChange($(this), <?=$tube['TUBE_ID']?>)" class="btn waves-effect waves-light btn_small btn_icon btn_green"><i class="fa fa-check"></i></span>'+
             '<input type="text" value="<?=$tube['TUBE_NAME']?>" class="input_mini">'+
             '</span>' +
             '</div>';
@@ -29,7 +29,7 @@
         };
 
         <?if ($tube['CARDS_LIST_RECIEVE'] === "0") {?>
-        row.CARDS_LIST_RECIEVE = '<button class="btn btn_small" <?=(($tube['STATE_ID'] != 1 || $tube['IS_OWNER'] != 1)? 'disabled' : '')?> onclick="referenceSourcesCardListLoadStart($(this),<?=$tube['TUBE_ID']?>)">Загрузить</button>';
+        row.CARDS_LIST_RECIEVE = '<button class="btn waves-effect waves-light btn_small" <?=(($tube['STATE_ID'] != 1 || $tube['IS_OWNER'] != 1)? 'disabled' : '')?> onclick="referenceSourcesCardListLoadStart($(this),<?=$tube['TUBE_ID']?>)">Загрузить</button>';
         <?} else if ($tube['CARDS_LIST_RECIEVE'] === "1") {?>
         row.CARDS_LIST_RECIEVE = 'Идет загрузка...';
         <?} else {?>
@@ -37,7 +37,7 @@
         <?}?>
 
         <?if ($tube['TUBE_ORDER_REPORT'] === "0") {?>
-        row.TUBE_ORDER_REPORT = '<button class="btn btn_small" <?=($tube['STATE_ID'] != 1 ? 'disabled' : '')?>>Загрузить</button>';
+        row.TUBE_ORDER_REPORT = '<button class="btn waves-effect waves-light btn_small" <?=($tube['STATE_ID'] != 1 ? 'disabled' : '')?>>Загрузить</button>';
         <?} else if ($tube['TUBE_ORDER_REPORT'] === "1") {?>
         row.TUBE_ORDER_REPORT = 'Идет загрузка...';
         <?} else {?>

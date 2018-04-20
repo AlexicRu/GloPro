@@ -23,10 +23,10 @@ $postfix = $card['CARD_ID'];
     <tr>
         <td></td>
         <td>
-            <span class="btn btn_reverse" onclick="cardEditHolderGo_<?=$postfix?>($(this))"><i class="icon-ok"></i> Сохранить</span>
+            <span class="btn waves-effect waves-light btn_reverse" onclick="cardEditHolderGo_<?=$postfix?>($(this))"><i class="fa fa-check"></i> Сохранить</span>
 
             <?if(empty($card['CHANGE_LIMIT_AVAILABLE']) || !Access::allow('clients_card-edit-limits')){?>
-                <span class="btn btn_red fancy_close">Отмена</span>
+                <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
             <?}?>
         </td>
     </tr>

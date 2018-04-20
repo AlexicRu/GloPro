@@ -10,8 +10,8 @@
     <tr>
         <td></td>
         <td>
-            <span class="btn btn_reverse" onclick="contractIncreaseLimit()">Сохранить</span>
-            <span class="btn btn_red fancy_close">Отмена</span>
+            <span class="btn waves-effect waves-light btn_reverse" onclick="contractIncreaseLimit()"><i class="fa fa-check"></i> Сохранить</span>
+            <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
         </td>
     </tr>
 </table>

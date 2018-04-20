@@ -9,7 +9,7 @@
     <div class="selected_items_list"></div>
 
     <div class="right">
-        <button class="btn btn_reverse btn_manager_add_reports_go" onclick="submitForm($(this), managerAddReports)"><i class="icon-ok"></i> Добавить</button>
-        <span class="btn btn_red fancy_close">Отмена</span>
+        <button class="btn waves-effect waves-light btn_reverse btn_manager_add_reports_go" onclick="submitForm($(this), managerAddReports)"><i class="fa fa-check"></i> Добавить</button>
+        <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
     </div>
 </div>

@@ -9,7 +9,7 @@
             </span>
             &nbsp;&nbsp;&nbsp; <b><?=$report['WEB_NAME']?></b>
             <div class="fr">
-                <a href="#" class="red del" onclick="delManagersReport($(this))">Удалить <i class="icon-cancel"></i></a>
+                <a href="#" class="red del" onclick="delManagersReport($(this))"><i class="fa fa-trash-alt"></i> Удалить <i class="fa fa-times"></i></a>
             </div>
         </div>
     <?}?>

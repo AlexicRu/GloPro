@@ -10,7 +10,7 @@
         <div>
             <nobr>
                 <?if ($settings['canAddService']) {?>
-                    <button class="btn btn_small btn_green btn_card_edit_add_serviсe" onclick="cardEditAddService_<?=$postfix?>($(this))">+ добавить услугу</button>
+                    <button class="btn btn_small btn_green btn_card_edit_add_serviсe" onclick="cardEditAddService_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> добавить услугу</button>
                 <?}?>
                 <?if ($settings['canDelLimit']) {?>
                     <button class="btn btn_small btn_red btn_card_edit_del_limit" onclick="cardEditDelLimit_<?=$postfix?>($(this))">&times; удалить лимит</button>

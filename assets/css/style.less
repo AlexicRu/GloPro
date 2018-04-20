@@ -35,6 +35,31 @@ body{
 .modal-title{
   font-weight: 600;
 }
+
+@colorInfo : #17a2b8;
+.btn-outline-info {
+  color: @colorInfo; border-color: @colorInfo;
+  box-shadow: 0 2px 2px 0 rgba(29, 160, 181, 0.14), 0 3px 1px -2px rgba(29, 160, 181, 0.2), 0 1px 5px 0 rgba(29, 160, 181, 0.12);
+  &:hover{
+    background-color: @colorInfo; border-color: @colorInfo;
+    box-shadow: 0 14px 26px -12px rgba(2, 163, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 163, 189, 0.2);
+  }
+  &.active, &:focus{
+    box-shadow: 0 14px 26px -12px rgba(2, 163, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 163, 189, 0.2);
+  }
+}
+.btn-info {
+  border-color: @colorInfo; background-color: @colorInfo;
+  box-shadow: 0 2px 2px 0 rgba(29, 160, 181, 0.14), 0 3px 1px -2px rgba(29, 160, 181, 0.2), 0 1px 5px 0 rgba(29, 160, 181, 0.12);
+  &:hover{
+    background-color: @colorInfo; border-color: @colorInfo;
+    box-shadow: 0 14px 26px -12px rgba(2, 163, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 163, 189, 0.2);
+  }
+  &.active, &:focus{
+    box-shadow: 0 14px 26px -12px rgba(2, 163, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 163, 189, 0.2);
+  }
+}
+
 @media (min-width: 768px) {
   .mini-sidebar .sidebar-nav #sidebarnav > li > a {
     padding: 12px 14px;

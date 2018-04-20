@@ -20,10 +20,10 @@
     </span>
 
     <?if(Access::allow('clients_contract-edit')){?>
-        <div class="fr" toggle_block="block2"><button class="btn" toggle="block2"><i class="icon-pen"></i> Редактировать</button></div>
+        <div class="fr" toggle_block="block2"><button class="btn" toggle="block2"><i class="fa fa-pencil-alt"></i> Редактировать</button></div>
         <div class="fr dn" toggle_block="block2">
-            <button class="btn btn_green btn_contract_save btn_reverse"><i class="icon-ok"></i> Сохранить</button>
-            <button class="btn btn_red" toggle="block2"><i class="icon-cancel"></i> Отменить</button>
+            <button class="btn btn_green btn_contract_save btn_reverse"><i class="fa fa-check"></i> Сохранить</button>
+            <button class="btn btn_red" toggle="block2"><i class="fa fa-times"></i> Отменить</button>
         </div>
     <?}?>
 </div>

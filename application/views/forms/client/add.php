@@ -9,8 +9,8 @@
     </div>
 </div>
 <div class="modal-footer">
-    <span class="btn btn-primary" onclick="submitForm($(this), addClientGo)">+ Добавить клиента</span>
-    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Отмена</button>
+    <span class="btn btn-primary" onclick="submitForm($(this), addClientGo)"><i class="fa fa-plus"></i> Добавить клиента</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i> Отмена</button>
 </div>
 
 <script>

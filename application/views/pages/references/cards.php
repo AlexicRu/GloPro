@@ -1,6 +1,6 @@
 <div>
     <div class="fr">
-        <span class="btn btn_green btn_reverse" onclick="gridToXls()"><i class="icon-exel1"></i> Выгрузить в Excel</span>
+        <span class="btn waves-effect waves-light btn_green btn_reverse" onclick="gridToXls()"><i class="icon-exel1"></i> Выгрузить в Excel</span>
     </div>
     <h1>Список карт</h1>
 </div>

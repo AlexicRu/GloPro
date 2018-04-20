@@ -15,12 +15,12 @@
                                                 <option value="<?=$service['SERVICE_ID']?>" <?if($service['SERVICE_ID'] == $limit['SERVICE_ID']){?>selected<?}?>><?=$service['LONG_DESC']?></option>
                                             <?}?>
                                         </select>
-                                        <button class="btn btn_small btn_red btn_contract_limits_edit_del_serviсe" onclick="contractLimitsEditDelService($(this))">&times;</button>
+                                        <button class="btn waves-effect waves-light btn_small btn_red btn_contract_limits_edit_del_serviсe" onclick="contractLimitsEditDelService($(this))">&times;</button>
                                     </nobr></div>
                             <?}?>
                             <div><nobr>
-                                    <button class="btn btn_small btn_green btn_contract_limits_edit_add_serviсe" onclick="contractLimitsEditAddService($(this))">+ добавить услугу</button>
-                                    <button class="btn btn_small btn_red btn_contract_limits_edit_del_limit" onclick="contractLimitsEditDelLimit($(this))">&times; удалить лимит</button>
+                                    <button class="btn waves-effect waves-light btn_small btn_green btn_contract_limits_edit_add_serviсe" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>
+                                    <button class="btn waves-effect waves-light btn_small btn_red btn_contract_limits_edit_del_limit" onclick="contractLimitsEditDelLimit($(this))">&times; удалить лимит</button>
                                 </nobr></div>
                         </td>
                         <td class="v_top">
@@ -44,7 +44,7 @@
                     </tr>
                 <?}?>
                 <tr>
-                    <td><button class="btn btn_green btn_contract_limits_edit_add_limit" onclick="contractLimitsEditAddLimit($(this))">+ Добавить ограничение</button></td>
+                    <td><button class="btn waves-effect waves-light btn_green btn_contract_limits_edit_add_limit" onclick="contractLimitsEditAddLimit($(this))"><i class="fa fa-plus"></i> Добавить ограничение</button></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -61,8 +61,8 @@
     <tr>
         <td></td>
         <td>
-            <span class="btn btn_reverse btn_contract_limits_edit_go" onclick="contractLimitsEditGo($(this))"><i class="icon-ok"></i> Сохранить</span>
-            <span class="btn btn_red fancy_close">Отмена</span>
+            <span class="btn waves-effect waves-light btn_reverse btn_contract_limits_edit_go" onclick="contractLimitsEditGo($(this))"><i class="fa fa-check"></i> Сохранить</span>
+            <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
         </td>
     </tr>
 </table>
@@ -107,7 +107,7 @@
             return false;
         }*/
 
-        var tpl = $('<div class="form_elem" limit_service><nobr><select name="limit_service" onchange="checkServices()" /> <button class="btn btn_small btn_red btn_contract_limits_edit_del_serviсe" onclick="contractLimitsEditDelService($(this))">&times;</button></nobr></div>');
+        var tpl = $('<div class="form_elem" limit_service><nobr><select name="limit_service" onchange="checkServices()" /> <button class="btn waves-effect waves-light btn_small btn_red btn_contract_limits_edit_del_serviсe" onclick="contractLimitsEditDelService($(this))">&times;</button></nobr></div>');
 
         var disabled = [
             $('.form_contract_limits_edit [name=limit_service]:first').val()
@@ -165,8 +165,8 @@
         var table = t.closest('table');
         var tpl = $('<tr limit_group>' +
             '<td><div><nobr>' +
-            '<button class="btn btn_small btn_green btn_contract_limits_edit_add_serviсe" onclick="contractLimitsEditAddService($(this))">+ добавить услугу</button>' +
-            '<button class="btn btn_small btn_red btn_contract_limits_edit_del_limit" onclick="contractLimitsEditDelLimit($(this))">&times; удалить лимит</button>' +
+            '<button class="btn waves-effect waves-light btn_small btn_green btn_contract_limits_edit_add_serviсe" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>' +
+            '<button class="btn waves-effect waves-light btn_small btn_red btn_contract_limits_edit_del_limit" onclick="contractLimitsEditDelLimit($(this))">&times; удалить лимит</button>' +
             '</div></nobr></td>' +
             '<td class="v_top"><input type="text" name="limit_value" placeholder="Объем / сумма"></td>' +
             '<td class="v_top"><select name="limit_param" /></td>' +

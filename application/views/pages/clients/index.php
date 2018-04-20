@@ -1,6 +1,6 @@
 <?if(Access::allow('clients_client-add')){?>
     <div class="text-right m-b-30">
-        <a href="#" class="btn btn-primary fancy" data-toggle="modal" data-target="#client_add">+ Добавить клиента</a>
+        <a href="#" class="btn waves-effect waves-light btn-outline-primary fancy" data-toggle="modal" data-target="#client_add"><i class="fa fa-plus"></i> Добавить клиента</a>
     </div>
 <?}?>
 <?
@@ -47,7 +47,7 @@ if(!empty($_REQUEST['search'])){?>
 
             if (client.contracts && client.contracts.length) {
                 tpl.find('.client-contractsBtn').html(
-                    '<span class="btn btn-outline-primary" toggle="client' + client.CLIENT_ID + '">' +
+                    '<span class="btn waves-effect waves-light btn-outline-info" toggle="client' + client.CLIENT_ID + '">' +
 
                         '<span toggle_block="client' + client.CLIENT_ID + '"><i class="fa fa-chevron-down"></i><span class="d-none d-sm-inline"> Договоры</span></span>' +
                         '<span toggle_block="client' + client.CLIENT_ID + '" class="dn"><i class="fa fa-chevron-up"></i><span class="d-none d-sm-inline"> Свернуть</span></span>' +

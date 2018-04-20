@@ -1,4 +1,4 @@
-<h1>Поставщики <?if(Access::allow('suppliers_supplier-add')){?><a href="#supplier_add" class="btn fancy">+ Добавить поставщика</a><?}?></h1>
+<h1>Поставщики <?if(Access::allow('suppliers_supplier-add')){?><a href="#supplier_add" class="btn waves-effect waves-lightfancy"><i class="fa fa-plus"></i> Добавить поставщика</a><?}?></h1>
 
 
 <?if(Access::allow('suppliers_supplier-add')){?>

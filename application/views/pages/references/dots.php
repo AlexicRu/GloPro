@@ -3,7 +3,7 @@
 <div class="block no_padding dots_info">
     <div class="tab_content_header">
         <div class="fr">
-            <span class="btn btn_green btn_icon" onclick="dotsInfoToXls()"><i class="icon-exel1"></i> Выгрузить</span>
+            <span class="btn waves-effect waves-light btn_green btn_icon" onclick="dotsInfoToXls()"><i class="icon-exel1"></i> Выгрузить</span>
         </div>
         <br class="clr">
     </div>

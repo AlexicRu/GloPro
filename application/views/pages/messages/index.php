@@ -2,7 +2,7 @@
 
 <div class="block list">
     <div class="list_header">
-        <div><a href="#" class="mark_read"><i class="icon-ok"></i> Отметить прочитанным</a></div>
+        <div><a href="#" class="mark_read"><i class="fa fa-check"></i> Отметить прочитанным</a></div>
         <div><div class="fr input_with_icon"><i class="icon-find"></i><form><input type="text" name="m_search" class="input_big input_messages" placeholder="Поиск..." value="<?=$mSearch?>"></form></div></div>
     </div>
     <div class="ajax_block_messages_out">

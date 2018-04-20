@@ -15,10 +15,10 @@ $user = Auth::instance()->get_user();
         <?}?>
     <?}?>
     <?if(Access::allow('clients_card-withdraw')){?>
-        <a href="#" class="btn btn_orange" onclick="cardWithdraw('<?=$card['CARD_ID']?>', <?=$card['BLOCK_AVAILABLE']?>)"><i class="icon-cancel"></i> Изъять</a>
+        <a href="#" class="btn btn_orange" onclick="cardWithdraw('<?=$card['CARD_ID']?>', <?=$card['BLOCK_AVAILABLE']?>)"><i class="fa fa-times"></i> Изъять</a>
     <?}?>
     <?if(Access::allow('clients_card_edit')){?>
-        <a href="#card_edit_holder_<?=$card['CARD_ID']?>" class="fancy btn"><i class="icon-pen"></i> Редактировать</a>
+        <a href="#card_edit_holder_<?=$card['CARD_ID']?>" class="fancy btn"><i class="fa fa-pencil-alt"></i> Редактировать</a>
     <?}?>
 </div>
 
@@ -54,7 +54,7 @@ $user = Auth::instance()->get_user();
 <div class="fr">
     <?if(Access::allow('clients_card_edit')){?>
         <?if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-limits')){?>
-            <a href="#card_edit_limits_<?=$card['CARD_ID']?>" class="fancy btn btn_icon"><i class="icon-pen"></i></a>
+            <a href="#card_edit_limits_<?=$card['CARD_ID']?>" class="fancy btn btn_icon"><i class="fa fa-pencil-alt"></i></a>
         <?}?>
     <?}?>
 </div>

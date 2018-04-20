@@ -99,7 +99,7 @@ function addSectionCondition(t)
     var uidSection = block.attr('uid_section');
     var list = block.find('.ts_conditions');
 
-    var tpl = $('<div class="tsc_item line_inner block_loading"><span class="btn btn_small btn_icon btn_red ts_remove"><i class="icon-cancel"></i></span></div>');
+    var tpl = $('<div class="tsc_item line_inner block_loading"><span class="btn waves-effect waves-light btn_small btn_icon btn_red ts_remove"><i class="fa fa-times"></i></span></div>');
 
     tpl.appendTo(list);
 

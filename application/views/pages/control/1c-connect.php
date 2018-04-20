@@ -20,7 +20,7 @@
                     <div class="connect_1c_payments dropzone"></div>
                 </div>
                 <div>
-                    <button disabled onclick="connect1cPayments_addPayments($(this))" class="btn load_connect1c_payments_btn">Загрузить выделенные</button>
+                    <button disabled onclick="connect1cPayments_addPayments($(this))" class="btn waves-effect waves-light load_connect1c_payments_btn">Загрузить выделенные</button>
                 </div>
             </div>
 

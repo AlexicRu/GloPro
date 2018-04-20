@@ -19,9 +19,9 @@
             <?}?>
         <?}?>
     </div>
-    <span class="btn btn_add_section" onclick="addSection($(this))">+ Добавить секцию</span>
+    <span class="btn waves-effect waves-light btn_add_section" onclick="addSection($(this))"><i class="fa fa-plus"></i> Добавить секцию</span>
 
     <div class="row_btns">
-        <span class="btn btn_green" onclick="saveTariff($(this))"><i class="icon-ok"></i> Сохранить</span>
+        <span class="btn waves-effect waves-light btn_green" onclick="saveTariff($(this))"><i class="fa fa-check"></i> Сохранить</span>
     </div>
 </div>

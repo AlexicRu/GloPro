@@ -3,8 +3,8 @@
 </div>
 <div class="popup_list"></div>
 <div class="popup_list_btns">
-    <span class="btn btn_reverse btn_add_dots_to_group_go">+ Добавить точки</span>
-    <span class="btn btn_red pre_fancy_close">Отмена</span>
+    <span class="btn btn_reverse btn_add_dots_to_group_go"><i class="fa fa-plus"></i> Добавить точки</span>
+    <span class="btn btn_red pre_fancy_close"><i class="fa fa-times"></i> Отмена</span>
 </div>
 
 <script>

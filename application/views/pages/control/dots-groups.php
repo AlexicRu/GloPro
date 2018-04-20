@@ -4,16 +4,16 @@
     <div class="tab_content_header">
         <div class="fr">
             <span toggle_block="dots_groups_block">
-                <a href="#control_add_dots_group" class="btn fancy">+ Добавить группу</a>
-                <a href="#control_add_dots" class="btn fancy">+ Добавить точки</a>
-                <span class="btn btn_green btn_icon" onclick="dotsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
-                <span class="btn btn_green btn_icon" toggle="dots_groups_block"><i class="icon-pen"></i></span>
+                <a href="#control_add_dots_group" class="btn waves-effect waves-lightfancy"><i class="fa fa-plus"></i> Добавить группу</a>
+                <a href="#control_add_dots" class="btn waves-effect waves-lightfancy"><i class="fa fa-plus"></i> Добавить точки</a>
+                <span class="btn waves-effect waves-light btn_green btn_icon" onclick="dotsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
+                <span class="btn waves-effect waves-light btn_green btn_icon" toggle="dots_groups_block"><i class="fa fa-pencil-alt"></i></span>
             </span>
 
             <span toggle_block="dots_groups_block" class="dn action_del">
-                <a href="#" class="btn btn_red btn_del_dots_groups"><i class="icon-cancel"></i> Удалить выделенные группы</a>
-                <a href="#" class="btn btn_red btn_del_dots"><i class="icon-cancel"></i> Удалить выделенные точки</a>
-                <span class="btn btn_orange btn_icon" toggle="dots_groups_block"><i class="icon-cancel"></i></span>
+                <a href="#" class="btn waves-effect waves-light btn_red btn_del_dots_groups"><i class="fa fa-trash-alt"></i> Удалить выделенные группы</a>
+                <a href="#" class="btn waves-effect waves-light btn_red btn_del_dots"><i class="fa fa-trash-alt"></i> Удалить выделенные точки</a>
+                <span class="btn waves-effect waves-light btn_orange btn_icon" toggle="dots_groups_block"><i class="fa fa-times"></i></span>
             </span>
         </div>
         <form class="form_groups_dots" onsubmit="return collectForms($(this), 'form_groups_dots')">
@@ -60,7 +60,7 @@
                                     <input type="hidden" name="group_name" value="<?=$group['GROUP_NAME']?>">
                                     <input type="hidden" name="group_type" value="<?=$group['GROUP_TYPE']?>">
 
-                                    <span class="btn btn_green btn_tiny btn_icon" onclick="showEditDotsGroupPopup(<?=$group['GROUP_ID']?>)"><i class="icon-pen"></i></span>
+                                    <span class="btn waves-effect waves-light btn_green btn_tiny btn_icon" onclick="showEditDotsGroupPopup(<?=$group['GROUP_ID']?>)"><i class="fa fa-pencil-alt"></i></span>
                                 </span>
                             <?}?>
 

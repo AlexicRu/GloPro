@@ -68,7 +68,7 @@
 						</div>
 					<?}?>
 					<div>
-						<a href="#" class="mark_read"><i class="icon-ok"></i> Отметить прочитанным</a>
+						<a href="#" class="mark_read"><i class="fa fa-check"></i> Отметить прочитанным</a>
 					</div>
 				</div>
 			<?}?>

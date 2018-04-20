@@ -1,6 +1,5 @@
 <script src="<?=Common::getAssetsLink()?>js/clients/client.js"></script>
 
-<div class="back_link">&larr; <a href="/clients">Вернуться назад</a></div>
 <h2>
     <span toggle_block="edit_client" uid="client_name"><?=$client['NAME']?></span>
     <span toggle_block="edit_client" uid="client_name" class="dn">
@@ -121,37 +120,42 @@
 </div>
 
 <div class="more_info dn" toggle_block="block1">
-    <a href="#" class="btn btn_gray btn_min_width" toggle="block1">Скрыть информацию о компании</a> &nbsp;
+    <a href="#" class="btn waves-effect waves-light btn-outline-secondary" toggle="block1">Скрыть информацию о компании</a> &nbsp;
 
     <?if(Access::allow('clients-client-edit')){?>
-        <button class="btn" toggle="edit_client" toggle_block="edit_client"><i class="icon-pen"></i> Редактировать</button> &nbsp;
+        <button class="btn waves-effect waves-light btn-primary" toggle="edit_client" toggle_block="edit_client"><i class="fa fa-pencil-alt"></i> Редактировать</button> &nbsp;
     <?}?>
+
+    <button class="btn waves-effect waves-light btn-success dn client_edit_btn" toggle_block="edit_client"><i class="fa fa-check"></i> Сохранить</button>
+    <button class="btn waves-effect waves-light btn-danger dn" toggle="edit_client" toggle_block="edit_client"><i class="fa fa-times"></i> Отмена</button>
 
     <?if(Access::allow('client_cabinet-create') && empty($client['EXISTS_OFFICE'])){?>
-        <a href="#client_cabinet_create" class="btn btn_green fancy">+ Создать ЛК</a>
+        <a href="#client_cabinet_create" class="btn waves-effect waves-light btn-outline-primary fancy"><i class="fa fa-plus"></i> Создать ЛК</a>
     <?}?>
-
-    <button class="btn btn_green dn client_edit_btn btn_reverse" toggle_block="edit_client"><i class="icon-ok"></i> Сохранить</button>
-    <button class="btn btn_red dn" toggle="edit_client" toggle_block="edit_client"><i class="icon-cancel"></i> Отмена</button>
 </div>
 <div class="more_info" toggle_block="block1">
-    <a href="#" class="btn btn_gray btn_min_width" toggle="block1">Информация о компании</a>
+    <a href="#" class="btn waves-effect waves-light btn-outline-secondary" toggle="block1">Информация о компании</a>
 </div>
 
-<select name="contracts_list" class="select_big select_long" <?=(empty($contracts) ? 'disabled' :'')?>>
-    <?if(empty($contracts)){?>
-        <option value="0">Нет договоров</option>
-    <?}else{
-    foreach($contracts as $contract){?>
-        <option value="<?=$contract['CONTRACT_ID']?>" <?=((!empty($contractId) && $contractId == $contract['CONTRACT_ID']) ? 'selected' : '')?>>
-            Договор: [<?=$contract['CONTRACT_ID']?>] <?=$contract['CONTRACT_NAME']?> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != '31.12.2099'){?>до <?=$contract['DATE_END']?><?}?>
-        </option>
-    <?}}?>
-</select>
+
+<div class="input-group">
+    <select name="contracts_list" class="custom-select" <?=(empty($contracts) ? 'disabled' :'')?>>
+        <?if(empty($contracts)){?>
+            <option value="0">Нет договоров</option>
+        <?}else{
+        foreach($contracts as $contract){?>
+            <option value="<?=$contract['CONTRACT_ID']?>" <?=((!empty($contractId) && $contractId == $contract['CONTRACT_ID']) ? 'selected' : '')?>>
+                Договор: [<?=$contract['CONTRACT_ID']?>] <?=$contract['CONTRACT_NAME']?> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != '31.12.2099'){?>до <?=$contract['DATE_END']?><?}?>
+            </option>
+        <?}}?>
+    </select>
+
+    <?if(Access::allow('clients_contract-add')){?>
+        &nbsp;&nbsp;&nbsp;<a href="#contract_add" class="btn waves-effect waves-light btn-outline-primary fancy"><i class="fa fa-plus"></i> Создать договор</a>
+    <?}?>
+</div>
 
 <?if(Access::allow('clients_contract-add')){?>
-    &nbsp;&nbsp;&nbsp;<a href="#contract_add" class="btn fancy">+ Создать договор</a>
-
     <?=$popupContractAdd?>
 <?}?>
 

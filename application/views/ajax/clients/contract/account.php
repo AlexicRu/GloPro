@@ -13,7 +13,7 @@
     <div class="col line_inner">
         <?if(Access::allow('view_contract_balances')){?>
             <?if(Access::allow('clients-contract-limits-edit')){?>
-                <div class="fr"><a href="#contract_limits_edit" class="fancy btn btn_green btn_icon btn_small"><i class="icon-pen"></i></a></div>
+                <div class="fr"><a href="#contract_limits_edit" class="fancy btn btn_green btn_icon btn_small"><i class="fa fa-pencil-alt"></i></a></div>
             <?}?>
 
             <b class="f18">Остатки по договору:</b>
@@ -69,7 +69,7 @@
     </div><div class="col">
         <?if(Access::allow('clients_payment-add')){?>
             <div class="fr">
-                <a href="#contract_payment_add" class="fancy btn">+ Добавить платеж</a>
+                <a href="#contract_payment_add" class="fancy btn"><i class="fa fa-plus"></i> Добавить платеж</a>
             </div>
         <?}?>
 
@@ -91,7 +91,7 @@
                         '<b>' +
                     '</div>');
                     <?if(Access::allow('clients_payment-del')){?>
-                        tpl.append('<div class="fr"><a href="#" class="red del link_del_contract_payment">Удалить <i class="icon-cancel"></i></a></div>');
+                        tpl.append('<div class="fr"><a href="#" class="red del link_del_contract_payment"><i class="fa fa-trash-alt"></i> Удалить</i></a></div>');
                     <?}?>
 
                     tpl.attr('guid', data[i].ORDER_GUID);

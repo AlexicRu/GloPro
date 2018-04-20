@@ -60,8 +60,8 @@
     <tr>
         <td></td>
         <td>
-            <button class="btn btn_reverse btn_manager_add_go" onclick="managerAdd()"><i class="icon-ok"></i> Добавить</button>
-            <span class="btn btn_red fancy_close">Отмена</span>
+            <button class="btn btn_reverse btn_manager_add_go" onclick="managerAdd()"><i class="fa fa-check"></i> Добавить</button>
+            <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
         </td>
     </tr>
 </table>

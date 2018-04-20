@@ -16,10 +16,10 @@
 
             </div>
 
-            <div class="btn" onclick="addCalcTariffsClient()">+ Добавить клиента</div>
+            <div class="btn" onclick="addCalcTariffsClient()"><i class="fa fa-plus"></i> Добавить клиента</div>
 
             <div class="row_btns">
-                <div class="btn btn_green" onclick="calcTariffsGo()"><i class="icon-ok"></i> Рассчитать</div>
+                <div class="btn waves-effect waves-light btn_green" onclick="calcTariffsGo()"><i class="fa fa-check"></i> Рассчитать</div>
             </div>
         </div>
         <div tab_content="close" class="tab_content">

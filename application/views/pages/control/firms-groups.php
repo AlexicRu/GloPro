@@ -4,16 +4,16 @@
     <div class="tab_content_header">
         <div class="fr">
             <span toggle_block="firms_groups_block">
-                <a href="#control_add_firms_group" class="btn fancy">+ Добавить группу</a>
-                <a href="#control_add_firms" class="btn fancy">+ Добавить карты</a>
-                <span class="btn btn_green btn_icon" onclick="groupFirmsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
-                <span class="btn btn_green btn_icon" toggle="firms_groups_block"><i class="icon-pen"></i></span>
+                <a href="#control_add_firms_group" class="btn waves-effect waves-light fancy"><i class="fa fa-plus"></i> Добавить группу</a>
+                <a href="#control_add_firms" class="btn waves-effect waves-light fancy"><i class="fa fa-plus"></i> Добавить карты</a>
+                <span class="btn waves-effect waves-light btn_green btn_icon" onclick="groupFirmsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
+                <span class="btn waves-effect waves-light btn_green btn_icon" toggle="firms_groups_block"><i class="fa fa-pencil-alt"></i></span>
             </span>
 
             <span toggle_block="firms_groups_block" class="dn action_del">
-                <a href="#" class="btn btn_red btn_del_firms_groups"><i class="icon-cancel"></i> Удалить выделенные группы</a>
-                <a href="#" class="btn btn_red btn_del_firms"><i class="icon-cancel"></i> Удалить выделенные фирмы</a>
-                <span class="btn btn_orange btn_icon" toggle="firms_groups_block"><i class="icon-cancel"></i></span>
+                <a href="#" class="btn waves-effect waves-light btn_red btn_del_firms_groups"><i class="fa fa-trash-alt"></i> Удалить выделенные группы</a>
+                <a href="#" class="btn waves-effect waves-light btn_red btn_del_firms"><i class="fa fa-trash-alt"></i> Удалить выделенные фирмы</a>
+                <span class="btn waves-effect waves-light btn_orange btn_icon" toggle="firms_groups_block"><i class="fa fa-times"></i></span>
             </span>
         </div>
         <form class="form_firms_groups" onsubmit="return collectForms($(this), 'form_firms_groups')">
@@ -36,7 +36,7 @@
                                     <input type="checkbox" name="group_id" value="<?=$group['GROUP_ID']?>">
                                     <input type="hidden" name="group_name" value="<?=$group['GROUP_NAME']?>">
 
-                                    <span class="btn btn_green btn_tiny btn_icon" onclick="showEditFirmsGroupPopup(<?=$group['GROUP_ID']?>)"><i class="icon-pen"></i></span>
+                                    <span class="btn waves-effect waves-light btn_green btn_tiny btn_icon" onclick="showEditFirmsGroupPopup(<?=$group['GROUP_ID']?>)"><i class="fa fa-pencil-alt"></i></span>
                                 </span>
                             <?/*}*/?>
 

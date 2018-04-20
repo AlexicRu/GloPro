@@ -1,6 +1,6 @@
 <fieldset>
     <legend>Клиент</legend>
-    <span class="btn btn_small btn_icon btn_red ts_remove" onclick="deleteRow($(this))"><i class="icon-cancel"></i></span>
+    <span class="btn btn_small btn_icon btn_red ts_remove" onclick="deleteRow($(this))"><i class="fa fa-times"></i></span>
 
     <table>
         <tr>
@@ -15,7 +15,7 @@
                 Текущий тариф
             </td>
             <td rowspan="2" class="btns">
-                <span class="calc_tariffs_client_ok btn btn_small btn_green btn_reverse dn"><i class="icon-ok"></i> Ok</span>
+                <span class="calc_tariffs_client_ok btn btn_small btn_green btn_reverse dn"><i class="fa fa-check"></i> Ok</span>
                 <span class="calc_tariffs_client_go btn btn_small btn_reverse dn">... Расчет</span>
                 <span class="calc_tariffs_client_error btn btn_small btn_red btn_reverse dn">Ошибка</span>
             </td>

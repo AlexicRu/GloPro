@@ -31,11 +31,11 @@
             <td></td>
             <td class="fr">
                 <?if(!empty($detail['NEWS_ID'])){?>
-                    <span class="btn btn_reverse btn_news_edit_go"><i class="icon-ok"></i> Редактировать</span>
+                    <span class="btn btn_reverse btn_news_edit_go"><i class="fa fa-check"></i> Редактировать</span>
                 <?}else{?>
-                    <span class="btn btn_reverse btn_news_edit_go">+ Добавить</span>
+                    <span class="btn btn_reverse btn_news_edit_go"><i class="fa fa-plus"></i> Добавить</span>
                 <?}?>
-                <span class="btn btn_red fancy_close">Отмена</span>
+                <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
             </td>
         </tr>
     </table>
