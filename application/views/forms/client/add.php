@@ -1,18 +1,17 @@
-<table class="table_form form_add_client">
-    <tr>
-        <td class="gray right" width="170">Название компании:</td>
-        <td>
-            <input type="text" name="add_client_name" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn btn_reverse" onclick="submitForm($(this), addClientGo)">+ Добавить клиента</span>
-            <span class="btn btn_red fancy_close">Отмена</span>
-        </td>
-    </tr>
-</table>
+<div class="modal-body">
+    <div class="form form_add_client">
+        <div class="form-group row m-b-0">
+            <div class="text-right col-4">Название компании:</div>
+            <div class="col-8">
+                <input type="text" name="add_client_name" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <span class="btn btn-primary" onclick="submitForm($(this), addClientGo)">+ Добавить клиента</span>
+    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Отмена</button>
+</div>
 
 <script>
     function addClientGo(btn) {

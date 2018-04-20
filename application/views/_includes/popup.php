@@ -1,6 +1,15 @@
-<div class="dn">
-    <div id="<?=$popupId?>">
-        <div class="fancy_header"><?=$popupHeader?></div>
-        <div class="fancy_body"><?=$popupBody?></div>
+<!-- sample modal content -->
+<div id="<?=$popupId?>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><?=$popupHeader?></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <?=$popupBody?>
+        </div>
+        <!-- /.modal-content -->
     </div>
+    <!-- /.modal-dialog -->
 </div>
+<!-- /.modal -->

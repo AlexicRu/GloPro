@@ -1,6 +1,6 @@
 <?if(Access::allow('clients_client-add')){?>
     <div class="text-right m-b-30">
-        <a href="#client_add" class="btn btn-primary fancy">+ Добавить клиента</a>
+        <a href="#" class="btn btn-primary fancy" data-toggle="modal" data-target="#client_add">+ Добавить клиента</a>
     </div>
 <?}?>
 <?

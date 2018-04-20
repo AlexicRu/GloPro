@@ -141,3 +141,31 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
         block.closest('.block_loading').removeClass(CLASS_LOADING);
     });
 }
+
+var submitFormInAction = false;
+
+/**
+ * функция предварительной обработки перед сабмитом формы
+ *
+ * @param btn
+ * @param callback
+ * @returns {boolean}
+ */
+function submitForm(btn, callback)
+{
+    if (submitFormInAction) {
+        return false;
+    }
+
+    submitFormInAction = true;
+
+    callback(btn);
+}
+
+/**
+ * отмена блокировки отправки
+ */
+function endSubmitForm()
+{
+    submitFormInAction = false;
+}
