@@ -45,7 +45,7 @@
                                     }
                                 </script>
                                 <?*/?>
-                                <button type="submit" class="btn btn-info waves-effect waves-light">Войти</button>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Войти</button>
                             </div>
                         </div>
                     </form>

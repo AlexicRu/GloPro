@@ -32,13 +32,13 @@ if(!empty($_REQUEST['search'])){?>
                         '<h3 class="card-title"><span class="lstick"></span><a href="/clients/client/' + client.CLIENT_ID + '">' + client.CLIENT_NAME + '</a></h3>' +
                     '</div>' +
                     '<div class="ml-auto">' +
-                        '<span class="label label-light-inverse p-2 font-16 m-b-10">ID ' + client.CLIENT_ID + '</span>'+
+                        '<span class="label label-light-inverse p-2 font-16 m-b-10 nowrap">ID ' + client.CLIENT_ID + '</span>'+
                     '</div>' +
                 '</div>' +
             '</div></div>');
 
             if (client.LONG_NAME || (client.contracts && client.contracts.length)) {
-                $('<div class="row"><div class="col-8 client-longName" /><div class="col-4 client-contractsBtn text-right"></div>').insertAfter(tpl.find('.d-flex'));
+                $('<div class="row"><div class="col-9 col-sm-8 col-md-9 client-longName" /><div class="col-3 col-sm-4 col-md-3 client-contractsBtn text-right"></div>').insertAfter(tpl.find('.d-flex'));
             }
 
             if (client.LONG_NAME) {
