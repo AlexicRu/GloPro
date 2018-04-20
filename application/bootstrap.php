@@ -89,8 +89,8 @@ if (isset($_SERVER['SERVER_PROTOCOL']))
  */
 
 if (
-    strpos($_SERVER['HTTP_HOST'], 'dev.') !== 0 &&
-    strpos($_SERVER['HTTP_HOST'], 'test.') !== 0
+    strpos($_SERVER['HTTP_HOST'], 'dev.') === false &&
+    strpos($_SERVER['HTTP_HOST'], 'test.') === false
 ) {
     // We are live!
     Kohana::$environment = Kohana::PRODUCTION;
@@ -114,13 +114,21 @@ if (
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 
-
-Kohana::init(array(
-	'base_url'      => '/',
-	'index_file'    => false,
-    'errors'        => false,
+$initParams = [
+    'base_url'      => '/',
+    'index_file'    => false,
     'caching'       => true,
-));
+];
+
+switch (Kohana::$environment) {
+    case Kohana::PRODUCTION:
+        $initParams['errors'] = false;
+        break;
+    default:
+        $initParams['errors'] = true;
+}
+
+Kohana::init($initParams);
 
 /**
  * Attach the file write to logging. Multiple writers are supported.
