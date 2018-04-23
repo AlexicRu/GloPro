@@ -28,7 +28,7 @@
 
                         if(empty($item['children'])){
                             ?>
-                            <li><a class="waves-effect waves-dark" href="/<?=$link?>"><i><span class="<?=$item['icon']?>"></span></i> <span class="hide-menu"><?=$item['title']?></span></a></li>
+                            <li><a class="waves-effect waves-dark <?=($isActiveController ? 'active' : '')?>" href="/<?=$link?>"><i><span class="<?=$item['icon']?>"></span></i> <span class="hide-menu"><?=$item['title']?></span></a></li>
                             <?
                             continue;
                         }
@@ -40,7 +40,7 @@
                                     $isActiveAction = Text::camelCaseToDashed(Request::current()->action()) == $child ;
 
                                     if(Access::allow($link.'_'.$child, true)) {?>
-                                        <li><a href="/<?=$link?>/<?=$child?>"><?=$name?></a></li>
+                                        <li><a href="/<?=$link?>/<?=$child?>" class="<?=($isActiveAction ? 'active' : '')?>"><?=$name?></a></li>
                                     <?}
                                 }?>
                             </ul>
