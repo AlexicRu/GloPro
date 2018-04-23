@@ -91,7 +91,7 @@ class Controller_Suppliers extends Controller_Common {
         $contractId = $this->request->param('id');
 
         if($contractId == 0){
-            $this->html('<div class="error_block">Договоры отсутствуют</div>');
+            $this->html('<div class="error_block text-center p-5">Договоры отсутствуют</div>');
         }
 
         $tab = $this->request->post('tab');
@@ -203,7 +203,7 @@ class Controller_Suppliers extends Controller_Common {
         $agreement = Model_Supplier_Agreement::get($agreementId, $contractId);
 
         if(empty($agreement)){
-            $this->html('<div class="error_block">Ошибка</div>');
+            $this->html('<div class="error_block text-center p-5">Ошибка</div>');
         }
 
         $tariffs = Model_Tariff::getAvailableTariffs();

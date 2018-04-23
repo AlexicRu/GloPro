@@ -98,7 +98,7 @@ class Controller_Clients extends Controller_Common {
 		$contractId = $this->request->param('id');
 
 		if($contractId == 0){
-			$this->html('<div class="error_block">Контракты отсутствуют</div>');
+			$this->html('<div class="error_block text-center p-5">Контракты отсутствуют</div>');
 		}
 
 		$tab = $this->request->post('tab');
@@ -107,7 +107,7 @@ class Controller_Clients extends Controller_Common {
 		$contract = Model_Contract::getContract($contractId);
 
 		if(empty($contract)){
-			$this->html('<div class="error_block">Ошибка</div>');
+			$this->html('<div class="error_block text-center p-5">Ошибка</div>');
 		}
 
 		$balance = Model_Contract::getContractBalance($contractId);
@@ -216,7 +216,7 @@ class Controller_Clients extends Controller_Common {
         $card = Model_Card::getCard($cardId, $contractId);
 
         if(empty($card)){
-            $this->html('<div class="error_block">Ошибка</div>');
+            $this->html('<div class="error_block text-center p-5">Ошибка</div>');
         }
 
         $oilRestrictions = Model_Card::getOilRestrictions($cardId);

@@ -1,7 +1,7 @@
 <script src="<?=Common::getAssetsLink()?>js/reports/reports.js"></script>
 
 <?if(empty($reports)){?>
-    <div class="error_block">Нет доступных отчетов</div>
+    <div class="error_block text-center p-5">Нет доступных отчетов</div>
 <?}else{?>
     <div class="tabs_vertical_block tabs_switcher tabs_reports <?=(!empty($noBorder) ? 'tabs_no_border' : '')?>">
         <div class="tabs_v">

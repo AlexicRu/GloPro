@@ -1,6 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Date extends Kohana_Date {
+class Date extends Kohana_Date
+{
+    public static $timestampDateFormat = 'd.m.Y';
 
     public static function monthRu($month = false, $type = 1)
     {
@@ -97,5 +99,32 @@ class Date extends Kohana_Date {
         $interval = $datetime1->diff($datetime2);
 
         return $interval->format($differenceFormat);
+    }
+
+    /**
+     * Returns a date/time string with the specified timestamp format
+     *
+     *     $time = Date::formatted_time('5 minutes ago');
+     *
+     * @link    http://www.php.net/manual/datetime.construct
+     * @param   string  $datetime_str       datetime string
+     * @param   string  $timestamp_format   timestamp format
+     * @param   string  $timezone           timezone identifier
+     * @return  string
+     */
+    public static function format($datetime_str = 'now', $timestamp_format = NULL, $timezone = NULL)
+    {
+        $timestamp_format = ($timestamp_format == NULL) ? Date::$timestampDateFormat : $timestamp_format;
+        $timezone         = ($timezone === NULL) ? Date::$timezone : $timezone;
+
+        $tz   = new DateTimeZone($timezone ? $timezone : date_default_timezone_get());
+        $time = new DateTime($datetime_str, $tz);
+
+        // Convert the time back to the expected timezone if required (in case the datetime_str provided a timezone,
+        // offset or unix timestamp. This also ensures that the timezone reported by the object is correct on HHVM
+        // (see https://github.com/facebook/hhvm/issues/2302).
+        $time->setTimeZone($tz);
+
+        return $time->format($timestamp_format);
     }
 }

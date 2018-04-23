@@ -1,31 +1,36 @@
-<table class="table_form form_add_contract">
-    <tr>
-        <td class="gray right" width="170">Номер:</td>
-        <td>
-            <input type="text" name="add_contract_name" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right" width="170">Дата начала:</td>
-        <td>
-            <input type="text" class="input_big datepicker" readonly name="add_contract_date_start" value="<?=date('d.m.Y')?>">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right" width="170">Дата окончания:</td>
-        <td>
-            <input type="text" class="input_big datepicker" readonly name="add_contract_date_end">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn waves-effect waves-light btn_reverse" onclick="submitForm($(this), addContractGo)"><i class="fa fa-plus"></i> Добавить договор</span>
-            <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-        </td>
-    </tr>
-</table>
-<small><i>* - Дату окончания оставить пустой в случае бессрочного договора</i></small>
+<div class="modal-body">
+
+    <div class="form form_add_client">
+        <div class="form-group row">
+            <div class="text-right col-4">Номер:</div>
+            <div class="col-8">
+                <input type="text" name="add_contract_name" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="text-right col-4">Дата начала:</div>
+            <div class="col-8">
+                <input type="date" class="form-control" name="add_contract_date_start" value="<?=date('d.m.Y')?>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="text-right col-4">Дата окончания:</div>
+            <div class="col-8">
+                <input type="date" class="form-control" name="add_contract_date_end">
+            </div>
+        </div>
+    </div>
+
+    <small><i>* - Дату окончания оставить пустой в случае бессрочного договора</i></small>
+
+</div>
+<div class="modal-footer">
+    <span class="btn btn-primary" onclick="submitForm($(this), addContractGo)"><i class="fa fa-plus"></i> Создать договор</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i> Отмена</button>
+</div>
+
 <script>
     function addContractGo(btn)
     {

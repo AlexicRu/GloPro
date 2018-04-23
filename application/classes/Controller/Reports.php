@@ -50,7 +50,7 @@ class Controller_Reports extends Controller_Common {
         $templateSettings = Model_Report::getReportTemplateSettings($reportId);
 
         if(empty($templateSettings)){
-            $this->html('<div class="error_block">Ошибка</div>');
+            $this->html('<div class="error_block text-center p-5">Ошибка</div>');
         }
 
         $this->html(Model_Report::buildTemplate($templateSettings));

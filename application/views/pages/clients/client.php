@@ -139,7 +139,7 @@
     </span>
 
     <?if(Access::allow('client_cabinet-create') && empty($client['EXISTS_OFFICE'])){?>
-        <a href="#client_cabinet_create" class="btn waves-effect waves-light btn-outline-primary m-t-10"><i class="fa fa-plus"></i> Создать ЛК</a>
+        <a href="#" class="btn waves-effect waves-light btn-outline-primary m-t-10" data-toggle="modal" data-target="#client_cabinet_create"><i class="fa fa-plus"></i> Создать ЛК</a>
     <?}?>
 </div>
 <div class="more_info" toggle_block="block1">
@@ -149,7 +149,7 @@
 <div class="row m-t-40">
     <div class="d-md-none m-b-20 col-12">
         <?if(Access::allow('clients_contract-add')){?>
-            <a href="#contract_add" class="btn waves-effect waves-light btn-outline-primary fancy"><i class="fa fa-plus"></i> Создать договор</a>
+            <a href="#" class="btn waves-effect waves-light btn-outline-primary" data-toggle="modal" data-target="#contract_add"><i class="fa fa-plus"></i> Создать договор</a>
         <?}?>
     </div>
     <div class="col-md-8">
@@ -166,7 +166,7 @@
     </div>
     <div class="col-md-4 text-right d-none d-md-block">
         <?if(Access::allow('clients_contract-add')){?>
-            <a href="#contract_add" class="btn waves-effect waves-light btn-outline-primary fancy"><i class="fa fa-plus"></i> Создать договор</a>
+            <a href="#" class="btn waves-effect waves-light btn-outline-primary" data-toggle="modal" data-target="#contract_add"><i class="fa fa-plus"></i> Создать договор</a>
         <?}?>
     </div>
 </div>

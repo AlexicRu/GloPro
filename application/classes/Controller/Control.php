@@ -53,7 +53,7 @@ class Controller_Control extends Controller_Common {
         $manager = Model_Manager::getManager($managerId);
 
         if(empty($manager)){
-            $this->html('<div class="error_block">Ошибка</div>');
+            $this->html('<div class="error_block text-center p-5">Ошибка</div>');
         }
 
         $managerSettingsForm = View::factory('forms/manager/settings');

@@ -312,8 +312,8 @@ class Model_Contract extends Model
 		$data = [
 			'p_client_id' 		=> $params['client_id'],
 			'p_contract_name' 	=> $params['name'],
-			'p_date_begin' 		=> $params['date_start'],
-			'p_date_end' 		=> !empty($params['date_end']) ? $params['date_end'] : self::DEFAULT_DATE_END,
+			'p_date_begin' 		=> Date::format($params['date_start']),
+			'p_date_end' 		=> !empty($params['date_end']) ? Date::format($params['date_end']) : self::DEFAULT_DATE_END,
 			'p_currency' 		=> Common::CURRENCY_RUR,
 			'p_manager_id' 		=> $user['MANAGER_ID'],
 			'p_contract_id' 	=> 'out',

@@ -67,16 +67,22 @@ $(function(){
     });
 });
 
+function modalClose()
+{
+    var modal = $('modal.show');
+
+    if (modal.length) {
+        $('#' + modal.attr('id')).modal('hide');
+    }
+}
+
 function loadContract(tab, query, params)
 {
-    $.fancybox.close();
-    $('.ajax_contract_block').empty().addClass('block_loading');
+    modalClose();
+    $('.ajax_contract_block').empty().addClass(CLASS_LOADING);
     var contractId = $('[name=contracts_list]').val();
 
     $.post('/clients/contract/' + contractId, {tab:tab, query:query, params:params}, function(data){
-        $('.ajax_contract_block').html(data).removeClass('block_loading');
-        $('.ajax_contract_block .datepicker').each(function () {
-            renderDatePicker($(this));
-        });
+        $('.ajax_contract_block').html(data).removeClass(CLASS_LOADING);
     });
 }
