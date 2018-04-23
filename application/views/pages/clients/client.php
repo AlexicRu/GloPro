@@ -179,7 +179,7 @@
     <?=$popupCabinetCreate?>
 <?}?>
 
-<div class="ajax_contract_block"></div>
+<div class="ajax_contract_block m-t-40"></div>
 
 <script>
     var clientId = <?=$client['CLIENT_ID']?>;

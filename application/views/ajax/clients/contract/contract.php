@@ -1,4 +1,5 @@
-<div class="tc_top_line">
+<div class="card">
+    <div class="card-body">
     [<?=$contract['CONTRACT_ID']?>]
     <span toggle_block="block2">
         <?=$contract['CONTRACT_NAME']?> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != '31.12.2099'){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
@@ -26,7 +27,9 @@
             <button class="btn btn_red" toggle="block2"><i class="fa fa-times"></i> Отменить</button>
         </div>
     <?}?>
+    </div>
 </div>
+
 <div class="as_table">
     <div class="col">
         <?if(1||Access::allow('view_payment_block')){?>

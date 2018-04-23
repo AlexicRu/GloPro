@@ -211,7 +211,7 @@ abstract class Controller_Common extends Controller_Template {
         ];
 
         $this->template->scripts = [
-            'https://www.google.com/recaptcha/api.js',
+            //'https://www.google.com/recaptcha/api.js',
             Common::getAdminProAssetsLink() . 'assets/plugins/jquery/jquery.min.js',
             Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/js/popper.min.js',
             Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/js/bootstrap.min.js',

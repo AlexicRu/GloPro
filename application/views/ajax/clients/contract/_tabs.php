@@ -1,14 +1,47 @@
-<div class="block block_margin f18">
-    <span class="gray">Текущий баланс:</span> <b><?=number_format($balance['BALANCE'], 2, ',', ' ')?> <?=Text::RUR?></b>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="gray">Оборот за текущий период:</span> <b><?=number_format($balance['MONTH_REALIZ'], 2, ',', ' ')?> л.</b>
+<div class="card">
+    <div class="card-body font-20">
+        <div class="row">
+            <div class="col-md-6">
+                <span class="nowrap text-muted">Текущий баланс:</span>
+                <span class="nowrap font-weight-bold"><?=number_format($balance['BALANCE'], 2, ',', ' ')?> <?=Text::RUR?></span>
+            </div>
+            <div class="col-md-6">
+                <span class="nowrap text-muted">Оборот за текущий период:</span>
+                <span class="nowrap font-weight-bold"><?=number_format($balance['MONTH_REALIZ'], 2, ',', ' ')?> л.</span>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="tabs_block">
-    <div class="tabs">
-        <span ajax_tab="contract" class="tab <?=($tab == 'contract' ? 'active' : '')?>"><i class="icon-contract"></i> Договор</span><span ajax_tab="cards" class="tab <?=($tab == 'cards' ? 'active' : '')?>"><i class="icon-cards"></i> Карты</span><span ajax_tab="account" class="tab  <?=($tab == 'account' ? 'active' : '')?>"><i class="icon-account"></i> Счет</span><span ajax_tab="reports" class="tab <?=($tab == 'reports' ? 'active' : '')?>"><i class="icon-reports"></i> Отчеты</span>
-    </div>
-    <div class="tabs_content tabs_content_no_padding">
-        <?=$content?>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs customtab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link <?=($tab == 'contract' ? 'active' : '')?>" href="#" ajax_tab="contract">
+            <i class="fa fa-book"></i> <span class="hidden-xs-down d-inline-block m-l-5">Договор</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?=($tab == 'cards' ? 'active' : '')?>" href="#" ajax_tab="cards">
+            <i class="fa fa-credit-card-front"></i> <span class="hidden-xs-down d-inline-block m-l-5">Карты</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?=($tab == 'account' ? 'active' : '')?>" href="#" ajax_tab="account">
+            <i class="fa fa-briefcase"></i> <span class="hidden-xs-down d-inline-block m-l-5">Счет</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?=($tab == 'reports' ? 'active' : '')?>" href="#" ajax_tab="reports">
+            <i class="fa fa-file-alt"></i> <span class="hidden-xs-down d-inline-block m-l-5">Отчеты</span>
+        </a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active" id="contract" role="tabpanel">
+        <div class="p-20 bg-white">
+            <?=$content?>
+        </div>
     </div>
 </div>
