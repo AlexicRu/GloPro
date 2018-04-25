@@ -24,7 +24,7 @@
             <div class="fr" toggle_block="toggle_contract"><button class="btn" toggle="toggle_contract"><i class="fa fa-pencil-alt"></i> Редактировать</button></div>
             <div class="fr dn" toggle_block="toggle_contract">
                 <button class="btn btn_green btn_reverse" onclick="editSupplierContract()"><i class="fa fa-check"></i> Сохранить</button>
-                <button class="btn btn_red" toggle="toggle_contract"><i class="fa fa-times"></i> Отменить</button>
+                <button class="btn btn_red" toggle="toggle_contract"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
             </div>
         <?}?>
     </div>

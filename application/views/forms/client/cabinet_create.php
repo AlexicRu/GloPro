@@ -22,7 +22,7 @@
 </div>
 <div class="modal-footer">
     <span class="btn btn-primary" onclick="submitForm($(this), cabinetCreateGo)"><i class="fa fa-plus"></i> Создать</span>
-    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i> Отмена</button>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 
 <script>

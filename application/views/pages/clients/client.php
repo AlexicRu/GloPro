@@ -127,7 +127,7 @@
 </div>
 
 <div class="more_info dn" toggle_block="block1">
-    <a href="#" class="btn waves-effect waves-light btn-outline-secondary m-t-10" toggle="block1">Скрыть информацию о компании</a> &nbsp;
+    <a href="#" class="btn waves-effect waves-light btn-outline-secondary m-t-10" toggle="block1">Скрыть</a> &nbsp;
 
     <?if(Access::allow('clients-client-edit')){?>
         <button class="btn waves-effect waves-light btn-primary m-t-10" toggle="edit_client" toggle_block="edit_client"><i class="fa fa-pencil-alt"></i> Редактировать</button> &nbsp;

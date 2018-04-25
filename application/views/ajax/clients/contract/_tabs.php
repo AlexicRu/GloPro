@@ -2,11 +2,11 @@
     <div class="card-body font-20">
         <div class="row">
             <div class="col-md-6">
-                <span class="nowrap text-muted">Текущий баланс:</span>
+                <span class="text-muted">Текущий баланс:</span>
                 <span class="nowrap font-weight-bold"><?=number_format($balance['BALANCE'], 2, ',', ' ')?> <?=Text::RUR?></span>
             </div>
             <div class="col-md-6">
-                <span class="nowrap text-muted">Оборот за текущий период:</span>
+                <span class="text-muted">Оборот за текущий период:</span>
                 <span class="nowrap font-weight-bold"><?=number_format($balance['MONTH_REALIZ'], 2, ',', ' ')?> л.</span>
             </div>
         </div>
