@@ -40,7 +40,7 @@
 <!-- Tab panes -->
 <div class="tab-content">
     <div class="tab-pane active" id="contract" role="tabpanel">
-        <div class="p-20 bg-white">
+        <div class="bg-white">
             <?=$content?>
         </div>
     </div>

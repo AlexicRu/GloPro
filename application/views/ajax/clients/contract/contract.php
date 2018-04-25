@@ -1,70 +1,73 @@
-<div toggle_block="block2" class="m-b-30">
-    <div class="font-20">
+<div class="p-20 border-bottom">
+    <div toggle_block="block2">
+        <div class="font-20">
+            <?if(Access::allow('clients_contract-edit')){?>
+                <div class="float-right">
+                    <button class="btn waves-effect waves-light btn-outline-primary" toggle="block2"><i class="fa fa-pencil-alt"></i><span class="hidden-md-down"> Редактировать</span></button>
+                </div>
+            <?}?>
+            <div>
+                [<?=$contract['CONTRACT_ID']?>]
+                <b><?=$contract['CONTRACT_NAME']?></b>
+                <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
+                <?if($contract['DATE_END'] != '31.12.2099'){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
+                <span class="label label-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="dn" toggle_block="block2">
+        <div class="form-group row font-20">
+            <label class="col-sm-2 col-form-label">[<?=$contract['CONTRACT_ID']?>]</label>
+            <div class="col-sm-10">
+                <input type="text" name="CONTRACT_NAME" value="<?=Text::quotesForForms($contract['CONTRACT_NAME'])?>" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 m-b-20 p-b-5">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">от</div>
+                    </div>
+                    <input type="date" name="DATE_BEGIN" value="<?=Date::formatToDefault($contract['DATE_BEGIN'])?>" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-4 m-b-20 p-b-5">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">до</div>
+                    </div>
+                    <input type="date" name="DATE_END" value="<?=Date::formatToDefault($contract['DATE_END'])?>" class="form-control">
+                </div>
+            </div>+
+
+            <div class="col-md-4 m-b-20 p-b-5">
+                <select class="custom-select" name="STATE_ID">
+                    <?
+                    foreach(Model_Contract::$statusContractNames as $id => $name){
+                        ?><option value="<?=$id?>" <?if($id == $contract['STATE_ID']){echo 'selected';}?>><?=$name?></option><?
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+
         <?if(Access::allow('clients_contract-edit')){?>
-            <div class="float-right">
-                <button class="btn waves-effect waves-light btn-outline-primary" toggle="block2"><i class="fa fa-pencil-alt"></i><span class="hidden-md-down"> Редактировать</span></button>
+        <div class="form-group row m-b-0">
+            <div class="col-sm-12">
+                <button class="btn waves-effect waves-light btn-success btn_contract_save btn_reverse"><i class="fa fa-check"></i> Сохранить</button>
+                <button class="btn waves-effect waves-light btn-danger" toggle="block2"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
             </div>
+        </div>
         <?}?>
-        <div>
-            [<?=$contract['CONTRACT_ID']?>]
-            <b><?=$contract['CONTRACT_NAME']?></b>
-            <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
-            <?if($contract['DATE_END'] != '31.12.2099'){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
-            <span class="label label-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
-        </div>
+
     </div>
 </div>
 
-<div class="dn" toggle_block="block2">
-    <div class="form-group row font-20">
-        <label class="col-sm-2 col-form-label">[<?=$contract['CONTRACT_ID']?>]</label>
-        <div class="col-sm-10">
-            <input type="text" name="CONTRACT_NAME" value="<?=Text::quotesForForms($contract['CONTRACT_NAME'])?>" class="form-control">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 m-b-20 p-b-5">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">от</div>
-                </div>
-                <input type="date" name="DATE_BEGIN" value="<?=Date::formatToDefault($contract['DATE_BEGIN'])?>" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-4 m-b-20 p-b-5">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">до</div>
-                </div>
-                <input type="date" name="DATE_END" value="<?=Date::formatToDefault($contract['DATE_END'])?>" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-4 m-b-20 p-b-5">
-            <select class="custom-select" name="STATE_ID">
-                <?
-                foreach(Model_Contract::$statusContractNames as $id => $name){
-                    ?><option value="<?=$id?>" <?if($id == $contract['STATE_ID']){echo 'selected';}?>><?=$name?></option><?
-                }
-                ?>
-            </select>
-        </div>
-    </div>
-
-    <?if(Access::allow('clients_contract-edit')){?>
-    <div class="form-group row">
-        <div class="col-sm-12">
-            <button class="btn waves-effect waves-light btn-success btn_contract_save btn_reverse"><i class="fa fa-check"></i> Сохранить</button>
-            <button class="btn waves-effect waves-light btn-danger" toggle="block2"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
-        </div>
-    </div>
-    <?}?>
-
-</div>
-
-<div class="row">
+<div class="row p-20">
     <div class="col-lg-6">
         <?if(Access::allow('view_payment_block')){?>
             <div class="font-20 font-weight-bold m-b-10">Оплата:</div>
