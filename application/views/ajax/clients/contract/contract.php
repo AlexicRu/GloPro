@@ -1,8 +1,8 @@
-<div toggle_block="block2">
+<div toggle_block="block2" class="m-b-30">
     <div class="font-20">
         <?if(Access::allow('clients_contract-edit')){?>
             <div class="float-right">
-                <button class="btn btn-outline-primary" toggle="block2"><i class="fa fa-pencil-alt"></i><span class="hidden-md-down"> Редактировать</span></button>
+                <button class="btn waves-effect waves-light btn-outline-primary" toggle="block2"><i class="fa fa-pencil-alt"></i><span class="hidden-md-down"> Редактировать</span></button>
             </div>
         <?}?>
         <div>
@@ -56,22 +56,25 @@
     <?if(Access::allow('clients_contract-edit')){?>
     <div class="form-group row">
         <div class="col-sm-12">
-            <button class="btn btn-success btn_contract_save btn_reverse"><i class="fa fa-check"></i> Сохранить</button>
-            <button class="btn btn-danger" toggle="block2"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+            <button class="btn waves-effect waves-light btn-success btn_contract_save btn_reverse"><i class="fa fa-check"></i> Сохранить</button>
+            <button class="btn waves-effect waves-light btn-danger" toggle="block2"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
         </div>
     </div>
     <?}?>
 
 </div>
 
-<div class="as_table">
-    <div class="col">
+<div class="row">
+    <div class="col-lg-6">
         <?if(Access::allow('view_payment_block')){?>
-        <b class="f18">Оплата:</b>
-        <table>
-            <tr>
-                <td class="gray right" width="160">Схема оплаты:</td>
-                <td>
+            <div class="font-20 font-weight-bold m-b-10">Оплата:</div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right d-none d-sm-block">Схема оплаты:</div>
+                    <div class="d-block d-sm-none">Схема оплаты:</div>
+                </div>
+                <div class="col-sm-7">
                     <span toggle_block="block2"><?=Model_Contract::$paymentSchemes[$contractSettings['scheme']]?></span>
                     <span toggle_block="block2" class="dn">
                         <select name="scheme">
@@ -82,11 +85,15 @@
                             ?>
                         </select>
                     </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="gray right" width="130">Блокировка:</td>
-                <td>
+                </div>
+            </div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right d-none d-sm-block">Блокировка:</div>
+                    <div class="d-block d-sm-none">Блокировка:</div>
+                </div>
+                <div class="col-sm-7">
                     <span toggle_block="block2">
                         <?if($contractSettings['scheme'] == Model_Contract::PAYMENT_SCHEME_UNLIMITED){?>
                             Отсутствует
@@ -98,11 +105,15 @@
                     <?if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_UNLIMITED){?>
                         <?=Text::RUR?>
                     <?}?>
-                </td>
-            </tr>
-            <tr>
-                <td class="gray right">Периодичность выставления счетов:</td>
-                <td>
+                </div>
+            </div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right d-none d-sm-block">Периодичность выставления счетов:</div>
+                    <div class="d-block d-sm-none">Периодичность выставления счетов:</div>
+                </div>
+                <div class="col-sm-7">
                     <?
                     if($contractSettings['INVOICE_PERIOD_TYPE'] == Model_Contract::INVOICE_PERIOD_TYPE_DAY){
                         $period = Text::plural($contractSettings['INVOICE_PERIOD_VALUE'], ['день', 'дня', 'дней']);
@@ -122,142 +133,126 @@
                         </select>
                         <input type="text" name="INVOICE_PERIOD_VALUE" value="<?=$contractSettings['INVOICE_PERIOD_VALUE']?>">
                     </span>*/?>
-                </td>
-            </tr>
-            <tr>
-                <td class="gray right">Валюта:</td>
-                <td>
+                </div>
+            </div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right d-none d-sm-block">Валюта:</div>
+                    <div class="d-block d-sm-none">Валюта:</div>
+                </div>
+                <div class="col-sm-7">
                     Российский Рубль – <?=Text::RUR?>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
         <?}?>
 
         <?if(Access::allow('view_goods_receiver')){?>
-        <br>
-        <b class="f18">Грузополучатель:</b><br>
-        <table>
-            <tr>
-                <td class="gray right" width="160">Грузополучатель:</td>
-                <td>
+            <div class="font-20 font-weight-bold m-b-10 m-t-20">Грузополучатель:</div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right d-none d-sm-block">Грузополучатель:</div>
+                    <div class="d-block d-sm-none">Грузополучатель:</div>
+                </div>
+                <div class="col-sm-7">
                     <span toggle_block="block2" class="goods_reciever_span"></span>
                     <span toggle_block="block2" class="dn">
                         <?=Form::buildField('client_choose_single', 'GOODS_RECIEVER', $contractSettings['GOODS_RECIEVER'], [
                             'render_value_to' => '.goods_reciever_span',
                         ])?>
                     </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="gray right">Комментарий к договору:</td>
-                <td>
+                </div>
+            </div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right d-none d-sm-block">Комментарий к договору:</div>
+                    <div class="d-block d-sm-none">Комментарий к договору:</div>
+                </div>
+                <div class="col-sm-7">
                     <span toggle_block="block2"><?=($contractSettings['CONTRACT_COMMENT'] ?
                             Text::parseUrl($contractSettings['CONTRACT_COMMENT'])
                             : '<i class="gray">отсутствует</i>')?></span>
                     <span toggle_block="block2" class="dn">
                         <textarea name="CONTRACT_COMMENT"><?=$contractSettings['CONTRACT_COMMENT']?></textarea>
                     </span>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
         <?}?>
 
         <?if(Access::allow('view_penalties')){?>
-        <br>
-        <b class="f18">Штрафы:</b><br>
-        <fieldset class="inline_block">
-            <legend>По счету</legend>
-            <table>
-                <tr>
-                    <td class="gray right">Пени:</td>
-                    <td>
-                        <span toggle_block="block2"><?=$contractSettings['PENALTIES']?></span>
-                        <span toggle_block="block2" class="dn"><input type="text" name="PENALTIES" class="input_small" value="<?=$contractSettings['PENALTIES']?>"></span>
-                        %
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Овердрафт:</td>
-                    <td>
-                        <span toggle_block="block2"><?=$contractSettings['OVERDRAFT']?></span>
-                        <span toggle_block="block2" class="dn"><input type="number" name="OVERDRAFT" class="input_small" min="0" value="<?=$contractSettings['OVERDRAFT']?>"></span>
-                        <?=Text::RUR?>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-            <?/*?>
-        <fieldset class="inline_block">
-            <legend>По карте</legend>
-            <table>
-                <tr>
-                    <td class="gray right" width="200">Штрафы за маленькие обороты:</td>
-                    <td>
-                        <span toggle_block="block2"><input type="checkbox" class="switch" disabled></span>
-                        <span toggle_block="block2" class="dn"><input type="checkbox" class="switch"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Оборот за период менее:</td>
-                    <td>
-                        <span toggle_block="block2">15000 <?=Text::RUR?></span>
-                        <span toggle_block="block2" class="dn">
-                            <input type="text" class="input_tiny" value="15000">
-                            <select>
-                                <option><?=Text::RUR?></option>
-                                <option>Л</option>
-                            </select>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Размер штрафа:</td>
-                    <td>
-                        <span toggle_block="block2">500</span>
-                        <span toggle_block="block2" class="dn"><input type="text" class="input_small" value="500"></span>
-                        <?=Text::RUR?>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-<?*/?>
+            <div class="font-20 font-weight-bold m-b-10 m-t-20">Штрафы по счету:</div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right d-none d-sm-block">Пени:</div>
+                    <div class="d-block d-sm-none">Пени:</div>
+                </div>
+                <div class="col-sm-7">
+                    <span toggle_block="block2"><?=$contractSettings['PENALTIES']?></span>
+                    <span toggle_block="block2" class="dn"><input type="text" name="PENALTIES" class="input_small" value="<?=$contractSettings['PENALTIES']?>"></span>
+                    %
+                </div>
+            </div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right d-none d-sm-block">Овердрафт:</div>
+                    <div class="d-block d-sm-none">Овердрафт:</div>
+                </div>
+                <div class="col-sm-7">
+                    <span toggle_block="block2"><?=$contractSettings['OVERDRAFT']?></span>
+                    <span toggle_block="block2" class="dn"><input type="number" name="OVERDRAFT" class="input_small" min="0" value="<?=$contractSettings['OVERDRAFT']?>"></span>
+                    <?=Text::RUR?>
+                </div>
+            </div>
         <?}?>
     </div>
-    <div class="col line_inner">
-        <?if(Access::allow('view_tariffs')){?>
-            <b class="f18">Тарификация</b>
-            <table>
-                <tr>
-                    <td class="gray right">Online тариф:</td>
-                    <td>
+    <div class="col-lg-6">
+        <div class="card-body bg-light">
+            <?if(Access::allow('view_tariffs')){?>
+                <div class="font-20 font-weight-bold m-b-10">Тарификация:</div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-5 text-muted">
+                        <div class="text-right d-none d-sm-block">Online тариф:</div>
+                        <div class="d-block d-sm-none">Online тариф:</div>
+                    </div>
+                    <div class="col-sm-7">
                         <span toggle_block="block2"><?=$contractSettings['TARIF_NAME_ONLINE']?></span>
                         <span toggle_block="block2" class="dn">
                             <?=Form::buildField('contract_tariffs', 'TARIF_ONLINE', $contractSettings['TARIF_ONLINE'])?>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Тариф по договору:</td>
-                    <td>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-5 text-muted">
+                        <div class="text-right d-none d-sm-block">Тариф по договору:</div>
+                        <div class="d-block d-sm-none">Тариф по договору:</div>
+                    </div>
+                    <div class="col-sm-7">
                         <span toggle_block="block2"><?=$contractSettings['TARIF_NAME_OFFLINE']?></span>
                         <span toggle_block="block2" class="dn">
                             <?=Form::buildField('contract_tariffs', 'TARIF_OFFLINE', $contractSettings['TARIF_OFFLINE'])?>
                         </span>
-                    </td>
-                </tr>
-            </table>
-        <?}?>
+                    </div>
+                </div>
+            <?}?>
 
-        <br>
-        <a href="#contract_history" class="btn fancy">История по договору</a>
 
-        <?=$popupContractHistory?>
-        
-        <a href="#contract_notice_settings" class="btn fancy">Настройка уведомлений</a>
+            <a href="#contract_history" class="btn btn-outline-primary waves-effect waves-light m-t-10">История по договору</a>
 
-        <?=$popupContractNoticeSettings?>
+            <?=$popupContractHistory?>
+
+            <a href="#contract_notice_settings" class="btn btn-outline-primary waves-effect waves-light m-t-10">Настройка уведомлений</a>
+
+            <?=$popupContractNoticeSettings?>
+        </div>
     </div>
 </div>
+
 
 <script>
     $(function(){

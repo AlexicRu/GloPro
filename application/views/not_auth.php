@@ -15,20 +15,25 @@
 
                     <form class="form-horizontal" id="login" method="post" action="/login">
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-4 text-right control-label col-form-label">Логин</label>
+                            <div class="col-sm-4 col-form-label">
+                                <div class="text-right d-none d-sm-block">Логин</div>
+                                <div class="d-block d-sm-none">Логин</div>
+                            </div>
                             <div class="col-sm-8">
                                 <input type="text" placeholder="Логин" name="login" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-4 text-right control-label col-form-label">Пароль</label>
+                            <div class="col-sm-4 col-form-label">
+                                <div class="text-right d-none d-sm-block">Пароль</div>
+                                <div class="d-block d-sm-none">Пароль</div>
+                            </div>
                             <div class="col-sm-8">
                                 <input type="password" placeholder="Пароль" name="password" class="form-control">
                             </div>
                         </div>
                         <div class="form-group m-b-0 row">
-                            <div class="col-sm-4">&nbsp;</div>
-                            <div class="col-sm-8">
+                            <div class="offset-sm-4 col-sm-8">
                                 <?/*
                                 $config = Kohana::$config->load('config');
 
