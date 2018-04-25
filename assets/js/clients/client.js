@@ -69,7 +69,7 @@ $(function(){
 
 function modalClose()
 {
-    var modal = $('modal.show');
+    var modal = $('.modal.show');
 
     if (modal.length) {
         $('#' + modal.attr('id')).modal('hide');

@@ -2,7 +2,8 @@
 
 class Date extends Kohana_Date
 {
-    public static $timestampDateFormat = 'd.m.Y';
+    public static $timestampDateFormatRu = 'd.m.Y';
+    public static $timestampDateFormatDefault = 'Y-m-d';
 
     public static function monthRu($month = false, $type = 1)
     {
@@ -104,27 +105,26 @@ class Date extends Kohana_Date
     /**
      * Returns a date/time string with the specified timestamp format
      *
-     *     $time = Date::formatted_time('5 minutes ago');
+     *     $time = Date::format('5 minutes ago');
      *
      * @link    http://www.php.net/manual/datetime.construct
-     * @param   string  $datetime_str       datetime string
-     * @param   string  $timestamp_format   timestamp format
-     * @param   string  $timezone           timezone identifier
+     * @param   string  $datetime       datetime string
+     * @param   string  $formatFrom
+     * @param   string  $formatTo
      * @return  string
      */
-    public static function format($datetime_str = 'now', $timestamp_format = NULL, $timezone = NULL)
+    public static function format($datetime = 'now', $formatFrom = false, $formatTo = false)
     {
-        $timestamp_format = ($timestamp_format == NULL) ? Date::$timestampDateFormat : $timestamp_format;
-        $timezone         = ($timezone === NULL) ? Date::$timezone : $timezone;
+        $formatFrom = !$formatFrom ? Date::$timestampDateFormatDefault : $formatFrom;
+        $formatTo = !$formatTo ? Date::$timestampDateFormatRu : $formatTo;
 
-        $tz   = new DateTimeZone($timezone ? $timezone : date_default_timezone_get());
-        $time = new DateTime($datetime_str, $tz);
+        $datetime = DateTime::createFromFormat($formatFrom, $datetime);
 
-        // Convert the time back to the expected timezone if required (in case the datetime_str provided a timezone,
-        // offset or unix timestamp. This also ensures that the timezone reported by the object is correct on HHVM
-        // (see https://github.com/facebook/hhvm/issues/2302).
-        $time->setTimeZone($tz);
+        return $datetime->format($formatTo);
+    }
 
-        return $time->format($timestamp_format);
+    public static function formatToDefault($datetime = 'now')
+    {
+        return self::format($datetime, self::$timestampDateFormatRu, self::$timestampDateFormatDefault);
     }
 }

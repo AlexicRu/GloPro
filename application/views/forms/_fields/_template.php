@@ -29,7 +29,7 @@ if ($renderDepend) {?>
                        autocomplete="off"
                        name="<?=$name?>"
                        url="<?=$params['url']?>"
-                       class="custom_field combobox <?=(!empty($params['multi']) ? 'combobox_multi' : '')?> <?=(!empty($params['classes']) ? $params['classes'] : '')?>"
+                       class="form-control custom_field combobox <?=(!empty($params['multi']) ? 'combobox_multi' : '')?> <?=(!empty($params['classes']) ? $params['classes'] : '')?>"
                        placeholder="<?=(!empty($params['placeholder']) ? $params['placeholder'] : 'Поиск...')?>"
                        <?if (isset($params['weight'])){?>weight="<?=$params['weight']?>"<?}?>
                        <?if (!empty($params['depend_to'])){?>depend_to="<?=$params['depend_to']?>"<?}?>

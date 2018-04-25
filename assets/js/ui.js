@@ -14,9 +14,13 @@ function renderElements()
 
         if(t.closest('.combobox_multi_wrapper').length == 0){
             $('.combobox_multi_wrapper .combobox_multi_result').hide().html('');
+        } else {
+            $('.combobox_multi_wrapper').not(t.closest('.combobox_multi_wrapper')).find('.combobox_multi_result').hide().html('');
         }
         if(t.closest('.combobox_outer').length == 0){
             $('.combobox_outer .combobox_result').hide().html('');
+        } else {
+            $('.combobox_outer').not(t.closest('.combobox_outer')).find('.combobox_result').hide().html('');
         }
     });
 }

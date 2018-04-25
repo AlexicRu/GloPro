@@ -8,6 +8,7 @@ class Form extends Kohana_Form
      * @param $header
      * @param $form
      * @param $data
+     * @param $formName
      */
     public static function popup($header, $form, $data = [], $formName = '')
     {
@@ -26,6 +27,20 @@ class Form extends Kohana_Form
             ->bind('popupBody', $formBody)
             ->bind('popupId', $id)
         ;
+
+        return $content;
+    }
+
+    /**
+     * большой попап
+     */
+    public static function popupLarge($header, $form, $data = [], $formName = '')
+    {
+        $content = self::popup($header, $form, $data, $formName);
+
+        $popupClass = 'modal-lg';
+
+        $content->bind('popupClass', $popupClass);
 
         return $content;
     }

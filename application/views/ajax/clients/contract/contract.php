@@ -29,7 +29,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">от</div>
                 </div>
-                <input type="date" name="DATE_BEGIN" value="<?=$contract['DATE_BEGIN']?>" class="form-control">
+                <input type="date" name="DATE_BEGIN" value="<?=Date::formatToDefault($contract['DATE_BEGIN'])?>" class="form-control">
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">до</div>
                 </div>
-                <input type="date" name="DATE_END" value="<?=$contract['DATE_END']?>" class="form-control">
+                <input type="date" name="DATE_END" value="<?=Date::formatToDefault($contract['DATE_END'])?>" class="form-control">
             </div>
         </div>
 
@@ -77,7 +77,7 @@
                 <div class="col-sm-7">
                     <span toggle_block="block2"><?=Model_Contract::$paymentSchemes[$contractSettings['scheme']]?></span>
                     <span toggle_block="block2" class="dn">
-                        <select name="scheme">
+                        <select name="scheme" class="custom-select">
                             <?
                             foreach(Model_Contract::$paymentSchemes as $id => $name){
                                 ?><option value="<?=$id?>" <?if($id == $contractSettings['scheme']){echo 'selected';}?>><?=$name?></option><?
@@ -101,7 +101,7 @@
                             <?=$contractSettings['AUTOBLOCK_LIMIT']?>
                         <?}?>
                     </span>
-                    <span toggle_block="block2" class="dn"><input type="text" name="AUTOBLOCK_LIMIT" class="input_small" value="<?=$contractSettings['AUTOBLOCK_LIMIT']?>" <?if ($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){echo 'disabled';}?>></span>
+                    <span toggle_block="block2" class="dn"><input type="text" name="AUTOBLOCK_LIMIT" class="form-control" value="<?=$contractSettings['AUTOBLOCK_LIMIT']?>" <?if ($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){echo 'disabled';}?>></span>
                     <?if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_UNLIMITED){?>
                         <?=Text::RUR?>
                     <?}?>
@@ -175,7 +175,7 @@
                             Text::parseUrl($contractSettings['CONTRACT_COMMENT'])
                             : '<i class="gray">отсутствует</i>')?></span>
                     <span toggle_block="block2" class="dn">
-                        <textarea name="CONTRACT_COMMENT"><?=$contractSettings['CONTRACT_COMMENT']?></textarea>
+                        <textarea class="form-control" name="CONTRACT_COMMENT"><?=$contractSettings['CONTRACT_COMMENT']?></textarea>
                     </span>
                 </div>
             </div>
@@ -190,9 +190,15 @@
                     <div class="d-block d-sm-none">Пени:</div>
                 </div>
                 <div class="col-sm-7">
-                    <span toggle_block="block2"><?=$contractSettings['PENALTIES']?></span>
-                    <span toggle_block="block2" class="dn"><input type="text" name="PENALTIES" class="input_small" value="<?=$contractSettings['PENALTIES']?>"></span>
-                    %
+                    <span toggle_block="block2"><?=$contractSettings['PENALTIES']?> %</span>
+                    <span toggle_block="block2" class="dn">
+                        <div class="input-group">
+                            <input type="text" name="PENALTIES" class="form-control" value="<?=$contractSettings['PENALTIES']?>">
+                            <div class="input-group-append">
+                                <div class="input-group-text">%</div>
+                            </div>
+                        </div>
+                    </span>
                 </div>
             </div>
 
@@ -202,9 +208,15 @@
                     <div class="d-block d-sm-none">Овердрафт:</div>
                 </div>
                 <div class="col-sm-7">
-                    <span toggle_block="block2"><?=$contractSettings['OVERDRAFT']?></span>
-                    <span toggle_block="block2" class="dn"><input type="number" name="OVERDRAFT" class="input_small" min="0" value="<?=$contractSettings['OVERDRAFT']?>"></span>
-                    <?=Text::RUR?>
+                    <span toggle_block="block2"><?=$contractSettings['OVERDRAFT']?> <?=Text::RUR?></span>
+                    <span toggle_block="block2" class="dn">
+                        <div class="input-group">
+                            <input type="number" name="OVERDRAFT" class="form-control" min="0" value="<?=$contractSettings['OVERDRAFT']?>">
+                            <div class="input-group-append">
+                                <div class="input-group-text"><?=Text::RUR?></div>
+                            </div>
+                        </div>
+                    </span>
                 </div>
             </div>
         <?}?>
@@ -241,12 +253,11 @@
                 </div>
             <?}?>
 
-
-            <a href="#contract_history" class="btn btn-outline-primary waves-effect waves-light m-t-10">История по договору</a>
+            <a href="#" class="btn waves-effect waves-light btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_history">История по договору</a>
 
             <?=$popupContractHistory?>
 
-            <a href="#contract_notice_settings" class="btn btn-outline-primary waves-effect waves-light m-t-10">Настройка уведомлений</a>
+            <a href="#" class="btn waves-effect waves-light btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_notice_settings">Настройка уведомлений</a>
 
             <?=$popupContractNoticeSettings?>
         </div>
@@ -257,7 +268,6 @@
 <script>
     $(function(){
         renderElements();
-        renderTootip();
 
         $("select[name=scheme]").on('change', function(){
             var t = $(this);

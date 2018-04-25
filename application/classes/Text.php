@@ -106,20 +106,17 @@ class Text extends Kohana_Text
 
                     $replace[$url] = '<a href="'. $url .'" target="_blank">'. $name .'</a>';
                 } else {
-
-                    $uniqid = uniqid();
-                    $replace[$url] = '<a 
-                            href="'. $url .'" 
-                            target="_blank"
-                            class="tooltip" data-tooltip-content="#tooltip_content_'.$uniqid.'"
-                        ><i class="icon icon-reply"></i> '. $siteInfo['title'] .'</a>
-                        <div style="display: none">
-                            <div id="tooltip_content_'.$uniqid.'" class="tooltip__content">
-                                <div class="tooltip__img"><img src="'.$siteInfo['image'].'"></div>
-                                <div class="tooltip__name">'.self::quotesForForms($siteInfo['title']).'</div>
-                                <div class="tooltip__info">'.self::quotesForForms($siteInfo['description']).'</div>
-                            </div>                        
-                        </div>
+                    $replace[$url] = '
+                        <span class="mytooltip tooltip-effect-2"> 
+                            <a 
+                                href="'. $url .'" 
+                                target="_blank"
+                                class="tooltip-item tooltip-item-link"><i class="fa fa-share"></i> '.self::quotesForForms($siteInfo['title']).'</a> 
+                            <span class="tooltip-content clearfix"> 
+                                <img src="'.$siteInfo['image'].'" /> 
+                                <span class="tooltip-text">'.self::quotesForForms($siteInfo['description']).'</span> 
+                            </span> 
+                        </span>                        
                     ';
                 }
             }

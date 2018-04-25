@@ -1,5 +1,7 @@
-<div class="ajax_block_contract_history_out">
+<div class="modal-body">
+    <div class="ajax_block_contract_history_out">
 
+    </div>
 </div>
 
 <script>
@@ -10,11 +12,18 @@
     });
 
     function renderAjaxPaginationContractHistory(data, block) {
+
+        if (block.find('table').length == 0) {
+            block.append('<table class="table table-striped"><thead><tr><th>Дата</th><th>Комментарий</th></tr></thead><tbody /></table>');
+        }
+
+        var table = block.find('table tbody');
+
         for(var i = 0 in data){
-            var tpl = $('<div class="line_inner"><span class="gray"></span> &nbsp;&nbsp;&nbsp;</div>');
-            tpl.find('span').text(data[i].DATE_TIME);
-            tpl.append(data[i].CONTRACT_EVENT);
-            block.append(tpl);
+            var tpl = $('<tr><td class="td1 text-muted" /><td class="td2" /></tr>');
+            tpl.find('.td1').text(data[i].DATE_TIME);
+            tpl.find('.td2').text(data[i].CONTRACT_EVENT);
+            table.append(tpl);
         }
     }
 </script>

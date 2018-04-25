@@ -118,7 +118,7 @@ class Controller_Clients extends Controller_Common {
                 $contractTariffs = Model_Contract::getTariffs();
                 $noticeSettings = Model_Contract::getContractNoticeSettings($contractId);
 				$popupContractNoticeSettings = Form::popup('Настройка уведомлений', 'contract/notice_settings', ['settings' => $noticeSettings]);
-				$popupContractHistory = Form::popup('История по договору', 'contract/history');
+				$popupContractHistory = Form::popupLarge('История по договору', 'contract/history');
 
 				$content = View::factory('ajax/clients/contract/contract')
 					->bind('contract', $contract)

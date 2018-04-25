@@ -1,82 +1,49 @@
-<form method="post" onsubmit="return checkFormContractNoticeSettings($(this));">
-    <input type="hidden" name="form_type" value="settings_notices">
+<div class="modal-body">
+    <div class="font-20 font-weight-bold m-b-10">Уведомления по e-mail:</div>
 
-    <?/*?>
-    <div class="switch_block">
-        <div class="sb_title">
-            <span class="sb_block"><input type="checkbox" class="switch" checked></span>
-            <b>Периодичность отправки отчетов</b>
-        </div>
-        <div class="sb_content">
-            <span class="sb_block"></span>
-            <select>
-                <option>Раз в неделю</option>
-            </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <small class="gray">День:</small>
-            <select>
-                <option>Вторник</option>
-            </select>
-        </div>
+    <div class="m-b-10">
+        <input type="checkbox" class="filled-in chk-col-purple" name="notice_email_card" id="notice_email_card" <?=($settings['EML_CARD_BLOCK'] ? 'checked' : '')?>>
+        <label for="notice_email_card">При блокировке карт</label>
     </div>
-<?*/?>
 
-    <div class="switch_block">
-        <div class="sb_title">
-            <!--span class="sb_block"><input type="checkbox" class="switch" checked name="notice_email_fl"></span-->
-            <b>Уведомления по e-mail</b>
-        </div>
-        <div class="sb_content">
-            <label class="sb_block"><input type="checkbox" name="notice_email_card" <?=($settings['EML_CARD_BLOCK'] ? 'checked' : '')?>></label>
-            При блокировке карт
-        </div>
-        <div class="sb_content">
-            <label class="sb_block"><input type="checkbox" name="notice_email_firm"  <?=($settings['EML_CONTRACT_BLOCK'] ? 'checked' : '')?>></label>
-            При блокировке фирмы
-        </div>
-        <div class="sb_content">
-            <label class="sb_block"><input type="checkbox" name="notice_email_barrier"  <?=($settings['EML_BLNC_CTRL'] ? 'checked' : '')?>></label>
-            При приближению к критическому порогу<br>
-            <small class="gray">Порог:</small> <input type="text" name="notice_email_barrier_value" value="<?=$settings['EML_BLNC_CTRL_VALUE']?>">
+    <div class="m-b-10">
+        <input type="checkbox" class="filled-in chk-col-purple" name="notice_email_firm" id="notice_email_firm" <?=($settings['EML_CONTRACT_BLOCK'] ? 'checked' : '')?>>
+        <label for="notice_email_firm">При блокировке фирмы</label>
+    </div>
+
+    <div class="m-b-10">
+        <input type="checkbox" class="filled-in chk-col-purple" name="notice_email_barrier" id="notice_email_barrier" <?=($settings['EML_BLNC_CTRL'] ? 'checked' : '')?>>
+        <label for="notice_email_barrier">При приближению к критическому порогу</label>
+
+        <div class="input-group m-t-10">
+            <div class="input-group-prepend">
+                <div class="input-group-text">Порог:</div>
+            </div>
+            <input type="text" name="notice_email_barrier_value" value="<?=$settings['EML_BLNC_CTRL_VALUE']?>" class="form-control">
         </div>
     </div>
-    <?/*?>
-    <div class="switch_block">
-        <div class="sb_title">
-            <span class="sb_block"><input type="checkbox" class="switch"></span>
-            <b>Оповещения по SMS</b> <a href="#">Цены на SMS оповещения</a>
-        </div>
-        <div class="sb_content sb_disabled"><span class="sb_block"><input type="checkbox" disabled></span> При блокировке карт</div>
-        <div class="sb_content sb_disabled"><span class="sb_block"><input type="checkbox" disabled checked></span> При блокировке фирмы</div>
-        <div class="sb_content sb_disabled">
-            <span class="sb_block"><input type="checkbox" disabled></span>
-            При приближению к критическому порогу<br>
-            <small class="gray">Порог:</small> <input type="text" placeholder="1500" disabled>
-        </div>
-        <div class="sb_content sb_disabled"><span class="sb_block"><input type="checkbox" disabled></span> Пополнение счета</div>
-        <div class="sb_content sb_disabled"><span class="sb_block"><input type="checkbox" disabled></span> Транзакции по карте</div>
-    </div>
-<?*/?>
-    <div class="switch_block">
-        <span class="sb_block"></span>
-        <button class="btn waves-effect waves-light btn_green btn_reverse btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
-    </div>
-</form>
+
+</div>
+
+<div class="modal-footer">
+    <span class="btn btn-primary" onclick="submitForm($(this), editContractNoticesGo)"><i class="fa fa-check"></i> Сохранить</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
-    function checkFormContractNoticeSettings(form)
+    function editContractNoticesGo(btn)
     {
         var params = {
-            notice_email_card:          $('[name=notice_email_card]', form).is(":checked") ? 1 : 0,
-            notice_email_firm:          $('[name=notice_email_firm]', form).is(":checked") ? 1 : 0,
-            notice_email_barrier:       $('[name=notice_email_barrier]', form).is(":checked") ? 1 : 0,
-            notice_email_barrier_value: $('[name=notice_email_barrier_value]', form).val()
+            notice_email_card:          $('[name=notice_email_card]').is(":checked") ? 1 : 0,
+            notice_email_firm:          $('[name=notice_email_firm]').is(":checked") ? 1 : 0,
+            notice_email_barrier:       $('[name=notice_email_barrier]').is(":checked") ? 1 : 0,
+            notice_email_barrier_value: $('[name=notice_email_barrier_value]').val()
         };
 
         $.post('/clients/edit-contract-notices', {contract_id: $('[name=contracts_list]').val(), params:params}, function (data) {
             if(data.success){
                 message(1, 'Настройки уведомлений обновлены');
-                $.fancybox.close();
+                modalClose();
             }else{
                 message(0, 'Ошибка настройки уведомлений');
             }

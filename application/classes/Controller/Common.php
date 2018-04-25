@@ -229,6 +229,8 @@ abstract class Controller_Common extends Controller_Template {
         if(Auth::instance()->logged_in()) {
             $this->template->styles[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/css/jquery.toast.css';
             $this->template->scripts[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/js/jquery.toast.js';
+
+            $this->_initTooltip();
         }
 
         //стили шаблона
@@ -313,14 +315,11 @@ abstract class Controller_Common extends Controller_Template {
     }
 
     /**
-     * подключаем Tooltipster
-     * @deprecated
+     * подключаем Tooltip
      */
-    protected function _initTooltipster()
+    protected function _initTooltip()
     {
-        $this->template->styles[] = '/assets/plugins/tooltipster/css/tooltipster.bundle.min.css';
-        $this->template->styles[] = '/assets/plugins/tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css';
-        $this->template->scripts[] = '/assets/plugins/tooltipster/js/tooltipster.bundle.min.js';
+        $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/pages/stylish-tooltip.css';
     }
 
     /**
