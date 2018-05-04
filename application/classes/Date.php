@@ -2,8 +2,8 @@
 
 class Date extends Kohana_Date
 {
-    public static $timestampDateFormatRu = 'd.m.Y';
-    public static $timestampDateFormatDefault = 'Y-m-d';
+    public static $dateFormatRu = 'd.m.Y';
+    public static $dateFormatDefault = 'Y-m-d';
 
     public static function monthRu($month = false, $type = 1)
     {
