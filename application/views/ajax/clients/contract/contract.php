@@ -42,7 +42,7 @@
                     </div>
                     <input type="date" name="DATE_END" value="<?=Date::formatToDefault($contract['DATE_END'])?>" class="form-control">
                 </div>
-            </div>+
+            </div>
 
             <div class="col-md-4 m-b-20 p-b-5">
                 <select class="custom-select" name="STATE_ID">

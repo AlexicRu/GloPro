@@ -115,8 +115,8 @@ class Date extends Kohana_Date
      */
     public static function format($datetime = 'now', $formatFrom = false, $formatTo = false)
     {
-        $formatFrom = !$formatFrom ? Date::$timestampDateFormatDefault : $formatFrom;
-        $formatTo = !$formatTo ? Date::$timestampDateFormatRu : $formatTo;
+        $formatFrom = !$formatFrom ? self::$dateFormatDefault : $formatFrom;
+        $formatTo = !$formatTo ? self::$dateFormatRu : $formatTo;
 
         $datetime = DateTime::createFromFormat($formatFrom, $datetime);
 
@@ -125,6 +125,6 @@ class Date extends Kohana_Date
 
     public static function formatToDefault($datetime = 'now')
     {
-        return self::format($datetime, self::$timestampDateFormatRu, self::$timestampDateFormatDefault);
+        return self::format($datetime, self::$dateFormatRu, self::$dateFormatDefault);
     }
 }
