@@ -227,6 +227,7 @@ abstract class Controller_Common extends Controller_Template {
         ];
 
         if(Auth::instance()->logged_in()) {
+            $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/pages/tab-page.css';
             $this->template->styles[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/css/jquery.toast.css';
             $this->template->scripts[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/js/jquery.toast.js';
 

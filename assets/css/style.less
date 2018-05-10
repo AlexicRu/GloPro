@@ -62,10 +62,57 @@ body{
 .custom-select{
   background-color: white;
 }
+.card__picture {
+  display: inline-block;
+  width: 39px;
+  height: 25px;
+  background: transparent no-repeat center;
+  background-size: cover;
+  vertical-align: middle;
+}
+.ajax_pagination{
+  position: relative;
+}
+.ps{
+  position: relative;
+}
+.tabs-vertical{
+  >.ajax_pagination_out{
+    >.ajax_pagination{
+      &.ps{
+        .ps__scrollbar-y-rail{
+          opacity: .6;
+        }
+      }
+    }
+  }
+}
+.ajax_block_more{
+  display: none;
+}
 
 @media (min-width: 768px) {
   .mini-sidebar .sidebar-nav #sidebarnav > li > a {
     padding: 12px 14px;
     width: 70px;
+  }
+}
+
+.row [class*="col-"] + [class*="col-"] {
+  margin-top: 5px;
+}
+@media (min-width: 1200px) {
+  .row [class*="col-lg-"] + [class*="col-lg-"] {
+    margin-top: 0;
+  }
+}
+@media (min-width: 992px) {
+  .row [class*="col-md-"] + [class*="col-md-"] {
+    margin-top: 0;
+  }
+}
+@media (min-width: 768px) {
+  .row [class*="col-sm-"] + [class*="col-sm-"] {
+    margin-top: 0;
   }
 }

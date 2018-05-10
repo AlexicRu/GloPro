@@ -11,7 +11,7 @@
         <div class="form-group row">
             <div class="text-right col-4">Дата начала:</div>
             <div class="col-8">
-                <input type="date" class="form-control" name="add_contract_date_start" value="<?=date('d.m.Y')?>">
+                <input type="date" class="form-control" name="add_contract_date_start" value="<?=date('Y-m-d')?>">
             </div>
         </div>
 

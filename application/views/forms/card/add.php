@@ -1,54 +1,54 @@
-<table class="table_form form_add_card">
-    <tr>
-        <td class="gray right" width="170">Номер карты:</td>
-        <td>
-            <?=Form::buildField('card_available_choose_single', 'add_card_id', false, ['classes' => 'input_big'])?>
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right" width="170">Владелец:</td>
-        <td>
-            <input type="text" name="add_card_holder" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right" width="170">Срок действия:</td>
-        <td>
-            <input type="text" class="input_big datepicker" readonly name="add_card_expire_date">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn btn_reverse btn_add_card_go"><i class="fa fa-plus"></i> Добавить карту</span>
-            <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-        </td>
-    </tr>
-</table>
+<div class="modal-body">
+    <div class="form form_add_card">
+        <div class="form-group row">
+            <div class="text-right col-4">Номер карты:</div>
+            <div class="col-8">
+                <?=Form::buildField('card_available_choose_single', 'add_card_id', false, ['classes' => 'input_big'])?>
+            </div>
+        </div>
+
+        <div class="form-group row m-b-0">
+            <div class="text-right col-4">Владелец:</div>
+            <div class="col-8">
+                <input type="text" name="add_card_holder" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row m-b-0">
+            <div class="text-right col-4">Срок действия:</div>
+            <div class="col-8">
+                <input type="date" class="form-control" name="add_card_expire_date">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <span class="btn btn-primary" onclick="submitForm($(this), addCardGo)"><i class="fa fa-plus"></i> Добавить карту</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
-    $(function(){
-        $('.btn_add_card_go').on('click', function(){
-            var params = {
-                contract_id:    $('[name=contracts_list]').val(),
-                card_id:        $('[name=add_card_id]').val(),
-                holder:         $('[name=add_card_holder]').val(),
-                expire_date:    $('[name=add_card_expire_date]').val()
-            };
+    function addCardGo()
+    {
+        var params = {
+            contract_id:    $('[name=contracts_list]').val(),
+            card_id:        $('[name=add_card_id]').val(),
+            holder:         $('[name=add_card_holder]').val(),
+            expire_date:    $('[name=add_card_expire_date]').val()
+        };
 
-            if(params.card_id == ''){
-                message(0, 'Введите номер карты');
-                return false;
+        if(params.card_id == ''){
+            message(0, 'Введите номер карты');
+            return false;
+        }
+
+        $.post('/clients/card-add', {params:params}, function(data){
+            if(data.success){
+                message(1, 'Карта успешно добавлена');
+                loadContract('cards');
+            }else{
+                message(0, data.data ? data.data : 'Ошибка добавления карты');
             }
-
-            $.post('/clients/card-add', {params:params}, function(data){
-                if(data.success){
-                    message(1, 'Карта успешно добавлена');
-                    loadContract('cards');
-                }else{
-                    message(0, data.data ? data.data : 'Ошибка добавления карты');
-                }
-            });
         });
-    });
+    }
 </script>

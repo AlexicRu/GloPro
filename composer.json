@@ -1,4 +1,9 @@
 {
+  "config": {
+    "platform": {
+      "php": "7.1"
+    }
+  },
   "require": {
     "longman/telegram-bot": "v0.44.1",
     "sentry/sentry": "v1.7.*",

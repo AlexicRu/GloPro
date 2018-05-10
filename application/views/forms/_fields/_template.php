@@ -1,11 +1,12 @@
 <?
-$renderDepend = false;
+$withDepend = false;
+$hiddenDepend = false;
 
-if (isset($params['depend_on']) && empty($params[$params['depend_on']['param']])) {
-    $renderDepend = true;
+if (isset($params['depend_on'])) {
+    $withDepend = true;
 }
 
-if ($renderDepend) {?>
+if ($withDepend) {?>
     <!-- depend render START -->
     <div class="with_depend">
 
@@ -16,8 +17,15 @@ if ($renderDepend) {?>
                 'depend_to' => $name
             ];
             $params['depend_on']['name'] = !empty($params['depend_on']['name']) ? $params['depend_on']['name'] : $params['depend_on']['field'];
+
+            $valueDepend = false;
+            if (!empty($params['depend_values'][$params['depend_on']['param']])) {
+                $valueDepend = $params['depend_values'][$params['depend_on']['param']];
+                $data['hidden'] = true;
+                $data['depend_values'] = $params['depend_values'];
+            }
             ?>
-            <?=Form::buildField($params['depend_on']['field'], $params['depend_on']['name'], false, $data)?>
+            <?=Form::buildField($params['depend_on']['field'], $params['depend_on']['name'], $valueDepend, $data)?>
         </div>
 
         <div class="depend_on">
@@ -25,7 +33,7 @@ if ($renderDepend) {?>
 
             <!-- combobox render START -->
             <span class="form_field" field="<?=$type?>">
-                <input type="text"
+                <input type="<?=(!empty($params['hidden']) ? 'hidden' : 'text')?>"
                        autocomplete="off"
                        name="<?=$name?>"
                        url="<?=$params['url']?>"
@@ -38,7 +46,7 @@ if ($renderDepend) {?>
             </span>
             <!-- combobox render END -->
 
-<?if ($renderDepend) {?>
+<?if ($withDepend) {?>
         </div>
     </div>
     <!-- depend render END -->

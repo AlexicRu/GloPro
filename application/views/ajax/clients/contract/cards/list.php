@@ -1,15 +1,20 @@
-<div class="ajax_block_cards_list_out block_loading">
+<div class="ajax_block_cards_list_out block_loading p-b-10">
 
 </div>
 
 <script>
+    var emptyMessage = '<li class="nav-item"><span class="nav-link"><i class="text-muted">Карты не найдены</i></span></li>';
+
     $(function () {
-        paginationAjax('/clients/cards-list/?contract_id=' + $('[name=contracts_list]').val(), 'ajax_block_cards_list', renderAjaxPaginationCardsList);
+        paginationAjax('/clients/cards-list/?contract_id=' + $('[name=contracts_list]').val(), 'ajax_block_cards_list', renderAjaxPaginationCardsList, {
+            emptyMessage: emptyMessage
+        });
 
         $(".cards_search").on('keypress', function(e){
             if(e.keyCode == 13){
                 var params = {
-                    query: $(this).val()
+                    query: $(this).val(),
+                    emptyMessage: emptyMessage
                 };
 
                 reLoad(params);
@@ -20,7 +25,7 @@
     function reLoad(params)
     {
         $('.ajax_block_cards_list_out').empty().addClass('block_loading')
-            .closest('.tabs_cards').find('.tabs_v_content').empty()
+            .closest('.tabs_cards').find('.tab-content').empty()
         ;
 
         paginationAjax('/clients/cards-list/?contract_id=' + $('[name=contracts_list]').val(), 'ajax_block_cards_list', renderAjaxPaginationCardsList, params);
@@ -32,7 +37,8 @@
     function filterCards(type)
     {
         var params = {
-            query: $(".cards_search").val()
+            query: $(".cards_search").val(),
+            emptyMessage: emptyMessage
         };
 
         switch (type) {
@@ -58,37 +64,64 @@
     function renderAjaxPaginationCardsList(data, block)
     {
         if (data.length == 0) {
-            block.empty().append('<div class="tab_v"><div><span class="gray">Карты не найдены</span></div></div>');
+            block.empty().append('<li class="nav-item"><span class="nav-link"><i class="text-muted">Карты не найдены</i></span></li>');
         } else {
-            var firstLoad = block.find('tab_v').length;
+            var firstLoad = block.find('.nav-item:not(.no_content)').length;
 
-            var contentBlock = block.closest('.tabs_cards').find('.tabs_v_content');
+            var contentBlock = block.closest('.tabs_cards').find('.tab-content');
 
             for (var i in data) {
-                var tpl = $('<div class="tab_v" onclick="cardLoad($(this))"><div><span card_id /><div class="gray" holder /></div></div>');
+                var tpl = $('<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card'+ data[i].CARD_ID +'" role="tab"><span class="nowrap" /></a></li>');
 
                 if (cardsIcons[data[i].CARD_TEMPLATE]) {
-                    tpl.find('> div').prepend('<span class="card__picture" style="background-image: url(<?=Common::getAssetsLink()?>img/cards/'+ cardsIcons[data[i].CARD_TEMPLATE] +')"></span>');
+                    tpl.find('span').prepend('<span class="card__picture m-r-10" style="background-image: url(<?=Common::getAssetsLink()?>img/cards/'+ cardsIcons[data[i].CARD_TEMPLATE] +')"></span>');
                 } else {
-                    tpl.find('> div').prepend('<span class="icon-card gray"></span>');
+                    tpl.find('span').prepend('<i class="fa fa-credit-card-front m-r-10"></i>');
                 }
 
                 tpl.attr('tab', data[i].CARD_ID);
-                tpl.find('[card_id]').text(data[i].CARD_ID);
-                tpl.find('[holder]').text(data[i].HOLDER)
+                tpl.find('.nowrap').append(data[i].CARD_ID);
+                if (data[i].HOLDER) {
+                    tpl.find('a').append('<div><small>' + data[i].HOLDER + '</small></div>');
+                }
 
                 if (data[i].CARD_STATE == <?=Model_Card::CARD_STATE_BLOCKED?>) {
-                    tpl.find('> div').append('<span class="label label_error label_small">Заблокирована</span>');
+                    tpl.find('a').append('<span class="label label-danger label_small">Заблокирована</span>');
                 }
+
+                tpl.find('a').on('click', function () {
+                    var t = $(this);
+
+                    //костыль.. так как вложенность табов не сохраняется из-за постраничности
+                    $('.nav-link.active', block).not(t).removeClass('active show');
+
+                    t.tab('show');
+                    cardLoad(t);
+                    return false;
+                });
 
                 tpl.appendTo(block);
 
-                contentBlock.append('<div class="tab_v_content" tab_content="'+ data[i].CARD_ID +'"></div>');
+                contentBlock.append('<div class="tab-pane" id="card'+ data[i].CARD_ID +'" role="tabpanel">'+ data[i].CARD_ID +'</div>');
             }
 
             if (!firstLoad) {
-                block.find('.tab_v[tab]:first').click();
+                block.find('.nav-item:not(.no_content):first a').click();
             }
+        }
+        renderVerticalTabsScroll(block);
+    }
+
+    function cardLoad(elem, force)
+    {
+        var contentBlock = $("#card"+ elem.attr('tab'));
+
+        if(contentBlock.text() == '' || force == true){
+            contentBlock.empty().addClass(CLASS_LOADING);
+
+            $.post('/clients/card/' + elem.attr('tab') + '/?contract_id=' + $('[name=contracts_list]').val(), {}, function(data){
+                contentBlock.html(data).removeClass(CLASS_LOADING);
+            });
         }
     }
 </script>

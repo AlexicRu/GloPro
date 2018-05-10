@@ -1,29 +1,63 @@
-<div class="tc_top_line">
-    <span class="gray">Всего карт:
-        <a href="#" onclick="filterCards('all')"><?=$cardsCounter['ALL_CARDS']?></a>
-    </span> &nbsp;&nbsp;&nbsp;
-    <span class="gray <?=(!empty($params['status']) && $params['status'] == 'work' ? 'act' : '')?>">
-        В работе: <a href="#" onclick="filterCards('work')" class="cards_cnt_in_work"><?=$cardsCounter['CARDS_IN_WORK']?></a>
-    </span> &nbsp;&nbsp;&nbsp;
-    <span class="red <?=(!empty($params['status']) && $params['status'] == 'disabled' ? 'act' : '')?>">
-        Заблокировано: <a href="#" onclick="filterCards('disabled')" class="cards_cnt_blocked"><?=$cardsCounter['CARDS_NOT_WORK']?></a>
-    </span>
-    <div class="fr input_with_icon"><i class="icon-find"></i><input type="text" class="input_big cards_search" placeholder="Поиск..." value="<?=(!empty($params['query']) ? $params['query'] : '')?>"></div>
-</div>
-<div class="tabs_vertical_block tabs_switcher tabs_cards">
-    <div class="tabs_v">
-        <?if(Access::allow('clients_card-add')){?>
-            <div class="before_scroll">
-                <div class="tab_v"><div>
-                    <a href="#card_add" class="fancy"><span class="icon-card"></span> Добавить карту</a>
-                </div></div>
+<div class="card-body border-bottom">
+    <div class="row font-20">
+        <div class="col-md-4 col-lg-3">
+            <span class="text-muted">Всего карт:</span>
+            <a href="#" onclick="filterCards('all')"><?=($cardsCounter['ALL_CARDS']??0)?></a>
+        </div>
+        <div class="col-md-4 col-lg-3">
+            <span class="text-muted">В работе:</span>
+            <a href="#" onclick="filterCards('work')" class="cards_cnt_in_work"><?=($cardsCounter['CARDS_IN_WORK']??0)?></a>
+        </div>
+        <div class="col-md-4 col-lg-3">
+            <span class="text-muted">Заблокировано:</span>
+            <a href="#" onclick="filterCards('disabled')" class="cards_cnt_blocked"><?=($cardsCounter['CARDS_NOT_WORK']??0)?></a>
+        </div>
+        <div class="col-md-12 col-lg-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+                <input type="text" class="form-control cards_search" placeholder="Поиск..." value="<?=(!empty($params['query']) ? $params['query'] : '')?>">
             </div>
-        <?}?>
-        <div class="scroll">
-            <?include('cards/list.php')?>
         </div>
     </div>
-    <div class="tabs_v_content"></div>
+</div>
+
+<div class="card-body border-bottom d-xl-none">
+    <div class="row">
+        <div class="col-8">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Карты</span>
+                </div>
+                <?=Form::buildField('card_choose_single', 'GOODS_RECIEVER', false, [
+                    'depend_values' => [
+                        'client_id' => 794, //todo
+                        'contract_id' => 811
+                    ],
+                    'placeholder' => 'Поиск...'
+                ])?>
+            </div>
+        </div>
+        <div class="col-4 text-right">
+            <?if(Access::allow('clients_card-add')){?>
+                <a class="btn btn-outline-primary" href="#" data-target="#card_add"><i class="fa fa-plus"></i> Добавить карту</a>
+            <?}?>
+        </div>
+    </div>
+</div>
+
+<div class="vtabs customvtab tabs_cards">
+    <ul class="nav nav-tabs tabs-vertical d-none d-xl-table-cell" role="tablist">
+        <?if(Access::allow('clients_card-add')){?>
+            <li class="nav-item no_content">
+                <a class="nav-link nowrap" href="#" data-toggle="modal" data-target="#card_add"><i class="fa fa-plus"></i> Добавить карту</a>
+            </li>
+        <?}?>
+        <?include('cards/list.php')?>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content"></div>
 </div>
 
 <?if(Access::allow('clients_card-add')){?>
@@ -37,7 +71,7 @@
  1 - отображать кнопку "Блокировать"/"Разблокировать",
  2 - отображать, но при блокировании такой карты писать: "Заявка на блокировку/разблокировку отправлена менеджеру. Карта будет заблокирована/разблокирована в течение 48 часов!" (писать блокирока или разблокировка в зависимости от действия)
  при изъятии такой карты писать: "Карта откреплена от договора! Проверьте статус в сторонней системе!"
-* */
+*/
         $(document).off('click', '.btn_card_toggle').on('click', '.btn_card_toggle', function(){
             var t = $(this);
 

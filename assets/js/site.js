@@ -108,10 +108,12 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
     if(!params){
         params = {};
     }
-    outer.find('.ajax_block_more').fadeOut();
+
     params.offset = outer.data('offset');
 
+    var more = outer.find('.ajax_block_more');
     var onError = false;
+
     if (params.onError != undefined && typeof params.onError === 'function') {
         onError = params.onError;
         params.onError = false;
@@ -127,18 +129,23 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
                 //ALL
                 if (params.show_all) {
                     _paginationAjaxLoad(url, outer, block, callback, params);
-                } else {
-                    outer.find('.ajax_block_more').fadeIn();
                 }
+            } else {
+                more.fadeOut();
             }
         }else{
             if (onError) {
                 onError(block, params);
             } else {
-                outer.find('.ajax_block_more').fadeIn().html('<span class="gray">Данные отсутствуют</span>');
+                if (params.emptyMessage) {
+                    more.html(params.emptyMessage);
+                } else {
+                    more.html('<span class="gray">Данные отсутствуют</span>');
+                }
             }
         }
         block.closest('.block_loading').removeClass(CLASS_LOADING);
+        more.fadeIn();
     });
 }
 
@@ -170,13 +177,18 @@ function endSubmitForm()
     submitFormInAction = false;
 }
 
-function cardLoad(elem, force)
+function renderVerticalTabsScroll(elem)
 {
-    if($(".tabs_cards [tab_content="+ elem.attr('tab') +"]").text() == '' || force == true){
-        $(".tabs_cards [tab_content="+ elem.attr('tab') +"]").empty().addClass('block_loading');
+    var block = elem.closest('.vtabs');
+    var preScrollHeight = block.find('.before_scroll').length ? block.find('.before_scroll').height() : 0;
 
-        $.post('/clients/card/' + elem.attr('tab') + '/?contract_id=' + $('[name=contracts_list]').val(), {}, function(data){
-            $(".tabs_cards [tab_content="+ elem.attr('tab') +"]").html(data).removeClass('block_loading');
-        });
+    var height = block.find('.tab-pane.active').outerHeight() - preScrollHeight;
+
+    elem.css('height', height > 300 ? height : 300);
+
+    if (elem.data('rendered')) {
+        elem.perfectScrollbar('update');
+    } else {
+        elem.data('rendered', true).perfectScrollbar();
     }
 }
