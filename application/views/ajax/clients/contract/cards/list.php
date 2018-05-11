@@ -63,63 +63,61 @@
 
     function renderAjaxPaginationCardsList(data, block)
     {
-        if (data.length == 0) {
-            block.empty().append('<li class="nav-item"><span class="nav-link"><i class="text-muted">Карты не найдены</i></span></li>');
-        } else {
-            var firstLoad = block.find('.nav-item:not(.no_content)').length;
+        var firstLoad = block.find('.nav-item:not(.no_content)').length;
 
-            var contentBlock = block.closest('.tabs_cards').find('.tab-content');
+        var contentBlock = block.closest('.tabs_cards').find('.tab-content');
 
-            for (var i in data) {
-                var tpl = $('<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card'+ data[i].CARD_ID +'" role="tab"><span class="nowrap" /></a></li>');
+        for (var i in data) {
+            var tpl = $('<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card'+ data[i].CARD_ID +'" role="tab"><span class="nowrap" /></a></li>');
 
-                if (cardsIcons[data[i].CARD_TEMPLATE]) {
-                    tpl.find('span').prepend('<span class="card__picture m-r-10" style="background-image: url(<?=Common::getAssetsLink()?>img/cards/'+ cardsIcons[data[i].CARD_TEMPLATE] +')"></span>');
-                } else {
-                    tpl.find('span').prepend('<i class="fa fa-credit-card-front m-r-10"></i>');
-                }
-
-                tpl.attr('tab', data[i].CARD_ID);
-                tpl.find('.nowrap').append(data[i].CARD_ID);
-                if (data[i].HOLDER) {
-                    tpl.find('a').append('<div><small>' + data[i].HOLDER + '</small></div>');
-                }
-
-                if (data[i].CARD_STATE == <?=Model_Card::CARD_STATE_BLOCKED?>) {
-                    tpl.find('a').append('<span class="label label-danger label_small">Заблокирована</span>');
-                }
-
-                tpl.find('a').on('click', function () {
-                    var t = $(this);
-
-                    //костыль.. так как вложенность табов не сохраняется из-за постраничности
-                    $('.nav-link.active', block).not(t).removeClass('active show');
-
-                    t.tab('show');
-                    cardLoad(t);
-                    return false;
-                });
-
-                tpl.appendTo(block);
-
-                contentBlock.append('<div class="tab-pane" id="card'+ data[i].CARD_ID +'" role="tabpanel">'+ data[i].CARD_ID +'</div>');
+            if (cardsIcons[data[i].CARD_TEMPLATE]) {
+                tpl.find('span').prepend('<span class="card__picture m-r-10" style="background-image: url(<?=Common::getAssetsLink()?>img/cards/'+ cardsIcons[data[i].CARD_TEMPLATE] +')"></span>');
+            } else {
+                tpl.find('span').prepend('<i class="fa fa-credit-card-front m-r-10"></i>');
             }
 
-            if (!firstLoad) {
-                block.find('.nav-item:not(.no_content):first a').click();
+            tpl.attr('tab', data[i].CARD_ID);
+            tpl.find('.nowrap').append(data[i].CARD_ID);
+            if (data[i].HOLDER) {
+                tpl.find('a').append('<div><small>' + data[i].HOLDER + '</small></div>');
             }
+
+            if (data[i].CARD_STATE == <?=Model_Card::CARD_STATE_BLOCKED?>) {
+                tpl.find('a').append('<span class="label label-danger label_small">Заблокирована</span>');
+            }
+
+            tpl.find('a').on('click', function () {
+                var t = $(this);
+
+                //костыль.. так как вложенность табов не сохраняется из-за постраничности
+                $('.nav-link.active', block).not(t).removeClass('active show');
+
+                cardLoad(t.closest('.nav-item').attr('tab'));
+                t.tab('show');
+                $('.tabs_cards .tabs-floating').removeClass('active');
+                return false;
+            });
+
+            tpl.appendTo(block);
+
+            contentBlock.append('<div class="tab-pane" id="card'+ data[i].CARD_ID +'" role="tabpanel" />');
         }
+
+        if (!firstLoad) {
+            block.find('.nav-item:not(.no_content):first a').click();
+        }
+
         renderVerticalTabsScroll(block);
     }
 
-    function cardLoad(elem, force)
+    function cardLoad(cardId, force)
     {
-        var contentBlock = $("#card"+ elem.attr('tab'));
+        var contentBlock = $("#card" + cardId);
 
         if(contentBlock.text() == '' || force == true){
             contentBlock.empty().addClass(CLASS_LOADING);
 
-            $.post('/clients/card/' + elem.attr('tab') + '/?contract_id=' + $('[name=contracts_list]').val(), {}, function(data){
+            $.post('/clients/card/' + cardId + '/?contract_id=' + $('[name=contracts_list]').val(), {}, function(data){
                 contentBlock.html(data).removeClass(CLASS_LOADING);
             });
         }

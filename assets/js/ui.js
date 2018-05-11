@@ -232,6 +232,8 @@ function renderComboBox(combo, params)
         for (var i in params) {
             combo.data(i, params[i]);
         }
+    } else {
+        params = {};
     }
 
     combo.data('rendered', true);
@@ -250,8 +252,23 @@ function renderComboBox(combo, params)
 
     var hiddenValue = outer.find('[name=combobox_value]');
 
+    var resultList = $('<div class="combobox_result_list" />');
+    resultList.appendTo(result);
+
+    var more = $('<div class="combobox_result_more"><span class="btn btn-outline-secondary btn-xs">Загрузить еще</span></div>');
+    more.appendTo(result);
+
+    more.find('.btn').on('click', function () {
+        params['offset'] = resultList.find('.combobox_result_item').length;
+        combo.trigger('keyup');
+    });
+
     combo.on('keyup', function () {
-        if(params && params['depend_to']){
+        if(ajaxComboBox){
+            ajaxComboBox.abort();
+        }
+
+        if(params['depend_to']){
             var dependWrapper = outer.parents('.with_depend:last');
             var dependCombo = $('[name=' + params['depend_to'] + ']', dependWrapper);
 
@@ -265,15 +282,18 @@ function renderComboBox(combo, params)
         var t = $(this);
         var val = t.val();
 
-        result.hide().html('');
-
-        if(ajaxComboBox){
-            ajaxComboBox.abort();
+        if (!params['offset']) {
+            result.hide();
+            resultList.html('');
+            more.hide();
         }
 
-        var postParams = { search:val };
+        var postParams = {
+            search:val,
+            offset: params['offset'] ? params['offset'] : 0
+        };
 
-        if(params && params['depend_on']){
+        if(params['depend_on']){
             var dependWrapper = outer.parents('.with_depend:last');
             var value = getComboboxValue($('[name="'+ params['depend_on']['name'] + '"]', dependWrapper), true);
 
@@ -290,43 +310,56 @@ function renderComboBox(combo, params)
         t.addClass('loading');
 
         ajaxComboBox = $.post(url, postParams, function(data){
+            var items = data.data && data.data.items ? data.data.items : [];
+
             if(data.success){
-                if(params && params.show_all){
-                    data.data.unshift({
+                if(params.show_all){
+                    items.unshift({
                         name: SHOW_ALL_NAME,
                         value: SHOW_ALL_VALUE
                     });
                 }
+
+                if (data.data && data.data.more) {
+                    more.show();
+                }
             }
 
-            if (data.data && data.data.length == 0) {
-                data.data.unshift({
+            if (items.length == 0) {
+                items.unshift({
                     name: SHOW_NOT_FOUND_NAME,
                     value: SHOW_NOT_FOUNT_VALUE,
                     disabled: true
                 });
             }
 
-            for(var i in data.data){
+            for(var i in items){
                 var tpl = $('<div class="combobox_result_item"></div>');
-                tpl.attr('value', data.data[i].value);
-                tpl.text(data.data[i].name);
-                if(data.data[i].disabled) {
+
+                tpl.attr('value', items[i].value);
+                tpl.text(items[i].name);
+
+                if(items[i].disabled) {
                     tpl.attr('disabled', true);
                 } else {
                     tpl.attr('onclick', 'selectComboBoxResult($(this))');
                 }
 
-                if(hiddenValue.val() == data.data[i].value){
+                if(hiddenValue.val() == items[i].value){
                     tpl.addClass('combobox_result_item_selected');
                 }
 
-                tpl.appendTo(result);
+                tpl.appendTo(resultList);
             }
 
             result.show();
 
+            renderPaginationScroll(resultList);
+
             t.removeClass('loading');
+
+            //при обычном поиске постраничность сбрасывается
+            params['offset'] = 0;
 
             ajaxComboBox = false;
         });
@@ -341,7 +374,7 @@ function renderComboBox(combo, params)
     });
 }
 
-function selectComboBoxResult(item)
+function selectComboBoxResult(item, params)
 {
     item.toggleClass('combobox_result_item_selected');
 
@@ -353,7 +386,7 @@ function selectComboBoxResult(item)
     combo.val(item.text());
     hiddenValue.val(value);
 
-    $('.combobox_result', outer).hide().html('');
+    $('.combobox_result', outer).hide();
 }
 
 function setComboboxValue(combo, value)
@@ -374,10 +407,10 @@ function setComboboxValue(combo, value)
 
             $.post(combo.attr('url'), {ids: value}, function (data) {
                 if (data.success) {
-                    combo.val(data.data[0].name);
-                    hiddenValue.val(data.data[0].value);
+                    combo.val(data.data.items[0].name);
+                    hiddenValue.val(data.data.items[0].value);
 
-                    checkRenderTo(combo, {value:data.data[0].value, text:data.data[0].name});
+                    checkRenderTo(combo, {value:data.data.items[0].value, text:data.data.items[0].name});
                 }
             });
         }
@@ -491,33 +524,18 @@ function checkRenderTo(combo, item, isRemove) {
     }
 }
 
-function setFormFieldValue(field, value)
+function renderPaginationScroll(elem)
 {
-    if (value == '') {
-        return;
-    }
-
-    var type = field.attr('field');
-    var isCombobox = field.find('.combobox').length;
-    var isComboboxMulti = field.find('.combobox_multi').length;
-    var isCheckbox = field.find('[type=checkbox]').length;
-
-    switch (type) {
-        case 'period':
-            break;
-        default:
-            if(isComboboxMulti){
-                setComboboxMultiValue(field.find('.combobox_multi'), value);
-            }else if(isCombobox){
-                setComboboxValue(field.find('.combobox'), value);
-            }else if(isCheckbox){
-                if(value){
-                    field.prop('checked', true);
-                }else{
-                    field.prop('checked', false);
-                }
-            }else{
-                field.find('.custom_field').val(value);
-            }
+    if (typeof $().perfectScrollbar == 'function') {
+        if (elem.data('rendered')) {
+            elem.perfectScrollbar('update');
+        } else {
+            elem.data('rendered', true).perfectScrollbar({
+                useBothWheelAxes: false,
+                suppressScrollX: true
+            });
+        }
+    } else {
+        elem.css('overflow-y', 'scroll')
     }
 }

@@ -26,31 +26,20 @@
 <div class="card-body border-bottom d-xl-none">
     <div class="row">
         <div class="col-8">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Карты</span>
-                </div>
-                <?=Form::buildField('card_choose_single', 'GOODS_RECIEVER', false, [
-                    'depend_values' => [
-                        'client_id' => 794, //todo
-                        'contract_id' => 811
-                    ],
-                    'placeholder' => 'Поиск...'
-                ])?>
-            </div>
+            <span class="btn btn-primary" toggle_class="card_list"><i class="fa fa-bars"></i> Список карт</span>
         </div>
         <div class="col-4 text-right">
             <?if(Access::allow('clients_card-add')){?>
-                <a class="btn btn-outline-primary" href="#" data-target="#card_add"><i class="fa fa-plus"></i> Добавить карту</a>
+                <a class="btn btn-outline-primary" href="#" data-toggle="modal" data-target="#card_add"><i class="fa fa-plus"></i> Добавить карту</a>
             <?}?>
         </div>
     </div>
 </div>
 
 <div class="vtabs customvtab tabs_cards">
-    <ul class="nav nav-tabs tabs-vertical d-none d-xl-table-cell" role="tablist">
+    <ul class="nav nav-tabs tabs-vertical tabs-floating" role="tablist" toggle_block="card_list">
         <?if(Access::allow('clients_card-add')){?>
-            <li class="nav-item no_content">
+            <li class="nav-item no_content d-none d-xl-inline">
                 <a class="nav-link nowrap" href="#" data-toggle="modal" data-target="#card_add"><i class="fa fa-plus"></i> Добавить карту</a>
             </li>
         <?}?>

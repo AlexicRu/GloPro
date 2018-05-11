@@ -134,6 +134,7 @@ class Controller_Clients extends Controller_Common {
 				$cardsCounter = Model_Contract::getCardsCounter($contractId);
 
 				$content = View::factory('ajax/clients/contract/cards')
+                    ->bind('contract', $contract)
                     ->bind('params', $params)
 					->bind('popupCardAdd', $popupCardAdd)
 					->bind('cardsCounter', $cardsCounter)

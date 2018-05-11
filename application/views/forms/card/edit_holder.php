@@ -59,7 +59,7 @@ $postfix = $card['CARD_ID'];
             if (data.success) {
                 message(1, 'Держатель карты успешно обновлен');
                 $.fancybox.close();
-                cardLoad($('.tab_v.active'), true);
+                cardLoad($('.tab_v.active').attr('tab'), true);
                 $('.tab_v.active div.gray').text(params.holder);
             } else {
                 message(0, 'Ошибка обновления держателя карты');

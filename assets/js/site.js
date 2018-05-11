@@ -16,6 +16,9 @@ $(function(){
     $(document).on('click', "[toggle]", function(){
         $("[toggle_block='"+ $(this).attr('toggle') +"']").toggle();
     });
+    $(document).on('click', "[toggle_class]", function(){
+        $("[toggle_block='"+ $(this).attr('toggle_class') +"']").toggleClass('active');
+    });
 });
 
 function message(type, text, sticky)
@@ -129,6 +132,8 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
                 //ALL
                 if (params.show_all) {
                     _paginationAjaxLoad(url, outer, block, callback, params);
+                } else {
+                    more.fadeIn();
                 }
             } else {
                 more.fadeOut();
@@ -142,10 +147,10 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
                 } else {
                     more.html('<span class="gray">Данные отсутствуют</span>');
                 }
+                more.fadeIn();
             }
         }
         block.closest('.block_loading').removeClass(CLASS_LOADING);
-        more.fadeIn();
     });
 }
 
@@ -189,6 +194,46 @@ function renderVerticalTabsScroll(elem)
     if (elem.data('rendered')) {
         elem.perfectScrollbar('update');
     } else {
-        elem.data('rendered', true).perfectScrollbar();
+        elem.data('rendered', true).perfectScrollbar({
+            useBothWheelAxes: false,
+            suppressScrollX: true
+        });
+    }
+}
+
+/**
+ * для кастомных полей устанавливаем значение
+ *
+ * @param field
+ * @param value
+ */
+function setFormFieldValue(field, value)
+{
+    if (value == '') {
+        return;
+    }
+
+    var type = field.attr('field');
+    var isCombobox = field.find('.combobox').length;
+    var isComboboxMulti = field.find('.combobox_multi').length;
+    var isCheckbox = field.find('[type=checkbox]').length;
+
+    switch (type) {
+        case 'period':
+            break;
+        default:
+            if(isComboboxMulti){
+                setComboboxMultiValue(field.find('.combobox_multi'), value);
+            }else if(isCombobox){
+                setComboboxValue(field.find('.combobox'), value);
+            }else if(isCheckbox){
+                if(value){
+                    field.prop('checked', true);
+                }else{
+                    field.prop('checked', false);
+                }
+            }else{
+                field.find('.custom_field').val(value);
+            }
     }
 }

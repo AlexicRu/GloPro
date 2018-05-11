@@ -90,6 +90,9 @@ body{
 .ajax_block_more{
   display: none;
 }
+.vtabs{
+  width: 100%; position: relative;
+}
 
 @media (min-width: 768px) {
   .mini-sidebar .sidebar-nav #sidebarnav > li > a {
@@ -104,6 +107,22 @@ body{
 @media (min-width: 1200px) {
   .row [class*="col-lg-"] + [class*="col-lg-"] {
     margin-top: 0;
+  }
+}
+@media (max-width: 1199px) {
+  .vtabs {
+    .tabs-floating {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      display: block;
+      width: auto;
+      background: white;
+      box-shadow:0 3px 12px rgba(0, 0, 0, 0.05); z-index: 1;
+      &.active{
+        left: 0;
+      }
+    }
   }
 }
 @media (min-width: 992px) {

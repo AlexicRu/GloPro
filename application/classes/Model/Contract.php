@@ -103,12 +103,14 @@ class Model_Contract extends Model
             $sql->where("agent_id = ".(int)$params['agent_id']);
         }
 
-		if(!empty($params['limit'])){
-            $sql->limit($params['limit']);
-        }
-
         if (!empty($select)) {
             $sql->select($select);
+        }
+
+        if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
+        }else if(!empty($params['limit'])){
+            $sql->limit($params['limit']);
         }
 
         return $db->query($sql);

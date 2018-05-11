@@ -131,27 +131,29 @@ class Controller_Help extends Controller_Common
      */
     public function action_listCard()
     {
-        $contractId = $this->request->post('contract_id');
-
-        $res = Listing::getCards([
+        $params = [
             'search'        => $this->_search,
-            'contract_id'   => $contractId
-        ], $this->_ids);
+            'contract_id'   => $this->request->post('contract_id'),
+            'offset' 		=> $this->request->post('offset'),
+            'pagination'	=> true
+        ];
 
-        if(empty($res)){
+        list($result, $more) = Listing::getCards($params, $this->_ids);
+
+        if(empty($result)){
             $this->jsonResult(false);
         }
 
         $return = [];
 
-        foreach($res as $item){
+        foreach($result as $item){
             $return[] = [
                 'name' => $item['CARD_ID'],
                 'value' => $item['CARD_ID'],
             ];
         }
 
-        $this->jsonResult(true, $return);
+        $this->jsonResult(true, ['items' => $return, 'more' => $more]);
     }
 
     /**
@@ -182,22 +184,29 @@ class Controller_Help extends Controller_Common
      */
     public function action_listClient()
     {
-        $res = Model_Manager::getClientsList(['search' => $this->_search, 'ids' => $this->_ids, 'limit' => 10]);
+        $params = [
+            'offset' 	    => $this->request->post('offset'),
+            'search'        => $this->_search,
+            'ids'           => $this->_ids,
+            'pagination'	=> true
+        ];
 
-        if(empty($res)){
+        list($result, $more) = Model_Manager::getClientsList($params);
+
+        if(empty($result)){
             $this->jsonResult(false);
         }
 
         $return = [];
 
-        foreach($res as $item){
+        foreach($result as $item){
             $return[] = [
                 'name' => $item['CLIENT_NAME'],
                 'value' => $item['CLIENT_ID'],
             ];
         }
 
-        $this->jsonResult(true, $return);
+        $this->jsonResult(true, ['items' => $return, 'more' => $more]);
     }
 
     /**
@@ -299,29 +308,30 @@ class Controller_Help extends Controller_Common
             $this->jsonResult(false);
         }
 
-        $res = Model_Contract::getContracts(
+        list($result, $more) = Model_Contract::getContracts(
             $clientId,
             [
-                'search' => $this->_search,
-                'contract_id' => $this->_ids,
-                'limit' => 10,
+                'search'        => $this->_search,
+                'contract_id'   => $this->_ids,
+                'offset' 	    => $this->request->post('offset'),
+                'pagination'	=> true
             ]
         );
 
-        if(empty($res)){
+        if(empty($result)){
             $this->jsonResult(false);
         }
 
         $return = [];
 
-        foreach($res as $item){
+        foreach($result as $item){
             $return[] = [
                 'name' => $item['CONTRACT_NAME'],
                 'value' => $item['CONTRACT_ID'],
             ];
         }
 
-        $this->jsonResult(true, $return);
+        $this->jsonResult(true, ['items' => $return, 'more' => $more]);
     }
 
     /**

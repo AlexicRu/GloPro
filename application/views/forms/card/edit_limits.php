@@ -214,7 +214,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
             if (data.success) {
                 message(1, 'Лимиты карты успешно обновлена');
                 $.fancybox.close();
-                cardLoad($('.tab_v.active'), true);
+                cardLoad($('.tab_v.active').attr('tab'), true);
             } else {
                 message(0, 'Ошибка обновления лимитов карты');
 

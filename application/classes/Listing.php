@@ -97,7 +97,7 @@ class Listing
     /**
      * список карт
      *
-     * @param string $params
+     * @param array $params
      * @param array $ids
      * @return array|bool|int
      */
@@ -111,11 +111,10 @@ class Listing
             ->from('V_WEB_CARDS_ALL t')
             ->where('t.agent_id = ' . $user['AGENT_ID'])
             ->orderBy('t.card_id')
-            ->limit(self::$limit)
         ;
 
         if(!empty($ids)){
-            $sql->where("t.CARD_ID in (".implode(',', $ids).")");
+            $sql->where("t.CARD_ID in ('".implode("','", (array)$ids)."')");
         } else {
             if(!empty($params['search'])){
                 $sql->where("t.CARD_ID like ".Oracle::quote('%'.$params['search'].'%'));
@@ -123,6 +122,13 @@ class Listing
             if(!empty($params['contract_id'])){
                 $sql->where("t.contract_id = ".(int)$params['contract_id']);
             }
+        }
+
+        if (!empty($params['pagination'])) {
+            $params['limit'] = self::$limit;
+            return $db->pagination($sql, $params);
+        } else {
+            $sql->limit(self::$limit);
         }
 
         return $db->query($sql);

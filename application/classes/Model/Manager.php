@@ -409,7 +409,9 @@ class Model_Manager extends Model
             $sql->columns($columns);
         }
 
-        if (!empty($params['limit'])) {
+        if (!empty($params['pagination'])) {
+            return Oracle::init()->pagination($sql, $params);
+        }else if (!empty($params['limit'])) {
             $sql->limit((int)$params['limit']);
         }
 
