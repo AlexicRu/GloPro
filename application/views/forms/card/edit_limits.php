@@ -13,7 +13,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
                     }?>
                     <?if ($settings['canAddLimit']) {?>
                         <tr>
-                            <td><button class="btn btn-outline-success btn_card_edit_add_limit" onclick="cardEditAddLimit_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> Добавить ограничение</button></td>
+                            <td><button class="btn btn-outline-success waves-effect waves-light btn_card_edit_add_limit" onclick="cardEditAddLimit_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> Добавить ограничение</button></td>
                             <td></td>
                             <td></td>
                             <td></td>
