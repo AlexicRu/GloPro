@@ -102,7 +102,7 @@
     {
         var td = t.closest('td');
 
-        /*if(td.find('[limit_service]').size()){
+        /*if(td.find('[limit_service]').length){
             message(0, 'Максимум один вид услуги');
             return false;
         }*/
@@ -125,7 +125,7 @@
             tpl.find('select').append('<option value="' + i + '" '+ (disabled.indexOf(i) != -1 ? 'disabled' : '') +'>' + services[i] + '</option>');
         }
 
-        if (td.find('[limit_service]').size()) {
+        if (td.find('[limit_service]').length) {
             tpl.insertAfter(td.find('[limit_service]:last'));
         } else {
             tpl.insertBefore(td.find('div'));
@@ -177,7 +177,7 @@
             tpl.find('select[name=limit_param]').append('<option value="' + i + '">' + limitParams[i] + '</option>');
         }
 
-        if (table.find('[limit_group]').size()) {
+        if (table.find('[limit_group]').length) {
             tpl.insertAfter(table.find('[limit_group]:last'));
         } else {
             tpl.insertBefore(table.find('tr'));
@@ -208,7 +208,7 @@
 
             limits.push(group);
 
-            if((group.value == '' && !group.unlim) || $('[name=limit_service]', group_block).size() == 0){
+            if((group.value == '' && !group.unlim) || $('[name=limit_service]', group_block).length == 0){
                 canEdit = false;
             }
         });

@@ -77,9 +77,9 @@ function paginationAjax(url, name, callback, params)
 {
     var outer = $('.' + name + '_out');
     var block = $('<div class="' + name + '" />');
-    var btnBlock = $('<div class="ajax_block_more text-center" />');
-    var more = $('<button class="btn waves-effect waves-light btn-outline-secondary ajax_block_load m-l-5 m-r-5">Загрузить еще...</button>');
-    var all = $('<button class="btn waves-effect waves-light btn-outline-secondary m-l-5 m-r-5">Загрузить все</button>');
+    var btnBlock = $('<div class="ajax_block_more text-center p-t-10 p-b-10" />');
+    var more = $('<button class="btn btn-sm waves-effect waves-light btn-outline-secondary ajax_block_load m-l-5 m-r-5">Загрузить еще...</button>');
+    var all = $('<button class="btn btn-sm waves-effect waves-light btn-outline-secondary m-l-5 m-r-5">Загрузить все</button>');
 
     outer.addClass('ajax_pagination_out');
     block.addClass('ajax_pagination');
@@ -151,6 +151,10 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
             }
         }
         block.closest('.block_loading').removeClass(CLASS_LOADING);
+
+        if (block.closest('.ps').length) {
+            block.closest('.ps').perfectScrollbar('update');
+        }
     });
 }
 
@@ -185,19 +189,23 @@ function endSubmitForm()
 function renderVerticalTabsScroll(elem)
 {
     var block = elem.closest('.vtabs');
-    var preScrollHeight = block.find('.before_scroll').length ? block.find('.before_scroll').height() : 0;
+    var beforeScrollHeight = block.find('> .nav-tabs .nav-item.before_scroll').length ? block.find('> .nav-tabs .nav-item.before_scroll').height() : 0;
+    var afterScrollHeight = block.find('> .nav-tabs .ajax_block_more').length ? block.find('> .nav-tabs .ajax_block_more').height() : 0;
+    var height = block.find('> .tab-content > .tab-pane.active').outerHeight() - beforeScrollHeight - afterScrollHeight;
 
-    var height = block.find('.tab-pane.active').outerHeight() - preScrollHeight;
+    height = height > 300 ? height : 300;
 
-    elem.css('height', height > 300 ? height : 300);
+    if (elem.height() > height || elem.data('rendered') == true) {
+        elem.css('height', height);
 
-    if (elem.data('rendered')) {
-        elem.perfectScrollbar('update');
-    } else {
-        elem.data('rendered', true).perfectScrollbar({
-            useBothWheelAxes: false,
-            suppressScrollX: true
-        });
+        if (elem.data('rendered')) {
+            elem.perfectScrollbar('update');
+        } else {
+            elem.data('rendered', true).perfectScrollbar({
+                useBothWheelAxes: false,
+                suppressScrollX: true
+            });
+        }
     }
 }
 

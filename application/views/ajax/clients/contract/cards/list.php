@@ -1,4 +1,4 @@
-<div class="ajax_block_cards_list_out block_loading p-b-10">
+<div class="ajax_block_cards_list_out block_loading">
 
 </div>
 
@@ -79,11 +79,11 @@
             tpl.attr('tab', data[i].CARD_ID);
             tpl.find('.nowrap').append(data[i].CARD_ID);
             if (data[i].HOLDER) {
-                tpl.find('a').append('<div><small>' + data[i].HOLDER + '</small></div>');
+                tpl.find('a').append('<div><small holder>' + data[i].HOLDER + '</small></div>');
             }
 
             if (data[i].CARD_STATE == <?=Model_Card::CARD_STATE_BLOCKED?>) {
-                tpl.find('a').append('<span class="label label-danger label_small">Заблокирована</span>');
+                tpl.find('a').append('<div><span class="label label-danger label_small">Заблокирована</span></div>');
             }
 
             tpl.find('a').on('click', function () {
@@ -93,8 +93,15 @@
                 $('.nav-link.active', block).not(t).removeClass('active show');
 
                 cardLoad(t.closest('.nav-item').attr('tab'));
-                t.tab('show');
+
                 $('.tabs_cards .tabs-floating').removeClass('active');
+
+                t.tab('show');
+
+                if ($(t.attr('href')).not(':empty')) {
+                    renderVerticalTabsScroll(t.closest('.ajax_pagination'));
+                }
+
                 return false;
             });
 
@@ -106,8 +113,6 @@
         if (!firstLoad) {
             block.find('.nav-item:not(.no_content):first a').click();
         }
-
-        renderVerticalTabsScroll(block);
     }
 
     function cardLoad(cardId, force)
@@ -119,6 +124,7 @@
 
             $.post('/clients/card/' + cardId + '/?contract_id=' + $('[name=contracts_list]').val(), {}, function(data){
                 contentBlock.html(data).removeClass(CLASS_LOADING);
+                renderVerticalTabsScroll($('.tabs_cards .ajax_pagination:first'));
             });
         }
     }

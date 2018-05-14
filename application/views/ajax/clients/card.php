@@ -4,62 +4,80 @@
 $user = Auth::instance()->get_user();
 ?>
 
-<div class="fr">
+<div class="text-right m-b-10">
     <?if(Access::allow('clients_card_toggle_full')){?>
         <?if(in_array($card['BLOCK_AVAILABLE'], [1,2]) || Access::allow('clients_card-toggle')){?>
             <?if($card['CARD_STATE'] == Model_Card::CARD_STATE_BLOCKED){?>
-                <button class="btn btn_green btn_card_toggle" block_available="<?=$card['BLOCK_AVAILABLE']?>"><span style="display: none"><i class="icon-block"></i> Заблокировать</span><span><i class="icon-backblock"></i> Разблокировать</span></button>
+                <button class="btn btn-outline-success waves-effect waves-light m-b-5" onclick="cardToggle($(this))" block_available="<?=$card['BLOCK_AVAILABLE']?>">
+                    <span style="display: none"><i class="fa fa-lock"></i> Заблокировать</span>
+                    <span><i class="fa fa-unlock"></i> Разблокировать</span>
+                </button>
             <?}else{?>
-                <button class="btn btn_red btn_card_toggle" block_available="<?=$card['BLOCK_AVAILABLE']?>"><span><i class="icon-block"></i> Заблокировать</span><span style="display: none"><i class="icon-backblock"></i> Разблокировать</span></button>
+                <button class="btn btn-outline-danger waves-effect waves-light m-b-5" onclick="cardToggle($(this))" block_available="<?=$card['BLOCK_AVAILABLE']?>">
+                    <span><i class="fa fa-lock"></i> Заблокировать</span>
+                    <span style="display: none"><i class="fa fa-unlock"></i> Разблокировать</span>
+                </button>
             <?}?>
         <?}?>
     <?}?>
     <?if(Access::allow('clients_card-withdraw')){?>
-        <a href="#" class="btn btn_orange" onclick="cardWithdraw('<?=$card['CARD_ID']?>', <?=$card['BLOCK_AVAILABLE']?>)"><i class="fa fa-times"></i> Изъять</a>
+        <span class="btn btn-outline-warning waves-effect waves-light m-b-5" onclick="cardWithdraw('<?=$card['CARD_ID']?>', <?=$card['BLOCK_AVAILABLE']?>)"><i class="fa fa-times"></i> Изъять</span>
     <?}?>
     <?if(Access::allow('clients_card_edit')){?>
-        <a href="#card_edit_holder_<?=$card['CARD_ID']?>" class="fancy btn"><i class="fa fa-pencil-alt"></i> Редактировать</a>
+        <a href="#" data-toggle="modal" data-target="#card_edit_holder_<?=$card['CARD_ID']?>" class="btn btn-outline-primary waves-effect waves-light m-b-5"><i class="fa fa-pencil-alt"></i> Редактировать</a>
     <?}?>
 </div>
 
-<b class="f18">Обороты за текущий период:</b><br>
+<span class="font-18 font-weight-bold">Обороты за текущий период:</span><br>
 <?=number_format($card['REALIZ_LITRES'], 2, ',', ' ')?> л. / <?=number_format($card['REALIZ_CUR'], 2, ',', ' ')?> <?=Text::RUR?><br><br>
 
 <?if (!empty($transactions)) {?>
-    <?if (count($transactions) > 1) {?>
-    <span class="fr btn btn_small btn_reverse" toggle="last_transactions">
-        <span toggle_block="last_transactions">+</span>
-        <span toggle_block="last_transactions" style="display: none">-</span>
-    </span>
-    <?}?>
+    <div class="row">
+        <div class="col-10">
+            <b class="font-18 font-weight-bold">Последние заправки:</b>
+        </div>
+        <div class="col-2 text-right">
+            <?if (count($transactions) > 1) {?>
+                <span class="btn btn-sm btn-outline-primary waves-effect waves-light" toggle="last_transactions">
+                    <span toggle_block="last_transactions"><i class="fa fa-chevron-down"></i></span>
+                    <span toggle_block="last_transactions" style="display: none"><i class="fa fa-chevron-up"></i></span>
+                </span>
+            <?}?>
+        </div>
+    </div>
 
-    <b class="f18">Последние заправки:</b>
-
+    <div class="p-3">
     <?foreach ($transactions as $index => $transaction) {?>
-        <div class="line_inner" <?=($index ? 'toggle_block="last_transactions" style="display:none"' : '')?>>
-            <span class="gray"><?=$transaction['DATE_TRN_FORMATTED']?> <?=$transaction['TIME_TRN']?></span> &nbsp;&nbsp;&nbsp;
-            <b><?=$transaction['POS_PETROL_NAME']?></b>
-            <div class="fr">
-                <b><?=$transaction['LONG_DESC']?></b> - <?=number_format($transaction['SERVICE_AMOUNT'], 2, ',', ' ')?> л. / <?=number_format($transaction['SUMPRICE_DISCOUNT'], 2, ',', ' ')?> <?=Text::RUR?>
+        <div class="row m-b-5 bg-light p-t-10 p-b-10" <?=($index ? 'toggle_block="last_transactions" style="display:none"' : '')?>>
+            <div class="col-md-2 text-muted"><?=$transaction['DATE_TRN_FORMATTED']?> <?=$transaction['TIME_TRN']?></div>
+            <div class="col-md-6">
+                <span class="font-weight-bold"><?=$transaction['POS_PETROL_NAME']?></span>
+                <br>
+                <?=$transaction['POS_ADDRESS']?>
             </div>
-            <br>
-            <span style="visibility: hidden"><?=$transaction['DATE_TRN_FORMATTED']?> <?=$transaction['TIME_TRN']?></span> &nbsp;&nbsp;&nbsp;
-            <?=$transaction['POS_ADDRESS']?>
+            <div class="col-md-4">
+                <span class="font-weight-bold"><?=$transaction['LONG_DESC']?></span>
+                <span class="nowrap">
+                    <?=number_format($transaction['SERVICE_AMOUNT'], 2, ',', ' ')?> л. / <?=number_format($transaction['SUMPRICE_DISCOUNT'], 2, ',', ' ')?> <?=Text::RUR?>
+                </span>
+            </div>
         </div>
     <?}?>
+    </div>
 <?}?>
 
 <br>
 
-<div class="fr">
-    <?if(Access::allow('clients_card_edit')){?>
+<?if(Access::allow('clients_card_edit')){?>
+    <div class="float-right">
         <?if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-limits')){?>
-            <a href="#card_edit_limits_<?=$card['CARD_ID']?>" class="fancy btn btn_icon"><i class="fa fa-pencil-alt"></i></a>
+            <a href="#" data-toggle="modal" data-target="#card_edit_limits_<?=$card['CARD_ID']?>" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-pencil-alt"></i></a>
         <?}?>
-    <?}?>
-</div>
+    </div>
+<?}?>
 
-<b class="f18">Ограничения по топливу:</b>
+<span class="font-18 font-weight-bold">Ограничения по топливу:</span>
+<div class="clearfix"></div>
 <?if(!empty($oilRestrictions)){
     $systemId = $card['SYSTEM_ID'];
 
@@ -72,15 +90,15 @@ $user = Auth::instance()->get_user();
     }
 
     ?>
-    <table class="tbl_spacing">
+    <table class="table m-t-10 table-width-auto">
         <?foreach($oilRestrictions as $restriction){?>
             <tr>
-                <td class="gray right">
+                <td class="text-right text-muted">
                     <?foreach($restriction['services'] as $service){?>
                         <?=$service['name']?>:<br>
                     <?}?>
                 </td>
-                <td class="line_inner">
+                <td class="bg-light">
                     <?if ($systemId == 5) {?>
                         <?=$restriction['LIMIT_VALUE']?>
                         <?=Model_Card::$cardLimitsParams[$restriction['UNIT_TYPE']]?>,
@@ -94,11 +112,15 @@ $user = Auth::instance()->get_user();
             </tr>
         <?}?>
     </table>
-<?}else{?><div class="gray">Не указаны</div><?}?>
+<?}else{?>
+    <div class="text-muted"><i>Не указаны</i></div>
+<?}?>
+
+
 <br>
 
 <div class="ajax_block_operations_history_<?=$card['CARD_ID']?>_out">
-    <b class="f18">История операций:</b>
+    <div class="font-weight-bold font-18 m-b-10">История операций:</div>
 </div>
 
 <?if(Access::allow('clients_card_edit')){?>

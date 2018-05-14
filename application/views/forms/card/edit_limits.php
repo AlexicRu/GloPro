@@ -1,3 +1,4 @@
+<div class="modal-body">
 <?
 $postfix = $card['CARD_ID'];
 
@@ -5,7 +6,6 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 
     <table class="table_form form_card_edit form_card_edit_<?=$postfix?>">
         <tr>
-            <td class="gray right v_top" width="170">Ограничения по топливу:</td>
             <td>
                 <table class="table_form table_form_limits">
                     <?foreach($oilRestrictions as $restriction){
@@ -13,7 +13,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
                     }?>
                     <?if ($settings['canAddLimit']) {?>
                         <tr>
-                            <td><button class="btn btn_green btn_card_edit_add_limit" onclick="cardEditAddLimit_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> Добавить ограничение</button></td>
+                            <td><button class="btn btn-outline-success btn_card_edit_add_limit" onclick="cardEditAddLimit_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> Добавить ограничение</button></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -23,23 +23,18 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
                 </table>
             </td>
         </tr>
-        <tr>
-            <td></td>
-            <td>
-                <?if ($settings['canSave']) {?>
-                    <span class="btn btn_reverse" onclick="cardEditGo_<?=$postfix?>($(this))"><i class="fa fa-check"></i> Сохранить лимиты</span>
-                <?}?>
-                <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-            </td>
-        </tr>
     </table>
 <?}?>
+</div>
+<div class="modal-footer">
+    <?if ($settings['canSave']) {?>
+        <span class="btn btn-primary waves-effect waves-light" onclick="submitForm($(this), cardEditGo_<?=$postfix?>)"><i class="fa fa-check"></i> Сохранить лимиты</span>
+    <?}?>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
     $(function () {
-        $('[name=card_edit_date]').each(function () {
-            renderDatePicker($(this));
-        });
         checkServices_<?=$postfix?>();
     });
 
@@ -122,7 +117,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
                 }
             }
 
-            if (td.find('[limit_service]').size()) {
+            if (td.find('[limit_service]').length) {
                 tpl.insertAfter(td.find('[limit_service]:last'));
             } else {
                 tpl.insertBefore(td.find('div'));
@@ -160,7 +155,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 
         $.get('/clients/card-limit-template/', params, function(tpl){
             tpl = $(tpl);
-            if (table.find('[limit_group]').size()) {
+            if (table.find('[limit_group]').length) {
                 tpl.insertAfter(table.find('[limit_group]:last'));
             } else {
                 tpl.insertBefore(table.find('tr'));
@@ -179,7 +174,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 
         var canEdit = true;
 
-        /*if($('[limit_group]', form).size() == 0){
+        /*if($('[limit_group]', form).length == 0){
          canEdit = false;
          }*/
 
@@ -200,7 +195,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 
             params.limits.push(group);
 
-            if(group.value == '' || $('[name=limit_service]', group_block).size() == 0){
+            if(group.value == '' || $('[name=limit_service]', group_block).length == 0){
                 canEdit = false;
             }
         });

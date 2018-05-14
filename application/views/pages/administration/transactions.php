@@ -45,7 +45,7 @@
 
     function renderAjaxPaginationAdminTransactionsFilter(data, block, params)
     {
-        if(block.find('> table').size() == 0){
+        if(block.find('> table').length == 0){
             //draw headers
             for(var i in data){
 

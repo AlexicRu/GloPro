@@ -23,7 +23,7 @@
 
     function renderFilterDotsList<?=$postfix?>(block, params)
     {
-        if(block.find('> table').size() == 0){
+        if(block.find('> table').length == 0){
             block.append('<table class="table table_small table_fullscreen check_all_block"></table>');
             block = block.find('table');
 

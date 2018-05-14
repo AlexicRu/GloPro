@@ -1088,7 +1088,7 @@ class Model_Card extends Model
             'p_contract_id'     => $contractId,
             'p_new_holder'      => $holder ?: '',
             'p_card_comment'    => $comment,
-            'p_date_from'       => $date ?: date('d.m.Y'),
+            'p_date_from'       => $date ? Date::format($date) : date('d.m.Y'),
             'p_manager_id'      => $user['MANAGER_ID'],
             'p_error_code' 	    => 'out',
         ];
