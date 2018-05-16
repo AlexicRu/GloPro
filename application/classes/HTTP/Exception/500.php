@@ -7,7 +7,9 @@ class HTTP_Exception_500 extends Kohana_HTTP_Exception_500
         $response = Response::factory();
         $message = $this->getMessage();
 
-        (new Sentry())->error500($message);
+        if (Common::isProd()) {
+            (new Sentry())->error500($message);
+        }
 
         if ($this->request()->is_ajax()) {
             $response->headers('Content-Type', 'application/json');

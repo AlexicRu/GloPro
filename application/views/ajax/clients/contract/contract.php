@@ -58,7 +58,7 @@
         <?if(Access::allow('clients_contract-edit')){?>
         <div class="form-group row m-b-0">
             <div class="col-sm-12">
-                <button class="btn waves-effect waves-light btn-success btn_contract_save btn_reverse"><i class="fa fa-check"></i> Сохранить</button>
+                <button class="btn waves-effect waves-light btn-success btn_reverse" onclick="saveContract()"><i class="fa fa-check"></i> Сохранить</button>
                 <button class="btn waves-effect waves-light btn-danger" toggle="block2"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
             </div>
         </div>
@@ -283,55 +283,56 @@
                 $("[name=AUTOBLOCK_LIMIT]").prop('disabled', false);
             }
         });
-
-        <?if(Access::allow('clients_contract-edit')){?>
-            $(".btn_contract_save").on('click', function(){
-                var params = {
-                    contract:{
-                        CONTRACT_NAME:  $("[name=CONTRACT_NAME]").val(),
-                        DATE_BEGIN:     $("[name=DATE_BEGIN]").val(),
-                        DATE_END:       $("[name=DATE_END]").val(),
-                        STATE_ID:       $("[name=STATE_ID]").val()
-                    },
-                    settings:{
-                        TARIF_ONLINE:           getComboboxValue($('[name=TARIF_ONLINE].combobox')),
-                        TARIF_OFFLINE:          getComboboxValue($('[name=TARIF_OFFLINE].combobox')),
-                        AUTOBLOCK_LIMIT:        $("[name=AUTOBLOCK_LIMIT]").val(),
-                        PENALTIES:              $("[name=PENALTIES]").val(),
-                        OVERDRAFT:              $("[name=OVERDRAFT]").val(),
-                        //INVOICE_PERIOD_TYPE:    $("[name=INVOICE_PERIOD_TYPE]").val(),
-                        //INVOICE_PERIOD_VALUE:   $("[name=INVOICE_PERIOD_VALUE]").val(),
-                        GOODS_RECIEVER:         getComboboxValue($("[name=GOODS_RECIEVER].combobox")),
-                        CONTRACT_COMMENT:       $("[name=CONTRACT_COMMENT]").val(),
-                        scheme:                 $("[name=scheme]").val()
-                    }
-                };
-
-
-                if(params.settings.TARIF_ONLINE == '' || params.settings.TARIF_OFFLINE == ''){
-                    message(0, 'Заполните тарификацию');
-                    return false;
-                }
-
-                if(params.contract.CONTRACT_NAME == ''){
-                    message(0, 'Введите название');
-                    return false;
-                }
-
-                $.post('/clients/contract-edit/<?=$contractSettings['CONTRACT_ID']?>', {params:params}, function(data){
-                    if(data.success){
-                        message(1, 'Контракт обновлен');
-
-                        var contractFullName = "Договор: [<?=$contractSettings['CONTRACT_ID']?>] " + params.contract.CONTRACT_NAME + " от " + params.contract.DATE_BEGIN + (params.contract.DATE_END != '31.12.2099' ? " до " + params.contract.DATE_END : '');
-
-                        $("[name=contracts_list] option:selected").text(contractFullName);
-
-                        loadContract('contract');
-                    }else{
-                        message(0, 'Сохранение не удалось');
-                    }
-                });
-            });
-        <?}?>
     });
+
+    <?if(Access::allow('clients_contract-edit')){?>
+    function saveContract()
+    {
+        var params = {
+            contract:{
+                CONTRACT_NAME:  $("[name=CONTRACT_NAME]").val(),
+                DATE_BEGIN:     $("[name=DATE_BEGIN]").val(),
+                DATE_END:       $("[name=DATE_END]").val(),
+                STATE_ID:       $("[name=STATE_ID]").val()
+            },
+            settings:{
+                TARIF_ONLINE:           getComboboxValue($('[name=TARIF_ONLINE].combobox')),
+                TARIF_OFFLINE:          getComboboxValue($('[name=TARIF_OFFLINE].combobox')),
+                AUTOBLOCK_LIMIT:        $("[name=AUTOBLOCK_LIMIT]").val(),
+                PENALTIES:              $("[name=PENALTIES]").val(),
+                OVERDRAFT:              $("[name=OVERDRAFT]").val(),
+                //INVOICE_PERIOD_TYPE:    $("[name=INVOICE_PERIOD_TYPE]").val(),
+                //INVOICE_PERIOD_VALUE:   $("[name=INVOICE_PERIOD_VALUE]").val(),
+                GOODS_RECIEVER:         getComboboxValue($("[name=GOODS_RECIEVER].combobox")),
+                CONTRACT_COMMENT:       $("[name=CONTRACT_COMMENT]").val(),
+                scheme:                 $("[name=scheme]").val()
+            }
+        };
+
+
+        if(params.settings.TARIF_ONLINE == '' || params.settings.TARIF_OFFLINE == ''){
+            message(0, 'Заполните тарификацию');
+            return false;
+        }
+
+        if(params.contract.CONTRACT_NAME == ''){
+            message(0, 'Введите название');
+            return false;
+        }
+
+        $.post('/clients/contract-edit/<?=$contractSettings['CONTRACT_ID']?>', {params:params}, function(data){
+            if(data.success){
+                message(1, 'Контракт обновлен');
+
+                var contractFullName = "Договор: [<?=$contractSettings['CONTRACT_ID']?>] " + params.contract.CONTRACT_NAME + " от " + params.contract.DATE_BEGIN + (params.contract.DATE_END != '31.12.2099' ? " до " + params.contract.DATE_END : '');
+
+                $("[name=contracts_list] option:selected").text(contractFullName);
+
+                loadContract('contract');
+            }else{
+                message(0, 'Сохранение не удалось');
+            }
+        });
+    }
+    <?}?>
 </script>

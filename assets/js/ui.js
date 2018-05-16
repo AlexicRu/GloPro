@@ -5,6 +5,10 @@ var SHOW_NOT_FOUND_NAME     = 'Не найдено';
 
 $(function(){
     renderElements();
+
+    $(window).on('resize', function () {
+        resetComboboxResultPositioning();
+    });
 });
 
 function renderElements()
@@ -263,12 +267,12 @@ function renderComboBox(combo, params)
         combo.trigger('keyup');
     });
 
-    result.addClass('combobox_result_top');
-
     combo.on('keyup', function () {
         if(ajaxComboBox){
             ajaxComboBox.abort();
         }
+
+        checkComboboxResultPositioning(combo);
 
         if(params['depend_to']){
             var dependWrapper = outer.parents('.with_depend:last');
@@ -540,4 +544,40 @@ function renderPaginationScroll(elem)
     } else {
         elem.css('overflow-y', 'scroll')
     }
+}
+
+/**
+ * позиционирование выпадающего блока, влезет ли в экран при выпадении вниз
+ */
+function checkComboboxResultPositioning(combo)
+{
+    if (combo.data('result-positioning') == true) {
+        return;
+    }
+
+    var height = $('body').height();
+    var result = combo.closest('.combobox_outer').find('.combobox_result');
+    var comboResultTop = combo.offset().top
+        + combo.outerHeight()
+        + parseInt(result.find('.combobox_result_list').css('max-height'))
+        + parseInt(result.find('.combobox_result_more').outerHeight())
+        + 20
+    ;
+
+    result.removeClass('combobox_result_top combobox_result_bottom');
+
+    if (comboResultTop > height) {
+        result.addClass('combobox_result_top');
+    } else {
+        result.addClass('combobox_result_bottom');
+    }
+
+    combo.data('result-positioning', true);
+}
+
+function resetComboboxResultPositioning()
+{
+    $('.combobox').each(function () {
+        $(this).data('result-positioning', false);
+    });
 }
