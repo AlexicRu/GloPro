@@ -71,7 +71,7 @@
                 <div class="col-4 text-right">E-mail:</div>
                 <div class="col-8">
                     <span toggle_block="edit_client" uid="client_email"><?=($client['EMAIL'] ? '<a href="mailto:'.$client['EMAIL'].'">'.$client['EMAIL'].'</a>' : '<span class="gray">Не заполнено</span>')?></span>
-                    <span toggle_block="edit_client" uid="client_email" class="dn"><nobr><input type="text" name="EMAIL" value="<?=$client['EMAIL']?>" class="form-control">*</nobr></span>
+                    <span toggle_block="edit_client" uid="client_email" class="dn"><nobr><input type="text" name="EMAIL" value="<?=$client['EMAIL']?>" class="form-control"></nobr></span>
                 </div>
             </div>
 
@@ -97,7 +97,7 @@
                         <nobr>
                             <input type="text" name="KPP" value="<?=$client['KPP']?>" class="form-control"
                                 <?=(!empty($client['KPP']) && Access::deny('edit_client_full') ? 'disabled' : '')?>
-                            >*
+                            >
                         </nobr>
                     </span>
                 </div>

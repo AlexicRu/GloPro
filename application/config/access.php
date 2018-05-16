@@ -152,9 +152,11 @@ return [
             'a_2',
             'a_4',
             'a_6',
+            'a_12',
             'a_14',
             'a_16',
             'a_18',
+            'a_24',
         ],
         'managers_load-reports' => [
             Access::ROLE_ROOT
