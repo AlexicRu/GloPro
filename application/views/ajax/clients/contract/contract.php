@@ -296,14 +296,14 @@
                 STATE_ID:       $("[name=STATE_ID]").val()
             },
             settings:{
-                TARIF_ONLINE:           getComboboxValue($('[name=TARIF_ONLINE].combobox')),
-                TARIF_OFFLINE:          getComboboxValue($('[name=TARIF_OFFLINE].combobox')),
+                TARIF_ONLINE:           getComboBoxValue($('[name=TARIF_ONLINE].combobox')),
+                TARIF_OFFLINE:          getComboBoxValue($('[name=TARIF_OFFLINE].combobox')),
                 AUTOBLOCK_LIMIT:        $("[name=AUTOBLOCK_LIMIT]").val(),
                 PENALTIES:              $("[name=PENALTIES]").val(),
                 OVERDRAFT:              $("[name=OVERDRAFT]").val(),
                 //INVOICE_PERIOD_TYPE:    $("[name=INVOICE_PERIOD_TYPE]").val(),
                 //INVOICE_PERIOD_VALUE:   $("[name=INVOICE_PERIOD_VALUE]").val(),
-                GOODS_RECIEVER:         getComboboxValue($("[name=GOODS_RECIEVER].combobox")),
+                GOODS_RECIEVER:         getComboBoxValue($("[name=GOODS_RECIEVER].combobox")),
                 CONTRACT_COMMENT:       $("[name=CONTRACT_COMMENT]").val(),
                 scheme:                 $("[name=scheme]").val()
             }

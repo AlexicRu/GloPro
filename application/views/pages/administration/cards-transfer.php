@@ -63,9 +63,9 @@
         btn.addClass(CLASS_LOADING);
 
         var params = {
-            old_contract:           getComboboxValue($('[name=contract_choose_single]'), true),
-            new_contract:           getComboboxValue($('[name=contract_new]')),
-            cards:                  getComboboxMultiValue($('[name=card_choose_multi]')),
+            old_contract:           getComboBoxValue($('[name=contract_choose_single]'), true),
+            new_contract:           getComboBoxValue($('[name=contract_new]')),
+            cards:                  getComboBoxMultiValue($('[name=card_choose_multi]')),
             cards_list:             $('[name=cards_list]').val(),
             params: {
                 date_from:              $('[name=date_from]').val(),

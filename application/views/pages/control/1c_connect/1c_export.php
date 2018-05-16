@@ -64,7 +64,7 @@
             var t = $(this);
             var field = $('[name^=client_contract]', t);
 
-            var values = getComboboxMultiValue(field);
+            var values = getComboBoxMultiValue(field);
 
             if (values.length) {
                 for (var i in values) {

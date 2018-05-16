@@ -76,8 +76,8 @@
     function calcTariff(block)
     {
         var params = {
-            client_id:   getComboboxValue(block.find('[name^=client_]')),
-            contract_id: getComboboxValue(block.find('[name^=contract_]')),
+            client_id:   getComboBoxValue(block.find('[name^=client_]')),
+            contract_id: getComboBoxValue(block.find('[name^=contract_]')),
             start:       block.find('[name^=date_start_]').val(),
             end:         block.find('[name^=date_end_]').val(),
         };

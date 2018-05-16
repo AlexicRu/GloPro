@@ -62,7 +62,7 @@
             $('.form_client_add_bill_product').each(function () {
                 var t = $(this);
                 var product = {
-                    service: getComboboxValue($('[name^=add_bill_product_service_]', t)),
+                    service: getComboBoxValue($('[name^=add_bill_product_service_]', t)),
                     cnt: $('[name^=add_bill_product_cnt_]', t).val().replace(',', '.'),
                     price: $('[name^=add_bill_product_price_]', t).val().replace(',', '.'),
                 };

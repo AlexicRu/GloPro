@@ -95,8 +95,8 @@ function editSupplierContract()
         CONTRACT_STATE:         $('[name=CONTRACT_STATE]', block).val(),
         DATA_SOURCE:            $('[name=DATA_SOURCE]:checked', block).val(),
         TUBE_ID:                $('[name=TUBE_ID]', block).val(),
-        CONTRACT_SERVICES:      getComboboxValue($('[name=CONTRACT_SERVICES]', block)),
-        CONTRACT_POS_GROUPS:    getComboboxValue($('[name=CONTRACT_POS_GROUPS]', block)),
+        CONTRACT_SERVICES:      getComboBoxValue($('[name=CONTRACT_SERVICES]', block)),
+        CONTRACT_POS_GROUPS:    getComboBoxValue($('[name=CONTRACT_POS_GROUPS]', block)),
     };
 
     if (params.CONTRACT_NAME == '' ||
@@ -176,7 +176,7 @@ function agreementSave(btn)
         'date_begin':       $('[name=DATE_BEGIN]', block).val(),
         'date_end':         $('[name=DATE_END]', block).val(),
         'discount_type':    $('[name=DISCOUNT_TYPE]:checked', block).val(),
-        'tarif_id':         getComboboxValue($('[name=TARIF_ID]', block))
+        'tarif_id':         getComboBoxValue($('[name=TARIF_ID]', block))
     };
 
     if (

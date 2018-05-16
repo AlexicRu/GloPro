@@ -44,13 +44,13 @@ function generateReport(btn)
         if(field.attr('type') == 'checkbox'){
             value = field.is(':checked') ? 1 : 0;
         }else if(field.hasClass('combobox_multi')){
-            value = getComboboxMultiValue(field);
+            value = getComboBoxMultiValue(field);
             if (value.length == 0) {
                 value = [-1];
             }
         }else if(field.hasClass('combobox')){
 
-            value = getComboboxValue(field);
+            value = getComboBoxValue(field);
 
             if (!value) {
                 value = -1;

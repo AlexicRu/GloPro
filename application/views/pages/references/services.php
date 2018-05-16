@@ -59,7 +59,7 @@
 
         var params = {
             'tube_id':    $('.sources_list').val(),
-            'service_id': getComboboxValue($('[name=add_service_in_service].combobox')),
+            'service_id': getComboBoxValue($('[name=add_service_in_service].combobox')),
             'name':       $('[name=add_service_in_source]').val(),
         };
 

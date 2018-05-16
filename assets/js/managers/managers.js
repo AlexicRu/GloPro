@@ -120,7 +120,7 @@ function saveManagerClientContractBinds(btn)
     var clientId = line.attr('client_id');
     var managerId = line.attr('manager_id');
 
-    var binds = getComboboxMultiValue($('[name=manager_clients_contract_binds'+ clientId +']', line));
+    var binds = getComboBoxMultiValue($('[name=manager_clients_contract_binds'+ clientId +']', line));
 
     var params = {
         client_id: clientId,

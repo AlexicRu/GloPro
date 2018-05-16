@@ -231,9 +231,9 @@ function setFormFieldValue(field, value)
             break;
         default:
             if(isComboboxMulti){
-                setComboboxMultiValue(field.find('.combobox_multi'), value);
+                setComboBoxMultiValue(field.find('.combobox_multi'), value);
             }else if(isCombobox){
-                setComboboxValue(field.find('.combobox'), value);
+                setComboBoxValue(field.find('.combobox'), value);
             }else if(isCheckbox){
                 if(value){
                     field.prop('checked', true);

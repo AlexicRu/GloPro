@@ -247,7 +247,7 @@ class Controller_Help extends Controller_Common
     {
         $this->_params['client_id'] = $this->_params['client_id'] ?? $this->request->post('client_id');
 
-        if($this->_params['client_id'] && empty($this->_ids)){
+        if(empty($this->_params['client_id']) && empty($this->_ids)){
             $this->after(false);
         }
 
