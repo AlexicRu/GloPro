@@ -5,36 +5,38 @@ class Listing
     const SERVICE_GROUP_FUEL = 'Топливо';
     const SERVICE_GROUP_WASH = 'Услуги мойки';
 
-    public static $limit = 10;
-
     /**
      * список стран
      *
-     * @param $search
-     * @param ids
+     * @param $params
      * @return array|bool|int
      */
-    public static function getCountries($search, $ids = [])
+    public static function getCountries($params)
     {
-        if(empty($search) && empty($ids)){
+        if(empty($params['search']) && empty($params['ids'])){
             return false;
         }
 
         $db = Oracle::init();
 
-        $sql = "select * from ".Oracle::$prefix."V_WEB_DIC_COUNTRY t where 1=1";
+        $sql = (new Builder())->select()
+            ->from('V_WEB_DIC_COUNTRY t')
+            ->orderBy('t.name_ru')
+        ;
 
-        if(!empty($search)){
-            $sql .= " and upper(t.NAME_RU) like ".mb_strtoupper(Oracle::quote('%'.$search.'%'));
+        if(!empty($params['search'])){
+            $sql->where("upper(t.NAME_RU) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));
         }
 
-        if(!empty($ids)){
-            $sql .= " and t.id in (".implode(',', $ids).")";
+        if(!empty($params['ids'])){
+            $sql->where("t.id in (".implode(',', $params['ids']).")");
         }
 
-        $sql .= " order by t.name_ru";
+        if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
+        }
 
-        return $db->query($db->limit($sql, 0, self::$limit));
+        return $db->query($sql);
     }
 
     /**
@@ -63,7 +65,6 @@ class Listing
             ->from('V_WEB_SERVICE_LIST t')
             ->where('t.agent_id = ' . $user['AGENT_ID'])
             ->orderBy('t.' . $description)
-            ->limit(self::$limit)
         ;
 
         if(!empty($params['ids'])){
@@ -85,13 +86,13 @@ class Listing
             }
         }
 
-        $services = Oracle::init()->query($sql);
+        $db = Oracle::init();
 
-        foreach ($services as &$service) {
-            unset($service['RNUM']);
+        if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
         }
 
-        return $services;
+        return $db->query($sql);
     }
 
     /**
@@ -101,7 +102,7 @@ class Listing
      * @param array $ids
      * @return array|bool|int
      */
-    public static function getCards($params, $ids = [])
+    public static function getCards($params)
     {
         $db = Oracle::init();
 
@@ -113,8 +114,8 @@ class Listing
             ->orderBy('t.card_id')
         ;
 
-        if(!empty($ids)){
-            $sql->where("t.CARD_ID in ('".implode("','", (array)$ids)."')");
+        if(!empty($params['ids'])){
+            $sql->whereIn("t.CARD_ID", $params['ids']);
         } else {
             if(!empty($params['search'])){
                 $sql->where("t.CARD_ID like ".Oracle::quote('%'.$params['search'].'%'));
@@ -125,10 +126,7 @@ class Listing
         }
 
         if (!empty($params['pagination'])) {
-            $params['limit'] = self::$limit;
             return $db->pagination($sql, $params);
-        } else {
-            $sql->limit(self::$limit);
         }
 
         return $db->query($sql);
@@ -137,13 +135,12 @@ class Listing
     /**
      * список карт
      *
-     * @param string $search
-     * @param array ids
+     * @param array $params
      * @return array|bool|int
      */
-    public static function getCardsAvailable($search, $ids = [])
+    public static function getCardsAvailable($params)
     {
-        if(empty($search) && empty($ids)){
+        if(empty($params['search']) && empty($params['ids'])){
             return false;
         }
 
@@ -151,54 +148,66 @@ class Listing
 
         $user = Auth::instance()->get_user();
 
-        $sql = "select * from ".Oracle::$prefix."V_WEB_CRD_AVAILABLE t where t.agent_id = ".$user['AGENT_ID'];
+        $sql = (new Builder())->select()
+            ->from('V_WEB_CRD_AVAILABLE t')
+            ->where('t.agent_id = ' . $user['AGENT_ID'])
+            ->orderBy('t.card_id')
+        ;
 
-        if(!empty($search)){
-            $sql .= " and t.CARD_ID like ".Oracle::quote('%'.$search.'%');
+        if(!empty($params['search'])){
+            $sql->where("t.CARD_ID like ".Oracle::quote('%'.$params['search'].'%'));
         }
 
-        if(!empty($ids)){
-            $sql .= " and t.CARD_ID in (".implode(',', $ids).")";
+        if(!empty($params['ids'])){
+            $sql->whereIn('t.CARD_ID', $params['ids']);
         }
 
-        $sql .= " order by t.card_id";
+        if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
+        }
 
-        return $db->query($db->limit($sql, 0, self::$limit));
+        return $db->query($sql);
     }
 
     /**
      * список поставщиков
      *
-     * @param $search
-     * @param ids
+     * @param $params
      * @return array|bool|int
      */
-    public static function getSuppliers($search = '', $ids = [])
+    public static function getSuppliers($params)
     {
         $db = Oracle::init();
 
         $user = Auth::instance()->get_user();
 
-        $sql = "select * from ".Oracle::$prefix."V_WEB_SUPPLIERS_LIST t where t.agent_id = ".$user['AGENT_ID'];
+        $sql = (new Builder())->select()
+            ->from('V_WEB_SUPPLIERS_LIST t')
+            ->where('t.agent_id = ' . $user['AGENT_ID'])
+        ;
 
-        if(!empty($search)){
-            $sql .= " and upper(t.SUPPLIER_NAME) like ".mb_strtoupper(Oracle::quote('%'.$search.'%'));
+        if(!empty($params['search'])){
+            $sql->where("upper(t.SUPPLIER_NAME) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));
         }
 
-        if(!empty($ids)){
-            $sql .= " and t.ID in (".implode(',', $ids).")";
+        if(!empty($params['ids'])){
+            $sql->whereIn('t.ID', $params['ids']);
         }
 
-        return $db->query($db->limit($sql, 0, self::$limit));
+        if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
+        }
+
+        return $db->query($sql);
     }
 
     /**
      * список контрактов поставщиков
      *
-     * @param $search
+     * @param $params
      * @return array|bool|int
      */
-    public static function getSuppliersContracts($supplierId, $search = '')
+    public static function getSuppliersContracts($supplierId, $params = [])
     {
         if(empty($supplierId)){
             return false;
@@ -208,38 +217,52 @@ class Listing
 
         $user = Auth::instance()->get_user();
 
-        $sql = "select * from ".Oracle::$prefix."V_WEB_SUPPLIERS_CONTRACTS t where t.agent_id = ".$user['AGENT_ID']." and t.supplier_id = ".$supplierId;
+        $sql = (new Builder())->select()
+            ->from('V_WEB_SUPPLIERS_CONTRACTS t')
+            ->where("t.agent_id = ".$user['AGENT_ID'])
+            ->where("t.supplier_id = ".(int)$supplierId)
+        ;
 
-        if(!empty($search)){
-            $sql .= " and upper(t.CONTRACT_NAME) like ".mb_strtoupper(Oracle::quote('%'.$search.'%'));
+        if (!empty($params['search'])) {
+            $sql->where("upper(t.CONTRACT_NAME) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));
         }
 
-        return $db->query($db->limit($sql, 0, self::$limit));
+        if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
+        }
+
+        return $db->query($sql);
     }
 
     /**
      * список труб
      *
-     * @param $search
-     * @param ids
+     * @param $params
      * @return array|bool|int
      */
-    public static function getTubes($search = '', $ids = [])
+    public static function getTubes($params)
     {
         $db = Oracle::init();
 
         $user = Auth::instance()->get_user();
 
-        $sql = "select * from ".Oracle::$prefix."V_WEB_TUBES_LIST t where t.agent_id=".$user['AGENT_ID'];
+        $sql = (new Builder())->select()
+            ->from('V_WEB_TUBES_LIST t')
+            ->where('t.agent_id = '.$user['AGENT_ID'])
+        ;
 
-        if(!empty($search)){
-            $sql .= " and upper(t.TUBE_NAME) like ".mb_strtoupper(Oracle::quote('%'.$search.'%'));
+        if(!empty($params['search'])){
+            $sql->where("upper(t.TUBE_NAME) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));
         }
 
-        if(!empty($ids)){
-            $sql .= " and t.TUBE_ID in (".implode(',', $ids).")";
+        if(!empty($params['ids'])){
+            $sql->where("t.TUBE_ID in (".implode(',', $params['ids']).")");
         }
 
-        return $db->query($db->limit($sql, 0, self::$limit));
+        if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
+        }
+
+        return $db->query($sql);
     }
 }

@@ -374,10 +374,11 @@ class Controller_Api extends Controller_Template
         $user = User::current();
 
         $params = [
-            'agent_id' => $user['AGENT_ID']
+            'agent_id'  => $user['AGENT_ID'],
+            'client_id' => $clientId,
         ];
 
-        $contracts = Model_Contract::getContracts($clientId, $params, [
+        $contracts = Model_Contract::getContracts($params, [
             "CONTRACT_ID",
             "CONTRACT_NAME",
             "DATE_BEGIN",

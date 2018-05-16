@@ -33,8 +33,8 @@
                 }, 1000);
             }else{
                 message(0, 'Ошибка добавления клиента');
-                endSubmitForm();
             }
+            endSubmitForm();
         });
     }
 </script>

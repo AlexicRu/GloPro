@@ -191,16 +191,17 @@ class Builder
     /**
      * @param $param
      * @param $array
+     * @param $connector
      * @return $this
      */
-    public function whereIn($param, $array)
+    public function whereIn($param, $array, $connector = 'and')
     {
         if (empty($param) || empty($array)) {
             return $this;
         }
 
         $this->_where[] = [
-            'connector' => 'and',
+            'connector' => $connector,
             'where'     => $param . ' in (' . implode(', ', (array)$array) . ')',
         ];
 
@@ -318,6 +319,18 @@ class Builder
     public function resetHaving()
     {
         $this->_having= [];
+
+        return $this;
+    }
+    public function resetLimit()
+    {
+        $this->_limit = false;
+
+        return $this;
+    }
+    public function resetOffset()
+    {
+        $this->_offset = false;
 
         return $this;
     }

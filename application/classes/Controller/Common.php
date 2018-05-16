@@ -150,7 +150,7 @@ abstract class Controller_Common extends Controller_Template {
 
     public function jsonResult($result, $data = [])
     {
-        self::json(['success' => $result, 'data' => $data, 'messages' => Messages::get()]);
+        $this->json(['success' => $result, 'data' => $data, 'messages' => Messages::get()]);
     }
 
     public function isPost()

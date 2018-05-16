@@ -44,6 +44,7 @@ $postfix = $card['CARD_ID'];
 
         if(params.date == false){
             message(0, 'Заполните дату');
+            endSubmitForm();
             return;
         }
 
@@ -62,6 +63,7 @@ $postfix = $card['CARD_ID'];
                     }
                 }
             }
+            endSubmitForm();
         });
     }
 </script>

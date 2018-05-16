@@ -13,14 +13,14 @@ function renderElements()
         var t = $(e.target);
 
         if(t.closest('.combobox_multi_wrapper').length == 0){
-            $('.combobox_multi_wrapper .combobox_multi_result').hide().html('');
+            $('.combobox_multi_wrapper .combobox_multi_result').hide();
         } else {
-            $('.combobox_multi_wrapper').not(t.closest('.combobox_multi_wrapper')).find('.combobox_multi_result').hide().html('');
+            $('.combobox_multi_wrapper').not(t.closest('.combobox_multi_wrapper')).find('.combobox_multi_result').hide();
         }
         if(t.closest('.combobox_outer').length == 0){
-            $('.combobox_outer .combobox_result').hide().html('');
+            $('.combobox_outer .combobox_result').hide();
         } else {
-            $('.combobox_outer').not(t.closest('.combobox_outer')).find('.combobox_result').hide().html('');
+            $('.combobox_outer').not(t.closest('.combobox_outer')).find('.combobox_result').hide();
         }
     });
 }
@@ -255,13 +255,15 @@ function renderComboBox(combo, params)
     var resultList = $('<div class="combobox_result_list" />');
     resultList.appendTo(result);
 
-    var more = $('<div class="combobox_result_more"><span class="btn btn-outline-secondary btn-xs waves-effect waves-light">Загрузить еще</span></div>');
+    var more = $('<div class="combobox_result_more"><span class="btn btn-outline-secondary btn-xs waves-effect waves-light">Загрузить еще...</span></div>');
     more.appendTo(result);
 
     more.find('.btn').on('click', function () {
         params['offset'] = resultList.find('.combobox_result_item').length;
         combo.trigger('keyup');
     });
+
+    result.addClass('combobox_result_top');
 
     combo.on('keyup', function () {
         if(ajaxComboBox){

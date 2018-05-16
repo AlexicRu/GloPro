@@ -14,7 +14,7 @@
     function renderAjaxPaginationContractHistory(data, block) {
 
         if (block.find('table').length == 0) {
-            block.append('<table class="table table-striped"><thead><tr><th>Дата</th><th>Комментарий</th></tr></thead><tbody /></table>');
+            block.append('<table class="table table-striped m-b-0"><thead><tr><th>Дата</th><th>Комментарий</th></tr></thead><tbody /></table>');
         }
 
         var table = block.find('table tbody');

@@ -19,7 +19,7 @@ class Model_Manager extends Model
 
         if(
             empty($user['MANAGER_ID']) ||
-            empty($user['role'])
+            empty($user['ROLE_ID'])
         ){
             return false;
         }
@@ -30,7 +30,7 @@ class Model_Manager extends Model
 
         $data = [
             'p_manager_for_id' 	=> $user['MANAGER_ID'],
-            'p_role_id' 	    => $user['role'],
+            'p_role_id' 	    => $user['ROLE_ID'],
             'p_name' 	        => empty($params['manager_settings_name'])         ? '' : $params['manager_settings_name'],
             'p_surname' 	    => empty($params['manager_settings_surname'])      ? '' : $params['manager_settings_surname'],
             'p_middlename' 	    => empty($params['manager_settings_middlename'])   ? '' : $params['manager_settings_middlename'],
@@ -82,55 +82,49 @@ class Model_Manager extends Model
     {
         $db = Oracle::init();
 
-        $sql = "select * from ".Oracle::$prefix."V_WEB_MANAGERS where 1=1 ";
+        $sql = (new Builder())->select()
+            ->from('V_WEB_MANAGERS')
+            ->orderBy('M_NAME')
+        ;
 
         if(!empty($params['search'])){
-            $params['search'] = mb_strtoupper($params['search']);
-            $sql .= " and (
-                upper(LOGIN) like ". Oracle::quote('%'.$params['search'].'%')." or 
-                upper(MANAGER_NAME) like ". Oracle::quote('%'.$params['search'].'%')." or 
-                upper(MANAGER_SURNAME) like ". Oracle::quote('%'.$params['search'].'%')." or 
-                upper(MANAGER_MIDDLENAME) like ". Oracle::quote('%'.$params['search'].'%')." or
-                upper(M_NAME) like ". Oracle::quote('%'.$params['search'].'%')."
-            )";
+            $search = Oracle::quote('%' . mb_strtoupper($params['search']) . '%');
+
+            $sql
+                ->whereStart()
+                ->whereOr("upper(LOGIN) like ". $search)
+                ->whereOr("upper(MANAGER_SURNAME) like ". $search)
+                ->whereOr("upper(MANAGER_MIDDLENAME) like ". $search)
+                ->whereOr("upper(M_NAME) like ". $search)
+                ->whereEnd()
+            ;
         }
-        unset($params['search']);
 
         if(!empty($params['only_managers'])){
-            $sql .= " and ROLE_ID not in (".implode(', ', array_keys(Access::$clientRoles)).")";
+            $sql->where("ROLE_ID not in (".implode(', ', array_keys(Access::$clientRoles)).")");
         }
-        unset($params['only_managers']);
 
         if(!empty($params['not_admin'])){
-            $sql .= " and ROLE_ID not in (".implode(', ', array_keys(Access::$adminRoles)).")";
-        }
-        unset($params['not_admin']);
-
-        foreach($params as $key => $value){
-            if(is_array($value)){
-                $sql .= " and " . strtoupper($key) . " = '" . implode(',', $value) . "' ";
-            }else {
-                $sql .= " and " . strtoupper($key) . " = " . Oracle::quote($value);
-            }
+            $sql->where("ROLE_ID not in (".implode(', ', array_keys(Access::$adminRoles)).")");
         }
 
-        $sql .= ' order by M_NAME';
-
-        if(!empty($params['limit'])){
-            $users = $db->query($db->limit($sql, 0, $params['limit']));
-        }else {
-            $users = $db->query($sql);
+        if (!empty($params['login'])) {
+            $sql->where("login = " . Oracle::quote($params['login']));
         }
 
-        if(empty($users)){
-            return false;
+        if (!empty($params['agent_id'])) {
+            $sql->where("agent_id = " . (int)$params['agent_id']);
         }
 
-        foreach($users as &$user){
-            $user['role'] = $user['ROLE_ID'];
+        if (!empty($params['manager_id'])) {
+            $sql->whereIn("manager_id", $params['manager_id']);
         }
 
-        return $users;
+        if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
+        }
+
+        return $db->query($sql);
     }
 
     /**
@@ -142,7 +136,7 @@ class Model_Manager extends Model
             return false;
         }
 
-        if(!is_array($params)){
+        if(is_numeric($params)){
             $params = ['manager_id' => (int)$params];
         }
 
@@ -411,8 +405,6 @@ class Model_Manager extends Model
 
         if (!empty($params['pagination'])) {
             return Oracle::init()->pagination($sql, $params);
-        }else if (!empty($params['limit'])) {
-            $sql->limit((int)$params['limit']);
         }
 
         return Oracle::init()->query($sql);

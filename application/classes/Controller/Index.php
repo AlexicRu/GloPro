@@ -82,7 +82,7 @@ class Controller_Index extends Controller_Common {
         $userTo     = !empty($params[1]) ? $params[1] : false;
 
         if (User::checkForceLogin($userFrom, $userTo)) {
-            $manager = Model_Manager::getManager(['MANAGER_ID' => (int)$userTo]);
+            $manager = Model_Manager::getManager($userTo);
 
             if(Auth::instance()->login($manager['LOGIN'], ['hash' => $manager['PASSWORD']])){
                 $this->redirect('/clients');

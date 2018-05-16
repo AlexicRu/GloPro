@@ -233,7 +233,7 @@ class Oracle{
 
         $user = User::current();
 
-		if (Access::checkReadOnly($procedure, $user['role'])) {
+		if (Access::checkReadOnly($procedure, $user['ROLE_ID'])) {
             Messages::put('Данной роли разрешен только просмотр', Messages::MESSAGE_TYPE_INFO);
             return self::CODE_ERROR;
         }
@@ -316,7 +316,11 @@ class Oracle{
 
         //builder
         if (is_a($sql, 'Builder')) {
-            $sql = $sql->build();
+            $sql = $sql
+                ->resetOffset()
+                ->resetLimit()
+                ->build()
+            ;
         }
 
 		$sql = $this->limit($sql, $from, $to);
@@ -324,10 +328,15 @@ class Oracle{
 		$items = $this->query($sql);
 
 		$more = false;
-		if (count($items) > $params['limit']) {
+		if (!empty($params['pagination']) && count($items) > $params['limit']) {
 			$more = true;
 			array_pop($items);
 		}
+
+		//удаляем нумерацию
+		foreach ($items as &$row) {
+		    unset($row['RNUM']);
+        }
 
 		return [$items, $more];
 	}

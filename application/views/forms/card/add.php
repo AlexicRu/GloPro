@@ -39,6 +39,7 @@
 
         if(params.card_id == ''){
             message(0, 'Введите номер карты');
+            endSubmitForm();
             return false;
         }
 
@@ -49,6 +50,7 @@
             }else{
                 message(0, data.data ? data.data : 'Ошибка добавления карты');
             }
+            endSubmitForm();
         });
     }
 </script>

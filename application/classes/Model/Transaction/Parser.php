@@ -177,7 +177,7 @@ class Model_Transaction_Parser extends Model
             $row['CONTRACT_ID'] = $this->_getContractId($row);
         }
 
-        $contracts = Model_Contract::getContracts(false, [
+        $contracts = Model_Contract::getContracts([
             'contract_id'   => array_unique(array_column($rows, 'CONTRACT_ID')),
             'agent_id'      => $user['AGENT_ID']
         ]);

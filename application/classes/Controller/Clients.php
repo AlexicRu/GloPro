@@ -143,7 +143,6 @@ class Controller_Clients extends Controller_Common {
 			case 'account':
 				$turnover = Model_Contract::getTurnover($contractId);
 				$contractLimits = Model_Contract::getLimits($contractId);
-                Listing::$limit = 999;
                 $servicesList = Listing::getServices(['description' => 'LONG_DESC']);
 
 				$popupContractPaymentAdd = Form::popup('Добавление нового платежа', 'contract/payment_add');
@@ -222,7 +221,6 @@ class Controller_Clients extends Controller_Common {
 
         $oilRestrictions = Model_Card::getOilRestrictions($cardId);
         $transactions = Model_Transaction::getList($cardId, $contractId, ['limit' => 20]);
-        Listing::$limit = 999;
         $settings = Model_Card::getCardLimitSettings($cardId);
 
 		$servicesList = Listing::getServices([

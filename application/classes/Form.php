@@ -123,7 +123,6 @@ class Form extends Kohana_Form
 
         $card = Model_Card::getCard($cardId);
 
-        Listing::$limit = 999;
         $servicesList = Listing::getServices([
             'SYSTEM_SERVICE_GROUP' => true,
             'TUBE_ID' => $card['TUBE_ID']

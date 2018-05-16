@@ -118,9 +118,9 @@ class Date extends Kohana_Date
         $formatFrom = !$formatFrom ? self::$dateFormatDefault : $formatFrom;
         $formatTo = !$formatTo ? self::$dateFormatRu : $formatTo;
 
-        $datetime = DateTime::createFromFormat($formatFrom, $datetime);
+        $dt = DateTime::createFromFormat($formatFrom, $datetime);
 
-        return $datetime->format($formatTo);
+        return $dt->format($formatTo);
     }
 
     public static function formatToDefault($datetime = 'now')

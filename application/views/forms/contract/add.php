@@ -60,8 +60,8 @@
                 }, 1000);
             }else{
                 message(0, data.data ? data.data : 'Ошибка добавления договора');
-                endSubmitForm();
             }
+            endSubmitForm();
         });
     }
 </script>

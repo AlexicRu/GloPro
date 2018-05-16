@@ -47,8 +47,7 @@
             }else{
                 message(0, 'Ошибка настройки уведомлений');
             }
+            endSubmitForm();
         });
-
-        return false;
     }
 </script>

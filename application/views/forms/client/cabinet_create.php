@@ -36,6 +36,7 @@
 
         if(params.email_to == ''){
             message(0, 'Введите email');
+            endSubmitForm();
             return false;
         }
 
@@ -46,6 +47,7 @@
             }else{
                 message(0, data.data ? data.data : 'Ошибка создания личного кабинета');
             }
+            endSubmitForm();
         });
     }
 </script>

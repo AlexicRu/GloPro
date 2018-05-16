@@ -6,6 +6,8 @@ class Controller_Help extends Controller_Common
     protected $_ids;
     protected $_params;
     protected $_user;
+    protected $_result  = [];
+    protected $_more    = false;
 
     public function before()
     {
@@ -20,6 +22,16 @@ class Controller_Help extends Controller_Common
         }
 
         $this->_user = Auth::instance()->get_user();
+
+        $this->_params['search']        = $this->_search;
+        $this->_params['ids']           = $this->_ids;
+        $this->_params['offset']        = $this->request->post('offset');
+        $this->_params['pagination']    = true;
+    }
+
+    public function after($success = true)
+    {
+        $this->jsonResult($success, ['items' => $this->_result, 'more' => $this->_more]);
     }
 
     /**
@@ -27,28 +39,20 @@ class Controller_Help extends Controller_Common
      */
     public function action_listCardGroup()
     {
-        $params = [
-            'group_type'    => $this->request->query('group_type'),
-            'search'        => $this->_search,
-            'ids'           => $this->_ids,
-            'limit'         => 10,
-        ];
-        $res = Model_Card::getGroups($params);
+        $this->_params['group_type'] = $this->request->query('group_type');
 
-        if(empty($res)){
-            $this->jsonResult(false);
+        list($result, $this->_more) = Model_Card::getGroups($this->_params);
+
+        if(empty($result)){
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
-            $return[] = [
-                'name' => $item['GROUP_NAME'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['GROUP_NAME'],
                 'value' => $item['GROUP_ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -56,28 +60,18 @@ class Controller_Help extends Controller_Common
      */
     public function action_listPosGroup()
     {
-        $params = [
-            'search'        => $this->_search,
-            'ids'           => $this->_ids,
-            'limit'         => 10,
-            'group_type'    => !empty($this->_params['group_type']) ? $this->_params['group_type'] : false
-        ];
-        $res = Model_Dot::getGroups($params);
+        list($result, $this->_more) = Model_Dot::getGroups($this->_params);
 
-        if(empty($res)){
-            $this->jsonResult(false);
+        if(empty($result)){
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
-            $return[] = [
-                'name' => $item['GROUP_NAME'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['GROUP_NAME'],
                 'value' => $item['GROUP_ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -85,22 +79,18 @@ class Controller_Help extends Controller_Common
      */
     public function action_listCountry()
     {
-        $res = Listing::getCountries($this->_search, $this->_ids);
+        list($result, $this->_more) = Listing::getCountries($this->_params);
 
-        if(empty($res)){
-            $this->jsonResult(false);
+        if(empty($result)){
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
-            $return[] = [
-                'name' => $item['NAME_RU'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['NAME_RU'],
                 'value' => $item['ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -108,22 +98,18 @@ class Controller_Help extends Controller_Common
      */
     public function action_listService()
     {
-        $res = Listing::getServices(['search' => $this->_search, 'ids' => $this->_ids]);
+        list($result, $this->_more) = Listing::getServices($this->_params);
 
-        if(empty($res)){
-            $this->jsonResult(false);
+        if(empty($result)){
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
-            $return[] = [
-                'name' => $item['LONG_DESC'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['LONG_DESC'],
                 'value' => $item['SERVICE_ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -131,29 +117,20 @@ class Controller_Help extends Controller_Common
      */
     public function action_listCard()
     {
-        $params = [
-            'search'        => $this->_search,
-            'contract_id'   => $this->request->post('contract_id'),
-            'offset' 		=> $this->request->post('offset'),
-            'pagination'	=> true
-        ];
+        $this->_params['contract_id'] = $this->request->post('contract_id');
 
-        list($result, $more) = Listing::getCards($params, $this->_ids);
+        list($result, $this->_more) = Listing::getCards($this->_params);
 
         if(empty($result)){
-            $this->jsonResult(false);
+            $this->after(false);
         }
 
-        $return = [];
-
         foreach($result as $item){
-            $return[] = [
-                'name' => $item['CARD_ID'],
+            $this->_result[] = [
+                'name'  => $item['CARD_ID'],
                 'value' => $item['CARD_ID'],
             ];
         }
-
-        $this->jsonResult(true, ['items' => $return, 'more' => $more]);
     }
 
     /**
@@ -161,22 +138,18 @@ class Controller_Help extends Controller_Common
      */
     public function action_listCardsAvailable()
     {
-        $res = Listing::getCardsAvailable($this->_search, $this->_ids);
+        list($result, $this->_more) = Listing::getCardsAvailable($this->_params);
 
-        if(empty($res)){
-            $this->jsonResult(false);
+        if(empty($result)){
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
-            $return[] = [
-                'name' => $item['CARD_ID'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['CARD_ID'],
                 'value' => $item['CARD_ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -184,29 +157,18 @@ class Controller_Help extends Controller_Common
      */
     public function action_listClient()
     {
-        $params = [
-            'offset' 	    => $this->request->post('offset'),
-            'search'        => $this->_search,
-            'ids'           => $this->_ids,
-            'pagination'	=> true
-        ];
+        list($result, $this->_more) = Model_Manager::getClientsList($this->_params);
 
-        list($result, $more) = Model_Manager::getClientsList($params);
-
-        if(empty($result)){
-            $this->jsonResult(false);
+        if(empty($result)) {
+            $this->after(false);
         }
 
-        $return = [];
-
         foreach($result as $item){
-            $return[] = [
-                'name' => $item['CLIENT_NAME'],
+            $this->_result[] = [
+                'name'  => $item['CLIENT_NAME'],
                 'value' => $item['CLIENT_ID'],
             ];
         }
-
-        $this->jsonResult(true, ['items' => $return, 'more' => $more]);
     }
 
     /**
@@ -214,22 +176,18 @@ class Controller_Help extends Controller_Common
      */
     public function action_listSupplier()
     {
-        $res = Listing::getSuppliers($this->_search, $this->_ids);
+        list($result, $this->_more) = Listing::getSuppliers($this->_params);
 
-        if(empty($res)){
-            $this->jsonResult(false);
+        if(empty($result)){
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
-            $return[] = [
-                'name' => $item['SUPPLIER_NAME'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['SUPPLIER_NAME'],
                 'value' => $item['ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -237,27 +195,22 @@ class Controller_Help extends Controller_Common
      */
     public function action_listManager()
     {
-        $res = Model_Manager::getManagersList([
-            'search' => $this->_search,
-            'only_managers' => true,
-            'agent_id' => $this->_user['AGENT_ID'],
-            'manager_id' => $this->_ids
-        ]);
+        $this->_params['only_managers'] = true;
+        $this->_params['agent_id']      = $this->_user['AGENT_ID'];
+        $this->_params['manager_id']    = $this->_ids;
+
+        list($result, $this->_more) = Model_Manager::getManagersList($this->_params);
 
         if(empty($res)){
-            $this->jsonResult(false);
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
-            $return[] = [
-                'name' => $item['M_NAME'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['M_NAME'],
                 'value' => $item['MANAGER_ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -265,31 +218,25 @@ class Controller_Help extends Controller_Common
      */
     public function action_listManagerSale()
     {
-        $res = Model_Manager::getManagersList([
-            'search' => $this->_search,
-            'role_id' => [
-                Access::ROLE_MANAGER_SALE,
-                Access::ROLE_MANAGER_SALE_SUPPORT,
-            ],
-            'agent_id' => $this->_user['AGENT_ID'],
-            'manager_id' => $this->_ids,
-            'limit' => 10
-        ]);
+        $this->_params['role_id'] = [
+            Access::ROLE_MANAGER_SALE,
+            Access::ROLE_MANAGER_SALE_SUPPORT,
+        ];
+        $this->_params['agent_id'] = $this->_user['AGENT_ID'];
+        $this->_params['manager_id'] = $this->_ids;
 
-        if(empty($res)){
-            $this->jsonResult(false);
+        list($result, $this->_more) = Model_Manager::getManagersList($this->_params);
+
+        if(empty($result)){
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
-            $return[] = [
-                'name' => $item['M_NAME'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['M_NAME'],
                 'value' => $item['MANAGER_ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -298,40 +245,24 @@ class Controller_Help extends Controller_Common
      */
     public function action_listClientsContracts()
     {
-        $clientId = $this->request->post('client_id');
+        $this->_params['client_id'] = $this->_params['client_id'] ?? $this->request->post('client_id');
 
-        if (!empty($this->_params['client_id'])) {
-            $clientId = $this->_params['client_id'];
+        if($this->_params['client_id'] && empty($this->_ids)){
+            $this->after(false);
         }
 
-        if(empty($clientId) && empty($this->_ids)){
-            $this->jsonResult(false);
-        }
-
-        list($result, $more) = Model_Contract::getContracts(
-            $clientId,
-            [
-                'search'        => $this->_search,
-                'contract_id'   => $this->_ids,
-                'offset' 	    => $this->request->post('offset'),
-                'pagination'	=> true
-            ]
-        );
+        list($result, $this->_more) = Model_Contract::getContracts($this->_params);
 
         if(empty($result)){
-            $this->jsonResult(false);
+            $this->after(false);
         }
 
-        $return = [];
-
         foreach($result as $item){
-            $return[] = [
-                'name' => $item['CONTRACT_NAME'],
+            $this->_result[] = [
+                'name'  => $item['CONTRACT_NAME'],
                 'value' => $item['CONTRACT_ID'],
             ];
         }
-
-        $this->jsonResult(true, ['items' => $return, 'more' => $more]);
     }
 
     /**
@@ -342,22 +273,18 @@ class Controller_Help extends Controller_Common
     {
         $supplierId = $this->request->post('supplier_id');
 
-        $res = Listing::getSuppliersContracts($supplierId, $this->_search);
+        list($result, $this->_more) = Listing::getSuppliersContracts($supplierId, $this->_params);
 
-        if(empty($res)){
-            $this->jsonResult(false);
+        if(empty($result)){
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
+        foreach($result as $item){
             $return[] = [
-                'name' => $item['CONTRACT_NAME'],
+                'name'  => $item['CONTRACT_NAME'],
                 'value' => $item['CONTRACT_ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -365,26 +292,18 @@ class Controller_Help extends Controller_Common
      */
     public function action_listContractTariffs()
     {
-        $contractTariffs = Model_Contract::getTariffs([
-            'tarif_name' => $this->_search,
-            'ids'        => $this->_ids,
-            'limit'      => 10
-        ]);
+        list($result, $this->_more) = Model_Contract::getTariffs($this->_params);
 
-        if (empty($contractTariffs)) {
-            $this->jsonResult(false);
+        if (empty($result)) {
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($contractTariffs as $item){
-            $return[] = [
-                'name' => $item['TARIF_NAME'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['TARIF_NAME'],
                 'value' => $item['ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 
     /**
@@ -392,21 +311,17 @@ class Controller_Help extends Controller_Common
      */
     public function action_listTube()
     {
-        $res = Listing::getTubes($this->_search, $this->_ids);
+        list($result, $this->_more) = Listing::getTubes($this->_params);
 
-        if(empty($res)){
-            $this->jsonResult(false);
+        if(empty($result)){
+            $this->after(false);
         }
 
-        $return = [];
-
-        foreach($res as $item){
-            $return[] = [
-                'name' => $item['TUBE_NAME'],
+        foreach($result as $item){
+            $this->_result[] = [
+                'name'  => $item['TUBE_NAME'],
                 'value' => $item['TUBE_ID'],
             ];
         }
-
-        $this->jsonResult(true, $return);
     }
 }

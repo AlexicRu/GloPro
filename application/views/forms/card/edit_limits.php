@@ -120,7 +120,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
             if (td.find('[limit_service]').length) {
                 tpl.insertAfter(td.find('[limit_service]:last'));
             } else {
-                tpl.insertBefore(td.find('div'));
+                tpl.insertBefore(td.find('[limit_group_btns]'));
             }
 
             checkServices_<?=$postfix?>();
@@ -202,13 +202,14 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 
         if(canEdit == false){
             message(0, 'Заполните данные корректно');
+            endSubmitForm();
             return;
         }
 
         $.post('/clients/card-edit-limits', params, function (data) {
             if (data.success) {
                 message(1, 'Лимиты карты успешно обновлена');
-                $.fancybox.close();
+                modalClose();
                 cardLoad($('.tab_v.active').attr('tab'), true);
             } else {
                 message(0, 'Ошибка обновления лимитов карты');
@@ -217,6 +218,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
                     message(0, data.data);
                 }
             }
+            endSubmitForm();
         });
     }
 

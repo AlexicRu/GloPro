@@ -57,11 +57,15 @@ class Model_Contract extends Model
 	/**
 	 * получаем список контрактов
 	 */
-	public static function getContracts($clientId = false, $params = false, $select = [])
+	public static function getContracts($params = false, $select = [])
 	{
-		if(empty($clientId) && empty($params)){
+		if(empty($params)){
 			return [];
 		}
+
+		if (is_numeric($params)) {
+		    $params = ['client_id' => (int)$params];
+        }
 
 		$db = Oracle::init();
 
@@ -69,10 +73,6 @@ class Model_Contract extends Model
             ->from('V_WEB_CL_CONTRACTS')
             ->orderBy(['ct_date desc', 'state_id', 'contract_name'])
         ;
-
-        if(!empty($clientId)){
-            $sql->where("client_id = ".Oracle::quote($clientId));
-        }
 
         if(!empty($params['contract_id'])){
             if(!is_array($params['contract_id'])){
@@ -82,17 +82,17 @@ class Model_Contract extends Model
             //ограничение по договорам пользователя
             $user = User::current();
 
-            if (!empty($user['contracts'][$clientId])) {
-                $params['contract_id'] = $user['contracts'][$clientId];
+            if (!empty($user['contracts'][$params['client_id']])) {
+                $params['contract_id'] = $user['contracts'][$params['client_id']];
             }
         }
 
         if(!empty($params['client_id'])){
-            $sql->where("client_id in (".implode(',', $params['client_id']).")");
+            $sql->where("client_id in (".implode(',', (array)$params['client_id']).")");
         }
 
         if(!empty($params['contract_id'])){
-            $sql->where("contract_id in (".implode(',', $params['contract_id']).")");
+            $sql->where("contract_id in (".implode(',', (array)$params['contract_id']).")");
         }
 
         if(!empty($params['search'])){
@@ -109,7 +109,9 @@ class Model_Contract extends Model
 
         if (!empty($params['pagination'])) {
             return $db->pagination($sql, $params);
-        }else if(!empty($params['limit'])){
+        }
+
+        if(!empty($params['limit'])){
             $sql->limit($params['limit']);
         }
 
@@ -123,7 +125,7 @@ class Model_Contract extends Model
 	 */
 	public static function getContract($contractId)
 	{
-		$contract = self::getContracts(false, ['contract_id' => $contractId]);
+		$contract = self::getContracts(['contract_id' => $contractId]);
 
 		if(!empty($contractId)){
 			return reset($contract);
@@ -228,8 +230,8 @@ class Model_Contract extends Model
 		$data = [
 			'p_contract_id'		=> $contractId,
 			'p_contract_name' 	=> $params['contract']['CONTRACT_NAME'],
-			'p_date_begin' 		=> $params['contract']['DATE_BEGIN'],
-			'p_date_end' 		=> $params['contract']['DATE_END'],
+			'p_date_begin' 		=> Date::format($params['contract']['DATE_BEGIN']),
+			'p_date_end' 		=> Date::format($params['contract']['DATE_END']),
 			'p_currency' 		=> Common::CURRENCY_RUR,
 			'p_state_id' 		=> $params['contract']['STATE_ID'],
 			'p_manager_id' 		=> $user['MANAGER_ID'],
@@ -273,20 +275,22 @@ class Model_Contract extends Model
 
 		$user = Auth::instance()->get_user();
 
-        $sql = "select * from ".Oracle::$prefix."V_WEB_TARIF_LIST where agent_id = ".Oracle::quote($user['AGENT_ID']);
+        $sql = (new Builder())->select()
+            ->from('V_WEB_TARIF_LIST')
+            ->where('agent_id = ' . $user['AGENT_ID'])
+            ->orderBy('tarif_name')
+        ;
 
-        if (!empty($params['tarif_name'])) {
-            $sql .= " and upper(tarif_name) like ".mb_strtoupper(Oracle::quote('%'.$params['tarif_name'].'%'));
+        if (!empty($params['search'])) {
+            $sql->where("upper(tarif_name) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));
         }
 
         if (!empty($params['ids'])) {
-            $sql .= " and id in (".implode(',', array_map('intval', $params['ids'])).")";
+            $sql->where("id in (".implode(',', array_map('intval', $params['ids'])).")");
         }
 
-        $sql .= " order by tarif_name";
-
-		if (!empty($params['limit'])) {
-            return $db->query($db->limit($sql, 0, $params['limit']));
+		if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
         }
 
         return $db->query($sql);

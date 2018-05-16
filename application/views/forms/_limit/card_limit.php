@@ -7,7 +7,7 @@
             }
         }
         ?>
-        <div>
+        <div limit_group_btns>
             <nobr>
                 <?if ($settings['canAddService']) {?>
                     <button class="btn btn-sm btn-outline-success waves-effect waves-light btn_card_edit_add_serviсe" onclick="cardEditAddService_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> добавить услугу</button>
