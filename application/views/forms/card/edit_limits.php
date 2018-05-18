@@ -3,34 +3,21 @@
 $postfix = $card['CARD_ID'];
 
 if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-limits')){?>
-
-    <table class="table_form form_card_edit form_card_edit_<?=$postfix?>">
-        <tr>
-            <td>
-                <table class="table_form table_form_limits">
-                    <?foreach($oilRestrictions as $restriction){
-                        echo Form::buildLimit($card['CARD_ID'], $restriction, $postfix);
-                    }?>
-                    <?if ($settings['canAddLimit']) {?>
-                        <tr>
-                            <td><button class="btn btn-outline-success waves-effect waves-light btn_card_edit_add_limit" onclick="cardEditAddLimit_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> Добавить ограничение</button></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <?if ($settings['cntTypes']) {?><td></td><?}?>
-                        </tr>
-                    <?}?>
-                </table>
-            </td>
-        </tr>
-    </table>
+    <div class="form-horizontal form_card_edit_<?=$postfix?>" limit_form>
+        <?foreach($oilRestrictions as $restriction){
+            echo Form::buildLimit($card['CARD_ID'], $restriction, $postfix);
+        }?>
+    </div>
 <?}?>
 </div>
 <div class="modal-footer">
-    <?if ($settings['canSave']) {?>
-        <span class="btn btn-primary waves-effect waves-light" onclick="submitForm($(this), cardEditGo_<?=$postfix?>)"><i class="fa fa-check"></i> Сохранить лимиты</span>
+    <?if ($settings['canAddLimit']) {?>
+        <button class="btn btn-outline-success waves-effect waves-light btn_card_edit_add_limit" onclick="cardEditAddLimit_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> Добавить<span class="hidden-md-down"> ограничение</span></button>
     <?}?>
-    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+    <?if ($settings['canSave']) {?>
+        <span class="btn btn-primary waves-effect waves-light" onclick="submitForm($(this), cardEditGo_<?=$postfix?>)"><i class="fa fa-check"></i> Сохранить<span class="hidden-md-down"> лимиты</span></span>
+    <?}?>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-sm-down"> Отмена</span></button>
 </div>
 
 <script>
@@ -60,24 +47,24 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 
     function cardEditAddService_<?=$postfix?>(t)
     {
-        var td = t.closest('td');
+        var row = t.closest('[limit_group]');
 
         <?if ($settings['cntServiceForLimit'] != $settings['cntServiceForFirstLimit']) {?>
             var tr = t.closest('tr');
 
             if (tr.index() == 0) {
-                if (td.find('[limit_service]').length == <?=$settings['cntServiceForFirstLimit']?>) {
+                if (row.find('[limit_service]').length == <?=$settings['cntServiceForFirstLimit']?>) {
                     message(0, 'Максимум услуг на первый лимит: <?=$settings['cntServiceForFirstLimit']?>');
                     return false;
                 }
             } else {
-                if(td.find('[limit_service]').length == <?=$settings['cntServiceForLimit']?>){
+                if(row.find('[limit_service]').length == <?=$settings['cntServiceForLimit']?>){
                     message(0, 'Максимум услуг на лимит: <?=$settings['cntServiceForLimit']?>');
                     return false;
                 }
             }
         <?} else {?>
-            if(td.find('[limit_service]').length == <?=$settings['cntServiceForLimit']?>){
+            if(row.find('[limit_service]').length == <?=$settings['cntServiceForLimit']?>){
                 message(0, 'Максимум услуг на лимит: <?=$settings['cntServiceForLimit']?>');
                 return false;
             }
@@ -117,10 +104,10 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
                 }
             }
 
-            if (td.find('[limit_service]').length) {
-                tpl.insertAfter(td.find('[limit_service]:last'));
+            if (row.find('[limit_service]').length) {
+                tpl.insertAfter(row.find('[limit_service]:last'));
             } else {
-                tpl.insertBefore(td.find('[limit_group_btns]'));
+                tpl.insertBefore(row.find('[limit_group_btns]'));
             }
 
             checkServices_<?=$postfix?>();
@@ -141,9 +128,9 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 
     function cardEditAddLimit_<?=$postfix?>(t)
     {
-        var table = t.closest('table');
+        var form = $('.form_card_edit_<?=$postfix?>');
 
-        if ($('tr[limit_group]', table).length >= <?=$settings['cntLimits']?>) {
+        if ($('[limit_group]', form).length >= <?=$settings['cntLimits']?>) {
             message(0, 'Достигнуто максимальное кол-во лимитов');
             return false;
         }
@@ -155,17 +142,17 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 
         $.get('/clients/card-limit-template/', params, function(tpl){
             tpl = $(tpl);
-            if (table.find('[limit_group]').length) {
-                tpl.insertAfter(table.find('[limit_group]:last'));
+            if (form.find('[limit_group]').length) {
+                tpl.insertAfter(form.find('[limit_group]:last'));
             } else {
-                tpl.insertBefore(table.find('tr'));
+                tpl.insertBefore(form.find('[limit_form_btn]'));
             }
         });
     }
 
     function cardEditGo_<?=$postfix?>(t)
     {
-        var form = t.closest('.form_card_edit');
+        var form = $('.form_card_edit_<?=$postfix?>');
         var params = {
             contract_id : $('[name=contracts_list]').val(),
             card_id     : $('.tab_v.active').attr('tab'),
@@ -235,8 +222,8 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         $('[name=limit_service]', form).each(function () {
             var select = $(this);
             var selectVal = select.val();
-            var group = select.closest('td').find('[name=limit_service]:first option:selected').attr('group');
-            var cnt = select.closest('td').find('[name=limit_service]').length;
+            var group = select.closest('[limit_group]').find('[name=limit_service]:first option:selected').attr('group');
+            var cnt = select.closest('[limit_group]').find('[name=limit_service]').length;
 
             select.find('option').each(function () {
                 var option = $(this);
