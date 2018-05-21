@@ -1,77 +1,65 @@
-<table class="table_form form_contract_limits_edit">
-    <tr>
-        <td class="gray right v_top" width="170">Ограничения по топливу:</td>
-        <td>
-            <table class="table_form table_form_limits">
-                <?foreach($contractLimits as $limits){
-                    $limitFirst = reset($limits);
-                    ?>
-                    <tr limit_group>
-                        <td>
-                            <?foreach($limits as $limit){?>
-                                <div class="form_elem" limit_service><nobr>
-                                        <select name="limit_service" onchange="checkServices()">
-                                            <?foreach($servicesList as $service){?>
-                                                <option value="<?=$service['SERVICE_ID']?>" <?if($service['SERVICE_ID'] == $limit['SERVICE_ID']){?>selected<?}?>><?=$service['LONG_DESC']?></option>
-                                            <?}?>
-                                        </select>
-                                        <button class="btn waves-effect waves-light btn_small btn_red btn_contract_limits_edit_del_serviсe" onclick="contractLimitsEditDelService($(this))">&times;</button>
-                                    </nobr></div>
-                            <?}?>
-                            <div><nobr>
-                                    <button class="btn waves-effect waves-light btn_small btn_green btn_contract_limits_edit_add_serviсe" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>
-                                    <button class="btn waves-effect waves-light btn_small btn_red btn_contract_limits_edit_del_limit" onclick="contractLimitsEditDelLimit($(this))">&times; удалить лимит</button>
-                                </nobr></div>
-                        </td>
-                        <td class="v_top">
-                            <input type="text" name="limit_value" value="<?=$limitFirst['LIMIT_VALUE']?>" <?=($limitFirst['INFINITELY'] ? 'disabled' : '')?> placeholder="Объем / сумма">
-                        </td>
-                        <td class="v_top">
-                            <select name="limit_param">
-                                <?
-                                $param = Model_Card::$cardLimitsParams[Model_Card::CARD_LIMIT_PARAM_VOLUME];
-                                if ($limitFirst['CURRENCY'] == Common::CURRENCY_RUR) {
-                                    $param = Model_Card::$cardLimitsParams[Model_Card::CARD_LIMIT_PARAM_RUR];
-                                }
-                                foreach(Model_Card::$cardLimitsParams as $limitParam => $value){?>
-                                    <option value="<?=$limitParam?>" <?if($limitParam == $param){?>selected<?}?>><?=$value?></option>
+<div class="modal-body">
+
+    <div class="form_contract_limits_edit">
+        <?foreach($contractLimits as $key => $limits){
+            $limitFirst = reset($limits);
+            ?>
+            <div class="row m-b-10 border-bottom p-b-10" limit_group>
+                <div class="col-lg-5 col-md-12">
+                    <?foreach($limits as $limit){?>
+                        <div limit_service class="input-group m-b-5">
+                            <select name="limit_service" class="custom-select" onchange="checkServices()">
+                                <?foreach($servicesList as $service){?>
+                                    <option value="<?=$service['SERVICE_ID']?>" <?if($service['SERVICE_ID'] == $limit['SERVICE_ID']){?>selected<?}?>><?=$service['LONG_DESC']?></option>
                                 <?}?>
                             </select>
-                        </td>
-                        <td>
-                            <label><input name="limit_unlim" type="checkbox" <?=($limitFirst['INFINITELY'] ? 'checked' : '')?> onclick="contractLimitsEditCheckUnlim($(this))"> Без ограничений</label>
-                        </td>
-                    </tr>
-                <?}?>
-                <tr>
-                    <td><button class="btn waves-effect waves-light btn_green btn_contract_limits_edit_add_limit" onclick="contractLimitsEditAddLimit($(this))"><i class="fa fa-plus"></i> Добавить ограничение</button></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <label><input type="checkbox" name="recalc" checked> Пересчет остатков по договору</label>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn waves-effect waves-light btn_reverse btn_contract_limits_edit_go" onclick="contractLimitsEditGo($(this))"><i class="fa fa-check"></i> Сохранить</span>
-            <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-        </td>
-    </tr>
-</table>
+                            <div class="input-group-append">
+                                <button class="btn waves-effect waves-light btn-sm btn-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    <?}?>
+                    <div limit_service_btns>
+                        <nobr>
+                            <button class="btn waves-effect waves-light btn-sm btn-outline-success m-r-5" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>
+                            <button class="btn waves-effect waves-light btn-sm btn-outline-danger" onclick="contractLimitsEditDelLimit($(this))"><i class="fa fa-times"></i> удалить лимит</button>
+                        </nobr>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-5 with-mb">
+                    <input type="text" name="limit_value" value="<?=$limitFirst['LIMIT_VALUE']?>" <?=($limitFirst['INFINITELY'] ? 'disabled' : '')?> placeholder="Объем / сумма" class="form-control">
+                </div>
+                <div class="col-lg-2 col-md-3 with-mb">
+                    <select name="limit_param" class="custom-select">
+                        <?
+                        $param = Model_Card::$cardLimitsParams[Model_Card::CARD_LIMIT_PARAM_VOLUME];
+                        if ($limitFirst['CURRENCY'] == Common::CURRENCY_RUR) {
+                            $param = Model_Card::$cardLimitsParams[Model_Card::CARD_LIMIT_PARAM_RUR];
+                        }
+                        foreach(Model_Card::$cardLimitsParams as $limitParam => $value){?>
+                            <option value="<?=$limitParam?>" <?if($limitParam == $param){?>selected<?}?>><?=$value?></option>
+                        <?}?>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-4 with-mb">
+                    <input name="limit_unlim" id="limit_unlim_<?=$key?>" class="filled-in chk-col-purple" type="checkbox" <?=($limitFirst['INFINITELY'] ? 'checked' : '')?> onclick="contractLimitsEditCheckUnlim($(this))">
+                    <label for="limit_unlim_<?=$key?>"> Без ограничений</label>
+                </div>
+            </div>
+        <?}?>
+    </div>
+
+    <input type="checkbox" name="recalc" id="recalc" checked class="filled-in chk-col-purple">
+    <label for="recalc">Пересчет остатков по договору</label>
+
+</div>
+<div class="modal-footer">
+    <button class="btn waves-effect waves-light btn-outline-success" onclick="contractLimitsEditAddLimit($(this))"><i class="fa fa-plus"></i><span class="hidden-xs-down"> Добавить<span class="hidden-md-down"> ограничение</span></span></button>
+    <span class="btn btn-primary" onclick="submitForm($(this), contractLimitsEditGo)"><i class="fa fa-check"></i> Сохранить</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
     $(function(){
-        $('.form_contract_limits_edit [type=checkbox]').each(function(){
-            //renderCheckbox($(this));
-        });
         checkServices();
     });
 
@@ -100,14 +88,19 @@
 
     function contractLimitsEditAddService(t)
     {
-        var td = t.closest('td');
+        var row = t.closest('[limit_group]');
 
         /*if(td.find('[limit_service]').length){
             message(0, 'Максимум один вид услуги');
             return false;
         }*/
 
-        var tpl = $('<div class="form_elem" limit_service><nobr><select name="limit_service" onchange="checkServices()" /> <button class="btn waves-effect waves-light btn_small btn_red btn_contract_limits_edit_del_serviсe" onclick="contractLimitsEditDelService($(this))">&times;</button></nobr></div>');
+        var tpl = $('<div limit_service class="input-group m-b-5">' +
+            '  <select name="limit_service" class="custom-select" onchange="checkServices()" />' +
+            '  <div class="input-group-append">' +
+            '    <button class="btn waves-effect waves-light btn-sm btn-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>' +
+            '  </div>' +
+            '</div>');
 
         var disabled = [
             $('.form_contract_limits_edit [name=limit_service]:first').val()
@@ -125,11 +118,7 @@
             tpl.find('select').append('<option value="' + i + '" '+ (disabled.indexOf(i) != -1 ? 'disabled' : '') +'>' + services[i] + '</option>');
         }
 
-        if (td.find('[limit_service]').length) {
-            tpl.insertAfter(td.find('[limit_service]:last'));
-        } else {
-            tpl.insertBefore(td.find('div'));
-        }
+        tpl.insertBefore(row.find('[limit_service_btns]'));
 
         checkServices();
     }
@@ -148,12 +137,12 @@
 
     function contractLimitsEditCheckUnlim(t)
     {
-        var td = t.closest('td');
-        var check = td.find('[type=checkbox]');
+        var row = t.closest('[limit_group]');
+        var check = row.find('[type=checkbox]');
         var limitGroup = t.closest('[limit_group]');
         var inputValue = limitGroup.find('[name=limit_value]');
 
-        if (check.prop('checked')){
+        if (!check.prop('checked')){
             inputValue.prop('disabled', true);
         } else {
             inputValue.prop('disabled', false);
@@ -162,33 +151,34 @@
 
     function contractLimitsEditAddLimit(t)
     {
-        var table = t.closest('table');
-        var tpl = $('<tr limit_group>' +
-            '<td><div><nobr>' +
-            '<button class="btn waves-effect waves-light btn_small btn_green btn_contract_limits_edit_add_serviсe" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>' +
-            '<button class="btn waves-effect waves-light btn_small btn_red btn_contract_limits_edit_del_limit" onclick="contractLimitsEditDelLimit($(this))">&times; удалить лимит</button>' +
-            '</div></nobr></td>' +
-            '<td class="v_top"><input type="text" name="limit_value" placeholder="Объем / сумма"></td>' +
-            '<td class="v_top"><select name="limit_param" /></td>' +
-            '<td class="v_top"><label><input name="limit_unlim" type="checkbox" onclick="contractLimitsEditCheckUnlim($(this))"> Без ограничений</label></td>' +
-            '</tr>');
+        var table = $('.form_contract_limits_edit');
+        var tpl = $('<div class="row m-b-10 border-bottom p-b-10" limit_group>' +
+            '<div class="col-lg-5 col-md-12">'+
+                '<div limit_service_btns>'+
+                    '<nobr>' +
+                        '<button class="btn waves-effect waves-light btn-sm btn-outline-success m-r-5" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>' +
+                        '<button class="btn waves-effect waves-light btn-sm btn-outline-danger" onclick="contractLimitsEditDelLimit($(this))"><i class="fa fa-times"></i> удалить лимит</button>' +
+                    '</nobr>'+
+                '</div>' +
+            '</div>' +
+            '<div class="col-lg-2 col-md-5 with-mb"><input type="text" name="limit_value" placeholder="Объем / сумма" class="form-control"></div>' +
+            '<div class="col-lg-2 col-md-3 with-mb"><select name="limit_param" class="custom-select" /></div>' +
+            '<div class="col-lg-3 col-md-4 with-mb">' +
+                '<input name="limit_unlim" id="limit_unlim_'+ table.find('[limit_group]').length +'" type="checkbox" class="filled-in chk-col-purple">'+
+                '<label for="limit_unlim_'+ table.find('[limit_group]').length +'" onclick="contractLimitsEditCheckUnlim($(this))">Без ограничений</label>' +
+            '</div>' +
+        '</div>');
 
         for (var i in limitParams) {
             tpl.find('select[name=limit_param]').append('<option value="' + i + '">' + limitParams[i] + '</option>');
         }
 
-        if (table.find('[limit_group]').length) {
-            tpl.insertAfter(table.find('[limit_group]:last'));
-        } else {
-            tpl.insertBefore(table.find('tr'));
-        }
-
-        renderCheckbox(tpl.find('[type=checkbox]'));
+        tpl.appendTo(table);
     }
 
     function contractLimitsEditGo(t)
     {
-        var form = t.closest('.form_contract_limits_edit');
+        var form = $('.form_contract_limits_edit');
         var limits = [];
 
         var canEdit = true;

@@ -150,7 +150,7 @@ class Controller_Clients extends Controller_Common {
                 $popupContractBillPrint = Form::popup('Печать счетов', 'contract/bill_print');
                 $popupContractLimitIncrease = Form::popup('Изменение лимита', 'contract/increase_limit');
 
-                $popupContractLimitsEdit = Form::popup('Редактирование лимитов договора', 'contract/limits_edit', [
+                $popupContractLimitsEdit = Form::popupLarge('Редактирование ограничений по топливу', 'contract/limits_edit', [
                     'contractLimits' 	=> $contractLimits,
                     'servicesList'		=> $servicesList
                 ]);

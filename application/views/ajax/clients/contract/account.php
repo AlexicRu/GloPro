@@ -28,17 +28,17 @@
                     <?if (empty($contractLimits)) {?>
                         <br>Без ограничений<br>
                     <?} else {?>
-                        <table class="tbl_spacing">
+                        <table class="table">
                             <?foreach($contractLimits as $restrictions){
                                 $restrict = reset($restrictions);
                                 ?>
                                 <tr>
-                                    <td class="gray right">
+                                    <td class="text-muted text-right">
                                         <?foreach($restrictions as $restriction){?>
                                             <?=$restriction['LONG_DESC']?>:<br>
                                         <?}?>
                                     </td>
-                                    <td class="line_inner">
+                                    <td>
                                         <?if($restrict['INFINITELY']){?>
                                             <i>Неограничено</i>
                                         <?}else{
@@ -48,14 +48,13 @@
                                             }?>
                                             <b><?=$restrict['REST_LIMIT']?> <?=$param?></b> из <?=$restrict['LIMIT_VALUE']?> <?=$param?>
                                         <?}?>
-                                    </td>
-                                    <?if(Access::allow('clients_contract_increase_limit')){?>
-                                        <td>
+
+                                        <?if(Access::allow('clients_contract_increase_limit')){?>
                                             <?if(!$restrict['INFINITELY']){?>
-                                                <span class="btn btn_small" onclick="openIncreaseLimitPopup(<?=$restrict['CONTRACT_ID']?>, <?=$restrict['LIMIT_GROUP']?>)">+</span>
+                                                <span class="btn btn-sm btn-outline-primary" onclick="openIncreaseLimitPopup(<?=$restrict['CONTRACT_ID']?>, <?=$restrict['LIMIT_GROUP']?>)">+</span>
                                             <?}?>
-                                        </td>
-                                    <?}?>
+                                        <?}?>
+                                    </td>
                                 </tr>
                             <?}?>
                         </table>
@@ -149,9 +148,7 @@
         increaseLimitContractId = contractId;
         increaseLimitGroupId = groupId;
 
-        $.fancybox('#contract_increase_limit', {
-            padding: [0,0,0,0]
-        });
+        $('#contract_increase_limit').modal('show');
     }
     <?}?>
 

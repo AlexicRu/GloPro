@@ -66,7 +66,6 @@
         $.post('/clients/contract-payment-add', {params:params}, function(data){
             if(data.success){
                 message(1, data.data);
-                modalClose();
                 loadContract('account');
             }else{
                 message(0, data.data);

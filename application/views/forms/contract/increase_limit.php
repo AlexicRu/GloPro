@@ -1,22 +1,32 @@
-<table class="table_form form_contract_increase_limit">
-    <tr>
-        <td class="gray right" width="170">Количество:</td>
-        <td>
-            <input type="text" name="contract_increase_limit_name" class="input_big">
+<div class="modal-body">
 
-            <span class="icon-question" title="Значение со знаком минус уменьшит лимит"></span>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn waves-effect waves-light btn_reverse" onclick="contractIncreaseLimit()"><i class="fa fa-check"></i> Сохранить</span>
-            <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-        </td>
-    </tr>
-</table>
+    <div class="form form_contract_increase_limit">
+        <div class="form-group row m-b-0">
+            <div class="text-right col-4">Количество:</div>
+            <div class="col-8">
+                <div class="input-group">
+                    <input type="text" name="contract_increase_limit_name" class="form-control">
+
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <span class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" data-original-title="Значение со знаком минус уменьшит лимит"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <span class="btn btn-primary" onclick="submitForm($(this), contractIncreaseLimit)"><i class="fa fa-check"></i> Сохранить</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
     function contractIncreaseLimit()
     {
         var params = {
@@ -27,6 +37,7 @@
 
         if(params.amount == ''){
             message(0, 'Введите корректное количество');
+            endSubmitForm();
             return false;
         }
 
@@ -37,6 +48,7 @@
             } else {
                 message(0, 'Ошибка изменения лимита');
             }
+            endSubmitForm();
         });
     }
 </script>
