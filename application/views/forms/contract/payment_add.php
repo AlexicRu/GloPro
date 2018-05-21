@@ -1,36 +1,38 @@
-<table class="table_form form_add_contract_payment">
-    <tr>
-        <td class="gray right" width="170">Номер:</td>
-        <td>
-            <input type="number" name="add_contract_payment_num" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right" width="170">Дата платежного поручения:</td>
-        <td>
-            <input type="text" name="add_contract_payment_date" class="input_big datepicker" readonly maxDate="1" value="<?=date('d.m.Y')?>">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right" width="170">Сумма (<?=Text::RUR?>):</td>
-        <td>
-            <input type="text" name="add_contract_payment_value" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right" width="170">Комментарий:</td>
-        <td>
-            <textarea name="add_contract_payment_comment"></textarea>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn waves-effect waves-light btn_reverse" onclick="submitForm($(this), addContractPaymentGo)"><i class="fa fa-plus"></i> Добавить платеж</span>
-            <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-        </td>
-    </tr>
-</table>
+<div class="modal-body">
+    <div class="form form_add_contract_payment">
+        <div class="form-group row">
+            <div class="text-right col-4">Номер:</div>
+            <div class="col-8">
+                <input type="number" name="add_contract_payment_num" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="text-right col-4">Дата платежного поручения:</div>
+            <div class="col-8">
+                <input type="date" name="add_contract_payment_date" class="form-control" maxDate="1" value="<?=date('Y-m-d')?>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="text-right col-4">Сумма (<?=Text::RUR?>):</div>
+            <div class="col-8">
+                <input type="number" name="add_contract_payment_value" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="text-right col-4">Комментарий:</div>
+            <div class="col-8">
+                <textarea name="add_contract_payment_comment" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <span class="btn btn-primary" onclick="submitForm($(this), addContractPaymentGo)"><i class="fa fa-plus"></i> Добавить платеж</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
     function addContractPaymentGo(btn)
@@ -64,6 +66,7 @@
         $.post('/clients/contract-payment-add', {params:params}, function(data){
             if(data.success){
                 message(1, data.data);
+                modalClose();
                 loadContract('account');
             }else{
                 message(0, data.data);

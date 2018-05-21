@@ -33,7 +33,7 @@
             if(data.success){
                 message(1, 'Соглашение успешно добавлено');
                 loadSupplierContract('agreements');
-                $.fancybox.close();
+                modalClose();
             }else{
                 message(0, data.data ? data.data : 'Ошибка добавления соглашения');
             }

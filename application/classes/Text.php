@@ -113,7 +113,7 @@ class Text extends Kohana_Text
                                 target="_blank"
                                 class="tooltip-item tooltip-item-link"><i class="fa fa-share"></i> '.self::quotesForForms($siteInfo['title']).'</a> 
                             <span class="tooltip-content clearfix"> 
-                                <img src="'.$siteInfo['image'].'" /> 
+                                <div class="tooltip-img"><img src="'.$siteInfo['image'].'" /></div> 
                                 <span class="tooltip-text">'.self::quotesForForms($siteInfo['description']).'</span> 
                             </span> 
                         </span>                        

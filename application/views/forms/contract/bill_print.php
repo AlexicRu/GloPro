@@ -1,5 +1,7 @@
+<div class="modal-body">
 <div class="ajax_block_client_bills_list_out">
 
+</div>
 </div>
 
 <script>

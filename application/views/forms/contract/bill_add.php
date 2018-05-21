@@ -7,38 +7,41 @@
     }
 </style>
 
-<div class="form_client_add_bill">
-    <table class="table_form">
-        <tr>
-            <td colspan="3">
-                <div class="form_client_add_bill_products"></div>
-            </td>
-        </tr>
-        <tr>
-            <td class="gray right" width="100">Сумма:</td>
-            <td>
-                <input type="text" name="client_add_bill_summ">
-            </td>
-            <td rowspan="2" class="right" style="vertical-align: bottom;">
-                <?if(Access::allow('client_add_bill_add_product')){?>
-                <div style="margin-bottom: 10px;">
-                    <span class="btn waves-effect waves-light btn_green" onclick="renderProduct()"><i class="fa fa-plus"></i> Добавить товар</span>
+<div class="modal-body">
+    <div class="form_client_add_bill">
+        <div class="row">
+            <div class="col-12 form_client_add_bill_products"></div>
+        </div>
+        <div class="row m-b-20">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Сумма</span>
+                    </div>
+                    <input type="number" name="client_add_bill_summ" class="form-control">
                 </div>
-                <?}?>
-                <span class="btn waves-effect waves-light btn_reverse btn_client_add_bill_go" onclick="addBill()">Выставить счет</span>
-                <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-            </td>
-        </tr>
-        <tr>
-            <td class="gray right">НДС:</td>
-            <td>
-                <input type="text" name="client_add_bill_nds" disabled>
-            </td>
-        </tr>
-    </table>
+            </div>
+            <div class="col-md-6 with-mb">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">НДС</span>
+                    </div>
+                    <input type="text" name="client_add_bill_nds" class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+
+        <?if(Access::allow('client_add_bill_add_product')){?>
+        <i class="gray">Для выставления счета на сумму добавление товаров не требуется</i>
+        <?}?>
+    </div>
+</div>
+<div class="modal-footer">
     <?if(Access::allow('client_add_bill_add_product')){?>
-    <i class="gray">Для выставления счета на сумму добавление товаров не требуется</i>
+        <span class="btn waves-effect waves-light btn-outline-success" onclick="renderProduct()"><i class="fa fa-plus"></i><span class="hidden-xs-down"> Добавить товар</span></span>
     <?}?>
+    <span class="btn btn-primary" onclick="submitForm($(this), addBill)">Выставить счет</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 
 <script>
@@ -88,7 +91,7 @@
         }
 
         window.location.href = '/clients/add-bill?' + $.param(params);
-        $.fancybox.close();
+        modalClose();
 
         setTimeout(function () {
             paginationAjaxRefresh('ajax_block_client_bills_list');

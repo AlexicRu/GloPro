@@ -101,7 +101,7 @@
                 <?}else{?>
                     message(1, 'Новость успешно добавлена');
                 <?}?>
-                $.fancybox.close();
+                modalClose();
                 setTimeout(function () {
                     window.location.reload();
                 }, 500);

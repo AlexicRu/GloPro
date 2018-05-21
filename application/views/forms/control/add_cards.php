@@ -10,7 +10,7 @@
 <script>
     $(function(){
         $('.pre_fancy_close').on('click', function () {
-            $.fancybox.close();
+            modalClose();
             setTimeout(function () {
                 $('.popup_list').empty().hide();
                 $('.popup_list_preview').show();

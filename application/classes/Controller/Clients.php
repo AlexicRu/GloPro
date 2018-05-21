@@ -146,7 +146,7 @@ class Controller_Clients extends Controller_Common {
                 $servicesList = Listing::getServices(['description' => 'LONG_DESC']);
 
 				$popupContractPaymentAdd = Form::popup('Добавление нового платежа', 'contract/payment_add');
-                $popupContractBillAdd = Form::popup('Выставление счета', 'contract/bill_add');
+                $popupContractBillAdd = Form::popupLarge('Выставление счета', 'contract/bill_add');
                 $popupContractBillPrint = Form::popup('Печать счетов', 'contract/bill_print');
                 $popupContractLimitIncrease = Form::popup('Изменение лимита', 'contract/increase_limit');
 

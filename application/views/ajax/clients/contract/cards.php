@@ -1,5 +1,5 @@
 <div class="card-body border-bottom">
-    <div class="row font-20">
+    <div class="row font-20 align-items-center">
         <div class="col-md-4 col-lg-3">
             <span class="text-muted">Всего карт:</span>
             <a href="#" onclick="filterCards('all')"><?=($cardsCounter['ALL_CARDS']??0)?></a>

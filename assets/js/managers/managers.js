@@ -199,7 +199,7 @@ function managerAddReports(btn)
     $.post('/managers/add-reports', {params:params}, function (data) {
         if(data.success){
             message(1, 'Отчеты успешно добавлены');
-            $.fancybox.close();
+            modalClose();
             showManagersReports(params.manager_id, [], true);
 
             $('.selected_items_list', block).html('');
@@ -282,7 +282,7 @@ function managerAddClients(btn)
     $.post('/managers/add-clients', {params:params}, function (data) {
         if(data.success){
             message(1, 'Клиенты успешно добавлены');
-            $.fancybox.close();
+            modalClose();
             showManagersClients(params.manager_id, [], true);
 
             $('.selected_items_list', block).html('');

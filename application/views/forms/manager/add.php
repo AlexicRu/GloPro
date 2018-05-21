@@ -94,7 +94,7 @@
         $.post('/managers/add-manager', {params:params}, function (data) {
             if(data.success){
                 message(1, 'Менеджер успешно добавлен');
-                $.fancybox.close();
+                modalClose();
 
                 var managerId = data.data.MANAGER_ID;
                 var tpl = $('<div class="tab_v tab_v_small"><div></div></div>');

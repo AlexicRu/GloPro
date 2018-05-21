@@ -70,7 +70,7 @@
 <script>
     $(function(){
         $('.form_contract_limits_edit [type=checkbox]').each(function(){
-            renderCheckbox($(this));
+            //renderCheckbox($(this));
         });
         checkServices();
     });

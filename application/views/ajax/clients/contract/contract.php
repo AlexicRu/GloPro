@@ -1,19 +1,20 @@
 <div class="p-20 border-bottom">
     <div toggle_block="block2">
-        <div class="font-20">
-            <?if(Access::allow('clients_contract-edit')){?>
-                <div class="float-right">
-                    <button class="btn waves-effect waves-light btn-outline-primary" toggle="block2"><i class="fa fa-pencil-alt"></i><span class="hidden-md-down"> Редактировать</span></button>
-                </div>
-            <?}?>
-            <div>
+        <div class="row font-20 align-items-center">
+            <div class="col-9">
                 [<?=$contract['CONTRACT_ID']?>]
                 <b><?=$contract['CONTRACT_NAME']?></b>
                 <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
                 <?if($contract['DATE_END'] != '31.12.2099'){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
                 <span class="label label-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
             </div>
-            <div class="clearfix"></div>
+            <div class="col-3 text-right">
+                <?if(Access::allow('clients_contract-edit')){?>
+                    <div class="float-right">
+                        <button class="btn waves-effect waves-light btn-outline-primary" toggle="block2"><i class="fa fa-pencil-alt"></i><span class="hidden-md-down"> Редактировать</span></button>
+                    </div>
+                <?}?>
+            </div>
         </div>
     </div>
 
