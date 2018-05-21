@@ -1,1 +1,1 @@
-<span class="btn btn_toggle" format="xlsx"><i class="icon-exel1 icon_big"></i> XLSX</span>
+<span class="btn_toggle btn btn-outline-success waves-effect waves-light" format="xlsx"><i class="fa fa-file-excel"></i> XLSX</span>

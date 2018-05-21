@@ -31,11 +31,11 @@ class Model_Report extends Model
     ];
 
     public static $reportGroups = [
-        self::REPORT_GROUP_ANALYTIC => ['name' => 'Аналитические', 'icon' => 'icon-analytics'],
-        self::REPORT_GROUP_CARDS    => ['name' => 'Карты', 'icon' => 'icon-dailes'],
-        self::REPORT_GROUP_CLIENT   => ['name' => 'Клиентские', 'icon' => 'icon-dailes'],
-        self::REPORT_GROUP_SUPPLIER => ['name' => 'Поставщики', 'icon' => 'icon-dailes'],
-        self::REPORT_GROUP_OTHERS   => ['name' => 'Прочие', 'icon' => 'icon-summary'],
+        self::REPORT_GROUP_ANALYTIC => ['name' => 'Аналитические', 'icon' => 'fa fa-chart-bar'],
+        self::REPORT_GROUP_CARDS    => ['name' => 'Карты', 'icon' => 'fa fa-credit-card-front'],
+        self::REPORT_GROUP_CLIENT   => ['name' => 'Клиентские', 'icon' => 'fa fa-user'],
+        self::REPORT_GROUP_SUPPLIER => ['name' => 'Поставщики', 'icon' => 'fa fa-tint'],
+        self::REPORT_GROUP_OTHERS   => ['name' => 'Прочие', 'icon' => 'fa fa-file-alt'],
     ];
 
     public static $reportGlobalTypesNames = [
@@ -286,16 +286,16 @@ class Model_Report extends Model
 
             switch($param['PARAM_NAME']){
                 case 'date_begin':
-                    $value = $params['period_start'];
+                    $value = Date::format($params['period_start']);
                     break;
                 case 'date_end':
-                    $value = $params['period_end'];
+                    $value = Date::format($params['period_end']);
                     break;
                 case 'date_begin_time':
-                    $value = $params['period_start'].' 00:00:00';
+                    $value = Date::format($params['period_start']).' 00:00:00';
                     break;
                 case 'date_end_time':
-                    $value = $params['period_end'].' 23:59:59';
+                    $value = Date::format($params['period_end']).' 23:59:59';
                     break;
                 case 'manager_id':
                     $value = $user['MANAGER_ID'];

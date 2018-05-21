@@ -1,1 +1,1 @@
-<span class="btn btn_toggle" format="pdf"><i class="icon-pdf icon_big"></i> PDF</span>
+<span class="btn_toggle btn btn-outline-success waves-effect waves-light" format="pdf"><i class="fa fa-file-pdf"></i> PDF</span>

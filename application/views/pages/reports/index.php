@@ -1,3 +1,5 @@
-<h1>Отчеты</h1>
-
-<?include ('_reports.php')?>
+<div class="card">
+    <div>
+        <?include ('_reports.php')?>
+    </div>
+</div>

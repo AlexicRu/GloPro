@@ -1,12 +1,9 @@
-<span class="form_field" field="<?=$type?>">
-    <input type="text" name="<?=$name?>_start" class="input_big datepicker" readonly value="<?=date('01.m.Y')?>"> -
-    <input type="text" name="<?=$name?>_end" class="input_big datepicker" readonly value="<?=date('d.m.Y')?>">
+<span class="form_field row" field="<?=$type?>">
+    <div class="col-md-5">
+        <input type="date" name="<?=$name?>_start" class="form-control" value="<?=date('Y-m-01')?>">
+    </div>
+    <div class="col-md-2 text-center hidden-sm-down">-</div>
+    <div class="col-md-5 with-mb">
+        <input type="date" name="<?=$name?>_end" class="form-control" value="<?=date('Y-m-d')?>">
+    </div>
 </span>
-
-<script>
-    $(function () {
-        $('[name=<?=$name?>_start], [name=<?=$name?>_end]').each(function () {
-            renderDatePicker($(this));
-        });
-    });
-</script>

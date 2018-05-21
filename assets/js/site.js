@@ -19,6 +19,11 @@ $(function(){
     $(document).on('click', "[toggle_class]", function(){
         $("[toggle_block='"+ $(this).attr('toggle_class') +"']").toggleClass('active');
     });
+    $(document).on('click', ".btn_toggle", function(){
+        var btn = $(this);
+        btn.parent().find('.btn').removeClass('active');
+        btn.addClass('active');
+    });
 });
 
 function message(type, text, sticky)

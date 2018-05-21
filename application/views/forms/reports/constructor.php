@@ -1,61 +1,61 @@
-<?
-if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_PERIOD])){
-    ?><table><?
+<div class="form">
+
+<?if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_PERIOD])){
     foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_PERIOD] as $field){?>
-        <tr>
-            <td class="gray right" width="150"><?=$field['PROPERTY_NAME']?>:</td>
-            <td>
+        <div class="form-group row">
+            <div class="col-md-4 text-muted">
+                <div class="hidden-sm-down text-right"><?=$field['PROPERTY_NAME']?>:</div>
+                <div class="hidden-md-up"><?=$field['PROPERTY_NAME']?>:</div>
+            </div>
+            <div class="col-md-8 with-md">
                 <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'], false, ['weight' => $field['PROPERTY_WEIGHT']])?>
-            </td>
-        </tr>
-        <?}
-    ?></table><?
+            </div>
+        </div>
+    <?}
 }
 
-if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL])){
-    ?><table>
-        <tr>
-            <td class="td_title" width="150">Дополнительные параметры:</td>
-            <td>
-                <table class="report_additional_params">
-                    <?
-                    foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL] as $field){?>
-                        <tr>
-                            <td class="gray right vaTop" width="150"><?=$field['PROPERTY_NAME']?>:</td>
-                            <td>
-                                <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'], false, [
-                                    'weight' => $field['PROPERTY_WEIGHT'],
-                                    'show_all' => !empty($field['PROPERTY_ALL']) ? $field['PROPERTY_ALL'] : false
-                                ])?>
-                            </td>
-                        </tr>
-                    <?}
-                    ?></table>
-            </td>
-        </tr>
-    </table><?
-}
+if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL])){?>
 
-if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT])){
-    ?><table>
-        <tr>
-            <td class="gray right" width="150">Формат:</td>
-            <td>
-                <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT] as $field){?>
-                    <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'])?>
-                <?}?>
-            </td>
-        </tr>
-    </table><?
-}
-?>
-<table>
-    <tr>
-        <td width="150"></td>
-        <td>
-            <br>
-            <span class="btn" onclick="generateReport($(this))"><i class="icon-download"></i> Сформировать</span>
-            <!-- span class="btn waves-effect waves-light btn_orange"><i class="icon-notifications"></i> На почту</span -->
-        </td>
-    </tr>
-</table>
+    <div class="form-group row m-b-0">
+        <div class="col-md-4 text-muted">
+            <div class="hidden-sm-down text-right">Дополнительные параметры:</div>
+            <div class="hidden-md-up">Дополнительные параметры:</div>
+        </div>
+        <div class="col-md-8 with-md report_additional_params">
+            <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL] as $field){?>
+
+                <div class="m-b-20">
+                    <div class="font-weight-bold m-b-5"><?=$field['PROPERTY_NAME']?>:</div>
+                    <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'], false, [
+                        'weight' => $field['PROPERTY_WEIGHT'],
+                        'show_all' => !empty($field['PROPERTY_ALL']) ? $field['PROPERTY_ALL'] : false
+                    ])?>
+                </div>
+
+            <?}?>
+        </div>
+    </div>
+<?}
+
+if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT])){?>
+    <div class="form-group row">
+        <div class="col-md-4 text-muted">
+            <div class="hidden-sm-down text-right">Формат:</div>
+            <div class="hidden-md-up">Формат:</div>
+        </div>
+        <div class="col-md-8 with-md">
+            <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT] as $field){?>
+                <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'])?>
+            <?}?>
+        </div>
+    </div>
+<?}?>
+
+    <div class="form-group row m-b-0">
+        <div class="col-md-4"></div>
+        <div class="col-md-8 with-md">
+            <span class="btn btn-outline-primary waves-effect waves-light" onclick="generateReport($(this))"><i class="icon-download"></i> Сформировать</span>
+        </div>
+    </div>
+
+</div>
