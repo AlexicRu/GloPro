@@ -1,6 +1,10 @@
 var CLASS_LOADING = 'block_loading';
 var BTN = ' btn waves-effect waves-light ';
 
+if (typeof Dropzone == 'function') {
+    Dropzone.autoDiscover = false;
+}
+
 $(function(){
     $('.mark_read').on('click', function () {
         $.post('/messages/make-read', {}, function (data) {

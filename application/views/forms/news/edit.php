@@ -44,6 +44,7 @@
 <script>
     var editor = $('[name=news_edit_text]');
     var image = false;
+    var dropzone = false;
 
     $(function(){
         dropzone = new Dropzone('.news_edit_image', {

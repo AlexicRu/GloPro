@@ -1,35 +1,48 @@
-<table class="table_form form_add_supplier_contract">
-    <tr>
-        <td class="gray right" width="170">Номер:</td>
-        <td>
-            <input type="text" name="add_supplier_contract_name" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right" width="170">Дата начала:</td>
-        <td>
-            <input type="text" class="input_big datepicker" readonly name="add_supplier_contract_date_start" value="<?=date('d.m.Y')?>">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right" width="170">Дата окончания:</td>
-        <td>
-            <input type="text" class="input_big datepicker" readonly name="add_supplier_contract_date_end">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn waves-effect waves-light btn_reverse" onclick="addSupplierContract($(this))"><i class="fa fa-plus"></i> Добавить договор</span>
-            <span class="btn waves-effect waves-light btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-        </td>
-    </tr>
-</table>
-<small><i>* - Дату окончания оставить пустой в случае бессрочного договора</i></small>
+<div class="modal-body">
+
+    <div class="form form_add_supplier_contract">
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Номер:</div>
+                <span class="hidden-sm-up">Номер:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="add_supplier_contract_name" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Дата начала:</div>
+                <span class="hidden-sm-up">Дата начала:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="date" class="form-control" name="add_supplier_contract_date_start" value="<?=date('Y-m-d')?>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Дата окончания:</div>
+                <span class="hidden-sm-up">Дата окончания:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="date" class="form-control" name="add_supplier_contract_date_end">
+            </div>
+        </div>
+    </div>
+
+    <small><i>* - Дату окончания оставить пустой в случае бессрочного договора</i></small>
+</div>
+<div class="modal-footer">
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),addSupplierContract)"><i class="fa fa-plus"></i> Добавить договор</span>
+    <button type="button" class="btn-danger <?=Text::BTN?>" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
+
 <script>
     function addSupplierContract(btn)
     {
-        var block = btn.closest('.form_add_supplier_contract');
+        var block = $('.form_add_supplier_contract');
 
         var params = {
             supplier_id:    supplierId,

@@ -113,6 +113,31 @@ body{
     border-radius: 50%; background: #eee;
   }
 }
+.dropzone {
+  min-height: 50px;
+  border: 2px dashed rgba(0, 0, 0, 0.1);
+  padding: 0;
+
+  .dz-message{
+    margin: 20px;
+  }
+}
+.supplier-detail {
+  &__avatar {
+    text-align: center;
+    &-empty {
+      border-radius: 50%;
+      background: #ddd;
+    }
+    &-pic {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      background: transparent no-repeat center;
+      background-size: contain;
+    }
+  }
+}
 
 @media (min-width: 768px) {
   .mini-sidebar .sidebar-nav #sidebarnav > li > a {

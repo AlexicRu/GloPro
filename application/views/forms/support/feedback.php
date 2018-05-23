@@ -39,6 +39,7 @@
 
 <script>
     var files = [];
+    var dropzone = false;
 
     $(function () {
         dropzone = new Dropzone('.feedback_files', {

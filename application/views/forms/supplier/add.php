@@ -2,7 +2,7 @@
     <div class="form form_add_supplier">
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Наименование:</span>
+                <div class="text-right hidden-xs-down">Наименование:</div>
                 <span class="hidden-sm-up">Наименование:</span>
             </div>
             <div class="col-sm-8">
@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <span class="btn btn-primary" onclick="submitForm($(this), addSupplier)"><i class="fa fa-plus"></i> Добавить<span class="hidden-xs-down"> поставщика</span></span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),addSupplier)"><i class="fa fa-plus"></i> Добавить<span class="hidden-xs-down"> поставщика</span></span>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

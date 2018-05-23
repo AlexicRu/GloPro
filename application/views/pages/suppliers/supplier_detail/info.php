@@ -1,129 +1,195 @@
 <div id="vue_supplier_info">
 
-    <div class="supplier-detail__name">
-        <h2 class="supplier-detail__id">ID: <?=$supplier['ID']?></h2>
+    <div toggle_block="edit_supplier">
+        <div class="row m-b-10">
+            <div class="col-md-2 col-sm-4 m-b-10">
+                <div class="supplier-detail__avatar" v-bind:class="avatar_class">
+                    <div class="supplier-detail__avatar-pic" v-bind:style="avatar_style"></div>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-8">
+                <h2>
+                    <span>{{ supplier.SUPPLIER_NAME }}</span>
 
-        <div class="supplier-detail__avatar" v-bind:class="avatar_class">
-            <div toggle_block="edit_supplier" class="supplier-detail__avatar-pic" v-bind:style="avatar_style"></div>
-            <div toggle_block="edit_supplier" class="dn">
+                    <div class="float-right">
+                        <span class="badge badge-secondary">ID: <?=$supplier['ID']?></span>
+                    </div>
+                </h2>
+
+                <p>{{ supplier.LONG_NAME }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div toggle_block="edit_supplier" class="dn">
+        <div class="row m-b-10">
+            <div class="col-md-3 col-sm-4 m-b-10">
                 <div class="dropzone supplier-detail__avatar-dropzone"></div>
+            </div>
+            <div class="col-md-9 col-sm-8">
+                <h2><input type="text" class="form-control form-control-lg" v-model="supplier.SUPPLIER_NAME"></h2>
+
+                <p><input type="text" class="form-control" v-model="supplier.LONG_NAME"></p>
+            </div>
+        </div>
+    </div>
+
+    <div toggle_block="supplier_info" class="dn m-b-10">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">Юридический адрес:</div>
+                        <span class="hidden-sm-up">Юридический адрес:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.Y_ADDRESS)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" v-model="supplier.Y_ADDRESS"></nobr></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">Фактический адрес:</div>
+                        <span class="hidden-sm-up">Фактический адрес:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.F_ADDRESS)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.F_ADDRESS"></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">Почтовый адрес:</div>
+                        <span class="hidden-sm-up">Почтовый адрес:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.P_ADDRESS)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.P_ADDRESS"></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">Контактное лицо:</div>
+                        <span class="hidden-sm-up">Контактное лицо:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.CONTACT_PERSON)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.CONTACT_PERSON"></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">Комментарий:</div>
+                        <span class="hidden-sm-up">Комментарий:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(comments_formatted)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><textarea class="form-control" v-model="supplier.COMMENTS"></textarea></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">Телефон:</div>
+                        <span class="hidden-sm-up">Телефон:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.PHONE)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" v-model="supplier.PHONE"></nobr></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">E-mail:</div>
+                        <span class="hidden-sm-up">E-mail:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(email_formatted)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" v-model="supplier.EMAIL"></nobr></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">ИНН:</div>
+                        <span class="hidden-sm-up">ИНН:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.INN)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" v-model="supplier.INN"></nobr></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">КПП:</div>
+                        <span class="hidden-sm-up">КПП:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.KPP)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" v-model="supplier.KPP"></nobr></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">ОГРН:</div>
+                        <span class="hidden-sm-up">ОГРН:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OGRN)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.OGRN"></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">ОКПО:</div>
+                        <span class="hidden-sm-up">ОКПО:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OKPO)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.OKPO"></span>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down text-muted">ОКОНХ:</div>
+                        <span class="hidden-sm-up">ОКОНХ:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OKONH)"></span>
+                        <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.OKONH"></span>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <h2 toggle_block="edit_supplier">{{ supplier.SUPPLIER_NAME }}</h2>
-        <h2 toggle_block="edit_supplier" class="dn"><input type="text" class="input_big input_grand" v-model="supplier.SUPPLIER_NAME"></h2>
-
-        <p toggle_block="edit_supplier">{{ supplier.LONG_NAME }}</p>
-        <p toggle_block="edit_supplier" class="dn"><input type="text" class="input_grand" v-model="supplier.LONG_NAME"></p>
-    </div>
-
-    <div toggle_block="supplier_info" class="dn">
-        <div class="col">
-            <table>
-                <tr>
-                    <td class="gray right" width="170">Юридический адрес:</td>
-                    <td width="370">
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.Y_ADDRESS)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" v-model="supplier.Y_ADDRESS"></nobr></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Фактический адрес:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.F_ADDRESS)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><input type="text" v-model="supplier.F_ADDRESS"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Почтовый адрес:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.P_ADDRESS)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><input type="text" v-model="supplier.P_ADDRESS"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Контактное лицо:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.CONTACT_PERSON)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><input type="text" v-model="supplier.CONTACT_PERSON"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right" valign="top">Комментарий:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(comments_formatted)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><textarea v-model="supplier.COMMENTS"></textarea></span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="col">
-            <table>
-                <tr>
-                    <td class="gray right" width="170">Телефон:</td>
-                    <td width="200">
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.PHONE)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" v-model="supplier.PHONE"></nobr></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">E-mail:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(email_formatted)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" v-model="supplier.EMAIL"></nobr></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">ИНН:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.INN)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" v-model="supplier.INN"></nobr></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">КПП:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.KPP)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" v-model="supplier.KPP"></nobr></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">ОГРН:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OGRN)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><input type="text" v-model="supplier.OGRN"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">ОКПО:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OKPO)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><input type="text" v-model="supplier.OKPO"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">ОКОНХ:</td>
-                    <td>
-                        <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OKONH)"></span>
-                        <span toggle_block="edit_supplier" class="dn"><input type="text" v-model="supplier.OKONH"></span>
-                    </td>
-                </tr>
-            </table>
-        </div>
     </div>
 
     <div class="more_info dn" toggle_block="supplier_info">
-        <a href="#" class="btn waves-effect waves-light btn_gray btn_min_width" toggle="supplier_info">Скрыть информацию о поставщике</a> &nbsp;
+        <a href="#" class="<?=Text::BTN?> btn-outline-secondary btn_min_width" toggle="supplier_info">Скрыть</a> &nbsp;
 
         <?if(Access::allow('suppliers_supplier-edit')){?>
-        <button class="btn" toggle="edit_supplier" toggle_block="edit_supplier"><i class="fa fa-pencil-alt"></i> Редактировать</button> &nbsp;
+        <button class="<?=Text::BTN?> btn-primary" toggle="edit_supplier" toggle_block="edit_supplier"><i class="fa fa-pencil-alt"></i> Редактировать</button> &nbsp;
 
-        <button class="btn waves-effect waves-light btn_green dn btn_reverse" toggle_block="edit_supplier" onclick="saveSupplierInfo()"><i class="fa fa-check"></i> Сохранить</button>
-        <button class="btn waves-effect waves-light btn_red dn" toggle="edit_supplier" toggle_block="edit_supplier" v-on:click="cancelForm()"><i class="fa fa-times"></i> Отмена</button>
+        <button class="<?=Text::BTN?> btn-success dn" toggle_block="edit_supplier" onclick="saveSupplierInfo()"><i class="fa fa-check"></i> Сохранить</button>
+        <button class="<?=Text::BTN?> btn-danger dn" toggle="edit_supplier" toggle_block="edit_supplier" v-on:click="cancelForm()"><i class="fa fa-times"></i> Отмена</button>
         <?}?>
     </div>
     <div class="more_info" toggle_block="supplier_info">
-        <a href="#" class="btn waves-effect waves-light btn_gray btn_min_width" toggle="supplier_info">Информация о поставщике</a>
+        <a href="#" class="<?=Text::BTN?> btn-outline-secondary" toggle="supplier_info">Информация о поставщике</a>
     </div>
 
 </div>
@@ -164,7 +230,7 @@
             },
             avatar_style: function () {
                 var icon = this.supplier.ICON_PATH;
-                return icon ? {backgroundImage: 'url('+ icon +')'} : '';
+                return icon ? {backgroundImage: 'url(http://lk.glopro.ru'+ icon +')'} : '';
             }
         },
         methods: {

@@ -3,7 +3,7 @@
     <div class="form form_add_client">
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Номер:</span>
+                <div class="text-right hidden-xs-down">Номер:</div>
                 <span class="hidden-sm-up">Номер:</span>
             </div>
             <div class="col-sm-8">
@@ -13,7 +13,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Дата начала:</span>
+                <div class="text-right hidden-xs-down">Дата начала:</div>
                 <span class="hidden-sm-up">Дата начала:</span>
             </div>
             <div class="col-sm-8">
@@ -23,7 +23,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Дата окончания:</span>
+                <div class="text-right hidden-xs-down">Дата окончания:</div>
                 <span class="hidden-sm-up">Дата окончания:</span>
             </div>
             <div class="col-sm-8">
@@ -36,7 +36,7 @@
 
 </div>
 <div class="modal-footer">
-    <span class="btn btn-primary" onclick="submitForm($(this), addContractGo)"><i class="fa fa-plus"></i> Создать договор</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),addContractGo)"><i class="fa fa-plus"></i> Создать договор</span>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

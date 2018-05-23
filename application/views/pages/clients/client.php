@@ -21,7 +21,7 @@
         <div class="col-md-6">
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">Юридический адрес:</span>
+                    <div class="text-right hidden-xs-down text-muted">Юридический адрес:</div>
                     <span class="hidden-sm-up">Юридический адрес:</span>
                 </div>
                 <div class="col-sm-8">
@@ -38,7 +38,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">Фактический адрес:</span>
+                    <div class="text-right hidden-xs-down text-muted">Фактический адрес:</div>
                     <span class="hidden-sm-up">Фактический адрес:</span>
                 </div>
                 <div class="col-sm-8">
@@ -49,7 +49,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">Почтовый адрес:</span>
+                    <div class="text-right hidden-xs-down text-muted">Почтовый адрес:</div>
                     <span class="hidden-sm-up">Почтовый адрес:</span>
                 </div>
                 <div class="col-sm-8">
@@ -60,7 +60,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">Комментарий:</span>
+                    <div class="text-right hidden-xs-down text-muted">Комментарий:</div>
                     <span class="hidden-sm-up">Комментарий:</span>
                 </div>
                 <div class="col-sm-8">
@@ -73,7 +73,7 @@
         <div class="col-md-6">
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">Телефон:</span>
+                    <div class="text-right hidden-xs-down text-muted">Телефон:</div>
                     <span class="hidden-sm-up">Телефон:</span>
                 </div>
                 <div class="col-sm-8">
@@ -84,7 +84,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">E-mail:</span>
+                    <div class="text-right hidden-xs-down text-muted">E-mail:</div>
                     <span class="hidden-sm-up">E-mail:</span>
                 </div>
                 <div class="col-sm-8">
@@ -95,7 +95,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">ИНН:</span>
+                    <div class="text-right hidden-xs-down text-muted">ИНН:</div>
                     <span class="hidden-sm-up">ИНН:</span>
                 </div>
                 <div class="col-sm-8">
@@ -112,7 +112,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">КПП:</span>
+                    <div class="text-right hidden-xs-down text-muted">КПП:</div>
                     <span class="hidden-sm-up">КПП:</span>
                 </div>
                 <div class="col-sm-8">
@@ -129,7 +129,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">ОГРН:</span>
+                    <div class="text-right hidden-xs-down text-muted">ОГРН:</div>
                     <span class="hidden-sm-up">ОГРН:</span>
                 </div>
                 <div class="col-sm-8">
@@ -144,7 +144,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-4">
-                    <span class="text-right hidden-xs-down">ОКПО:</span>
+                    <div class="text-right hidden-xs-down text-muted">ОКПО:</div>
                     <span class="hidden-sm-up">ОКПО:</span>
                 </div>
                 <div class="col-sm-8">

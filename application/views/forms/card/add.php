@@ -2,7 +2,7 @@
     <div class="form form_add_card">
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Номер карты:</span>
+                <div class="text-right hidden-xs-down">Номер карты:</div>
                 <span class="hidden-sm-up">Номер карты:</span>
             </div>
             <div class="col-sm-8">
@@ -12,7 +12,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Владелец:</span>
+                <div class="text-right hidden-xs-down">Владелец:</div>
                 <span class="hidden-sm-up">Владелец:</span>
             </div>
             <div class="col-sm-8">
@@ -22,7 +22,7 @@
 
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Срок действия:</span>
+                <div class="text-right hidden-xs-down">Срок действия:</div>
                 <span class="hidden-sm-up">Срок действия:</span>
             </div>
             <div class="col-sm-8">
@@ -32,7 +32,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <span class="btn btn-primary" onclick="submitForm($(this), addCardGo)"><i class="fa fa-plus"></i> Добавить карту</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),addCardGo)"><i class="fa fa-plus"></i> Добавить карту</span>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

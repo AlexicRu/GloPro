@@ -54,8 +54,6 @@ class Controller_Suppliers extends Controller_Common {
 
         $supplierContracts = Model_Supplier_Contract::getList(['supplier_id' => $supplierId]);
 
-        $this->title[] = $supplier['SUPPLIER_NAME'];
-
         $this->_initDropZone();
 
         $popupSupplierContractAdd = Form::popup('Добавление нового договора', 'supplier/contract/add');

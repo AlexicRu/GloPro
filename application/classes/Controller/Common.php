@@ -293,8 +293,8 @@ abstract class Controller_Common extends Controller_Template {
      */
     protected function _initDropZone()
     {
-        $this->template->styles[] = '/assets/plugins/dropzone/dropzone.css';
-        $this->template->scripts[] = '/assets/plugins/dropzone/dropzone.5.3.0.js';
+        $this->template->styles[] = Common::getAdminProAssetsLink() . 'assets/plugins/dropzone-master/dist/min/dropzone.min.css';
+        $this->template->scripts[] = Common::getAdminProAssetsLink() . 'assets/plugins/dropzone-master/dist/dropzone.js';
     }
 
     /**

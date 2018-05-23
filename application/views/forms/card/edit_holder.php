@@ -5,7 +5,7 @@ $postfix = $card['CARD_ID'];
     <div class="form form_card_edit_<?=$postfix?>">
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Держатель:</span>
+                <div class="text-right hidden-xs-down">Держатель:</div>
                 <span class="hidden-sm-up">Держатель:</span>
             </div>
             <div class="col-sm-8">
@@ -15,7 +15,7 @@ $postfix = $card['CARD_ID'];
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Выдана держателю:</span>
+                <div class="text-right hidden-xs-down">Выдана держателю:</div>
                 <span class="hidden-sm-up">Выдана держателю:</span>
             </div>
             <div class="col-sm-8">
@@ -25,7 +25,7 @@ $postfix = $card['CARD_ID'];
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Комментарий:</span>
+                <div class="text-right hidden-xs-down">Комментарий:</div>
                 <span class="hidden-sm-up">Комментарий:</span>
             </div>
             <div class="col-sm-8">

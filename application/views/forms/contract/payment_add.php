@@ -2,7 +2,7 @@
     <div class="form form_add_contract_payment">
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Номер:</span>
+                <div class="text-right hidden-xs-down">Номер:</div>
                 <span class="hidden-sm-up">Номер:</span>
             </div>
             <div class="col-sm-8">
@@ -12,7 +12,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Дата платежного поручения:</span>
+                <div class="text-right hidden-xs-down">Дата платежного поручения:</div>
                 <span class="hidden-sm-up">Дата платежного поручения:</span>
             </div>
             <div class="col-sm-8">
@@ -22,7 +22,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Сумма (<?=Text::RUR?>):</span>
+                <div class="text-right hidden-xs-down">Сумма (<?=Text::RUR?>):</div>
                 <span class="hidden-sm-up">Сумма (<?=Text::RUR?>):</span>
             </div>
             <div class="col-sm-8">
@@ -32,7 +32,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Комментарий:</span>
+                <div class="text-right hidden-xs-down">Комментарий:</div>
                 <span class="hidden-sm-up">Комментарий:</span>
             </div>
             <div class="col-sm-8">
@@ -42,7 +42,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <span class="btn btn-primary" onclick="submitForm($(this), addContractPaymentGo)"><i class="fa fa-plus"></i> Добавить платеж</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),addContractPaymentGo)"><i class="fa fa-plus"></i> Добавить платеж</span>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

@@ -26,7 +26,7 @@
 </div>
 
 <div class="modal-footer">
-    <span class="btn btn-primary" onclick="submitForm($(this), editContractNoticesGo)"><i class="fa fa-check"></i> Сохранить</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),editContractNoticesGo)"><i class="fa fa-check"></i> Сохранить</span>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

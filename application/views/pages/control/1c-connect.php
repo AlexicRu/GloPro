@@ -57,6 +57,8 @@
 </div>
 
 <script>
+    var dropzone = false;
+
     $(function(){
         dropzone = new Dropzone('.connect_1c_payments', {
             url: "/control/upload-pays",

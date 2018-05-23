@@ -2,7 +2,7 @@
     <div class="form form_add_client">
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Название компании:</span>
+                <div class="text-right hidden-xs-down">Название компании:</div>
                 <span class="hidden-sm-up">Название компании:</span>
             </div>
             <div class="col-sm-8">
@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <span class="btn btn-primary" onclick="submitForm($(this), addClientGo)"><i class="fa fa-plus"></i> Добавить клиента</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),addClientGo)"><i class="fa fa-plus"></i> Добавить клиента</span>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

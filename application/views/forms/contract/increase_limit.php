@@ -3,7 +3,7 @@
     <div class="form form_contract_increase_limit">
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <span class="text-right hidden-xs-down">Количество:</span>
+                <div class="text-right hidden-xs-down">Количество:</div>
                 <span class="hidden-sm-up">Количество:</span>
             </div>
             <div class="col-sm-8">
@@ -22,7 +22,7 @@
 
 </div>
 <div class="modal-footer">
-    <span class="btn btn-primary" onclick="submitForm($(this), contractIncreaseLimit)"><i class="fa fa-check"></i> Сохранить</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),contractIncreaseLimit)"><i class="fa fa-check"></i> Сохранить</span>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

@@ -117,10 +117,4 @@
 
 <script>
     var DATA_SOURCE_INSIDE = <?=Model_Supplier_Contract::DATA_SOURCE_INSIDE?>;
-
-    $(function () {
-        $("input[type=radio]").each(function(){
-            renderRadio($(this));
-        });
-    });
 </script>

@@ -1,5 +1,6 @@
 var supplierId = false;
 var contractId = false;
+var dropzone = false;
 
 $(function () {
     contractId = $('[name=suppliers_contracts_list]').val();
@@ -77,10 +78,6 @@ function loadSupplierContract(tab)
 
     $.post('/suppliers/contract/' + contractId, {tab: tab}, function (data) {
         block.html(data).removeClass(CLASS_LOADING);
-
-        $('.datepicker', block).each(function () {
-            renderDatePicker($(this));
-        });
     });
 }
 
