@@ -22,7 +22,7 @@
 </select>
 
 <?if(Access::allow('suppliers_contract-add')){?>
-    &nbsp;&nbsp;&nbsp;<a href="#supplier_contract_add" class="btn waves-effect waves-lightfancy"><i class="fa fa-plus"></i> Создать договор</a>
+    &nbsp;&nbsp;&nbsp;<a href="#supplier_contract_add" class="btn waves-effect waves-light"><i class="fa fa-plus"></i> Создать договор</a>
 
     <?=$popupSupplierContractAdd?>
 <?}?>

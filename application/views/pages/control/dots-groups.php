@@ -4,8 +4,8 @@
     <div class="tab_content_header">
         <div class="fr">
             <span toggle_block="dots_groups_block">
-                <a href="#control_add_dots_group" class="btn waves-effect waves-lightfancy"><i class="fa fa-plus"></i> Добавить группу</a>
-                <a href="#control_add_dots" class="btn waves-effect waves-lightfancy"><i class="fa fa-plus"></i> Добавить точки</a>
+                <a href="#control_add_dots_group" class="btn waves-effect waves-light"><i class="fa fa-plus"></i> Добавить группу</a>
+                <a href="#control_add_dots" class="btn waves-effect waves-light"><i class="fa fa-plus"></i> Добавить точки</a>
                 <span class="btn waves-effect waves-light btn_green btn_icon" onclick="dotsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
                 <span class="btn waves-effect waves-light btn_green btn_icon" toggle="dots_groups_block"><i class="fa fa-pencil-alt"></i></span>
             </span>

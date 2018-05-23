@@ -1,22 +1,31 @@
 <div class="modal-body">
     <div class="form form_add_card">
         <div class="form-group row">
-            <div class="text-right col-4">Номер карты:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Номер карты:</span>
+                <span class="hidden-sm-up">Номер карты:</span>
+            </div>
+            <div class="col-sm-8">
                 <?=Form::buildField('card_available_choose_single', 'add_card_id', false, ['classes' => 'input_big'])?>
             </div>
         </div>
 
-        <div class="form-group row m-b-0">
-            <div class="text-right col-4">Владелец:</div>
-            <div class="col-8">
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Владелец:</span>
+                <span class="hidden-sm-up">Владелец:</span>
+            </div>
+            <div class="col-sm-8">
                 <input type="text" name="add_card_holder" class="form-control">
             </div>
         </div>
 
         <div class="form-group row m-b-0">
-            <div class="text-right col-4">Срок действия:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Срок действия:</span>
+                <span class="hidden-sm-up">Срок действия:</span>
+            </div>
+            <div class="col-sm-8">
                 <input type="date" class="form-control" name="add_card_expire_date">
             </div>
         </div>

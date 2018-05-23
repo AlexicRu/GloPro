@@ -1,8 +1,11 @@
 <div class="modal-body">
     <div class="form form_add_client">
         <div class="form-group row m-b-0">
-            <div class="text-right col-4">Название компании:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Название компании:</span>
+                <span class="hidden-sm-up">Название компании:</span>
+            </div>
+            <div class="col-sm-8">
                 <input type="text" name="add_client_name" class="form-control">
             </div>
         </div>

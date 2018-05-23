@@ -20,8 +20,11 @@
     <div class="row">
         <div class="col-md-6">
             <div class="row m-b-10">
-                <div class="col-4 text-right">Юридический адрес:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">Юридический адрес:</span>
+                    <span class="hidden-sm-up">Юридический адрес:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_y_address"><?=($client['Y_ADDRESS'] ?: '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_y_address" class="dn">
                         <nobr>
@@ -34,24 +37,33 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-4 text-right">Фактический адрес:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">Фактический адрес:</span>
+                    <span class="hidden-sm-up">Фактический адрес:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_f_address"><?=($client['F_ADDRESS'] ?: '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_f_address" class="dn"><input type="text" name="F_ADDRESS" value="<?=$client['F_ADDRESS']?>" class="form-control"></span>
                 </div>
             </div>
 
             <div class="row m-b-10">
-                <div class="col-4 text-right">Почтовый адрес:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">Почтовый адрес:</span>
+                    <span class="hidden-sm-up">Почтовый адрес:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_p_address"><?=($client['P_ADDRESS'] ?: '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_p_address" class="dn"><input type="text" name="P_ADDRESS" value="<?=$client['P_ADDRESS']?>" class="form-control"></span>
                 </div>
             </div>
 
             <div class="row m-b-10">
-                <div class="col-4 text-right">Комментарий:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">Комментарий:</span>
+                    <span class="hidden-sm-up">Комментарий:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_comments"><?=($client['COMMENTS'] ? str_replace("\n", "<br>", $client['COMMENTS']) : '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_comments" class="dn"><textarea name="COMMENTS" class="form-control"><?=$client['COMMENTS']?></textarea></span>
                 </div>
@@ -60,24 +72,33 @@
 
         <div class="col-md-6">
             <div class="row m-b-10">
-                <div class="col-4 text-right">Телефон:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">Телефон:</span>
+                    <span class="hidden-sm-up">Телефон:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_phone"><?=($client['PHONE'] ?: '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_phone" class="dn"><nobr><input type="text" name="PHONE" value="<?=$client['PHONE']?>" class="form-control">*</nobr></span>
                 </div>
             </div>
 
             <div class="row m-b-10">
-                <div class="col-4 text-right">E-mail:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">E-mail:</span>
+                    <span class="hidden-sm-up">E-mail:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_email"><?=($client['EMAIL'] ? '<a href="mailto:'.$client['EMAIL'].'">'.$client['EMAIL'].'</a>' : '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_email" class="dn"><nobr><input type="text" name="EMAIL" value="<?=$client['EMAIL']?>" class="form-control"></nobr></span>
                 </div>
             </div>
 
             <div class="row m-b-10">
-                <div class="col-4 text-right">ИНН:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">ИНН:</span>
+                    <span class="hidden-sm-up">ИНН:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_inn"><?=($client['INN'] ?: '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_inn" class="dn">
                         <nobr>
@@ -90,8 +111,11 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-4 text-right">КПП:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">КПП:</span>
+                    <span class="hidden-sm-up">КПП:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_kpp"><?=($client['KPP'] ?: '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_kpp" class="dn">
                         <nobr>
@@ -104,8 +128,11 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-4 text-right">ОГРН:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">ОГРН:</span>
+                    <span class="hidden-sm-up">ОГРН:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_ogrn"><?=($client['OGRN'] ?: '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_ogrn" class="dn">
                         <input type="text" name="OGRN" value="<?=$client['OGRN']?>" class="form-control"
@@ -116,8 +143,11 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-4 text-right">ОКПО:</div>
-                <div class="col-8">
+                <div class="col-sm-4">
+                    <span class="text-right hidden-xs-down">ОКПО:</span>
+                    <span class="hidden-sm-up">ОКПО:</span>
+                </div>
+                <div class="col-sm-8">
                     <span toggle_block="edit_client" uid="client_okpo"><?=($client['OKPO'] ?: '<span class="gray">Не заполнено</span>')?></span>
                     <span toggle_block="edit_client" uid="client_okpo" class="dn"><input type="text" name="OKPO" value="<?=$client['OKPO']?>" class="form-control"></span>
                 </div>

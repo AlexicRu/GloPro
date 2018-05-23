@@ -3,6 +3,7 @@
 class Text extends Kohana_Text
 {
     const RUR = '₽';
+    const BTN = ' btn waves-effect waves-light ';
 
     /**
      * echo plural_form(42, array('арбуз', 'арбуза', 'арбузов'));

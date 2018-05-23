@@ -4,22 +4,31 @@ $postfix = $card['CARD_ID'];
 <div class="modal-body">
     <div class="form form_card_edit_<?=$postfix?>">
         <div class="form-group row">
-            <div class="text-right col-4">Держатель:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Держатель:</span>
+                <span class="hidden-sm-up">Держатель:</span>
+            </div>
+            <div class="col-sm-8">
                 <input type="text" name="card_edit_holder" class="form-control" value="<?=Text::quotesForForms($card['HOLDER'])?>" maxlength="200">
             </div>
         </div>
 
         <div class="form-group row">
-            <div class="text-right col-4">Выдана держателю:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Выдана держателю:</span>
+                <span class="hidden-sm-up">Выдана держателю:</span>
+            </div>
+            <div class="col-sm-8">
                 <input type="date" class="form-control" name="card_edit_date" value="<?=Date::formatToDefault($card['DATE_HOLDER'])?>">
             </div>
         </div>
 
         <div class="form-group row">
-            <div class="text-right col-4">Комментарий:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Комментарий:</span>
+                <span class="hidden-sm-up">Комментарий:</span>
+            </div>
+            <div class="col-sm-8">
                 <textarea class="form-control" name="card_edit_holder_comment" style="width: 100%"><?=$card['CARD_COMMENT']?></textarea>
             </div>
         </div>

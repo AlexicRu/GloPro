@@ -2,15 +2,21 @@
 
     <div class="form form_cabinet_create">
         <div class="form-group row">
-            <div class="text-right col-4">Email:<br><small><i>куда отправить</i></small></div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Email:<br><small><i>куда отправить</i></small>:</span>
+                <span class="hidden-sm-up">Email:<br><small><i>куда отправить</i></small>:</span>
+            </div>
+            <div class="col-sm-8">
                 <input type="text" name="cabinet_create_email" class="form-control">
             </div>
         </div>
 
         <div class="form-group row m-b-0">
-            <div class="text-right col-4">Роль:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Роль:</span>
+                <span class="hidden-sm-up">Роль:</span>
+            </div>
+            <div class="col-sm-8">
                 <select name="cabinet_create_role" class="form-control">
                     <?foreach(Access::$clientRoles as $roleId => $role){?>
                         <option value="<?=$roleId?>"><?=$role?></option>

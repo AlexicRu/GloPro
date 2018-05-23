@@ -2,22 +2,31 @@
 
     <div class="form form_add_client">
         <div class="form-group row">
-            <div class="text-right col-4">Номер:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Номер:</span>
+                <span class="hidden-sm-up">Номер:</span>
+            </div>
+            <div class="col-sm-8">
                 <input type="text" name="add_contract_name" class="form-control">
             </div>
         </div>
 
         <div class="form-group row">
-            <div class="text-right col-4">Дата начала:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Дата начала:</span>
+                <span class="hidden-sm-up">Дата начала:</span>
+            </div>
+            <div class="col-sm-8">
                 <input type="date" class="form-control" name="add_contract_date_start" value="<?=date('Y-m-d')?>">
             </div>
         </div>
 
         <div class="form-group row">
-            <div class="text-right col-4">Дата окончания:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Дата окончания:</span>
+                <span class="hidden-sm-up">Дата окончания:</span>
+            </div>
+            <div class="col-sm-8">
                 <input type="date" class="form-control" name="add_contract_date_end">
             </div>
         </div>

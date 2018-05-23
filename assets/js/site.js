@@ -1,4 +1,5 @@
 var CLASS_LOADING = 'block_loading';
+var BTN = ' btn waves-effect waves-light ';
 
 $(function(){
     $('.mark_read').on('click', function () {

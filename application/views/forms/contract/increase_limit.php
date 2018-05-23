@@ -2,8 +2,11 @@
 
     <div class="form form_contract_increase_limit">
         <div class="form-group row m-b-0">
-            <div class="text-right col-4">Количество:</div>
-            <div class="col-8">
+            <div class="col-sm-4">
+                <span class="text-right hidden-xs-down">Количество:</span>
+                <span class="hidden-sm-up">Количество:</span>
+            </div>
+            <div class="col-sm-8">
                 <div class="input-group">
                     <input type="text" name="contract_increase_limit_name" class="form-control">
 
