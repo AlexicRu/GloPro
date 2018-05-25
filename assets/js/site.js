@@ -25,9 +25,9 @@ $(function(){
         $("[toggle_block='"+ $(this).attr('toggle_class') +"']").toggleClass('active');
     });
     $(document).on('click', ".btn_toggle", function(){
-        var btn = $(this);
-        btn.parent().find('.btn').removeClass('active');
-        btn.addClass('active');
+        var t = $(this);
+        t.parent().find('.btn').removeClass('active');
+        t.addClass('active');
     });
 });
 
@@ -194,6 +194,18 @@ function submitForm(btn, callback)
 function endSubmitForm()
 {
     submitFormInAction = false;
+}
+
+/**
+ * закрытие открытого модального окна
+ */
+function modalClose()
+{
+    var modal = $('.modal.show');
+
+    if (modal.length) {
+        $('#' + modal.attr('id')).modal('hide');
+    }
 }
 
 function renderVerticalTabsScroll(elem)

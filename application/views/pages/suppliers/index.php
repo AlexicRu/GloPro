@@ -48,7 +48,7 @@
             tpl.find('.card-text').text(data[i].LONG_NAME);
 
             if (data[i].ICON_PATH) {
-                tpl.find('.s_logo').css('background-image', 'url("http://lk.glopro.ru'+ data[i].ICON_PATH +'")');
+                tpl.find('.s_logo').css('background-image', 'url("'+ data[i].ICON_PATH +'")');
             } else {
                 tpl.find('.s_logo').addClass('s_logo_empty');
             }

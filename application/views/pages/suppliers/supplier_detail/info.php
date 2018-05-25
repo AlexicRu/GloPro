@@ -230,7 +230,7 @@
             },
             avatar_style: function () {
                 var icon = this.supplier.ICON_PATH;
-                return icon ? {backgroundImage: 'url(http://lk.glopro.ru'+ icon +')'} : '';
+                return icon ? {backgroundImage: 'url('+ icon +')'} : '';
             }
         },
         methods: {

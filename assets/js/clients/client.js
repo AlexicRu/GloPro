@@ -65,15 +65,6 @@ $(function(){
     });
 });
 
-function modalClose()
-{
-    var modal = $('.modal.show');
-
-    if (modal.length) {
-        $('#' + modal.attr('id')).modal('hide');
-    }
-}
-
 function loadContract(tab, query, params)
 {
     modalClose();

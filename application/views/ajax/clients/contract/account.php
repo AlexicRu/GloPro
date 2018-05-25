@@ -51,7 +51,7 @@
 
                                         <?if(Access::allow('clients_contract_increase_limit')){?>
                                             <?if(!$restrict['INFINITELY']){?>
-                                                <span class="btn btn-sm btn-outline-primary" onclick="openIncreaseLimitPopup(<?=$restrict['CONTRACT_ID']?>, <?=$restrict['LIMIT_GROUP']?>)">+</span>
+                                                <span class="<?=Text::BTN?> btn-sm btn-outline-primary" onclick="openIncreaseLimitPopup(<?=$restrict['CONTRACT_ID']?>, <?=$restrict['LIMIT_GROUP']?>)">+</span>
                                             <?}?>
                                         <?}?>
                                     </td>

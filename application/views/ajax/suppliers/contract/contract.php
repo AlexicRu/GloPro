@@ -1,18 +1,51 @@
 <div class="supplier-contract__contract">
-    <div class="p-20 border-bottom m-b-20">
-        <div class="row align-items-center font-20">
-            <div class="col-9">
-                [<?=$contract['CONTRACT_ID']?>]
-                <span toggle_block="toggle_contract">
-                    <b><?=$contract['CONTRACT_NAME']?></b> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != '31.12.2099'){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
-                    <span class="badge <?=Model_Supplier_Contract::$statusContractClasses[$contract['CONTRACT_STATE']]?>"><?=Model_Supplier_Contract::$statusContractNames[$contract['CONTRACT_STATE']]?></span>
-                </span>
-                <span toggle_block="toggle_contract" class="dn">
+    <div class="p-20 border-bottom">
+
+        <div toggle_block="toggle_contract">
+            <div class="row align-items-center font-20">
+                <div class="col-9">
+                    [<?=$contract['CONTRACT_ID']?>]
+                    <span toggle_block="toggle_contract">
+                        <b><?=$contract['CONTRACT_NAME']?></b> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != '31.12.2099'){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
+                        <span class="badge <?=Model_Supplier_Contract::$statusContractClasses[$contract['CONTRACT_STATE']]?>"><?=Model_Supplier_Contract::$statusContractNames[$contract['CONTRACT_STATE']]?></span>
+                    </span>
+                </div>
+                <div class="col-3 text-right">
+                    <?if(Access::allow('suppliers_contract-edit')){?>
+                        <div toggle_block="toggle_contract"><button class="<?=Text::BTN?> btn-outline-primary" toggle="toggle_contract"><i class="fa fa-pencil-alt"></i><span class="hidden-xs-down"> Редактировать</span></button></div>
+                    <?}?>
+                </div>
+            </div>
+        </div>
+
+        <div class="dn" toggle_block="toggle_contract">
+            <div class="form-group row font-20">
+                <label class="col-sm-2 col-form-label">[<?=$contract['CONTRACT_ID']?>]</label>
+                <div class="col-sm-10">
                     <input type="text" name="CONTRACT_NAME" value="<?=Text::quotesForForms($contract['CONTRACT_NAME'])?>" class="form-control">
-                    <span class="text-muted">от</span>
-                    <input type="date" name="DATE_BEGIN" value="<?=Date::formatToDefault($contract['DATE_BEGIN'])?>" class="form-control">
-                    <span class="text-muted">до</span>
-                    <input type="date" name="DATE_END" value="<?=Date::formatToDefault($contract['DATE_END'])?>" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 m-b-20 p-b-5">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">от</div>
+                        </div>
+                        <input type="date" name="DATE_BEGIN" value="<?=Date::formatToDefault($contract['DATE_BEGIN'])?>" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-4 m-b-20 p-b-5">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">до</div>
+                        </div>
+                        <input type="date" name="DATE_END" value="<?=Date::formatToDefault($contract['DATE_END'])?>" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-4 m-b-20 p-b-5">
                     <select class="custom-select" name="CONTRACT_STATE">
                         <?
                         foreach(Model_Supplier_Contract::$statusContractNames as $id => $name){
@@ -20,80 +53,80 @@
                         }
                         ?>
                     </select>
-                </span>
+                </div>
             </div>
-            <div class="col-3 text-right">
-                <?if(Access::allow('suppliers_contract-edit')){?>
-                    <div toggle_block="toggle_contract"><button class="<?=Text::BTN?> btn-outline-primary" toggle="toggle_contract"><i class="fa fa-pencil-alt"></i> Редактировать</button></div>
-                    <div class="dn" toggle_block="toggle_contract">
-                        <button class="<?=Text::BTN?> btn-success" onclick="editSupplierContract()"><i class="fa fa-check"></i> Сохранить</button>
-                        <button class="<?=Text::BTN?> btn-danger" toggle="toggle_contract"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+
+            <?if(Access::allow('suppliers_contract-edit')){?>
+                <div class="form-group row m-b-0">
+                    <div class="col-sm-12">
+                        <button class="btn waves-effect waves-light btn-success" onclick="editSupplierContract()"><i class="fa fa-check"></i> Сохранить</button>
+                        <button class="btn waves-effect waves-light btn-danger" toggle="toggle_contract"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
                     </div>
-                <?}?>
-            </div>
+                </div>
+            <?}?>
+
         </div>
     </div>
 
-    <div class="as_table">
-        <div class="col">
-            <table>
-                <tr>
-                    <td class="gray right" width="150">Валюта:</td>
-                    <td>
-                        Российский Рубль – <?=Text::RUR?>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Тип источника:</td>
-                    <td>
-                        <div toggle_block="toggle_contract">
-                            <?if($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_INSIDE){?>
-                                Цепочка договоров внутри системы
-                            <?}else{
-                                foreach ($tubes as $tube) {
-                                    if ($tube['TUBE_ID'] == $contract['TUBE_ID']) {
-                                        ?>Внешний - <b><?=$tube['TUBE_NAME']?></b><?
-                                    }
+    <div class="row p-20">
+        <div class="col-lg-6">
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right hidden-xs-down">Валюта:</div>
+                    <div class="hidden-sm-up">Валюта:</div>
+                </div>
+                <div class="col-sm-7">
+                    Российский Рубль – <?=Text::RUR?>
+                </div>
+            </div>
+
+            <div class="row m-b-10">
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right hidden-xs-down">Тип источника:</div>
+                    <div class="hidden-sm-up">Тип источника:</div>
+                </div>
+                <div class="col-sm-7">
+                    <div toggle_block="toggle_contract">
+                        <?if($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_INSIDE){?>
+                            Цепочка договоров внутри системы
+                        <?}else{
+                            foreach ($tubes as $tube) {
+                                if ($tube['TUBE_ID'] == $contract['TUBE_ID']) {
+                                    ?>Внешний - <b><?=$tube['TUBE_NAME']?></b><?
                                 }
-                            }?>
+                            }
+                        }?>
+                    </div>
+                    <div toggle_block="toggle_contract" class="dn">
+                        <div class="supplier-contract__contract-data-source">
+                            <label>
+                                <input type="radio" name="DATA_SOURCE" value="<?=Model_Supplier_Contract::DATA_SOURCE_INSIDE?>" <?=($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_INSIDE ? 'checked' : '')?> onchange="checkSupplierContractDataSource()">
+                                Цепочка договоров внутри системы
+                            </label>
                         </div>
-                        <div toggle_block="toggle_contract" class="dn">
-                            <div class="supplier-contract__contract-data-source">
-                                <label>
-                                    <input type="radio" name="DATA_SOURCE" value="<?=Model_Supplier_Contract::DATA_SOURCE_INSIDE?>" <?=($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_INSIDE ? 'checked' : '')?> onchange="checkSupplierContractDataSource()">
-                                    Цепочка договоров внутри системы
-                                </label>
-                            </div>
-                            <div class="supplier-contract__contract-data-source">
-                                <label>
-                                    <input type="radio" name="DATA_SOURCE" value="<?=Model_Supplier_Contract::DATA_SOURCE_OUTSIDE?>" <?=($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_OUTSIDE ? 'checked' : '')?> onchange="checkSupplierContractDataSource()">
-                                    Внешний источник
-                                </label>
-                                <select name="TUBE_ID" <?=($contract['DATA_SOURCE'] != Model_Supplier_Contract::DATA_SOURCE_OUTSIDE ? 'disabled' : '')?>>
-                                    <?foreach ($tubes as $tube) {?>
-                                        <option value="<?=$tube['TUBE_ID']?>" <?=($tube['TUBE_ID'] == $contract['TUBE_ID'] ? 'selected' : '')?>><?=$tube['TUBE_NAME']?></option>
-                                    <?}?>
-                                </select>
-                            </div>
+                        <div class="supplier-contract__contract-data-source">
+                            <label>
+                                <input type="radio" name="DATA_SOURCE" value="<?=Model_Supplier_Contract::DATA_SOURCE_OUTSIDE?>" <?=($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_OUTSIDE ? 'checked' : '')?> onchange="checkSupplierContractDataSource()">
+                                Внешний источник
+                            </label>
+                            <select class="custom-select" name="TUBE_ID" <?=($contract['DATA_SOURCE'] != Model_Supplier_Contract::DATA_SOURCE_OUTSIDE ? 'disabled' : '')?>>
+                                <?foreach ($tubes as $tube) {?>
+                                    <option value="<?=$tube['TUBE_ID']?>" <?=($tube['TUBE_ID'] == $contract['TUBE_ID'] ? 'selected' : '')?>><?=$tube['TUBE_NAME']?></option>
+                                <?}?>
+                            </select>
                         </div>
-                    </td>
-                </tr>
-                <?/*?><tr>
-                    <td class="gray right">Услуги:</td>
-                    <td>
-                        <div toggle_block="toggle_contract" class="contract_service_render_value"></div>
-                        <div class="dn" toggle_block="toggle_contract">
-                            <?=Form::buildField('service_choose_single', 'CONTRACT_SERVICES', $contractServices, [
-                                'show_all' => true,
-                                'render_value_to' => '.contract_service_render_value'
-                            ])?>
-                        </div>
-                    </td>
-                </tr><?*/?>
-                <?if(Access::allow('view_supplier_contract_group_dots')){?>
-                <tr>
-                    <td class="gray right">Группы точек:</td>
-                    <td>
+                    </div>
+                </div>
+            </div>
+
+            <?if(Access::allow('view_supplier_contract_group_dots')){?>
+                <div class="row m-b-10">
+                    <div class="col-sm-5 text-muted">
+                        <div class="text-right hidden-xs-down">Группы точек:</div>
+                        <div class="hidden-sm-up">Группы точек:</div>
+                    </div>
+                    <div class="col-sm-7">
                         <div toggle_block="toggle_contract" class="contract_pos_groups_render_value"></div>
                         <div class="dn" toggle_block="toggle_contract">
                             <?=Form::buildField('pos_group_choose_single', 'CONTRACT_POS_GROUPS', $contractDotsGroups, [
@@ -102,23 +135,26 @@
                                 'group_type' => Model_Dot::GROUP_TYPE_SUPPLIER
                             ])?>
                         </div>
-                    </td>
-                </tr>
-                <?}?>
-            </table>
-        </div>
-        <div class="col line_inner">
-            <b class="f18">Баланс по договору:</b>
-            <br>
-            <?if(!empty($contract['BALANCE']) && !is_numeric($contract['BALANCE'])){?>
-                <div class="f30"><b><?=$contract['BALANCE']?></b></div>
-            <?}else{?>
-                <div class="f50"><b><?=number_format($contract['BALANCE'], 2, ',', ' ')?></b> <?=Text::RUR?></div>
-                <?if (!empty($contract['BALANCE_DATE'])) {?><i class="gray">на <?=$contract['BALANCE_DATE']?></i><?}?>
+                    </div>
+                </div>
             <?}?>
 
         </div>
+        <div class="col-lg-6">
+            <div class="card m-b-0">
+                <div class="card-body bg-light">
+                    <b class="f18">Баланс по договору:</b>
+                    <br>
+                    <?if(!empty($contract['BALANCE']) && !is_numeric($contract['BALANCE'])){?>
+                        <div class="font-20 font-weight-bold"><?=$contract['BALANCE']?></div>
+                    <?}else{?>
+                        <div class="font-20 font-weight-bold"><?=number_format($contract['BALANCE'], 2, ',', ' ')?> <?=Text::RUR?></div>
+                        <?if (!empty($contract['BALANCE_DATE'])) {?><i class="text-muted">на <?=$contract['BALANCE_DATE']?></i><?}?>
+                    <?}?>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <script>

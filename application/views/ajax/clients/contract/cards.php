@@ -26,11 +26,11 @@
 <div class="card-body border-bottom d-xl-none">
     <div class="row">
         <div class="col-4">
-            <span class="btn btn-primary" toggle_class="card_list"><i class="fa fa-bars"></i> <span class="d-none d-sm-inline-block">Список карт</span></span>
+            <span class="<?=Text::BTN?> btn-primary" toggle_class="card_list"><i class="fa fa-bars"></i> <span class="d-none d-sm-inline-block">Список карт</span></span>
         </div>
         <div class="col-8 text-right">
             <?if(Access::allow('clients_card-add')){?>
-                <a class="btn btn-outline-primary" href="#" data-toggle="modal" data-target="#card_add"><i class="fa fa-plus"></i> Добавить карту</a>
+                <a class="<?=Text::BTN?> btn-outline-primary" href="#" data-toggle="modal" data-target="#card_add"><i class="fa fa-plus"></i> Добавить карту</a>
             <?}?>
         </div>
     </div>

@@ -67,8 +67,8 @@ class Model_Dot extends Model
 
         $db = Oracle::init();
 
-        if(!empty($filter['limit'])){
-            $sql->limit($filter['limit']);
+        if(!empty($filter['pagination'])){
+            return $db->pagination($sql, $filter);
         }
 
         return $db->query($sql);

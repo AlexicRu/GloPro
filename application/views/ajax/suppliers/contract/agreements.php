@@ -1,26 +1,36 @@
-<div class="tabs_vertical_block tabs_switcher tabs_agreements">
-    <div class="tabs_v">
-        <?if(Access::allow('suppliers_agreement-add')){?>
-            <div class="before_scroll">
-                <div class="tab_v"><div>
-                        <a href="#supplier_agreement_add" class="fancy"><span class="icon-card"></span> Добавить соглашение</a>
-                    </div></div>
-            </div>
-        <?}?>
-        <div class="scroll">
-            <?foreach($agreements as $key => $agreement){?>
-                <div class="tab_v" tab="<?=$agreement['AGREEMENT_ID']?>" onclick="loadAgreement($(this))">
-                    <div>
-                        <span class="icon-card gray"></span>
-                        [<?=$agreement['AGREEMENT_ID']?>] <span class="agreement_name"><?=$agreement['AGREEMENT_NAME']?></span>
-                    </div>
-                </div>
+<div class="card-body border-bottom d-xl-none">
+    <div class="row">
+        <div class="col-4">
+            <span class="<?=Text::BTN?> btn-primary" toggle_class="agreements_list"><i class="fa fa-bars"></i> <span class="hidden-xs-down">Список соглашений</span></span>
+        </div>
+        <div class="col-8 text-right">
+            <?if(Access::allow('suppliers_agreement-add')){?>
+                <a class="<?=Text::BTN?> btn-outline-primary" href="#" data-toggle="modal" data-target="#supplier_agreement_add"><i class="fa fa-plus"></i> Добавить соглашение</a>
             <?}?>
         </div>
     </div>
-    <div class="tabs_v_content tabs_content_no_padding">
+</div>
+
+<div class="vtabs customvtab tabs_agreements">
+    <ul class="nav nav-tabs tabs-vertical tabs-floating p-t-10" role="tablist" toggle_block="agreements_list">
+        <?if(Access::allow('suppliers_agreement-add')){?>
+            <li class="nav-item no_content d-none d-xl-block before_scroll">
+                <a class="nav-link nowrap" href="#" data-toggle="modal" data-target="#supplier_agreement_add"><i class="fa fa-plus"></i> Добавить соглашение</a>
+            </li>
+        <?}?>
         <?foreach($agreements as $key => $agreement){?>
-            <div class="tab_v_content" tab_content="<?=$agreement['AGREEMENT_ID']?>"></div>
+            <li class="nav-item" tab="<?=$agreement['AGREEMENT_ID']?>">
+                <a class="nav-link nowrap" data-toggle="tab" href="#agreement<?=$agreement['AGREEMENT_ID']?>" role="tab" onclick="loadAgreement($(this))">
+                    <span class="fal fa-file-alt fa-lg m-r-5"></span>
+                    [<?=$agreement['AGREEMENT_ID']?>] <span class="agreement_name"><?=$agreement['AGREEMENT_NAME']?></span>
+                </a>
+            </li>
+        <?}?>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content p-0">
+        <?foreach($agreements as $key => $agreement){?>
+            <div class="tab-pane" id="agreement<?=$agreement['AGREEMENT_ID']?>" role="tabpanel"></div>
         <?}?>
     </div>
 </div>
@@ -31,14 +41,6 @@
 
 <script>
     $(function(){
-        var clicked = false;
-        $(".tabs_agreements [tab]").each(function(){
-            if(clicked){
-                return;
-            }
-
-            clicked = true;
-            $(this).click();
-        });
+        $(".tabs_agreements .nav-item[tab]:first .nav-link").click();
     });
 </script>
