@@ -1,5 +1,5 @@
 <div class="form_client_add_bill_product m-b-10 border-bottom p-b-10">
-    <span class="font-weight-bold">Товар</span>
+    <b>Товар</b>
     <span class="btn btn-sm btn_icon btn-outline-danger ts_remove" onclick="addBillDeleteRow($(this))"><i class="fa fa-times"></i></span>
 
     <div class="row m-t-5">

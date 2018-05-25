@@ -1,5 +1,5 @@
 <div class="modal-body">
-    <div class="font-20 font-weight-bold m-b-10">Уведомления по e-mail:</div>
+    <b class="font-20 m-b-10">Уведомления по e-mail:</b>
 
     <div class="m-b-10">
         <input type="checkbox" class="filled-in chk-col-purple" name="notice_email_card" id="notice_email_card" <?=($settings['EML_CARD_BLOCK'] ? 'checked' : '')?>>

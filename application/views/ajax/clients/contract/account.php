@@ -2,7 +2,7 @@
     <div class="row font-20 align-items-center">
         <div class="col-md-6">
             <span class="text-muted">Баланс по договору:</span>
-            <span class="nowrap font-weight-bold"><?=number_format($balance['BALANCE'], 2, ',', ' ')?> <?=Text::RUR?></span>
+            <b class="nowrap"><?=number_format($balance['BALANCE'], 2, ',', ' ')?> <?=Text::RUR?></b>
         </div>
         <div class="col-md-6 text-right with-mb">
             <?if(Access::allow('clients_bill-add')){?>
@@ -23,7 +23,7 @@
                         <div class="float-right"><a href="#" data-toggle="modal" data-target="#contract_limits_edit" class="waves-effect waves-light btn btn-outline-primary btn-sm"><i class="fa fa-pencil-alt"></i></a></div>
                     <?}?>
 
-                    <span class="font-20 font-weight-bold">Остатки по договору:</span>
+                    <span class="font-18 font-weight-bold">Остатки по договору:</span>
 
                     <?if (empty($contractLimits)) {?>
                         <br>Без ограничений<br>
@@ -62,10 +62,10 @@
                     <br>
                 <?}?>
 
-                <span class="font-weight-bold font-20">Обороты по договору:</span>
+                <span class="font-weight-bold font-18">Обороты по договору:</span>
                 <div class="card-body bg-white m-b-10 m-t-10">
                     <div class="text-muted">за текущий период:</div>
-                    <div class="font-20 font-weight-bold"><?=number_format($turnover['MONTH_REALIZ'], 2, ',', ' ')?> л. / <?=number_format($turnover['MONTH_REALIZ_CUR'], 2, ',', ' ')?> <?=Text::RUR?></div>
+                    <b class="font-20"><?=number_format($turnover['MONTH_REALIZ'], 2, ',', ' ')?> л. / <?=number_format($turnover['MONTH_REALIZ_CUR'], 2, ',', ' ')?> <?=Text::RUR?></b>
                 </div>
 
                 <div class="as_white">
@@ -81,7 +81,7 @@
                 </div>
             <?}?>
 
-            <div class="font-20 font-weight-bold">Платежи:</div><br>
+            <div class="font-18 font-weight-bold">Платежи:</div><br>
 
             <div class="p-r-3 p-l-3">
                 <div class="ajax_block_payments_history_out">
@@ -165,7 +165,7 @@
             tpl.attr('guid', data[i].ORDER_GUID);
             tpl.find('[row_date]').text(data[i].ORDER_DATE);
             tpl.find('[row_num]').text('№' + data[i].ORDER_NUM);
-            tpl.find('[row_summ]').html('<span class="text-muted">Сумма</span> <span class="font-weight-bold">' + number_format(data[i].SUMPAY, 2, ',', ' ') + ' <?=Text::RUR?></span>');
+            tpl.find('[row_summ]').html('<span class="text-muted">Сумма</span> <b>' + number_format(data[i].SUMPAY, 2, ',', ' ') + ' <?=Text::RUR?></b>');
 
             if (data[i].DATE_IN) {
                 tpl.find('[row_comment]').append('<div class="text-muted"><i>Внесена:</i> '+ data[i].DATE_IN +'</div>');

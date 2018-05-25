@@ -71,7 +71,7 @@
 <div class="row p-20">
     <div class="col-lg-6">
         <?if(Access::allow('view_payment_block')){?>
-            <div class="font-20 font-weight-bold m-b-10">Оплата:</div>
+            <div class="font-18 font-weight-bold m-b-10">Оплата:</div>
 
             <div class="row m-b-10">
                 <div class="col-sm-5 text-muted">
@@ -152,7 +152,7 @@
         <?}?>
 
         <?if(Access::allow('view_goods_receiver')){?>
-            <div class="font-20 font-weight-bold m-b-10 m-t-20">Грузополучатель:</div>
+            <div class="font-18 font-weight-bold m-b-10 m-t-20">Грузополучатель:</div>
 
             <div class="row m-b-10">
                 <div class="col-sm-5 text-muted">
@@ -186,7 +186,7 @@
         <?}?>
 
         <?if(Access::allow('view_penalties')){?>
-            <div class="font-20 font-weight-bold m-b-10 m-t-20">Штрафы по счету:</div>
+            <div class="font-18 font-weight-bold m-b-10 m-t-20">Штрафы по счету:</div>
 
             <div class="row m-b-10">
                 <div class="col-sm-5 text-muted">
@@ -228,7 +228,7 @@
     <div class="col-lg-6">
         <div class="card-body bg-light">
             <?if(Access::allow('view_tariffs')){?>
-                <div class="font-20 font-weight-bold m-b-10">Тарификация:</div>
+                <div class="font-18 font-weight-bold m-b-10">Тарификация:</div>
 
                 <div class="row m-b-10">
                     <div class="col-sm-5 text-muted">

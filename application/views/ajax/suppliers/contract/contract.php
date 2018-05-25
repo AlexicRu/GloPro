@@ -1,33 +1,39 @@
 <div class="supplier-contract__contract">
-    <div class="tc_top_line">
-        [<?=$contract['CONTRACT_ID']?>]
-        <span toggle_block="toggle_contract">
-            <?=$contract['CONTRACT_NAME']?> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != '31.12.2099'){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
-            <span class="label <?=Model_Supplier_Contract::$statusContractClasses[$contract['CONTRACT_STATE']]?>"><?=Model_Supplier_Contract::$statusContractNames[$contract['CONTRACT_STATE']]?></span>
-        </span>
-        <span toggle_block="toggle_contract" class="dn gray">
-            <input type="text" name="CONTRACT_NAME" value="<?=Text::quotesForForms($contract['CONTRACT_NAME'])?>" class="input_big input_medium">
-            от
-            <input type="text" name="DATE_BEGIN" value="<?=$contract['DATE_BEGIN']?>" class="input_big input_medium datepicker" readonly>
-            до
-            <input type="text" name="DATE_END" value="<?=$contract['DATE_END']?>" class="input_big input_medium datepicker" readonly>
-            <select class="select_big" name="CONTRACT_STATE">
-                <?
-                foreach(Model_Supplier_Contract::$statusContractNames as $id => $name){
-                    ?><option value="<?=$id?>" <?if($id == $contract['CONTRACT_STATE']){echo 'selected';}?>><?=$name?></option><?
-                }
-                ?>
-            </select>
-        </span>
-    
-        <?if(Access::allow('suppliers_contract-edit')){?>
-            <div class="fr" toggle_block="toggle_contract"><button class="btn" toggle="toggle_contract"><i class="fa fa-pencil-alt"></i> Редактировать</button></div>
-            <div class="fr dn" toggle_block="toggle_contract">
-                <button class="btn btn_green btn_reverse" onclick="editSupplierContract()"><i class="fa fa-check"></i> Сохранить</button>
-                <button class="btn btn_red" toggle="toggle_contract"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+    <div class="p-20 border-bottom m-b-20">
+        <div class="row align-items-center font-20">
+            <div class="col-9">
+                [<?=$contract['CONTRACT_ID']?>]
+                <span toggle_block="toggle_contract">
+                    <b><?=$contract['CONTRACT_NAME']?></b> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != '31.12.2099'){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
+                    <span class="badge <?=Model_Supplier_Contract::$statusContractClasses[$contract['CONTRACT_STATE']]?>"><?=Model_Supplier_Contract::$statusContractNames[$contract['CONTRACT_STATE']]?></span>
+                </span>
+                <span toggle_block="toggle_contract" class="dn">
+                    <input type="text" name="CONTRACT_NAME" value="<?=Text::quotesForForms($contract['CONTRACT_NAME'])?>" class="form-control">
+                    <span class="text-muted">от</span>
+                    <input type="date" name="DATE_BEGIN" value="<?=Date::formatToDefault($contract['DATE_BEGIN'])?>" class="form-control">
+                    <span class="text-muted">до</span>
+                    <input type="date" name="DATE_END" value="<?=Date::formatToDefault($contract['DATE_END'])?>" class="form-control">
+                    <select class="custom-select" name="CONTRACT_STATE">
+                        <?
+                        foreach(Model_Supplier_Contract::$statusContractNames as $id => $name){
+                            ?><option value="<?=$id?>" <?if($id == $contract['CONTRACT_STATE']){echo 'selected';}?>><?=$name?></option><?
+                        }
+                        ?>
+                    </select>
+                </span>
             </div>
-        <?}?>
+            <div class="col-3 text-right">
+                <?if(Access::allow('suppliers_contract-edit')){?>
+                    <div toggle_block="toggle_contract"><button class="<?=Text::BTN?> btn-outline-primary" toggle="toggle_contract"><i class="fa fa-pencil-alt"></i> Редактировать</button></div>
+                    <div class="dn" toggle_block="toggle_contract">
+                        <button class="<?=Text::BTN?> btn-success" onclick="editSupplierContract()"><i class="fa fa-check"></i> Сохранить</button>
+                        <button class="<?=Text::BTN?> btn-danger" toggle="toggle_contract"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+                    </div>
+                <?}?>
+            </div>
+        </div>
     </div>
+
     <div class="as_table">
         <div class="col">
             <table>

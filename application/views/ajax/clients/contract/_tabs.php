@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-md-6">
                 <span class="text-muted">Текущий баланс:</span>
-                <span class="nowrap font-weight-bold"><?=number_format($balance['BALANCE'], 2, ',', ' ')?> <?=Text::RUR?></span>
+                <b class="nowrap"><?=number_format($balance['BALANCE'], 2, ',', ' ')?> <?=Text::RUR?></b>
             </div>
             <div class="col-md-6">
                 <span class="text-muted">Оборот за текущий период:</span>
-                <span class="nowrap font-weight-bold"><?=number_format($balance['MONTH_REALIZ'], 2, ',', ' ')?> л.</span>
+                <b class="nowrap"><?=number_format($balance['MONTH_REALIZ'], 2, ',', ' ')?> л.</b>
             </div>
         </div>
     </div>

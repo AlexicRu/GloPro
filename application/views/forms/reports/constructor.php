@@ -25,7 +25,7 @@ if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL])){?>
             <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL] as $field){?>
 
                 <div class="m-b-20">
-                    <div class="font-weight-bold m-b-5"><?=$field['PROPERTY_NAME']?>:</div>
+                    <b class="m-b-5"><?=$field['PROPERTY_NAME']?>:</b><br>
                     <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'], false, [
                         'weight' => $field['PROPERTY_WEIGHT'],
                         'show_all' => !empty($field['PROPERTY_ALL']) ? $field['PROPERTY_ALL'] : false

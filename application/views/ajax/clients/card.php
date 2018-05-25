@@ -51,12 +51,12 @@ $user = Auth::instance()->get_user();
         <div class="row m-b-5 bg-light p-t-10 p-b-10" <?=($index ? 'toggle_block="last_transactions" style="display:none"' : '')?>>
             <div class="col-md-2 text-muted"><?=$transaction['DATE_TRN_FORMATTED']?> <?=$transaction['TIME_TRN']?></div>
             <div class="col-md-6">
-                <span class="font-weight-bold"><?=$transaction['POS_PETROL_NAME']?></span>
+                <b><?=$transaction['POS_PETROL_NAME']?></b>
                 <br>
                 <?=$transaction['POS_ADDRESS']?>
             </div>
             <div class="col-md-4">
-                <span class="font-weight-bold"><?=$transaction['LONG_DESC']?></span>
+                <b><?=$transaction['LONG_DESC']?></b>
                 <span class="nowrap">
                     <?=number_format($transaction['SERVICE_AMOUNT'], 2, ',', ' ')?> л. / <?=number_format($transaction['SUMPRICE_DISCOUNT'], 2, ',', ' ')?> <?=Text::RUR?>
                 </span>

@@ -16,9 +16,9 @@ class Model_Supplier_Contract extends Model_Contract
     ];
 
     public static $statusContractClasses = [
-        self::STATE_CONTRACT_WORK 			=> 'label_success',
-        self::STATE_CONTRACT_BLOCKED 		=> 'label_error',
-        self::STATE_CONTRACT_EXPIRED 		=> 'label_warning',
+        self::STATE_CONTRACT_WORK 			=> 'badge-success',
+        self::STATE_CONTRACT_BLOCKED 		=> 'badge-danger',
+        self::STATE_CONTRACT_EXPIRED 		=> 'badge-warning',
     ];
 
     /**
