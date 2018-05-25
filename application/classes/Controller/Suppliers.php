@@ -125,11 +125,11 @@ class Controller_Suppliers extends Controller_Common {
         $tabs = [
             'contract' => [
                 'name' => 'Договор',
-                'icon' => 'icon-contract',
+                'icon' => 'fa fa-book fa-lg',
             ],
             'agreements'    => [
                 'name' => 'Соглашения',
-                'icon' => 'icon-reports',
+                'icon' => 'fa fa-handshake fa-lg',
             ]
         ];
 

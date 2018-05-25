@@ -31,11 +31,11 @@ class Model_Report extends Model
     ];
 
     public static $reportGroups = [
-        self::REPORT_GROUP_ANALYTIC => ['name' => 'Аналитические', 'icon' => 'fa fa-chart-bar'],
-        self::REPORT_GROUP_CARDS    => ['name' => 'Карты', 'icon' => 'fa fa-credit-card-front'],
-        self::REPORT_GROUP_CLIENT   => ['name' => 'Клиентские', 'icon' => 'fa fa-user'],
-        self::REPORT_GROUP_SUPPLIER => ['name' => 'Поставщики', 'icon' => 'fa fa-tint'],
-        self::REPORT_GROUP_OTHERS   => ['name' => 'Прочие', 'icon' => 'fa fa-file-alt'],
+        self::REPORT_GROUP_ANALYTIC => ['name' => 'Аналитические', 'icon' => 'fal fa-chart-bar fa-lg'],
+        self::REPORT_GROUP_CARDS    => ['name' => 'Карты', 'icon' => 'fal fa-credit-card-front fa-lg'],
+        self::REPORT_GROUP_CLIENT   => ['name' => 'Клиентские', 'icon' => 'fal fa-user fa-lg'],
+        self::REPORT_GROUP_SUPPLIER => ['name' => 'Поставщики', 'icon' => 'fal fa-tint fa-lg'],
+        self::REPORT_GROUP_OTHERS   => ['name' => 'Прочие', 'icon' => 'fal fa-file-alt fa-lg'],
     ];
 
     public static $reportGlobalTypesNames = [
