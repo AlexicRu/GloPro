@@ -1,41 +1,51 @@
-<div class="as_table">
-    <div class="col">
-        <table class="table_form">
-            <tr>
-                <td class="gray right" width="170">Email для ответов:</td>
-                <td>
-                    <input type="text" name="feedback_email" class="input_grand">
-                </td>
-            </tr>
-            <tr>
-                <td class="gray right">Тема сообщения:</td>
-                <td>
-                    <input type="text" name="feedback_subject" class="input_grand">
-                </td>
-            </tr>
-            <tr>
-                <td class="gray right">Текст сообщения:</td>
-                <td>
-                    <textarea name="feedback_text" style="width: 500px"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td class="gray right">Прикрепленные файлы:</td>
-                <td>
-                    <div class="feedback_files dropzone"></div>
-                    <i class="gray">Максимальный размер файлов - 3 MB, максимум файлов - 5 шт</i>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button class="btn waves-effect waves-light btn_green btn_reverse btn_feedback" onclick="preFeedback($(this))"><i class="fa fa-check"></i> Сохранить</button>
-                </td>
-            </tr>
-        </table>
+<div class="form form_add_card">
+    <div class="form-group row">
+        <div class="col-sm-4 col-lg-3">
+            <div class="text-right hidden-xs-down">Email для ответов:</div>
+            <span class="hidden-sm-up">Email для ответов:</span>
+        </div>
+        <div class="col-sm-8 col-lg-9">
+            <input type="text" name="feedback_email" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-4 col-lg-3">
+            <div class="text-right hidden-xs-down">Тема сообщения:</div>
+            <span class="hidden-sm-up">Тема сообщения:</span>
+        </div>
+        <div class="col-sm-8 col-lg-9">
+            <input type="text" name="feedback_email" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-4 col-lg-3">
+            <div class="text-right hidden-xs-down">Текст сообщения:</div>
+            <span class="hidden-sm-up">Текст сообщения:</span>
+        </div>
+        <div class="col-sm-8 col-lg-9">
+            <textarea name="feedback_text" class="form-control"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-4 col-lg-3">
+            <div class="text-right hidden-xs-down">Прикрепленные файлы:</div>
+            <span class="hidden-sm-up">Прикрепленные файлы:</span>
+        </div>
+        <div class="col-sm-8 col-lg-9">
+            <div class="feedback_files dropzone"></div>
+            <i class="text-muted">Максимальный размер файлов - 3 MB, максимум файлов - 5 шт</i>
+        </div>
+    </div>
+
+    <div class="form-group row m-b-0">
+        <div class="col-sm-8 offset-sm-4 col-lg-9 offset-lg-3">
+            <button class="<?=Text::BTN?> btn-outline-success" onclick="preFeedback($(this))"><i class="fa fa-check"></i> Сохранить</button>
+        </div>
     </div>
 </div>
-
 
 <script>
     var files = [];
