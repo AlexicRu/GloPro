@@ -1,16 +1,13 @@
-<h1>
-    Новости
-
-    <?if(Access::allow('news_news-edit')){?>
-        <a href="#news_edit" class="btn waves-effect waves-light fancy">Добавить новость</a>
-    <?}?>
-</h1>
-
-<div class="block list">
-    <div class="ajax_block_news_out">
-
-    </div>
+<?if(Access::allow('news_news-edit')){?>
+<div class="text-right m-b-30">
+    <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#news_edit"><i class="fa fa-plus"></i> Добавить новость</a>
 </div>
+<?}?>
+
+<ul class="ajax_block_news_out list-unstyled m-b-0">
+
+</ul>
+
 
 <?if(Access::allow('news_news-edit')){?>
     <?=$popupNewsAdd?>
@@ -24,11 +21,20 @@
     function renderAjaxPaginationNews(data, block)
     {
         for(var i in data){
-            var tpl = $('<div class="news_elem"><div class="n_img" /><a class="n_title"></a><div class="n_date gray"></div><div class="n_body" /><div class="n_link"><a>Читать подробнее</a></div></div>');
+            var tpl = $('<li class="media m-b-20 p-20 bg-white">' +
+                '        <div class="mr-3 n_img" />' +
+                '        <div class="media-body">' +
+                '            <h4 class="mt-0 mb-1 n_title"><a /></h4>' +
+                '            <div class="n_date text-muted" />' +
+                '            <div class="n_body m-t-10 m-b-20" />' +
+                '            <div class="n_link"><a class="'+ BTN +' btn-outline-primary">Читать подробнее</a></div>' +
+                '        </div>' +
+                '    </li>');
+
             if(data[i]['AGENT_ID'] == 0){
-                tpl.prepend('<i class="icon-user"></i> ');
+                tpl.find('.n_title').prepend('<i class="fal fa-user fa-lg m-r-5"></i> ');
             }
-            tpl.find('.n_title').text(data[i]['TITLE']).attr('href', '/news/' + data[i].NEWS_ID);
+            tpl.find('.n_title a').text(data[i]['TITLE']).attr('href', '/news/' + data[i].NEWS_ID);
             tpl.find('.n_date').text(data[i]['DATE_CREATE_WEB']);
             tpl.find('.n_link a').attr('href', '/news/' + data[i].NEWS_ID);
             tpl.find('.n_body').html(data[i]['announce']);

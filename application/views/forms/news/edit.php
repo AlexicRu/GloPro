@@ -1,45 +1,57 @@
-<form>
-    <?if(!empty($detail['NEWS_ID'])){?>
-        <input type="hidden" name="news_edit_id" value="<?=$detail['NEWS_ID']?>">
-        <input type="hidden" name="news_edit_image_path" value="<?=$detail['PICTURE']?>">
-    <?}?>
-    <table class="table_form form_news_add">
-        <tr>
-            <td class="gray right" width="170">Заголовок:</td>
-            <td>
-                <input type="text" name="news_edit_title" class="input_big" value="<?=(empty($detail['TITLE']) ? '' : $detail['TITLE'])?>">
-            </td>
-        </tr>
-        <tr>
-            <td class="gray right">Дата:</td>
-            <td>
-                <input type="text" class="input_big datepicker" readonly name="news_edit_date" value="<?=(empty($detail['DATE_CREATE_WEB']) ? date('d.m.Y') : $detail['DATE_CREATE_WEB'])?>">
-            </td>
-        </tr>
-        <tr>
-            <td class="gray right">Фото:</td>
-            <td>
+<div class="modal-body">
+    <form class="form form_news_add">
+        <?if(!empty($detail['NEWS_ID'])){?>
+            <input type="hidden" name="news_edit_id" value="<?=$detail['NEWS_ID']?>">
+            <input type="hidden" name="news_edit_image_path" value="<?=$detail['PICTURE']?>">
+        <?}?>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Заголовок:</div>
+                <span class="hidden-sm-up">Заголовок:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="news_edit_title" class="form-control" value="<?=(empty($detail['TITLE']) ? '' : $detail['TITLE'])?>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Дата:</div>
+                <span class="hidden-sm-up">Дата:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="date" class="form-control" name="news_edit_date" value="<?=(empty($detail['DATE_CREATE_WEB']) ? date('Y-m-d') : Date::formatToDefault($detail['DATE_CREATE_WEB']))?>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Фото:</div>
+                <span class="hidden-sm-up">Фото:</span>
+            </div>
+            <div class="col-sm-8">
                 <div class="news_edit_image dropzone"></div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
+            </div>
+        </div>
+
+        <div class="form-group row m-b-0">
+            <div class="col-12">
                 <textarea name="news_edit_text"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td class="fr">
-                <?if(!empty($detail['NEWS_ID'])){?>
-                    <span class="btn btn_reverse btn_news_edit_go"><i class="fa fa-check"></i> Редактировать</span>
-                <?}else{?>
-                    <span class="btn btn_reverse btn_news_edit_go"><i class="fa fa-plus"></i> Добавить</span>
-                <?}?>
-                <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-            </td>
-        </tr>
-    </table>
-</form>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <?if(!empty($detail['NEWS_ID'])){?>
+        <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),goEditNews)"><i class="fa fa-check"></i> Редактировать</span>
+    <?}else{?>
+        <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),goEditNews)"><i class="fa fa-plus"></i> Добавить</span>
+    <?}?>
+
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
     var editor = $('[name=news_edit_text]');
@@ -60,7 +72,7 @@
             },
             queuecomplete: function ()
             {
-                goAddNews();
+                goAddNews();initWYSIWYG
             }
         });
 
@@ -69,16 +81,16 @@
         <?if(!empty($detail['NEWS_ID'])){?>
             editor.trumbowyg('html', $('.news_elem .n_body').html());
         <?}?>
-
-        $('.btn_news_edit_go').on('click', function(){
-
-            if(dropzone.getAcceptedFiles().length){
-                dropzone.processQueue();
-            }else{
-                goAddNews();
-            }
-        });
     });
+
+    function goEditNews()
+    {
+        if(dropzone.getAcceptedFiles().length){
+            dropzone.processQueue();
+        }else{
+            goAddNews();
+        }
+    }
 
     function goAddNews()
     {
@@ -92,6 +104,7 @@
 
         if(params.title == ''){
             message(0, 'Введите заголовок новости');
+            endSubmitForm();
             return false;
         }
 
@@ -115,6 +128,7 @@
             }
             dropzone.removeAllFiles();
             image = false;
+            endSubmitForm();
         });
     }
 </script>

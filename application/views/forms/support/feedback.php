@@ -1,4 +1,4 @@
-<div class="form form_add_card">
+<div class="form">
     <div class="form-group row">
         <div class="col-sm-4 col-lg-3">
             <div class="text-right hidden-xs-down">Email для ответов:</div>
