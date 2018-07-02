@@ -7,6 +7,7 @@ class Controller_Info extends Controller_Common
      */
 	public function action_index()
 	{
+        $this->title[] = 'Информационный портал';
 	}
 
     /**
@@ -14,6 +15,7 @@ class Controller_Info extends Controller_Common
      */
     public function action_marketing()
     {
+        $this->title[] = 'Рекламно-информационные материалы';
     }
 
     /**
@@ -21,5 +23,6 @@ class Controller_Info extends Controller_Common
      */
     public function action_passports()
     {
+        $this->title[] = 'Паспорта качества';
     }
 }

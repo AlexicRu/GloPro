@@ -1,60 +1,97 @@
-<h1>Реализация по дистрибьюторам</h1>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <b class="font-18 m-b-5">Выберите период:</b>
 
-<div class="as_table as_table__dashboard">
-    <div class="col" style="width: 500px">
-        <div class="block">
-            <b class="f18">Выберите период:</b><br>
-            <select name="date_agent_month">
-                <?for ($i = 1; $i <= 12; $i++) {?>
-                    <option value="<?=$i?>" <?=($i == date('n') ? 'selected' : '')?>><?=Date::monthRu($i)?></option>
-                <?}?>
-            </select>
-            <input type="number" class="input_mini" name="date_agent_year" value="<?=date('Y')?>">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <select name="date_agent_month" class="custom-select">
+                            <?for ($i = 1; $i <= 12; $i++) {?>
+                                <option value="<?=$i?>" <?=($i == date('n') ? 'selected' : '')?>><?=Date::monthRu($i)?></option>
+                            <?}?>
+                        </select>
+                    </div>
 
-            <span class="btn btn_green btn_small btn_reverse" onclick="buildRealizationsByAgents()">Обновить</span>
-        </div>
-
-        <div class="tabs_block tabs_switcher">
-            <div class="tabs">
-                <span tab="realization" class="tab active">Реализация</span><span tab="cards" class="tab">Карты</span>
-            </div>
-            <div class="tabs_content">
-                <div class="tab_content active" tab_content="realization">
-                    <div class="realization_by_agents"></div>
+                    <div class="col-sm-5 with-mb">
+                        <input type="number" class="form-control" name="date_agent_year" value="<?=date('Y')?>">
+                    </div>
                 </div>
-                <div class="tab_content" tab_content="cards">
-                    <div class="realization_by_agents_cards_count"></div>
+
+                <div class="m-t-5">
+                    <span class="<?=Text::BTN?> btn-success" onclick="buildRealizationsByAgents()">Обновить</span>
                 </div>
             </div>
         </div>
 
-        <div class="block">
-            <h2>В разрезе номенклатур (литры)</h2>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs customtab" role="tablist">
+            <li class="nav-item" tab="2">
+                <a class="nav-link active" data-toggle="tab" href="#tabRealization" role="tab">
+                    Реализация
+                </a>
+            </li>
+            <li class="nav-item" tab="2">
+                <a class="nav-link" data-toggle="tab" href="#tabCards" role="tab">
+                    Карты
+                </a>
+            </li>
+        </ul>
 
-            <div id="realization_by_agents_nomenclature_graph" class="graph"></div>
-<!--            <div class="realization_by_agents_nomenclature"></div>-->
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="tabRealization" role="tabpanel">
+                <div class="card">
+                    <div class="card-body scroll-x">
+                        <div class="realization_by_agents"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="tabCards" role="tabpanel">
+                <div class="card">
+                    <div class="card-body scroll-x">
+                        <div class="realization_by_agents_cards_count"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title"><span class="lstick"></span>В разрезе номенклатур (литры)</h3>
+
+                <div id="realization_by_agents_nomenclature_graph" class="graph"></div>
+            </div>
         </div>
     </div>
-    <div class="col">
-        <div class="block">
-            <h2>Реализация за год</h2>
+    <div class="col-lg-8">
 
-            <div id="realization_by_agents_graph" class="graph"></div>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title"><span class="lstick"></span>Реализация за год</h3>
+
+                <div id="realization_by_agents_graph" class="graph hidden-sm-down"></div>
+                <div class="hidden-md-up">
+                    <i class="text-muted">Данный график вы сможете увидеть на десктопной версии сайта</i>
+                </div>
+            </div>
         </div>
 
-        <div class="block">
-            <h2>Средняя скидка по конечному клиенту</h2>
-            <div id="realization_by_agents_avg_discount_graph" class="graph"></div>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title"><span class="lstick"></span>Средняя скидка по конечному клиенту</h3>
+
+                <div id="realization_by_agents_avg_discount_graph" class="graph hidden-sm-down"></div>
+                <div class="hidden-md-up">
+                    <i class="text-muted">Данный график вы сможете увидеть на десктопной версии сайта</i>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
     $(function () {
-        var datepicker = $('.datepicker');
-        renderDatePicker(datepicker);
-        datepicker.datepicker("setDate", '<?=date('01.m.Y')?>');
-
         buildRealizationsByAgents();
         buildRealizationByAgentsGraph();
         buildRealizationByAgentsAvgDiscountGraph();

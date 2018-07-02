@@ -1,5 +1,5 @@
 <?if (!empty($data)) {?>
-<table class="table table_small">
+<table class="table table-sm m-b-0">
     <tr>
         <th>Дистрибьютор</th>
         <th class="right">Кол-во<br>литров</th>

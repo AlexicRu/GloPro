@@ -4,12 +4,16 @@ class Controller_Dashboard extends Controller_Common {
 
 	public function action_index()
 	{
+        $this->title[] = 'Реализация по клиентам';
+
 	    //график
         $this->_initChart();
 	}
 
     public function action_agent()
     {
+        $this->title[] = 'Реализация по дистрибьюторам';
+
         //график
         $this->_initChart();
     }

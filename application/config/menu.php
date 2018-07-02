@@ -1,11 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access');
 
 return array(
-    'dashboard'         => ['title' => 'Dashboard', 'icon' => 'icon-calendar', 'children' => [
+    'dashboard'         => ['title' => 'Dashboard', 'icon' => 'fal fa-tachometer-alt', 'children' => [
         'index'         => 'Клиенты',
         'agent'         => 'Дистрибьюторы',
     ]],
-    'info'              => ['title' => 'Инфо-портал', 'icon' => 'icon-news', 'children' => [
+    'info'              => ['title' => 'Инфо-портал', 'icon' => 'fal fa-info', 'children' => [
         'index'         => 'Инфо-портал',
         'marketing'     => 'РИМ',
         'passports'     => 'Паспорта качества',

@@ -1,6 +1,9 @@
-<table>
-    <tr>
-        <td class="gray right">Сумма платежей:</td>
-        <td class="right"><?=number_format($data['SUMPAY'], 2, '.', '&nbsp;')?> <?=Text::RUR?></td>
-    </tr>
-</table>
+<div class="row">
+    <div class="col-sm-6 text-muted">
+        <div class="text-right hidden-xs-down">Сумма платежей:</div>
+        <span class="hidden-sm-up">Сумма платежей:</span>
+    </div>
+    <div class="col-sm-6">
+        <?=number_format($data['SUMPAY'], 2, '.', '&nbsp;')?>&nbsp;<?=Text::RUR?>
+    </div>
+</div>

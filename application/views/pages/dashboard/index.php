@@ -1,56 +1,77 @@
-<h1>Реализация по клиентам</h1>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <b class="font-18 m-b-5">Выберите период:</b>
 
-<div class="as_table as_table__dashboard">
-    <div class="col" style="width: 500px">
-        <div class="block">
-            <b class="f18">Выберите период:</b><br>
-            <select name="date_client_month">
-                <?for ($i = 1; $i <= 12; $i++) {?>
-                    <option value="<?=$i?>" <?=($i == date('n') ? 'selected' : '')?>><?=Date::monthRu($i)?></option>
-                <?}?>
-            </select>
-            <input type="number" class="input_mini" name="date_client_year" value="<?=date('Y')?>">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <select name="date_client_month" class="custom-select">
+                            <?for ($i = 1; $i <= 12; $i++) {?>
+                                <option value="<?=$i?>" <?=($i == date('n') ? 'selected' : '')?>><?=Date::monthRu($i)?></option>
+                            <?}?>
+                        </select>
+                    </div>
 
-            <span class="btn btn_green btn_small btn_reverse" onclick="buildRealizationsByClient()">Обновить</span>
+                    <div class="col-sm-5 with-mb">
+                        <input type="number" class="form-control" name="date_client_year" value="<?=date('Y')?>">
+                    </div>
+                </div>
+
+                <div class="m-t-5">
+                    <span class="<?=Text::BTN?> btn-success" onclick="buildRealizationsByClient()">Обновить</span>
+                </div>
+            </div>
         </div>
 
-        <div class="block">
-            <h2>Реализация</h2>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title"><span class="lstick"></span>Реализация</h3>
 
-            <div class="realization_by_clients"></div>
+                <div class="realization_by_clients"></div>
+            </div>
         </div>
 
-        <div class="block">
-            <h2>В разрезе номенклатур (литры)</h2>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title"><span class="lstick"></span>В разрезе номенклатур (литры)</h3>
 
-            <div id="realization_by_clients_nomenclature_graph" class="graph"></div>
-<!--            <div class="realization_by_clients_nomenclature"></div>-->
+                <div id="realization_by_clients_nomenclature_graph" class="graph"></div>
+            </div>
         </div>
-
     </div>
-    <div class="col">
-        <div class="block">
-            <h2>Реализация за год</h2>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title"><span class="lstick"></span>Реализация за год</h3>
 
-            <div id="realization_by_clients_graph" class="graph"></div>
+                <div id="realization_by_clients_graph" class="graph hidden-sm-down"></div>
+                <div class="hidden-md-up">
+                    <i class="text-muted">Данный график вы сможете увидеть на десктопной версии сайта</i>
+                </div>
+            </div>
         </div>
 
-        <div class="as_table as_table__dashboard">
-            <div class="col">
-                <div class="block">
-                    <h2>Оплаты</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title"><span class="lstick"></span>Оплаты</h3>
 
-                    <div class="realization_by_clients_payments"></div>
+                        <div class="realization_by_clients_payments"></div>
+                    </div>
                 </div>
             </div>
             <?if (Access::allow('dashboard_get-realization-by-clients-summary')) {?>
-            <div class="col">
-                <div class="block">
-                    <h2>Сводная таблица</h2>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title"><span class="lstick"></span>Сводная таблица</h3>
 
-                    <div class="realization_by_clients_summary"></div>
+                            <div class="realization_by_clients_summary"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             <?}?>
         </div>
     </div>
