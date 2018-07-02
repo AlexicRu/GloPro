@@ -17,16 +17,6 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Дата:</div>
-                <span class="hidden-sm-up">Дата:</span>
-            </div>
-            <div class="col-sm-8">
-                <input type="date" class="form-control" name="news_edit_date" value="<?=(empty($detail['DATE_CREATE_WEB']) ? date('Y-m-d') : Date::formatToDefault($detail['DATE_CREATE_WEB']))?>">
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-4">
                 <div class="text-right hidden-xs-down">Фото:</div>
                 <span class="hidden-sm-up">Фото:</span>
             </div>
@@ -79,7 +69,7 @@
         initWYSIWYG(editor);
 
         <?if(!empty($detail['NEWS_ID'])){?>
-            editor.trumbowyg('html', $('.news_elem .n_body').html());
+            editor.trumbowyg('html', $('.n_body').html());
         <?}?>
     });
 
@@ -97,7 +87,6 @@
         var params = {
             id:     $('[name=news_edit_id]').val(),
             title:  $('[name=news_edit_title]').val(),
-            date:   $('[name=news_edit_date]').val(),
             text:   editor.trumbowyg('html'),
             image:  image ? image : $('[name=news_edit_image_path]').val()
         };
