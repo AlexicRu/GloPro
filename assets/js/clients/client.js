@@ -75,3 +75,20 @@ function loadContract(tab, query, params)
         $('.ajax_contract_block').html(data).removeClass(CLASS_LOADING);
     });
 }
+
+/**
+ * Удаление клиента
+ *
+ * @param btn
+ */
+function clientDelete(btn) {
+    if (confirm('Вы уверены, что хотите удалить клиента?')) {
+        $.post('/clients/client-delete', {client_id: clientId}, function (data) {
+            if (data.success) {
+                window.location.href = '/clients';
+            } else {
+                message(0, 'Удаление не удалось')
+            }
+        });
+    }
+}

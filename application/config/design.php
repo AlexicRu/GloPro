@@ -49,10 +49,6 @@ return array(
             'title' => 'ГПН-КП',
             'class' => 'gpn'
         ],
-        'pnggloproru' => [
-            'title' => 'Презентация ГПН-КП',
-            'class' => 'png'
-        ],
         'dealergpncardcom' => [
             'title' => 'ГПН-КП',
             'class' => 'gpn'
@@ -66,6 +62,51 @@ return array(
         'a_22' => [
             'title' => 'ETS Trading',
             'class' => 'ets'
+        ],
+        'u_2126' => [
+            'title' => 'GloPro',
+            'class' => 'europlan',
+            'url'   => 'demolkgloproru'
+        ],
+        'u_2129' => [
+            'title' => 'GloPro',
+            'class' => 'pochta',
+            'url'   => 'demolkgloproru'
+        ],
+        'u_2128' => [
+            'title' => 'GloPro',
+            'class' => 'pochta',
+            'url'   => 'demolkgloproru'
+        ],
+        'u_2130' => [
+            'title' => 'GloPro',
+            'class' => 'pochta',
+            'url'   => 'demolkgloproru'
+        ],
+        'u_2131' => [
+            'title' => 'GloPro',
+            'class' => 'pochta',
+            'url'   => 'demolkgloproru'
+        ],
+        'u_2133' => [
+            'title' => 'GloPro',
+            'class' => 'ctpz',
+            'url'   => 'demolkgloproru'
+        ],
+        'u_2134' => [
+            'title' => 'GloPro',
+            'class' => 'ctpz',
+            'url'   => 'demolkgloproru'
+        ],
+        'u_2135' => [
+            'title' => 'GloPro',
+            'class' => 'ctpz',
+            'url'   => 'demolkgloproru'
+        ],
+        'u_2136' => [
+            'title' => 'GloPro',
+            'class' => 'ctpz',
+            'url'   => 'demolkgloproru'
         ],
     ]
 );

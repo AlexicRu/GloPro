@@ -39,6 +39,17 @@ class Access
         self::ROLE_SUPERVISOR,
     ];
 
+    public static $managerRoles = [
+        self::ROLE_GOD,
+        self::ROLE_ROOT,
+        self::ROLE_ADMIN,
+        self::ROLE_SUPERVISOR,
+        self::ROLE_MANAGER,
+        self::ROLE_MANAGER_SALE,
+        self::ROLE_MANAGER_SALE_SUPPORT,
+        self::ROLE_ADMIN_READONLY,
+    ];
+
     public static $readonlyRoles = [
         self::ROLE_CLIENT,
         self::ROLE_ADMIN_READONLY,
@@ -47,7 +58,7 @@ class Access
     /**
      * функция проверки доступа
      */
-    public static function allow($action, $readOnly = false)
+    public static function allow($action, $allowToReadOnly = false)
     {
         if(empty($action)){
             return true;
@@ -69,12 +80,14 @@ class Access
             (isset($allow[$action]) && (
                 !in_array($user['ROLE_ID'], $allow[$action]) &&
                 !in_array('u_'.$user['MANAGER_ID'], $allow[$action]) &&
+                !in_array('g_'.$user['AGENT_GROUP_ID'], $allow[$action]) &&
                 !in_array('a_'.$user['AGENT_ID'], $allow[$action])
             )) ||
             // если задан запрет на действие и хоть где-то роль/агент/юзер, то нельзя
             (isset($deny[$action]) && (
                 in_array($user['ROLE_ID'], $deny[$action]) ||
                 in_array('u_'.$user['MANAGER_ID'], $deny[$action]) ||
+                in_array('g_'.$user['AGENT_GROUP_ID'], $deny[$action]) ||
                 in_array('a_'.$user['AGENT_ID'], $deny[$action])
             ))
         ){
@@ -83,7 +96,7 @@ class Access
 
         //если нет явного запрета или наоборот, доступа только конкретной роли
 
-        if(!$readOnly && in_array($user['ROLE_ID'], self::$readonlyRoles)){
+        if(!$allowToReadOnly && in_array($user['ROLE_ID'], self::$readonlyRoles)){
             return false;
         }
 
@@ -113,6 +126,7 @@ class Access
             isset($access[$file]) && (
                     in_array($user['ROLE_ID'], $access[$file]) ||
                     in_array('u_'.$user['MANAGER_ID'], $access[$file]) ||
+                    in_array('g_'.$user['AGENT_GROUP_ID'], $access[$file]) ||
                     in_array('a_'.$user['AGENT_ID'], $access[$file])
                 )
         ){
@@ -126,11 +140,12 @@ class Access
      * проверка запрета доступа
      *
      * @param $action
+     * @param $readOnly
      * @return bool
      */
-    public static function deny($action)
+    public static function deny($action, $readOnly = false)
     {
-        return !self::allow($action);
+        return !self::allow($action, $readOnly);
     }
 
     /**
@@ -202,4 +217,22 @@ class Access
         return false;
     }
 
+    /**
+     * получаем список доступных ролей
+     *
+     * @return array
+     */
+    public static function getAvailableRoles()
+    {
+        $roles = self::$roles;
+
+        $user = User::current();
+
+        if ($user['ROLE_ID'] == self::ROLE_ROOT) {
+            $roles[self::ROLE_ADMIN] = 'Администратор';
+            $roles[self::ROLE_ADMIN_READONLY] = 'Супервайзер группы агентов';
+        }
+
+        return $roles;
+    }
 }

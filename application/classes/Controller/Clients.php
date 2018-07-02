@@ -202,7 +202,9 @@ class Controller_Clients extends Controller_Common {
 		if(empty($result)){
 			$this->jsonResult(false);
 		}
-		$this->jsonResult(true, $result);
+		$this->jsonResult(true, [
+		    'full_reload' => !empty($params['contract']['STATE_ID']) && $params['contract']['STATE_ID'] == Model_Contract::STATE_CONTRACT_DELETED ? true : false
+        ]);
 	}
 
     /**
@@ -451,10 +453,11 @@ class Controller_Clients extends Controller_Common {
 		$contractId = $this->request->param('id');
 		$params = [
 			'offset' 		=> $this->request->post('offset'),
-			'pagination'	=> true
+			'pagination'	=> true,
+			'contract_id'	=> $contractId,
 		];
 
-		list($paymentsHistory, $more) = Model_Contract::getPaymentsHistory($contractId, $params);
+		list($paymentsHistory, $more) = Model_Contract::getPaymentsHistory($params);
 
 		if(empty($paymentsHistory)){
 			$this->jsonResult(false);
@@ -717,5 +720,21 @@ class Controller_Clients extends Controller_Common {
         $html = Form::buildLimitService($cardId, [], $postfix);
 
         $this->html($html);
+    }
+
+    /**
+     * удаление клиента
+     */
+    public function action_clientDelete()
+    {
+        $clientId = $this->request->post('client_id');
+
+        $result = Model_Client::changeState($clientId, Model_Client::STATE_CLIENT_DELETED);
+
+        if(empty($result)){
+            $this->jsonResult(false);
+        }
+
+        $this->jsonResult(true);
     }
 }

@@ -91,6 +91,11 @@ $user = Auth::instance()->get_user();
 
     ?>
     <table class="table m-t-10 table-width-auto">
+        <tr>
+            <td></td>
+            <td>Лимит</td>
+            <td>Остаток</td>
+        </tr>
         <?foreach($oilRestrictions as $restriction){?>
             <tr>
                 <td class="text-right text-muted">
@@ -108,6 +113,10 @@ $user = Auth::instance()->get_user();
                         <?=Model_Card::$cardLimitsParams[$restriction['UNIT_TYPE']]?>
                         <?=$limitTypes[$restriction['DURATION_TYPE']]?>
                     <?}?>
+                </td>
+                <td class="bg-light">
+                    <?=$restriction['REST_LIMIT']?>
+                    <?=Model_Card::$cardLimitsParams[$restriction['UNIT_TYPE']]?>
                 </td>
             </tr>
         <?}?>

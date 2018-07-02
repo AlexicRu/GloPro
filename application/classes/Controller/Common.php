@@ -30,10 +30,6 @@ abstract class Controller_Common extends Controller_Template {
             }
             $this->template = 'not_auth';
         }else{
-            if($controller == 'index' && $action == 'index') {
-                $this->redirect('/clients');
-            }
-
             //подключаем меню
             $menu = Kohana::$config->load('menu');
             $content = View::factory('_includes/menu')
@@ -60,12 +56,10 @@ abstract class Controller_Common extends Controller_Template {
             }
 
             //рендерим шаблон страницы
-            if (!in_array($controller, ['index'])) {
-                try {
-                    $this->tpl = View::factory('pages/' . $controller . '/' . $action);
-                } catch (Exception $e) {
-                    throw new HTTP_Exception_404();
-                }
+            try {
+                $this->tpl = View::factory('pages/' . $controller . '/' . $action);
+            } catch (Exception $e) {
+                throw new HTTP_Exception_404();
             }
 
             //прикрепляем файлы стилей и скриптов
@@ -129,6 +123,21 @@ abstract class Controller_Common extends Controller_Template {
         exit;
     }
 
+    public function showFile($file)
+    {
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        $directory = DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR;
+
+        if (!file_exists($path . $directory . $file)) {
+            throw new HTTP_Exception_404();
+        }
+
+        header("X-Accel-Redirect: " . $directory . $file);
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename=' . basename($file));
+        die;
+    }
+
     /**
      * show xml
      * @param $xml
@@ -168,25 +177,33 @@ abstract class Controller_Common extends Controller_Template {
         //опредеяем кастомный диазйн
         $design = Kohana::$config->load('design')->as_array();
 
-        if(!empty($_SERVER['SERVER_NAME'])){
-            $url = str_replace(['.', '-'], '', $_SERVER['SERVER_NAME']);
+        $url = str_replace(['.', '-'], '', !empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '');
 
-            if(isset($design['url'][$url])){
-                $customView = $design['url'][$url]['class'];
-                $this->title[] = $design['url'][$url]['title'];
-            }
+        if(isset($design['url'][$url])){
+            $customView = $design['url'][$url]['class'];
+            $this->title[] = $design['url'][$url]['title'];
         }
 
         $user = User::current();
 
         if (!empty($design['user']['a_' . $user['AGENT_ID']])) {
-            $customView = $design['user']['a_' . $user['AGENT_ID']]['class'];
-            $this->title[] = $design['user']['a_' . $user['AGENT_ID']]['title'];
+            if (
+                empty($design['user']['a_' . $user['MANAGER_ID']]['url']) ||
+                $design['user']['a_' . $user['MANAGER_ID']]['url'] == $url
+            ) {
+                $customView = $design['user']['a_' . $user['AGENT_ID']]['class'];
+                $this->title[] = $design['user']['a_' . $user['AGENT_ID']]['title'];
+            }
         }
 
         if (!empty($design['user']['u_' . $user['MANAGER_ID']])) {
-            $customView = $design['user']['u_' . $user['MANAGER_ID']]['class'];
-            $this->title[] = $design['user']['u_' . $user['MANAGER_ID']]['title'];
+            if (
+                empty($design['user']['u_' . $user['MANAGER_ID']]['url']) ||
+                $design['user']['u_' . $user['MANAGER_ID']]['url'] == $url
+            ) {
+                $customView = $design['user']['u_' . $user['MANAGER_ID']]['class'];
+                $this->title[] = $design['user']['u_' . $user['MANAGER_ID']]['title'];
+            }
         }
 
         //если не смогли определить дизайн под конкретный урл, то грузим дефолтовый
@@ -313,6 +330,18 @@ abstract class Controller_Common extends Controller_Template {
     protected function _initVueJs()
     {
         $this->template->scripts[] = 'https://cdn.jsdelivr.net/npm/vue';
+    }
+
+    /**
+     * подключаем ChartJs
+     */
+    protected function _initChart()
+    {
+        $this->template->scripts[] = '/assets/plugins/palette.js';
+        $this->template->scripts[] = '//www.amcharts.com/lib/3/amcharts.js';
+        $this->template->scripts[] = '//www.amcharts.com/lib/3/serial.js';
+        $this->template->scripts[] = '//www.amcharts.com/lib/3/pie.js';
+        $this->template->scripts[] = '//www.amcharts.com/lib/3/themes/light.js';
     }
 
     /**

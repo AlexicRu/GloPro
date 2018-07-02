@@ -300,7 +300,7 @@ class Controller_Help extends Controller_Common
 
         foreach($result as $item){
             $this->_result[] = [
-                'name'  => $item['TARIF_NAME'],
+                'name'  => '['. $item['ID'] .'] ' . $item['TARIF_NAME'],
                 'value' => $item['ID'],
             ];
         }

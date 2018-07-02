@@ -83,7 +83,7 @@
             }
 
             if (data[i].CARD_STATE == <?=Model_Card::CARD_STATE_BLOCKED?>) {
-                tpl.find('a').append('<div><span class="label label-danger label_small">Заблокирована</span></div>');
+                tpl.find('a').append('<div><span class="label label-danger label_small"><i class="fa fa-block-alt"></i></span></div>');
             }
 
             tpl.find('a').on('click', function () {

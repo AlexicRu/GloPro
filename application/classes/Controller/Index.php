@@ -2,10 +2,6 @@
 
 class Controller_Index extends Controller_Common {
 
-	public function action_index()
-	{
-	}
-
 	/**
 	 * функция авторизации
 	 */
@@ -45,9 +41,7 @@ class Controller_Index extends Controller_Common {
 			$this->redirect('/');
 		}
 
-		if(Auth::instance()->login($post['login'], $post['password'])){
-			$this->redirect('/clients');
-		}
+		Auth::instance()->login($post['login'], $post['password']);
 
         $this->redirect('/');
 	}
@@ -85,7 +79,7 @@ class Controller_Index extends Controller_Common {
             $manager = Model_Manager::getManager($userTo);
 
             if(Auth::instance()->login($manager['LOGIN'], ['hash' => $manager['PASSWORD']])){
-                $this->redirect('/clients');
+                $this->redirect('/');
             }
         }
 
@@ -152,20 +146,26 @@ class Controller_Index extends Controller_Common {
     {
         $file = $this->request->param('file');
 
-        if (!Access::file($file)) {
-            throw new HTTP_Exception_403();
+        //у инфопортала не проверяем доступы
+        if (strpos($file, 'info') !== 0){
+            if (!Access::file($file)) {
+                throw new HTTP_Exception_403();
+            }
         }
 
-        $path = $_SERVER['DOCUMENT_ROOT'];
-        $directory = DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR;
+        $this->showFile($file);
+    }
 
-        if (!file_exists($path . $directory . $file)) {
-            throw new HTTP_Exception_404();
+    /**
+     * dashboard
+     */
+    public function action_index()
+    {
+        if (User::loggedIn()) {
+            if (Access::allow('dashboard_index', true)) {
+                $this->redirect('/dashboard');
+            }
+            $this->redirect('/clients');
         }
-
-        header("X-Accel-Redirect: " . $directory . $file);
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($file));
-        die;
     }
 } // End Welcome

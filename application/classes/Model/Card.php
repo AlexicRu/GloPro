@@ -34,6 +34,7 @@ class Model_Card extends Model
     const CARD_ICON_CPK         = 'Petrol CPK';
     const CARD_ICON_TATNEFT     = 'Tatneft';
     const CARD_ICON_CLEVEROIL   = 'Cleveroil';
+    const CARD_ICON_GPC         = 'GPC PPR';
 
     const CARD_SYSTEM_GPN = 5;
 
@@ -47,6 +48,7 @@ class Model_Card extends Model
         self::CARD_ICON_CPK         => 'cpk.jpg',
         self::CARD_ICON_TATNEFT     => 'tatneft.jpg',
         self::CARD_ICON_CLEVEROIL   => 'cleveroil.jpg',
+        self::CARD_ICON_GPC         => 'gpc.jpg',
     ];
 
 	public static $cardLimitsParams = [
@@ -71,7 +73,7 @@ class Model_Card extends Model
     ];
 
 	public static $editLimitsManagerNoLimit = [
-	    1233, 1499, 1335, 1582, 929
+	    1233, 1499, 1335, 1582, 929, 1954
     ];
 
 	private static $_selectedCards = [];
@@ -890,7 +892,7 @@ class Model_Card extends Model
     public static function editCardsGroup($params, $action = self::CARDS_GROUP_ACTION_EDIT)
     {
         if(empty($params['group_id'])){
-            return Oracle::CODE_ERROR;
+            return false;
         }
 
         $db = Oracle::init();
@@ -906,7 +908,12 @@ class Model_Card extends Model
             'p_error_code' 		  => 'out',
         ];
 
-        return $db->procedure('ctrl_card_group_edit', $data);
+        $res = $db->procedure('ctrl_card_group_edit', $data);
+
+        if ($res == Oracle::CODE_SUCCESS) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -1228,6 +1235,13 @@ class Model_Card extends Model
                 $settings['canAddLimit']    = false;
                 $settings['canSave']        = false;
                 break;
+            case 9:
+                $settings['cntServiceForFirstLimit'] = 999;
+                $settings['limitTypes']         = Model_Card::$cardLimitsTypesFull;
+                $settings['editSelect']         = false;
+                $settings['canUseFloat']        = false;
+                $settings['minValue']           = 1;
+                break;
             case self::CARD_SYSTEM_GPN:
                 $settings['cntServiceForFirstLimit'] = 999;
                 $settings['limitTypes']         = Model_Card::$cardLimitsTypesFull;
@@ -1240,6 +1254,7 @@ class Model_Card extends Model
                 break;
             case 6:
                 $settings['cntServiceForLimit'] = 999;
+                $settings['cntServiceForFirstLimit'] = 999;
                 //можно все
                 break;
             case 7:

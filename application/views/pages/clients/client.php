@@ -159,8 +159,12 @@
 <div class="more_info dn" toggle_block="block1">
     <a href="#" class="btn waves-effect waves-light btn-outline-secondary m-t-10" toggle="block1">Скрыть</a> &nbsp;
 
-    <?if(Access::allow('clients-client-edit')){?>
+    <?if(Access::allow('clients_client-edit')){?>
         <button class="btn waves-effect waves-light btn-primary m-t-10" toggle="edit_client" toggle_block="edit_client"><i class="fa fa-pencil-alt"></i> Редактировать</button> &nbsp;
+    <?}?>
+
+    <?if(Access::allow('clients_client-delete')){?>
+        <button class="btn waves-effect waves-light btn-primary m-t-10" onclick="clientDelete($(this))"><i class="fa fa-trash-alt"></i> Удалить</button> &nbsp;
     <?}?>
 
     <span toggle_block="edit_client" class="dn nowrap">

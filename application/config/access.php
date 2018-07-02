@@ -49,6 +49,7 @@ return [
             'a_4',
 			'a_16',
 			'a_22',
+			'a_31',
         ],
         'news_news-edit' => [
             Access::ROLE_ADMIN,
@@ -156,10 +157,12 @@ return [
             'a_14',
             'a_16',
             'a_18',
+            'a_19',
             'a_24',
         ],
         'managers_load-reports' => [
-            Access::ROLE_ROOT
+            Access::ROLE_ADMIN,
+            Access::ROLE_SUPERVISOR,
         ],
         'administration_cards-transfer' => [
             Access::ROLE_ADMIN
@@ -187,6 +190,25 @@ return [
         ],
         'system_full' => [
             Access::ROLE_ROOT,
+        ],
+        'system_shell' => [
+            Access::ROLE_ROOT,
+        ],
+        'dashboard_agent' => [
+            Access::ROLE_ADMIN_READONLY
+        ],
+        'clients_client-delete' => [
+            Access::ROLE_ADMIN,
+            Access::ROLE_SUPERVISOR,
+        ],
+        'info_index' => [
+            'g_1',
+        ],
+        'info_marketing' => [
+            'g_1',
+        ],
+        'info_passports' => [
+            'g_1',
         ],
         // custom
         'view_contract_balances' => [
@@ -233,7 +255,12 @@ return [
         ],
         'root' => [
             Access::ROLE_ROOT
-        ]
+        ],
+        'view_full_dashboard_clients_summary' => [
+            Access::ROLE_ADMIN,
+            Access::ROLE_SUPERVISOR,
+            Access::ROLE_ADMIN_READONLY,
+        ],
     ],
     'deny' => [ //для всех остальных ролей будет разрешено
         // functions
@@ -298,6 +325,38 @@ return [
         'suppliers_supplier-add' => [
             'a_10',
         ],
+        'dashboard_get-realization-by-clients-summary' => [
+            Access::ROLE_USER,
+            Access::ROLE_USER_SECOND,
+            Access::ROLE_CLIENT
+        ],
+        'info_index' => [
+            Access::ROLE_SUPERVISOR,
+            Access::ROLE_MANAGER,
+            Access::ROLE_MANAGER_SALE,
+            Access::ROLE_MANAGER_SALE_SUPPORT,
+            Access::ROLE_CLIENT,
+            Access::ROLE_USER_SECOND,
+            Access::ROLE_USER,
+        ],
+        'info_marketing' => [
+            Access::ROLE_SUPERVISOR,
+            Access::ROLE_MANAGER,
+            Access::ROLE_MANAGER_SALE,
+            Access::ROLE_MANAGER_SALE_SUPPORT,
+            Access::ROLE_CLIENT,
+            Access::ROLE_USER_SECOND,
+            Access::ROLE_USER,
+        ],
+        'info_passports' => [
+            Access::ROLE_SUPERVISOR,
+            Access::ROLE_MANAGER,
+            Access::ROLE_MANAGER_SALE,
+            Access::ROLE_MANAGER_SALE_SUPPORT,
+            Access::ROLE_CLIENT,
+            Access::ROLE_USER_SECOND,
+            Access::ROLE_USER,
+        ],
         // custom
         'clients_card_toggle_full' => [
             Access::ROLE_CLIENT,
@@ -316,7 +375,7 @@ return [
         ],
         'view_payment_block' => [
             Access::ROLE_CLIENT
-        ]
+        ],
     ],
     /*
      * функции без авторизации

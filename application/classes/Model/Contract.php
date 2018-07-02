@@ -6,12 +6,14 @@ class Model_Contract extends Model
     const STATE_CONTRACT_BLOCKED 		= 9;
     const STATE_CONTRACT_EXPIRED 		= 5;
     const STATE_CONTRACT_NOT_IN_WORK 	= 6;
+    const STATE_CONTRACT_DELETED     	= 7;
 
     public static $statusContractNames = [
         self::STATE_CONTRACT_WORK 			=> 'В работе',
         self::STATE_CONTRACT_NOT_IN_WORK 	=> 'Не в работе',
         self::STATE_CONTRACT_BLOCKED 		=> 'Заблокирован',
         self::STATE_CONTRACT_EXPIRED 		=> 'Завершен',
+        self::STATE_CONTRACT_DELETED 		=> 'Удален',
     ];
 
     public static $statusContractClasses = [
@@ -19,6 +21,13 @@ class Model_Contract extends Model
         self::STATE_CONTRACT_NOT_IN_WORK 	=> 'info',
         self::STATE_CONTRACT_BLOCKED 		=> 'danger',
         self::STATE_CONTRACT_EXPIRED 		=> 'warning',
+        self::STATE_CONTRACT_DELETED 		=> 'danger',
+    ];
+
+    public static $stateContractDeletedRolesAccess = [
+        Access::ROLE_ROOT,
+        Access::ROLE_ADMIN,
+        Access::ROLE_SUPERVISOR,
     ];
 
 	const DEFAULT_DATE_END				= '31.12.2099';
@@ -71,6 +80,7 @@ class Model_Contract extends Model
 
         $sql = (new Builder())->select()
             ->from('V_WEB_CL_CONTRACTS')
+            ->where('state_id != ' . self::STATE_CONTRACT_DELETED)
             ->orderBy(['ct_date desc', 'state_id', 'contract_name'])
         ;
 
@@ -257,9 +267,26 @@ class Model_Contract extends Model
         ];
 
 		$res = $db->procedure('client_contract_edit', $data);
+
+		switch($res) {
+            case Oracle::CODE_SUCCESS:
+                break;
+            case 3:
+                Messages::put('Есть закрепленные карты');
+                return false;
+            case 4:
+                Messages::put('Есть действующие платежи');
+                return false;
+            case 5:
+                Messages::put('Есть транзакции');
+                return false;
+            default:
+                return false;
+        }
+
 		$res1 = $db->procedure('client_contract_settings_edit', $data1);
 
-		if($res == Oracle::CODE_SUCCESS && $res1 == Oracle::CODE_SUCCESS){
+		if($res1 == Oracle::CODE_SUCCESS){
 			return true;
 		}
 
@@ -342,9 +369,9 @@ class Model_Contract extends Model
 	 * @param $cardId
 	 * @param $limit
 	 */
-	public static function getPaymentsHistory($contractId, $params = [])
+	public static function getPaymentsHistory($params = [])
 	{
-		if(empty($contractId)){
+		if(empty($params)){
 			return [];
 		}
 
@@ -352,11 +379,16 @@ class Model_Contract extends Model
 
 		$sql = (new Builder())->select()
             ->from('V_WEB_CL_CONTRACTS_PAYS')
-            ->orderBy('O_DATE desc')
         ;
 
-		if(!empty($contractId)){
-			$sql->where("contract_id = ".Oracle::quote($contractId));
+		if (!empty($params['order'])) {
+            $sql->orderBy($params['order']);
+        } else {
+		    $sql->orderBy('O_DATE desc');
+        }
+
+		if(!empty($params['contract_id'])){
+			$sql->whereIn("contract_id", (array)$params['contract_id']);
 		}
 
         if (!empty($params['order_date'])) {
@@ -513,8 +545,8 @@ class Model_Contract extends Model
 
             foreach ($products as $product) {
                 $serviceArray[]         = $product['service'];
-                $serviceAmountArray[]   = $product['cnt'];
-                $servicePriceArray[]    = $product['price'];
+                $serviceAmountArray[]   = Num::toFloat($product['cnt']);
+                $servicePriceArray[]    = Num::toFloat($product['price']);
             }
         }
 

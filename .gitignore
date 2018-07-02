@@ -56,3 +56,4 @@ application/config/dev.php
 /assets/css/*.css
 /composer.phar
 /admin-pro/build
+/assets/files

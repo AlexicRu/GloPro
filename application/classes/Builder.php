@@ -69,18 +69,27 @@ class Builder
     /**
      * @param $table
      * @param $str
+     * @param $join
      * @return $this
      */
-    public function join($table, $str)
+    public function join($table, $str, $join = 'join')
     {
         if (empty($str) || empty($table)) {
             return $this;
         }
 
+        $alias = '';
+
+        if (is_array($table)) {
+            $alias = key($table);
+            $table = reset($table);
+        }
+
         $this->_joins[] = [
-            'join'  => 'join',
+            'join'  => $join,
             'table' => $table,
-            'str'   => $str
+            'str'   => $str,
+            'alias' => $alias
         ];
 
         return $this;
@@ -93,17 +102,7 @@ class Builder
      */
     public function joinLeft($table, $str)
     {
-        if (empty($str) || empty($table)) {
-            return $this;
-        }
-
-        $this->_joins[] = [
-            'join'  => 'left join',
-            'table' => $table,
-            'str'   => $str
-        ];
-
-        return $this;
+        return $this->join($table, $str, 'left join');
     }
 
     /**
@@ -191,6 +190,32 @@ class Builder
     /**
      * @param $param
      * @param $array
+     * @return $this
+     */
+    public function whereNotIn($param, $array)
+    {
+        if (empty($param) || empty($array)) {
+            return $this;
+        }
+
+        //builder
+        if (is_a($array, 'Builder')) {
+            $string = $array->build();
+        } else {
+            $string = implode(', ', (array)$array);
+        }
+
+        $this->_where[] = [
+            'connector' => 'and',
+            'where'     => $param . ' not in (' . $string . ')',
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @param $param
+     * @param $array
      * @param $connector
      * @return $this
      */
@@ -200,9 +225,16 @@ class Builder
             return $this;
         }
 
+        //builder
+        if (is_a($array, 'Builder')) {
+            $string = $array->build();
+        } else {
+            $string = implode(', ', (array)$array);
+        }
+
         $this->_where[] = [
             'connector' => $connector,
-            'where'     => $param . ' in (' . implode(', ', (array)$array) . ')',
+            'where'     => $param . ' in (' . $string . ')',
         ];
 
         return $this;
@@ -361,7 +393,12 @@ class Builder
         //joins
         if (!empty($this->_joins)) {
             foreach ($this->_joins as $join) {
-                $sql .= " {$join['join']} {$prefix}{$join['table']} on {$join['str']} ";
+                if (is_a($join['table'], 'Builder')) {
+                    $table = '(' . $join['table']->build() . ')';
+                } else {
+                    $table = $prefix . $join['table'];
+                }
+                $sql .= " {$join['join']} {$table} {$join['alias']} on {$join['str']} ";
             }
         }
 

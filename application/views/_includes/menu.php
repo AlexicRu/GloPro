@@ -26,21 +26,28 @@
 
                         $isActiveController = Text::camelCaseToDashed(Request::current()->controller()) == $link ;
 
+                        if (!empty($item['children'])) {
+                            foreach($item['children'] as $child => $name){
+                                if(Access::deny($link.'_'.$child, true)) {
+                                    unset($item['children'][$child]);
+                                }
+                            }
+                        }
+
                         if(empty($item['children'])){
-                            ?>
-                            <li><a class="waves-effect waves-dark <?=($isActiveController ? 'active' : '')?>" href="/<?=$link?>"><i><span class="<?=$item['icon']?>"></span></i> <span class="hide-menu"><?=$item['title']?></span></a></li>
-                            <?
+                            echo '<li><a class="waves-effect waves-dark '. ($isActiveController ? 'active' : '') .'" href="/'. $link .'"><i><span class="'. $item['icon'] .'"></span></i> <span class="hide-menu">'. $item['title'] .'</span></a></li>';
                             continue;
                         }
 
                         ?>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0);" aria-expanded="false"><i><span class=" <?=$item['icon']?>"></span></i> <span class="hide-menu"><?=$item['title']?></span></a>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0);" aria-expanded="false"><i><span class=" <?=$item['icon']?>"></span></i> <span class="hide-menu"><?=$item['title']?></span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <?foreach($item['children'] as $child => $name) {
-                                    $isActiveAction = Text::camelCaseToDashed(Request::current()->action()) == $child ;
+                                    $isActiveAction = Text::camelCaseToDashed(Request::current()->action()) == $child && $isActiveController;
 
                                     if(Access::allow($link.'_'.$child, true)) {?>
-                                        <li><a href="/<?=$link?>/<?=$child?>" class="<?=($isActiveAction ? 'active' : '')?>"><?=$name?></a></li>
+                                        <li><a href="/<?=$link?>/<?=($child == 'index' ? '' : '/'.$child)?>" class="<?=($isActiveAction ? 'active' : '')?>"><?=$name?></a></li>
                                     <?}
                                 }?>
                             </ul>

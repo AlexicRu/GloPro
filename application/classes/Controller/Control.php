@@ -26,8 +26,7 @@ class Controller_Control extends Controller_Common {
         $user = Auth::instance()->get_user();
 
         $params = [
-            'agent_id' => $user['AGENT_ID'],
-            'not_admin' => true
+            'agent_id'      => $user['AGENT_ID'],
         ];
 
         $params = array_merge($params, $filter);
@@ -344,7 +343,7 @@ class Controller_Control extends Controller_Common {
         $this->scripts[] = Common::getAssetsLink() . 'js/control/tariffs.js';
         $this->scripts[] = '/assets/plugins/jquery.mask.js';
 
-        $filter = $this->request->query('filter') ?: ['only_managers' => 1];
+        $filter = $this->request->query('filter');
 
         $tariffs = Model_Tariff::getAvailableTariffs($filter);
 
@@ -663,11 +662,7 @@ class Controller_Control extends Controller_Common {
 
         $result = Model_Card::editCardsGroup($params);
 
-        if(!empty($result)){
-            $this->jsonResult(false);
-        }
-
-        $this->jsonResult(true);
+        $this->jsonResult($result);
     }
 
     /**
@@ -744,7 +739,7 @@ class Controller_Control extends Controller_Common {
             ];
         }
 
-        $this->jsonResult($result);
+        $this->jsonResult(true, $result);
     }
 
     /**

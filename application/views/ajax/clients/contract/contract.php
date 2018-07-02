@@ -236,7 +236,7 @@
                         <div class="d-block d-sm-none">Online тариф:</div>
                     </div>
                     <div class="col-sm-7">
-                        <span toggle_block="block2"><?=$contractSettings['TARIF_NAME_ONLINE']?></span>
+                        <span toggle_block="block2">[<?=$contractSettings['TARIF_ONLINE']?>] <?=$contractSettings['TARIF_NAME_ONLINE']?></span>
                         <span toggle_block="block2" class="dn">
                             <?=Form::buildField('contract_tariffs', 'TARIF_ONLINE', $contractSettings['TARIF_ONLINE'])?>
                         </span>
@@ -249,7 +249,7 @@
                         <div class="d-block d-sm-none">Тариф по договору:</div>
                     </div>
                     <div class="col-sm-7">
-                        <span toggle_block="block2"><?=$contractSettings['TARIF_NAME_OFFLINE']?></span>
+                        <span toggle_block="block2">[<?=$contractSettings['TARIF_OFFLINE']?>] <?=$contractSettings['TARIF_NAME_OFFLINE']?></span>
                         <span toggle_block="block2" class="dn">
                             <?=Form::buildField('contract_tariffs', 'TARIF_OFFLINE', $contractSettings['TARIF_OFFLINE'])?>
                         </span>
@@ -310,6 +310,9 @@
             }
         };
 
+        if (params.contract.STATE_ID == <?=Model_Contract::STATE_CONTRACT_DELETED?> && !confirm('Вы уверены, что хотите удалить договор?')) {
+            return false;
+        }
 
         if(params.settings.TARIF_ONLINE == '' || params.settings.TARIF_OFFLINE == ''){
             message(0, 'Заполните тарификацию');
@@ -325,7 +328,12 @@
             if(data.success){
                 message(1, 'Контракт обновлен');
 
-                var contractFullName = "Договор: [<?=$contractSettings['CONTRACT_ID']?>] " + params.contract.CONTRACT_NAME + " от " + params.contract.DATE_BEGIN + (params.contract.DATE_END != '31.12.2099' ? " до " + params.contract.DATE_END : '');
+                if (data.data.full_reload) {
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 500);
+                } else {
+                    var contractFullName = "Договор: [<?=$contractSettings['CONTRACT_ID']?>] " + params.contract.CONTRACT_NAME + " от " + params.contract.DATE_BEGIN + (params.contract.DATE_END != '31.12.2099' ? " до " + params.contract.DATE_END : '');
 
                 $("[name=contracts_list] option:selected").text(contractFullName);
 
@@ -336,4 +344,5 @@
         });
     }
     <?}?>
+    });
 </script>

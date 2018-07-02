@@ -75,6 +75,13 @@ class Model_Manager extends Model
     /**
      * список менеджеров
      *
+    1) Рут (role_id = 1) видит всех менеджеров агента
+    2) Администратор (role_id = 2) видит всех менеджеров агента, кроме администраторов (2), рута (1) и супервайзера агентов (7)
+    (сейчас не видит главного менеджера role_id = 3)
+    3) Супервайзер агентов (7) видит всех менеджеров, кроме администраторов (2), рута (1)
+    4) Супервайзер менеджеров (3) видит всех менеджеров агента, кроме администраторов (2), рута (1) и супервайзера агентов (7)
+    5) Менеджер по сопровождению (4) и менеджер по продажам и сопровождению (6) видят только клиентские учетные записи (97, 98, 99), менеджерские учетные записи не видят.
+     *
      * @param $params
      * @return array|bool|int
      */
@@ -88,40 +95,67 @@ class Model_Manager extends Model
         ;
 
         if(!empty($params['search'])){
-            $search = Oracle::quote('%' . mb_strtoupper($params['search']) . '%');
+            $params['search'] = Oracle::quote('%'.mb_strtoupper($params['search']).'%');
 
             $sql
                 ->whereStart()
-                ->whereOr("upper(LOGIN) like ". $search)
-                ->whereOr("upper(MANAGER_SURNAME) like ". $search)
-                ->whereOr("upper(MANAGER_MIDDLENAME) like ". $search)
-                ->whereOr("upper(M_NAME) like ". $search)
+                ->whereOr("upper(LOGIN) like " . $params['search'])
+                ->whereOr("upper(MANAGER_NAME) like " . $params['search'])
+                ->whereOr("upper(MANAGER_SURNAME) like " . $params['search'])
+                ->whereOr("upper(MANAGER_MIDDLENAME) like " . $params['search'])
+                ->whereOr("upper(M_NAME) like " . $params['search'])
                 ->whereEnd()
             ;
         }
 
+        $params['role_id'] = empty($params['role_id']) ? [] : (array)$params['role_id'];
+        $params['roles_exclude'] = empty($params['roles_exclude']) ? [] : (array)$params['roles_exclude'];
+
+        /*
+         * система доступов
+         */
+        $user = User::current();
+        switch ($user['ROLE_ID']) {
+            case Access::ROLE_ROOT:
+                break;
+            case Access::ROLE_ADMIN:
+                $params['roles_exclude'] = array_merge($params['roles_exclude'], [Access::ROLE_ADMIN, Access::ROLE_ROOT, Access::ROLE_ADMIN_READONLY]);
+                break;
+            case Access::ROLE_ADMIN_READONLY:
+                $params['roles_exclude'] = array_merge($params['roles_exclude'], [Access::ROLE_ADMIN, Access::ROLE_ROOT]);
+                break;
+            case Access::ROLE_SUPERVISOR:
+                $params['roles_exclude'] = array_merge($params['roles_exclude'], [Access::ROLE_ADMIN, Access::ROLE_ROOT, Access::ROLE_ADMIN_READONLY]);
+                break;
+            case Access::ROLE_MANAGER:
+            case Access::ROLE_MANAGER_SALE_SUPPORT:
+                $params['role_id'] = array_intersect($params['role_id'], array_keys(Access::$clientRoles));
+                break;
+        }
+
         if(!empty($params['only_managers'])){
-            $sql->where("ROLE_ID not in (".implode(', ', array_keys(Access::$clientRoles)).")");
+            $sql->whereNotIn("ROLE_ID", array_keys(Access::$clientRoles));
         }
 
-        if(!empty($params['not_admin'])){
-            $sql->where("ROLE_ID not in (".implode(', ', array_keys(Access::$adminRoles)).")");
+        if(!empty($params['roles_exclude'])){
+            $sql->whereNotIn("ROLE_ID", $params['roles_exclude']);
+        }
+        unset($params['roles_exclude']);
+
+        foreach($params as $key => $value){
+            if (empty($value)) {
+                continue;
+            }
+
+            if(is_array($value)){
+                $sql->whereIn(strtoupper($key), $value);
+            }else {
+                $sql->where(strtoupper($key) . ' = ' . Oracle::quote($value));
+            }
         }
 
-        if (!empty($params['login'])) {
-            $sql->where("login = " . Oracle::quote($params['login']));
-        }
-
-        if (!empty($params['agent_id'])) {
-            $sql->where("agent_id = " . (int)$params['agent_id']);
-        }
-
-        if (!empty($params['manager_id'])) {
-            $sql->whereIn("manager_id", $params['manager_id']);
-        }
-
-        if (!empty($params['pagination'])) {
-            return $db->pagination($sql, $params);
+        if(!empty($params['limit'])) {
+            $sql->limit($params['limit']);
         }
 
         return $db->query($sql);
@@ -188,7 +222,7 @@ class Model_Manager extends Model
 
         $res = $db->procedure('ctrl_manager_change_status', $data);
 
-        if(empty($res)){
+        if($res == Oracle::CODE_SUCCESS){
             return true;
         }
 
@@ -423,9 +457,9 @@ class Model_Manager extends Model
         $user = User::current();
 
         if (empty($params['manager_id'])) {
-            $managerId = $user['MANAGER_ID'];
+            $manager = Model_Manager::getManager($user['MANAGER_ID']);
         } else {
-            $managerId = $params['manager_id'];
+            $manager = Model_Manager::getManager($params['manager_id']);
         }
 
         $sql = (new Builder())->select()
@@ -433,18 +467,18 @@ class Model_Manager extends Model
             ->orderBy('r.REPORT_TYPE_ID')
         ;
 
-        if (in_array($user['ROLE_ID'], array_keys(Access::$clientRoles))) {
+        if (in_array($manager['ROLE_ID'], array_keys(Access::$clientRoles))) {
 
             $subSql = (new Builder())->select(1)
                 ->from('V_WEB_REPORTS_AVAILABLE t')
                 ->whereIn('t.agent_id', [0, $user['AGENT_ID']])
-                ->whereIn('t.manager_id', [0, $managerId])
+                ->whereIn('t.manager_id', [0, $manager['MANAGER_ID']])
                 ->where('t.report_id = r.report_id')
             ;
 
             $sql
                 ->where('r.REPORT_TYPE_ID = ' . Model_Report::REPORT_GROUP_CLIENT)
-                ->where('not exists ('. $subSql->build() .')')
+                ->where('exists ('. $subSql->build() .')')
             ;
         } else {
             $subSql = (new Builder())->select(1)
@@ -454,7 +488,7 @@ class Model_Manager extends Model
             ;
 
             $sql
-                ->where('not exists ('. $subSql->build() .')')
+                ->where('exists ('. $subSql->build() .')')
             ;
         }
 
