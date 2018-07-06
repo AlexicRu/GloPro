@@ -333,16 +333,17 @@
                         window.location.reload();
                     }, 500);
                 } else {
+
                     var contractFullName = "Договор: [<?=$contractSettings['CONTRACT_ID']?>] " + params.contract.CONTRACT_NAME + " от " + params.contract.DATE_BEGIN + (params.contract.DATE_END != '31.12.2099' ? " до " + params.contract.DATE_END : '');
 
-                $("[name=contracts_list] option:selected").text(contractFullName);
+                    $("[name=contracts_list] option:selected").text(contractFullName);
 
-                loadContract('contract');
+                    loadContract('contract');
+                }
             }else{
                 message(0, 'Сохранение не удалось');
             }
         });
     }
     <?}?>
-    });
 </script>

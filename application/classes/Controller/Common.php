@@ -238,13 +238,13 @@ abstract class Controller_Common extends Controller_Template {
             Common::getAdminProAssetsLink() . 'assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',
             Common::getAdminProAssetsLink() . 'assets/plugins/sparkline/jquery.sparkline.min.js',
             Common::getAdminProAssetsLink() . 'main/js/custom.js',
-            Common::getAdminProAssetsLink() . 'main/css/icons/font-awesome-5/fa-solid.min.js',
-            Common::getAdminProAssetsLink() . 'main/css/icons/font-awesome-5/fa-light.min.js',
-            Common::getAdminProAssetsLink() . 'main/css/icons/font-awesome-5/fontawesome.min.js',
+            Common::getAssetsLink() . 'fonts/font-awesome-5/fa-solid.min.js',
+            Common::getAssetsLink() . 'fonts/font-awesome-5/fa-light.min.js',
+            Common::getAssetsLink() . 'fonts/font-awesome-5/fontawesome.min.js',
         ];
 
         if(Auth::instance()->logged_in()) {
-            $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/pages/tab-page.css';
+            $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/pages/tab-page.css';
             $this->template->styles[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/css/jquery.toast.css';
             $this->template->scripts[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/js/jquery.toast.js';
 
@@ -252,8 +252,8 @@ abstract class Controller_Common extends Controller_Template {
         }
 
         //стили шаблона
-        $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/css/style.css';
-        $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/css/colors/blue.css';
+        $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/style.css';
+        $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/colors/blue.css';
     }
 
     private function _appendFiles()
@@ -269,10 +269,10 @@ abstract class Controller_Common extends Controller_Template {
         );
 
         foreach($styles as $style){
-            $this->template->styles[] =  $style . '?t=' . Common::getVersion();
+            $this->template->styles[] = $style . '?t=' . Common::getVersion();
         }
         foreach($scripts as $script){
-            $this->template->scripts[] =  $script . '?t=' . Common::getVersion();
+            $this->template->scripts[] = $script . '?t=' . Common::getVersion();
         }
     }
 
@@ -349,7 +349,7 @@ abstract class Controller_Common extends Controller_Template {
      */
     protected function _initTooltip()
     {
-        $this->template->styles[] = Common::getAdminProAssetsLink() . 'main/pages/stylish-tooltip.css';
+        $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/pages/stylish-tooltip.css';
     }
 
     /**

@@ -7,8 +7,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-powerpoint text-warning"></span>
                 </div>
-                <div class="col-10 col-xl-8">Алгоритм действий заказчика при принятии решения об одностороннем отказе</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Алгоритм действий заказчика при принятии решения об одностороннем отказе</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -16,8 +16,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xl-8">Постановление Правительства РФ от 15.01.2018 N 11</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Постановление Правительства РФ от 15.01.2018 N 11</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -25,8 +25,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-powerpoint text-warning"></span>
                 </div>
-                <div class="col-10 col-xl-8">Презентация (ГОСЗАКАЗ - 2018)</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Презентация (ГОСЗАКАЗ - 2018)</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -34,8 +34,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xl-8">Распоряжение Правительства РФ<br>от 16.01.2018 N 21-р</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Распоряжение Правительства РФ<br>от 16.01.2018 N 21-р</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -43,8 +43,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-word text-primary"></span>
                 </div>
-                <div class="col-10 col-xl-8">Типовое ТЗ помощь клиенту</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Типовое ТЗ помощь клиенту</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -52,8 +52,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xl-8">Федеральный закон<br>от 29.12.2017 N 475-ФЗ</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Федеральный закон<br>от 29.12.2017 N 475-ФЗ</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -61,8 +61,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xl-8">Федеральный закон<br>от 31.12.2017 N 496-ФЗ</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Федеральный закон<br>от 31.12.2017 N 496-ФЗ</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -70,8 +70,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xl-8">Федеральный закон<br>от 31.12.2017 N 504-ФЗ</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Федеральный закон<br>от 31.12.2017 N 504-ФЗ</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -79,8 +79,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xl-8">Федеральный закон<br>от 31.12.2017 N 505-ФЗ</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Федеральный закон<br>от 31.12.2017 N 505-ФЗ</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -95,8 +95,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-word text-primary"></span>
                 </div>
-                <div class="col-10 col-xl-8">Specification_VIP_API_v.1.1.5</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Specification_VIP_API_v.1.1.5</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -111,8 +111,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xl-8">Price Monitoring апрель 2018</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Price Monitoring апрель 2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -120,8 +120,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xl-8">Price Monitoring май 2018</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Price Monitoring май 2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -129,8 +129,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xl-8">Price Monitoring март 2018</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Price Monitoring март 2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -145,8 +145,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-word text-primary"></span>
                 </div>
-                <div class="col-10 col-xl-8">Сравнение 92 клиенту</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Сравнение 92 клиенту</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -154,8 +154,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-word text-primary"></span>
                 </div>
-                <div class="col-10 col-xl-8">Сравнение 95 клиенту</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Сравнение 95 клиенту</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -163,8 +163,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-word text-primary"></span>
                 </div>
-                <div class="col-10 col-xl-8">Сравнение 98 клиенту</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Сравнение 98 клиенту</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -172,8 +172,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-word text-primary"></span>
                 </div>
-                <div class="col-10 col-xl-8">Сравнение ДТз клиенту</div>
-                <div class="col-xl-2 hidden-lg-down">
+                <div class="col-10 col-xxl-8">Сравнение ДТз клиенту</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
@@ -181,8 +181,8 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-word text-primary"></span>
                 </div>
-                <div class="col-10 col-xl-8">Сравнение ДТл клиенту</div>
-                <div class="col-2 hidden-sm-down">
+                <div class="col-10 col-xxl-8">Сравнение ДТл клиенту</div>
+                <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
             </a>
