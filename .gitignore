@@ -53,7 +53,10 @@ application/config/dev.php
 /vendor/
 /node_modules/
 /assets/build/
+/assets/css/*/*.css
+/assets/css/*/*.map
 /assets/css/*.css
+/assets/css/*.map
 /composer.phar
 /admin-pro/build
 /assets/files

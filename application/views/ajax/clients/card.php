@@ -38,7 +38,7 @@ $user = Auth::instance()->get_user();
         </div>
         <div class="col-2 text-right">
             <?if (count($transactions) > 1) {?>
-                <span class="btn btn-sm btn-outline-primary waves-effect waves-light" toggle="last_transactions">
+                <span class="btn btn-sm btn-outline-info waves-effect waves-light" toggle="last_transactions">
                     <span toggle_block="last_transactions"><i class="fa fa-chevron-down"></i></span>
                     <span toggle_block="last_transactions" style="display: none"><i class="fa fa-chevron-up"></i></span>
                 </span>
