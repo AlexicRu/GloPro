@@ -223,7 +223,7 @@ abstract class Controller_Common extends Controller_Template {
     private function _appendFilesBefore()
     {
         $this->template->styles = [
-            Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/css/bootstrap.min.css',
+            Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/scss/bootstrap.min.css',
             Common::getAdminProAssetsLink() . 'assets/plugins/prism/prism.css',
         ];
 

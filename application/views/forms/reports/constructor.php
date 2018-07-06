@@ -7,7 +7,7 @@
                 <div class="hidden-sm-down text-right"><?=$field['PROPERTY_NAME']?>:</div>
                 <div class="hidden-md-up"><?=$field['PROPERTY_NAME']?>:</div>
             </div>
-            <div class="col-md-8 with-md">
+            <div class="col-md-8 with-mb">
                 <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'], false, ['weight' => $field['PROPERTY_WEIGHT']])?>
             </div>
         </div>
@@ -21,7 +21,7 @@ if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL])){?>
             <div class="hidden-sm-down text-right">Дополнительные параметры:</div>
             <div class="hidden-md-up">Дополнительные параметры:</div>
         </div>
-        <div class="col-md-8 with-md report_additional_params">
+        <div class="col-md-8 with-mb report_additional_params">
             <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL] as $field){?>
 
                 <div class="m-b-20">
@@ -43,7 +43,7 @@ if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT])){?>
             <div class="hidden-sm-down text-right">Формат:</div>
             <div class="hidden-md-up">Формат:</div>
         </div>
-        <div class="col-md-8 with-md">
+        <div class="col-md-8 with-mb">
             <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT] as $field){?>
                 <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'])?>
             <?}?>
@@ -53,7 +53,7 @@ if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT])){?>
 
     <div class="form-group row m-b-0">
         <div class="col-md-4"></div>
-        <div class="col-md-8 with-md">
+        <div class="col-md-8 with-mb">
             <span class="btn btn-outline-primary waves-effect waves-light" onclick="generateReport($(this))"><i class="icon-download"></i> Сформировать</span>
         </div>
     </div>

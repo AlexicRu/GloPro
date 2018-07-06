@@ -35,7 +35,7 @@
                                 <div class="hidden-sm-down text-right">Шаблон отчета:</div>
                                 <div class="hidden-md-up">Шаблон отчета:</div>
                             </div>
-                            <div class="col-md-8 with-md">
+                            <div class="col-md-8 with-mb">
                                 <select class="report_select custom-select">
                                     <?foreach($reportsList as $report){?>
                                         <option value="<?=$report['REPORT_ID']?>"><?=$report['WEB_NAME']?></option>

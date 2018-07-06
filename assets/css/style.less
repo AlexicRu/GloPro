@@ -1,3 +1,7 @@
+.transition(@param: all, @time: 0.3s, @type:ease){
+  transition: @param @time @type;
+}
+
 b{
   font-weight: 600;
 }
@@ -138,24 +142,45 @@ body{
   overflow-x: auto;
 }
 
-/*media queries*/
+.info{
+  &__item{
+    &-btn{
+      opacity: 0;
+      .transition();
+    }
+    &:hover{
+      .info__item-btn{
+        opacity: 1;
+      }
+    }
+  }
+}
 
-@media (min-width: 768px) {
-  .mini-sidebar .sidebar-nav #sidebarnav > li > a {
-    padding: 12px 14px;
-    width: 70px;
+.mini-sidebar .sidebar-nav #sidebarnav > li > a {
+  padding: 12px 14px;
+  width: 70px;
+}
+
+/*
+-----------------------------------
+media queries
+-----------------------------------
+*/
+// Extra large devices (large desktops) XL
+// No media query since the extra-large breakpoint has no upper bound on its width
+
+// Large devices (desktops, less than 1200px) LG
+@media (max-width: 1199.98px) {
+  .row [class*="col-xl-"] + .with-mb[class*="col-xl-"] {
+    margin-top: 5px;
   }
 }
-.row [class*="col-"] + .with-mb[class*="col-"] {
-  margin-top: 5px;
-}
-@media (min-width: 1200px) {
-  .row [class*="col-xl-"] + .with-mb[class*="col-xl-"]
-  {
-    margin-top: 0;
+
+// Medium devices (tablets, less than 992px) MD
+@media (max-width: 991.98px) {
+  .row [class*="col-lg-"] + .with-mb[class*="col-lg-"] {
+    margin-top: 5px;
   }
-}
-@media (max-width: 1199px) {
   .vtabs {
     .tabs-floating {
       position: absolute;
@@ -170,25 +195,33 @@ body{
       }
     }
   }
-}
-@media (min-width: 992px) {
-  .row [class*="col-lg-"] + .with-mb[class*="col-lg-"] {
-    margin-top: 0;
+  .card-columns{
+    column-count: 2;
   }
 }
-@media (min-width: 768px) {
+
+// Small devices (landscape phones, less than 768px) SM
+@media (max-width: 767.98px) {
   .row [class*="col-md-"] + .with-mb[class*="col-md-"] {
-    margin-top: 0;
-  }
-}
-@media (min-width: 576px) {
-  .row [class*="col-sm-"] + .with-mb[class*="col-sm-"] {
-    margin-top: 0;
+    margin-top: 5px;
   }
 }
 
+// Extra small devices (portrait phones, less than 576px) XS
+@media (max-width: 575.98px) {
+  .row [class*="col-"] + .with-mb[class*="col-"] {
+    margin-top: 5px;
+  }
+  .card-columns{
+    column-count: 1;
+  }
+}
 
-/*custom btns*/
+/*
+-----------------------------------
+custom btns
+-----------------------------------
+*/
 
 /*primary*/
 /*
