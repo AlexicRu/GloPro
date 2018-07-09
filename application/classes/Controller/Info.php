@@ -2,12 +2,20 @@
 
 class Controller_Info extends Controller_Common
 {
+
+    public function before()
+    {
+        parent::before();
+
+        $this->title[] = 'Информационный портал';
+    }
+
     /**
      * инфо-портал
      */
 	public function action_index()
 	{
-        $this->title[] = 'Информационный портал';
+
 	}
 
     /**

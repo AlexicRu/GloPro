@@ -2,6 +2,13 @@
 
 class Controller_Dashboard extends Controller_Common {
 
+    public function before()
+    {
+        parent::before();
+
+        $this->title[] = 'Dashboard';
+    }
+
 	public function action_index()
 	{
         $this->title[] = 'Реализация по клиентам';
