@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     csso = require('gulp-csso'),
     modifyCssUrls = require('gulp-modify-css-urls'),
     imagemin = require('gulp-imagemin'),
-    uglify = require('gulp-uglify')
+    uglify = require('gulp-uglify'),
+    sass = require('gulp-sass')
 ;
 
 var
@@ -12,7 +13,7 @@ var
     buildPath = 'assets/build/'
 ;
 
-gulp.task('css', function(){
+gulp.task('less', function(){
     return gulp.src(srcPath + 'css/**/*.less')
         .pipe(less())
         .pipe(modifyCssUrls({
@@ -34,6 +35,13 @@ gulp.task('css', function(){
         .pipe(gulp.dest(buildPath + 'css'))
 });
 
+gulp.task('sass', function(){
+    return gulp.src(srcPath + 'css/**/*.scss')
+        .pipe(sass())
+        .pipe(csso())
+        .pipe(gulp.dest(buildPath + 'css'))
+});
+
 gulp.task('js', function(){
     return gulp.src(srcPath + 'js/**/*.js')
         .pipe(uglify())
@@ -51,37 +59,6 @@ gulp.task('image', function () {
         .pipe(gulp.dest(buildPath + 'img'));
 });
 
-gulp.task('adminpro-css', function () {
-    return gulp.src('admin-pro/minimal/css/**/*.css')
-        .pipe(csso())
-        .pipe(gulp.dest('admin-pro/build/minimal/css'))
-});
-
-gulp.task('adminpro-js', function(){
-    return gulp.src('admin-pro/minimal/js/**/*.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('admin-pro/build/minimal/js'))
-});
-
-gulp.task('adminpro-images', function () {
-    return gulp.src('admin-pro/assets/images/**/*.*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('admin-pro/build/assets/images'));
-});
-
-gulp.task('adminpro-plugins', function() {
-    return gulp.src('admin-pro/assets/plugins/**/*.*')
-        .pipe(gulp.dest('admin-pro/build/assets/plugins'))
-});
-
-gulp.task('watch', ['build'], function() {
-    gulp.watch(srcPath + 'js/**/*.js', ['js']);
-    gulp.watch(srcPath + 'css/**/*.less', ['css']);
-    gulp.watch(srcPath + 'img/**/*.*', ['image']);
-});
-
-gulp.task('build', ['css', 'js', 'fonts', 'image']);
-gulp.task('fast', ['css', 'js']);
+gulp.task('build', ['less', 'sass', 'js', 'fonts', 'image']);
+gulp.task('fast', ['less', 'sass', 'js']);
 gulp.task('images', ['image']);
-gulp.task('adminpro', ['adminpro-css', 'adminpro-js', 'adminpro-images', 'adminpro-plugins']);
-gulp.task('default', ['watch']);
