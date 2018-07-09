@@ -390,10 +390,21 @@ File: scss
   }
 }
 
-.hidden-xl-down {
-  display: none !important;
-} 
+@media (max-width: 1599px) {
+  .hidden-xl-down {
+    display: none !important;
+  }
+}
 
+@media (min-width: 1600px) {
+  .hidden-xxl-up {
+    display: none !important;
+  }
+}
+
+.hidden-xxl-down {
+  display: none !important;
+}
 
 //* card -inverse-font-white
 
