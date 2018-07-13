@@ -1,70 +1,105 @@
-<table class="table_form">
-    <tr>
-        <td class="gray right" width="170">Роль<sup class="required">*</sup>:</td>
-        <td>
-            <select name="manager_add_role" class="select_big">
-                <?foreach(Access::getAvailableRoles() as $role => $name){?>
-                    <option value="<?=$role?>"><?=$name?></option>
-                <?}?>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">Имя:</td>
-        <td>
-            <input type="text" name="manager_add_name" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">Фамилия:</td>
-        <td>
-            <input type="text" name="manager_add_surname" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">Отчество:</td>
-        <td>
-            <input type="text" name="manager_add_middlename" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">E-mail:</td>
-        <td>
-            <input type="text" name="manager_add_email" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">Телефон:</td>
-        <td>
-            <input type="text" name="manager_add_phone" class="input_big">
-        </td>
-    </tr>
-    <tr class="dark">
-        <td class="gray right">Логин<sup class="required">*</sup>:</td>
-        <td>
-            <input type="text" name="manager_add_login" class="input_big">
-        </td>
-    </tr>
-    <tr class="dark">
-        <td class="gray right">Пароль<sup class="required">*</sup>:</td>
-        <td>
-            <input type="password" name="manager_add_password" class="input_big">
-        </td>
-    </tr>
-    <tr class="dark">
-        <td class="gray right">Повторите пароль<sup class="required">*</sup>:</td>
-        <td>
-            <input type="password" name="manager_add_password_again" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <button class="btn btn_reverse btn_manager_add_go" onclick="managerAdd()"><i class="fa fa-check"></i> Добавить</button>
-            <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-        </td>
-    </tr>
-</table>
+<div class="modal-body">
+    <div class="form form_add_client">
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Роль<sup class="required">*</sup>:</div>
+                <span class="hidden-sm-up">Роль<sup class="required">*</sup>:</span>
+            </div>
+            <div class="col-sm-8">
+                <select name="manager_add_role" class="custom-select">
+                    <?foreach(Access::getAvailableRoles() as $role => $name){?>
+                        <option value="<?=$role?>"><?=$name?></option>
+                    <?}?>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Имя:</div>
+                <span class="hidden-sm-up">Имя:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="manager_add_name" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Фамилия:</div>
+                <span class="hidden-sm-up">Фамилия:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="manager_add_surname" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Отчество:</div>
+                <span class="hidden-sm-up">Отчество:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="manager_add_middlename" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">E-mail:</div>
+                <span class="hidden-sm-up">E-mail:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="manager_add_email" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Телефон:</div>
+                <span class="hidden-sm-up">Телефон:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="manager_add_phone" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Логин<sup class="required">*</sup>:</div>
+                <span class="hidden-sm-up">Логин<sup class="required">*</sup>:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="manager_add_login" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Пароль<sup class="required">*</sup>:</div>
+                <span class="hidden-sm-up">Пароль<sup class="required">*</sup>:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="password" name="manager_add_password" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down">Повторите пароль<sup class="required">*</sup>:</div>
+                <span class="hidden-sm-up">Повторите пароль<sup class="required">*</sup>:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="password" name="manager_add_password_again" class="form-control">
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), managerAdd)"><i class="fa fa-plus"></i> Добавить</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
     function managerAdd()
@@ -83,11 +118,13 @@
 
         if(params.login == '' || params.password == ''){
             message(0, 'Заполните логин и пароль');
+            endSubmitForm();
             return false;
         }
 
         if(params.password != params.password_again){
             message(0, 'Пароли не сопадают');
+            endSubmitForm();
             return false;
         }
 
@@ -115,6 +152,7 @@
             }else{
                 message(0, 'Ошибка добавления менеджера');
             }
+            endSubmitForm();
         });
     }
 </script>

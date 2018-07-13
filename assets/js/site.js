@@ -211,7 +211,13 @@ function modalClose()
 function renderVerticalTabsScroll(elem)
 {
     var block = elem.closest('.vtabs');
-    var beforeScrollHeight = block.find('> .nav-tabs .nav-item.before_scroll').length ? block.find('> .nav-tabs .nav-item.before_scroll').height() : 0;
+
+    var beforeScrollHeight = 0;
+
+    block.find('> .nav-tabs .nav-item.before_scroll').each(function () {
+        beforeScrollHeight += parseInt(block.find('> .nav-tabs .nav-item.before_scroll').height());
+    });
+
     var afterScrollHeight = block.find('> .nav-tabs .ajax_block_more').length ? block.find('> .nav-tabs .ajax_block_more').height() : 0;
     var height = block.find('> .tab-content > .tab-pane.active').outerHeight() - beforeScrollHeight - afterScrollHeight;
 

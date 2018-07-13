@@ -47,7 +47,7 @@
                                     $isActiveAction = Text::camelCaseToDashed(Request::current()->action()) == $child && $isActiveController;
 
                                     if(Access::allow($link.'_'.$child, true)) {?>
-                                        <li><a href="/<?=$link?>/<?=($child == 'index' ? '' : '/'.$child)?>" class="<?=($isActiveAction ? 'active' : '')?>"><?=$name?></a></li>
+                                        <li><a href="/<?=$link?>/<?=($child == 'index' ? '' : $child)?>" class="<?=($isActiveAction ? 'active' : '')?>"><?=$name?></a></li>
                                     <?}
                                 }?>
                             </ul>

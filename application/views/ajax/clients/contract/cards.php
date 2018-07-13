@@ -26,7 +26,7 @@
 <div class="card-body border-bottom d-xl-none">
     <div class="row">
         <div class="col-4">
-            <span class="<?=Text::BTN?> btn-primary" toggle_class="card_list"><i class="fa fa-bars"></i> <span class="d-none d-sm-inline-block">Список карт</span></span>
+            <span class="<?=Text::BTN?> btn-info" toggle_class="card_list"><i class="fa fa-bars"></i> <span class="d-none d-sm-inline-block">Список карт</span></span>
         </div>
         <div class="col-8 text-right">
             <?if(Access::allow('clients_card-add')){?>

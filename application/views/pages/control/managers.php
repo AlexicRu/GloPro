@@ -1,49 +1,67 @@
-<h1><?=Lng::phrase('managers')?></h1>
-
-<div class="tabs_vertical_block tabs_switcher tabs_managers">
-    <div class="tabs_v">
-        <div class="before_scroll">
-            <form>
-                <div class="tab_v tab_v_small"><div>
-                    <div class="input_with_icon"><i class="icon-find"></i><input type="text" name="filter[search]" class="input_big input_messages" placeholder="Поиск..." value="<?=(empty($filter['search']) ? '' : $filter['search'])?>"></div>
-                </div></div>
-                <div class="tab_v tab_v_filter filter_outer">
-                    <div>
-                        <div class="filter_toggle">Фильтр</div>
-                        <div class="filter_block">
-                            <div class="filter_row"><label><input type="checkbox" name="filter[only_managers]" value="1" <?=(empty($filter['only_managers']) ? '' : 'checked')?>> Только менеджеры</label></div>
-                            <button class="btn">Применить</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <div class="tab_v tab_v_small"><div>
-                <a href="#manager_add" class="fancy">Добавить менеджера</a>
-            </div></div>
+<div class="card">
+    <div class="card-body border-bottom d-xl-none">
+        <div class="row">
+            <div class="col-4">
+                <span class="btn btn-info" toggle_class="manager_list">
+                    <i class="fa fa-bars"></i> <span class="d-none d-sm-inline-block">Список менеджеров</span>
+                </span>
+            </div>
+            <div class="col-8 text-right">
+                <a class="<?=Text::BTN?> btn-outline-primary" href="#" data-toggle="modal" data-target="#manager_add"><i class="fa fa-plus"></i> Добавить <span class="d-none d-sm-inline-block">менеджера</span></a>
+            </div>
         </div>
+    </div>
 
-        <div class="scroll">
-            <?if(empty($managers)){?>
-                <div class="tab_v"><div>
-                    <span class="gray">Менеджеры не найдены</span>
-                </div></div>
-            <?}else{?>
+
+    <div class="vtabs customvtab tabs_managers">
+        <ul class="nav nav-tabs tabs-vertical tabs-floating p-t-10" role="tablist" toggle_block="manager_list">
+            <li class="nav-item no_content before_scroll">
+                <form class="p-r-10 p-l-10 p-b-10 border-bottom m-b-10">
+                    <input type="text" name="filter[search]" class="form-control input_messages" placeholder="Поиск..." value="<?=(empty($filter['search']) ? '' : $filter['search'])?>">
+
+                    <div class="m-t-5 m-b-5">
+                        <input id="filter_only_managers" type="checkbox" class="<?=Text::CHECKBOX?>" name="filter[only_managers]" value="1" <?=(empty($filter['only_managers']) ? '' : 'checked')?>>
+                        <label for="filter_only_managers">Только менеджеры</label>
+                    </div>
+                    <button class="<?=Text::BTN?> btn-outline-primary">Применить</button>
+                </form>
+            </li>
+
+            <li class="nav-item no_content d-none d-xl-block before_scroll">
+                <a class="nav-link nowrap" href="#" data-toggle="modal" data-target="#manager_add"><i class="fa fa-plus"></i> Добавить менеджера</a>
+            </li>
+
+            <div class="v-scroll">
+                <?if(empty($managers)){?>
+                    <li class="nav-item">
+                        <a class="nav-link nowrap" href="#">
+                            <span class="text-muted">Менеджеры не найдены</span>
+                        </a>
+                    </li>
+                <?}else{?>
+                    <?foreach($managers as $key => $manager){?>
+                        <li class="nav-item" tab="manager<?=$manager['MANAGER_ID']?>">
+                            <a class="nav-link nowrap" data-toggle="tab" href="#manager<?=$manager['MANAGER_ID']?>" role="tab">
+                                <span class="text-muted">[<?=$manager['MANAGER_ID']?>]</span>
+                                <?=$manager['M_NAME']?>
+                            </a>
+                        </li>
+                    <?}?>
+                <?}?>
+
+            </div>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <?if(!empty($managers)){?>
                 <?foreach($managers as $key => $manager){?>
-                    <div class="tab_v tab_v_small" tab="manager<?=$manager['MANAGER_ID']?>"><div>
-                        <span class="gray">[<?=$manager['MANAGER_ID']?>]</span>
-                        <?=$manager['M_NAME']?>
-                    </div></div>
+                    <div class="tab-pane" id="manager<?=$manager['MANAGER_ID']?>" role="tabpanel">
+                        <?=$key?>
+                    </div>
                 <?}?>
             <?}?>
         </div>
-    </div>
-    <div class="tabs_v_content tabs_content_no_padding">
-        <?if(!empty($managers)){?>
-            <?foreach($managers as $key => $manager){?>
-                <div class="tab_v_content" tab_content="manager<?=$manager['MANAGER_ID']?>"></div>
-            <?}?>
-        <?}?>
     </div>
 </div>
 
@@ -51,28 +69,20 @@
 
 <script>
     $(function(){
-        $(".tabs_managers .tabs_v .scroll > [tab]").on('click', function(){
+        renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
+
+        $('.tabs_managers :not(.before_scroll) .nav-link').on('click', function(){
             var t = $(this);
 
             loadManager(t);
         });
-        
-        var clicked = false;
-        $(".tabs_managers .tabs_v .scroll > [tab]").each(function(){
-            if(clicked){
-                return;
-            }
-            var t = $(this);
 
-            if(!clicked){
-                clicked = true;
-                t.click();
-            }
-        });
+        $('.tabs_managers .nav-item:not(.before_scroll):first .nav-link').click();
     });
     
-    function loadManager(tab, force)
+    function loadManager(t, force)
     {
+        var tab = t.closest('[tab]');
         var tabsBlock = $(".tabs_managers");
         var managerId = tab.attr('tab').replace('manager', '');
         var tabContent = $("[tab_content=manager"+ managerId +"]", tabsBlock);

@@ -7,7 +7,7 @@
     <div class="card-body border-bottom d-xl-none">
         <div class="row">
             <div class="col-12">
-                <span class="btn btn-primary" toggle_class="report_list">
+                <span class="btn btn-info" toggle_class="report_list">
                     <i class="fa fa-bars"></i> Список отчетов
                 </span>
             </div>

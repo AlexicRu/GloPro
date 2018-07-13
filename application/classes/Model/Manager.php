@@ -136,6 +136,7 @@ class Model_Manager extends Model
         if(!empty($params['only_managers'])){
             $sql->whereNotIn("ROLE_ID", array_keys(Access::$clientRoles));
         }
+        unset($params['only_managers']);
 
         if(!empty($params['roles_exclude'])){
             $sql->whereNotIn("ROLE_ID", $params['roles_exclude']);

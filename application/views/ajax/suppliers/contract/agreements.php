@@ -1,7 +1,7 @@
 <div class="card-body border-bottom d-xl-none">
     <div class="row">
         <div class="col-4">
-            <span class="<?=Text::BTN?> btn-primary" toggle_class="agreements_list"><i class="fa fa-bars"></i> <span class="hidden-xs-down">Список соглашений</span></span>
+            <span class="<?=Text::BTN?> btn-info" toggle_class="agreements_list"><i class="fa fa-bars"></i> <span class="hidden-xs-down">Список соглашений</span></span>
         </div>
         <div class="col-8 text-right">
             <?if(Access::allow('suppliers_agreement-add')){?>
