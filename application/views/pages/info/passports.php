@@ -75,10 +75,47 @@
         </div>
     </div>
 
+    <div class="block">
+        <h2>Центральный регион</h2>
+
+        <div class="info__list">
+            <a href="/file/info/Паспорта_качества/Центральный_регион/Паспорт_качества_2018.07.15_19-01_Р-р_6.pdf" class="info__item" target="_blank">
+                <div>
+                    <div><span class="info__icon info__icon-pdf"></span></div>
+                    <div class="info__item-name">Паспорт качества 2018.07.15 19-01 Р-р №6</div>
+                </div>
+                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
+            </a>
+            <a href="/file/info/Паспорта_качества/Центральный_регион/2007.pdf" class="info__item" target="_blank">
+                <div>
+                    <div><span class="info__icon info__icon-pdf"></span></div>
+                    <div class="info__item-name">2007</div>
+                </div>
+                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
+            </a>
+            <a href="/file/info/Паспорта_качества/Центральный_регион/2004.pdf" class="info__item" target="_blank">
+                <div>
+                    <div><span class="info__icon info__icon-pdf"></span></div>
+                    <div class="info__item-name">2004</div>
+                </div>
+                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
+            </a>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-body">
             <h2>Сибирь</h2>
 
+            <a href="/file/info/Паспорта_качества/Сибирь/Сибирь.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
+                </div>
+                <div class="col-10 col-xxl-8">Сибирь</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
             <a href="/file/info/Паспорта_качества/Сибирь/95_Опти.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
@@ -155,6 +192,34 @@
         <div class="card-body">
             <h2>Урал</h2>
 
+            <a href="/file/info/Паспорта_качества/Урал/АИ-95.pdf" class="info__item" target="_blank">
+                <div>
+                    <div><span class="info__icon info__icon-pdf"></span></div>
+                    <div class="info__item-name">АИ-95</div>
+                </div>
+                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
+            </a>
+            <a href="/file/info/Паспорта_качества/Урал/АИ-92.pdf" class="info__item" target="_blank">
+                <div>
+                    <div><span class="info__icon info__icon-pdf"></span></div>
+                    <div class="info__item-name">АИ-92</div>
+                </div>
+                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
+            </a>
+            <a href="/file/info/Паспорта_качества/Урал/АИ-100.pdf" class="info__item" target="_blank">
+                <div>
+                    <div><span class="info__icon info__icon-pdf"></span></div>
+                    <div class="info__item-name">ААИ-100</div>
+                </div>
+                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
+            </a>
+            <a href="/file/info/Паспорта_качества/Урал/ДТ.pdf" class="info__item" target="_blank">
+                <div>
+                    <div><span class="info__icon info__icon-pdf"></span></div>
+                    <div class="info__item-name">ДТ</div>
+                </div>
+                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
+            </a>
             <a href="/file/info/Паспорта_качества/Урал/АИ-95-К5_ГОСТ_32513-2013.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
