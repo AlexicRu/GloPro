@@ -17,7 +17,7 @@ class Controller_Help extends Controller_Common
         $this->_search = $this->request->post('search');
         $this->_ids = $this->request->post('ids');
 
-        if(!empty($this->_ids)){
+        if(!empty($this->_ids) && is_string($this->_ids)){
             $this->_ids = explode(',', $this->_ids);
         }
 
@@ -251,7 +251,13 @@ class Controller_Help extends Controller_Common
             $this->after(false);
         }
 
-        list($result, $this->_more) = Model_Contract::getContracts($this->_params);
+        $params = $this->_params;
+
+        if (!empty($this->_ids)) {
+            $params['contract_id'] = $this->_ids;
+        }
+
+        list($result, $this->_more) = Model_Contract::getContracts($params);
 
         if(empty($result)){
             $this->after(false);

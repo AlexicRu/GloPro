@@ -25,7 +25,10 @@
                                         $contractsIds = $contractsTree[$client['CLIENT_ID']];
                                     }
                                 ?>
-                                <?=Form::buildField('contract_choose_multi', 'manager_clients_contract_binds'.$client['CLIENT_ID'], implode(',', $contractsIds), ['client_id' => $client['CLIENT_ID']])?>
+                                <?=Form::buildField('contract_choose_multi', 'manager_clients_contract_binds'.$client['CLIENT_ID'], implode(',', $contractsIds), [
+                                    'depend_values' => ['client_id' => $client['CLIENT_ID']],
+                                    'depend_postfix' => $client['CLIENT_ID']
+                                ])?>
                             </td>
                             <td>
                                 <span class="btn btn_green" onclick="saveManagerClientContractBinds($(this))"><i class="fa fa-check"></i> Сохранить</span>

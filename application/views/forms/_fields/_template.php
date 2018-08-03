@@ -16,7 +16,6 @@ if ($withDepend) {?>
                 'placeholder' => !empty($params['depend_on']['placeholder']) ? $params['depend_on']['placeholder'] : 'Поиск...',
                 'depend_to' => $name
             ];
-            $params['depend_on']['name'] = !empty($params['depend_on']['name']) ? $params['depend_on']['name'] : $params['depend_on']['field'];
 
             $valueDepend = false;
             if (!empty($params['depend_values'][$params['depend_on']['param']])) {
@@ -24,6 +23,14 @@ if ($withDepend) {?>
                 $data['hidden'] = true;
                 $data['depend_values'] = $params['depend_values'];
             }
+
+            $dependPostfix = '';
+            if (!empty($params['depend_postfix'])) {
+                $dependPostfix = $params['depend_postfix'];
+                $data['depend_postfix'] = $params['depend_postfix'];
+            }
+
+            $params['depend_on']['name'] = (!empty($params['depend_on']['name']) ? $params['depend_on']['name'] : $params['depend_on']['field']) . $dependPostfix;
             ?>
             <?=Form::buildField($params['depend_on']['field'], $params['depend_on']['name'], $valueDepend, $data)?>
         </div>

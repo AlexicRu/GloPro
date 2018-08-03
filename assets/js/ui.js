@@ -419,7 +419,7 @@ function setComboBoxMultiValue(combo, value)
     $.post(combo.attr('url'), { ids:list }, function(data){
         if(data.success){
             for(var j in data.data.items){
-                renderComboBoxMultiSelectedItem(data.data[j].value, data.data[j].name, wrapper);
+                renderComboBoxMultiSelectedItem(data.data.items[j].value, data.data.items[j].name, wrapper);
             }
         }
     });
