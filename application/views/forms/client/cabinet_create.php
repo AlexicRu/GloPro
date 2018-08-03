@@ -3,7 +3,7 @@
     <div class="form form_cabinet_create">
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Email:<br><small><i>куда отправить</i></small>:</div>
+                <div class="text-right hidden-xs-down text-muted">Email:<br><small><i>куда отправить</i></small>:</div>
                 <span class="hidden-sm-up">Email:<br><small><i>куда отправить</i></small>:</span>
             </div>
             <div class="col-sm-8">
@@ -13,7 +13,7 @@
 
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Роль:</div>
+                <div class="text-right hidden-xs-down text-muted">Роль:</div>
                 <span class="hidden-sm-up">Роль:</span>
             </div>
             <div class="col-sm-8">

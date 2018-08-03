@@ -2,7 +2,7 @@
     <div class="form form_add_client">
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Роль<sup class="required">*</sup>:</div>
+                <div class="text-right hidden-xs-down text-muted">Роль<sup class="required">*</sup>:</div>
                 <span class="hidden-sm-up">Роль<sup class="required">*</sup>:</span>
             </div>
             <div class="col-sm-8">
@@ -16,7 +16,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Имя:</div>
+                <div class="text-right hidden-xs-down text-muted">Имя:</div>
                 <span class="hidden-sm-up">Имя:</span>
             </div>
             <div class="col-sm-8">
@@ -26,7 +26,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Фамилия:</div>
+                <div class="text-right hidden-xs-down text-muted">Фамилия:</div>
                 <span class="hidden-sm-up">Фамилия:</span>
             </div>
             <div class="col-sm-8">
@@ -36,7 +36,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Отчество:</div>
+                <div class="text-right hidden-xs-down text-muted">Отчество:</div>
                 <span class="hidden-sm-up">Отчество:</span>
             </div>
             <div class="col-sm-8">
@@ -46,7 +46,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">E-mail:</div>
+                <div class="text-right hidden-xs-down text-muted">E-mail:</div>
                 <span class="hidden-sm-up">E-mail:</span>
             </div>
             <div class="col-sm-8">
@@ -56,7 +56,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Телефон:</div>
+                <div class="text-right hidden-xs-down text-muted">Телефон:</div>
                 <span class="hidden-sm-up">Телефон:</span>
             </div>
             <div class="col-sm-8">
@@ -66,7 +66,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Логин<sup class="required">*</sup>:</div>
+                <div class="text-right hidden-xs-down text-muted">Логин<sup class="required">*</sup>:</div>
                 <span class="hidden-sm-up">Логин<sup class="required">*</sup>:</span>
             </div>
             <div class="col-sm-8">
@@ -76,7 +76,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Пароль<sup class="required">*</sup>:</div>
+                <div class="text-right hidden-xs-down text-muted">Пароль<sup class="required">*</sup>:</div>
                 <span class="hidden-sm-up">Пароль<sup class="required">*</sup>:</span>
             </div>
             <div class="col-sm-8">
@@ -86,7 +86,7 @@
 
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Повторите пароль<sup class="required">*</sup>:</div>
+                <div class="text-right hidden-xs-down text-muted">Повторите пароль<sup class="required">*</sup>:</div>
                 <span class="hidden-sm-up">Повторите пароль<sup class="required">*</sup>:</span>
             </div>
             <div class="col-sm-8">

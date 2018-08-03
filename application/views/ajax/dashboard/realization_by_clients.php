@@ -1,6 +1,6 @@
 <div class="row m-b-10">
     <div class="col-sm-6 text-muted">
-        <div class="text-right hidden-xs-down">Количество клиентов:</div>
+        <div class="text-right hidden-xs-down text-muted">Количество клиентов:</div>
         <span class="hidden-sm-up">Количество клиентов:</span>
     </div>
     <div class="col-sm-6">
@@ -10,7 +10,7 @@
 
 <div class="row m-b-10">
     <div class="col-sm-6 text-muted">
-        <div class="text-right hidden-xs-down">Количество договоров:</div>
+        <div class="text-right hidden-xs-down text-muted">Количество договоров:</div>
         <span class="hidden-sm-up">Количество договоров:</span>
     </div>
     <div class="col-sm-6">
@@ -20,7 +20,7 @@
 
 <div class="row m-b-10">
     <div class="col-sm-6 text-muted">
-        <div class="text-right hidden-xs-down">Объем выборки за период:</div>
+        <div class="text-right hidden-xs-down text-muted">Объем выборки за период:</div>
         <span class="hidden-sm-up">Объем выборки за период:</span>
     </div>
     <div class="col-sm-6">
@@ -30,7 +30,7 @@
 
 <div class="row">
     <div class="col-sm-6 text-muted">
-        <div class="text-right hidden-xs-down">Продажа за период:</div>
+        <div class="text-right hidden-xs-down text-muted">Продажа за период:</div>
         <span class="hidden-sm-up">Продажа за период:</span>
     </div>
     <div class="col-sm-6">

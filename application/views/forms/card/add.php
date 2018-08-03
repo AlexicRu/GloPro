@@ -2,7 +2,7 @@
     <div class="form form_add_card">
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Номер карты:</div>
+                <div class="text-right hidden-xs-down text-muted">Номер карты:</div>
                 <span class="hidden-sm-up">Номер карты:</span>
             </div>
             <div class="col-sm-8">
@@ -12,7 +12,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Владелец:</div>
+                <div class="text-right hidden-xs-down text-muted">Владелец:</div>
                 <span class="hidden-sm-up">Владелец:</span>
             </div>
             <div class="col-sm-8">
@@ -22,7 +22,7 @@
 
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Срок действия:</div>
+                <div class="text-right hidden-xs-down text-muted">Срок действия:</div>
                 <span class="hidden-sm-up">Срок действия:</span>
             </div>
             <div class="col-sm-8">

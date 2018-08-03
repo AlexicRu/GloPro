@@ -3,7 +3,7 @@
     <div class="form form_add_client">
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Номер:</div>
+                <div class="text-right hidden-xs-down text-muted">Номер:</div>
                 <span class="hidden-sm-up">Номер:</span>
             </div>
             <div class="col-sm-8">
@@ -13,7 +13,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Дата начала:</div>
+                <div class="text-right hidden-xs-down text-muted">Дата начала:</div>
                 <span class="hidden-sm-up">Дата начала:</span>
             </div>
             <div class="col-sm-8">
@@ -23,7 +23,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Дата окончания:</div>
+                <div class="text-right hidden-xs-down text-muted">Дата окончания:</div>
                 <span class="hidden-sm-up">Дата окончания:</span>
             </div>
             <div class="col-sm-8">

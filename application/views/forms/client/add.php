@@ -2,7 +2,7 @@
     <div class="form form_add_client">
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Название компании:</div>
+                <div class="text-right hidden-xs-down text-muted">Название компании:</div>
                 <span class="hidden-sm-up">Название компании:</span>
             </div>
             <div class="col-sm-8">

@@ -3,7 +3,7 @@
     <div class="form form_add_agreement">
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Название:</div>
+                <div class="text-right hidden-xs-down text-muted">Название:</div>
                 <span class="hidden-sm-up">Название:</span>
             </div>
             <div class="col-sm-8">

@@ -73,7 +73,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-5 text-muted">
-                    <div class="text-right hidden-xs-down">Валюта:</div>
+                    <div class="text-right hidden-xs-down text-muted">Валюта:</div>
                     <div class="hidden-sm-up">Валюта:</div>
                 </div>
                 <div class="col-sm-7">
@@ -83,7 +83,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-5 text-muted">
-                    <div class="text-right hidden-xs-down">Тип источника:</div>
+                    <div class="text-right hidden-xs-down text-muted">Тип источника:</div>
                     <div class="hidden-sm-up">Тип источника:</div>
                 </div>
                 <div class="col-sm-7">
@@ -123,7 +123,7 @@
             <?if(Access::allow('view_supplier_contract_group_dots')){?>
                 <div class="row m-b-10">
                     <div class="col-sm-5 text-muted">
-                        <div class="text-right hidden-xs-down">Группы точек:</div>
+                        <div class="text-right hidden-xs-down text-muted">Группы точек:</div>
                         <div class="hidden-sm-up">Группы точек:</div>
                     </div>
                     <div class="col-sm-7">

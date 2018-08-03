@@ -2,7 +2,7 @@
     <div class="form form_add_contract_payment">
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Номер:</div>
+                <div class="text-right hidden-xs-down text-muted">Номер:</div>
                 <span class="hidden-sm-up">Номер:</span>
             </div>
             <div class="col-sm-8">
@@ -12,7 +12,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Дата платежного поручения:</div>
+                <div class="text-right hidden-xs-down text-muted">Дата платежного поручения:</div>
                 <span class="hidden-sm-up">Дата платежного поручения:</span>
             </div>
             <div class="col-sm-8">
@@ -22,7 +22,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Сумма (<?=Text::RUR?>):</div>
+                <div class="text-right hidden-xs-down text-muted">Сумма (<?=Text::RUR?>):</div>
                 <span class="hidden-sm-up">Сумма (<?=Text::RUR?>):</span>
             </div>
             <div class="col-sm-8">
@@ -32,7 +32,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Комментарий:</div>
+                <div class="text-right hidden-xs-down text-muted">Комментарий:</div>
                 <span class="hidden-sm-up">Комментарий:</span>
             </div>
             <div class="col-sm-8">

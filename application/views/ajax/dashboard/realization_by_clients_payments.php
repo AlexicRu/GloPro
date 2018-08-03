@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-6 text-muted">
-        <div class="text-right hidden-xs-down">Сумма платежей:</div>
+        <div class="text-right hidden-xs-down text-muted">Сумма платежей:</div>
         <span class="hidden-sm-up">Сумма платежей:</span>
     </div>
     <div class="col-sm-6">

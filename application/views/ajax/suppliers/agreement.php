@@ -66,7 +66,7 @@ $toggle = 'agreement'.$agreement['AGREEMENT_ID'];
     <div class="p-20">
         <div class="row">
             <div class="col-sm-4 text-muted">
-                <div class="text-right hidden-xs-down">Расчет скидки:</div>
+                <div class="text-right hidden-xs-down text-muted">Расчет скидки:</div>
                 <div class="hidden-sm-up">Засчет скидки:</div>
             </div>
             <div class="col-sm-8">

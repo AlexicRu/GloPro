@@ -7,7 +7,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Заголовок:</div>
+                <div class="text-right hidden-xs-down text-muted">Заголовок:</div>
                 <span class="hidden-sm-up">Заголовок:</span>
             </div>
             <div class="col-sm-8">
@@ -17,7 +17,7 @@
 
         <div class="form-group row">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Фото:</div>
+                <div class="text-right hidden-xs-down text-muted">Фото:</div>
                 <span class="hidden-sm-up">Фото:</span>
             </div>
             <div class="col-sm-8">

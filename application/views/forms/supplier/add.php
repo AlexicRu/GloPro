@@ -2,7 +2,7 @@
     <div class="form form_add_supplier">
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
-                <div class="text-right hidden-xs-down">Наименование:</div>
+                <div class="text-right hidden-xs-down text-muted">Наименование:</div>
                 <span class="hidden-sm-up">Наименование:</span>
             </div>
             <div class="col-sm-8">

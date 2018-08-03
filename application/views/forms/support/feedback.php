@@ -1,7 +1,7 @@
 <div class="form">
     <div class="form-group row">
         <div class="col-sm-4 col-lg-3">
-            <div class="text-right hidden-xs-down">Email для ответов:</div>
+            <div class="text-right hidden-xs-down text-muted">Email для ответов:</div>
             <span class="hidden-sm-up">Email для ответов:</span>
         </div>
         <div class="col-sm-8 col-lg-9">
@@ -11,7 +11,7 @@
 
     <div class="form-group row">
         <div class="col-sm-4 col-lg-3">
-            <div class="text-right hidden-xs-down">Тема сообщения:</div>
+            <div class="text-right hidden-xs-down text-muted">Тема сообщения:</div>
             <span class="hidden-sm-up">Тема сообщения:</span>
         </div>
         <div class="col-sm-8 col-lg-9">
@@ -21,7 +21,7 @@
 
     <div class="form-group row">
         <div class="col-sm-4 col-lg-3">
-            <div class="text-right hidden-xs-down">Текст сообщения:</div>
+            <div class="text-right hidden-xs-down text-muted">Текст сообщения:</div>
             <span class="hidden-sm-up">Текст сообщения:</span>
         </div>
         <div class="col-sm-8 col-lg-9">
@@ -31,7 +31,7 @@
 
     <div class="form-group row">
         <div class="col-sm-4 col-lg-3">
-            <div class="text-right hidden-xs-down">Прикрепленные файлы:</div>
+            <div class="text-right hidden-xs-down text-muted">Прикрепленные файлы:</div>
             <span class="hidden-sm-up">Прикрепленные файлы:</span>
         </div>
         <div class="col-sm-8 col-lg-9">
