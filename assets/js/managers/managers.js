@@ -172,8 +172,6 @@ function loadReportList(input)
                 tpl.find('[type=checkbox]').prop('checked', true);
             }
 
-            renderCheckbox(tpl.find('[type=checkbox]'));
-
             tpl.appendTo(list);
         }
 
@@ -244,7 +242,14 @@ function loadClientList(input)
         list.removeClass('block_loading');
 
         for(var i in data.data){
-            var tpl = $('<div class="item_found_row"><span><input type="checkbox" class="found_client" onchange="checkFoundItem($(this))"></span><span class="ifr_id gray" /><span class="ifr_name" /></div>');
+            var tpl = $('<div class="item_found_row p-t-10 p-l-10 p-r-10 border-bottom">'+
+                '<input id="ifr_'+ i +'" type="checkbox" class="found_client '+ CHECKBOX +'" onchange="checkFoundItem($(this))">' +
+                '<label for="ifr_'+ i +'">' +
+                    '<span class="text-muted">[<span class="ifr_id" />]</span> <span class="ifr_name" />' +
+                '</label>' +
+            '</div>');
+
+
             tpl.find('.ifr_id').text(data.data[i].CLIENT_ID);
             tpl.find('.ifr_name').text(data.data[i].CLIENT_NAME);
             tpl.attr('item_id', data.data[i].CLIENT_ID);
@@ -255,8 +260,6 @@ function loadClientList(input)
             if(ids.indexOf(data.data[i].CLIENT_ID) != -1){
                 tpl.find('[type=checkbox]').prop('checked', true);
             }
-
-            renderCheckbox(tpl.find('[type=checkbox]'));
 
             tpl.appendTo(list);
         }

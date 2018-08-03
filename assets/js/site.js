@@ -1,5 +1,6 @@
 var CLASS_LOADING = 'block_loading';
 var BTN = ' btn waves-effect waves-light ';
+var CHECKBOX = ' filled-in chk-col-purple ';
 
 if (typeof Dropzone == 'function') {
     Dropzone.autoDiscover = false;
@@ -356,4 +357,52 @@ function initWYSIWYG(elem)
             }
         }
     });
+}
+
+function collectFoundIds(block)
+{
+    var list = $('.selected_items_list', block);
+
+    var ids = [];
+
+    $('.sil_item').each(function () {
+        ids.push($(this).attr('item_id'));
+    });
+
+    return ids;
+}
+
+function checkFoundItem(check)
+{
+    var block = check.closest('.items_list_autocomplete_block');
+    var row = check.closest('.item_found_row');
+    var list = $('.selected_items_list', block);
+
+    if(check.is(':checked')) {
+        //add
+        var tpl = $('<div class="sil_item"><span class="sili_close" onclick="uncheckFoundItem($(this))">&times;</span></div>');
+
+        tpl.attr('item_id', row.attr('item_id')).prepend(row.data('item_name'));
+
+        tpl.appendTo(list);
+    } else {
+        //remove
+        list.find('[item_id='+ row.attr('item_id') +']').remove();
+    }
+}
+
+function uncheckFoundItem(close)
+{
+    var block = close.closest('.items_list_autocomplete_block');
+    var list = $('.selected_items_list', block);
+
+    var item = close.closest('.sil_item');
+
+    var foundRow = $('.item_found_row[item_id='+ item.attr('item_id') +']');
+
+    if (foundRow.length) {
+        $('[type=checkbox]', foundRow).click();
+    } else {
+        list.find('[item_id='+ item.attr('item_id') +']').remove();
+    }
 }

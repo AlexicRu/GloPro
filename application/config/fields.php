@@ -68,7 +68,7 @@ return [
     'contract_choose_multi' => [
         'multi'             => true,
         'url'               => '/help/list-clients-contracts',
-        'placeholder'       => 'Договор',
+        'placeholder'       => 'Договоры',
         'depend_on'         => [
             'field'         => 'client_choose_single',
             'param'         => 'client_id',
@@ -78,7 +78,7 @@ return [
     'card_choose_multi' => [
         'multi'             => true,
         'url'               => '/help/list-card',
-        'placeholder'       => 'Карта',
+        'placeholder'       => 'Карты',
         'depend_on'         => [
             'field'         => 'contract_choose_single',
             'param'         => 'contract_id',

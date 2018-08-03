@@ -219,6 +219,34 @@ body{
   width: 70px;
 }
 
+.found_items_list{
+  height: 350px; overflow-y: auto;
+}
+.selected_items_list{
+  min-height: 50px; padding-bottom: 10px; padding-top: 10px;
+}
+.sil_item{
+  display: inline-block;
+  border-radius: 4px;
+  background: #0e86ad;
+  color: white;
+  padding: 1px 5px 2px 7px; margin: 0 5px 3px 0;
+}
+.sili_close{
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 0 0 3px;
+  font-size: 20px;
+  line-height: 14px;
+  .transition();
+
+  &:hover{
+    color: white;
+  }
+}
+
 /*
 -----------------------------------
 media queries
