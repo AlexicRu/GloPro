@@ -7,7 +7,7 @@
         <div class="card" manager_id="<?=$managerId?>" client_id="<?=$client['CLIENT_ID']?>">
             <div class="card-body bg-light">
                 <div class="float-right">
-                    <a href="#" class="red del" onclick="delManagersClient($(this))"><i class="fa fa-trash-alt"></i></a>
+                    <a href="#" class="text-danger" onclick="delManagersClient($(this))"><i class="fa fa-trash-alt"></i></a>
                 </div>
 
                 <span class="text-muted">[<?=$client['CLIENT_ID']?>]</span> <b><?=$client['CLIENT_NAME']?></b>

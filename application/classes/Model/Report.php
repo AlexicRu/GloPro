@@ -39,8 +39,8 @@ class Model_Report extends Model
     ];
 
     public static $reportGlobalTypesNames = [
-        self::REPORT_GLOBAL_TYPE_CONTRACT   => ['name' => 'Отчетность', 'label' => 'label_info'],
-        self::REPORT_GLOBAL_TYPE_REPORT     => ['name' => 'В договоре', 'label' => 'label_success'],
+        self::REPORT_GLOBAL_TYPE_CONTRACT   => ['name' => 'Отчетность', 'label' => 'badge-info'],
+        self::REPORT_GLOBAL_TYPE_REPORT     => ['name' => 'В договоре', 'label' => 'badge-success'],
     ];
 
     public static $formatHeaders = [
