@@ -53,12 +53,10 @@
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content p-0">
             <?if(!empty($managers)){?>
                 <?foreach($managers as $key => $manager){?>
-                    <div class="tab-pane" id="manager<?=$manager['MANAGER_ID']?>" role="tabpanel">
-                        <?=$key?>
-                    </div>
+                    <div class="tab-pane" id="manager<?=$manager['MANAGER_ID']?>" role="tabpanel"></div>
                 <?}?>
             <?}?>
         </div>
@@ -66,11 +64,11 @@
 </div>
 
 <?=$popupManagerAdd?>
+<?=$popupManagerAddClients?>
+<?=$popupManagerAddReports?>
 
 <script>
     $(function(){
-        renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
-
         $('.tabs_managers :not(.before_scroll) .nav-link').on('click', function(){
             var t = $(this);
 
@@ -85,14 +83,17 @@
         var tab = t.closest('[tab]');
         var tabsBlock = $(".tabs_managers");
         var managerId = tab.attr('tab').replace('manager', '');
-        var tabContent = $("[tab_content=manager"+ managerId +"]", tabsBlock);
+        var tabContent = $(t.attr('href'), tabsBlock);
 
         if(tabContent.text() == '' || force == true){
             tabContent.empty().parent().addClass('block_loading');
 
             $.post('/control/manager/' + managerId, {}, function(data){
                 tabContent.html(data).parent().removeClass('block_loading');
+                renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
             });
+        } else {
+            renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
         }
     }
 </script>

@@ -19,93 +19,120 @@ if(empty($changeRole)){
     <?if($isEdit){?>
         <input type="hidden" name="manager_settings_id" value="<?=$manager['MANAGER_ID']?>">
     <?}?>
-    <div class="as_table">
-        <div class="col">
-            <table class="table_form">
-                <tr>
-                    <td class="gray right" width="<?=$width?>">Имя:</td>
-                    <td>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form">
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down">Имя:</div>
+                        <span class="hidden-sm-up">Имя:</span>
+                    </div>
+                    <div class="col-sm-8">
                         <input type="text" name="manager_settings_name" class="input_big" value="<?=$manager['MANAGER_NAME']?>">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Фамилия:</td>
-                    <td>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down">Фамилия:</div>
+                        <span class="hidden-sm-up">Фамилия:</span>
+                    </div>
+                    <div class="col-sm-8">
                         <input type="text" name="manager_settings_surname" class="input_big" value="<?=$manager['MANAGER_SURNAME']?>">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Отчество:</td>
-                    <td>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down">Отчество:</div>
+                        <span class="hidden-sm-up">Отчество:</span>
+                    </div>
+                    <div class="col-sm-8">
                         <input type="text" name="manager_settings_middlename" class="input_big" value="<?=$manager['MANAGER_MIDDLENAME']?>">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">E-mail:</td>
-                    <td>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down">E-mail:</div>
+                        <span class="hidden-sm-up">E-mail:</span>
+                    </div>
+                    <div class="col-sm-8">
                         <input type="text" name="manager_settings_email" class="input_big" value="<?=$manager['EMAIL']?>">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Телефон:</td>
-                    <td>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <div class="text-right hidden-xs-down">Телефон:</div>
+                        <span class="hidden-sm-up">Телефон:</span>
+                    </div>
+                    <div class="col-sm-8">
                         <input type="text" name="manager_settings_phone" class="input_big" value="<?=$manager['CELLPHONE']?>">
-                    </td>
-                </tr>
+                    </div>
+                </div>
+
                 <?if($changeRole){?>
-                    <tr>
-                        <td class="gray right">Роль:</td>
-                        <td>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <div class="text-right hidden-xs-down">Роль:</div>
+                            <span class="hidden-sm-up">Роль:</span>
+                        </div>
+                        <div class="col-sm-8">
                             <select name="manager_settings_role" class="select_big">
                                 <?foreach(Access::getAvailableRoles() as $role => $name){?>
                                     <option value="<?=$role?>" <?if($role == $manager['ROLE_ID']){?>selected<?}?>><?=$name?></option>
                                 <?}?>
                             </select>
+                        </div>
+                    </div>
+                <?}?>
+
+                <div class="form-group row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8">
+                        <button class="btn waves-effect waves-light btn_green btn_reverse btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="bg-light">
+                <b class="f18">Смена пароля</b>
+                <table class="table_form">
+                    <tr class="form_attention">
+                        <td class="gray right" width="<?=$width?>">Логин:</td>
+                        <td>
+                            <?if (Access::allow('clients_edit-login')) {?>
+                                <div toggle_block="edit_login">
+                                    <span class="login_value"><?=$manager['LOGIN']?></span>
+                                    <span class="btn waves-effect waves-light btn_small" toggle="edit_login"><i class="icon icon-pen"></i></span>
+                                </div>
+                                <div toggle_block="edit_login" style="display: none">
+                                    <input type="text" value="<?=$manager['LOGIN']?>" name="edit_login" class="input_big input_mini">
+                                    <span class="btn waves-effect waves-light btn_small btn_green" onclick="editLogin($(this));"><i class="icon icon-ok"></i></span>
+                                    <span class="btn waves-effect waves-light btn_small btn_red" toggle="edit_login"><i class="icon icon-cancel"></i></span>
+                                </div>
+                            <?} else {?>
+                                <?=$manager['LOGIN']?>
+                            <?}?>
                         </td>
                     </tr>
-                <?}?>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button class="btn waves-effect waves-light btn_green btn_reverse btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="col line_inner">
-            <b class="f18">Смена пароля</b>
-            <table class="table_form">
-                <tr class="form_attention">
-                    <td class="gray right" width="<?=$width?>">Логин:</td>
-                    <td>
-                        <?if (Access::allow('clients_edit-login')) {?>
-                            <div toggle_block="edit_login">
-                                <span class="login_value"><?=$manager['LOGIN']?></span>
-                                <span class="btn waves-effect waves-light btn_small" toggle="edit_login"><i class="icon icon-pen"></i></span>
-                            </div>
-                            <div toggle_block="edit_login" style="display: none">
-                                <input type="text" value="<?=$manager['LOGIN']?>" name="edit_login" class="input_big input_mini">
-                                <span class="btn waves-effect waves-light btn_small btn_green" onclick="editLogin($(this));"><i class="icon icon-ok"></i></span>
-                                <span class="btn waves-effect waves-light btn_small btn_red" toggle="edit_login"><i class="icon icon-cancel"></i></span>
-                            </div>
-                        <?} else {?>
-                            <?=$manager['LOGIN']?>
-                        <?}?>
-                    </td>
-                </tr>
-                <tr class="form_attention">
-                    <td class="gray right">Пароль:</td>
-                    <td>
-                        <input type="password" name="manager_settings_password" class="input_big" <?=($manager['MANAGER_ID'] == Access::USER_TEST ? 'readonly' : '')?>>
-                    </td>
-                </tr>
-                <tr class="form_attention">
-                    <td class="gray right">Пароль еще раз:</td>
-                    <td>
-                        <input type="password" name="manager_settings_password_again" class="input_big" <?=($manager['MANAGER_ID'] == Access::USER_TEST ? 'readonly' : '')?>>
-                    </td>
-                </tr>
-            </table>
+                    <tr class="form_attention">
+                        <td class="gray right">Пароль:</td>
+                        <td>
+                            <input type="password" name="manager_settings_password" class="input_big" <?=($manager['MANAGER_ID'] == Access::USER_TEST ? 'readonly' : '')?>>
+                        </td>
+                    </tr>
+                    <tr class="form_attention">
+                        <td class="gray right">Пароль еще раз:</td>
+                        <td>
+                            <input type="password" name="manager_settings_password_again" class="input_big" <?=($manager['MANAGER_ID'] == Access::USER_TEST ? 'readonly' : '')?>>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 

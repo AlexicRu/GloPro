@@ -1,50 +1,66 @@
-<script src="<?=Common::getAssetsLink()?>js/managers/managers.js"></script>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs customtab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#tabInfo<?=$managerId?>" role="tab">
+            Информация
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tabClients<?=$managerId?>" role="tab" onclick="showManagersClients(<?=$managerId?>)">
+            Клиенты
+        </a>
+    </li>
+    <?if (Access::allow('managers_load-reports')) {?>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tabReports<?=$managerId?>" role="tab" onclick="showManagersReports(<?=$managerId?>)">
+            Отчеты
+        </a>
+    </li>
+    <?}?>
+</ul>
 
-<div class="tabs_block tabs_switcher">
-    <div class="tabs">
-        <span tab="info" class="tab active">Информация</span><span class="tab" tab="clients" onclick="showManagersClients(<?=$managerId?>)">Клиенты</span><?if (Access::allow('managers_load-reports')) {?><span class="tab" tab="reports" onclick="showManagersReports(<?=$managerId?>)">Отчеты</span><?}?>
-    </div>
-    <div class="tabs_content">
-        <div tab_content="info" class="tab_content active">
-
-            <?if(Access::allow('manager_toggle')) {?>
-                <div class="fr">
-                    <button class="btn <?=($manager['STATE_ID'] != Model_Manager::STATE_MANAGER_ACTIVE ? 'btn_green' : 'btn_red')?>" onclick="managerStateToggle(<?=$manager['MANAGER_ID']?>, $(this))">
-                        <span <?=($manager['STATE_ID'] != Model_Manager::STATE_MANAGER_ACTIVE ? 'style="display:none"' : '')?>><i class="icon-block"></i> Заблокировать</span>
-                        <span <?=($manager['STATE_ID'] == Model_Manager::STATE_MANAGER_ACTIVE ? 'style="display:none"' : '')?>><i class="icon-backblock"></i> Разблокировать</span>
-                    </button>
-                    <br><br>
-                </div>
-            <?}?>
-
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active p-3" id="tabInfo<?=$managerId?>" role="tabpanel">
+        <div class="d-flex justify-content-between">
             <h2>ID: <?=$managerId?></h2>
 
-            <?=$managerSettingsForm?>
+            <?if(Access::allow('manager_toggle')) {?>
+                <button class="<?=Text::BTN?> <?=($manager['STATE_ID'] != Model_Manager::STATE_MANAGER_ACTIVE ? 'btn-outline-success' : 'btn-outline-danger')?>" onclick="managerStateToggle(<?=$manager['MANAGER_ID']?>, $(this))">
+                    <span <?=($manager['STATE_ID'] != Model_Manager::STATE_MANAGER_ACTIVE ? 'style="display:none"' : '')?>><i class="fa fa-lock-alt"></i> Заблокировать</span>
+                    <span <?=($manager['STATE_ID'] == Model_Manager::STATE_MANAGER_ACTIVE ? 'style="display:none"' : '')?>><i class="fa fa-unlock-alt"></i> Разблокировать</span>
+                </button>
+            <?}?>
         </div>
-        <div tab_content="clients" class="tab_content" manager_id="<?=$managerId?>">
-            <div class="fr clients_btn">
-                <a href="#manager_add_clients" class="fancy btn">Добавить клиентов</a>
-            </div>
-            <div class="clients__search">
-                <div class="input_with_icon">
-                    <i class="icon-find"></i>
-                    <input type="text" onkeypress="if(event.keyCode == 13){searchManagerClients($(this), <?=$managerId?>)}" class="input_big input_messages" placeholder="Поиск...">
+
+        <?=$managerSettingsForm?>
+    </div>
+    <div class="tab-pane" id="tabClients<?=$managerId?>" role="tabpanel">
+        <div class="p-3 border-bottom d-flex justify-content-between">
+            <div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                    <input type="text" onkeypress="if(event.keyCode == 13){searchManagerClients($(this), <?=$managerId?>)}" class="form-control" placeholder="Поиск...">
                 </div>
             </div>
-            <div class="clr"></div>
+            <div>
+                <a href="#" data-toggle="modal" data-target="#manager_add_clients" class="<?=Text::BTN?> btn-outline-primary">Добавить клиентов</a>
+            </div>
+        </div>
+        <div class="p-3">
             <div class="client_list"></div>
         </div>
-        <?if (Access::allow('managers_load-reports')) {?>
-        <div tab_content="reports" class="tab_content" manager_id="<?=$managerId?>">
-            <div class="fr clients_btn">
-                <a href="#manager_add_reports" class="fancy btn">Добавить отчеты</a>
-            </div>
-            <div class="clr"></div>
+    </div>
+    <?if (Access::allow('managers_load-reports')) {?>
+    <div class="tab-pane" id="tabReports<?=$managerId?>" role="tabpanel">
+        <div class="p-3 border-bottom text-right">
+            <a href="#" data-toggle="modal" data-target="#manager_add_reports" class="<?=Text::BTN?> btn-outline-primary">Добавить отчеты</a>
+        </div>
+        <div class="p-3">
             <div class="report_list"></div>
         </div>
-        <?}?>
     </div>
+    <?}?>
 </div>
-
-<?=$popupManagerAddClients?>
-<?=$popupManagerAddReports?>

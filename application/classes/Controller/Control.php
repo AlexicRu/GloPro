@@ -34,10 +34,16 @@ class Controller_Control extends Controller_Common {
         $managers = Model_Manager::getManagersList($params);
 
         $popupManagerAdd = Form::popup('Добавление менеджера', 'manager/add');
+        $popupManagerAddClients = Form::popup('Добавление клиентов', 'manager/add_clients');
+        $popupManagerAddReports = Form::popup('Доступные для добавления отчеты', 'manager/add_reports');
+
+        Common::addJs('managers/managers.js');
 
         $this->tpl
             ->bind('managers', $managers)
             ->bind('popupManagerAdd', $popupManagerAdd)
+            ->bind('popupManagerAddClients', $popupManagerAddClients)
+            ->bind('popupManagerAddReports', $popupManagerAddReports)
             ->bind('filter', $filter)
         ;
     }
@@ -64,15 +70,10 @@ class Controller_Control extends Controller_Common {
             ->set('changeRole', 1)
         ;
 
-        $popupManagerAddClients = Form::popup('Добавление клиентов', 'manager/add_clients');
-        $popupManagerAddReports = Form::popup('Доступные для добавления отчеты', 'manager/add_reports');
-
         $html = View::factory('ajax/control/manager')
             ->bind('managerId', $managerId)
             ->bind('manager', $manager)
             ->bind('managerSettingsForm', $managerSettingsForm)
-            ->bind('popupManagerAddClients', $popupManagerAddClients)
-            ->bind('popupManagerAddReports', $popupManagerAddReports)
         ;
 
         $this->html($html);

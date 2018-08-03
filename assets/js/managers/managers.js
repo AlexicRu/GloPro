@@ -7,7 +7,7 @@ function managerStateToggle(managerId, t)
 {
     var comment = '';
 
-    if(t.hasClass('btn_red')){
+    if(t.hasClass('btn-outline-danger')){
         comment = prompt('Причина блокировки:');
     }
 
@@ -19,7 +19,7 @@ function managerStateToggle(managerId, t)
 
         $.post('/managers/manager-toggle', {params:params}, function (data) {
             if (data.success) {
-                t.toggleClass('btn_red').toggleClass('btn_green').find('span').toggle();
+                t.toggleClass('btn-outline-danger').toggleClass('btn-outline-success').find('span').toggle();
 
                 message(1, 'Статус менеджера изменен');
             } else {
@@ -31,7 +31,7 @@ function managerStateToggle(managerId, t)
 
 function showManagersClients(managerId, params, force)
 {
-    var block = $('[tab_content=clients][manager_id='+ managerId +'] .client_list');
+    var block = $('#tabClients'+ managerId +' .client_list');
 
     if(block.html() != '' && !force){
         return true;
@@ -43,13 +43,13 @@ function showManagersClients(managerId, params, force)
         block.removeClass(CLASS_LOADING);
         block.html(data);
 
-        renderScroll($('.tabs_managers .scroll'));
+        renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
     });
 }
 
 function showManagersReports(managerId, params, force)
 {
-    var block = $('[tab_content=reports][manager_id='+ managerId +'] .report_list');
+    var block = $('#tabReports'+ managerId +' .report_list');
 
     if(block.html() != '' && !force){
         return true;
@@ -61,7 +61,7 @@ function showManagersReports(managerId, params, force)
         block.removeClass(CLASS_LOADING);
         block.html(data);
 
-        renderScroll($('.tabs_managers .scroll'));
+        renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
         loadReportList($('#manager_add_reports').find('input[type=text]'));
     });
 }

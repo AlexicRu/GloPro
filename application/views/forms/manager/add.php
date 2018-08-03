@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row m-b-0">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down">Повторите пароль<sup class="required">*</sup>:</div>
                 <span class="hidden-sm-up">Повторите пароль<sup class="required">*</sup>:</span>

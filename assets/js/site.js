@@ -215,7 +215,7 @@ function renderVerticalTabsScroll(elem)
     var beforeScrollHeight = 0;
 
     block.find('> .nav-tabs .nav-item.before_scroll').each(function () {
-        beforeScrollHeight += parseInt(block.find('> .nav-tabs .nav-item.before_scroll').height());
+        beforeScrollHeight += parseInt($(this).height());
     });
 
     var afterScrollHeight = block.find('> .nav-tabs .ajax_block_more').length ? block.find('> .nav-tabs .ajax_block_more').height() : 0;

@@ -26,12 +26,12 @@
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs customtab" role="tablist">
-            <li class="nav-item" tab="2">
+            <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#tabRealization" role="tab">
                     Реализация
                 </a>
             </li>
-            <li class="nav-item" tab="2">
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#tabCards" role="tab">
                     Карты
                 </a>

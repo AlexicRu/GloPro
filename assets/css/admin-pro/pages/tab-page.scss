@@ -16,7 +16,7 @@ Vertical tabs
 
 .vtabs {
     display: table;
-    .tabs-vertical {
+    > .tabs-vertical {
         width: 150px;
         border-bottom: 0px;
         border-right: 1px solid $border;
@@ -29,7 +29,7 @@ Vertical tabs
             border-radius: $radius 0 0 $radius;
         }
     }
-    .tab-content {
+    > .tab-content {
         display: table-cell;
         padding: 20px;
         vertical-align: top;
