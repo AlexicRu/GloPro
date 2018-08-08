@@ -35,10 +35,6 @@
 
 <script>
     $(function () {
-        $('[name=CLOSE_CALCULATION]').each(function () {
-            renderCheckbox($(this));
-        });
-
         $('.params_block[uid=<?=$uid?>] [name=DISC_TYPE]').on('change', function () {
             onChangeParam($(this));
         });

@@ -37,7 +37,6 @@
                 '</th>' +
                 '<th class="td_edit" />' +
             '</tr>');
-            renderCheckbox(block.find('.td_check [type=checkbox]'));
         }
 
         if(params.CARD_ID){
@@ -86,7 +85,6 @@
             tpl.find('.td_edit').html('<span class="btn btn_green btn_small btn_icon"><i class="icon-pen"></span>');
 
             subBlock.append(tpl);
-            renderCheckbox(tpl.find('.td_check [type=checkbox]'));
         }
 
         if($('.tabs_cards_groups .action_del', block).is(':visible')){

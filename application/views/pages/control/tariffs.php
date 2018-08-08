@@ -1,78 +1,90 @@
-<h1>Тарифы</h1>
-
-<div class="tabs_vertical_block tabs_switcher tabs_tariffs">
-    <div class="tabs_v">
-        <div class="before_scroll">
-            <form>
-                <div class="tab_v tab_v_small"><div>
-                        <div class="input_with_icon"><i class="icon-find"></i><input type="text" name="filter[search]" class="input_big input_messages" placeholder="Поиск..." value="<?=(empty($filter['search']) ? '' : $filter['search'])?>"></div>
-                    </div></div>
-                <?/*?><div class="tab_v tab_v_filter filter_outer"><div>
-                        <div class="filter_toggle">Фильтр</div>
-                        <div class="filter_block">
-                            <div class="filter_row"><label><input type="checkbox" name="filter[only_managers]" value="1" <?=(empty($filter['only_managers']) ? '' : 'checked')?>> Только менеджеры</label></div>
-                            <button class="btn">Применить</button>
-                        </div>
-                    </div></div><?*/?>
-            </form>
-        </div>
-        <div class="scroll">
-            <div class="tab_v tab_v_small" tab="-1"><div>
-                    <a href="#">Добавить тариф</a>
-                </div></div>
-            <?foreach($tariffs as $tariff){?>
-                <div class="tab_v tab_v_small" tab="<?=$tariff['TARIF_ID']?>" version="<?=$tariff['LAST_VERSION']?>">
-                    <div>
-                        <a href="#">[<?=$tariff['TARIF_ID']?>] <?=$tariff['TARIF_NAME']?></a>
-                    </div>
-                </div>
-            <?}?>
+<div class="card">
+    <div class="card-body border-bottom d-xl-none">
+        <div class="row">
+            <div class="col-12">
+                <span class="btn btn-info" toggle_class="tariffs_list">
+                    <i class="fa fa-bars"></i> <span class="d-none d-sm-inline-block">Список тарифов</span>
+                </span>
+            </div>
         </div>
     </div>
-    <div class="tabs_v_content">
-        <div class="tab_v_content tariffs_block" tab_content="-1"></div>
-        <?foreach($tariffs as $tariff){?>
-            <div class="tab_v_content tariffs_block" tab_content="<?=$tariff['TARIF_ID']?>"></div>
-        <?}?>
+
+    <div class="vtabs customvtab tabs_tariffs">
+        <ul class="nav nav-tabs tabs-vertical tabs-floating p-t-10" role="tablist" toggle_block="tariffs_list">
+            <li class="nav-item no_content before_scroll">
+                <form class="p-r-10 p-l-10 p-b-10 border-bottom m-b-10">
+                    <input type="text" name="filter[search]" class="form-control input_messages" placeholder="Поиск..." value="<?=(empty($filter['search']) ? '' : $filter['search'])?>">
+                </form>
+            </li>
+
+            <div class="v-scroll">
+                <li class="nav-item no_content" tab="tariff-1">
+                    <a class="nav-link nowrap" href="#tariff-1" data-toggle="tab"><i class="fa fa-plus"></i> Добавить тариф</a>
+                </li>
+                <?if(empty($tariffs)){?>
+                    <li class="nav-item">
+                        <a class="nav-link nowrap" href="#">
+                            <span class="text-muted">Тарифы не найдены</span>
+                        </a>
+                    </li>
+                <?}else{?>
+                    <?foreach($tariffs as $key => $tariff){?>
+                        <li class="nav-item" tab="tariff<?=$tariff['TARIF_ID']?>" version="<?=$tariff['LAST_VERSION']?>">
+                            <a class="nav-link nowrap" data-toggle="tab" href="#tariff<?=$tariff['TARIF_ID']?>" role="tab">
+                                <span class="text-muted">[<?=$tariff['TARIF_ID']?>]</span>
+                                <?=$tariff['TARIF_NAME']?>
+                            </a>
+                        </li>
+                    <?}?>
+                <?}?>
+
+            </div>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane" id="tariff-1" role="tabpanel"></div>
+            <?if(!empty($tariffs)){?>
+                <?foreach($tariffs as $key => $tariff){?>
+                    <div class="tab-pane" id="tariff<?=$tariff['TARIF_ID']?>" role="tabpanel"></div>
+                <?}?>
+            <?}?>
+        </div>
     </div>
 </div>
 
 <script>
     $(function(){
-        $(".tabs_tariffs [tab]").on('click', function(){
-            var t = $(this);
-            var tab = t.attr('tab');
-
-            loadTariff(tab);
-        });
-
-        var clicked = false;
-        $(".tabs_tariffs [tab]").each(function(){
+        $('.tabs_tariffs :not(.before_scroll) .nav-link').on('click', function(){
             var t = $(this);
 
-            if(t.attr('tab') != -1 || $(".tabs_tariffs [tab]").length == 1){
-                if(clicked){
-                    return;
-                }
+            loadTariff(t);
 
-                if(!t.attr('style')){
-                    clicked = true;
-                    t.click();
-                }
-            }
+            //костыль.. так как вложенность табов не сохраняется из-за постраничности
+            $('.tabs_tariffs > .nav-tabs .nav-link.active').not(t).removeClass('active show');
         });
+
+        $('.tabs_tariffs .nav-item:not(.before_scroll):not(.no_content):first .nav-link').click();
     });
 
-    function loadTariff(tariff, force)
+    function loadTariff(t, force)
     {
-        var block = $('.tariffs_block[tab_content='+ tariff +']');
+        var tab = t.closest('[tab]');
+        var tabsBlock = $(".tabs_tariffs");
+        var tariffId = tab.attr('tab').replace('tariff', '');
+        var tabContent = $(t.attr('href'), tabsBlock);
 
-        if(block.text() == '' || force == true){
-            block.empty().addClass('block_loading');
+        if(tabContent.text() == '' || force == true){
+            tabContent.empty().parent().addClass('block_loading');
 
-            $.post('/control/load-tariff/' + tariff, { version: $('[tab='+ tariff +']').attr('version') }, function(data){
-                block.html(data).removeClass('block_loading');
+            $.post('/control/load-tariff/' + tariffId, { version: tab.attr('version') }, function(data){
+                tabContent.html(data).parent().removeClass('block_loading');
+                renderVerticalTabsScroll($('.tabs_tariffs .v-scroll'));
             });
+        } else {
+            setTimeout(function () {
+                renderVerticalTabsScroll($('.tabs_tariffs .v-scroll'));
+            }, 100);
         }
     }
 </script>

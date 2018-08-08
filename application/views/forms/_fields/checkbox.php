@@ -4,10 +4,3 @@
     >
     <label for="field<?=$name?>"></label>
 </span>
-<script>
-    $(function () {
-        $('[name=<?=$name?>]').each(function () {
-            renderCheckbox($(this));
-        });
-    });
-</script>

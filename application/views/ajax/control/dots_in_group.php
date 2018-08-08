@@ -29,7 +29,6 @@
                 '<th>Адрес</th>' +
                 (canEdit ? '<th class="td_edit"></th>' : '') +
             '</tr>');
-            renderCheckbox(block.find('.td_check [type=checkbox]'));
         }else{
             block = block.find('table');
         }
@@ -57,7 +56,6 @@
             tpl.find('.td_edit').html('<span class="btn btn_green btn_small btn_icon"><i class="icon-pen"></span>');
 
             block.append(tpl);
-            renderCheckbox(tpl.find('.td_check [type=checkbox]'));
         }
 
         if($('.tabs_dots_groups .action_del').is(':visible')){

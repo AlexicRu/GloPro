@@ -108,12 +108,6 @@
             width: '100%',
             sorting: true,
 
-            onRefreshed: function () {
-                $('[type=checkbox]').each(function () {
-                    renderCheckbox($(this));
-                });
-            },
-
             data: rows,
 
             fields: [

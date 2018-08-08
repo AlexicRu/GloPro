@@ -58,12 +58,7 @@
             { name: "SOURCE_STATE", type: "select", title: 'Статус в источнике', width:200, items: db.statuses, valueField: "name", textField: "name" },
             { name: "ISSUE_STATE", type: "text", title: 'Статус выдачи', width:250 },
             { name: "status", type: "checkbox", title: 'Не выдано', width:80}
-        ],
-        onRefreshed: function(args) {
-            $('.jsgrid-grid-body [type=checkbox]').each(function () {
-                renderCheckbox($(this));
-            });
-        }
+        ]
     });
 
     grid.jsGrid("search");

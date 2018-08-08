@@ -39,7 +39,6 @@
                 '</th>' +
                 '<th class="td_edit"></th>' +
             '</tr>');
-            renderCheckbox(block.find('.td_check [type=checkbox]'));
         }
 
         if(params.ID_EMITENT){
@@ -104,7 +103,6 @@
             tpl.find('.td_edit').html('<span class="btn btn_green btn_small btn_icon"><i class="icon-pen"></span>');
 
             subBlock.append(tpl);
-            renderCheckbox(tpl.find('.td_check [type=checkbox]'));
         }
 
         if($('.tabs_dots_groups .action_del', block).is(':visible')){

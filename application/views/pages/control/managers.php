@@ -73,6 +73,9 @@
             var t = $(this);
 
             loadManager(t);
+
+            //костыль.. так как вложенность табов не сохраняется из-за постраничности
+            $('.tabs_managers > .nav-tabs .nav-link.active').not(t).removeClass('active show');
         });
 
         $('.tabs_managers .nav-item:not(.before_scroll):first .nav-link').click();
@@ -93,7 +96,9 @@
                 renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
             });
         } else {
-            renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
+            setTimeout(function () {
+                renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
+            }, 100);
         }
     }
 </script>
