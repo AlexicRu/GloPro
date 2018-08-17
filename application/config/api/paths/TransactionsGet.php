@@ -1,36 +1,50 @@
 <?php defined('SYSPATH') or die('No direct script access');
 
 return [
-    'sort'  => 400,
+    'sort'  => 900,
     'url'   => '/transactions',
     'method' => 'get',
-    'tags' => ['contracts'],
+    'tags' => ['transactions'],
     'summary' => 'Получение списка транзакций',
+	'description' => 'Данный метод позволяет получить список транзакций по договору за определенный период',
     'operationId' => 'transactions',
     'parameters' => [
         [
             'name' => 'token',
             'in' => 'header',
             'type' => 'string',
-            'required' => true
+            'required' => true,
+			'description' => 'Полученный при авторизации token',
+        ],
+        [
+            'name' => 'client_id',
+            'in' => 'query',
+            'type' => 'integer',
+            'description' => 'Уникальный идентификатор клиента'
         ],
         [
             'name' => 'contract_id',
             'in' => 'query',
             'type' => 'integer',
-            'required' => true
+			'description' => 'Уникальный идентификатор договора'
+        ],
+        [
+            'name' => 'card_id',
+            'in' => 'query',
+            'type' => 'integer',
+            'description' => 'Уникальный идентификатор карты. При указании карты обязательно указывать contract_id'
         ],
         [
             'name' => 'date_from',
             'in' => 'query',
             'type' => 'string',
-            'description' => 'Если не передан параметр, то 01.m.Y'
+            'description' => 'Дата начала периода <br> - Если не передан параметр, то подставляется первое число текущего месяца'
         ],
         [
             'name' => 'date_to',
             'in' => 'query',
             'type' => 'string',
-            'description' => 'Если не передан параметр, то d.m.Y'
+            'description' => 'Дата окончания  периода <br> - Если не передан параметр, то подставляется текущая дата'
         ]
     ],
     'responses' => [
