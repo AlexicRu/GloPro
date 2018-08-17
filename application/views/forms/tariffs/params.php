@@ -1,37 +1,48 @@
-<table class="params_block" uid="<?=$uid?>">
-    <tr>
-        <td class="gray right" width="100">Тип:</td>
-        <td>
-            <select name="DISC_TYPE">
-                <?foreach(Model_Tariff::$paramsTypes as $paramsTypeId => $paramsType){?>
-                    <option value="<?=$paramsTypeId?>"><?=$paramsType?></option>
-                <?}?>
-            </select>
-        </td>
-        <td class="gray right" width="100">Параметр:</td>
-        <td>
-            <?foreach(Model_Tariff::$paramsTypesParams as $paramsTypeId => $paramsParams){?>
-                <select name="DISC_PARAM" class="disc_param_select" disc_type="<?=$paramsTypeId?>">
-                    <?foreach($paramsParams as $paramsParamsId => $paramsParam){?>
-                        <option value="<?=($paramsParamsId+1)?>">
-                            <?=Model_Tariff::$paramsParams[$paramsParam]?>
-                        </option>
+<div class="params_block" uid="<?=$uid?>">
+    <div class="row m-b-5">
+        <div class="col-sm-6 col-lg-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Тип</span>
+                </div>
+                <select name="DISC_TYPE" class="custom-select">
+                    <?foreach(Model_Tariff::$paramsTypes as $paramsTypeId => $paramsType){?>
+                        <option value="<?=$paramsTypeId?>"><?=$paramsType?></option>
                     <?}?>
                 </select>
-            <?}?>
-        </td>
-        <td class="gray right" width="100">Значение:</td>
-        <td>
-            <input type="number" name="DISC_VALUE" value="<?=(isset($params['DISC_VALUE']) ? $params['DISC_VALUE'] : '')?>">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td colspan="5">
-            <label><input type="checkbox" name="CLOSE_CALCULATION" <?=(!isset($params['CLOSE_CALCULATION']) || !empty($params['CLOSE_CALCULATION']) ? 'checked' : '')?>> Завершить расчет</label>
-        </td>
-    </tr>
-</table>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 with-mb">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Параметр</span>
+                </div>
+                <?foreach(Model_Tariff::$paramsTypesParams as $paramsTypeId => $paramsParams){?>
+                    <select name="DISC_PARAM" class="disc_param_select custom-select" disc_type="<?=$paramsTypeId?>">
+                        <?foreach($paramsParams as $paramsParamsId => $paramsParam){?>
+                            <option value="<?=($paramsParamsId+1)?>">
+                                <?=Model_Tariff::$paramsParams[$paramsParam]?>
+                            </option>
+                        <?}?>
+                    </select>
+                <?}?>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 with-mb">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Значение</span>
+                </div>
+                <input type="number" class="form-control" name="DISC_VALUE" value="<?=(isset($params['DISC_VALUE']) ? $params['DISC_VALUE'] : '')?>">
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 with-mb p-t-10">
+            <input class="<?=Text::CHECKBOX?>" id="<?=$uid?>_close_calculation" type="checkbox" name="CLOSE_CALCULATION" <?=(!isset($params['CLOSE_CALCULATION']) || !empty($params['CLOSE_CALCULATION']) ? 'checked' : '')?>>
+            <label for="<?=$uid?>_close_calculation" class="m-b-0">Завершить расчет</label>
+        </div>
+    </div>
+</div>
+
 
 <script>
     $(function () {

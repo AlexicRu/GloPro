@@ -1,9 +1,10 @@
-@color: #0e86ad;
+@color: #17a2b8;
 @color1: rgba(14,134,173,0.3);
 @color2: #fff;
 @color3: #999999;
 @color4: rgba(153,153,153,0.3);
 @color5: #dedede;
+
 
 .transition(@param: all, @time: 0.3s, @type:ease){
   transition: @param @time @type;
@@ -62,11 +63,11 @@
   }
 }
 .combobox_multi_selected_item{
-  display: inline-block; border-radius: 4px; background: #0e86ad; color: white; padding: 1px 5px 2px 7px; margin: 3px 5px 3px 0;
+  display: inline-block; border-radius: 4px; background: @color; color: white; padding: 1px 5px 2px 7px; margin: 3px 5px 3px 0;
 }
 .combobox_multi_selected_item_name{}
 .combobox_multi_selected_item_close{
-  color: black; font-weight: bold; cursor: pointer; display: inline-block; margin: 0 0 0 3px; font-size: 20px; line-height: 14px;
+  color: black; font-weight: bold; cursor: pointer; display: inline-block; margin: 0 0 0 3px; font-size: 20px; line-height: 14px; vertical-align: middle;
 
   &:hover{
     color: white;

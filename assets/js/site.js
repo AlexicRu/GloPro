@@ -406,3 +406,24 @@ function uncheckFoundItem(close)
         list.find('[item_id='+ item.attr('item_id') +']').remove();
     }
 }
+
+/**
+ * money format
+ *
+ * @param elem
+ */
+function money(elem)
+{
+    elem.maskMoney({thousands:' ', decimal:'.', allowZero:true});
+}
+
+/**
+ * get unformatted value
+ *
+ * @param elem
+ * @returns {*}
+ */
+function getMoney(elem)
+{
+    return elem.maskMoney('unmasked')[0];
+}

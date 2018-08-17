@@ -1,13 +1,14 @@
-<div class="tariff_wrapper">
-    <table>
-        <tr>
-            <td class="gray right" width="200">Название:</td>
-            <td>
-                <input type="hidden" name="tarif_id" value="<?=(!empty($tariff['TARIF_ID']) ? $tariff['TARIF_ID'] : 0)?>">
-                <input type="text" name="tarif_name" class="input_big input_grand" value="<?=(!empty($tariff['TARIF_NAME']) ? Text::quotesForForms($tariff['TARIF_NAME']) : '')?>">
-            </td>
-        </tr>
-    </table>
+<div class="form tariff_wrapper">
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <div class="text-right hidden-xs-down text-muted">Название:</div>
+            <span class="hidden-sm-up">Название:</span>
+        </div>
+        <div class="col-sm-8">
+            <input type="hidden" name="tarif_id" value="<?=(!empty($tariff['TARIF_ID']) ? $tariff['TARIF_ID'] : 0)?>">
+            <input type="text" name="tarif_name" class="form-control" value="<?=(!empty($tariff['TARIF_NAME']) ? Text::quotesForForms($tariff['TARIF_NAME']) : '')?>">
+        </div>
+    </div>
 
     <div class="t_sections_list">
         <?if(!empty($settings)){?>
@@ -19,9 +20,15 @@
             <?}?>
         <?}?>
     </div>
-    <span class="<?=Text::BTN?> btn-outline-primary btn_add_section" onclick="addSection($(this))"><i class="fa fa-plus"></i> Добавить секцию</span>
+    <div class="form-group row">
+        <div class="col-12">
+            <span class="<?=Text::BTN?> btn-outline-primary btn_add_section" onclick="addSection($(this))"><i class="fa fa-plus"></i> Добавить секцию</span>
+        </div>
+    </div>
 
-    <div class="row_btns">
-        <span class="<?=Text::BTN?> btn-outline-success" onclick="saveTariff($(this))"><i class="fa fa-check"></i> Сохранить</span>
+    <div class="form-group row">
+        <div class="col-12">
+            <span class="<?=Text::BTN?> btn-outline-success" onclick="saveTariff($(this))"><i class="fa fa-check"></i> Сохранить</span>
+        </div>
     </div>
 </div>

@@ -99,15 +99,17 @@ function addSectionCondition(t)
     var uidSection = block.attr('uid_section');
     var list = block.find('.ts_conditions');
 
-    var tpl = $('<div class="tsc_item line_inner block_loading"><span class="btn waves-effect waves-light btn_small btn_icon btn_red ts_remove"><i class="fa fa-times"></i></span></div>');
+    var tpl = $('<div />');
 
-    tpl.appendTo(list);
+    tpl.appendTo(list).addClass(CLASS_LOADING);
 
-    $.post('/control/get-tariff-reference-tpl', { uid_section: uidSection, used_conditions: usedConditions[uidSection], index: $('.tsc_item', block).length}, function (data) {
+    $.post('/control/get-tariff-reference-tpl', { uid_section: uidSection, used_conditions: usedConditions[uidSection], index: ++$('.tsc_item', block).length}, function (data) {
         if(data.success){
-            tpl.removeClass('block_loading').append(data.data.html);
+            tpl.removeClass(CLASS_LOADING).html(data.data.html);
 
-            changeCondition(data.data.uid, data.data.condition_id, data.data.compare_id, false, tpl);
+            setTimeout(function () {
+                changeCondition(data.data.uid, data.data.condition_id, data.data.compare_id, false, tpl);
+            }, 100);
         }else{
             message(0, 'Доступные условия закончились');
             tpl.remove();
@@ -143,7 +145,7 @@ function addSection(t)
     var block = t.closest('.tariffs_block');
     var list = block.find('.t_sections_list');
     var tariffId = block.find('[name=tarif_id]').val();
-    var sectionNum = parseInt(block.find('fieldset[section_num]:last').attr('section_num')) + 1;
+    var sectionNum = parseInt(block.find('[section_num]:last').attr('section_num')) + 1;
     if(isNaN(sectionNum)){
         sectionNum = 1;
     }
