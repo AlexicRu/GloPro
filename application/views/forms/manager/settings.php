@@ -89,6 +89,15 @@ if(empty($changeRole)){
                     </div>
                 <?}?>
 
+                <?if (in_array($manager['ROLE_ID'], array_keys(Access::$clientRoles))) {?>
+                    <div class="form-group row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-8">
+                            <input type="checkbox" name="manager_settings_limit" <?if ($manager['LIMIT_RESTRICTION'] == 1) {?>checked<?}?>> Ограничение в 1000 литров и 30000 рублей на лимит
+                        </div>
+                    </div>
+                <?}?>
+
                 <div class="form-group row hidden-md-down">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-8">
