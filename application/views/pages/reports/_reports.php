@@ -25,7 +25,7 @@
             <?}?>
         </ul>
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content webtour-reports">
             <?foreach($reports as $reportGroupId => $reportsList){?>
                 <div class="tab-pane" id="reports<?=$reportGroupId?>" role="tabpanel">
 

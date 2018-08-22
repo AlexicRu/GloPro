@@ -21,6 +21,14 @@
         </div>
 
         <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8">
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" name="add_contract_payment_minus" id="add_contract_payment_minus">
+                <label for="add_contract_payment_minus">Списание</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down text-muted">Сумма (<?=Text::RUR?>):</div>
                 <span class="hidden-sm-up">Сумма (<?=Text::RUR?>):</span>
@@ -48,7 +56,7 @@
 
 <script>
     $(function () {
-        money($('[name=add_contract_payment_value]'))
+        money($('[name=add_contract_payment_value]'));
     });
 
     function addContractPaymentGo(btn)
@@ -58,7 +66,8 @@
             num:            $('[name=add_contract_payment_num]').val(),
             date:           $('[name=add_contract_payment_date]').val(),
             value:          getMoney($('[name=add_contract_payment_value]')),
-            comment:        $('[name=add_contract_payment_comment]').val()
+            comment:        $('[name=add_contract_payment_comment]').val(),
+            minus:          $('[name=add_contract_payment_minus]').is(':checked') ? 1 : 0
         };
 
         if(params.num == ''){

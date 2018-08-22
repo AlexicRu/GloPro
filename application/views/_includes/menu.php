@@ -35,7 +35,7 @@
                         }
 
                         if(empty($item['children'])){
-                            echo '<li><a class="waves-effect waves-dark '. ($isActiveController ? 'active' : '') .'" href="/'. $link .'"><i><span class="'. $item['icon'] .'"></span></i> <span class="hide-menu">'. $item['title'] .'</span></a></li>';
+                            echo '<li><a class="waves-effect waves-dark '. ($isActiveController ? 'active' : '') .'" href="/'. $link .' menu_item_'. $link .'"><i><span class="'. $item['icon'] .'"></span></i> <span class="hide-menu">'. $item['title'] .'</span></a></li>';
                             continue;
                         }
 
@@ -47,7 +47,7 @@
                                     $isActiveAction = Text::camelCaseToDashed(Request::current()->action()) == $child && $isActiveController;
 
                                     if(Access::allow($link.'_'.$child, true)) {?>
-                                        <li><a href="/<?=$link?>/<?=($child == 'index' ? '' : $child)?>" class="<?=($isActiveAction ? 'active' : '')?>"><?=$name?></a></li>
+                                        <li><a href="/<?=$link?>/<?=($child == 'index' ? '' : $child)?>" class="menu_item_<?=$link?>_<?=$child?> <?=($isActiveAction ? 'active' : '')?>"><?=$name?></a></li>
                                     <?}
                                 }?>
                             </ul>
