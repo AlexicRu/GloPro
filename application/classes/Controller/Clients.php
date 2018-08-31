@@ -6,7 +6,7 @@ class Controller_Clients extends Controller_Common {
 	{
 		parent::before();
 
-		$this->title[] = 'Список клиентов';
+		$this->title[] = 'Список фирм';
 	}
 
 	/**
@@ -65,6 +65,8 @@ class Controller_Clients extends Controller_Common {
 
         $this->_initEnjoyHint();
         $this->_initPhoneInputWithFlags();
+
+        $this->title[] = $client['NAME'];
 
 		$popupContractAdd = Form::popup('Добавление нового договора', 'contract/add');
 		$popupCabinetCreate = Form::popup('Создание личного кабинета', 'client/cabinet_create');

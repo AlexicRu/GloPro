@@ -35,6 +35,13 @@
             <script src="<?=$script?>"></script>
         <?}
     }?>
+    <?if (!empty($scriptsRaw)) {?>
+        <script>
+            <?foreach ($scriptsRaw as $script) {?>
+            <?=$script?>
+            <?}?>
+        </script>
+    <?}?>
 </head>
 
 <body class="fix-header card-no-border fix-sidebar design__<?=(!empty($customView) ? $customView : Common::DESIGN_DEFAULT)?> <?=(User::loggedIn() ? 'logged-in' : 'logged-out')?>">

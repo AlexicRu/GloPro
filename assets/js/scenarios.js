@@ -7,7 +7,7 @@ function EnjoyHintRun(scenario)
             if (data.success) {
 
                 for (var i in data.data) {
-                    delete scenarios[data.data[i]];
+                    //delete scenarios[data.data[i]];
                 }
 
                 _EnjoyHintRun(scenario);

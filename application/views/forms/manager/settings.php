@@ -65,15 +65,20 @@ if(!isset($reload)){
                         <input type="text" name="manager_settings_phone" class="form-control" value="<?=$manager['CELLPHONE']?>">
                     </div>
                 </div>
+
                 <?if (Access::allow('change_phone_note')) {?>
-                    <tr>
-                        <td class="gray right">Телефон для оповещений:</td>
-                        <td>
-                            <input type="text" name="manager_settings_phone_note" class="input_big"  value="<?=$manager['PHONE_FOR_SMS']?>">
-                        </td>
-                    </tr>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <div class="text-right hidden-xs-down text-muted">Телефон для оповещений:</div>
+                            <span class="hidden-sm-up">Телефон для оповещений:</span>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" name="manager_settings_phone_note" class="form-control" value="<?=$manager['PHONE_FOR_SMS']?>">
+                        </div>
+                    </div>
                 <?}?>
-                <?if($changeRole){?>
+
+                <?if(!empty($changeRole)){?>
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <div class="text-right hidden-xs-down text-muted">Роль:</div>
@@ -93,7 +98,8 @@ if(!isset($reload)){
                     <div class="form-group row">
                         <div class="col-sm-4"></div>
                         <div class="col-sm-8">
-                            <input type="checkbox" name="manager_settings_limit" <?if ($manager['LIMIT_RESTRICTION'] == 1) {?>checked<?}?>> Ограничение в 1000 литров и 30000 рублей на лимит
+                            <input type="checkbox" id="manager_settings_limit_<?=$manager['MANAGER_ID']?>" name="manager_settings_limit" <?if ($manager['LIMIT_RESTRICTION'] == 1) {?>checked<?}?> class="<?=Text::CHECKBOX?>">
+                            <label for="manager_settings_limit_<?=$manager['MANAGER_ID']?>">Ограничение в 1000 литров и 30000 рублей на лимит</label>
                         </div>
                     </div>
                 <?}?>

@@ -228,21 +228,21 @@ abstract class Controller_Common extends Controller_Template {
     {
         $this->template->styles = [
             Common::getAssetsLink() . 'css/bootstrap/bootstrap.css',
-            Common::getAdminProAssetsLink() . 'assets/plugins/prism/prism.css',
+            '/admin-pro/assets/plugins/prism/prism.css',
         ];
 
         $this->template->scripts = [
             //'https://www.google.com/recaptcha/api.js',
-            Common::getAdminProAssetsLink() . 'assets/plugins/jquery/jquery.min.js',
-            Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/js/popper.min.js',
-            Common::getAdminProAssetsLink() . 'assets/plugins/bootstrap/js/bootstrap.min.js',
-            Common::getAdminProAssetsLink() . 'main/js/perfect-scrollbar.jquery.min.js',
-            Common::getAdminProAssetsLink() . 'main/js/waves.js',
-            Common::getAdminProAssetsLink() . 'main/js/sidebarmenu.js',
-            Common::getAdminProAssetsLink() . 'assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',
-            Common::getAdminProAssetsLink() . 'assets/plugins/sparkline/jquery.sparkline.min.js',
-            Common::getAdminProAssetsLink() . 'assets/plugins/jquery.maskMoney.min.js',
-            Common::getAdminProAssetsLink() . 'main/js/custom.js',
+            '/admin-pro/assets/plugins/jquery/jquery.min.js',
+            '/admin-pro/assets/plugins/bootstrap/js/popper.min.js',
+            '/admin-pro/assets/plugins/bootstrap/js/bootstrap.min.js',
+            '/admin-pro/main/js/perfect-scrollbar.jquery.min.js',
+            '/admin-pro/main/js/waves.js',
+            '/admin-pro/main/js/sidebarmenu.js',
+            '/admin-pro/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',
+            '/admin-pro/assets/plugins/sparkline/jquery.sparkline.min.js',
+            Common::getAssetsLink() . 'plugins/jquery.maskMoney.min.js',
+            '/admin-pro/main/js/custom.js',
             Common::getAssetsLink() . 'fonts/font-awesome-5/fa-solid.min.js',
             Common::getAssetsLink() . 'fonts/font-awesome-5/fa-light.min.js',
             Common::getAssetsLink() . 'fonts/font-awesome-5/fontawesome.min.js',
@@ -252,8 +252,8 @@ abstract class Controller_Common extends Controller_Template {
 
         if(Auth::instance()->logged_in()) {
             $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/pages/tab-page.css';
-            $this->template->styles[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/css/jquery.toast.css';
-            $this->template->scripts[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/js/jquery.toast.js';
+            $this->template->styles[] = '/admin-pro/assets/plugins/toast-master/css/jquery.toast.css';
+            $this->template->scripts[] = '/admin-pro/assets/plugins/toast-master/js/jquery.toast.js';
 
             $this->_initTooltip();
         }
@@ -320,8 +320,8 @@ abstract class Controller_Common extends Controller_Template {
      */
     protected function _initDropZone()
     {
-        $this->template->styles[] = Common::getAdminProAssetsLink() . 'assets/plugins/dropzone-master/dist/min/dropzone.min.css';
-        $this->template->scripts[] = Common::getAdminProAssetsLink() . 'assets/plugins/dropzone-master/dist/dropzone.js';
+        $this->template->styles[] = '/admin-pro/assets/plugins/dropzone-master/dist/min/dropzone.min.css';
+        $this->template->scripts[] = '/admin-pro/assets/plugins/dropzone-master/dist/dropzone.js';
     }
 
     /**
@@ -341,9 +341,9 @@ abstract class Controller_Common extends Controller_Template {
     {
         $this->template->styles[] = '/assets/plugins/enjoyhint/enjoyhint.css';
         $this->template->scripts[] = '/assets/plugins/enjoyhint/enjoyhint.js';
-        $this->template->scripts[] = '/assets/js/scenarios.js';
+        $this->template->scripts[] = Common::getAssetsLink() . 'js/scenarios.js';
 
-        $webtours = Kohana::$config->load('access')['webtours'];
+        $webtours = Kohana::$config->load('webtours');
 
         $user = User::current();
 
@@ -358,7 +358,7 @@ abstract class Controller_Common extends Controller_Template {
         $this->template->scriptsRaw[] = 'var scenarios = ' . json_encode($script) . ' ;';
 
         if (!isset($user['tours'])) {
-            $user['tours'] = User::getWebTours();
+            $user['tours'] = [];//User::getWebTours();
 
             Auth::instance()->saveSession($user);
         }

@@ -1,56 +1,70 @@
 <style>
-    .tabs_connect_1c .tbl > div:last-child{
-        width: 250px; padding-left: 20px;
-    }
     .tabs_connect_1c .jsGrid:not(:empty), .tabs_connect_1c .jsGrid.block_loading{
         margin-top: 30px;
     }
 </style>
 
-<h1>Связь с 1с</h1>
+<div class="tabs_connect_1c">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs customtab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#tabPayments" role="tab">
+                Загрузка платежей
+            </a>
+        </li>
+        <?if (Access::allow('control_1c-export')) {?>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tabExport" role="tab">
+                Выгрузка в 1С
+            </a>
+        </li>
+        <?}?>
+    </ul>
 
-<div class="tabs_block tabs_switcher tabs_connect_1c">
-    <div class="tabs">
-        <span tab="payments" class="tab active">Загрузка платежей</span><?if (Access::allow('control_1c-export')) {?><span tab="export" class="tab">Выгрузка в 1С</span><?}?>
-    </div>
-    <div class="tabs_content tabs_content_no_padding">
-        <div tab_content="payments" class="tab_content active">
-            <div class="tc_top_line">
-                <div class="fr">
-                    Формат даты:
-                    <select class="select_big" name="date_format">
-                        <option value="d.m.Y" selected>дд.мм.гггг</option>
-                        <option value="Y-m-d">гггг-мм-дд</option>
-                    </select>
-                </div>
-                <span class="upload_pays_all">Всего строк: <b>0</b></span> &nbsp;&nbsp;&nbsp;
-                <span class="upload_pays_old">Из них проведенных: <b>0</b></span> &nbsp;&nbsp;&nbsp;
-                <span class="upload_pays_new">К загрузке: <b>0</b></span> &nbsp;&nbsp;&nbsp;
-                <span class="upload_pays_error">Ошибки: <b class="red">0</b></span> &nbsp;&nbsp;&nbsp;
-            </div>
-            <div class="padding__20">
-                <small>
-                    <i class="gray">- Дата платежа не может быть больше текущей даты</i><br>
-                    <i class="gray">- Дата платежа не может быть меньше текущей даты минус 2 месяца</i>
-                </small>
-                <br><br>
-                <div tab_content="payments" class="tab_content active">
-                    <div class="tbl">
-                        <div>
-                            <div class="connect_1c_payments dropzone"></div>
-                        </div>
-                        <div>
-                            <button disabled onclick="connect1cPayments_addPayments($(this))" class="btn waves-effect waves-light load_connect1c_payments_btn">Загрузить выделенные</button>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active bg-white" id="tabPayments" role="tabpanel">
+            <div class="p-3 border-bottom">
+                <div class="row m-b-0">
+                    <div class="col-sm-2 upload_pays_all font-20">Всего строк: <b>0</b></div>
+                    <div class="col-sm-2 upload_pays_old font-20">Проведенных: <b>0</b></div>
+                    <div class="col-sm-2 upload_pays_new font-20">К загрузке: <b>0</b></div>
+                    <div class="col-sm-2 upload_pays_error font-20">Ошибки: <b class="red">0</b></div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Формат даты:
+                            </div>
+                            <select class="custom-select" name="date_format">
+                                <option value="d.m.Y" selected>дд.мм.гггг</option>
+                                <option value="Y-m-d">гггг-мм-дд</option>
+                            </select>
                         </div>
                     </div>
-
-                    <div class="jsGrid connect_1c_payments_jsGrid"></div>
                 </div>
+            </div>
+            <div class="p-3">
+                <div class="row m-b-20">
+                    <div class="col-sm-6">
+                        <small>
+                            <i class="gray">- Дата платежа не может быть больше текущей даты</i><br>
+                            <i class="gray">- Дата платежа не может быть меньше текущей даты минус 2 месяца</i>
+                        </small>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button disabled onclick="connect1cPayments_addPayments($(this))" class="<?=Text::BTN?> btn-outline-primary load_connect1c_payments_btn">Загрузить выделенные</button>
+                    </div>
+                </div>
+
+                <div class="connect_1c_payments dropzone"></div>
+                <div class="jsGrid connect_1c_payments_jsGrid"></div>
             </div>
         </div>
         <?if (Access::allow('control_1c-export')) {?>
-        <div tab_content="export" class="tab_content padding__20">
-            <? include('1c_connect/1c_export.php') ?>
+        <div class="tab-pane" id="tabExport" role="tabpanel">
+            <div class="p-3 bg-white">
+                <? include('1c_connect/1c_export.php') ?>
+            </div>
         </div>
         <?}?>
     </div>

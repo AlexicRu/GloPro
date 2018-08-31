@@ -15,27 +15,37 @@
             </div>
         </div>
 
-        <tr>
-            <td class="gray right">Дата:</td>
-            <td>
-                <input type="text" class="input_big datepicker" readonly name="news_edit_date" value="<?=(empty($detail['NOTE_DATE']) ? date('d.m.Y') : $detail['NOTE_DATE'])?>">
-            </td>
-        </tr>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down text-muted">Дата:</div>
+                <span class="hidden-sm-up">Дата:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="date" name="news_edit_date" class="form-control" value="<?=(empty($detail['NOTE_DATE']) ? date('Y-m-d') : Date::formatToDefault($detail['NOTE_DATE']))?>">
+            </div>
+        </div>
+
         <?if($user['AGENT_ID'] == 0 && empty($detail)){?>
-            <tr>
-                <td class="gray right">Рассылки:</td>
-                <td>
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <div class="text-right hidden-xs-down text-muted">Рассылки:</div>
+                    <span class="hidden-sm-up">Рассылки:</span>
+                </div>
+                <div class="col-sm-8">
                     <div class="m-b-5">
-                        <label><input type="radio" name="news_edit_subscribe" onclick="toggleSelectSubscribeAgent($(this))" value="all" checked> По всем агнетам</label><br>
-                        <label><input type="radio" name="news_edit_subscribe" onclick="toggleSelectSubscribeAgent($(this))" value="group"> По группе агентов</label>
+                        <input type="radio" id="news_edit_subscribe" name="news_edit_subscribe" onclick="toggleSelectSubscribeAgent($(this))" value="all" checked>
+                        <label for="news_edit_subscribe">По всем агнетам</label><br>
+
+                        <input type="radio" id="news_edit_subscribe" name="news_edit_subscribe" onclick="toggleSelectSubscribeAgent($(this))" value="group">
+                        <label for="news_edit_subscribe">По группе агентов</label>
                     </div>
-                    <select name="news_edit_subscribe_agent" class="select_big" disabled>
+                    <select name="news_edit_subscribe_agent" class="custom-select" disabled>
                         <?foreach(Listing::getAgents() as $agent){?>
                             <option value="<?=$agent['GROUP_ID']?>"><?=$agent['GROUP_NAME']?></option>
                         <?}?>
                     </select>
-                </td>
-            </tr>
+                </div>
+            </div>
         <?}?>
 
         <div class="form-group row">

@@ -95,22 +95,14 @@ class Common
         View::set_global('css', array_merge($css, [Common::getAssetsLink() . 'css/' . $file]));
     }
 
-    public static function getAdminProAssetsLink()
-    {
-        return self::getAssetsLink(self::NEW_DESIGN_FOLDER);
-    }
-
     /**
      * получаем ссылку на файлы
      *
      * @param $type
      * @return string
      */
-    public static function getAssetsLink($type = '')
+    public static function getAssetsLink()
     {
-        if ($type == self::NEW_DESIGN_FOLDER) {
-            return self::isProd() ? '/'. self::NEW_DESIGN_FOLDER .'/build/' : '/'. self::NEW_DESIGN_FOLDER .'/';
-        }
         return self::isProd() ? '/assets/build/' : '/assets/';
     }
 

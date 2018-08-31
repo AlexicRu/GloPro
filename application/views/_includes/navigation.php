@@ -40,8 +40,8 @@
                                     <!-- Message -->
                                     <a href="#">
                                         <div class="mail-contnet">
-                                            <h6><?=$notice['SUBJECT']?></h6>
-                                            <span class="mail-desc"><?=$notice['NOTIFICATION_BODY']?></span>
+                                            <h6><?=$notice['NOTE_TITLE']?></h6>
+                                            <span class="mail-desc"><?=$notice['NOTE_BODY']?></span>
                                         </div>
                                     </a>
                                 <?}?>
@@ -62,7 +62,7 @@
         <!-- ============================================================== -->
         <!-- Profile -->
         <!-- ============================================================== -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown webtour-profile">
             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?=Common::getAssetsLink().'img/user.png'?>" alt="user" class="profile-pic" /></a>
             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                 <ul class="dropdown-user">
@@ -78,7 +78,7 @@
                     <li><a href="/managers/settings"><i class="ti-user"></i> Профиль</a></li>
                     <li><a href="/messages"><i class="ti-email"></i> Сообщения</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="/managers/settings"><i class="ti-settings"></i> Настройки</a></li>
+                    <li class="webtour-setting"><a href="/managers/settings"><i class="ti-settings"></i> Настройки</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/logout"><i class="fa fa-power-off"></i> Выход</a></li>
                 </ul>

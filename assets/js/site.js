@@ -427,3 +427,18 @@ function getMoney(elem)
 {
     return elem.maskMoney('unmasked')[0];
 }
+
+function renderPhoneInput(elem)
+{
+    if (!elem.data('rendered')) {
+        elem.data('rendered', true).intlTelInput({
+            initialCountry: 'ru',
+            //preferredCountries: [ "ru", "kz", "rs" ],
+            onlyCountries: [ "ru", "kz", "rs" ],
+            autoHideDialCode: false,
+            nationalMode: false,
+            utilsScript: '/assets/plugins/intl-tel-input/js/utils.js',
+            autoPlaceholder: false
+        });
+    }
+}
