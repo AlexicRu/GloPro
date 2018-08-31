@@ -1,4 +1,4 @@
-<?if(Access::allow('news_news-edit')){?>
+<?if(Access::allow('news_news-edit', true)){?>
 <div class="text-right m-b-30">
     <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#news_edit"><i class="fa fa-plus"></i> Добавить новость</a>
 </div>
@@ -9,7 +9,7 @@
 </ul>
 
 
-<?if(Access::allow('news_news-edit')){?>
+<?if(Access::allow('news_news-edit', true)){?>
     <?=$popupNewsAdd?>
 <?}?>
 
@@ -31,12 +31,12 @@
                 '        </div>' +
                 '    </li>');
 
-            if(data[i]['AGENT_ID'] == 0){
+            if(data[i]['MANAGER_ID'] == 0){
                 tpl.find('.n_title').prepend('<i class="fal fa-user fa-lg m-r-5"></i> ');
             }
-            tpl.find('.n_title a').text(data[i]['TITLE']).attr('href', '/news/' + data[i].NEWS_ID);
-            tpl.find('.n_date').text(data[i]['DATE_CREATE_WEB']);
-            tpl.find('.n_link a').attr('href', '/news/' + data[i].NEWS_ID);
+            tpl.find('.n_title a').text(data[i]['NOTE_TITLE']).attr('href', '/news/' + data[i].NOTE_ID);
+            tpl.find('.n_date').text(data[i]['NOTE_DATE']);
+            tpl.find('.n_link a').attr('href', '/news/' + data[i].NOTE_ID);
             tpl.find('.n_body').html(data[i]['announce']);
             if(data[i].PICTURE) {
                 tpl.find('.n_img').css('background-image', 'url('+ data[i].PICTURE +')');

@@ -54,6 +54,7 @@ return [
         ],
         'news_news-edit' => [
             Access::ROLE_ADMIN,
+            Access::ROLE_ADMIN_READONLY,
         ],
         'clients_bill-print' => [
             'a_1',
@@ -265,6 +266,9 @@ return [
             Access::ROLE_SUPERVISOR,
             Access::ROLE_ADMIN_READONLY,
         ],
+        'change_phone_note' => [
+            Access::ROLE_ROOT
+        ]
     ],
     'deny' => [ //для всех остальных ролей будет разрешено
         // functions
@@ -403,12 +407,16 @@ return [
             'client_contract_notify_config',
             'ctrl_manager_change_password',
             'ctrl_manager_edit',
+            'note_status_change',
+            'web_manager_site_tour',
         ],
         Access::ROLE_ADMIN_READONLY => [
             'auth_user',
             'notification_change_status',
             'ctrl_manager_change_password',
             'ctrl_manager_edit',
+            'note_status_change',
+            'web_manager_site_tour',
         ]
     ],
     /*
@@ -418,5 +426,59 @@ return [
         'Инструкция_по_работе_с_ЛК_системы_Администратор.docx' => [
             Access::ROLE_ADMIN
         ]
+    ],
+    /*
+     * webtours
+     */
+    'webtours' => [
+        'dashboard' => [
+            'roles' => array_keys(Access::$clientRoles),
+            'scenario' => [
+                ['click .menu_item_clients' => 'Посмотреть список закрепленных фирм']
+            ]
+        ],
+        'clients' => [
+            'roles' => array_keys(Access::$clientRoles),
+            'scenario' => [
+                ['click .client:first>.fr.btn' => 'Посмотреть список закрепленных фирм'],
+                [
+                    'selector' => '.client:first tr:first a',
+                    'event' => 'click',
+                    'description' => 'Открыть реквизиты договора'
+                ]
+            ]
+        ],
+        'contract' => [
+            'roles' => array_keys(Access::$clientRoles),
+            'scenario' => [
+                ['next [ajax_tab="contract"]' => 'Настроки договора'],
+                ['click [ajax_tab="cards"]' => 'Список карт, закрепленных за договором']
+            ]
+        ],
+        'cards' => [
+            'roles' => array_keys(Access::$clientRoles),
+            'scenario' => [
+                ['next .tabs_cards>.tabs_v' => 'Полный список карт'],
+                ['click [ajax_tab="account"]' => 'Данные по лицевому счету договора']
+            ]
+        ],
+        'account' => [
+            'roles' => array_keys(Access::$clientRoles),
+            'scenario' => [
+                ['next .webtour-account' => 'Баланс по договору, платежи и обороты'],
+                ['click [ajax_tab="reports"]' => 'Построить отчеты']
+            ]
+        ],
+        'reports' => [
+            'roles' => array_keys(Access::$clientRoles),
+            'scenario' => [
+                ['next .webtour-reports' => 'Выбрать шаблон, дату, формат и сформировать',],
+                [
+                    'click .settings' => 'Настройки пользователя',
+                    'showNext' => false,
+                    'skipButton' => ['text' => "End"]
+                ],
+            ]
+        ],
     ]
 ];

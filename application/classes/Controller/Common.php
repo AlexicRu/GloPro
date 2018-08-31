@@ -6,6 +6,7 @@ abstract class Controller_Common extends Controller_Template {
     public $title = [];
     public $errors = [];
     public $scripts = [];
+    public $scriptsRaw = [];
     public $styles = [];
 
     /**
@@ -102,9 +103,12 @@ abstract class Controller_Common extends Controller_Template {
         View::set_global('errors', $this->errors);
 
         if(Auth::instance()->logged_in()) {
-            $notices = Model_Message::getList(['status' => Model_Message::MESSAGE_STATUS_NOTREAD]);
+            $notices = Model_Note::getList([
+                'status' => Model_Note::NOTE_STATUS_NOTREAD,
+                'note_type' => Model_Note::NOTE_TYPE_MESSAGE
+            ]);
 
-            $notices = Model_Message::clearBBCodes($notices);
+            $notices = Model_Note::clearBBCodes($notices);
 
             View::set_global('notices', $notices);
 
@@ -244,6 +248,8 @@ abstract class Controller_Common extends Controller_Template {
             Common::getAssetsLink() . 'fonts/font-awesome-5/fontawesome.min.js',
         ];
 
+        $this->template->scriptsRaw = [];
+
         if(Auth::instance()->logged_in()) {
             $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/pages/tab-page.css';
             $this->template->styles[] = Common::getAdminProAssetsLink() . 'assets/plugins/toast-master/css/jquery.toast.css';
@@ -274,6 +280,9 @@ abstract class Controller_Common extends Controller_Template {
         }
         foreach($scripts as $script){
             $this->template->scripts[] = $script . '?t=' . Common::getVersion();
+        }
+        foreach($this->scriptsRaw as $script){
+            $this->template->scriptsRaw[] =  $script;
         }
     }
 
@@ -331,10 +340,22 @@ abstract class Controller_Common extends Controller_Template {
     protected function _initEnjoyHint()
     {
         $this->template->styles[] = '/assets/plugins/enjoyhint/enjoyhint.css';
-        $this->template->scripts[] = '/assets/plugins/enjoyhint/enjoyhint.min.js';
+        $this->template->scripts[] = '/assets/plugins/enjoyhint/enjoyhint.js';
         $this->template->scripts[] = '/assets/js/scenarios.js';
 
+        $webtours = Kohana::$config->load('access')['webtours'];
+
         $user = User::current();
+
+        $script = [];
+
+        foreach ($webtours as $key => $webtour) {
+            if (in_array($user['ROLE_ID'], $webtour['roles'])) {
+                $script[$key] = $webtour['scenario'];
+            }
+        }
+
+        $this->template->scriptsRaw[] = 'var scenarios = ' . json_encode($script) . ' ;';
 
         if (!isset($user['tours'])) {
             $user['tours'] = User::getWebTours();
@@ -369,6 +390,15 @@ abstract class Controller_Common extends Controller_Template {
     protected function _initTooltip()
     {
         $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/pages/stylish-tooltip.css';
+    }
+
+    /**
+     * подключаем флаги
+     */
+    protected function _initPhoneInputWithFlags()
+    {
+        $this->template->styles[] = '/assets/plugins/intl-tel-input/css/intlTelInput.min.css';
+        $this->template->scripts[] = '/assets/plugins/intl-tel-input/js/intlTelInput.min.js';
     }
 
     /**
@@ -436,13 +466,13 @@ abstract class Controller_Common extends Controller_Template {
      */
     private function _checkGlobalMessages()
     {
-        $globalMessages = Model_Message::getList([
-            'note_type' => Model_Message::MESSAGE_TYPE_GLOBAL,
-            'status' => Model_Message::MESSAGE_STATUS_NOTREAD
+        $globalMessages = Model_Note::getList([
+            'note_type' => Model_Note::NOTE_TYPE_POPUP,
+            'status' => Model_Note::NOTE_STATUS_NOTREAD
         ]);
 
         if (!empty($globalMessages)) {
-            $globalMessages = Model_Message::parseBBCodes($globalMessages, false);
+            $globalMessages = Model_Note::parseBBCodes($globalMessages, false);
 
             $popupGlobalMessages = Form::popup('ВАЖНО!', 'common/global_messages', [
                 'globalMessages' => $globalMessages
@@ -450,7 +480,7 @@ abstract class Controller_Common extends Controller_Template {
 
             View::set_global('popupGlobalMessages', $popupGlobalMessages);
 
-            Model_Message::makeRead(['note_type' => Model_Message::MESSAGE_TYPE_GLOBAL]);
+            Model_Note::makeRead(['note_type' => Model_Note::NOTE_TYPE_POPUP]);
         }
     }
 
@@ -460,12 +490,12 @@ abstract class Controller_Common extends Controller_Template {
     private function _actionsBefore()
     {
         //проверка флага установки прочитанности сообщения
-        $noteGuid = $this->request->query('read');
+        $noteId = $this->request->query('read');
 
-        if (!empty($noteGuid)) {
-            Model_Message::makeRead([
-                'note_guid' => $noteGuid,
-                'note_type' => Model_Message::MESSAGE_TYPE_COMMON
+        if (!empty($noteId)) {
+            Model_Note::makeRead([
+                'note_id'   => $noteId,
+                'note_type' => Model_Note::NOTE_TYPE_MESSAGE
             ]);
         }
     }

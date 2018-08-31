@@ -1,4 +1,6 @@
 $(function(){
+    renderPhoneInput($('[name=PHONE]'));
+
     $(".client_edit_btn").on('click', function(){
         var block = $(".edit_client_block");
 
@@ -26,12 +28,18 @@ $(function(){
             ACCOUNTANT_SHORT:       '', //$('[name=ACCOUNTANT_SHORT]', block).val(),
         };
 
-        if(
-            params.NAME == '' ||
-            params.Y_ADDRESS == '' ||
-            params.PHONE == ''
-        ){
-            message(0, 'Заполните обязательные поля');
+        if(params.NAME == ''){
+            message(0, 'Заполните название фирмы');
+            return false;
+        }
+
+        if(params.Y_ADDRESS == ''){
+            message(0, 'Заполните юридический адрес');
+            return false;
+        }
+
+        if(params.INN == ''){
+            message(0, 'Заполните ИНН');
             return false;
         }
 
@@ -84,7 +92,7 @@ function loadContract(tab, query, params)
         $('.ajax_contract_block').html(data).removeClass(CLASS_LOADING);
 
         if (tab == 'contract') {
-            EnjoyHintRun('client');
+            EnjoyHintRun('contract');
         } else if (tab == 'cards') {
             EnjoyHintRun('cards');
         } else if (tab == 'account') {

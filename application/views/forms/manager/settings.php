@@ -4,18 +4,11 @@ if(empty($manager)){
     $manager = $user;
     $isEdit = false;
 }
-if(empty($width)){
-    $width = 170;
-}
 if(!isset($reload)){
     $reload = true;
 }
-if(empty($changeRole)){
-    $changeRole = false;
-}
 ?>
 <form method="post" onsubmit="return checkFormManagerSettings($(this));">
-    <input type="hidden" name="form_type" value="settings">
     <?if($isEdit){?>
         <input type="hidden" name="manager_settings_id" value="<?=$manager['MANAGER_ID']?>">
     <?}?>
@@ -72,7 +65,14 @@ if(empty($changeRole)){
                         <input type="text" name="manager_settings_phone" class="form-control" value="<?=$manager['CELLPHONE']?>">
                     </div>
                 </div>
-
+                <?if (Access::allow('change_phone_note')) {?>
+                    <tr>
+                        <td class="gray right">Телефон для оповещений:</td>
+                        <td>
+                            <input type="text" name="manager_settings_phone_note" class="input_big"  value="<?=$manager['PHONE_FOR_SMS']?>">
+                        </td>
+                    </tr>
+                <?}?>
                 <?if($changeRole){?>
                     <div class="form-group row">
                         <div class="col-sm-4">
@@ -167,6 +167,12 @@ if(empty($changeRole)){
 </form>
 
 <script>
+    $(function () {
+        $("[name=manager_settings_phone], [name=manager_settings_phone_note]").each(function () {
+            renderPhoneInput($(this));
+        });
+    });
+
     function checkFormManagerSettings(form)
     {
         var pass = $('[name=manager_settings_password]', form).val();
@@ -174,6 +180,25 @@ if(empty($changeRole)){
 
         if(pass != passAgain){
             message(0, 'Пароли не совпадают');
+            return false;
+        }
+
+        var phone = $("[name=manager_settings_phone]");
+        var phoneNote = $("[name=manager_settings_phone_note]");
+
+        if (
+            phone.intlTelInput('isValidNumber') == false &&
+            ('+' + phone.intlTelInput("getSelectedCountryData").dialCode) != phone.intlTelInput('getNumber')
+        ) {
+            message(0, 'Некорректный номер телефона');
+            return false;
+        }
+
+        if (
+            phoneNote.intlTelInput('isValidNumber') == false &&
+            ('+' + phoneNote.intlTelInput("getSelectedCountryData").dialCode) != phoneNote.intlTelInput('getNumber')
+        ) {
+            message(0, 'Некорректный номер телефона для оповещений');
             return false;
         }
 

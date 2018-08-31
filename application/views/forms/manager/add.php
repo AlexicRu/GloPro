@@ -102,6 +102,10 @@
 </div>
 
 <script>
+    $(function () {
+        renderPhoneInput($('[name=manager_add_phone]'));
+    });
+
     function managerAdd()
     {
         var params = {

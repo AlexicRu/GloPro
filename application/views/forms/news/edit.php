@@ -1,7 +1,7 @@
 <div class="modal-body">
     <form class="form form_news_add">
-        <?if(!empty($detail['NEWS_ID'])){?>
-            <input type="hidden" name="news_edit_id" value="<?=$detail['NEWS_ID']?>">
+        <?if(!empty($detail['NOTE_ID'])){?>
+            <input type="hidden" name="news_edit_id" value="<?=$detail['NOTE_ID']?>">
             <input type="hidden" name="news_edit_image_path" value="<?=$detail['PICTURE']?>">
         <?}?>
 
@@ -11,9 +11,32 @@
                 <span class="hidden-sm-up">Заголовок:</span>
             </div>
             <div class="col-sm-8">
-                <input type="text" name="news_edit_title" class="form-control" value="<?=(empty($detail['TITLE']) ? '' : $detail['TITLE'])?>">
+                <input type="text" name="news_edit_title" class="form-control" value="<?=(empty($detail['NOTE_TITLE']) ? '' : $detail['NOTE_TITLE'])?>">
             </div>
         </div>
+
+        <tr>
+            <td class="gray right">Дата:</td>
+            <td>
+                <input type="text" class="input_big datepicker" readonly name="news_edit_date" value="<?=(empty($detail['NOTE_DATE']) ? date('d.m.Y') : $detail['NOTE_DATE'])?>">
+            </td>
+        </tr>
+        <?if($user['AGENT_ID'] == 0 && empty($detail)){?>
+            <tr>
+                <td class="gray right">Рассылки:</td>
+                <td>
+                    <div class="m-b-5">
+                        <label><input type="radio" name="news_edit_subscribe" onclick="toggleSelectSubscribeAgent($(this))" value="all" checked> По всем агнетам</label><br>
+                        <label><input type="radio" name="news_edit_subscribe" onclick="toggleSelectSubscribeAgent($(this))" value="group"> По группе агентов</label>
+                    </div>
+                    <select name="news_edit_subscribe_agent" class="select_big" disabled>
+                        <?foreach(Listing::getAgents() as $agent){?>
+                            <option value="<?=$agent['GROUP_ID']?>"><?=$agent['GROUP_NAME']?></option>
+                        <?}?>
+                    </select>
+                </td>
+            </tr>
+        <?}?>
 
         <div class="form-group row">
             <div class="col-sm-4">
@@ -34,7 +57,7 @@
     </form>
 </div>
 <div class="modal-footer">
-    <?if(!empty($detail['NEWS_ID'])){?>
+    <?if(!empty($detail['NOTE_ID'])){?>
         <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),goEditNews)"><i class="fa fa-check"></i> Редактировать</span>
     <?}else{?>
         <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),goEditNews)"><i class="fa fa-plus"></i> Добавить</span>
@@ -68,7 +91,7 @@
 
         initWYSIWYG(editor);
 
-        <?if(!empty($detail['NEWS_ID'])){?>
+        <?if(!empty($detail['NOTE_ID'])){?>
             editor.trumbowyg('html', $('.n_body').html());
         <?}?>
     });
@@ -82,13 +105,22 @@
         }
     }
 
+    function toggleSelectSubscribeAgent(radio)
+    {
+        $('[name=news_edit_subscribe_agent]').prop('disabled', radio.val() == 'all');
+    }
+
     function goAddNews()
     {
         var params = {
-            id:     $('[name=news_edit_id]').val(),
-            title:  $('[name=news_edit_title]').val(),
-            text:   editor.trumbowyg('html'),
-            image:  image ? image : $('[name=news_edit_image_path]').val()
+            id:                 $('[name=news_edit_id]').val(),
+            title:              $('[name=news_edit_title]').val(),
+            date:               $('[name=news_edit_date]').val(),
+            body:               editor.trumbowyg('html'),
+            image:              image ? image : $('[name=news_edit_image_path]').val(),
+            subscribe:          $('[name=news_edit_subscribe]:checked').val(),
+            subscribe_agent:    $('[name=news_edit_subscribe_agent]').val(),
+            type:               <?=Model_Note::NOTE_TYPE_NEWS?>
         };
 
         if(params.title == ''){
@@ -97,7 +129,7 @@
             return false;
         }
 
-        $.post('/news/news-edit', {params:params}, function(data){
+        $.post('/news/note-edit', {params:params}, function(data){
             if(data.success){
                 <?if(!empty($detail['NEWS_ID'])){?>
                     message(1, 'Новость успешно отредактированна');
