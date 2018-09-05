@@ -51,6 +51,7 @@ return [
 			'a_22',
 			'a_31',
             'a_19',
+            'a_32',
         ],
         'news_news-edit' => [
             Access::ROLE_ADMIN,
@@ -66,6 +67,7 @@ return [
             'a_22',
             'a_31',
             'a_19',
+            'a_32',
         ],
         'control_tariffs' => [
             Access::ROLE_ADMIN,
@@ -268,7 +270,13 @@ return [
         ],
         'change_phone_note' => [
             Access::ROLE_ROOT
-        ]
+        ],
+        'change_manager_settings_limit' => [
+            Access::ROLE_ADMIN,
+            Access::ROLE_SUPERVISOR,
+            Access::ROLE_MANAGER,
+            Access::ROLE_MANAGER_SALE_SUPPORT,
+        ],
     ],
     'deny' => [ //для всех остальных ролей будет разрешено
         // functions

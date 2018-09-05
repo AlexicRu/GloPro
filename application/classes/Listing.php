@@ -244,7 +244,7 @@ class Listing
     {
         $db = Oracle::init();
 
-        $user = Auth::instance()->get_user();
+        $user = User::current();
 
         $sql = (new Builder())->select()
             ->from('V_WEB_TUBES_LIST t')
@@ -256,7 +256,7 @@ class Listing
         }
 
         if(!empty($params['ids'])){
-            $sql->where("t.TUBE_ID in (".implode(',', $params['ids']).")");
+            $sql->whereIn("t.TUBE_ID", $params['ids']);
         }
 
         if (!empty($params['pagination'])) {

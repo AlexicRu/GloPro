@@ -94,7 +94,7 @@ if(!isset($reload)){
                     </div>
                 <?}?>
 
-                <?if (in_array($manager['ROLE_ID'], array_keys(Access::$clientRoles))) {?>
+                <?if (Access::allow('change_manager_settings_limit') && in_array($manager['ROLE_ID'], array_keys(Access::$clientRoles))) {?>
                     <div class="form-group row">
                         <div class="col-sm-4"></div>
                         <div class="col-sm-8">
@@ -194,7 +194,8 @@ if(!isset($reload)){
 
         if (
             phone.intlTelInput('isValidNumber') == false &&
-            ('+' + phone.intlTelInput("getSelectedCountryData").dialCode) != phone.intlTelInput('getNumber')
+            ('+' + phone.intlTelInput("getSelectedCountryData").dialCode) != phone.intlTelInput('getNumber') &&
+            phone.intlTelInput('getNumber') != ''
         ) {
             message(0, 'Некорректный номер телефона');
             return false;
@@ -202,7 +203,8 @@ if(!isset($reload)){
 
         if (
             phoneNote.intlTelInput('isValidNumber') == false &&
-            ('+' + phoneNote.intlTelInput("getSelectedCountryData").dialCode) != phoneNote.intlTelInput('getNumber')
+            ('+' + phoneNote.intlTelInput("getSelectedCountryData").dialCode) != phoneNote.intlTelInput('getNumber') &&
+            phoneNote.intlTelInput('getNumber') != ''
         ) {
             message(0, 'Некорректный номер телефона для оповещений');
             return false;
@@ -210,11 +212,13 @@ if(!isset($reload)){
 
         $.post('/managers/settings', form.find(':input[name!="edit_login"]').serialize(), function (data) {
            if(data.success){
-               <?if($reload){?>
-               window.location.reload();
-               <?}?>
-
                message(1, 'Данные обновлены');
+
+               <?if($reload){?>
+               setTimeout(function () {
+                   window.location.reload();
+               }, 1000);
+               <?}?>
            }else{
                var error = 'Ошибка обновления';
                if (data.data) {
