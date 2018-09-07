@@ -228,6 +228,8 @@ abstract class Controller_Common extends Controller_Template {
     {
         $this->template->styles = [
             Common::getAssetsLink() . 'css/bootstrap/bootstrap.css',
+            Common::getAssetsLink() . 'css/google-sans.css',
+            Common::getAssetsLink() . 'css/loader.css',
             '/admin-pro/assets/plugins/prism/prism.css',
         ];
 

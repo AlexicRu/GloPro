@@ -8,7 +8,7 @@ if(!empty($_REQUEST['search'])){?>
     <h3>Результаты поиска</h3>
 <?}?>
 
-<div class="ajax_block_clients_out block_loading">
+<div class="ajax_block_clients_out">
 
 </div>
 
@@ -19,6 +19,7 @@ if(!empty($_REQUEST['search'])){?>
 
 <script>
     $(function(){
+        addLoader($('.ajax_block_clients_out'));
         paginationAjax('/clients/?search=<?=(!empty($_REQUEST['search']) ? strip_tags($_REQUEST['search']) : '')?>', 'ajax_block_clients', renderAjaxPaginationClients, {show_all_btn: true});
     });
 

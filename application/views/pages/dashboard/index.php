@@ -128,30 +128,33 @@
     function buildRealizationByClients()
     {
         var block = $('.realization_by_clients');
-        block.empty().addClass(CLASS_LOADING);
+        addLoader(block);
 
         $.post('/dashboard/get-realization-by-clients', {date: getDate()}, function (data) {
-            block.removeClass(CLASS_LOADING).html(data)
+            removeLoader(block);
+            block.html(data);
         })
     }
 
     function buildRealizationByClientsNomenclature()
     {
         var block = $('.realization_by_clients_nomenclature');
-        block.empty().addClass(CLASS_LOADING);
+        addLoader(block);
 
         $.post('/dashboard/get-realization-by-clients-nomenclature', {date: getDate()}, function (data) {
-            block.removeClass(CLASS_LOADING).html(data)
+            removeLoader(block);
+            block.html(data);
         })
     }
 
     function buildRealizationByClientsPayments()
     {
         var block = $('.realization_by_clients_payments');
-        block.empty().addClass(CLASS_LOADING);
+        addLoader(block);
 
         $.post('/dashboard/get-realization-by-clients-payments', {date: getDate()}, function (data) {
-            block.removeClass(CLASS_LOADING).html(data)
+            removeLoader(block);
+            block.html(data);
         })
     }
 
@@ -159,10 +162,11 @@
     function buildRealizationByClientsSummary()
     {
         var block = $('.realization_by_clients_summary');
-        block.empty().addClass(CLASS_LOADING);
+        addLoader(block);
 
         $.post('/dashboard/get-realization-by-clients-summary', {date: getDate()}, function (data) {
-            block.removeClass(CLASS_LOADING).html(data)
+            removeLoader(block);
+            block.html(data);
         })
     }
     <?}?>
@@ -170,10 +174,10 @@
     function buildRealizationByClientsGraph()
     {
         var graphBlock = $('#realization_by_clients_graph');
-        graphBlock.empty().addClass(CLASS_LOADING);
+        addLoader(graphBlock);
 
         $.post('/dashboard/get-realization-by-clients-graph', {}, function (response) {
-            graphBlock.removeClass(CLASS_LOADING);
+            removeLoader(graphBlock);
 
             if (response.data.length == 0) {
                 graphBlock.removeClass('graph').html('<div class="center"><i class="gray">Нет данных</i></div>');
@@ -264,10 +268,10 @@
     function buildRealizationByClientsNomenclatureGraph()
     {
         var graphBlock = $('#realization_by_clients_nomenclature_graph');
-        graphBlock.empty().addClass(CLASS_LOADING);
+        addLoader(graphBlock);
 
         $.post('/dashboard/get-realization-by-clients-nomenclature-graph', {date: getDate()}, function (response) {
-            graphBlock.removeClass(CLASS_LOADING);
+            removeLoader(graphBlock);
 
             if (response.data.length == 0) {
                 graphBlock.removeClass('graph').html('<div class="center"><i class="gray">Нет данных</i></div>');

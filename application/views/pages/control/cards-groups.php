@@ -1,60 +1,78 @@
-<h1>Группы карт</h1>
+<div class="card border-bottom m-b-0">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <form class="input-group form_cards_groups" onsubmit="return collectForms($(this), 'form_cards_groups')">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                    <input type="text" name="filter[search]" class="form-control input_messages" placeholder="Поиск..." value="<?=(!empty($filter['search']) ? $filter['search'] : '')?>">
+                </form>
+            </div>
+            <div class="col-sm-8 text-right with-mb">
+                <span toggle_block="cards_groups_block">
+                    <a href="#control_add_cards_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
+                    <a href="#control_add_cards" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить карты</a>
+                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="groupCardsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
+                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" toggle="cards_groups_block"><i class="fa fa-pencil-alt"></i></span>
+                </span>
 
-<div class="block no_padding">
-    <div class="tab_content_header">
-        <div class="fr">
-            <span toggle_block="cards_groups_block">
-                <a href="#control_add_cards_group" class="btn waves-effect waves-light"><i class="fa fa-plus"></i> Добавить группу</a>
-                <a href="#control_add_cards" class="btn waves-effect waves-light"><i class="fa fa-plus"></i> Добавить карты</a>
-                <span class="btn waves-effect waves-light btn_green btn_icon" onclick="groupCardsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
-                <span class="btn waves-effect waves-light btn_green btn_icon" toggle="cards_groups_block"><i class="fa fa-pencil-alt"></i></span>
-            </span>
-
-            <span toggle_block="cards_groups_block" class="dn action_del">
-                <a href="#" class="btn waves-effect waves-light btn_red btn_del_cards_groups"><i class="fa fa-trash-alt"></i> Удалить выделенные группы</a>
-                <a href="#" class="btn waves-effect waves-light btn_red btn_del_cards"><i class="fa fa-trash-alt"></i> Удалить выделенные карты</a>
-                <span class="btn waves-effect waves-light btn_orange btn_icon" toggle="cards_groups_block"><i class="fa fa-times"></i></span>
-            </span>
-        </div>
-        <form class="form_cards_groups" onsubmit="return collectForms($(this), 'form_cards_groups')">
-            <div class="input_with_icon"><i class="icon-find"></i><input type="text" name="filter[search]" class="input_big input_messages" placeholder="Поиск..." value="<?=(!empty($filter['search']) ? $filter['search'] : '')?>"></div>
-        </form>
-    </div>
-
-    <div class="tabs_vertical_block tabs_switcher tabs_cards_groups">
-        <div class="tabs_v tabs_v_cards_groups check_box_active_reverse">
-            <div class="scroll">
-                <?if(empty($cardsGroups)){?>
-                    <div class="tab_v"><div>
-                        <span class="gray">Группы не найдены</span>
-                    </div></div>
-                <?}else{?>
-                    <?foreach($cardsGroups as $key => $group){?>
-                        <div class="tab_v tab_v_small" tab="cards_group_<?=$group['GROUP_ID']?>"><div>
-                            <?/*if(in_array($user['ROLE_ID'], Access::$rolesForCardGroups)){*/?>
-                                <span class="check_span_hidden">
-                                    <input type="checkbox" name="group_id" value="<?=$group['GROUP_ID']?>">
-                                    <input type="hidden" name="group_name" value="<?=$group['GROUP_NAME']?>">
-                                    <input type="hidden" name="group_type" value="<?=$group['GROUP_TYPE']?>">
-
-                                    <span class="btn waves-effect waves-light btn_green btn_tiny btn_icon" onclick="showEditCardsGroupPopup(<?=$group['GROUP_ID']?>)"><i class="fa fa-pencil-alt"></i></span>
-                                </span>
-                            <?/*}*/?>
-
-                            <span class="gray">[<?=$group['GROUP_ID']?>]</span>
-                            <span class="group_name"><?=$group['GROUP_NAME']?></span>
-                        </div></div>
-                    <?}?>
-                <?}?>
+                <span toggle_block="cards_groups_block" class="dn action_del">
+                    <a href="#" class="<?=Text::BTN?> btn-outline-danger btn_del_cards_groups m-b-5"><i class="fa fa-trash-alt"></i> Удалить выделенные группы</a>
+                    <a href="#" class="<?=Text::BTN?> btn-outline-danger btn_del_cards m-b-5"><i class="fa fa-trash-alt"></i> Удалить выделенные карты</a>
+                    <span class="<?=Text::BTN?> btn-outline-warning m-b-5" toggle="cards_groups_block"><i class="fa fa-times"></i></span>
+                </span>
             </div>
         </div>
-        <div class="tabs_v_content tabs_content_no_padding">
-            <?if(!empty($cardsGroups)){?>
-                <?foreach($cardsGroups as $key => $group){?>
-                    <div class="tab_v_content" tab_content="cards_group_<?=$group['GROUP_ID']?>" group_id="<?=$group['GROUP_ID']?>"></div>
-                <?}?>
-            <?}?>
+    </div>
+</div>
+
+<div class="card-body border-bottom d-lg-none bg-white">
+    <div class="row">
+        <div class="col-12">
+            <span class="btn btn-info" toggle_class="cards_groups_list">
+                <i class="fa fa-bars"></i> Группы карт
+            </span>
         </div>
+    </div>
+</div>
+
+<div class="vtabs customvtab tabs_cards_groups bg-white tabs-floating">
+    <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="cards_groups_list">
+        <div class="v-scroll">
+        <?if(empty($cardsGroups)){?>
+            <li class="nav-item">
+                <span class="nav-link text-muted">
+                    Группы не найдены
+                </span>
+            </li>
+        <?}else{?>
+            <?foreach($cardsGroups as $key => $group){?>
+                <li class="nav-item" tab="cards_group_<?=$group['GROUP_ID']?>">
+                    <a class="nav-link nowrap" data-toggle="tab" href="#cards_group_<?=$group['GROUP_ID']?>" role="tab">
+                        <span class="check_span_hidden">
+                            <input type="checkbox" name="group_id" value="<?=$group['GROUP_ID']?>">
+                            <input type="hidden" name="group_name" value="<?=$group['GROUP_NAME']?>">
+                            <input type="hidden" name="group_type" value="<?=$group['GROUP_TYPE']?>">
+
+                            <span class="btn waves-effect waves-light btn_green btn_tiny btn_icon" onclick="showEditCardsGroupPopup(<?=$group['GROUP_ID']?>)"><i class="fa fa-pencil-alt"></i></span>
+                        </span>
+
+                        <span class="gray">[<?=$group['GROUP_ID']?>]</span>
+                        <span class="group_name"><?=$group['GROUP_NAME']?></span>
+                    </a>
+                </li>
+            <?}?>
+        <?}?>
+        </div>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content p-0">
+        <?if(!empty($cardsGroups)){?>
+            <?foreach($cardsGroups as $key => $group){?>
+                <div class="tab-pane" id="cards_group_<?=$group['GROUP_ID']?>" group_id="<?=$group['GROUP_ID']?>" role="tabpanel"></div>
+            <?}?>
+        <?}?>
     </div>
 </div>
 
@@ -64,13 +82,17 @@
 
 <script>
     $(function(){
-        $(".tabs_cards_groups .tabs_v .scroll > [tab]").on('click', function(){
+        //renderVerticalTabsScroll($('.tabs_cards_groups .v-scroll'));
+        $('.tabs_cards_groups :not(.before_scroll) .nav-link').on('click', function(){
             var t = $(this);
 
             loadGroupCards(t);
+
+            //костыль.. так как вложенность табов не сохраняется из-за постраничности
+            $('.tabs_cards_groups > .nav-tabs .nav-link.active').not(t).removeClass('active show');
         });
 
-        $('.tabs_cards_groups .tabs_v .scroll > [tab]:first').click();
+        $('.tabs_cards_groups .nav-item:not(.before_scroll):first .nav-link').click();
 
         $("[toggle=cards_groups_block]").on('click', function(){
             $('.check_span_hidden, .td_check, .td_edit').toggle();
@@ -78,7 +100,7 @@
 
         $('.btn_del_cards').on('click', function () {
             var cards = [];
-            var group = $('.tab_v_content.active');
+            var group = $('.tab-pane.active');
             var group_id = group.attr('group_id');
 
             $('.td_check [type=checkbox][name=card_id]:checked').each(function () {
@@ -144,18 +166,24 @@
         });
     });
 
-    function loadGroupCards(tab, force)
+    function loadGroupCards(t, force)
     {
+        var tab = t.closest('[tab]');
         var tabsBlock = $(".tabs_cards_groups");
         var groupId = tab.attr('tab').replace('cards_group_', '');
-        var tabContent = $("[tab_content=cards_group_"+ groupId +"]", tabsBlock);
+        var tabContent = $(t.attr('href'), tabsBlock);
 
         if(tabContent.text() == '' || force == true){
             tabContent.empty().parent().addClass('block_loading');
 
             $.post('/control/load-group-cards/' + groupId, {}, function(data){
                 tabContent.html(data).parent().removeClass('block_loading');
+                renderVerticalTabsScroll($('.tabs_cards_groups .v-scroll'));
             });
+        } else {
+            setTimeout(function () {
+                renderVerticalTabsScroll($('.tabs_cards_groups .v-scroll'));
+            }, 100);
         }
     }
 
@@ -172,6 +200,8 @@
         $.fancybox.open(block, {
             padding: [0,0,0,0]
         });
+
+        return false;
     }
 
     function groupCardsToXls()

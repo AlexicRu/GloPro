@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-body border-bottom d-xl-none">
+    <div class="card-body border-bottom d-lg-none">
         <div class="row">
             <div class="col-4">
                 <span class="btn btn-info" toggle_class="manager_list">
@@ -13,8 +13,8 @@
     </div>
 
 
-    <div class="vtabs customvtab tabs_managers">
-        <ul class="nav nav-tabs tabs-vertical tabs-floating p-t-10" role="tablist" toggle_block="manager_list">
+    <div class="vtabs customvtab tabs_managers tabs-floating">
+        <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="manager_list">
             <li class="nav-item no_content before_scroll">
                 <form class="p-r-10 p-l-10 p-b-10 border-bottom m-b-10">
                     <input type="text" name="filter[search]" class="form-control input_messages" placeholder="Поиск..." value="<?=(empty($filter['search']) ? '' : $filter['search'])?>">

@@ -16,11 +16,11 @@
         }
 
         if(block.find('> table').length == 0){
-            block.append('<table class="table table_small table_fullscreen check_all_block"></table>');
+            block.append('<div class="table-responsive"><table class="table table_small table_fullscreen check_all_block"></table></div>');
             block = block.find('table');
 
             block.append('<tr>' +
-                (canEdit ? '<th class="td_check"><input type="checkbox" onchange="checkAllRows($(this), \'card_id\')"></th>' : '') +
+                (canEdit ? '<th class="td_check"><input type="checkbox" class="'+ CHECKBOX +'" id="cig_all<?=$groupId?>" onchange="checkAllRows($(this), \'card_id\')"><label for="cig_all<?=$groupId?>"/></th>' : '') +
                 '<th><nobr>CARD ID</nobr></th>' +
                 '<th>Владелец</th>' +
                 '<th>Описание</th>' +
@@ -40,7 +40,7 @@
             '</tr>');
 
             tpl.attr('id', data[i].CARD_ID);
-            tpl.find('.td_check').html('<input type="checkbox" name="card_id" value="'+ data[i].CARD_ID +'">');
+            tpl.find('.td_check').html('<input type="checkbox" class="'+ CHECKBOX +'" name="card_id" id="cig_'+ data[i].CARD_ID +'" value="'+ data[i].CARD_ID +'"><label for="cig_'+ data[i].CARD_ID +'" />');
             tpl.find('.group_card_td_CARD_ID').text(data[i].CARD_ID);
             tpl.find('.group_card_td_HOLDER').text(data[i].HOLDER);
             tpl.find('.group_card_td_DESCRIPTION_RU').text(data[i].DESCRIPTION_RU);
@@ -53,6 +53,6 @@
             $('.td_check, .td_edit').show();
         }
 
-        renderScroll($('.tabs_cards_groups .scroll'));
+        renderVerticalTabsScroll($('.tabs_cards_groups .v-scroll'));
     }
 </script>

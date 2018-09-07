@@ -1,4 +1,4 @@
-<div class="card-body border-bottom d-xl-none">
+<div class="card-body border-bottom d-lg-none">
     <div class="row">
         <div class="col-4">
             <span class="<?=Text::BTN?> btn-info" toggle_class="agreements_list"><i class="fa fa-bars"></i> <span class="hidden-xs-down">Список соглашений</span></span>
@@ -11,8 +11,8 @@
     </div>
 </div>
 
-<div class="vtabs customvtab tabs_agreements">
-    <ul class="nav nav-tabs tabs-vertical tabs-floating p-t-10" role="tablist" toggle_block="agreements_list">
+<div class="vtabs customvtab tabs_agreements tabs-floating">
+    <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="agreements_list">
         <?if(Access::allow('suppliers_agreement-add')){?>
             <li class="nav-item no_content d-none d-xl-block before_scroll">
                 <a class="nav-link nowrap" href="#" data-toggle="modal" data-target="#supplier_agreement_add"><i class="fa fa-plus"></i> Добавить соглашение</a>

@@ -94,7 +94,7 @@
 
                 cardLoad(t.closest('.nav-item').attr('tab'));
 
-                $('.tabs_cards .tabs-floating').removeClass('active');
+                $('.tabs_cards .tabs-floating .nav-tabs').removeClass('active');
 
                 t.tab('show');
 

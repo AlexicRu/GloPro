@@ -1,5 +1,3 @@
-<h1>Группы точек</h1>
-
 <div class="block no_padding">
     <div class="tab_content_header">
         <div class="fr">

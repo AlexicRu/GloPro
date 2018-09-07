@@ -134,6 +134,8 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
     }
 
     $.post(url, params, function(data){
+        removeLoader(block.closest('.block_loading'));
+
         if(data.success){
             callback(data.data.items, block, params);
 
@@ -161,7 +163,6 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
                 more.fadeIn();
             }
         }
-        block.closest('.block_loading').removeClass(CLASS_LOADING);
 
         if (block.closest('.ps').length) {
             block.closest('.ps').perfectScrollbar('update');
@@ -441,4 +442,33 @@ function renderPhoneInput(elem)
             autoPlaceholder: false
         });
     }
+}
+function checkAllRows(t, name)
+{
+    var block = t.closest('.check_all_block');
+
+    var checked = t.prop('checked');
+
+    block.find('[name='+ name +']').each(function () {
+        var _t = $(this);
+        if(checked){
+            if(!_t.prop('checked')){
+                _t.prop('checked', true);
+            }
+        }else{
+            if(_t.prop('checked')){
+                _t.prop('checked', false);
+            }
+        }
+    });
+}
+
+function addLoader(block)
+{
+    block.empty().addClass(CLASS_LOADING).append('<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>')
+}
+function removeLoader(block)
+{
+    block.find('.spinner').remove();
+    block.removeClass('block_loading');
 }

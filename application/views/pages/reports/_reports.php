@@ -4,7 +4,7 @@
     <div class="error_block text-center p-5">Нет доступных отчетов</div>
 <?}else{?>
 
-    <div class="card-body border-bottom d-xl-none">
+    <div class="card-body border-bottom d-lg-none">
         <div class="row">
             <div class="col-12">
                 <span class="btn btn-info" toggle_class="report_list">
@@ -14,8 +14,8 @@
         </div>
     </div>
 
-    <div class="vtabs customvtab tabs_reports">
-        <ul class="nav nav-tabs tabs-vertical tabs-floating p-t-10" role="tablist" toggle_block="report_list">
+    <div class="vtabs customvtab tabs_reports tabs-floating">
+        <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="report_list">
             <?foreach($reports as $reportGroupId => $reportsList){?>
                 <li class="nav-item" tab="<?=$reportGroupId?>">
                     <a class="nav-link nowrap" data-toggle="tab" href="#reports<?=$reportGroupId?>" role="tab">
