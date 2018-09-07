@@ -37,8 +37,8 @@ class Report_1c_Agent16 extends Report_1c_Common
             ->join('v_rep_transaction v2', 'v2.trn_key = v.link_key')
             ->join('v_web_cl_contracts_set ccs', 'v.contract_id = ccs.contract_id')
             ->joinLeft('v_web_pos_list pi', 'v.supplier_terminal = pi.pos_id and pi.agent_id = v.agent_id')
-            ->where('v.date_trn >= ' . Oracle::toDateOracle($params['date_from'], 'd.m.Y'))
-            ->where('v.date_trn <= ' . Oracle::toDateOracle($params['date_to'], 'd.m.Y'))
+            ->where('v.date_trn >= ' . Oracle::toDateOracle($params['date_from'], Date::$dateFormatDefault))
+            ->where('v.date_trn <= ' . Oracle::toDateOracle($params['date_to'], Date::$dateFormatDefault))
             ->where('v.agent_id = ' . self::$_agentId)
             ->groupBy([
                 'v.contract_id',

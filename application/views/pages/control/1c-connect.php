@@ -26,14 +26,24 @@
         <div class="tab-pane active bg-white" id="tabPayments" role="tabpanel">
             <div class="p-3 border-bottom">
                 <div class="row m-b-0">
-                    <div class="col-sm-2 upload_pays_all font-20">Всего строк: <b>0</b></div>
-                    <div class="col-sm-2 upload_pays_old font-20">Проведенных: <b>0</b></div>
-                    <div class="col-sm-2 upload_pays_new font-20">К загрузке: <b>0</b></div>
-                    <div class="col-sm-2 upload_pays_error font-20">Ошибки: <b class="red">0</b></div>
-                    <div class="col-sm-4">
+                    <div class="col-lg-3 col-md-6 upload_pays_all font-20">Всего строк: <b>0</b></div>
+                    <div class="col-lg-3 col-md-6 upload_pays_old font-20">Проведенных: <b>0</b></div>
+                    <div class="col-lg-3 col-md-6 upload_pays_new font-20">К загрузке: <b>0</b></div>
+                    <div class="col-lg-3 col-md-6 upload_pays_error font-20">Ошибки: <b class="red">0</b></div>
+                </div>
+            </div>
+            <div class="p-3">
+                <div class="row m-b-20">
+                    <div class="col-xl-4">
+                        <small>
+                            <i class="gray">- Дата платежа не может быть больше текущей даты</i><br>
+                            <i class="gray">- Дата платежа не может быть меньше текущей даты минус 2 месяца</i>
+                        </small>
+                    </div>
+                    <div class="col-xl-4 text-right with-mb">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Формат даты:
+                                <span class="input-group-text">Формат:
                             </div>
                             <select class="custom-select" name="date_format">
                                 <option value="d.m.Y" selected>дд.мм.гггг</option>
@@ -41,17 +51,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="p-3">
-                <div class="row m-b-20">
-                    <div class="col-sm-6">
-                        <small>
-                            <i class="gray">- Дата платежа не может быть больше текущей даты</i><br>
-                            <i class="gray">- Дата платежа не может быть меньше текущей даты минус 2 месяца</i>
-                        </small>
-                    </div>
-                    <div class="col-sm-6 text-right">
+                    <div class="col-xl-4 text-right with-mb">
                         <button disabled onclick="connect1cPayments_addPayments($(this))" class="<?=Text::BTN?> btn-outline-primary load_connect1c_payments_btn">Загрузить выделенные</button>
                     </div>
                 </div>

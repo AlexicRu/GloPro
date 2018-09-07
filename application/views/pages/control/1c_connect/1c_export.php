@@ -6,32 +6,37 @@
         top:0; right: 0;
     }
 </style>
-<table class="table_form export_1c">
-    <tr>
-        <td class="gray right" width="150">Период:</td>
-        <td>
-            <input type="text" name="date_from" class="input_big input_medium datepicker" readonly>
-            -
-            <input type="text" name="date_to" class="input_big input_medium datepicker" readonly>
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">
-            Клиент:<br>
+
+<div class="export_1c">
+    <div class="row m-b-20">
+        <div class="col-sm-2">
+            Период:
+        </div>
+        <div class="col-sm-4">
+            <input type="date" name="date_from" class="form-control">
+        </div>
+        <div class="col-sm-2 text-center">-</div>
+        <div class="col-sm-4">
+            <input type="date" name="date_to" class="form-control">
+        </div>
+    </div>
+    <div class="row m-b-20">
+        <div class="col-sm-2">
+            Клиент,<br class="hidden-sm-down">
             Договор:
-        </td>
-        <td>
+        </div>
+        <div class="col-sm-10">
             <div class="client_contracts_list"></div>
-            <button class="btn waves-effect waves-light btn_small" onclick="renderNewClientForm()"><i class="fa fa-plus"></i> Добавить клиента</button>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <button class="btn waves-effect waves-light btn_green btn_reverse btn_manager_settings_go" onclick="export1c()">Выгрузить</button>
-        </td>
-    </tr>
-</table>
+            <button class="<?=Text::BTN?> btn-sm btn-outline-primary" onclick="renderNewClientForm()"><i class="fa fa-plus"></i> Добавить клиента</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <button class="<?=Text::BTN?> btn-outline-success btn_manager_settings_go" onclick="export1c()">Выгрузить</button>
+        </div>
+    </div>
+</div>
 
 <script>
     function renderNewClientForm()
