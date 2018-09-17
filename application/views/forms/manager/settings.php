@@ -1,15 +1,5 @@
-<?
-$isEdit = true;
-if(empty($manager)){
-    $manager = $user;
-    $isEdit = false;
-}
-if(!isset($reload)){
-    $reload = true;
-}
-?>
-<form method="post" onsubmit="return checkFormManagerSettings($(this));">
-    <?if($isEdit){?>
+<form method="post" onsubmit="return checkFormManagerSettings($(this));" class="manager_settings_form">
+    <?if(empty($selfEdit)){?>
         <input type="hidden" name="manager_settings_id" value="<?=$manager['MANAGER_ID']?>">
     <?}?>
 
@@ -65,18 +55,6 @@ if(!isset($reload)){
                         <input type="text" name="manager_settings_phone" class="form-control" value="<?=$manager['CELLPHONE']?>">
                     </div>
                 </div>
-
-                <?if (Access::allow('change_phone_note')) {?>
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            <div class="text-right hidden-xs-down text-muted">Телефон для оповещений:</div>
-                            <span class="hidden-sm-up">Телефон для оповещений:</span>
-                        </div>
-                        <div class="col-sm-8">
-                            <input type="text" name="manager_settings_phone_note" class="form-control" value="<?=$manager['PHONE_FOR_SMS']?>">
-                        </div>
-                    </div>
-                <?}?>
 
                 <?if(!empty($changeRole)){?>
                     <div class="form-group row">
@@ -158,6 +136,44 @@ if(!isset($reload)){
                             <input type="password" name="manager_settings_password_again" class="form-control" <?=($manager['MANAGER_ID'] == Access::USER_TEST ? 'readonly' : '')?>>
                         </div>
                     </div>
+
+                    <br>
+                    <b class="f18">Информирование</b>
+                    <br><br>
+
+                    <div class="manager_settings_inform">
+                        <div <?=($manager['PHONE_FOR_INFORM'] ? '' : 'style="display:none"')?>>
+                            <b>Подключено</b>
+
+                            <?if(!empty($selfEdit)){?>
+                                &nbsp;&nbsp;&nbsp; <span class="btn btn_small btn_red btn_reverse" onclick="disableInform($(this))">Отключить</span>
+                            <?}?>
+                        </div>
+                        <div <?=(!$manager['PHONE_FOR_INFORM'] ? '' : 'style="display:none"')?>>
+                            <b>Не подключено</b>
+
+                            <?if(!empty($selfEdit)){?>
+                                &nbsp;&nbsp;&nbsp;
+                                <a href="#manager_inform" class="fancy btn btn_small btn_green btn_reverse">Подключить</a>
+                            <?}?>
+                        </div>
+                    </div>
+
+                    <div class="padding__20">
+                        <label>
+                            <input type="checkbox" name="manager_sms_is_on" <?=($manager['SMS_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?>>
+                            СМС информирование
+                        </label>
+                        <br>
+                        <label>
+                            <input type="checkbox" name="manager_telegram_is_on" <?=($manager['TELEGRAM_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?>>
+                            Telegram информирование. <span class="gray">Необходима авторизация через Telegram бота</span>
+                        </label>
+                        <br><br>
+                        <a href="https://t.me/GloProInfo_bot" target="_blank">@GloProInfo_bot</a> - наш телеграм бот.<br>
+                        <i class="gray">Перейдите по ссылке или найдите его через поиск в Telegram.</i><br>
+                        <i class="gray">Авторизация в телеграм боте автоматически установит галочку Telegram информирования.</i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,15 +185,33 @@ if(!isset($reload)){
             <button class="<?=Text::BTN?> btn-outline-success btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
         </div>
     </div>
-
 </form>
+
+<?if (!empty($selfEdit) && !empty($popupManagerInform)) {
+    echo $popupManagerInform;
+}?>
 
 <script>
     $(function () {
-        $("[name=manager_settings_phone], [name=manager_settings_phone_note]").each(function () {
+        $("[name=manager_settings_phone]").each(function () {
             renderPhoneInput($(this));
         });
     });
+
+    <?if (!empty($selfEdit)) {?>
+    function disableInform(btn)
+    {
+        $.post('/inform/disabled-inform', {}, function (data) {
+            if (data.success) {
+                message(1, 'Информирование успешно отключено');
+
+                $('.manager_settings_inform > div', btn.closest('.manager_settings_form')).toggle();
+            } else {
+                message(1, 'Ошибка отключение информирования');
+            }
+        });
+    }
+    <?}?>
 
     function checkFormManagerSettings(form)
     {
@@ -190,7 +224,6 @@ if(!isset($reload)){
         }
 
         var phone = $("[name=manager_settings_phone]");
-        var phoneNote = $("[name=manager_settings_phone_note]");
 
         if (
             phone.intlTelInput('isValidNumber') == false &&
@@ -201,20 +234,11 @@ if(!isset($reload)){
             return false;
         }
 
-        if (
-            phoneNote.intlTelInput('isValidNumber') == false &&
-            ('+' + phoneNote.intlTelInput("getSelectedCountryData").dialCode) != phoneNote.intlTelInput('getNumber') &&
-            phoneNote.intlTelInput('getNumber') != ''
-        ) {
-            message(0, 'Некорректный номер телефона для оповещений');
-            return false;
-        }
-
         $.post('/managers/settings', form.find(':input[name!="edit_login"]').serialize(), function (data) {
            if(data.success){
                message(1, 'Данные обновлены');
 
-               <?if($reload){?>
+               <?if(!empty($noReload)){?>
                setTimeout(function () {
                    window.location.reload();
                }, 1000);

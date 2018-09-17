@@ -73,7 +73,7 @@ class Controller_Control extends Controller_Common {
 
         $managerSettingsForm
             ->set('manager', $manager)
-            ->set('reload', 0)
+            ->set('noReload', 0)
             ->set('changeRole', $changeRole)
         ;
 

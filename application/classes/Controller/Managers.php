@@ -22,23 +22,42 @@ class Controller_Managers extends Controller_Common {
         if ($this->request->is_ajax()) {
             $params = $this->request->post();
 
+            $result = false;
+
             if(!empty($params)){
                 //форма сабмититься обычным способом, и чек бокс приходит вот так
                 if (isset($params['manager_settings_limit_restriction'])) {
                     $params['manager_settings_limit_restriction'] = $params['manager_settings_limit_restriction'] == 'on' ? 1 : 0;
                 }
+                if (isset($params['manager_sms_is_on'])) {
+                    $params['manager_sms_is_on'] = $params['manager_sms_is_on'] == 'on' ? 1 : 0;
+                }
+                if (isset($params['manager_telegram_is_on'])) {
+                    $params['manager_telegram_is_on'] = $params['manager_telegram_is_on'] == 'on' ? 1 : 0;
+                }
 
                 $result = Model_Manager::edit(!empty($params['manager_settings_id']) ? $params['manager_settings_id'] : User::id(), $params);
-
-                $this->jsonResult($result);
             }
+
+            $this->jsonResult($result);
         } else {
             $this->title[] = 'Настройки';
 
             $this->_initPhoneInputWithFlags();
         }
 
+        $user = User::current();
+
 		$managerSettingsForm = View::factory('forms/manager/settings');
+        $popupManagerInform = Form::popup('Подключение информирования', 'manager/inform', [
+            'manager' => $user
+        ]);
+
+        $managerSettingsForm
+            ->set('manager', $user)
+            ->set('selfEdit', true)
+            ->set('popupManagerInform', $popupManagerInform)
+        ;
 
 		$this->tpl
 			->bind('managerSettingsForm', $managerSettingsForm)

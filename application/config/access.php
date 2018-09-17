@@ -166,6 +166,7 @@ return [
             'a_18',
             'a_19',
             'a_24',
+            'a_32',
         ],
         'managers_load-reports' => [
             Access::ROLE_ADMIN,
@@ -267,9 +268,6 @@ return [
             Access::ROLE_ADMIN,
             Access::ROLE_SUPERVISOR,
             Access::ROLE_ADMIN_READONLY,
-        ],
-        'change_phone_note' => [
-            Access::ROLE_ROOT
         ],
         'change_manager_settings_limit' => [
             Access::ROLE_ADMIN,
@@ -425,6 +423,8 @@ return [
             'ctrl_manager_edit',
             'note_status_change',
             'web_manager_site_tour',
+            'note_add',
+            'note_edit',
         ]
     ],
     /*

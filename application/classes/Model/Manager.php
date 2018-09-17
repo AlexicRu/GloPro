@@ -22,26 +22,20 @@ class Model_Manager extends Model
 
         $db = Oracle::init();
 
-        $managerCheck = Model_Manager::getManager($managerId);
-
-        if (Access::deny('change_phone_note')) {
-            $params['manager_settings_phone_note'] = $managerCheck['PHONE_FOR_SMS'];
-        }
-
-        if (empty($params['manager_settings_role'])) {
-            $params['manager_settings_role'] = $managerCheck['ROLE_ID'];
-        }
+        $manager = Model_Manager::getManager($managerId);
 
         $data = [
             'p_manager_for_id' 	    => $managerId,
-            'p_role_id' 	        => $params['manager_settings_role'],
-            'p_name' 	            => empty($params['manager_settings_name'])              ? '' : $params['manager_settings_name'],
-            'p_surname' 	        => empty($params['manager_settings_surname'])           ? '' : $params['manager_settings_surname'],
-            'p_middlename' 	        => empty($params['manager_settings_middlename'])        ? '' : $params['manager_settings_middlename'],
-            'p_phone' 		        => empty($params['manager_settings_phone'])             ? '' : $params['manager_settings_phone'],
-            'p_phone_note' 		    => empty($params['manager_settings_phone_note'])        ? '' : $params['manager_settings_phone_note'],
-            'p_email' 		        => empty($params['manager_settings_email'])             ? '' : Text::checkEmailMulti($params['manager_settings_email']),
-            'p_limit_restriction' 	=> empty($params['manager_settings_limit_restriction']) ? 0 : $params['manager_settings_limit_restriction'],
+            'p_role_id' 	        => !isset($params['manager_settings_role'])              ? $manager['ROLE_ID'] : $params['manager_settings_name'],
+            'p_name' 	            => !isset($params['manager_settings_name'])              ? $manager['MANAGER_NAME'] : $params['manager_settings_name'],
+            'p_surname' 	        => !isset($params['manager_settings_surname'])           ? $manager['MANAGER_SURNAME'] : $params['manager_settings_surname'],
+            'p_middlename' 	        => !isset($params['manager_settings_middlename'])        ? $manager['MANAGER_MIDDLENAME'] : $params['manager_settings_middlename'],
+            'p_phone' 		        => !isset($params['manager_settings_phone'])             ? $manager['CELLPHONE'] : $params['manager_settings_phone'],
+            'p_email' 		        => !isset($params['manager_settings_email'])             ? $manager['EMAIL'] :
+                (!empty($params['manager_settings_email']) ? Text::checkEmailMulti($params['manager_settings_email']) : ''),
+            'p_limit_restriction' 	=> !isset($params['manager_settings_limit_restriction']) ? $manager['LIMIT_RESTRICTION'] : $params['manager_settings_limit_restriction'],
+            'p_sms_is_on' 	        => !isset($params['manager_sms_is_on'])                  ? $manager['SMS_IS_ON'] : $params['manager_sms_is_on'],
+            'p_telegram_is_on' 	    => !isset($params['manager_telegram_is_on'])             ? $manager['TELEGRAM_IS_ON'] : $params['manager_telegram_is_on'],
             'p_manager_who_id' 	    => $user['MANAGER_ID'],
             'p_error_code' 	        => 'out',
         ];
@@ -73,7 +67,9 @@ class Model_Manager extends Model
             }
         }
 
-        Auth::instance()->regenerate_user_profile();
+        if ($managerId == User::id()) {
+            Auth::instance()->regenerate_user_profile();
+        }
 
         return true;
     }
@@ -596,5 +592,47 @@ class Model_Manager extends Model
         ;
 
         return Oracle::init()->tree($sql, 'CLIENT_ID', false, 'CONTRACT_ID');
+    }
+
+    /**
+     * редактирование информирования менеджера
+     *
+     * @param $managerId
+     * @param string $phone
+     * @return bool
+     */
+    public static function enableInform($managerId, $phone = '')
+    {
+        if (empty($phone)) {
+            return false;
+        }
+
+        $data = [
+            'p_manager_id' 	    => $managerId,
+            'p_manager_phone' 	=> $phone,
+            'p_error_code' 		=> 'out',
+        ];
+
+        $res = Oracle::init()->procedure('ctrl_manager_switch_inform', $data);
+
+        if ($res == Oracle::CODE_SUCCESS) {
+            if ($managerId == User::id()) {
+                Auth::instance()->regenerate_user_profile();
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * выключение информирования
+     *
+     * @param $managerId
+     * @return bool
+     */
+    public static function disableInform($managerId)
+    {
+        return self::enableInform($managerId);
     }
 }

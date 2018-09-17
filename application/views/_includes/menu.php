@@ -61,6 +61,11 @@
         <!-- End Sidebar navigation -->
     </div>
     <!-- End Sidebar scroll-->
+    <?if ($user['AGENT_GROUP_ID'] == 0) {?>
+        <div class="copyright">
+            &copy; GloPro 2015-<?=date('Y')?>
+        </div>
+    <?}?>
 </aside>
 <!-- ============================================================== -->
 <!-- End Left Sidebar - style you can find in sidebar.scss  -->
