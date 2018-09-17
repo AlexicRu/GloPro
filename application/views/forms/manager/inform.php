@@ -1,36 +1,43 @@
-<table class="table_form">
-    <tr>
-        <td class="gray right" width="170">Телефон для оповещений:</td>
-        <td>
-            <input type="text" name="manager_settings_phone_note" class="input_big" value="<?=$manager['PHONE_FOR_INFORM']?>">
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">
-            <button class="btn btn_small btn_reverse manager_settings_confirm_code_btn" onclick="getSmsConfirmCode($(this))">
-                Получить код
-            </button>
-        </td>
-        <td>
-            <input type="text" name="manager_settings_confirm_code" class="input_mini">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn" onclick="doAddInform($(this))">
-                Подключить
-            </span>
-        </td>
-    </tr>
-</table>
+<div class="modal-body">
+    <div class="form form_add_client">
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down text-muted">Телефон для оповещений:</div>
+                <span class="hidden-sm-up">Телефон для оповещений:</span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="manager_settings_phone_note" class="input_big" value="<?=$manager['PHONE_FOR_INFORM']?>">
+            </div>
+        </div>
 
-<br>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down text-muted">
+                    <button class="<?=Text::BTN?> btn-sm manager_settings_confirm_code_btn btn-outline-primary" onclick="getSmsConfirmCode($(this))">
+                        Получить код
+                    </button>
+                </div>
+                <span class="hidden-sm-up">
+                    <button class="<?=Text::BTN?> btn-sm manager_settings_confirm_code_btn btn-outline-primary" onclick="getSmsConfirmCode($(this))">
+                        Получить код
+                    </button>
+                </span>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="manager_settings_confirm_code" class="input_mini">
+            </div>
+        </div>
+    </div>
 
-<i class="gray">
-    Запросить новый код можно через (секунды): <b class="sms_code_renew">0</b><br>
-    Время жизни кода (секунды): <b class="sms_code_lifetime">0</b>
-</i>
+    <i class="gray">
+        Запросить новый код можно через (секунды): <b class="sms_code_renew">0</b><br>
+        Время жизни кода (секунды): <b class="sms_code_lifetime">0</b>
+    </i>
+</div>
+<div class="modal-footer">
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), doAddInform)"><i class="fa fa-plug"></i> Подключить</span>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
     $(function () {

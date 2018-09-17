@@ -62,7 +62,7 @@
     </div>
     <!-- End Sidebar scroll-->
     <?if ($user['AGENT_GROUP_ID'] == 0) {?>
-        <div class="copyright">
+        <div class="copyright text-muted p-2 font-14 text-center">
             &copy; GloPro 2015-<?=date('Y')?>
         </div>
     <?}?>

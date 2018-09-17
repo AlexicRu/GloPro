@@ -92,7 +92,7 @@
         </div>
         <div class="col-md-6">
             <div class="bg-light p-3">
-                <b class="font-weight-bold m-b-10">Смена пароля</b>
+                <b class="font-weight-bold m-b-10 font-18">Смена пароля</b>
 
                 <div class="form">
                     <div class="form-group row">
@@ -138,15 +138,15 @@
                     </div>
 
                     <br>
-                    <b class="f18">Информирование</b>
-                    <br><br>
+                    <b class="font-18 m-b-10">Информирование</b>
 
                     <div class="manager_settings_inform">
                         <div <?=($manager['PHONE_FOR_INFORM'] ? '' : 'style="display:none"')?>>
                             <b>Подключено</b>
 
                             <?if(!empty($selfEdit)){?>
-                                &nbsp;&nbsp;&nbsp; <span class="btn btn_small btn_red btn_reverse" onclick="disableInform($(this))">Отключить</span>
+                                &nbsp;&nbsp;&nbsp;
+                                <span class="<?=Text::BTN?> btn-sm btn-danger" onclick="disableInform($(this))">Отключить</span>
                             <?}?>
                         </div>
                         <div <?=(!$manager['PHONE_FOR_INFORM'] ? '' : 'style="display:none"')?>>
@@ -154,25 +154,25 @@
 
                             <?if(!empty($selfEdit)){?>
                                 &nbsp;&nbsp;&nbsp;
-                                <a href="#manager_inform" class="fancy btn btn_small btn_green btn_reverse">Подключить</a>
+                                <span data-toggle="modal" data-target="#manager_inform" class="<?=Text::BTN?> btn-sm btn-success">Подключить</span>
                             <?}?>
                         </div>
                     </div>
 
-                    <div class="padding__20">
-                        <label>
-                            <input type="checkbox" name="manager_sms_is_on" <?=($manager['SMS_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?>>
+                    <div class="p-3">
+                        <input type="checkbox" class="<?=Text::CHECKBOX?>" name="manager_sms_is_on" <?=($manager['SMS_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?> id="manager_sms_is_on<?=$manager['MANAGER_ID']?>">
+                        <label for="manager_sms_is_on<?=$manager['MANAGER_ID']?>">
                             СМС информирование
                         </label>
                         <br>
-                        <label>
-                            <input type="checkbox" name="manager_telegram_is_on" <?=($manager['TELEGRAM_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?>>
-                            Telegram информирование. <span class="gray">Необходима авторизация через Telegram бота</span>
+                        <input type="checkbox" class="<?=Text::CHECKBOX?>" name="manager_telegram_is_on" <?=($manager['TELEGRAM_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?> id="manager_telegram_is_on_<?=$manager['MANAGER_ID']?>">
+                        <label for="manager_telegram_is_on_<?=$manager['MANAGER_ID']?>">
+                            Telegram информирование. <span class="text-muted">Необходима авторизация через Telegram бота</span>
                         </label>
                         <br><br>
                         <a href="https://t.me/GloProInfo_bot" target="_blank">@GloProInfo_bot</a> - наш телеграм бот.<br>
-                        <i class="gray">Перейдите по ссылке или найдите его через поиск в Telegram.</i><br>
-                        <i class="gray">Авторизация в телеграм боте автоматически установит галочку Telegram информирования.</i>
+                        <i class="text-muted">Перейдите по ссылке или найдите его через поиск в Telegram.</i><br>
+                        <i class="text-muted">Авторизация в телеграм боте автоматически установит галочку Telegram информирования.</i>
                     </div>
                 </div>
             </div>
@@ -207,7 +207,7 @@
 
                 $('.manager_settings_inform > div', btn.closest('.manager_settings_form')).toggle();
             } else {
-                message(1, 'Ошибка отключение информирования');
+                message(0, 'Ошибка отключение информирования');
             }
         });
     }
