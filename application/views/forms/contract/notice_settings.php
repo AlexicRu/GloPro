@@ -1,116 +1,109 @@
-<table class="table_form form_settings">
-    <tr>
-        <td class="gray right" width="170">При блокировке карт:</td>
-        <td>
-            <label><input type="checkbox" name="notice_email_card" <?=($settings['EML_CARD_BLOCK'] ? 'checked' : '')?>> E-mail</label>
-            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
-                <br>
-                <label>
-                    <input type="checkbox" name="notice_sms_card" <?=($settings['SMS_CARD_BLOCK'] ? 'checked' : '')?>>
-                    <?
-                    $types = [];
-                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
-                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
-                    ?>
-                    <?=implode(' / ', $types)?>
-                </label>
-            <?}?>
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">При пополнении счета:</td>
-        <td>
-            <label><input type="checkbox" name="notice_email_payment" <?=($settings['EML_ADD_PAYMENT'] ? 'checked' : '')?>> E-mail</label>
-            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
-                <br>
-                <label>
-                    <input type="checkbox" name="notice_sms_payment" <?=($settings['SMS_ADD_PAYMENT'] ? 'checked' : '')?>>
-                    <?
-                    $types = [];
-                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
-                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
-                    ?>
-                    <?=implode(' / ', $types)?>
-                </label>
-            <?}?>
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">При блокировке фирмы:</td>
-        <td>
-            <label><input type="checkbox" name="notice_email_firm" <?=($settings['EML_CONTRACT_BLOCK'] ? 'checked' : '')?>> E-mail</label>
-            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
-                <br>
-                <label>
-                    <input type="checkbox" name="notice_sms_firm" <?=($settings['SMS_CONTRACT_BLOCK'] ? 'checked' : '')?>>
-                    <?
-                    $types = [];
-                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
-                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
-                    ?>
-                    <?=implode(' / ', $types)?>
-                </label>
-            <?}?>
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">При приближению к критическому порогу:</td>
-        <td>
-            <label><input type="checkbox" name="notice_email_barrier" <?=($settings['EML_BLNC_CTRL'] ? 'checked' : '')?>> E-mail</label>
-            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
-                <br>
-                <label>
-                    <input type="checkbox" name="notice_sms_barrier" <?=($settings['SMS_BLNC_CTRL'] ? 'checked' : '')?>>
-                    <?
-                    $types = [];
-                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
-                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
-                    ?>
-                    <?=implode(' / ', $types)?>
-                </label>
-            <?}?>
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">Порог:</td>
-        <td>
-            <input type="text" name="notice_email_barrier_value" value="<?=$settings['EML_BLNC_CTRL_VALUE']?>">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn btn_reverse" onclick="submitForm($(this), checkFormContractNoticeSettings)"><i class="icon-ok"></i> Сохранить</span>
-            <span class="btn btn_red fancy_close">Отмена</span>
-        </td>
-    </tr>
-</table>
-
 <div class="modal-body">
-    <b class="font-20 m-b-10">Уведомления по e-mail:</b>
+    <div class="form-group row">
+        <div class="col-sm-5">
+            <div class="text-right hidden-xs-down text-muted">При блокировке карт:</div>
+            <span class="hidden-sm-up">При блокировке карт:</span>
+        </div>
+        <div class="col-sm-7">
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_card" name="notice_email_card" <?=($settings['EML_CARD_BLOCK'] ? 'checked' : '')?>>
+            <label for="notice_email_card">E-mail</label>
 
-    <div class="m-b-10">
-        <input type="checkbox" class="filled-in chk-col-purple" name="notice_email_card" id="notice_email_card" <?=($settings['EML_CARD_BLOCK'] ? 'checked' : '')?>>
-        <label for="notice_email_card">При блокировке карт</label>
-    </div>
-
-    <div class="m-b-10">
-        <input type="checkbox" class="filled-in chk-col-purple" name="notice_email_firm" id="notice_email_firm" <?=($settings['EML_CONTRACT_BLOCK'] ? 'checked' : '')?>>
-        <label for="notice_email_firm">При блокировке фирмы</label>
-    </div>
-
-    <div class="m-b-10">
-        <input type="checkbox" class="filled-in chk-col-purple" name="notice_email_barrier" id="notice_email_barrier" <?=($settings['EML_BLNC_CTRL'] ? 'checked' : '')?>>
-        <label for="notice_email_barrier">При приближению к критическому порогу</label>
-
-        <div class="input-group m-t-10">
-            <div class="input-group-prepend">
-                <div class="input-group-text">Порог:</div>
-            </div>
-            <input type="text" name="notice_email_barrier_value" value="<?=$settings['EML_BLNC_CTRL_VALUE']?>" class="form-control">
+            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
+                <br>
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_card" name="notice_sms_card" <?=($settings['SMS_CARD_BLOCK'] ? 'checked' : '')?>>
+                <label for="notice_sms_card">
+                    <?
+                    $types = [];
+                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
+                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
+                    ?>
+                    <?=implode(' / ', $types)?>
+                </label>
+            <?}?>
         </div>
     </div>
 
+    <div class="form-group row">
+        <div class="col-sm-5">
+            <div class="text-right hidden-xs-down text-muted">При пополнении счета:</div>
+            <span class="hidden-sm-up">При пополнении счета:</span>
+        </div>
+        <div class="col-sm-7">
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_payment" name="notice_email_payment" <?=($settings['EML_ADD_PAYMENT'] ? 'checked' : '')?>>
+            <label for="notice_email_payment">E-mail</label>
+
+            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
+                <br>
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_payment" name="notice_sms_payment" <?=($settings['SMS_ADD_PAYMENT'] ? 'checked' : '')?>>
+                <label for="notice_sms_payment">
+                    <?
+                    $types = [];
+                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
+                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
+                    ?>
+                    <?=implode(' / ', $types)?>
+                </label>
+            <?}?>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-5">
+            <div class="text-right hidden-xs-down text-muted">При блокировке фирмы:</div>
+            <span class="hidden-sm-up">При блокировке фирмы:</span>
+        </div>
+        <div class="col-sm-7">
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_firm" name="notice_email_firm" <?=($settings['EML_CONTRACT_BLOCK'] ? 'checked' : '')?>>
+            <label for="notice_email_firm">E-mail</label>
+
+            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
+                <br>
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_firm" name="notice_sms_firm" <?=($settings['SMS_CONTRACT_BLOCK'] ? 'checked' : '')?>>
+                <label for="notice_sms_firm">
+                    <?
+                    $types = [];
+                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
+                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
+                    ?>
+                    <?=implode(' / ', $types)?>
+                </label>
+            <?}?>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-5">
+            <div class="text-right hidden-xs-down text-muted">При приближению к критическому порогу:</div>
+            <span class="hidden-sm-up">При приближению к критическому порогу:</span>
+        </div>
+        <div class="col-sm-7">
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_barrier" name="notice_email_barrier" <?=($settings['EML_BLNC_CTRL'] ? 'checked' : '')?>>
+            <label for="notice_email_barrier">E-mail</label>
+
+            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
+                <br>
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_barrier" name="notice_sms_barrier" <?=($settings['SMS_BLNC_CTRL'] ? 'checked' : '')?>>
+                <label for="notice_sms_barrier">
+                    <?
+                    $types = [];
+                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
+                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
+                    ?>
+                    <?=implode(' / ', $types)?>
+                </label>
+            <?}?>
+        </div>
+    </div>
+
+    <div class="form-group row m-b-0">
+        <div class="col-sm-5">
+            <div class="text-right hidden-xs-down text-muted">Порог:</div>
+            <span class="hidden-sm-up">Порог:</span>
+        </div>
+        <div class="col-sm-7">
+            <input type="text" name="notice_email_barrier_value" class="form-control" value="<?=$settings['EML_BLNC_CTRL_VALUE']?>">
+        </div>
+    </div>
 </div>
 
 <div class="modal-footer">
