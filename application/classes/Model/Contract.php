@@ -575,7 +575,7 @@ class Model_Contract extends Model
     }
 
     /**
-     * редактирование настройек уведомлений
+     * редактирование настроек уведомлений
      *
      * @param $contractId
      * @param $params
@@ -588,7 +588,7 @@ class Model_Contract extends Model
 
         $db = Oracle::init();
 
-        $user = Auth::instance()->get_user();
+        $user = User::current();
 
         $data = [
             'p_contract_id'         => $contractId,
@@ -600,10 +600,11 @@ class Model_Contract extends Model
             'p_eml_contract_block'  => !empty($params['notice_email_firm']) ? 1 : 0,
             'p_eml_blnc_ctrl'       => !empty($params['notice_email_barrier']) ? 1 : 0,
             'p_eml_blnc_ctrl_value' => !empty($params['notice_email_barrier_value']) ? Num::toFloat($params['notice_email_barrier_value']) : 0,
-            'p_sms_card_block'      => 0,
-            'p_sms_contract_block'  => 0,
-            'p_sms_blnc_ctrl'       => 0,
-            'p_sms_add_payment'     => 0,
+            'p_eml_add_payment'     => !empty($params['notice_email_payment']) ? 1 : 0,
+            'p_sms_card_block'      => !empty($params['notice_sms_card']) ? 1 : 0,
+            'p_sms_contract_block'  => !empty($params['notice_sms_firm']) ? 1 : 0,
+            'p_sms_blnc_ctrl'       => !empty($params['notice_sms_barrier']) ? 1 : 0,
+            'p_sms_add_payment'     => !empty($params['notice_sms_payment']) ? 1 : 0,
             'p_sms_card_trz'        => 0,
             'p_error_code' 		    => 'out',
         ];
@@ -622,13 +623,13 @@ class Model_Contract extends Model
             return false;
         }
 
-        $db = Oracle::init();
+        $sql = (new Builder())->select()
+            ->from('V_WEB_CTR_NOTIFY_SET')
+            ->where('contract_id = ' . $contractId)
+            ->where('manager_id = ' . User::id())
+        ;
 
-        $user = Auth::instance()->get_user();
-
-        $sql = "select * from ".Oracle::$prefix."V_WEB_CTR_NOTIFY_SET where contract_id = ".$contractId. " and manager_id = ".$user['MANAGER_ID'];
-
-        return $db->row($sql);
+        return Oracle::init()->row($sql);
     }
 
     /**
@@ -785,7 +786,7 @@ class Model_Contract extends Model
             foreach ($currentLimits as $restrictions) {
                 $limit = reset($restrictions);
 
-                if ($delAll || in_array($limit['LIMIT_ID'], $limitsIds)) {
+                if ($delAll || !in_array($limit['LIMIT_ID'], $limitsIds)) {
                     //удаляем лишние лимиты
                     self::deleteLimit($limit['LIMIT_ID']);
                 }

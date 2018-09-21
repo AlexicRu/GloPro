@@ -142,7 +142,7 @@
 
                     <div class="manager_settings_inform">
                         <div <?=($manager['PHONE_FOR_INFORM'] ? '' : 'style="display:none"')?>>
-                            <b>Подключено</b>
+                            <b>Подключено на номер <span class="manager_settings_inform_phone"><?=$manager['PHONE_FOR_INFORM']?></span></b>
 
                             <?if(!empty($selfEdit)){?>
                                 &nbsp;&nbsp;&nbsp;
@@ -159,15 +159,15 @@
                         </div>
                     </div>
 
-                    <div class="p-3">
-                        <input type="checkbox" class="<?=Text::CHECKBOX?>" name="manager_sms_is_on" <?=($manager['SMS_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?> id="manager_sms_is_on<?=$manager['MANAGER_ID']?>">
+                    <div class="p-3 manager_settings_inform_checkboxes">
+                        <input type="checkbox" class="<?=Text::CHECKBOX?>" name="manager_sms_is_on" <?=($manager['SMS_IS_ON'] ? 'checked' : '')?> <?=(($manager['PHONE_FOR_INFORM'] && $manager['SENDER_SMS']) || Access::allow('root') ? '' : 'disabled')?> id="manager_sms_is_on<?=$manager['MANAGER_ID']?>">
                         <label for="manager_sms_is_on<?=$manager['MANAGER_ID']?>">
-                            СМС информирование
+                            SMS
                         </label>
                         <br>
                         <input type="checkbox" class="<?=Text::CHECKBOX?>" name="manager_telegram_is_on" <?=($manager['TELEGRAM_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?> id="manager_telegram_is_on_<?=$manager['MANAGER_ID']?>">
                         <label for="manager_telegram_is_on_<?=$manager['MANAGER_ID']?>">
-                            Telegram информирование. <span class="text-muted">Необходима авторизация через Telegram бота</span>
+                            Telegram <span class="text-muted">Необходима авторизация через Telegram бота</span>
                         </label>
                         <br><br>
                         <a href="https://t.me/GloProInfo_bot" target="_blank">@GloProInfo_bot</a> - наш телеграм бот.<br>
@@ -201,11 +201,16 @@
     <?if (!empty($selfEdit)) {?>
     function disableInform(btn)
     {
+        if (!confirm('Отключаем информирование?')) {
+            return false;
+        }
+
         $.post('/inform/disable-inform', {}, function (data) {
             if (data.success) {
                 message(1, 'Информирование успешно отключено');
 
                 $('.manager_settings_inform > div', btn.closest('.manager_settings_form')).toggle();
+                $('.manager_settings_inform_checkboxes [type=checkbox]', btn.closest('.manager_settings_form')).prop('disabled', true).trigger('change');
             } else {
                 message(0, 'Ошибка отключение информирования');
             }

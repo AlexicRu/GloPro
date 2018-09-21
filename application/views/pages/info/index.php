@@ -107,11 +107,29 @@
         <div class="card-body">
             <h2>Мониторинг цен</h2>
 
+            <a href="/file/info/Мониторинг_цен/Price_Monitoring_сентябрь2018.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
+                </div>
+                <div class="col-10 col-xxl-8">Мониторинг цен за сентебрь 2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
+            <a href="/file/info/Мониторинг_цен/Price_Monitoring_август2018.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
+                </div>
+                <div class="col-10 col-xxl-8">Мониторинг цен за август 2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
             <a href="/file/info/Мониторинг_цен/Price_Monitoring_июль2018.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xxl-8">Price Monitoring июль 2018</div>
+                <div class="col-10 col-xxl-8">Мониторинг цен за июль 2018</div>
                 <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
@@ -120,16 +138,7 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xxl-8">Price Monitoring май 2018</div>
-                <div class="col-xxl-2 hidden-xl-down">
-                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
-                </div>
-            </a>
-            <a href="/file/info/Мониторинг_цен/Price_Monitoring_05_07.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
-                <div class="col-2 text-center">
-                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
-                </div>
-                <div class="col-10 col-xxl-8">Price Monitoring 05.07</div>
+                <div class="col-10 col-xxl-8">Мониторинг цен за май 2018</div>
                 <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
@@ -138,7 +147,7 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xxl-8">Price Monitoring апрель 2018</div>
+                <div class="col-10 col-xxl-8">Мониторинг цен за апрель 2018</div>
                 <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
@@ -147,7 +156,7 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xxl-8">Price Monitoring март 2018</div>
+                <div class="col-10 col-xxl-8">Мониторинг цен за март 2018</div>
                 <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>

@@ -79,6 +79,33 @@
         <div class="card-body">
             <h2>Центральный регион</h2>
 
+            <a href="/file/info/Паспорта_качества/Центральный_регион/3536_ДТ-Л-К5от05.09.2018.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
+                </div>
+                <div class="col-10 col-xxl-8">№3536 ДТ-Л-К5 от 05.09.2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
+            <a href="/file/info/Паспорта_качества/Центральный_регион/2520_Аи-92-К5_от_05.09.2018.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
+                </div>
+                <div class="col-10 col-xxl-8">№2520 Аи-92-К5 от 05.09.2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
+            <a href="/file/info/Паспорта_качества/Центральный_регион/2507_Аи-95-К5_от_03.09.2018.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
+                </div>
+                <div class="col-10 col-xxl-8">№2507 Аи-95-К5 от 03.09.2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
             <a href="/file/info/Паспорта_качества/Центральный_регион/Паспорт_качества_2018.07.15_19-01_Р-р_6.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
@@ -114,6 +141,24 @@
         <div class="card-body">
             <h2>Сибирь</h2>
 
+            <a href="/file/info/Паспорта_качества/Сибирь/1504_G-Drive_100_от_03.08.2018.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
+                </div>
+                <div class="col-10 col-xxl-8">№1504 G-Drive 100 от 03.08.2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
+            <a href="/file/info/Паспорта_качества/Сибирь/2496_G-Drive_100_от_02.09.2018.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
+                </div>
+                <div class="col-10 col-xxl-8">№2496 G-Drive 100 от 02.09.2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
             <a href="/file/info/Паспорта_качества/Сибирь/Сибирь.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>

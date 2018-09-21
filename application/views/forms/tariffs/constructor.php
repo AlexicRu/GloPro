@@ -10,6 +10,23 @@
         </div>
     </div>
 
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <div class="text-right hidden-xs-down text-muted">Версия:</div>
+            <span class="hidden-sm-up">Версия:</span>
+        </div>
+        <div class="col-sm-8">
+            <select name="tariff_versions">
+                <?foreach ($tariff['versions'] as $version) {?>
+                    <option value="<?=$version['VERSION_ID']?>" <?=($version['VERSION_ID'] == $tariff['current_version'] ? 'selected' : '')?>>
+                        <?=$version['VERSION_ID']?> от <?=$version['DATE_CREATE_STR']?>
+                    </option>
+                <?}?>
+            </select>
+            <span class="<?=Text::BTN?> btn-sm btn-outline-success" onclick="loadTariffVersion($(this))">Загрузить</span>
+        </div>
+    </div>
+
     <div class="t_sections_list">
         <?if(!empty($settings)){?>
             <?foreach($settings as $conditions){

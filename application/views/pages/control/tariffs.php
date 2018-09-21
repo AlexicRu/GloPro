@@ -66,25 +66,4 @@
 
         $('.tabs_tariffs .nav-item:not(.before_scroll):not(.no_content):first .nav-link').click();
     });
-
-    function loadTariff(t, force)
-    {
-        var tab = t.closest('[tab]');
-        var tabsBlock = $(".tabs_tariffs");
-        var tariffId = tab.attr('tab').replace('tariff', '');
-        var tabContent = $(t.attr('href'), tabsBlock);
-
-        if(tabContent.text() == '' || force == true){
-            tabContent.empty().parent().addClass('block_loading');
-
-            $.post('/control/load-tariff/' + tariffId, { version: tab.attr('version') }, function(data){
-                tabContent.html(data).parent().removeClass('block_loading');
-                renderVerticalTabsScroll($('.tabs_tariffs .v-scroll'));
-            });
-        } else {
-            setTimeout(function () {
-                renderVerticalTabsScroll($('.tabs_tariffs .v-scroll'));
-            }, 100);
-        }
-    }
 </script>

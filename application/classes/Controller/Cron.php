@@ -39,7 +39,7 @@ class Controller_Cron extends Controller_Template
 
     /**
      * рассылка уведомлений
-     * последовательность: пуш, телеграм, смс
+     * последовательность: пуш, телеграм, sms
      *
      * @throws HTTP_Exception_500
      */
@@ -73,7 +73,7 @@ class Controller_Cron extends Controller_Template
             'locked'    => 10
         ]);
 
-        if (empty($queue)) {
+        if (empty($toUnlock)) {
             echo 'empty queue';
             die;
         }
@@ -82,7 +82,7 @@ class Controller_Cron extends Controller_Template
     }
 
     /**
-     * проверяем статусы смс у оператора
+     * проверяем статусы sms у оператора
      */
     public function action_checkSmsStatus()
     {
@@ -98,7 +98,7 @@ class Controller_Cron extends Controller_Template
         }
 
         foreach ($queue as $message) {
-            (new Sender_Sms())->checkStatus($message['MESSAGE_ID'], $message);
+            (new Sender_Sms())->setMessageId($message['MESSAGE_ID'])->checkStatus($message['SEND_OPERATOR_ID'], $message);
         }
     }
 }

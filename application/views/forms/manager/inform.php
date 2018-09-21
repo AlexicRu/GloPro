@@ -74,6 +74,7 @@
                 var form = $('.manager_settings_form:visible');
 
                 $('.manager_settings_inform > div', form).toggle();
+                $('.manager_settings_inform_phone', form).text(params.phone);
             } else {
                 var error = '';
 
@@ -104,7 +105,7 @@
 
         $.post('/inform/send-sms-confirm-code', {phone: phoneNote.intlTelInput('getNumber')}, function (data) {
             if (data.success) {
-                message(1, 'СМС с кодом отправлено');
+                message(1, 'SMS с кодом отправлено');
 
                 clearInterval(i);
                 clearInterval(i2);

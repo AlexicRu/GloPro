@@ -3,8 +3,8 @@
 class Sender
 {
     const STATUS_NEW        = 0;
-    const STATUS_PENDING    = 1;
-    const STATUS_SENT       = 2;
+    const STATUS_SENT       = 1;
+    const STATUS_PENDING    = 2;
     const STATUS_CANCEL     = 3;
 
     const TYPE_PUSH         = 1;
@@ -32,7 +32,7 @@ class Sender
         $className = 'Sender_' . ucfirst($driver);
 
         if (!class_exists($className)) {
-            throw new HTTP_Exception_500('Wrong driver');
+            throw new HTTP_Exception_500('Wrong driver: ' . $driver);
         }
 
         $class = new $className();
@@ -42,7 +42,7 @@ class Sender
 
     /**
      * рассылка уведомлений
-     * последовательность: пуш, телеграм, смс
+     * последовательность: пуш, телеграм, sms
      */
     public function sendMessage($messageId, $managerId, $message, $forceType = false)
     {
@@ -52,7 +52,7 @@ class Sender
 
         $manager = Model_Manager::getManager($managerId);
 
-        $types = !empty($forceType) ? [$forceType] : ['push', 'telegram', 'sms'];
+        $types = !empty($forceType) ? [self::_getForceTypeName($forceType)] : ['push', 'telegram', 'sms'];
 
         if (empty($manager['SMS_IS_ON'])) {
             unset($types['sms']);
@@ -76,6 +76,13 @@ class Sender
         return false;
     }
 
+    protected static function _getForceTypeName($forceType)
+    {
+        return $forceType == self::TYPE_PUSH ? 'push' :
+            ($forceType == self::TYPE_TELEGRAM ? 'telegram' : 'sms')
+        ;
+    }
+
     /**
      * получаем очередь на отправку
      */
@@ -94,19 +101,23 @@ class Sender
             $sql->where('send_status = ' . $params['status']);
         }
 
+        if (isset($params['type'])) {
+            $sql->where('send_type = ' . $params['type']);
+        }
+
         if (isset($params['operator_status'])) {
             $sql->where('operator_status = ' . $params['operator_status']);
         }
 
         if (isset($params['!operator_status'])) {
-            $sql->where('operator_status != ' . $params['!operator_status']);
+            $sql->where('coalesce(operator_status, 0) != ' . $params['!operator_status']);
         }
 
         if (isset($params['<attempts'])) {
             $sql->where('attempt < ' . (int)$params['<attempts']);
         }
 
-        //заброкированные более 5 минут назад
+        //заброкированные более 10 минут назад
         if (!empty($params['locked'])) {
             $sql->where('(sysdate - DATE_UPDATE_OUR) * 24 * 60 > ' . (int)$params['locked']);
         }
@@ -188,7 +199,7 @@ class Sender
     }
 
     /**
-     * редактируем сообщение, например в смс при изменении статуса
+     * редактируем сообщение, например в sms при изменении статуса
      *
      * @param $messageId
      * @param $params
@@ -236,5 +247,18 @@ class Sender
         }
 
         return false;
+    }
+
+    /**
+     * установка id сообщения с которым идет работа
+     *
+     * @param $messageId
+     * @return $this
+     */
+    public function setMessageId($messageId)
+    {
+        $this->_messageId = $messageId;
+
+        return $this;
     }
 }
