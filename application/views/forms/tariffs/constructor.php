@@ -5,6 +5,11 @@
             <span class="hidden-sm-up">Название:</span>
         </div>
         <div class="col-sm-8">
+            <?if (!empty($tariff)) {?>
+                <div class="float-right">
+                    <span class="<?=Text::BTN?> btn-outline-danger" onclick="deleteTariff($(this))"><i class="icon-cancel"></i></span>
+                </div>
+            <?}?>
             <input type="hidden" name="tarif_id" value="<?=(!empty($tariff['TARIF_ID']) ? $tariff['TARIF_ID'] : 0)?>">
             <input type="text" name="tarif_name" class="form-control" value="<?=(!empty($tariff['TARIF_NAME']) ? Text::quotesForForms($tariff['TARIF_NAME']) : '')?>">
         </div>

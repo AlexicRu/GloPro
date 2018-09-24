@@ -14,7 +14,8 @@ if ($withDepend) {?>
             <?
             $data = [
                 'placeholder' => !empty($params['depend_on']['placeholder']) ? $params['depend_on']['placeholder'] : 'Поиск...',
-                'depend_to' => $name
+                'depend_to' => $name,
+                'onSelect' => !empty($params['depend_on']['onSelect']) ? $params['depend_on']['onSelect'] : false
             ];
 
             $valueDepend = false;
