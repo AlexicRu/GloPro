@@ -305,8 +305,13 @@ class Model_Contract extends Model
         $sql = (new Builder())->select()
             ->from('V_WEB_TARIF_LIST')
             ->where('agent_id = ' . $user['AGENT_ID'])
+            ->where('tarif_status = ' . Model_Tariff::TARIFF_STATUS_ACTIVE)
             ->orderBy('tarif_name')
         ;
+
+        if (!empty($params['tarif_name'])) {
+            $sql->where('upper(tarif_name) like ' . mb_strtoupper(Oracle::quote('%'.$params['tarif_name'].'%')));
+        }
 
         if (!empty($params['search'])) {
             $sql->where("upper(tarif_name) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));

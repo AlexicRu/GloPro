@@ -37,6 +37,8 @@
             <?}?>
         <?}?>
     </div>
+
+    <?if ((isset($tariff['current_version']) && $tariff['current_version'] == $tariff['LAST_VERSION']) || empty($tariff)) {?>
     <div class="form-group row">
         <div class="col-12">
             <span class="<?=Text::BTN?> btn-outline-primary btn_add_section" onclick="addSection($(this))"><i class="fa fa-plus"></i> Добавить секцию</span>
@@ -48,4 +50,7 @@
             <span class="<?=Text::BTN?> btn-outline-success" onclick="saveTariff($(this))"><i class="fa fa-check"></i> Сохранить</span>
         </div>
     </div>
+    <?} else {?>
+        <i class="gray">Только просмотр</i>
+    <?}?>
 </div>
