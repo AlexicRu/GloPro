@@ -123,6 +123,8 @@ class Controller_Clients extends Controller_Common {
 				$contractSettings = Model_Contract::getContractSettings($contractId);
                 $contractTariffs = Model_Contract::getTariffs();
                 $noticeSettings = Model_Contract::getContractNoticeSettings($contractId);
+                $contractManagers = Model_Contract::getContractManagers($contractId);
+
 				$popupContractNoticeSettings = Form::popup('Настройка уведомлений', 'contract/notice_settings', [
                     'settings'  => $noticeSettings,
                     'manager'   => User::current()
@@ -133,6 +135,7 @@ class Controller_Clients extends Controller_Common {
 					->bind('contract', $contract)
 					->bind('contractSettings', $contractSettings)
 					->bind('contractTariffs', $contractTariffs)
+					->bind('contractManagers', $contractManagers)
 					->bind('popupContractNoticeSettings', $popupContractNoticeSettings)
 					->bind('popupContractHistory', $popupContractHistory)
 				;
@@ -233,6 +236,7 @@ class Controller_Clients extends Controller_Common {
         $oilRestrictions = Model_Card::getOilRestrictions($cardId);
         $transactions = Model_Transaction::getList($cardId, $contractId, ['limit' => 20]);
         $settings = Model_Card::getCardLimitSettings($cardId);
+        $cardInfo = Model_Card::getCardInfo($cardId, $contractId);
 
 		$servicesList = Listing::getServices([
 		    'SYSTEM_SERVICE_CATEGORY' => true,
@@ -253,6 +257,7 @@ class Controller_Clients extends Controller_Common {
             ->bind('card', $card)
             ->bind('oilRestrictions', $oilRestrictions)
             ->bind('transactions', $transactions)
+            ->bind('cardInfo', $cardInfo)
             ->bind('popupCardHolderEdit', $popupCardHolderEdit)
             ->bind('popupCardLimitsEdit', $popupCardLimitsEdit)
         ;

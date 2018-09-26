@@ -91,11 +91,21 @@
         <div class="card-body">
             <h2>API</h2>
 
+            <a href="/file/info/API/Specification_VIP_API_v.1.1.8.docx" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-word text-primary"></span>
+                </div>
+                <div class="col-10 col-xxl-8">Specification VIP API v.1.1.8</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
+
             <a href="/file/info/API/Specification_VIP_API_v.1.1.7.docx" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-word text-primary"></span>
                 </div>
-                <div class="col-10 col-xxl-8">Specification_VIP_API_v.1.1.7</div>
+                <div class="col-10 col-xxl-8">Specification VIP API v.1.1.7</div>
                 <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
