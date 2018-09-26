@@ -1,39 +1,35 @@
-<div class="padding__20">
-    <i class="gray">Отображение платежей только по типу источника "Цепочка договоров внутри системы"</i>
-    <br>
-    <div class="ajax_block_payments_history_out"></div>
+<div class="p-20">
+    <i class="text-muted">Отображение платежей только по типу источника "Цепочка договоров внутри системы"</i>
+
+    <div class="ajax_block_payments_history_out m-t-20"></div>
 </div>
 
 <script>
     $(function(){
         paginationAjax('/suppliers/contract-payments-history/' + $('[name=suppliers_contracts_list]').val(), 'ajax_block_payments_history', renderAjaxPaginationPaymentsHistory);
     });
+
     function renderAjaxPaginationPaymentsHistory(data, block)
     {
         for(var i = 0 in data){
-            var tpl = $('<div class="line_inner">'+
-                '<span class="gray" /> &nbsp;&nbsp;&nbsp; '+
-                '<b class="line_inner_150" />'+
-                '<span class="gray" /> &nbsp;&nbsp;&nbsp; '+
-                '<b>' +
+            var tpl = $('<div class="row bg-light m-b-5 p-t-10 p-b-10">'+
+                '<div class="col-5 col-xl-3 text-muted" row_date />'+
+                '<div class="col-7 col-xl-3" row_num />'+
+                '<div class="with-mb col-xl-6" row_summ />'+
+                '<div class="with-mb col-12" row_comment />'+
                 '</div>');
 
-            tpl.find('span.gray:first').text(data[i].ORDER_DATE);
-            tpl.find('b.line_inner_150').text('№' + data[i].ORDER_NUM);
-            tpl.find('span.gray:last').text('Сумма');
-            tpl.find('b:last').html(number_format(data[i].SUMPAY, 2, ',', ' ') + ' <?=Text::RUR?>');
-
-            var tplAdditional = $('<div class="line_inner__additional" />');
+            tpl.find('[row_date]').text(data[i].ORDER_DATE);
+            tpl.find('[row_num]').text('№' + data[i].ORDER_NUM);
+            tpl.find('[row_summ]').html('<span class="text-muted">Сумма</span> <b>' + number_format(data[i].SUMPAY, 2, ',', ' ') + ' <?=Text::RUR?></b>');
 
             if (data[i].DATE_IN) {
-                tplAdditional.append('<div class="date_in_comment gray"><i>Внесена:</i> '+ data[i].DATE_IN +'</div>');
+                tpl.find('[row_comment]').append('<div class="text-muted"><i>Внесена:</i> '+ data[i].DATE_IN +'</div>');
             }
 
             if (data[i].PAY_COMMENT) {
-                tplAdditional.append('<div class="full_comment"><i>Комментарий:</i> '+ data[i].PAY_COMMENT +'</div>');
+                tpl.find('[row_comment]').append('<div><i>Комментарий:</i> '+ data[i].PAY_COMMENT + '</div>');
             }
-
-            tpl.append(tplAdditional);
 
             block.append(tpl);
         }

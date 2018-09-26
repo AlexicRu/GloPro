@@ -262,44 +262,49 @@
             <a href="#" class="btn waves-effect waves-light btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_notice_settings">Настройка уведомлений</a>
 
             <?if(Access::allow('view_contract_managers')){?>
-                <br><br>
-                <b class="f18">Менеджеры:</b><br>
-                <table>
-                    <tr>
-                        <td class="gray right" width="160">Менеджер по продажам:</td>
-                        <td>
-                            <?
-                            $managers = [];
-                            foreach ($contractManagers as $manager) {
-                                if (in_array($manager['ROLE'], [Access::ROLE_MANAGER_SALE, Access::ROLE_MANAGER_SALE_SUPPORT])) {
-                                    $managers[] = $manager['MANAGER_NAME'];
-                                }
+                <div class="font-18 font-weight-bold m-b-10 m-t-20">Менеджеры:</div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-5 text-muted">
+                        <div class="text-right d-none d-sm-block">Менеджер по продажам:</div>
+                        <div class="d-block d-sm-none">Менеджер по продажам:</div>
+                    </div>
+                    <div class="col-sm-7">
+                        <?
+                        $managers = [];
+                        foreach ($contractManagers as $manager) {
+                            if (in_array($manager['ROLE'], [Access::ROLE_MANAGER_SALE, Access::ROLE_MANAGER_SALE_SUPPORT])) {
+                                $managers[] = $manager['MANAGER_NAME'];
                             }
-                            if (empty($managers)) {
-                                echo '<i class="gray">Не закреплен</i>';
-                            } else {
-                                echo implode(', ', $managers);
-                            }?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="gray right">Менеджер по сопровождению:</td>
-                        <td>
-                            <?
-                            $managers = [];
-                            foreach ($contractManagers as $manager) {
-                                if (in_array($manager['ROLE'], [Access::ROLE_MANAGER, Access::ROLE_MANAGER_SALE_SUPPORT])) {
-                                    $managers[] = $manager['MANAGER_NAME'];
-                                }
+                        }
+                        if (empty($managers)) {
+                            echo '<i class="text-muted">Не закреплен</i>';
+                        } else {
+                            echo implode(', ', $managers);
+                        }?>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    <div class="col-sm-5 text-muted">
+                        <div class="text-right d-none d-sm-block">Менеджер по сопровождению:</div>
+                        <div class="d-block d-sm-none">Менеджер по сопровождению:</div>
+                    </div>
+                    <div class="col-sm-7">
+                        <?
+                        $managers = [];
+                        foreach ($contractManagers as $manager) {
+                            if (in_array($manager['ROLE'], [Access::ROLE_MANAGER, Access::ROLE_MANAGER_SALE_SUPPORT])) {
+                                $managers[] = $manager['MANAGER_NAME'];
                             }
-                            if (empty($managers)) {
-                                echo '<i class="gray">Не закреплен</i>';
-                            } else {
-                                echo implode(', ', $managers);
-                            }?>
-                        </td>
-                    </tr>
-                </table>
+                        }
+                        if (empty($managers)) {
+                            echo '<i class="text-muted">Не закреплен</i>';
+                        } else {
+                            echo implode(', ', $managers);
+                        }?>
+                    </div>
+                </div>
             <?}?>
         </div>
     </div>

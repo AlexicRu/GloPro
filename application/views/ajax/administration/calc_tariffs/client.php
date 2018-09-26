@@ -11,7 +11,7 @@
                     'onSelect' => 'findTariffByContract'
                 ])?>
             </td>
-            <td class="gray right">Текущий тариф:</td>
+            <td class="gray right">Тариф по договору:</td>
             <td>
                 <span class="current_tariff"></span>
             </td>

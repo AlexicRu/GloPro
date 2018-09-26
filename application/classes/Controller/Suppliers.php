@@ -137,7 +137,7 @@ class Controller_Suppliers extends Controller_Common {
             ],
             'payments'    => [
                 'name' => 'Оплаты',
-                'icon' => 'fa fa-handshake fa-lg',
+                'icon' => 'fa fa-money-bill fa-lg',
             ]
         ];
 

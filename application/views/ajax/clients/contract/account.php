@@ -156,9 +156,9 @@
     {
         for(var i = 0 in data){
             var tpl = $('<div class="row bg-light m-b-5 p-t-10 p-b-10">'+
-                '<div class="col-5 col-xl-2 text-muted" row_date />'+
-                '<div class="col-7 col-xl-2" row_num />'+
-                '<div class="with-mb col-xl-8" row_summ />'+
+                '<div class="col-5 col-xl-3 text-muted" row_date />'+
+                '<div class="col-7 col-xl-3" row_num />'+
+                '<div class="with-mb col-xl-6" row_summ />'+
                 '<div class="with-mb col-12" row_comment />'+
             '</div>');
 
@@ -172,7 +172,7 @@
             }
 
             if (data[i].PAY_COMMENT) {
-                tpl.find('[row_comment]').html('<i>Комментарий:</i> '+ data[i].PAY_COMMENT);
+                tpl.find('[row_comment]').append('<i>Комментарий:</i> '+ data[i].PAY_COMMENT);
             }
 
             <?if(Access::allow('clients_payment-del')){?>
