@@ -69,7 +69,7 @@ abstract class Telegram_Common
                 $this->_command = str_replace($this->_id, '', $this->_command);
             }
 
-        } else if ($this->_requestContact && !empty($this->_postData['message']['contact'])) {
+        } else if ($this->_bot == 'GloProInfo' && !empty($this->_postData['message']['contact'])) {
             $phone = $this->_postData['message']['contact']['phone_number'];
 
             //связываем аккаунт
@@ -163,7 +163,7 @@ abstract class Telegram_Common
      */
     public function setWebHook()
     {
-        $result = $this->_telegram->setWebhook('https://dev.lk.glopro.ru' . $this->_configBot['web_hook']);
+        $result = $this->_telegram->setWebhook('https://lk.glopro.ru' . $this->_configBot['web_hook']);
 
         if ($result->isOk()) {
             echo $result->getDescription();
@@ -199,16 +199,14 @@ abstract class Telegram_Common
         ];
 
         if ($this->_requestContact) {
-            if (empty($this->_postData['message']['contact'])) {
-                $data['reply_markup'] = [
-                    'keyboard' => [
-                        [
-                            (new KeyboardButton('Отправить контакт'))->setRequestContact(true)
-                        ]
-                    ],
-                    'resize_keyboard' => true
-                ];
-            }
+            $data['reply_markup'] = [
+                'keyboard' => [
+                    [
+                        (new KeyboardButton('Отправить контакт'))->setRequestContact(true)
+                    ]
+                ],
+                'resize_keyboard' => true
+            ];
         }
 
         return TelegramRequest::sendMessage($data);
@@ -221,5 +219,6 @@ abstract class Telegram_Common
     {
         $this->_answer[] = '<i>Доступные команды:</i>';
         $this->_answer[] = '<a href="/help">/help</a> - вывод помощи';
+        $this->_answer[] = '<a href="/connect">/connect</a> - авторизоваться';
     }
 }

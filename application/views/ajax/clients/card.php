@@ -6,7 +6,9 @@
             <span class="font-20">Карта: <b><?=$card['CARD_ID']?></b></span>
         </div>
         <div class="col-sm-7 text-right">
-            <span class="<?=Text::BTN?> btn-outline-secondary m-b-5" toggle="card_info_block"><i class="fa fa-bars"></i></span>
+            <?if(Access::allow('view_card_info')){?>
+                <span class="<?=Text::BTN?> btn-outline-secondary m-b-5" toggle="card_info_block">Инфо</span>
+            <?}?>
             <?if(Access::allow('clients_card_toggle_full')){?>
                 <?if(in_array($card['BLOCK_AVAILABLE'], [1,2]) || Access::allow('clients_card-toggle')){?>
                     <?if($card['CARD_STATE'] == Model_Card::CARD_STATE_BLOCKED){?>
@@ -32,6 +34,7 @@
     </div>
 </div>
 
+<?if(Access::allow('view_card_info')){?>
 <div class="dn border-bottom m-b-20 p-b-10" toggle_block="card_info_block">
     <div class="row m-b-10">
         <div class="col-sm-5 text-muted">
@@ -94,6 +97,7 @@
     </div>
 
 </div>
+<?}?>
 
 <span class="font-18 font-weight-bold">Обороты за текущий период:</span><br>
 <?=number_format($card['REALIZ_LITRES'], 2, ',', ' ')?> л. / <?=number_format($card['REALIZ_CUR'], 2, ',', ' ')?> <?=Text::RUR?><br><br>

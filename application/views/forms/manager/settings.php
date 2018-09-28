@@ -162,12 +162,15 @@
                     <div class="p-3 manager_settings_inform_checkboxes">
                         <input type="checkbox" class="<?=Text::CHECKBOX?>" name="manager_sms_is_on" <?=($manager['SMS_IS_ON'] ? 'checked' : '')?> <?=(($manager['PHONE_FOR_INFORM'] && $manager['SENDER_SMS']) || Access::allow('root') ? '' : 'disabled')?> id="manager_sms_is_on<?=$manager['MANAGER_ID']?>">
                         <label for="manager_sms_is_on<?=$manager['MANAGER_ID']?>">
-                            SMS
+                            SMS  <?=(!$manager['SENDER_SMS'] ? '<span class="text-muted">Недоступно. Обратитесь к менеджеру.</span>' : '')?>
                         </label>
                         <br>
                         <input type="checkbox" class="<?=Text::CHECKBOX?>" name="manager_telegram_is_on" <?=($manager['TELEGRAM_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?> id="manager_telegram_is_on_<?=$manager['MANAGER_ID']?>">
                         <label for="manager_telegram_is_on_<?=$manager['MANAGER_ID']?>">
-                            Telegram <span class="text-muted">Необходима авторизация через Telegram бота</span>
+                            Telegram
+                            <?if (empty($manager['TELEGRAM_CHAT_ID'])) {?>
+                                <span class="text-muted">Необходима авторизация через Telegram бота</span>
+                            <?}?>
                         </label>
                         <br><br>
                         <a href="https://t.me/GloProInfo_bot" target="_blank">@GloProInfo_bot</a> - наш телеграм бот.<br>
@@ -210,7 +213,7 @@
                 message(1, 'Информирование успешно отключено');
 
                 $('.manager_settings_inform > div', btn.closest('.manager_settings_form')).toggle();
-                $('.manager_settings_inform_checkboxes [type=checkbox]', btn.closest('.manager_settings_form')).prop('disabled', false).trigger('change');
+                $('.manager_settings_inform_checkboxes [type=checkbox]', btn.closest('.manager_settings_form')).prop('disabled', true).trigger('change');
             } else {
                 message(0, 'Ошибка отключение информирования');
             }
