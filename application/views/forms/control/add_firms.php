@@ -21,7 +21,8 @@
             var block = $('.popup_list');
 
             $('.popup_list_preview').hide();
-            block.show().addClass('block_loading');
+            block.show();
+            addLoader(block);
             setTimeout(function () {
                 $.fancybox.update();
             }, 100);
@@ -29,8 +30,7 @@
             var groupId = $('.tabs_firms_groups .tab_v.active [name=group_id]').val();
 
             $.post('/control/show-firms', { postfix: 'popup_list', show_checkbox:1, group_id:groupId }, function (data) {
-                block.removeClass('block_loading');
-
+                removeLoader(block);
                 block.html(data);
             });
         });

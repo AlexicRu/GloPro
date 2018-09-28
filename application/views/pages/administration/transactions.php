@@ -12,7 +12,7 @@
                 </div>
                 <br class="clr">
             </div>
-            <div class="ajax_block_administration_transactions_errors_out block_loading"></div>
+            <div class="ajax_block_administration_transactions_errors_out"></div>
         </div>
         <div tab_content="process" class="tab_content">
             <div class="tab_content_header">
@@ -21,10 +21,10 @@
                 </div>
                 <br class="clr">
             </div>
-            <div class="ajax_block_administration_transactions_process_out block_loading"></div>
+            <div class="ajax_block_administration_transactions_process_out"></div>
         </div>
         <div tab_content="history" class="tab_content">
-            <div class="ajax_block_administration_transactions_history_out block_loading"></div>
+            <div class="ajax_block_administration_transactions_history_out"></div>
         </div>
         <div tab_content="journal" class="tab_content">
             <div tab_content="payments" class="tab_content active">
@@ -60,7 +60,7 @@
                 if ($('.jsgrid-table', grid).length) {
                     grid.jsGrid("destroy");
                 }
-                grid.empty().addClass(CLASS_LOADING);
+                addLoader(grid);
             },
             success: function(file, response)
             {
@@ -68,14 +68,14 @@
                     administrationTransactionsJournal_drawTable(response.data.rows);
                 } else {
                     var grid = $(".administration_transactions_journal_jsGrid");
-                    grid.removeClass(CLASS_LOADING);
+                    removeLoader(grid);
                     grid.html('<div class="center"><i class="gray">Данные отсутствуют</i><br><br></div>');
                 }
             },
             error : function(file, response) {
                 var grid = $(".administration_transactions_journal_jsGrid");
 
-                grid.removeClass(CLASS_LOADING);
+                removeLoader(grid);
 
                 message(0, response);
             }
@@ -85,7 +85,7 @@
     function administrationTransactionsJournal_drawTable(rows)
     {
         var grid = $(".administration_transactions_journal_jsGrid");
-        grid.removeClass(CLASS_LOADING);
+        removeLoader(grid);
         grid.jsGrid({
             width: '100%',
             sorting: true,
@@ -243,8 +243,6 @@
 
             params.filter[name] = t.val();
         });
-
-        block.empty().addClass('block_loading');
 
         paginationAjax('/administration/transactions-history', 'ajax_block_administration_transactions_history', renderAjaxPaginationAdminTransactions, params);
     }

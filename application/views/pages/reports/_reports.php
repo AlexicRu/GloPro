@@ -97,10 +97,11 @@
         block.show();
 
         if(block.text() == '' || force == true){
-            block.empty().addClass('block_loading');
+            addLoader(block);
 
             $.post('/reports/load-report-template/' + reportId, {}, function(data){
-                block.html(data).removeClass('block_loading');
+                removeLoader(block);
+                block.html(data);
             });
         }
     }

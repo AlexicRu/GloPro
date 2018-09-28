@@ -55,7 +55,7 @@
 
         var result = $('.result');
 
-        result.empty().addClass(CLASS_LOADING);
+        addLoader(result);
 
         var params = {
             query: $('[name=query]').val(),
@@ -64,7 +64,7 @@
         };
 
         $.post('/system/query', params, function (data) {
-            result.removeClass(CLASS_LOADING);
+            removeLoader(result);
             result.html(data);
         });
     }

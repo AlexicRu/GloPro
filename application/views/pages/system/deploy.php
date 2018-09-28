@@ -51,10 +51,11 @@
         var t = $(this);
         var result = t.closest('.card-body').find('.result');
 
-        result.empty().addClass(CLASS_LOADING);
+        addLoader(result);
 
         $.post(t.attr('href'), {}, function (html) {
-            result.removeClass(CLASS_LOADING).html('<pre>' + html + '</pre>');
+            removeLoader(result);
+            result.html('<pre>' + html + '</pre>');
         });
 
         return false;

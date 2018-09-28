@@ -85,11 +85,13 @@ $(function(){
 function loadContract(tab, query, params)
 {
     modalClose();
-    $('.ajax_contract_block').empty().addClass(CLASS_LOADING);
+    var block = $('.ajax_contract_block');
+    addLoader(block);
     var contractId = $('[name=contracts_list]').val();
 
     $.post('/clients/contract/' + contractId, {tab:tab, query:query, params:params}, function(data){
-        $('.ajax_contract_block').html(data).removeClass(CLASS_LOADING);
+        removeLoader(block);
+        block.html(data);
 
         if (tab == 'contract') {
             EnjoyHintRun('contract');

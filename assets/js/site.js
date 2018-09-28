@@ -1,4 +1,3 @@
-var CLASS_LOADING = 'block_loading';
 var BTN = ' btn waves-effect waves-light ';
 var CHECKBOX = ' filled-in chk-col-purple ';
 
@@ -92,6 +91,8 @@ function paginationAjax(url, name, callback, params)
     var more = $('<button class="btn btn-sm waves-effect waves-light btn-outline-secondary ajax_block_load m-l-5 m-r-5">Загрузить еще...</button>');
     var all = $('<button class="btn btn-sm waves-effect waves-light btn-outline-secondary m-l-5 m-r-5">Загрузить все</button>');
 
+    addLoader(outer);
+
     outer.addClass('ajax_pagination_out');
     block.addClass('ajax_pagination');
 
@@ -134,7 +135,7 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
     }
 
     $.post(url, params, function(data){
-        removeLoader(block.closest('.block_loading'));
+        removeLoader(block.closest('.loading'));
 
         if(data.success){
             callback(data.data.items, block, params);
@@ -187,6 +188,10 @@ function submitForm(btn, callback)
 
     submitFormInAction = true;
 
+    var modal = btn.closest('.modal-content');
+
+    addLoader(modal);
+
     callback(btn);
 }
 
@@ -195,6 +200,10 @@ function submitForm(btn, callback)
  */
 function endSubmitForm()
 {
+    var modal = $('.modal-content.loading');
+
+    removeLoader(modal);
+
     submitFormInAction = false;
 }
 
@@ -465,10 +474,16 @@ function checkAllRows(t, name)
 
 function addLoader(block)
 {
-    block.empty().addClass(CLASS_LOADING).append('<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>')
+    if (block.is(":empty")) {
+        block.addClass('loading__min-width');
+    } else {
+        block.append('<div class="loading__voile" />');
+    }
+    block.addClass('loading').append('<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>')
 }
 function removeLoader(block)
 {
     block.find('.spinner').remove();
-    block.removeClass('block_loading');
+    block.find('.loading__voile').remove();
+    block.removeClass('loading loading__min-width');
 }

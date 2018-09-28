@@ -144,10 +144,11 @@
         var tabContent = $("[tab_content=firms_group_"+ groupId +"]", tabsBlock);
 
         if(tabContent.text() == '' || force == true){
-            tabContent.empty().parent().addClass(CLASS_LOADING);
+            addLoader(tabContent.parent());
 
             $.post('/control/load-group-firms/' + groupId, {}, function(data){
-                tabContent.html(data).parent().removeClass(CLASS_LOADING);
+                removeLoader(tabContent.parent());
+                tabContent.html(data);
             });
         }
     }

@@ -9,9 +9,7 @@
     <?=$popupSupplierAdd?>
 <?}?>
 
-<div class="ajax_block_suppliers_out block_loading">
-
-</div>
+<div class="ajax_block_suppliers_out"></div>
 
 <script>
     $(function(){

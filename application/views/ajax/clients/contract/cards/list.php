@@ -1,4 +1,4 @@
-<div class="ajax_block_cards_list_out block_loading">
+<div class="ajax_block_cards_list_out">
 
 </div>
 
@@ -24,7 +24,7 @@
 
     function reLoad(params)
     {
-        $('.ajax_block_cards_list_out').empty().addClass('block_loading')
+        $('.ajax_block_cards_list_out').empty()
             .closest('.tabs_cards').find('.tab-content').empty()
         ;
 
@@ -120,10 +120,10 @@
         var contentBlock = $("#card" + cardId);
 
         if(contentBlock.text() == '' || force == true){
-            contentBlock.empty().addClass(CLASS_LOADING);
+            addLoader(contentBlock);
 
             $.post('/clients/card/' + cardId + '/?contract_id=' + $('[name=contracts_list]').val(), {}, function(data){
-                contentBlock.html(data).removeClass(CLASS_LOADING);
+                removeLoader(contentBlock);
                 renderVerticalTabsScroll($('.tabs_cards .ajax_pagination:first'));
             });
         }

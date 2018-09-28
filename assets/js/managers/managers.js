@@ -37,10 +37,10 @@ function showManagersClients(managerId, params, force)
         return true;
     }
 
-    block.empty().addClass(CLASS_LOADING);
+    addLoader(block);
 
     $.post('/managers/load-clients', { manager_id: managerId, params: params }, function (data) {
-        block.removeClass(CLASS_LOADING);
+        removeLoader(block);
         block.html(data);
 
         renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
@@ -55,10 +55,10 @@ function showManagersReports(managerId, params, force)
         return true;
     }
 
-    block.empty().addClass(CLASS_LOADING);
+    addLoader(block);
 
     $.post('/managers/load-reports', { manager_id: managerId, params: params }, function (data) {
-        block.removeClass(CLASS_LOADING);
+        removeLoader(block);
         block.html(data);
 
         renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
@@ -147,7 +147,8 @@ function loadReportList(input)
     var block = input.closest('.reports_list_autocomplete_block');
     var list = block.find('.found_items_list');
 
-    list.html('').addClass('block_loading');
+    list.html('');
+    addLoader(list);
 
     var params = {
         search: input.val(),
@@ -156,7 +157,7 @@ function loadReportList(input)
     };
 
     ajax = $.post('/managers/managers-reports', {params:params}, function (data) {
-        list.removeClass('block_loading');
+        removeLoader(list);
 
         for(var i in data.data){
             var tpl = $('<div class="item_found_row p-t-10 p-l-10 p-r-10 border-bottom">'+
@@ -235,7 +236,8 @@ function loadClientList(input)
         return;
     }
 
-    list.html('').addClass('block_loading');
+    list.html('');
+    addLoader(list);
 
     var params = {
         search: input.val(),
@@ -244,7 +246,7 @@ function loadClientList(input)
     };
 
     ajax = $.post('/managers/managers-clients', {params:params}, function (data) {
-        list.removeClass('block_loading');
+        removeLoader(list);
 
         for(var i in data.data){
             var tpl = $('<div class="item_found_row p-t-10 p-l-10 p-r-10 border-bottom">'+

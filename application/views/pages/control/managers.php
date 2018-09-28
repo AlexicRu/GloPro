@@ -89,10 +89,11 @@
         var tabContent = $(t.attr('href'), tabsBlock);
 
         if(tabContent.text() == '' || force == true){
-            tabContent.empty().parent().addClass('block_loading');
+            addLoader(tabContent.parent());
 
             $.post('/control/manager/' + managerId, {}, function(data){
-                tabContent.html(data).parent().removeClass('block_loading');
+                removeLoader(tabContent.parent());
+                tabContent.html(data);
                 renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
             });
         } else {

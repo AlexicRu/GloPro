@@ -1,6 +1,6 @@
 <h1>Перенос карт</h1>
 
-<div class="block">
+<div class="block card-transfer-block">
     <table>
         <tr>
             <td><b class="f18">Карты старого договора:<sup>*</sup></b></td>
@@ -61,7 +61,9 @@
             return false;
         }
         isAjax = true;
-        btn.addClass(CLASS_LOADING);
+
+        var block = btn.closest('.card-transfer-block');
+        addLoader(block);
 
         var params = {
             old_contract:           getComboBoxValue($('[name=contract_choose_single]'), true),
@@ -84,7 +86,7 @@
                 message(0, 'Ошибка переноса');
             }
             isAjax = false;
-            btn.removeClass(CLASS_LOADING);
+            removeLoader(block);
         });
     }
 </script>

@@ -73,11 +73,10 @@
     {
         var block = $('.calc_queue');
 
-        block.addClass(CLASS_LOADING);
+        addLoader(block);
 
         $.post('/administration/load-calc-queue', {}, function (data) {
-            block.removeClass(CLASS_LOADING);
-
+            removeLoader(block);
             block.html(data);
         })
     }

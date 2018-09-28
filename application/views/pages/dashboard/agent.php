@@ -137,30 +137,32 @@
     function buildRealizationByAgents()
     {
         var block = $('.realization_by_agents');
-        block.empty().addClass(CLASS_LOADING);
+        addLoader(block);
 
         $.post('/dashboard/get-realization-by-agents', {date: getDate()}, function (data) {
-            block.removeClass(CLASS_LOADING).html(data)
+            removeLoader(block);
+            block.html(data);
         })
     }
 
     function buildRealizationByAgentsCardsCount()
     {
         var block = $('.realization_by_agents_cards_count');
-        block.empty().addClass(CLASS_LOADING);
+        addLoader(block);
 
         $.post('/dashboard/get-realization-by-agents-cards-count', {}, function (data) {
-            block.removeClass(CLASS_LOADING).html(data)
+            removeLoader(block);
+            block.html(data);
         })
     }
 
     function buildRealizationByAgentsNomenclatureGraph()
     {
         var graphBlock = $('#realization_by_agents_nomenclature_graph');
-        graphBlock.empty().addClass(CLASS_LOADING);
+        addLoader(graphBlock);
 
         $.post('/dashboard/get-realization-by-agents-nomenclature-graph', {date: getDate()}, function (response) {
-            graphBlock.removeClass(CLASS_LOADING);
+            removeLoader(graphBlock);
 
             if (response.data.length == 0) {
                 graphBlock.removeClass('graph').html('<div class="center"><i class="gray">Нет данных</i></div>');
@@ -198,20 +200,21 @@
     function buildRealizationByAgentsNomenclature()
     {
         var block = $('.realization_by_agents_nomenclature');
-        block.empty().addClass(CLASS_LOADING);
+        addLoader(block);
 
         $.post('/dashboard/get-realization-by-agents-nomenclature', {date: getDate()}, function (data) {
-            block.removeClass(CLASS_LOADING).html(data)
+            removeLoader(block);
+            block.html(data);
         })
     }
 
     function buildRealizationByAgentsGraph()
     {
         var graphBlock = $('#realization_by_agents_graph');
-        graphBlock.empty().addClass(CLASS_LOADING);
+        addLoader(graphBlock);
 
         $.post('/dashboard/get-realization-by-agents-graph', {}, function (response) {
-            graphBlock.removeClass(CLASS_LOADING);
+            removeLoader(graphBlock);
 
             if (response.data.data.length == 0) {
                 graphBlock.removeClass('graph').html('<div class="center"><i class="gray">Нет данных</i></div>');
@@ -285,10 +288,10 @@
     function buildRealizationByAgentsAvgDiscountGraph()
     {
         var graphBlock = $('#realization_by_agents_avg_discount_graph');
-        graphBlock.empty().addClass(CLASS_LOADING);
+        addLoader(graphBlock);
 
         $.post('/dashboard/get-realization-by-agents-avg-discount-graph', {}, function (response) {
-            graphBlock.removeClass(CLASS_LOADING);
+            removeLoader(graphBlock);
 
             if (response.data.data.length == 0) {
                 graphBlock.removeClass('graph').html('<div class="center"><i class="gray">Нет данных</i></div>');

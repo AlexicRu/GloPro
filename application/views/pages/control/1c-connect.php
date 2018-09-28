@@ -85,7 +85,7 @@
                 if ($('.jsgrid-table', grid).length) {
                     grid.jsGrid("destroy");
                 }
-                grid.empty().addClass(CLASS_LOADING);
+                addLoader(grid);
             },
             success: function(file, response)
             {
@@ -95,7 +95,7 @@
                     $('.load_connect1c_payments_btn').prop('disabled', false);
                 } else {
                     var grid = $(".connect_1c_payments_jsGrid");
-                    grid.removeClass(CLASS_LOADING);
+                    removeLoader(grid);
                     grid.html('<div class="center"><i class="gray">Данные отсутствуют</i></div>');
                 }
 
@@ -109,7 +109,7 @@
             error : function(file, response) {
                 var grid = $(".connect_1c_payments_jsGrid");
 
-                grid.removeClass(CLASS_LOADING);
+                removeLoader(grid);
 
                 message(0, response);
             }
@@ -123,7 +123,7 @@
     function connect1cPayments_drawTable(rows)
     {
         var grid = $(".connect_1c_payments_jsGrid");
-        grid.removeClass(CLASS_LOADING);
+        removeLoader(grid);
         grid.jsGrid({
             width: '100%',
             sorting: true,

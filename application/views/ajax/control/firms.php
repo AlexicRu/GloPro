@@ -110,8 +110,6 @@
             params.group_id = $('[name=group_id_<?=$postfix?>]').val();
         }
 
-        block.empty().addClass('block_loading');
-
         paginationAjax('/control/load-cards/', 'ajax_block_group_cards_list_<?=$postfix?>', renderAjaxPaginationGroupCardsList<?=$postfix?>, params);
     }
 </script>

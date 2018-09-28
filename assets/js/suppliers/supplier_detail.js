@@ -63,10 +63,11 @@ function loadSupplierContract(tab)
 
     var block = $('.supplier-contract');
 
-    block.empty().addClass(CLASS_LOADING);
+    addLoader(block);
 
     $.post('/suppliers/contract/' + contractId, {tab: tab}, function (data) {
-        block.html(data).removeClass(CLASS_LOADING);
+        removeLoader(block);
+        block.html(data);
     });
 }
 
@@ -141,10 +142,11 @@ function loadAgreement(elem, force)
     var tabPane = $(".tabs_agreements #agreement" + tab.attr('tab'));
 
     if(tabPane.is(':empty') || force == true){
-        tabPane.empty().addClass(CLASS_LOADING);
+        addLoader(tabPane);
 
         $.post('/suppliers/agreement/' + tab.attr('tab') + '/?contract_id=' + contractId, {}, function(data){
-            tabPane.html(data).removeClass(CLASS_LOADING);
+            removeLoader(tabPane);
+            tabPane.html(data);
         });
     }
 }

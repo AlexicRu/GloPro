@@ -24,11 +24,10 @@
             return true;
         }
 
-        block.addClass('block_loading');
+        addLoader(block;
 
         $.post('/control/show-dots', { postfix: 'dots_info' }, function (data) {
-            block.removeClass('block_loading');
-
+            removeLoader(block);
             block.html(data);
         });
     }

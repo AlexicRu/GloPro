@@ -89,10 +89,10 @@
     {
         var block = $('services_list');
 
-        block.addClass(CLASS_LOADING);
+        addLoader(block);
 
         if (!source) {
-            block.removeClass(CLASS_LOADING);
+            removeLoader(block);
             message('error', 'Список услуг пуст');
             return false;
         }
@@ -105,7 +105,7 @@
                 message('error', 'Ошибка загрузки списка услуг');
             }
 
-            block.removeClass(CLASS_LOADING);
+            removeLoader(block);
         });
     }
 

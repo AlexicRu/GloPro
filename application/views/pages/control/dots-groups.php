@@ -169,10 +169,11 @@
         var tabContent = $("[tab_content=group_dot"+ groupId +"]", tabsBlock);
 
         if(tabContent.text() == '' || force == true){
-            tabContent.empty().parent().addClass('block_loading');
+            addLoader(tabContent.parent());
 
             $.post('/control/group-dots/' + groupId, {}, function(data){
-                tabContent.html(data).parent().removeClass('block_loading');
+                removeLoader(tabContent.parent());
+                tabContent.html(data);
             });
         }
     }

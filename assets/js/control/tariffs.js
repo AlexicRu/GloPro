@@ -101,11 +101,14 @@ function addSectionCondition(t)
 
     var tpl = $('<div />');
 
-    tpl.appendTo(list).addClass(CLASS_LOADING);
+    tpl.appendTo(list);
+
+    addLoader(tpl);
 
     $.post('/control/get-tariff-reference-tpl', { uid_section: uidSection, used_conditions: usedConditions[uidSection], index: ++$('.tsc_item', block).length}, function (data) {
         if(data.success){
-            tpl.removeClass(CLASS_LOADING).html(data.data.html);
+            removeLoader(tpl);
+            tpl.html(data.data.html);
 
             setTimeout(function () {
                 changeCondition(data.data.uid, data.data.condition_id, data.data.compare_id, false, tpl);
@@ -156,9 +159,12 @@ function addSection(t)
 
     tpl.appendTo(list);
 
+    addLoader(tpl);
+
     $.post('/control/get-tariff-section-tpl', { uid_section: uidSection, section_num: sectionNum}, function (data) {
         if(data.success){
-            tpl.removeClass('block_loading').replaceWith(data.data.html);
+            removeLoader(tpl);
+            tpl.replaceWith(data.data.html);
         }else{
             message(0, 'Доступные условия закончились');
         }
@@ -302,14 +308,15 @@ function loadTariff(tariff, force, version)
     var block = $('.tariffs_block[tab_content='+ tariff +']');
 
     if(block.text() == '' || force == true){
-        block.empty().addClass('block_loading');
+        addLoader(block);
 
         if (!version) {
             version = $('[tab='+ tariff +']').attr('version');
         }
 
         $.post('/control/load-tariff/' + tariff, { version: version }, function(data){
-            block.html(data).removeClass('block_loading');
+            removeLoader(block);
+            block.html(data);
         });
     }
 }
