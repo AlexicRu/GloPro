@@ -538,7 +538,7 @@ class Controller_Control extends Controller_Common {
 
         $cardsGroups = Model_Card::getGroups($filter);
 
-        $popupAddCards = Form::popup('Добавление карт', 'control/add_cards');
+        $popupAddCards = Form::popupLarge('Добавление карт', 'control/add_cards');
         $popupAddCardsGroup = Form::popup('Добавление группы карт', 'control/add_cards_group');
         $popupEditCardsGroup = Form::popup('Редактирование группы точек', 'control/edit_cards_group');
 

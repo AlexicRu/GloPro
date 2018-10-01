@@ -19,10 +19,10 @@
     <div class="card-body">
         <textarea name="query" placeholder="Текст запроса" class="form-control"></textarea>
         <div class="row">
-            <div class="col-6">
+            <div class="col-4">
                 <span class="btn btn-primary" onclick="executeQuery()">Выполнить</span>
             </div>
-            <div class="col-6 text-right">
+            <div class="col-4 text-right">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Limit</span>
@@ -30,13 +30,12 @@
                     <input type="number" class="form-control" name="limit" value="10">
                 </div>
             </div>
+            <div class="col-4">
+                <input type="checkbox" name="raw" id="raw" class="<?=Text::CHECKBOX?>">
+                <label for="raw">Raw</label>
+            </div>
         </div>
     </div>
-    <span class="btn" onclick="executeQuery()">Выполнить</span>
-    &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-    Limit: <input type="number" name="limit" class="input_big input_mini" value="10">
-    &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-    Raw: <input type="checkbox" name="raw">
 </div>
 
 <div class="result__block">

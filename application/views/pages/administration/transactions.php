@@ -69,7 +69,7 @@
                 } else {
                     var grid = $(".administration_transactions_journal_jsGrid");
                     removeLoader(grid);
-                    grid.html('<div class="center"><i class="gray">Данные отсутствуют</i><br><br></div>');
+                    grid.html('<div class="text-center"><i class="text-muted">Данные отсутствуют</i><br><br></div>');
                 }
             },
             error : function(file, response) {

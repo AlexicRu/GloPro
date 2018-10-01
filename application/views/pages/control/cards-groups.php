@@ -11,14 +11,13 @@
             </div>
             <div class="col-sm-8 text-right with-mb">
                 <span toggle_block="cards_groups_block">
-                    <a href="#control_add_cards_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
-                    <a href="#control_add_cards" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить карты</a>
+                    <a href="#" data-toggle="modal" data-target="#control_add_cards_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
+                    <a href="#" data-toggle="modal" data-target="#control_add_cards" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить карты</a>
                     <span class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="groupCardsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
                     <span class="<?=Text::BTN?> btn-outline-success m-b-5" toggle="cards_groups_block"><i class="fa fa-pencil-alt"></i></span>
                 </span>
 
                 <span toggle_block="cards_groups_block" class="dn action_del">
-                    <a href="#" class="<?=Text::BTN?> btn-outline-danger btn_del_cards_groups m-b-5"><i class="fa fa-trash-alt"></i> Удалить выделенные группы</a>
                     <a href="#" class="<?=Text::BTN?> btn-outline-danger btn_del_cards m-b-5"><i class="fa fa-trash-alt"></i> Удалить выделенные карты</a>
                     <span class="<?=Text::BTN?> btn-outline-warning m-b-5" toggle="cards_groups_block"><i class="fa fa-times"></i></span>
                 </span>
@@ -51,11 +50,12 @@
                 <li class="nav-item" tab="cards_group_<?=$group['GROUP_ID']?>">
                     <a class="nav-link nowrap" data-toggle="tab" href="#cards_group_<?=$group['GROUP_ID']?>" role="tab">
                         <span class="check_span_hidden">
-                            <input type="checkbox" name="group_id" value="<?=$group['GROUP_ID']?>">
+                            <input type="hidden" name="group_id" value="<?=$group['GROUP_ID']?>">
                             <input type="hidden" name="group_name" value="<?=$group['GROUP_NAME']?>">
                             <input type="hidden" name="group_type" value="<?=$group['GROUP_TYPE']?>">
 
-                            <span class="btn waves-effect waves-light btn_green btn_tiny btn_icon" onclick="showEditCardsGroupPopup(<?=$group['GROUP_ID']?>)"><i class="fa fa-pencil-alt"></i></span>
+                            <span class="<?=Text::BTN?> btn-outline-danger btn-sm" onclick="deleteCardsGroup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-trash-alt"></i></span>
+                            <span class="<?=Text::BTN?> btn-outline-success btn-sm" onclick="showEditCardsGroupPopup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-pencil-alt"></i></span>
                         </span>
 
                         <span class="gray">[<?=$group['GROUP_ID']?>]</span>
@@ -127,44 +127,36 @@
                 }
             });
         });
-
-        $('.btn_del_cards_groups').on('click', function () {
-            var groups = [];
-            var selectedGroups = {};
-
-            $('[type=checkbox][name=group_id]:checked').each(function () {
-                var t = $(this);
-                groups.push(t.val());
-                selectedGroups['group' + t.val()] = t.closest('.tab_v');
-            });
-
-            if(groups.length == 0){
-                message(0, 'Не выделенно ни одной группы');
-            }
-
-            if(!confirm('Удалить ' + groups.length + ' групп карт?')){
-                return false;
-            }
-
-            $.post('/control/del-cards-group', {groups: groups}, function (data) {
-
-                for(var i in data.data){
-                    var group = selectedGroups['group' + data.data[i].group_id];
-
-                    if (data.data[i].deleted) {
-                        group.remove();
-                    } else {
-                        message(0, 'Группа <b>'+ group.find('.group_name').text() +'</b> содержит карты');
-                    }
-                }
-
-                if ($('.tabs_cards_groups .tabs_v .scroll > [tab].active').length == 0) {
-                    $('.tabs_cards_groups .tabs_v .scroll > [tab]:first').click();
-                }
-
-            });
-        });
     });
+
+    function deleteCardsGroup(groupId, event)
+    {
+        event.stopPropagation();
+
+        if(!confirm('Удалить группу карт?')){
+            return false;
+        }
+
+        $.post('/control/del-cards-group', {groups: [groupId]}, function (data) {
+
+            for(var i in data.data){
+                var group = $('[tab="cards_group_'+ groupId +'"]');
+
+                if (data.data[i].deleted) {
+                    group.remove();
+                } else {
+                    message(0, 'Группа <b>'+ group.find('.group_name').text() +'</b> содержит карты');
+                }
+            }
+
+            if ($('.tabs_cards_groups .nav-link.active').length == 0) {
+                $('.tabs_cards_groups .nav-item:not(.before_scroll):first .nav-link').click();
+            }
+
+        });
+
+        return false;
+    }
 
     function loadGroupCards(t, force)
     {
@@ -188,8 +180,10 @@
         }
     }
 
-    function showEditCardsGroupPopup(groupId)
+    function showEditCardsGroupPopup(groupId, event)
     {
+        event.stopPropagation();
+
         var block = $('#control_edit_cards_group');
 
         $('input', block).val('');
@@ -198,16 +192,14 @@
         $('[name=edit_cards_group_id]', block).val(groupId);
         $('[name=edit_cards_group_type]', block).val($('[tab=cards_group_'+ groupId +'] [name=group_type]').val());
 
-        $.fancybox.open(block, {
-            padding: [0,0,0,0]
-        });
+        block.modal('show');
 
         return false;
     }
 
     function groupCardsToXls()
     {
-        var group = $(".tabs_cards_groups .tab_v[tab].active");
+        var group = $(".tabs_cards_groups .nav-link.active").closest('[tab]');
 
         if (group.length == 0) {
             message(0, 'Нет данный для выгрузки');

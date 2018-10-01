@@ -1,13 +1,46 @@
-<div class="popup_list_preview">
-    <span class="btn btn_green">Загрузить карты</span>
+<div class="modal-body">
+    <div class="popup_list_preview">
+        <span class="<?=Text::BTN?> btn-outline-success">Загрузить карты</span>
+    </div>
+    <div class="popup_list"></div>
 </div>
-<div class="popup_list"></div>
-<div class="popup_list_btns">
-    <span class="btn btn_reverse btn_add_group_cards_to_group_go"><i class="fa fa-plus"></i> Добавить карты</span>
-    <span class="btn btn_red pre_fancy_close"><i class="fa fa-times"></i> Отмена</span>
+<div class="modal-footer">
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), addGroupCardsToGroup)"><i class="fa fa-plus"></i> Добавить кврты</span>
+    <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 
 <script>
+    function addGroupCardsToGroup(btn)
+    {
+        var block = $('.popup_list');
+        var groupId = $('.tabs_cards_groups .tab_v.active [name=group_id]').val();
+        var cardsIds = [];
+
+        $('[name=card_id]:checked', block).each(function () {
+            cardsIds.push($(this).val());
+        });
+
+        if(cardsIds.length == 0){
+            endSubmitForm();
+            message(0, 'Не выбрано ни одной карты');
+            return false;
+        }
+
+        $.post('/control/add-cards-to-group', {cards_ids:cardsIds, group_id:groupId}, function (data) {
+            endSubmitForm();
+            if(data.success){
+                message(1, 'Карты успешно добавлены');
+
+                var tab = $('.tabs_cards_groups .tab_v.active');
+
+                loadGroupCards(tab, true);
+            }  else {
+                message(0, 'Ошибка добавления карт');
+            }
+            $('.pre_fancy_close').click();
+        });
+    }
+
     $(function(){
         $('.pre_fancy_close').on('click', function () {
             modalClose();
@@ -23,44 +56,13 @@
             $('.popup_list_preview').hide();
             block.show();
             addLoader(block);
-            setTimeout(function () {
-                $.fancybox.update();
-            }, 100);
 
-            var groupId = $('.tabs_cards_groups .tab_v.active [name=group_id]').val();
+            var groupId = $('.tabs_cards_groups .nav-link.active [name=group_id]').val();
 
-            $.post('/control/show-cards', { postfix: 'popup_list', show_checkbox:1, group_id:groupId }, function (data) {
+            $.post('/control/show-cards', { postfix: 'popup_list', show_checkbox: 1, group_id:groupId }, function (data) {
                 removeLoader(block);
                 block.html(data);
             });
         });
-
-        $('.btn_add_group_cards_to_group_go').on('click', function () {
-            var block = $('.popup_list');
-            var groupId = $('.tabs_cards_groups .tab_v.active [name=group_id]').val();
-            var cardsIds = [];
-
-            $('[name=card_id]:checked', block).each(function () {
-                cardsIds.push($(this).val());
-            });
-
-            if(cardsIds.length == 0){
-                message(0, 'Не выбрано ни одной карты');
-                return false;
-            }
-
-            $.post('/control/add-cards-to-group', {cards_ids:cardsIds, group_id:groupId}, function (data) {
-                if(data.success){
-                    message(1, 'Карты успешно добавлены');
-
-                    var tab = $('.tabs_cards_groups .tab_v.active');
-
-                    loadGroupCards(tab, true);
-                }  else {
-                    message(0, 'Ошибка добавления карт');
-                }
-                $('.pre_fancy_close').click();
-            });
-        })
     });
 </script>

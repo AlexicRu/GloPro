@@ -29,11 +29,13 @@
 
             block.append('<tr>' +
                 '<th class="td_check"><input type="checkbox" onchange="checkAllRows($(this), \'card_id\')" style="display: none;"></th>' +
-                '<th><input type="text" name="group_card_filter_card_id" placeholder="CARD ID" class="input_small"></th>' +
-                '<th><input type="text" name="group_card_filter_holder" placeholder="Владелец"></th>' +
-                '<th style="width:400px;">' +
-                    '<input type="text" name="group_card_filter_description_ru" placeholder="Описание">' +
-                    '<button class="btn btn_small btn_icon fr" onclick="filterGroupCards<?=$postfix?>($(this))"><i class="icon-find"></i></button>'+
+                '<th><input type="text" name="group_card_filter_card_id" placeholder="CARD ID" class="form-control"></th>' +
+                '<th><input type="text" name="group_card_filter_holder" placeholder="Владелец" class="form-control"></th>' +
+                '<th>' +
+                    '<div class="btn-group">' +
+                        '<input type="text" name="group_card_filter_description_ru" placeholder="Описание" class="form-control">' +
+                        '<button class="'+ BTN +' btn-sm btn-outline-primary" onclick="filterGroupCards<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
+                    '</div>' +
                 '</th>' +
                 '<th class="td_edit" />' +
             '</tr>');
@@ -54,7 +56,7 @@
     {
         renderFilterGroupCardsList<?=$postfix?>(block, params);
 
-        var subBlock = block.find('tbody');
+        var subBlock = block.find('.table');
 
         var tpl = $('<tr>' +
             '<td colspan="4" class="center"><i>Данные отсутствуют</i></td>' +
@@ -67,7 +69,7 @@
     {
         renderFilterGroupCardsList<?=$postfix?>(block, params);
 
-        var subBlock = block.find('tbody');
+        var subBlock = block.find('.table');
 
         for(var i in data){
             var tpl = $('<tr>' +
@@ -78,11 +80,14 @@
                 '<td class="td_edit"/>' +
             '</tr>');
 
-            tpl.find('.td_check').html('<input type="checkbox" name="card_id" value="'+ data[i].CARD_ID +'">');
+            tpl.find('.td_check').html(
+                '<input type="checkbox" class="'+ CHECKBOX +'" name="card_id" id="group_cards_add_card_'+ data[i].CARD_ID +'" value="'+ data[i].CARD_ID +'">' +
+                '<label for="group_cards_add_card_'+ data[i].CARD_ID +'" />'
+            );
             tpl.find('.group_card_td_CARD_ID').text(data[i].CARD_ID);
             tpl.find('.group_card_td_HOLDER').text(data[i].HOLDER);
             tpl.find('.group_card_td_DESCRIPTION_RU').text(data[i].DESCRIPTION_RU);
-            tpl.find('.td_edit').html('<span class="btn btn_green btn_small btn_icon"><i class="icon-pen"></span>');
+            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-sm btn-outline-success"><i class="fa fa-pencil-alt"></span>');
 
             subBlock.append(tpl);
         }
@@ -100,15 +105,18 @@
         var block = btn.closest('.ajax_block_group_cards_list_<?=$postfix?>_out');
 
         var params = {
+            show_all_btn:       true,
             CARD_ID:            $('[name=group_card_filter_card_id]', block).val(),
             HOLDER:             $('[name=group_card_filter_holder]', block).val(),
             DESCRIPTION_RU:     $('[name=group_card_filter_description_ru]', block).val(),
-            onError: renderAjaxPaginationGroupCardsListError<?=$postfix?>
+            onError:            renderAjaxPaginationGroupCardsListError<?=$postfix?>
         };
 
         if($('[name=group_id_<?=$postfix?>]').length){
             params.group_id = $('[name=group_id_<?=$postfix?>]').val();
         }
+
+        block.empty();
 
         paginationAjax('/control/load-cards/', 'ajax_block_group_cards_list_<?=$postfix?>', renderAjaxPaginationGroupCardsList<?=$postfix?>, params);
     }

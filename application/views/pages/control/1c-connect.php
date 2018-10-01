@@ -96,7 +96,7 @@
                 } else {
                     var grid = $(".connect_1c_payments_jsGrid");
                     removeLoader(grid);
-                    grid.html('<div class="center"><i class="gray">Данные отсутствуют</i></div>');
+                    grid.html('<div class="text-center"><i class="text-muted">Данные отсутствуют</i></div>');
                 }
 
                 if(response.data && response.data.summary){

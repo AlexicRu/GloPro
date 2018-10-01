@@ -129,6 +129,8 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
     var more = outer.find('.ajax_block_more');
     var onError = false;
 
+    more.find('.ajax_block_load').prepend('<i class="fas fa-circle-notch fa-spin m-r-5"></i>');
+
     if (params.onError != undefined && typeof params.onError === 'function') {
         onError = params.onError;
         params.onError = false;
@@ -136,6 +138,7 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
 
     $.post(url, params, function(data){
         removeLoader(block.closest('.loading'));
+        more.find('.fa-circle-notch').remove();
 
         if(data.success){
             callback(data.data.items, block, params);
@@ -159,7 +162,7 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
                 if (params.emptyMessage) {
                     more.html(params.emptyMessage);
                 } else {
-                    more.html('<span class="gray">Данные отсутствуют</span>');
+                    more.html('<i class="text-muted">Данные отсутствуют</i>');
                 }
                 more.fadeIn();
             }
@@ -452,6 +455,7 @@ function renderPhoneInput(elem)
         });
     }
 }
+
 function checkAllRows(t, name)
 {
     var block = t.closest('.check_all_block');
@@ -481,9 +485,15 @@ function addLoader(block)
     }
     block.addClass('loading').append('<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>')
 }
+
 function removeLoader(block)
 {
     block.find('.spinner').remove();
     block.find('.loading__voile').remove();
     block.removeClass('loading loading__min-width');
+}
+
+function checkBoxInTab(e)
+{
+    e.stopPropagation();
 }

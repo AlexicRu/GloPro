@@ -17,7 +17,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
     <?if ($settings['canSave']) {?>
         <span class="btn btn-primary waves-effect waves-light" onclick="submitForm($(this), cardEditGo_<?=$postfix?>)"><i class="fa fa-check"></i> Сохранить<span class="hidden-md-down"> лимиты</span></span>
     <?}?>
-    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-sm-down"> Отмена</span></button>
+    <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-sm-down"> Отмена</span></button>
 </div>
 
 <script>

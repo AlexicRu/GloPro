@@ -100,15 +100,18 @@
         var block = btn.closest('.ajax_block_group_cards_list_<?=$postfix?>_out');
 
         var params = {
+            show_all_btn:       true,
             CARD_ID:            $('[name=group_card_filter_card_id]', block).val(),
             HOLDER:             $('[name=group_card_filter_holder]', block).val(),
             DESCRIPTION_RU:     $('[name=group_card_filter_description_ru]', block).val(),
-            onError: renderAjaxPaginationGroupCardsListError<?=$postfix?>
+            onError:            renderAjaxPaginationGroupCardsListError<?=$postfix?>
         };
 
         if($('[name=group_id_<?=$postfix?>]').length){
             params.group_id = $('[name=group_id_<?=$postfix?>]').val();
         }
+
+        block.empty();
 
         paginationAjax('/control/load-cards/', 'ajax_block_group_cards_list_<?=$postfix?>', renderAjaxPaginationGroupCardsList<?=$postfix?>, params);
     }

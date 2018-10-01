@@ -132,6 +132,8 @@
             params.group_id = $('[name=group_id_<?=$postfix?>]').val();
         }
 
+        block.empty();
+
         paginationAjax('/control/load-dots/', 'ajax_block_dots_list_<?=$postfix?>', renderAjaxPaginationDotsList<?=$postfix?>, params);
     }
 </script>

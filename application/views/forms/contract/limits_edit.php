@@ -55,7 +55,7 @@
 <div class="modal-footer">
     <button class="btn waves-effect waves-light btn-outline-success" onclick="contractLimitsEditAddLimit($(this))"><i class="fa fa-plus"></i><span class="hidden-xs-down"> Добавить<span class="hidden-md-down"> ограничение</span></span></button>
     <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),contractLimitsEditGo)"><i class="fa fa-check"></i> Сохранить</span>
-    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+    <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 
 <script>
