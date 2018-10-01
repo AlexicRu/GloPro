@@ -4,9 +4,7 @@
 </div>
 <?}?>
 
-<ul class="ajax_block_news_out list-unstyled m-b-0">
-
-</ul>
+<ul class="ajax_block_news_out list-unstyled m-b-0"></ul>
 
 
 <?if(Access::allow('news_news-edit', true)){?>

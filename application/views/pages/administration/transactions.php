@@ -1,40 +1,50 @@
-<h1>Транзакции</h1>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs customtab tabs_administration_transactions" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#tabErrors" role="tab">
+            Отказные
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tabProcess" role="tab">
+            В обработке
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tabHistory" role="tab">
+            История загрузок
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tabJournal" role="tab">
+            Загрузка ведомостей
+        </a>
+    </li>
+</ul>
 
-<div class="tabs_block tabs_switcher tabs_administration_transactions">
-    <div class="tabs">
-        <span tab="errors" class="tab active">Отказные</span><span tab="process" class="tab">В обработке</span><span tab="history" class="tab">История загрузок</span><span tab="journal" class="tab">Загрузка ведомостей</span>
+<!-- Tab panes -->
+<div class="tab-content p-20 bg-white">
+    <div class="tab-pane active" id="tabErrors" role="tabpanel">
+        <div class="text-right border-bottom p-b-20 m-b-20">
+            <span class="<?=Text::BTN?> btn-outline-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
+        </div>
+        <div class="ajax_block_administration_transactions_errors_out"></div>
     </div>
-    <div class="tabs_content tabs_content_no_padding">
-        <div tab_content="errors" class="tab_content active">
-            <div class="tab_content_header">
-                <div class="fr">
-                    <span class="btn waves-effect waves-light btn_green btn_icon" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
-                </div>
-                <br class="clr">
-            </div>
-            <div class="ajax_block_administration_transactions_errors_out"></div>
+    <div class="tab-pane" id="tabProcess" role="tabpanel">
+        <div class="text-right border-bottom p-b-20 m-b-20">
+            <span class="<?=Text::BTN?> btn-outline-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
         </div>
-        <div tab_content="process" class="tab_content">
-            <div class="tab_content_header">
-                <div class="fr">
-                    <span class="btn waves-effect waves-light btn_green btn_icon" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
-                </div>
-                <br class="clr">
-            </div>
-            <div class="ajax_block_administration_transactions_process_out"></div>
+        <div class="ajax_block_administration_transactions_process_out"></div>
+    </div>
+    <div class="tab-pane" id="tabHistory" role="tabpanel">
+        <div class="ajax_block_administration_transactions_history_out"></div>
+    </div>
+    <div class="tab-pane" id="tabJournal" role="tabpanel">
+        <div class="padding__20">
+            <div class="administration_transactions_journal dropzone"></div>
         </div>
-        <div tab_content="history" class="tab_content">
-            <div class="ajax_block_administration_transactions_history_out"></div>
-        </div>
-        <div tab_content="journal" class="tab_content">
-            <div tab_content="payments" class="tab_content active">
-                <div class="padding__20">
-                    <div class="administration_transactions_journal dropzone"></div>
-                </div>
 
-                <div class="jsGrid administration_transactions_journal_jsGrid"></div>
-            </div>
-        </div>
+        <div class="jsGrid administration_transactions_journal_jsGrid"></div>
     </div>
 </div>
 
@@ -119,11 +129,11 @@
 
     function renderAjaxPaginationAdminTransactionsFilter(data, block, params)
     {
-        if(block.find('> table').length == 0){
+        if(block.find('table').length == 0){
             //draw headers
             for(var i in data){
 
-                block.append('<table class="table table_small table_fullscreen check_all_block"></table>');
+                block.append('<div class="table-responsive"><table class="table table_small table_fullscreen check_all_block"></table></div>');
                 block = block.find('table');
                 block.append('<tr />');
 
@@ -137,7 +147,7 @@
                         value = params.filter[j];
                     }
 
-                    block.find('tr').append('<th><input type="text" name="transactions_filter_'+ j +'" placeholder="'+ j +'" class="input_small transaction_filter" onkeypress="filterTransactions(event, $(this))" value="'+value+'"></th>');
+                    block.find('tr').append('<th><input type="text" name="transactions_filter_'+ j +'" placeholder="'+ j +'" class="form-control transaction_filter" onkeypress="filterTransactions(event, $(this))" value="'+value+'"></th>');
 
                 }
 
@@ -155,7 +165,7 @@
         } else {
 
             if(block.find('table').length == 0) {
-                var scrollBlock = $('<div class="scroll_horizontal"><table class="table table_small" /></div>');
+                var scrollBlock = $('<div class="table-responsive"><table class="table table_small" /></div>');
                 block.append(scrollBlock);
 
                 table = block.find('table');
@@ -177,7 +187,7 @@
             }
         }
 
-        table = block.find('tbody');
+        table = block.find('table');
 
         //draw body
         for(i in data){
@@ -200,7 +210,7 @@
     {
         renderAjaxPaginationAdminTransactionsFilter([params['filter']], block, params);
 
-        var subBlock = block.find('tbody');
+        var subBlock = block.find('table');
 
         var tpl = $('<tr>' +
             '<td colspan="'+Object.keys(params['filter']).length+'" class="center"><i>Данные отсутствуют</i></td>' +

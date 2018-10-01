@@ -23,6 +23,8 @@ class Controller_Administration extends Controller_Common
      */
     public function action_transactions()
     {
+        $this->title[] = 'Транзакции';
+
         $this->_initDropZone();
         $this->_initJsGrid();
     }
@@ -152,6 +154,8 @@ class Controller_Administration extends Controller_Common
      */
     public function action_calcTariffs()
     {
+        $this->title[] = 'Расчет тарифов';
+
         $this->_initJsGrid();
     }
 
@@ -170,7 +174,7 @@ class Controller_Administration extends Controller_Common
     }
 
     /**
-     * рассчет тарифов
+     * рассчет тарифа
      */
     public function action_calcTariff()
     {
@@ -241,6 +245,8 @@ class Controller_Administration extends Controller_Common
      */
     public function action_cardsTransfer()
     {
+        $this->title[] = 'Перенос карт';
+
         if ($this->request->is_ajax()) {
             $oldContractId = $this->request->post('old_contract');
             $newContractId = $this->request->post('new_contract');

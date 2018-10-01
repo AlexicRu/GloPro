@@ -1,5 +1,3 @@
-<h1>Перенос карт</h1>
-
 <div class="block card-transfer-block">
     <table>
         <tr>

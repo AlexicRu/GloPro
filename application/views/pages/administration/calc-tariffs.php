@@ -4,8 +4,6 @@
     }
 </style>
 
-<h1>Расчет тарифов</h1>
-
 <div class="tabs_block tabs_switcher tabs_administration_calc_tariffs">
     <div class="tabs">
         <span tab="client" class="tab active">Тариф клиента</span><span tab="close" class="tab">Закрытие периода</span><span tab="queue" class="tab" onclick="loadQueueCalc()">Очередь расчета</span>
