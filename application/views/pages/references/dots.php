@@ -1,14 +1,13 @@
-<h1>Точки обслуживания</h1>
-
 <div class="block no_padding dots_info">
-    <div class="tab_content_header">
-        <div class="fr">
-            <span class="btn waves-effect waves-light btn_green btn_icon" onclick="dotsInfoToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
-        </div>
-        <br class="clr">
+    <div class="text-right m-b-20">
+        <span class="<?=Text::BTN?> btn-outline-success" onclick="dotsInfoToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
     </div>
 
-    <div class="list"></div>
+    <div class="card">
+        <div class="card-body">
+            <div class="list"></div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -24,7 +23,7 @@
             return true;
         }
 
-        addLoader(block;
+        addLoader(block);
 
         $.post('/control/show-dots', { postfix: 'dots_info' }, function (data) {
             removeLoader(block);
