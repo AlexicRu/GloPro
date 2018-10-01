@@ -4,14 +4,14 @@
             <div class="text-right hidden-xs-down text-muted">Название:</div>
             <span class="hidden-sm-up">Название:</span>
         </div>
-        <div class="col-sm-8">
-            <?if (!empty($tariff)) {?>
-                <div class="float-right">
-                    <span class="<?=Text::BTN?> btn-outline-danger" onclick="deleteTariff($(this))"><i class="icon-cancel"></i></span>
-                </div>
-            <?}?>
+        <div class="col-sm-6">
             <input type="hidden" name="tarif_id" value="<?=(!empty($tariff['TARIF_ID']) ? $tariff['TARIF_ID'] : 0)?>">
             <input type="text" name="tarif_name" class="form-control" value="<?=(!empty($tariff['TARIF_NAME']) ? Text::quotesForForms($tariff['TARIF_NAME']) : '')?>">
+        </div>
+        <div class="col-sm-2">
+            <?if (!empty($tariff)) {?>
+                <span class="<?=Text::BTN?> btn-outline-danger" onclick="deleteTariff($(this))"><i class="fa fa-trash-alt"></i></span>
+            <?}?>
         </div>
     </div>
 
@@ -20,16 +20,17 @@
             <div class="text-right hidden-xs-down text-muted">Версия:</div>
             <span class="hidden-sm-up">Версия:</span>
         </div>
-        <div class="col-sm-8">
-            <select name="tariff_versions">
+        <div class="col-sm-6">
+            <select name="tariff_versions" class="custom-select">
                 <?foreach ($tariff['versions'] as $version) {?>
                     <option value="<?=$version['VERSION_ID']?>" <?=($version['VERSION_ID'] == $tariff['current_version'] ? 'selected' : '')?>>
                         <?=$version['VERSION_ID']?> от <?=$version['DATE_CREATE_STR']?>
                     </option>
                 <?}?>
             </select>
-            <span class="<?=Text::BTN?> btn-sm btn-outline-success" onclick="loadTariffVersion($(this))">Загрузить</span>
         </div>
+        <div class="col-sm-2">
+            <span class="<?=Text::BTN?> btn-sm btn-outline-success" onclick="loadTariffVersion($(this))">Загрузить</span>        </div>
     </div>
 
     <div class="t_sections_list">
@@ -56,6 +57,6 @@
         </div>
     </div>
     <?} else {?>
-        <i class="gray">Только просмотр</i>
+        <i class="text-muted">Только просмотр</i>
     <?}?>
 </div>

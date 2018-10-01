@@ -305,18 +305,20 @@ function saveTariff(btn)
 
 function loadTariff(tariff, force, version)
 {
-    var block = $('.tariffs_block[tab_content='+ tariff +']');
+    var block = $('#tariff_'+ tariff);
 
     if(block.text() == '' || force == true){
         addLoader(block);
 
         if (!version) {
-            version = $('[tab='+ tariff +']').attr('version');
+            version = $('[tab=tariff_'+ tariff +']').attr('version');
         }
 
         $.post('/control/load-tariff/' + tariff, { version: version }, function(data){
             removeLoader(block);
             block.html(data);
+
+            renderVerticalTabsScroll($('.tabs_tariffs .v-scroll'));
         });
     }
 }

@@ -29,8 +29,8 @@
                     </li>
                 <?}else{?>
                     <?foreach($tariffs as $key => $tariff){?>
-                        <li class="nav-item" tab="tariff<?=$tariff['TARIF_ID']?>" version="<?=$tariff['LAST_VERSION']?>">
-                            <a class="nav-link nowrap" data-toggle="tab" href="#tariff<?=$tariff['TARIF_ID']?>" role="tab">
+                        <li class="nav-item" tab="tariff_<?=$tariff['TARIF_ID']?>" version="<?=$tariff['LAST_VERSION']?>">
+                            <a class="nav-link nowrap" data-toggle="tab" href="#tariff_<?=$tariff['TARIF_ID']?>" role="tab">
                                 <span class="text-muted">[<?=$tariff['TARIF_ID']?>]</span>
                                 <?=$tariff['TARIF_NAME']?>
                             </a>
@@ -46,7 +46,7 @@
             <div class="tab-pane" id="tariff-1" role="tabpanel"></div>
             <?if(!empty($tariffs)){?>
                 <?foreach($tariffs as $key => $tariff){?>
-                    <div class="tab-pane" id="tariff<?=$tariff['TARIF_ID']?>" role="tabpanel"></div>
+                    <div class="tab-pane" id="tariff_<?=$tariff['TARIF_ID']?>" role="tabpanel"></div>
                 <?}?>
             <?}?>
         </div>
@@ -58,7 +58,7 @@
         $('.tabs_tariffs :not(.before_scroll) .nav-link').on('click', function(){
             var t = $(this);
 
-            loadTariff(t);
+            loadTariff(t.closest('[tab]').attr('tab').replace('tariff_', ''));
 
             //костыль.. так как вложенность табов не сохраняется из-за постраничности
             $('.tabs_tariffs > .nav-tabs .nav-link.active').not(t).removeClass('active show');

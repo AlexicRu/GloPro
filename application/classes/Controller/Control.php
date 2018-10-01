@@ -396,7 +396,7 @@ class Controller_Control extends Controller_Common {
         if(!empty($tariff)){
             $tariff = reset($tariff);
         } else {
-            $this->html('<i class="gray">Тариф не найден</i>');
+            $this->html('<i class="text-muted">Тариф не найден</i>');
         }
 
         $versions = Model_Tariff::getVersions($tariffId);
