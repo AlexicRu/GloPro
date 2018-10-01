@@ -1,32 +1,34 @@
-<table class="table_form form_add_firms_group">
-    <tr>
-        <td class="gray right" width="170">Название группы:</td>
-        <td>
-            <input type="text" name="add_firms_group_name" class="input_big">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn btn_reverse" onclick="addFirmsGroup()"><i class="fa fa-plus"></i> Добавить группу</span>
-            <span class="btn btn_red fancy_close"><i class="fa fa-times"></i> Отмена</span>
-        </td>
-    </tr>
-</table>
+<div class="modal-body">
+    <div class="form-group row m-b-0">
+        <div class="col-sm-4">
+            <div class="text-right hidden-xs-down text-muted">Название группы:</div>
+            <span class="hidden-sm-up">Название группы:</span>
+        </div>
+        <div class="col-sm-8">
+            <input type="text" name="add_firms_group_name" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), addFirmsGroup)"><i class="fa fa-plus"></i> Добавить</span>
+    <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
-    function addFirmsGroup()
+    function addFirmsGroup(btn)
     {
         var params = {
             name:        $('[name=add_firms_group_name]').val(),
         };
 
         if(params.name == ''){
+            endSubmitForm();
             message(0, 'Введите название группы');
             return false;
         }
 
         $.post('/control/add-firms-group', {params:params}, function(data){
+            endSubmitForm();
             if(data.success){
                 message(1, 'Группа успешно добавлена');
                 setTimeout(function () {

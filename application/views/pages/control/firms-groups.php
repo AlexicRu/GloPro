@@ -1,57 +1,78 @@
-<div class="block no_padding">
-    <div class="tab_content_header">
-        <div class="fr">
-            <span toggle_block="firms_groups_block">
-                <a href="#control_add_firms_group" class="btn waves-effect waves-light fancy"><i class="fa fa-plus"></i> Добавить группу</a>
-                <a href="#control_add_firms" class="btn waves-effect waves-light fancy"><i class="fa fa-plus"></i> Добавить карты</a>
-                <span class="btn waves-effect waves-light btn_green btn_icon" onclick="groupFirmsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
-                <span class="btn waves-effect waves-light btn_green btn_icon" toggle="firms_groups_block"><i class="fa fa-pencil-alt"></i></span>
-            </span>
+<div class="card border-bottom m-b-0">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <form class="input-group form_firms_groups" onsubmit="return collectForms($(this), 'form_firms_groups')">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                    <input type="text" name="filter[search]" class="form-control input_messages" placeholder="Поиск..." value="<?=(!empty($filter['search']) ? $filter['search'] : '')?>">
+                </form>
+            </div>
+            <div class="col-sm-8 text-right with-mb">
+                <span toggle_block="firms_groups_block">
+                    <a href="#" data-toggle="modal" data-target="#control_add_firms_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
+                    <a href="#" data-toggle="modal" data-target="#control_add_firms" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить фирмы</a>
+                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="groupFirmsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
+                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" toggle="firms_groups_block"><i class="fa fa-pencil-alt"></i></span>
+                </span>
 
-            <span toggle_block="firms_groups_block" class="dn action_del">
-                <a href="#" class="btn waves-effect waves-light btn_red btn_del_firms_groups"><i class="fa fa-trash-alt"></i> Удалить выделенные группы</a>
-                <a href="#" class="btn waves-effect waves-light btn_red btn_del_firms"><i class="fa fa-trash-alt"></i> Удалить выделенные фирмы</a>
-                <span class="btn waves-effect waves-light btn_orange btn_icon" toggle="firms_groups_block"><i class="fa fa-times"></i></span>
+                <span toggle_block="firms_groups_block" class="dn action_del">
+                    <a href="#" class="<?=Text::BTN?> btn-outline-danger btn_del_firms m-b-5"><i class="fa fa-trash-alt"></i> Удалить выделенные фирмы</a>
+                    <span class="<?=Text::BTN?> btn-outline-warning m-b-5" toggle="firms_groups_block"><i class="fa fa-times"></i></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-body border-bottom d-lg-none bg-white">
+    <div class="row">
+        <div class="col-12">
+            <span class="btn btn-info" toggle_class="firms_groups_list">
+                <i class="fa fa-bars"></i> Группы фирм
             </span>
         </div>
-        <form class="form_firms_groups" onsubmit="return collectForms($(this), 'form_firms_groups')">
-            <div class="input_with_icon"><i class="icon-find"></i><input type="text" name="filter[search]" class="input_big input_messages" placeholder="Поиск..." value="<?=(!empty($filter['search']) ? $filter['search'] : '')?>"></div>
-        </form>
     </div>
+</div>
 
-    <div class="tabs_vertical_block tabs_switcher tabs_firms_groups">
-        <div class="tabs_v tabs_v_groups check_box_active_reverse">
-            <div class="scroll">
-                <?if(empty($firmsGroups)){?>
-                    <div class="tab_v"><div>
-                        <span class="gray">Группы не найдены</span>
-                    </div></div>
-                <?}else{?>
-                    <?foreach($firmsGroups as $key => $group){?>
-                        <div class="tab_v tab_v_small" tab="firms_group_<?=$group['GROUP_ID']?>"><div>
-                            <?/*if(in_array($user['ROLE_ID'], Access::$adminRoles)){*/?>
-                                <span class="check_span_hidden">
-                                    <input type="checkbox" name="group_id" value="<?=$group['GROUP_ID']?>">
-                                    <input type="hidden" name="group_name" value="<?=$group['GROUP_NAME']?>">
+<div class="vtabs customvtab tabs_firms_groups bg-white tabs-floating">
+    <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="firms_groups_list">
+        <div class="v-scroll">
+            <?if(empty($firmsGroups)){?>
+                <li class="nav-item">
+                <span class="nav-link text-muted">
+                    Группы не найдены
+                </span>
+                </li>
+            <?}else{?>
+                <?foreach($firmsGroups as $key => $group){?>
+                    <li class="nav-item" tab="firms_group_<?=$group['GROUP_ID']?>">
+                        <a class="nav-link nowrap" data-toggle="tab" href="#firms_group_<?=$group['GROUP_ID']?>" role="tab">
+                        <span class="check_span_hidden">
+                            <input type="hidden" name="group_id" value="<?=$group['GROUP_ID']?>">
+                            <input type="hidden" name="group_name" value="<?=$group['GROUP_NAME']?>">
+                            <input type="hidden" name="group_type" value="<?=$group['GROUP_TYPE']?>">
 
-                                    <span class="btn waves-effect waves-light btn_green btn_tiny btn_icon" onclick="showEditFirmsGroupPopup(<?=$group['GROUP_ID']?>)"><i class="fa fa-pencil-alt"></i></span>
-                                </span>
-                            <?/*}*/?>
+                            <span class="<?=Text::BTN?> btn-outline-danger btn-sm" onclick="deleteFirmsGroup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-trash-alt"></i></span>
+                            <span class="<?=Text::BTN?> btn-outline-success btn-sm" onclick="showEditFirmsGroupPopup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-pencil-alt"></i></span>
+                        </span>
 
                             <span class="gray">[<?=$group['GROUP_ID']?>]</span>
                             <span class="group_name"><?=$group['GROUP_NAME']?></span>
-                        </div></div>
-                    <?}?>
-                <?}?>
-            </div>
-        </div>
-        <div class="tabs_v_content tabs_content_no_padding">
-            <?if(!empty($groups)){?>
-                <?foreach($groups as $key => $group){?>
-                    <div class="tab_v_content" tab_content="firms_group_<?=$group['GROUP_ID']?>" group_id="<?=$group['GROUP_ID']?>"></div>
+                        </a>
+                    </li>
                 <?}?>
             <?}?>
         </div>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content p-0">
+        <?if(!empty($firmsGroups)){?>
+            <?foreach($firmsGroups as $key => $group){?>
+                <div class="tab-pane" id="firms_group_<?=$group['GROUP_ID']?>" group_id="<?=$group['GROUP_ID']?>" role="tabpanel"></div>
+            <?}?>
+        <?}?>
     </div>
 </div>
 
@@ -61,13 +82,17 @@
 
 <script>
     $(function(){
-        $(".tabs_firms_groups .tabs_v .scroll > [tab]").on('click', function(){
+        //renderVerticalTabsScroll($('.tabs_firms_groups .v-scroll'));
+        $('.tabs_firms_groups :not(.before_scroll) .nav-link').on('click', function(){
             var t = $(this);
 
             loadGroupFirms(t);
+
+            //костыль.. так как вложенность табов не сохраняется из-за постраничности
+            $('.tabs_firms_groups > .nav-tabs .nav-link.active').not(t).removeClass('active show');
         });
 
-        $('.tabs_firms_groups .tabs_v .scroll > [tab]:first').click();
+        $('.tabs_firms_groups .nav-item:not(.before_scroll):first .nav-link').click();
 
         $("[toggle=firms_groups_block]").on('click', function(){
             $('.check_span_hidden, .td_check, .td_edit').toggle();
@@ -75,7 +100,7 @@
 
         $('.btn_del_firms').on('click', function () {
             var firms = [];
-            var group = $('.tab_v_content.active');
+            var group = $('.tab-pane.active');
             var group_id = group.attr('group_id');
 
             $('.td_check [type=checkbox][name=firm_id]:checked').each(function () {
@@ -102,46 +127,43 @@
                 }
             });
         });
-
-        $('.btn_del_firms_groups').on('click', function () {
-            var groups = [];
-            var selectedGroups = {};
-
-            $('[type=checkbox][name=group_id]:checked').each(function () {
-                var t = $(this);
-                groups.push(t.val());
-                selectedGroups['group' + t.val()] = t.closest('.tab_v');
-            });
-
-            if(groups.length == 0){
-                message(0, 'Не выделенно ни одной группы');
-            }
-
-            if(!confirm('Удалить ' + groups.length + ' групп(ы) фирм?')){
-                return false;
-            }
-
-            $.post('/control/del-firms-group', {groups: groups}, function (data) {
-
-                for(var i in data.data.deleted){
-                    selectedGroups['group' + i].remove();
-                }
-
-                for(var i in data.data.not_deleted){
-                    message(0, 'Ошибка удаления. Группа <b>'+ selectedGroups['group' + i].find('.group_name').text() +'</b> содержит фирмы');
-                }
-
-                $('.tabs_firms_groups .tabs_v .scroll > [tab]:first').click();
-
-            });
-        });
     });
 
-    function loadGroupFirms(tab, force)
+    function deleteFirmsGroup(groupId, event)
     {
+        event.stopPropagation();
+
+        if(!confirm('Удалить группу фирм?')){
+            return false;
+        }
+
+        $.post('/control/del-firms-group', {groups: [groupId]}, function (data) {
+
+            for(var i in data.data){
+                var group = $('[tab="firms_group_'+ groupId +'"]');
+
+                if (data.data[i].deleted) {
+                    group.remove();
+                } else {
+                    message(0, 'Группа <b>'+ group.find('.group_name').text() +'</b> содержит фирмы');
+                }
+            }
+
+            if ($('.tabs_firms_groups .nav-link.active').length == 0) {
+                $('.tabs_firms_groups .nav-item:not(.before_scroll):first .nav-link').click();
+            }
+
+        });
+
+        return false;
+    }
+
+    function loadGroupFirms(t, force)
+    {
+        var tab = t.closest('[tab]');
         var tabsBlock = $(".tabs_firms_groups");
-        var groupId = tab.attr('tab').replace('firms_group_', '');
-        var tabContent = $("[tab_content=firms_group_"+ groupId +"]", tabsBlock);
+        var groupId = tab.attr('tab') ? tab.attr('tab').replace('firms_group_', '') : '';
+        var tabContent = $(t.attr('href'), tabsBlock);
 
         if(tabContent.text() == '' || force == true){
             addLoader(tabContent.parent());
@@ -149,27 +171,35 @@
             $.post('/control/load-group-firms/' + groupId, {}, function(data){
                 removeLoader(tabContent.parent());
                 tabContent.html(data);
+                renderVerticalTabsScroll($('.tabs_firms_groups .v-scroll'));
             });
+        } else {
+            setTimeout(function () {
+                renderVerticalTabsScroll($('.tabs_firms_groups .v-scroll'));
+            }, 100);
         }
     }
 
-    function showEditFirmsGroupPopup(groupId)
+    function showEditFirmsGroupPopup(groupId, event)
     {
+        event.stopPropagation();
+
         var block = $('#control_edit_firms_group');
 
         $('input', block).val('');
 
         $('[name=edit_firms_group_name]', block).val($('[tab=firms_group_'+ groupId +'] [name=group_name]').val());
         $('[name=edit_firms_group_id]', block).val(groupId);
+        $('[name=edit_firms_group_type]', block).val($('[tab=firms_group_'+ groupId +'] [name=group_type]').val());
 
-        $.fancybox.open(block, {
-            padding: [0,0,0,0]
-        });
+        block.modal('show');
+
+        return false;
     }
 
     function groupFirmsToXls()
     {
-        var group = $(".tabs_firms_groups .tab_v[tab].active");
+        var group = $(".tabs_firms_groups .nav-link.active").closest('[tab]');
 
         if (group.length == 0) {
             message(0, 'Нет данный для выгрузки');

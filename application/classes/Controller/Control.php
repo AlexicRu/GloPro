@@ -514,7 +514,7 @@ class Controller_Control extends Controller_Common {
 
         $firmsGroups = Model_Firm::getFirmsGroups($filter);
 
-        $popupAddFirms = Form::popup('Добавление фирм', 'control/add_firms');
+        $popupAddFirms = Form::popupLarge('Добавление фирм', 'control/add_firms');
         $popupAddFirmsGroup = Form::popup('Добавление группы фирм', 'control/add_firms_group');
         $popupEditFirmsGroup = Form::popup('Редактирование группы фирм', 'control/edit_firms_group');
 

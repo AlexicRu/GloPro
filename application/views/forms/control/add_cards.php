@@ -5,7 +5,7 @@
     <div class="popup_list"></div>
 </div>
 <div class="modal-footer">
-    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), addGroupCardsToGroup)"><i class="fa fa-plus"></i> Добавить кврты</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), addGroupCardsToGroup)"><i class="fa fa-plus"></i> Добавить карты</span>
     <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

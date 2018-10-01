@@ -162,7 +162,7 @@
     {
         var tab = t.closest('[tab]');
         var tabsBlock = $(".tabs_cards_groups");
-        var groupId = tab.attr('tab').replace('cards_group_', '');
+        var groupId = tab.attr('tab') ? tab.attr('tab').replace('cards_group_', '') : '';
         var tabContent = $(t.attr('href'), tabsBlock);
 
         if(tabContent.text() == '' || force == true){
