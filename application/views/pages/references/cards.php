@@ -1,8 +1,5 @@
-<div>
-    <div class="fr">
-        <span class="btn waves-effect waves-light btn_green btn_reverse" onclick="gridToXls()"><i class="icon-exel1"></i> Выгрузить в Excel</span>
-    </div>
-    <h1>Список карт</h1>
+<div class="float-right m-b-20">
+    <span class="btn waves-effect waves-light btn-outline-success btn_reverse" onclick="gridToXls()"><i class="fa fa-file-excel"></i> Выгрузить в Excel</span>
 </div>
 
 <div class="jsGrid references_cards_jsGrid"></div>

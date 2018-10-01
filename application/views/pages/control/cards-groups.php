@@ -13,7 +13,7 @@
                 <span toggle_block="cards_groups_block">
                     <a href="#" data-toggle="modal" data-target="#control_add_cards_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
                     <a href="#" data-toggle="modal" data-target="#control_add_cards" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить карты</a>
-                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="groupCardsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
+                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="groupCardsToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
                     <span class="<?=Text::BTN?> btn-outline-success m-b-5" toggle="cards_groups_block"><i class="fa fa-pencil-alt"></i></span>
                 </span>
 

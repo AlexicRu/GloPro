@@ -13,7 +13,7 @@
                 <span toggle_block="firms_groups_block">
                     <a href="#" data-toggle="modal" data-target="#control_add_firms_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
                     <a href="#" data-toggle="modal" data-target="#control_add_firms" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить фирмы</a>
-                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="groupFirmsToXls()"><i class="icon-exel1"></i> Выгрузить</span>
+                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="groupFirmsToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
                     <span class="<?=Text::BTN?> btn-outline-success m-b-5" toggle="firms_groups_block"><i class="fa fa-pencil-alt"></i></span>
                 </span>
 

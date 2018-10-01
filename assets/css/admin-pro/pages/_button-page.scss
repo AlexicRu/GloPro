@@ -337,7 +337,7 @@ Buttons
 
 .btn-outline-success {
     color: $success;
-    background-color: transparent;
+    background-color: $white;
     border-color: $success;
     box-shadow: $success-shadow;
     transition: 0.2s ease-in;
@@ -360,7 +360,7 @@ Buttons
 
 .btn-outline-info {
     color: $info;
-    background-color: transparent;
+    background-color: $white;
     border-color: $info;
     box-shadow: $info-shadow;
     transition: 0.2s ease-in;
@@ -383,7 +383,7 @@ Buttons
 
 .btn-outline-warning {
     color: $warning;
-    background-color: transparent;
+    background-color: $white;
     border-color: $warning;
     box-shadow: $warning-shadow;
     transition: 0.2s ease-in;
@@ -406,7 +406,7 @@ Buttons
 
 .btn-outline-danger {
     color: $danger;
-    background-color: transparent;
+    background-color: $white;
     border-color: $danger;
     box-shadow: $danger-shadow;
     transition: 0.2s ease-in;
@@ -428,7 +428,7 @@ Buttons
 
 .btn-outline-red {
     color: $red;
-    background-color: transparent;
+    background-color: $white;
     border-color: $red;
     &:hover,
     &:focus,
@@ -448,7 +448,7 @@ Buttons
 
 .btn-outline-inverse {
     color: $inverse;
-    background-color: transparent;
+    background-color: $white;
     border-color: $inverse;
     &:hover,
     &:focus,

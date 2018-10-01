@@ -8,7 +8,7 @@
         <div tab_content="errors" class="tab_content active">
             <div class="tab_content_header">
                 <div class="fr">
-                    <span class="btn waves-effect waves-light btn_green btn_icon" onclick="transactionCancelToXls()"><i class="icon-exel1"></i> Выгрузить</span>
+                    <span class="btn waves-effect waves-light btn_green btn_icon" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
                 </div>
                 <br class="clr">
             </div>
@@ -17,7 +17,7 @@
         <div tab_content="process" class="tab_content">
             <div class="tab_content_header">
                 <div class="fr">
-                    <span class="btn waves-effect waves-light btn_green btn_icon" onclick="transactionCancelToXls()"><i class="icon-exel1"></i> Выгрузить</span>
+                    <span class="btn waves-effect waves-light btn_green btn_icon" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
                 </div>
                 <br class="clr">
             </div>
