@@ -67,18 +67,18 @@ $(function(){
         });
     });
 
-    loadContract('contract');
+    loadContract(location.hash ? location.hash.replace('#', '') : 'contract');
 
     $('[name=contracts_list]').on('change', function(){
         loadContract('contract');
     });
 
-    $(document).on('click', '[ajax_tab]', function(){
+    $(document).on('click', '[ajax_tab]', function(e){
         var t = $(this);
         if(t.hasClass('active')){
             return false;
         }
-        loadContract(t.attr('ajax_tab'));
+        loadContract(t.attr('href').replace('#', ''));
     });
 });
 
@@ -89,10 +89,14 @@ function loadContract(tab, query, params)
     addLoader(block);
     var contractId = $('[name=contracts_list]').val();
 
+    location.hash = '#' + tab;
+
     $.post('/clients/contract/' + contractId, {tab:tab, query:query, params:params}, function(data){
         removeLoader(block);
         block.html(data);
 
+        /*
+        todo
         if (tab == 'contract') {
             EnjoyHintRun('contract');
         } else if (tab == 'cards') {
@@ -101,7 +105,7 @@ function loadContract(tab, query, params)
             EnjoyHintRun('account');
         } else if (tab == 'reports') {
             EnjoyHintRun('reports');
-        }
+        }*/
     });
 }
 

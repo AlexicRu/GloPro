@@ -16,22 +16,22 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs customtab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link <?=($tab == 'contract' ? 'active' : '')?>" href="#" ajax_tab="contract">
+        <a class="nav-link <?=($tab == 'contract' ? 'active' : '')?>" href="#contract" ajax_tab>
             <i class="fa fa-book fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Договор</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link <?=($tab == 'cards' ? 'active' : '')?>" href="#" ajax_tab="cards">
+        <a class="nav-link <?=($tab == 'cards' ? 'active' : '')?>" href="#cards" ajax_tab>
             <i class="fa fa-credit-card-front fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Карты</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link <?=($tab == 'account' ? 'active' : '')?>" href="#" ajax_tab="account">
+        <a class="nav-link <?=($tab == 'account' ? 'active' : '')?>" href="#account" ajax_tab>
             <i class="fa fa-briefcase fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Счет</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link <?=($tab == 'reports' ? 'active' : '')?>" href="#" ajax_tab="reports">
+        <a class="nav-link <?=($tab == 'reports' ? 'active' : '')?>" href="#reports" ajax_tab>
             <i class="fa fa-file-alt fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Отчеты</span>
         </a>
     </li>
