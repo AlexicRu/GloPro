@@ -24,9 +24,9 @@
                         <div class="form-group row m-t-20">
                             <div class="col-sm-4">
                                 <div class="text-right hidden-xs-down text-muted">Ввод из источника:</div>
-                                <span class="hidden-sm-up">Ввод из источника:</span>
+                                <span class="hidden-sm-up text-muted">Ввод из источника:</span>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 with-mb">
                                 <input type="text" name="add_service_in_source" class="form-control">
                             </div>
                         </div>
@@ -34,16 +34,16 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <div class="text-right hidden-xs-down text-muted">Выбор из источника:</div>
-                                <span class="hidden-sm-up">Выбор из источника:</span>
+                                <span class="hidden-sm-up text-muted">Выбор из источника:</span>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 with-mb">
                                 <?=Form::buildField('service_choose_single', 'add_service_in_service')?>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-4"></div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 with-mb">
                                 <span class="<?=Text::BTN?> btn-outline-primary" onclick="addService()">Добавить</span>
                             </div>
                         </div>

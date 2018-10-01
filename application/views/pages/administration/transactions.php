@@ -1,50 +1,52 @@
-<!-- Nav tabs -->
-<ul class="nav nav-tabs customtab tabs_administration_transactions" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#tabErrors" role="tab">
-            Отказные
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tabProcess" role="tab">
-            В обработке
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tabHistory" role="tab">
-            История загрузок
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tabJournal" role="tab">
-            Загрузка ведомостей
-        </a>
-    </li>
-</ul>
+<div class="tabs_administration_transactions">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs customtab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#tabErrors" role="tab">
+                Отказные
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tabProcess" role="tab">
+                В обработке
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tabHistory" role="tab">
+                История загрузок
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tabJournal" role="tab">
+                Загрузка ведомостей
+            </a>
+        </li>
+    </ul>
 
-<!-- Tab panes -->
-<div class="tab-content p-20 bg-white">
-    <div class="tab-pane active" id="tabErrors" role="tabpanel">
-        <div class="text-right border-bottom p-b-20 m-b-20">
-            <span class="<?=Text::BTN?> btn-outline-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
+    <!-- Tab panes -->
+    <div class="tab-content p-20 bg-white">
+        <div class="tab-pane active" id="tabErrors" role="tabpanel">
+            <div class="text-right border-bottom p-b-20 m-b-20">
+                <span class="<?=Text::BTN?> btn-outline-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
+            </div>
+            <div class="ajax_block_administration_transactions_errors_out"></div>
         </div>
-        <div class="ajax_block_administration_transactions_errors_out"></div>
-    </div>
-    <div class="tab-pane" id="tabProcess" role="tabpanel">
-        <div class="text-right border-bottom p-b-20 m-b-20">
-            <span class="<?=Text::BTN?> btn-outline-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
+        <div class="tab-pane" id="tabProcess" role="tabpanel">
+            <div class="text-right border-bottom p-b-20 m-b-20">
+                <span class="<?=Text::BTN?> btn-outline-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
+            </div>
+            <div class="ajax_block_administration_transactions_process_out"></div>
         </div>
-        <div class="ajax_block_administration_transactions_process_out"></div>
-    </div>
-    <div class="tab-pane" id="tabHistory" role="tabpanel">
-        <div class="ajax_block_administration_transactions_history_out"></div>
-    </div>
-    <div class="tab-pane" id="tabJournal" role="tabpanel">
-        <div class="padding__20">
-            <div class="administration_transactions_journal dropzone"></div>
+        <div class="tab-pane" id="tabHistory" role="tabpanel">
+            <div class="ajax_block_administration_transactions_history_out"></div>
         </div>
+        <div class="tab-pane" id="tabJournal" role="tabpanel">
+            <div class="padding__20">
+                <div class="administration_transactions_journal dropzone"></div>
+            </div>
 
-        <div class="jsGrid administration_transactions_journal_jsGrid"></div>
+            <div class="jsGrid administration_transactions_journal_jsGrid"></div>
+        </div>
     </div>
 </div>
 

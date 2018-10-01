@@ -3,9 +3,9 @@
         <div class="form-group row">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down text-muted">Телефон для оповещений:</div>
-                <span class="hidden-sm-up">Телефон для оповещений:</span>
+                <span class="hidden-sm-up text-muted">Телефон для оповещений:</span>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <input type="text" name="manager_settings_phone_note" class="input_big" value="<?=$manager['PHONE_FOR_INFORM']?>">
             </div>
         </div>
@@ -17,13 +17,13 @@
                         Получить код
                     </button>
                 </div>
-                <span class="hidden-sm-up">
+                <span class="hidden-sm-up text-muted">
                     <button class="<?=Text::BTN?> btn-sm manager_settings_confirm_code_btn btn-outline-primary" onclick="getSmsConfirmCode($(this))">
                         Получить код
                     </button>
                 </span>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <input type="text" name="manager_settings_confirm_code" class="input_mini">
             </div>
         </div>

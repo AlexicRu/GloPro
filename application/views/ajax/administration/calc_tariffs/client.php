@@ -1,44 +1,64 @@
-<fieldset>
-    <legend>Клиент</legend>
-    <span class="btn btn_small btn_icon btn_red ts_remove" onclick="deleteRow($(this))"><i class="fa fa-times"></i></span>
+<div class="border-bottom m-b-20">
+    <div>
+        <b class="font-20">Клиент</b>
 
-    <table>
-        <tr>
-            <td rowspan="2" class="gray right">Договор:</td>
-            <td rowspan="2">
-                <?=Form::buildField('contract_choose_single', 'contract_' . $iteration, false, [
-                    'depend_on' => ['name' => 'client_' . $iteration],
-                    'onSelect' => 'findTariffByContract'
-                ])?>
-            </td>
-            <td class="gray right">Тариф по договору:</td>
-            <td>
-                <span class="current_tariff"></span>
-            </td>
-            <td rowspan="2" class="btns">
-                <span class="calc_tariffs_client_ok btn btn_small btn_green btn_reverse dn"><i class="fa fa-check"></i> Ok</span>
-                <span class="calc_tariffs_client_go btn btn_small btn_reverse dn">... Расчет</span>
-                <span class="calc_tariffs_client_error btn btn_small btn_red btn_reverse dn">Ошибка</span>
-            </td>
-        </tr>
-        <tr>
-            <td class="gray right">Период:</td>
-            <td>
-                <input type="text" name="date_start_<?=$iteration?>" class="datepicker" readonly value="<?=date('01.m.Y')?>">
-                -
-                <input type="text" name="date_end_<?=$iteration?>" class="datepicker" readonly value="<?=date('d.m.Y')?>">
-            </td>
-        </tr>
-    </table>
-</fieldset>
+        <div class="float-right">
+            <span class="<?=Text::BTN?> btn-sm btn-outline-danger ts_remove" onclick="deleteRow($(this))"><i class="fa fa-times"></i></span>
+        </div>
+    </div>
+
+    <div class="form-group row m-b-0">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <div class="text-right hidden-xs-down text-muted">Договор:</div>
+                    <span class="hidden-sm-up text-muted">Договор:</span>
+                </div>
+                <div class="col-sm-8">
+                    <?=Form::buildField('contract_choose_single', 'contract_' . $iteration, false, [
+                        'depend_on' => ['name' => 'client_' . $iteration],
+                        'onSelect' => 'findTariffByContract'
+                    ])?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <div class="text-right hidden-xs-down text-muted">Тариф по договору:</div>
+                    <span class="hidden-sm-up text-muted">Тариф по договору:</span>
+                </div>
+                <div class="col-sm-8 with-mb">
+                    <span class="current_tariff"></span>
+
+                    <span class="calc_tariffs_client_ok btn btn_small btn_green btn_reverse dn"><i class="fa fa-check"></i> Ok</span>
+                    <span class="calc_tariffs_client_go btn btn_small btn_reverse dn">... Расчет</span>
+                    <span class="calc_tariffs_client_error btn btn_small btn_red btn_reverse dn">Ошибка</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <div class="text-right hidden-xs-down text-muted">Период:</div>
+                    <span class="hidden-sm-up text-muted">Период:</span>
+                </div>
+                <div class="col-sm-8 with-mb">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <input type="date" name="date_start_<?=$iteration?>" class="form-control" value="<?=date('Y-m-01')?>">
+                        </div>
+                        <span class="input-group-text">-</span>
+                        <div class="input-group-append">
+                            <input type="date" name="date_end_<?=$iteration?>" class="form-control" value="<?=date('Y-m-d')?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-    $(function () {
-        $('.datepicker').each(function () {
-            renderDatePicker($(this));
-        });
-    });
-
     function findTariffByContract(contractId)
     {
         var row = $('[value=' + contractId + ']').closest('fieldset');

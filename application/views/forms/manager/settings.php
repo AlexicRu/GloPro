@@ -9,9 +9,9 @@
                 <div class="form-group row">
                     <div class="col-sm-4">
                         <div class="text-right hidden-xs-down text-muted">Имя:</div>
-                        <span class="hidden-sm-up">Имя:</span>
+                        <span class="hidden-sm-up text-muted">Имя:</span>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 with-mb">
                         <input type="text" name="manager_settings_name" class="form-control" value="<?=$manager['MANAGER_NAME']?>">
                     </div>
                 </div>
@@ -19,9 +19,9 @@
                 <div class="form-group row">
                     <div class="col-sm-4">
                         <div class="text-right hidden-xs-down text-muted">Фамилия:</div>
-                        <span class="hidden-sm-up">Фамилия:</span>
+                        <span class="hidden-sm-up text-muted">Фамилия:</span>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 with-mb">
                         <input type="text" name="manager_settings_surname" class="form-control" value="<?=$manager['MANAGER_SURNAME']?>">
                     </div>
                 </div>
@@ -29,9 +29,9 @@
                 <div class="form-group row">
                     <div class="col-sm-4">
                         <div class="text-right hidden-xs-down text-muted">Отчество:</div>
-                        <span class="hidden-sm-up">Отчество:</span>
+                        <span class="hidden-sm-up text-muted">Отчество:</span>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 with-mb">
                         <input type="text" name="manager_settings_middlename" class="form-control" value="<?=$manager['MANAGER_MIDDLENAME']?>">
                     </div>
                 </div>
@@ -39,9 +39,9 @@
                 <div class="form-group row">
                     <div class="col-sm-4">
                         <div class="text-right hidden-xs-down text-muted">E-mail:</div>
-                        <span class="hidden-sm-up">E-mail:</span>
+                        <span class="hidden-sm-up text-muted">E-mail:</span>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 with-mb">
                         <input type="text" name="manager_settings_email" class="form-control" value="<?=$manager['EMAIL']?>">
                     </div>
                 </div>
@@ -49,9 +49,9 @@
                 <div class="form-group row">
                     <div class="col-sm-4">
                         <div class="text-right hidden-xs-down text-muted">Телефон:</div>
-                        <span class="hidden-sm-up">Телефон:</span>
+                        <span class="hidden-sm-up text-muted">Телефон:</span>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 with-mb">
                         <input type="text" name="manager_settings_phone" class="form-control" value="<?=$manager['CELLPHONE']?>">
                     </div>
                 </div>
@@ -60,9 +60,9 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <div class="text-right hidden-xs-down text-muted">Роль:</div>
-                            <span class="hidden-sm-up">Роль:</span>
+                            <span class="hidden-sm-up text-muted">Роль:</span>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 with-mb">
                             <select name="manager_settings_role" class="custom-select">
                                 <?foreach(Access::getAvailableRoles() as $role => $name){?>
                                     <option value="<?=$role?>" <?if($role == $manager['ROLE_ID']){?>selected<?}?>><?=$name?></option>
@@ -75,7 +75,7 @@
                 <?if (Access::allow('change_manager_settings_limit') && in_array($manager['ROLE_ID'], array_keys(Access::$clientRoles))) {?>
                     <div class="form-group row">
                         <div class="col-sm-4"></div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 with-mb">
                             <input type="checkbox" id="manager_settings_limit_<?=$manager['MANAGER_ID']?>" name="manager_settings_limit" <?if ($manager['LIMIT_RESTRICTION'] == 1) {?>checked<?}?> class="<?=Text::CHECKBOX?>">
                             <label for="manager_settings_limit_<?=$manager['MANAGER_ID']?>">Ограничение в 1000 литров и 30000 рублей на лимит</label>
                         </div>
@@ -84,7 +84,7 @@
 
                 <div class="form-group row hidden-md-down">
                     <div class="col-sm-4"></div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 with-mb">
                         <button class="<?=Text::BTN?> btn-outline-success btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
                     </div>
                 </div>
@@ -98,9 +98,9 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <div class="text-right hidden-xs-down text-muted">Логин:</div>
-                            <span class="hidden-sm-up">Логин:</span>
+                            <span class="hidden-sm-up text-muted">Логин:</span>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 with-mb">
                             <?if (Access::allow('clients_edit-login')) {?>
                                 <div toggle_block="edit_login">
                                     <span class="login_value"><?=$manager['LOGIN']?></span>
@@ -120,9 +120,9 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <div class="text-right hidden-xs-down text-muted">Пароль:</div>
-                            <span class="hidden-sm-up">Пароль:</span>
+                            <span class="hidden-sm-up text-muted">Пароль:</span>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 with-mb">
                             <input type="password" name="manager_settings_password" class="form-control" <?=($manager['MANAGER_ID'] == Access::USER_TEST ? 'readonly' : '')?>>
                         </div>
                     </div>
@@ -130,9 +130,9 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <div class="text-right hidden-xs-down text-muted">Пароль еще раз:</div>
-                            <span class="hidden-sm-up">Пароль еще раз:</span>
+                            <span class="hidden-sm-up text-muted">Пароль еще раз:</span>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 with-mb">
                             <input type="password" name="manager_settings_password_again" class="form-control" <?=($manager['MANAGER_ID'] == Access::USER_TEST ? 'readonly' : '')?>>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
 
     <div class="form-group row hidden-lg-up m-t-20 m-b-0">
         <div class="col-sm-4"></div>
-        <div class="col-sm-8">
+        <div class="col-sm-8 with-mb">
             <button class="<?=Text::BTN?> btn-outline-success btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
         </div>
     </div>

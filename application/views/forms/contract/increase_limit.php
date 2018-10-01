@@ -4,9 +4,9 @@
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down text-muted">Количество:</div>
-                <span class="hidden-sm-up">Количество:</span>
+                <span class="hidden-sm-up text-muted">Количество:</span>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <div class="input-group">
                     <input type="text" name="contract_increase_limit_name" class="form-control">
 

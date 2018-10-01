@@ -3,9 +3,9 @@
         <div class="form-group row m-b-0">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down text-muted">Название компании:</div>
-                <span class="hidden-sm-up">Название компании:</span>
+                <span class="hidden-sm-up text-muted">Название компании:</span>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <input type="text" name="add_client_name" class="form-control">
             </div>
         </div>

@@ -2,7 +2,7 @@
     <div class="form-group row">
         <div class="col-sm-4">
             <div class="text-right hidden-xs-down text-muted">Название:</div>
-            <span class="hidden-sm-up">Название:</span>
+            <span class="hidden-sm-up text-muted">Название:</span>
         </div>
         <div class="col-sm-6">
             <input type="hidden" name="tarif_id" value="<?=(!empty($tariff['TARIF_ID']) ? $tariff['TARIF_ID'] : 0)?>">
@@ -18,7 +18,7 @@
     <div class="form-group row">
         <div class="col-sm-4">
             <div class="text-right hidden-xs-down text-muted">Версия:</div>
-            <span class="hidden-sm-up">Версия:</span>
+            <span class="hidden-sm-up text-muted">Версия:</span>
         </div>
         <div class="col-sm-6">
             <select name="tariff_versions" class="custom-select">

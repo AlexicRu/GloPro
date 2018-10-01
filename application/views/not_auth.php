@@ -19,7 +19,7 @@
                                 <div class="text-right d-none d-sm-block">Логин</div>
                                 <div class="d-block d-sm-none">Логин</div>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 with-mb">
                                 <input type="text" placeholder="Логин" name="login" class="form-control">
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                                 <div class="text-right d-none d-sm-block">Пароль</div>
                                 <div class="d-block d-sm-none">Пароль</div>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 with-mb">
                                 <input type="password" placeholder="Пароль" name="password" class="form-control">
                             </div>
                         </div>

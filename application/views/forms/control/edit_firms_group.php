@@ -2,9 +2,9 @@
     <div class="form-group row m-b-0">
         <div class="col-sm-4">
             <div class="text-right hidden-xs-down text-muted">Название группы:</div>
-            <span class="hidden-sm-up">Название группы:</span>
+            <span class="hidden-sm-up text-muted">Название группы:</span>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-8 with-mb">
             <input type="text" name="edit_firms_group_name" class="form-control">
         </div>
     </div>

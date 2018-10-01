@@ -2,7 +2,7 @@
     <div class="form-group row">
         <div class="col-sm-5">
             <div class="text-right hidden-xs-down text-muted">При блокировке карт:</div>
-            <span class="hidden-sm-up">При блокировке карт:</span>
+            <span class="hidden-sm-up text-muted">При блокировке карт:</span>
         </div>
         <div class="col-sm-7">
             <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_card" name="notice_email_card" <?=($settings['EML_CARD_BLOCK'] ? 'checked' : '')?>>
@@ -26,7 +26,7 @@
     <div class="form-group row">
         <div class="col-sm-5">
             <div class="text-right hidden-xs-down text-muted">При пополнении счета:</div>
-            <span class="hidden-sm-up">При пополнении счета:</span>
+            <span class="hidden-sm-up text-muted">При пополнении счета:</span>
         </div>
         <div class="col-sm-7">
             <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_payment" name="notice_email_payment" <?=($settings['EML_ADD_PAYMENT'] ? 'checked' : '')?>>
@@ -50,7 +50,7 @@
     <div class="form-group row">
         <div class="col-sm-5">
             <div class="text-right hidden-xs-down text-muted">При блокировке фирмы:</div>
-            <span class="hidden-sm-up">При блокировке фирмы:</span>
+            <span class="hidden-sm-up text-muted">При блокировке фирмы:</span>
         </div>
         <div class="col-sm-7">
             <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_firm" name="notice_email_firm" <?=($settings['EML_CONTRACT_BLOCK'] ? 'checked' : '')?>>
@@ -74,7 +74,7 @@
     <div class="form-group row">
         <div class="col-sm-5">
             <div class="text-right hidden-xs-down text-muted">При приближению к критическому порогу:</div>
-            <span class="hidden-sm-up">При приближению к критическому порогу:</span>
+            <span class="hidden-sm-up text-muted">При приближению к критическому порогу:</span>
         </div>
         <div class="col-sm-7">
             <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_barrier" name="notice_email_barrier" <?=($settings['EML_BLNC_CTRL'] ? 'checked' : '')?>>
@@ -98,7 +98,7 @@
     <div class="form-group row m-b-0">
         <div class="col-sm-5">
             <div class="text-right hidden-xs-down text-muted">Порог:</div>
-            <span class="hidden-sm-up">Порог:</span>
+            <span class="hidden-sm-up text-muted">Порог:</span>
         </div>
         <div class="col-sm-7">
             <input type="text" name="notice_email_barrier_value" class="form-control" value="<?=$settings['EML_BLNC_CTRL_VALUE']?>">

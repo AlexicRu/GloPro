@@ -3,9 +3,9 @@
         <div class="form-group row">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down text-muted">Номер:</div>
-                <span class="hidden-sm-up">Номер:</span>
+                <span class="hidden-sm-up text-muted">Номер:</span>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <input type="number" name="add_contract_payment_num" class="form-control">
             </div>
         </div>
@@ -13,16 +13,16 @@
         <div class="form-group row">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down text-muted">Дата платежного поручения:</div>
-                <span class="hidden-sm-up">Дата платежного поручения:</span>
+                <span class="hidden-sm-up text-muted">Дата платежного поручения:</span>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <input type="date" name="add_contract_payment_date" class="form-control" maxDate="1" value="<?=date('Y-m-d')?>">
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <input type="checkbox" class="<?=Text::CHECKBOX?>" name="add_contract_payment_minus" id="add_contract_payment_minus">
                 <label for="add_contract_payment_minus">Списание</label>
             </div>
@@ -31,9 +31,9 @@
         <div class="form-group row">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down text-muted">Сумма (<?=Text::RUR?>):</div>
-                <span class="hidden-sm-up">Сумма (<?=Text::RUR?>):</span>
+                <span class="hidden-sm-up text-muted">Сумма (<?=Text::RUR?>):</span>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <input type="number" name="add_contract_payment_value" class="form-control">
             </div>
         </div>
@@ -41,9 +41,9 @@
         <div class="form-group row">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down text-muted">Комментарий:</div>
-                <span class="hidden-sm-up">Комментарий:</span>
+                <span class="hidden-sm-up text-muted">Комментарий:</span>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <textarea name="add_contract_payment_comment" class="form-control"></textarea>
             </div>
         </div>

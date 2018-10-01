@@ -69,7 +69,7 @@ $toggle = 'agreement'.$agreement['AGREEMENT_ID'];
                 <div class="text-right hidden-xs-down text-muted">Расчет скидки:</div>
                 <div class="hidden-sm-up">Засчет скидки:</div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 with-mb">
                 <div toggle_block="<?=$toggle?>">
                     <?if($agreement['DISCOUNT_TYPE'] == Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_LOAD){?>
                         Из данных загрузки

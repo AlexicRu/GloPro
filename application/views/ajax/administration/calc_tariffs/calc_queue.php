@@ -1,7 +1,7 @@
 <?if (empty($queue)) {?>
-    <i class="gray">Нет текущих расчетов</i>
+    <i class="text-muted">Нет текущих расчетов</i>
 <?} else {?>
-    <table class="table table_small">
+    <table class="table table_small m-b-20">
         <tr>
             <th>Запись</th>
             <th>Клиент</th>
@@ -24,6 +24,5 @@
         <?}?>
     </table>
 
-    <br>
-    <i class="gray">Записи в очереди хранятся в течение одного дня</i>
+    <i class="text-muted">Записи в очереди хранятся в течение одного дня</i>
 <?}?>

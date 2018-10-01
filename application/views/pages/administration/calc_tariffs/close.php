@@ -15,7 +15,7 @@
             '</span>' +
             '<span toggle_block="referenceSourcesTube<?=$tube['TUBE_ID']?>" style="display:none;">' +
             '<span onclick="referenceSourcesTubeNameChange($(this), <?=$tube['TUBE_ID']?>)" class="btn waves-effect waves-light btn_small btn_icon btn_green"><i class="fa fa-check"></i></span>'+
-            '<input type="text" value="<?=$tube['TUBE_NAME']?>" class="input_mini">'+
+            '<input type="text" value="<?=$tube['TUBE_NAME']?>" class="form-control">'+
             '</span>' +
             '</div>';
 

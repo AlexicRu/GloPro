@@ -1,32 +1,41 @@
-<style>
-    .calc_tariffs_client_block:not(:empty){
-        margin-bottom: 30px;
-    }
-</style>
+<div class="tabs_administration_calc_tariffs">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs customtab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#tabClient" role="tab">
+                Тариф клиента
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tabClose" role="tab">
+                Закрытие периода
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tabQueue" role="tab" onclick="loadQueueCalc()">
+                Очередь расчета
+            </a>
+        </li>
+    </ul>
 
-<div class="tabs_block tabs_switcher tabs_administration_calc_tariffs">
-    <div class="tabs">
-        <span tab="client" class="tab active">Тариф клиента</span><span tab="close" class="tab">Закрытие периода</span><span tab="queue" class="tab" onclick="loadQueueCalc()">Очередь расчета</span>
-    </div>
-    <div class="tabs_content">
-        <div tab_content="client" class="tab_content active">
-            <div class="calc_tariffs_client_block t_sections_list">
+    <!-- Tab panes -->
+    <div class="tab-content p-20 bg-white">
+        <div class="tab-pane active" id="tabClient" role="tabpanel">
+            <div class="calc_tariffs_client_block t_sections_list"></div>
 
-            </div>
+            <div class="<?=Text::BTN?> btn-outline-primary" onclick="addCalcTariffsClient()"><i class="fa fa-plus"></i> Добавить клиента</div>
 
-            <div class="btn" onclick="addCalcTariffsClient()"><i class="fa fa-plus"></i> Добавить клиента</div>
-
-            <div class="row_btns">
-                <div class="btn waves-effect waves-light btn_green" onclick="calcTariffsGo()"><i class="fa fa-check"></i> Рассчитать</div>
+            <div class="p-t-20 m-t-20 border-top">
+                <div class="<?=Text::BTN?> btn-outline-success" onclick="calcTariffsGo()"><i class="fa fa-check"></i> Рассчитать</div>
             </div>
             <br>
-            <i class="gray">
+            <i class="text-muted">
                 * - дата начала и дата окончания расчета тарифа не старше чем 3 месяца от текущей даты. Для расчета тарифа за более ранний период сделайте запрос через <a href="/support">Поддержку</a>
             </i>
         </div>
-        <div tab_content="close" class="tab_content">
+        <div class="tab-pane" id="tabClose" role="tabpanel">
             <?
-                include __DIR__ . '/calc_tariffs/close.php';
+            include __DIR__ . '/calc_tariffs/close.php';
             ?>
             <br>
             <table>
@@ -35,15 +44,15 @@
                         Закрыть период на дату:
                     </td>
                     <td>
-                        <input type="text" name="close_by_day" class="datepicker" readonly>
+                        <input type="date" name="close_by_day" class="form-control">
                     </td>
                     <td>
-                        <span class="btn">Запуск</span>
+                        <span class="<?=Text::BTN?> btn-outline-primary">Запуск</span>
                     </td>
                 </tr>
             </table>
         </div>
-        <div tab_content="queue" class="tab_content">
+        <div class="tab-pane" id="tabQueue" role="tabpanel">
             <div class="calc_queue"></div>
         </div>
     </div>

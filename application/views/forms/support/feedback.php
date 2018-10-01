@@ -2,7 +2,7 @@
     <div class="form-group row">
         <div class="col-sm-4 col-lg-3">
             <div class="text-right hidden-xs-down text-muted">Email для ответов:</div>
-            <span class="hidden-sm-up">Email для ответов:</span>
+            <span class="hidden-sm-up text-muted">Email для ответов:</span>
         </div>
         <div class="col-sm-8 col-lg-9">
             <input type="text" name="feedback_email" class="form-control">
@@ -12,7 +12,7 @@
     <div class="form-group row">
         <div class="col-sm-4 col-lg-3">
             <div class="text-right hidden-xs-down text-muted">Тема сообщения:</div>
-            <span class="hidden-sm-up">Тема сообщения:</span>
+            <span class="hidden-sm-up text-muted">Тема сообщения:</span>
         </div>
         <div class="col-sm-8 col-lg-9">
             <input type="text" name="feedback_email" class="form-control">
@@ -22,7 +22,7 @@
     <div class="form-group row">
         <div class="col-sm-4 col-lg-3">
             <div class="text-right hidden-xs-down text-muted">Текст сообщения:</div>
-            <span class="hidden-sm-up">Текст сообщения:</span>
+            <span class="hidden-sm-up text-muted">Текст сообщения:</span>
         </div>
         <div class="col-sm-8 col-lg-9">
             <textarea name="feedback_text" class="form-control"></textarea>
@@ -32,7 +32,7 @@
     <div class="form-group row">
         <div class="col-sm-4 col-lg-3">
             <div class="text-right hidden-xs-down text-muted">Прикрепленные файлы:</div>
-            <span class="hidden-sm-up">Прикрепленные файлы:</span>
+            <span class="hidden-sm-up text-muted">Прикрепленные файлы:</span>
         </div>
         <div class="col-sm-8 col-lg-9">
             <div class="feedback_files dropzone"></div>
