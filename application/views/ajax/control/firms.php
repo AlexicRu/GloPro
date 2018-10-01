@@ -18,23 +18,23 @@
             params.group_id = $('[name=group_id_<?=$postfix?>]').val();
         }
 
-        paginationAjax('/control/load-firms/', 'ajax_block_group_firms_list_<?=$postfix?>', renderAjaxPaginationGroupFirmsList<?=$postfix?>, params);
+        paginationAjax('/control/load-firms/', 'ajax_block_group_firms_list_<?=$postfix?>', renderAjaxPaginationFirmsList<?=$postfix?>, params);
     });
 
-    function renderFilterGroupFirmsList<?=$postfix?>(block, params)
+    function renderFilterFirmsList<?=$postfix?>(block, params)
     {
         if(block.find('> table').length == 0){
             block.append('<table class="table table_small table_fullscreen check_all_block"></table>');
             block = block.find('table');
 
             block.append('<tr>' +
-                '<th class="td_check"><input type="checkbox" onchange="checkAllRows($(this), \'firm_id\')" style="display: none;"></th>' +
+                '<th class="td_check"><input class="'+ CHECKBOX +'" id="firms_check_all" type="checkbox" onchange="checkAllRows($(this), \'firm_id\')"><label for="firms_check_all" /></th>' +
                 '<th><input type="text" name="group_firm_filter_firm_id" placeholder="FIRM ID" class="form-control"></th>' +
                 '<th><input type="text" name="group_firm_filter_holder" placeholder="Владелец" class="form-control"></th>' +
                 '<th>' +
                 '<div class="btn-group">' +
                 '<input type="text" name="group_firm_filter_description_ru" placeholder="Описание" class="form-control">' +
-                '<button class="'+ BTN +' btn-sm btn-outline-primary" onclick="filterGroupFirms<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
+                '<button class="'+ BTN +' btn-sm btn-outline-primary" onclick="filterFirms<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
                 '</div>' +
                 '</th>' +
                 '<th class="td_edit" />' +
@@ -52,9 +52,9 @@
         }
     }
 
-    function renderAjaxPaginationGroupFirmsListError<?=$postfix?>(block, params)
+    function renderAjaxPaginationFirmsListError<?=$postfix?>(block, params)
     {
-        renderFilterGroupFirmsList<?=$postfix?>(block, params);
+        renderFilterFirmsList<?=$postfix?>(block, params);
 
         var subBlock = block.find('.table');
 
@@ -65,9 +65,9 @@
         subBlock.append(tpl);
     }
 
-    function renderAjaxPaginationGroupFirmsList<?=$postfix?>(data, block, params)
+    function renderAjaxPaginationFirmsList<?=$postfix?>(data, block, params)
     {
-        renderFilterGroupFirmsList<?=$postfix?>(block, params);
+        renderFilterFirmsList<?=$postfix?>(block, params);
 
         var subBlock = block.find('.table');
 
@@ -100,7 +100,7 @@
         }
     }
 
-    function filterGroupFirms<?=$postfix?>(btn)
+    function filterFirms<?=$postfix?>(btn)
     {
         var block = btn.closest('.ajax_block_group_firms_list_<?=$postfix?>_out');
 
@@ -109,7 +109,7 @@
             FIRM_ID:            $('[name=group_firm_filter_firm_id]', block).val(),
             HOLDER:             $('[name=group_firm_filter_holder]', block).val(),
             DESCRIPTION_RU:     $('[name=group_firm_filter_description_ru]', block).val(),
-            onError:            renderAjaxPaginationGroupFirmsListError<?=$postfix?>
+            onError:            renderAjaxPaginationFirmsListError<?=$postfix?>
         };
 
         if($('[name=group_id_<?=$postfix?>]').length){
@@ -118,6 +118,6 @@
 
         block.empty();
 
-        paginationAjax('/control/load-firms/', 'ajax_block_group_firms_list_<?=$postfix?>', renderAjaxPaginationGroupFirmsList<?=$postfix?>, params);
+        paginationAjax('/control/load-firms/', 'ajax_block_group_firms_list_<?=$postfix?>', renderAjaxPaginationFirmsList<?=$postfix?>, params);
     }
 </script>

@@ -493,7 +493,28 @@ function removeLoader(block)
     block.removeClass('loading loading__min-width');
 }
 
-function checkBoxInTab(e)
+/**
+ * collect one form from one class forms
+ *
+ * @param form
+ * @param className
+ * @returns {boolean}
+ */
+function collectForms(form, className)
 {
-    e.stopPropagation();
+    var forms = $('form.' + className).not(form);
+
+    var strings = [];
+
+    forms.each(function () {
+        var t = $(this);
+
+        strings.push(t.serialize());
+    });
+
+    form.append('<input type="hidden" name="other_data">');
+
+    form.find('[name=other_data]').val(strings.join('&'));
+
+    return true;
 }

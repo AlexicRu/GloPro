@@ -97,9 +97,8 @@ class Controller_Control extends Controller_Common {
 
         $dotsGroups = Model_Dot::getGroups($filter);
 
+        $popupAddDots = Form::popupLarge('Добавление точек', 'control/add_dots');
         $popupAddDotsGroup = Form::popup('Добавление группы точек', 'control/add_dots_group');
-        $popupAddDots = Form::popup('Добавление точек', 'control/add_dots');
-
         $popupEditDotsGroup = Form::popup('Редактирование группы точек', 'control/edit_dots_group');
 
         $this->tpl
@@ -140,32 +139,48 @@ class Controller_Control extends Controller_Common {
      */
     public function action_loadGroupDots()
     {
-        $params = [
-            'group_id'	    => $this->request->post('group_id') ?: $this->request->query('group_id'),
-            'offset' 		=> $this->request->post('offset'),
-            'pagination'    => $this->toXls ? false : true
-        ];
+        //если это есть значит уже грузим данные а не страницу
+        $offset = $this->request->post('offset');
 
-        $result = Model_Dot::getGroupDots($params);
+        if(is_null($offset) && !$this->toXls){
 
-        if ($this->toXls){
-            $this->showXls('group_dots', $result, [
-                'PROJECT_NAME'  => 'Шаблон ТО',
-                'ID_EMITENT'    => 'Эмитент',
-                'ID_TO'         => 'Номер ТО',
-                'POS_NAME'      => 'Название',
-                'OWNER'         => 'Владелец',
-                'POS_ADDRESS'   => 'Адрес'
-            ], true);
-        } else {
-            list($dots, $more) = $result;
+            $groupId = $this->request->param('id');
+
+            $canEdit = true;
+
+            $html = View::factory('ajax/control/dots_in_group')
+                ->bind('groupId', $groupId)
+                ->bind('canEdit', $canEdit);
+
+            $this->html($html);
+        }else{
+            $params = [
+                'group_id'      => $this->request->post('group_id') ?: $this->request->param('id'),
+                'offset'        => $offset,
+                'pagination'    => $this->toXls ? false : true
+            ];
+
+            $result = Model_Dot::getGroupDots($params);
+
+            if ($this->toXls){
+                $this->showXls('group_dots', $result, [
+                    'PROJECT_NAME'  => 'Шаблон ТО',
+                    'ID_EMITENT'    => 'Эмитент',
+                    'ID_TO'         => 'Номер ТО',
+                    'POS_NAME'      => 'Название',
+                    'OWNER'         => 'Владелец',
+                    'POS_ADDRESS'   => 'Адрес'
+                ], true);
+            } else {
+                list($items, $more) = $result;
+            }
+
+            if (empty($items)) {
+                $this->jsonResult(false);
+            }
+
+            $this->jsonResult(true, ['items' => $items, 'more' => $more]);
         }
-
-        if(empty($dots)){
-            $this->jsonResult(false);
-        }
-
-        $this->jsonResult(true, ['items' => $dots, 'more' => $more]);
     }
 
     /**
@@ -630,12 +645,7 @@ class Controller_Control extends Controller_Common {
 
             $groupId = $this->request->param('id');
 
-            $user = User::current();
-
             $canEdit = true;
-            /*if (in_array($user['ROLE_ID'], Access::$adminRoles)) {
-                $canEdit = true;
-            }*/
 
             $html = View::factory('ajax/control/cards_in_group')
                 ->bind('groupId', $groupId)
@@ -644,7 +654,7 @@ class Controller_Control extends Controller_Common {
             $this->html($html);
         }else{
             $params = [
-                'group_id'      => $this->request->post('group_id') ?: $this->request->query('group_id'),
+                'group_id'      => $this->request->post('group_id') ?: $this->request->param('id'),
                 'offset'        => $offset,
                 'pagination'    => $this->toXls ? false : true
             ];

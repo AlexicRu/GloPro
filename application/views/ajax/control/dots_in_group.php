@@ -1,13 +1,11 @@
-<div class="ajax_block_dots_<?=$groupId?>_out">
-
-</div>
+<div class="ajax_block_dots_group_<?=$groupId?>_out"></div>
 
 <script>
     $(function(){
-        paginationAjax('/control/load-group-dots/', 'ajax_block_dots_<?=$groupId?>', renderAjaxPaginationDots<?=$groupId?>, {group_id: <?=$groupId?>, can_edit:<?=(int)$canEdit?>});
+        paginationAjax('/control/load-group-dots/', 'ajax_block_dots_group_<?=$groupId?>', renderAjaxPaginationDotsGroup<?=$groupId?>, {group_id: <?=$groupId?>, can_edit:<?=(int)$canEdit?>});
     });
 
-    function renderAjaxPaginationDots<?=$groupId?>(data, block, params)
+    function renderAjaxPaginationDotsGroup<?=$groupId?>(data, block, params)
     {
         var canEdit = false;
 
@@ -15,12 +13,12 @@
             canEdit = true;
         }
 
-        if(block.find('> table').length == 0){
-            block.append('<table class="table table_small table_fullscreen check_all_block"></table>');
+        if(block.find('table').length == 0){
+            block.append('<div class="table-responsive"><table class="table table_small table_fullscreen check_all_block"></table></div>');
             block = block.find('table');
 
             block.append('<tr>' +
-                (canEdit ? '<th class="td_check"><input type="checkbox" onchange="checkAllRows($(this), \'pos_id\')"></th>' : '') +
+                (canEdit ? '<th class="td_check"><input class="'+ CHECKBOX +'" type="checkbox" id="p_all" onchange="checkAllRows($(this), \'pos_id\')"><label for="p_all" /></th>' : '') +
                 '<th><nobr>Шаблон ТО</nobr></th>' +
                 '<th><nobr>Эмитент</nobr></th>' +
                 '<th><nobr>Номер ТО</nobr></th>' +
@@ -28,7 +26,7 @@
                 '<th>Владелец</th>' +
                 '<th>Адрес</th>' +
                 (canEdit ? '<th class="td_edit"></th>' : '') +
-            '</tr>');
+                '</tr>');
         }else{
             block = block.find('table');
         }
@@ -43,10 +41,10 @@
                 '<td class="dot_td_owner"/>' +
                 '<td class="dot_td_address"/>' +
                 (canEdit ? '<td class="td_edit"/>' : '') +
-            '</tr>');
+                '</tr>');
 
             tpl.attr('id', data[i].POS_ID);
-            tpl.find('.td_check').html('<input type="checkbox" name="pos_id" value="'+ data[i].POS_ID +'">');
+            tpl.find('.td_check').html('<input type="checkbox" class="'+ CHECKBOX +'" name="pos_id" id="pig_'+ data[i].POS_ID +'" value="'+ data[i].POS_ID +'"><label for="pig_'+ data[i].POS_ID +'" />');
             tpl.find('.dot_td_project_name').text(data[i].PROJECT_NAME);
             tpl.find('.dot_td_id_emi').text(data[i].ID_EMITENT);
             tpl.find('.dot_td_id_to').text(data[i].ID_TO);
@@ -62,6 +60,6 @@
             $('.td_check, .td_edit').show();
         }
 
-        renderScroll($('.tabs_dots_groups .scroll'));
+        renderVerticalTabsScroll($('.tabs_dots_groups .v-scroll'));
     }
 </script>

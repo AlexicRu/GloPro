@@ -1,12 +1,10 @@
 <?if(!empty($showCheckbox)){?>
-    <input type="hidden" name="show_dots_<?=$postfix?>" value="1">
+    <input type="hidden" name="show_checkboxes<?=$postfix?>" value="1">
 <?}?>
 <?if(!empty($groupId)){?>
     <input type="hidden" name="group_id_<?=$postfix?>" value="<?=$groupId?>">
 <?}?>
-<div class="ajax_block_dots_list_<?=$postfix?>_out">
-
-</div>
+<div class="ajax_block_group_dots_list_<?=$postfix?>_out"></div>
 
 <script>
     $(function(){
@@ -18,7 +16,7 @@
             params.group_id = $('[name=group_id_<?=$postfix?>]').val();
         }
 
-        paginationAjax('/control/load-dots/', 'ajax_block_dots_list_<?=$postfix?>', renderAjaxPaginationDotsList<?=$postfix?>, params);
+        paginationAjax('/control/load-dots/', 'ajax_block_group_dots_list_<?=$postfix?>', renderAjaxPaginationDotsList<?=$postfix?>, params);
     });
 
     function renderFilterDotsList<?=$postfix?>(block, params)
@@ -28,17 +26,20 @@
             block = block.find('table');
 
             block.append('<tr>' +
-                '<th class="td_check"><input type="checkbox" onchange="checkAllRows($(this), \'pos_id\')" style="display: none;"></th>' +
-                '<th><input type="text" name="dots_filter_project_name" placeholder="Шаблон ТО" class="input_small"></th>' +
-                '<th><input type="text" name="dots_filter_id_emi" placeholder="Эмитент" class="input_small"></th>' +
-                '<th><input type="text" name="dots_filter_id_to" placeholder="Номер ТО" class="input_small"></th>' +
-                '<th><input type="text" name="dots_filter_pos_name" placeholder="Название" class="input_small"></th>' +
-                '<th><input type="text" name="dots_filter_owner" placeholder="Владелец"></th>' +
-                '<th style="width:300px;"><input type="text" name="dots_filter_address" placeholder="Адрес">'+
-                    '<button class="btn btn_small btn_icon fr" onclick="filterDots<?=$postfix?>($(this))"><i class="icon-find"></i></button>'+
+                '<th class="td_check"><input class="'+ CHECKBOX +'" id="dots_check_all" type="checkbox" onchange="checkAllRows($(this), \'pos_id\')"><label for="dots_check_all" /></th>' +
+                '<th><input type="text" name="dots_filter_project_name" placeholder="Шаблон ТО" class="form-control"></th>' +
+                '<th><input type="text" name="dots_filter_id_emi" placeholder="Эмитент" class="form-control"></th>' +
+                '<th><input type="text" name="dots_filter_id_to" placeholder="Номер ТО" class="form-control"></th>' +
+                '<th><input type="text" name="dots_filter_pos_name" placeholder="Название" class="form-control"></th>' +
+                '<th><input type="text" name="dots_filter_owner" placeholder="Владелец" class="form-control"></th>' +
+                '<th style="width:300px;">' +
+                    '<div class="btn-group">' +
+                        '<input type="text" name="dots_filter_address" placeholder="Адрес" class="form-control">'+
+                        '<button class="'+ BTN +' btn-sm btn-outline-primary" onclick="filterDots<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
+                    '</div>' +
                 '</th>' +
                 '<th class="td_edit"></th>' +
-            '</tr>');
+                '</tr>');
         }
 
         if(params.ID_EMITENT){
@@ -65,11 +66,11 @@
     {
         renderFilterDotsList<?=$postfix?>(block, params);
 
-        var subBlock = block.find('tbody');
+        var subBlock = block.find('table');
 
         var tpl = $('<tr>' +
             '<td colspan="8" class="center"><i>Данные отсутствуют</i></td>' +
-        '</tr>');
+            '</tr>');
 
         subBlock.append(tpl);
     }
@@ -78,7 +79,7 @@
     {
         renderFilterDotsList<?=$postfix?>(block, params);
 
-        var subBlock = block.find('tbody');
+        var subBlock = block.find('table');
 
         for(var i in data){
             var tpl = $('<tr>' +
@@ -90,17 +91,20 @@
                 '<td class="dot_td_owner"/>' +
                 '<td class="dot_td_address"/>' +
                 '<td class="td_edit"/>' +
-            '</tr>');
+                '</tr>');
 
             tpl.attr('POS_ID', data[i].POS_ID);
-            tpl.find('.td_check').html('<input type="checkbox" name="pos_id" value="'+ data[i].POS_ID +'">');
+            tpl.find('.td_check').html(
+                '<input type="checkbox" class="'+ CHECKBOX +'" name="pos_id" id="group_dots_add_dot_'+ data[i].POS_ID +'" value="'+ data[i].POS_ID +'">' +
+                '<label for="group_dots_add_dot_'+ data[i].POS_ID +'" />'
+            );
             tpl.find('.dot_td_project_name').text(data[i].PROJECT_NAME);
             tpl.find('.dot_td_id_emi').text(data[i].ID_EMITENT);
             tpl.find('.dot_td_id_to').text(data[i].ID_TO);
             tpl.find('.dot_td_pos_name').text(data[i].POS_NAME);
             tpl.find('.dot_td_owner').text(data[i].OWNER);
             tpl.find('.dot_td_address').text(data[i].POS_ADDRESS);
-            tpl.find('.td_edit').html('<span class="btn btn_green btn_small btn_icon"><i class="icon-pen"></span>');
+            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-sm btn-outline-success"><i class="fa fa-pencil-alt"></span>');
 
             subBlock.append(tpl);
         }
@@ -108,11 +112,11 @@
         if($('.tabs_dots_groups .action_del', block).is(':visible')){
             $('.td_edit', block).show();
         }
-        if($('.tabs_dots_groups .action_del', block).is(':visible') || $('[name=show_dots_<?=$postfix?>]').length){
+        if($('.tabs_dots_groups .action_del', block).is(':visible') || $('[name=show_checkboxes<?=$postfix?>]').length){
             $('.td_check', block).show();
         }
     }
-    
+
     function filterDots<?=$postfix?>(btn)
     {
         var block = btn.closest('.ajax_block_dots_list_<?=$postfix?>_out');

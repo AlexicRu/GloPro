@@ -21,9 +21,9 @@
 
                     <div class="m-t-5 m-b-5">
                         <input id="filter_only_managers" type="checkbox" class="<?=Text::CHECKBOX?>" name="filter[only_managers]" value="1" <?=(empty($filter['only_managers']) ? '' : 'checked')?>>
-                        <label for="filter_only_managers">Только менеджеры</label>
+                        <label for="filter_only_managers" class="font-14">Только менеджеры</label>
                     </div>
-                    <button class="<?=Text::BTN?> btn-outline-primary">Применить</button>
+                    <button class="<?=Text::BTN?> btn-outline-primary btn-sm">Применить</button>
                 </form>
             </li>
 

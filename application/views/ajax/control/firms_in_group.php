@@ -15,7 +15,7 @@
             canEdit = true;
         }
 
-        if(block.find('> table').length == 0){
+        if(block.find('table').length == 0){
             block.append('<div class="table-responsive"><table class="table table_small table_fullscreen check_all_block"></table></div>');
             block = block.find('table');
 
