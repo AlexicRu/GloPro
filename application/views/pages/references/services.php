@@ -1,50 +1,62 @@
-<h1>Услуги</h1>
+<div class="card">
+    <div class="card-body">
 
-<div class="block no_padding">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Источник:</span>
+                    </div>
+                    <select class="sources_list custom-select">
+                        <?foreach ($tubesList as $tube) {?>
+                            <option value="<?=$tube['TUBE_ID']?>" <?=($tube['CARD_LIMIT_CHANGE_ID'] == 1 ? 'disabled' : '')?>><?=$tube['TUBE_NAME']?></option>
+                        <?}?>
+                    </select>
+                </div>
 
-    <div class="as_table">
-        <div class="col">
-            <b class="f18">Выбрать источник:</b><br>
-            <select class="sources_list">
-                <?foreach ($tubesList as $tube) {?>
-                    <option value="<?=$tube['TUBE_ID']?>" <?=($tube['CARD_LIMIT_CHANGE_ID'] == 1 ? 'disabled' : '')?>><?=$tube['TUBE_NAME']?></option>
-                <?}?>
-            </select>
-            <br><br>
-            <div class="services_list jsGrid"></div>
+                <div class="services_list jsGrid"></div>
+            </div>
+            <div class="col-xl-4 with-mb">
+                <div class="card m-b-0">
+                    <div class="card-body bg-light">
+                        <b class="font-18">Добавление конвертации услуг</b>
+
+                        <div class="form-group row m-t-20">
+                            <div class="col-sm-4">
+                                <div class="text-right hidden-xs-down text-muted">Ввод из источника:</div>
+                                <span class="hidden-sm-up">Ввод из источника:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" name="add_service_in_source" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <div class="text-right hidden-xs-down text-muted">Выбор из источника:</div>
+                                <span class="hidden-sm-up">Выбор из источника:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <?=Form::buildField('service_choose_single', 'add_service_in_service')?>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-8">
+                                <span class="<?=Text::BTN?> btn-outline-primary" onclick="addService()">Добавить</span>
+                            </div>
+                        </div>
+
+                        <i class="text-muted">
+                            Примечание: Для настройки конвертации услуг по источникам, где доступно управление лимитами карт, обратитесь в <a href="/support">Техническую поддержку</a>
+                        </i>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col line_inner">
-            <b class="f18">Добавление конвертации услуг</b>
 
-            <table>
-                <tr>
-                    <td class="gray right">Ввод из источника:</td>
-                    <td>
-                        <input type="text" name="add_service_in_source" class="input_wide">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gray right">Выбор из справочника</td>
-                    <td>
-                        <?=Form::buildField('service_choose_single', 'add_service_in_service')?>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <span class="btn" onclick="addService()">Добавить</span>
-                    </td>
-                </tr>
-            </table>
-
-
-            <br>
-            <i class="gray">
-                Примечание: Для настройки конвертации услуг по источникам, где доступно управление лимитами карт, обратитесь в <a href="/support">Техническую поддержку</a>
-            </i>
-        </div>
     </div>
-
 </div>
 
 <script>

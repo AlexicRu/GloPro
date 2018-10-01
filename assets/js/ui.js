@@ -148,6 +148,8 @@ function keyupComboBox(combo, params)
         result.hide();
         resultList.html('');
         more.hide();
+    } else {
+        more.find('.btn').prepend('<i class="fas fa-circle-notch fa-spin m-r-5"></i>');
     }
 
     var postParams = {
@@ -176,6 +178,7 @@ function keyupComboBox(combo, params)
 
     ajaxComboBox = $.post(url, postParams, function(data){
         var items = data.data && data.data.items ? data.data.items : [];
+        more.find('.fa-circle-notch').remove();
 
         if(data.success){
             if(params.show_all){
