@@ -214,6 +214,7 @@ abstract class Controller_Common extends Controller_Template {
             '/admin-pro/main/js/custom.js',
             Common::getAssetsLink() . 'fonts/font-awesome-5/fa-solid.min.js',
             Common::getAssetsLink() . 'fonts/font-awesome-5/fa-light.min.js',
+            Common::getAssetsLink() . 'fonts/font-awesome-5/fa-regular.min.js',
             Common::getAssetsLink() . 'fonts/font-awesome-5/fontawesome.min.js',
         ];
 

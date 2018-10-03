@@ -1,19 +1,19 @@
 <?php defined('SYSPATH') or die('No direct script access');
 
 return array(
-    'dashboard'         => ['title' => 'Dashboard', 'icon' => 'fal fa-tachometer-alt', 'children' => [
+    'dashboard'         => ['title' => 'Dashboard', 'icon' => 'fa-fw fal fa-tachometer-alt', 'children' => [
         'index'         => 'Клиенты',
         'agent'         => 'Дистрибьюторы',
     ]],
-    'info'              => ['title' => 'Инфо-портал', 'icon' => 'fal fa-info', 'children' => [
+    'info'              => ['title' => 'Инфо-портал', 'icon' => 'fa-fw fal fa-info', 'children' => [
         'index'         => 'Информация',
         'marketing'     => 'РИМ',
         'passports'     => 'Паспорта качества',
     ]],
-    'clients'           => ['title' => 'Фирмы', 'icon' => 'fal fa-users'],
-    'suppliers'         => ['title' => 'Поставщики', 'icon' => 'fal fa-tint'],
-    'reports'           => ['title' => 'Отчетность', 'icon' => 'fal fa-file-alt'],
-    'control'           => ['title' => 'Управление', 'icon' => 'fal fa-cogs', 'children' => [
+    'clients'           => ['title' => 'Фирмы', 'icon' => 'fa-fw fal fa-users'],
+    'suppliers'         => ['title' => 'Поставщики', 'icon' => 'fa-fw fal fa-tint'],
+    'reports'           => ['title' => 'Отчетность', 'icon' => 'fa-fw fal fa-file-alt'],
+    'control'           => ['title' => 'Управление', 'icon' => 'fa-fw fal fa-cogs', 'children' => [
         'managers'      => 'Менеджеры',
         'tariffs'       => 'Тарифы',
         '1c-connect'    => 'Связь с 1С',
@@ -21,7 +21,7 @@ return array(
         'firms-groups'  => 'Группы фирм',
         'dots-groups'   => 'Группы ТО',
     ]],
-    'references'        => ['title' => 'Справочники', 'icon' => 'fal fa-clipboard-list', 'children' => [
+    'references'        => ['title' => 'Справочники', 'icon' => 'fa-fw fal fa-clipboard-list', 'children' => [
         'sources'       => 'Источники данных',
         'addresses'     => 'Адреса',
         'currency'      => 'Валюты',
@@ -29,14 +29,14 @@ return array(
         'cards'         => 'Список карт',
         'dots'          => 'Точки обслуживания',
     ]],
-    'administration'    => ['title' => 'Сервис', 'icon' => 'fal fa-sitemap', 'children' => [
+    'administration'    => ['title' => 'Сервис', 'icon' => 'fa-fw fal fa-sitemap', 'children' => [
         'transactions'      => 'Транзакции',
         'calc-tariffs'      => 'Расчет тарифов',
         'cards-transfer'    => 'Перенос карт'
     ]],
-    'news'              => ['title' => 'Новости', 'icon' => 'fal fa-bullhorn'],
-    'support'           => ['title' => 'Поддержка', 'icon' => 'fal fa-question-circle'],
-    'system'            => ['title' => 'System', 'icon' => 'fa fa-poo', 'children' => [
+    'news'              => ['title' => 'Новости', 'icon' => 'fa-fw fal fa-bullhorn'],
+    'support'           => ['title' => 'Поддержка', 'icon' => 'fa-fw fal fa-question-circle'],
+    'system'            => ['title' => 'System', 'icon' => 'fa-fw fa fa-poo', 'children' => [
         'deploy'        => 'Deploy',
         'db'            => 'DB',
     ]],

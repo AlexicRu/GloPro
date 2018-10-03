@@ -5,8 +5,8 @@
     <!-- ============================================================== -->
     <ul class="navbar-nav mr-auto">
         <!-- This is  -->
-        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="fa-fw far fa-bars"></i></a> </li>
+        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="fa-fw far fa-bars"></i></a> </li>
 
         <?if (!empty($user['managers_binds'])) {
             $currentManager = reset($user['managers_binds']);
@@ -14,8 +14,8 @@
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown">
                     <span class="font-20">
-                        <i class="fal fa-user"></i>
-                        <span class="hidden-sm-down"><?=$currentManager['WEB_NAME_CURRENT']?></span>
+                        <i class="far fa-user"></i>
+                        <span class="hidden-sm-down m-l-5"><?=$currentManager['WEB_NAME_CURRENT']?></span>
                     </span>
                 </a>
 
@@ -24,7 +24,7 @@
                     <?foreach ($user['managers_binds'] as $manager) {?>
                         <a href="/force-login/<?=Common::encrypt($user['MANAGER_ID'] . ' ' . $manager['MANAGER_TO'])?>">
                             <div class="mail-contnet">
-                                <h5><i class="fa fa-sign-in fa-lg m-r-5"></i> <?=$manager['WEB_NAME_TO']?></h5>
+                                <h5><i class="far fa-sign-in fa-lg m-r-5"></i> <?=$manager['WEB_NAME_TO']?></h5>
                             </div>
                         </a>
                     <?}?>
@@ -40,9 +40,9 @@
         <!-- ============================================================== -->
         <!-- Search -->
         <!-- ============================================================== -->
-        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="far fa-search"></i></a>
             <form class="app-search" action="/clients" method="post">
-                <input type="text" class="form-control" placeholder="Поиск..." name="search" value="<?=(!empty($_REQUEST['search']) ? Text::quotesForForms($_REQUEST['search']) : '')?>"> <a class="srh-btn"><i class="ti-close"></i></a>
+                <input type="text" class="form-control" placeholder="Поиск..." name="search" value="<?=(!empty($_REQUEST['search']) ? Text::quotesForForms($_REQUEST['search']) : '')?>"> <a class="srh-btn"><i class="far fa-times"></i></a>
             </form>
         </li>
         <!-- ============================================================== -->
@@ -50,7 +50,7 @@
         <!-- ============================================================== -->
         <li class="nav-item dropdown">
             <?if(count($notices)){?>
-                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown"> <i class="mdi mdi-email"></i>
+                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown"> <i class="fas fa-envelope"></i>
                     <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
                 </a>
                 <div class="dropdown-menu mailbox dropdown-menu-right animated bounceInDown">
@@ -77,7 +77,7 @@
                     </ul>
                 </div>
             <?}else{?>
-                <a class="nav-link waves-effect waves-dark" href="/messages"> <i class="mdi mdi-email"></i></a>
+                <a class="nav-link waves-effect waves-dark" href="/messages"> <i class="fas fa-envelope"></i></a>
             <?}?>
         </li>
         <!-- ============================================================== -->
@@ -99,12 +99,12 @@
                         </div>
                     </li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="/managers/settings"><i class="ti-user"></i> Профиль</a></li>
-                    <li><a href="/messages"><i class="ti-email"></i> Сообщения</a></li>
+                    <li><a href="/managers/settings"><i class="fa-fw far fa-user"></i> Профиль</a></li>
+                    <li><a href="/messages"><i class="fa-fw far fa-envelope"></i> Сообщения</a></li>
                     <li role="separator" class="divider"></li>
-                    <li class="webtour-setting"><a href="/managers/settings"><i class="ti-settings"></i> Настройки</a></li>
+                    <li class="webtour-setting"><a href="/managers/settings"><i class="fa-fw far fa-cog"></i> Настройки</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="/logout"><i class="fa fa-power-off"></i> Выход</a></li>
+                    <li><a href="/logout"><i class="fa-fw fa fa-power-off"></i> Выход</a></li>
                 </ul>
             </div>
         </li>

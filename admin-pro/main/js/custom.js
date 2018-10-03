@@ -21,7 +21,6 @@ $(function() {
         if (width < 1170) {
             $("body").addClass("mini-sidebar");
             $('.navbar-brand span').hide();
-            $(".sidebartoggler i").addClass("ti-menu");
         } else {
             $("body").removeClass("mini-sidebar");
             $('.navbar-brand span').show();
@@ -58,8 +57,7 @@ $(function() {
     // this is for close icon when navigation open in mobile view
     $(".nav-toggler").click(function() {
         $("body").toggleClass("show-sidebar");
-        $(".nav-toggler i").toggleClass("ti-menu");
-        $(".nav-toggler i").addClass("ti-close");
+        $(".nav-toggler [data-fa-i2svg]").toggleClass("fa-bars fa-times");
     });
 
     $(".search-box a, .search-box .app-search .srh-btn").on('click', function() {
@@ -138,14 +136,14 @@ $(function() {
     // ==============================================================
     $('a[data-action="collapse"]').on('click', function(e) {
         e.preventDefault();
-        $(this).closest('.card').find('[data-action="collapse"] i').toggleClass('ti-minus ti-plus');
+        $(this).closest('.card').find('[data-action="collapse"] [data-fa-i2svg]').toggleClass('fa-plus fa-minus');
         $(this).closest('.card').children('.card-body').collapse('toggle');
 
     });
     // Toggle fullscreen
     $('a[data-action="expand"]').on('click', function(e) {
         e.preventDefault();
-        $(this).closest('.card').find('[data-action="expand"] i').toggleClass('mdi-arrow-expand mdi-arrow-compress');
+        $(this).closest('.card').find('[data-action="expand"] [data-fa-i2svg]').toggleClass('fa-expand-alt fa-compress-alt');
         $(this).closest('.card').toggleClass('card-fullscreen');
     });
 
