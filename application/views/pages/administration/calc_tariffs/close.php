@@ -10,14 +10,14 @@
         foreach($tubesList as $tube) {?>
         tpl = '<div class="reference_sources_tube_name_block">' +
             '<span toggle_block="referenceSourcesTube<?=$tube['TUBE_ID']?>">' +
-            '<span toggle="referenceSourcesTube<?=$tube['TUBE_ID']?>" class="btn waves-effect waves-light btn_small btn_icon"><i class="fa fa-pencil-alt"></i></span> ' +
+            '<span toggle="referenceSourcesTube<?=$tube['TUBE_ID']?>" class="'+ BTN +' btn-sm btn-outline-primary"><i class="fa fa-pencil-alt"></i></span> ' +
             '<span class="reference_sources_tube_name"><?=$tube['TUBE_NAME']?></span>'+
             '</span>' +
             '<span toggle_block="referenceSourcesTube<?=$tube['TUBE_ID']?>" style="display:none;">' +
-            '<span onclick="referenceSourcesTubeNameChange($(this), <?=$tube['TUBE_ID']?>)" class="btn waves-effect waves-light btn_small btn_icon btn_green"><i class="fa fa-check"></i></span>'+
+            '<span onclick="referenceSourcesTubeNameChange($(this), <?=$tube['TUBE_ID']?>)" class="'+ BTN +' btn-sm btn-outline-success"><i class="fa fa-check"></i></span>'+
             '<input type="text" value="<?=$tube['TUBE_NAME']?>" class="form-control">'+
             '</span>' +
-            '</div>';
+        '</div>';
 
         row = {
             'TUBE_ID'           : '<?=$tube['TUBE_ID']?>',
@@ -29,7 +29,7 @@
         };
 
         <?if ($tube['CARDS_LIST_RECIEVE'] === "0") {?>
-        row.CARDS_LIST_RECIEVE = '<button class="btn waves-effect waves-light btn_small" <?=(($tube['STATE_ID'] != 1 || $tube['IS_OWNER'] != 1)? 'disabled' : '')?> onclick="referenceSourcesCardListLoadStart($(this),<?=$tube['TUBE_ID']?>)">Загрузить</button>';
+        row.CARDS_LIST_RECIEVE = '<button class="'+ BTN +' btn-sm btn-outline-primary" <?=(($tube['STATE_ID'] != 1 || $tube['IS_OWNER'] != 1)? 'disabled' : '')?> onclick="referenceSourcesCardListLoadStart($(this),<?=$tube['TUBE_ID']?>)">Загрузить</button>';
         <?} else if ($tube['CARDS_LIST_RECIEVE'] === "1") {?>
         row.CARDS_LIST_RECIEVE = 'Идет загрузка...';
         <?} else {?>
@@ -37,7 +37,7 @@
         <?}?>
 
         <?if ($tube['TUBE_ORDER_REPORT'] === "0") {?>
-        row.TUBE_ORDER_REPORT = '<button class="btn waves-effect waves-light btn_small" <?=($tube['STATE_ID'] != 1 ? 'disabled' : '')?>>Загрузить</button>';
+        row.TUBE_ORDER_REPORT = '<button class="'+ BTN +' btn-sm btn-outline-primary" <?=($tube['STATE_ID'] != 1 ? 'disabled' : '')?>>Загрузить</button>';
         <?} else if ($tube['TUBE_ORDER_REPORT'] === "1") {?>
         row.TUBE_ORDER_REPORT = 'Идет загрузка...';
         <?} else {?>
@@ -113,21 +113,43 @@
             fields: [
                 {
                     headerTemplate: function() {
-                        return $("<input>").attr("type", "checkbox").prop('checked', true)
+                        var input = $("<input>")
+                            .attr('id', 'close_check_all')
+                            .attr("type", "checkbox")
+                            .addClass(CHECKBOX)
+                            .prop('checked', true)
                             .on("change", function () {
                                 connect1cPayments_toggleSelectedItems($(this));
                             });
+
+                        var tpl = $('<span />');
+
+                        tpl.append(input);
+                        tpl.append('<label for="close_check_all" />');
+
+                        return tpl;
                     },
                     itemTemplate: function(_, item) {
                         if(item.CAN_ADD == 1) {
-                            return $("<input class='add_element'>").attr("type", "checkbox")
+                            var tpl = $('<span />');
+
+                            var input = $("<input>")
+                                .attr('id', 'close_item_' + item.ORDER_NUM)
+                                .addClass(CHECKBOX)
+                                .addClass('add_element')
+                                .attr("type", "checkbox")
                                 .prop("checked", true)
                                 .data("contract_id", item.CONTRACT_ID)
                                 .data("num", item.ORDER_NUM)
                                 .data("date", item.ORDER_DATE)
                                 .data("value", item.SUMPAY * (item.OPERATION == 50 ? 1 : -1))
                                 .data("comment", item.COMMENT)
-                                ;
+                            ;
+
+                            tpl.append(input);
+                            tpl.append('<label for="close_item_' + item.ORDER_NUM + '" />');
+
+                            return tpl;
                         }else{
                             return '';
                         }

@@ -157,6 +157,12 @@ class Controller_Administration extends Controller_Common
         $this->title[] = 'Расчет тарифов';
 
         $this->_initJsGrid();
+
+        $tubesList = Model_Tube::getTubes();
+
+        $this->tpl
+            ->bind('tubesList', $tubesList)
+        ;
     }
 
     /**
