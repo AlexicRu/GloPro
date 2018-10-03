@@ -17,6 +17,10 @@ $sidebar-icons: #a6b7bf;
 /*Top bar
 *******************/
 
+.logo{
+    background-image: url(/assets/img/projects/glopro/logo.svg);
+}
+
 .topbar {
     background: $topbar;
     .navbar-header{

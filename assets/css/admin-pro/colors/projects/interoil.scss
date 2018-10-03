@@ -22,6 +22,10 @@ $sidebar-text: #af4821;
 /*Top bar
 *******************/
 
+.logo{
+    background-image: url(/assets/img/projects/interoil.png);
+}
+
 .topbar {
     background: $topbar;
     .top-navbar .navbar-header .navbar-brand .light-logo {

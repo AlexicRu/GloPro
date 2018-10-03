@@ -22,6 +22,10 @@ $sidebar-text: #f90e24;
 /*Top bar
 *******************/
 
+.logo{
+    background-image: url(/assets/img/projects/vegix.png);
+}
+
 .topbar {
     background: $topbar;
     .top-navbar .navbar-header .navbar-brand .light-logo {

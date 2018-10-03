@@ -63,10 +63,6 @@ return array(
         ],
     ],
     'user' => [
-        'a_1' => [
-            'title' => 'Test',
-            'class' => 'cleveroil'
-        ],
         'a_22' => [
             'title' => 'ETS Trading',
             'class' => 'ets'

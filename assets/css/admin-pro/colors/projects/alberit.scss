@@ -25,6 +25,10 @@ $topbar-alt: #398bf7;
 /*Top bar
 *******************/
 
+.logo{
+    background-image: url(/assets/img/projects/alberit.png);
+}
+
 .topbar {
     background: $topbar;
     .top-navbar .navbar-header .navbar-brand .light-logo {

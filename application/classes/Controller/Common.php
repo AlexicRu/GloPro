@@ -267,7 +267,6 @@ abstract class Controller_Common extends Controller_Template {
         }
 
         $this->template->styles[] = Common::getAssetsLink() . 'css/style.css?t=' . Common::getVersion();
-        $this->template->styles[] = Common::getAssetsLink() . 'css/design.css?t=' . Common::getVersion();
     }
 
     /**

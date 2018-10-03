@@ -24,6 +24,10 @@ $topbar-alt: #398bf7;
 /*Top bar
 *******************/
 
+.logo{
+    background-image: url(/assets/img/projects/logo_modul_b.png);
+}
+
 .topbar {
     background: $topbar;
     .top-navbar .navbar-header .navbar-brand .light-logo {

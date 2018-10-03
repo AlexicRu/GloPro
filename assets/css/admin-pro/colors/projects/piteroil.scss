@@ -22,6 +22,10 @@ $sidebar-text: #000;
 /*Top bar
 *******************/
 
+.logo{
+    background-image: url(/assets/img/projects/piter.jpg);
+}
+
 .topbar {
     background: $topbar;
     .top-navbar .navbar-header .navbar-brand .light-logo {

@@ -21,6 +21,10 @@ $sidebar-active-text: #fff;
 /*Top bar
 *******************/
 
+.logo{
+    background-image: url(/assets/img/projects/mo47.png);
+}
+
 .topbar {
     background: $topbar;
     .top-navbar .navbar-header .navbar-brand .light-logo {
