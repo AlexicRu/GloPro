@@ -6,7 +6,12 @@ class HTTP_Exception_404 extends Kohana_HTTP_Exception_404
     {
         $response = Response::factory();
 
-        $view = View::factory('errors/404');
+        list($customView, $title) = Common::checkCustomDesign();
+
+        $view = View::factory('errors/404')
+            ->bind('title', $title)
+            ->bind('customView', $customView)
+        ;
 
         // We're inside an instance of Exception here, all the normal stuff is available.
         $view->message = $this->getMessage();

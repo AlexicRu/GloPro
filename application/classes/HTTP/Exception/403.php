@@ -6,7 +6,12 @@ class HTTP_Exception_403 extends Kohana_HTTP_Exception_403
     {
         $response = Response::factory();
 
-        $view = View::factory('errors/403');
+        list($customView, $title) = Common::checkCustomDesign();
+
+        $view = View::factory('errors/403')
+            ->bind('title', $title)
+            ->bind('customView', $customView)
+        ;
 
         $response->body($view->render());
 

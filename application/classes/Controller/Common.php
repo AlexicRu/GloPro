@@ -49,6 +49,9 @@ abstract class Controller_Common extends Controller_Template {
 
         //если не аяксовый запрос
         if(!$this->request->is_ajax() && !$this->toXls && !in_array($action, ['get-json'])) {
+            //прикрепляем файлы стилей и скриптов
+            $this->_appendFilesBefore();
+
             //проверяем кастомный дизайн
             $this->_checkCustomDesign();
 
@@ -62,9 +65,6 @@ abstract class Controller_Common extends Controller_Template {
             } catch (Exception $e) {
                 throw new HTTP_Exception_404();
             }
-
-            //прикрепляем файлы стилей и скриптов
-            $this->_appendFilesBefore();
 
             //выполняем различные функции, которые необходимо выполнить до загрузки страницы
             $this->_actionsBefore();
@@ -173,56 +173,23 @@ abstract class Controller_Common extends Controller_Template {
 
     /**
      * проверка необходимости применить кастомный дизайн
-     *
-     * @throws Kohana_Exception
      */
     private function _checkCustomDesign()
     {
         //опредеяем кастомный диазйн
-        $design = Kohana::$config->load('design')->as_array();
+        list($customView, $title) = Common::checkCustomDesign();
 
-        $url = str_replace(['.', '-'], '', !empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '');
-
-        if(isset($design['url'][$url])){
-            $customView = $design['url'][$url]['class'];
-            $this->title[] = $design['url'][$url]['title'];
-        }
-
-        $user = User::current();
-
-        if (!empty($design['user']['a_' . $user['AGENT_ID']])) {
-            if (
-                empty($design['user']['a_' . $user['MANAGER_ID']]['url']) ||
-                $design['user']['a_' . $user['MANAGER_ID']]['url'] == $url
-            ) {
-                $customView = $design['user']['a_' . $user['AGENT_ID']]['class'];
-                $this->title[] = $design['user']['a_' . $user['AGENT_ID']]['title'];
-            }
-        }
-
-        if (!empty($design['user']['u_' . $user['MANAGER_ID']])) {
-            if (
-                empty($design['user']['u_' . $user['MANAGER_ID']]['url']) ||
-                $design['user']['u_' . $user['MANAGER_ID']]['url'] == $url
-            ) {
-                $customView = $design['user']['u_' . $user['MANAGER_ID']]['class'];
-                $this->title[] = $design['user']['u_' . $user['MANAGER_ID']]['title'];
-            }
-        }
-
-        //если не смогли определить дизайн под конкретный урл, то грузим дефолтовый
-        if(empty($customView)){
-            $customView = $design['default']['class'];
-            $this->title[] = $design['default']['title'];
-        }
+        $this->title[] = $title;
 
         View::set_global('customView', $customView);
+
+        $color = $customView ? 'projects/' . $customView : 'blue';
+
+        $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/colors/'. $color .'.css';
     }
 
     /**
      * подключаем файлы стилей и скриптов, в основном плагинов и корневые
-     *
-     * @throws Kohana_Exception
      */
     private function _appendFilesBefore()
     {
@@ -262,7 +229,6 @@ abstract class Controller_Common extends Controller_Template {
 
         //стили шаблона
         $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/style.css';
-        $this->template->styles[] = Common::getAssetsLink() . 'css/admin-pro/colors/blue.css';
     }
 
     private function _appendFiles()

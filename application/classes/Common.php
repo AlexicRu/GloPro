@@ -178,4 +178,51 @@ class Common
 
         return $return;
     }
+
+    /**
+     * определяем кастомный дизайн
+     *
+     * @return array
+     */
+    public static function checkCustomDesign()
+    {
+        $design = Kohana::$config->load('design')->as_array();
+
+        $url = str_replace(['.', '-'], '', !empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '');
+
+        if(isset($design['url'][$url])){
+            $customView = $design['url'][$url]['class'];
+            $title = $design['url'][$url]['title'];
+        }
+
+        $user = User::current();
+
+        if (!empty($design['user']['a_' . $user['AGENT_ID']])) {
+            if (
+                empty($design['user']['a_' . $user['MANAGER_ID']]['url']) ||
+                $design['user']['a_' . $user['MANAGER_ID']]['url'] == $url
+            ) {
+                $customView = $design['user']['a_' . $user['AGENT_ID']]['class'];
+                $title = $design['user']['a_' . $user['AGENT_ID']]['title'];
+            }
+        }
+
+        if (!empty($design['user']['u_' . $user['MANAGER_ID']])) {
+            if (
+                empty($design['user']['u_' . $user['MANAGER_ID']]['url']) ||
+                $design['user']['u_' . $user['MANAGER_ID']]['url'] == $url
+            ) {
+                $customView = $design['user']['u_' . $user['MANAGER_ID']]['class'];
+                $title = $design['user']['u_' . $user['MANAGER_ID']]['title'];
+            }
+        }
+
+        //если не смогли определить дизайн под конкретный урл, то грузим дефолтовый
+        if(empty($customView)){
+            $customView = $design['default']['class'];
+            $title = $design['default']['title'];
+        }
+
+        return [$customView, $title];
+    }
 }
