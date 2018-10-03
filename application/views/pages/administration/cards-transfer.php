@@ -1,53 +1,63 @@
-<div class="block card-transfer-block">
-    <table>
-        <tr>
-            <td><b class="f18">Карты старого договора:<sup>*</sup></b></td>
-            <td></td>
-            <td><b class="f18">Новый договор:</b></td>
-        </tr>
-        <tr>
-            <td>
+<div class="card card-transfer-block">
+    <div class="card-body">
+        <div class="row m-b-20 border-bottom p-b-20">
+            <div class="col-sm-5">
+                <div class="m-b-5">
+                    <b class="font-18">Карты старого договора:<sup>*</sup></b>
+                </div>
+
                 <?=Form::buildField('card_choose_multi', 'card_choose_multi', false, [
                     'show_all'      => true,
                     'placeholder'   => 'Выбрать карты'
                 ])?>
 
-                <br>или<br><br>
+                <div class="m-b-15 m-t-15">или</div>
 
-                <textarea name="cards_list" placeholder="Ввести список карт" style="width: 100%"></textarea>
-            </td>
-            <td class="f24">&nbsp; &xrArr; &nbsp;</td>
-            <td>
+                <textarea class="form-control" name="cards_list" placeholder="Ввести список карт"></textarea>
+            </div>
+            <div class="col-sm-2 p-t-40 text-center">
+                <b class="font-20">&xrArr;</b>
+            </div>
+            <div class="col-sm-5">
+                <div class="m-b-5">
+                    <b class="font-18">Новый договор:</b>
+                </div>
+
                 <?=Form::buildField('contract_choose_single', 'contract_new')?>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b class="f18">Дата начала переноса:</b><br>
-                <?=Form::buildField('datepick', 'date_from', date('d.m.Y'))?>
-            </td>
-            <td></td>
-            <td>
-                <b class="f18">Дата окончания переноса:</b><br>
-                <?=Form::buildField('datepick', 'date_to')?>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <label><input type="checkbox" checked name="transfer_cards"> Перенос карт</label><br>
-                <label><input type="checkbox" checked name="transfer_trn"> Перенос транзакций<sup>**</sup></label><br>
-                <label><input type="checkbox" checked name="save_holder"> С сохранением держателей</label>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <span class="btn" onclick="transferCards($(this))">Перенести</span>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
 
-    <small class="gray"><i>* - Выбор клиента и договора обязателен.</i></small><br>
-    <small class="gray"><i>** - Транзакции будут перенесены только за текущий период. Если требуется перенести транзакции за прошлые периоды, обратитесь в Техническую поддержку!</i></small>
+        <div class="row m-b-20">
+            <div class="col-sm-5">
+                <div class="m-b-5">
+                    <b class="font-18">Дата начала переноса:</b>
+                </div>
+
+                <?=Form::buildField('datepick', 'date_from', date('d.m.Y'))?>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+                <div class="m-b-5">
+                    <b class="font-18">Дата окончания переноса:</b>
+                </div>
+
+                <?=Form::buildField('datepick', 'date_to')?>
+            </div>
+        </div>
+
+        <div class="m-b-20">
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" checked name="transfer_cards" id="transfer_cards"> <label for="transfer_cards">Перенос карт</label><br>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" checked name="transfer_trn" id="transfer_trn"> <label for="transfer_trn">Перенос транзакций<sup>**</sup></label><br>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" checked name="save_holder" id="save_holder"> <label for="save_holder">С сохранением держателей</label>
+        </div>
+
+        <div class="m-b-20">
+            <span class="<?=Text::BTN?> btn-outline-primary btn-lg" onclick="transferCards($(this))">Перенести</span>
+        </div>
+
+        <i class="text-muted">* - Выбор клиента и договора обязателен</i><br>
+        <i class="text-muted">** - Транзакции будут перенесены только за текущий период. Если требуется перенести транзакции за прошлые периоды, обратитесь в <a href="/support">Техническую поддержку</a></i>
+    </div>
 </div>
 
 <script>
