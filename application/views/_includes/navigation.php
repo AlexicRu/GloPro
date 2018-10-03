@@ -7,7 +7,31 @@
         <!-- This is  -->
         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
         <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-        <li class="nav-item hidden-sm-down"><?/*?><span><?=(!empty($title) ? array_pop($title) : '')?></span><?*/?></li>
+
+        <?if (!empty($user['managers_binds'])) {
+            $currentManager = reset($user['managers_binds']);
+            ?>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown">
+                    <span class="font-20">
+                        <i class="fal fa-user"></i>
+                        <span class="hidden-sm-down"><?=$currentManager['WEB_NAME_CURRENT']?></span>
+                    </span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-left animated bounceInDown mailbox clients_switch_list bg-white">
+                    <div class="message-center">
+                    <?foreach ($user['managers_binds'] as $manager) {?>
+                        <a href="/force-login/<?=Common::encrypt($user['MANAGER_ID'] . ' ' . $manager['MANAGER_TO'])?>">
+                            <div class="mail-contnet">
+                                <h5><i class="fa fa-sign-in fa-lg m-r-5"></i> <?=$manager['WEB_NAME_TO']?></h5>
+                            </div>
+                        </a>
+                    <?}?>
+                    </div>
+                </div>
+            </li>
+        <?}?>
     </ul>
     <!-- ============================================================== -->
     <!-- User profile and search -->
@@ -26,10 +50,10 @@
         <!-- ============================================================== -->
         <li class="nav-item dropdown">
             <?if(count($notices)){?>
-                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-email"></i>
+                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown"> <i class="mdi mdi-email"></i>
                     <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
                 </a>
-                <div class="dropdown-menu mailbox dropdown-menu-right animated bounceInDown" aria-labelledby="2">
+                <div class="dropdown-menu mailbox dropdown-menu-right animated bounceInDown">
                     <ul>
                         <li>
                             <div class="drop-title">У вас <?=count($notices)?> новых <a href="/messages">сообщений</a></div>
@@ -63,8 +87,8 @@
         <!-- Profile -->
         <!-- ============================================================== -->
         <li class="nav-item dropdown webtour-profile">
-            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?=Common::getAssetsLink().'img/user.png'?>" alt="user" class="profile-pic" /></a>
-            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown"><img src="<?=Common::getAssetsLink().'img/user.png'?>" alt="user" class="profile-pic" /></a>
+            <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
                 <ul class="dropdown-user">
                     <li>
                         <div class="dw-user-box">
