@@ -264,17 +264,17 @@ function setFormFieldValue(field, value)
     }
 
     var type = field.attr('field');
-    var isCombobox = field.find('.combobox').length;
-    var isComboboxMulti = field.find('.combobox_multi').length;
+    var isComboBox = field.find('.combobox').length;
+    var isComboBoxMulti = field.find('.combobox_multi').length;
     var isCheckbox = field.find('[type=checkbox]').length;
 
     switch (type) {
         case 'period':
             break;
         default:
-            if(isComboboxMulti){
+            if(isComboBoxMulti){
                 setComboBoxMultiValue(field.find('.combobox_multi'), value);
-            }else if(isCombobox){
+            }else if(isComboBox){
                 setComboBoxValue(field.find('.combobox'), value);
             }else if(isCheckbox){
                 if(value){
@@ -517,4 +517,20 @@ function collectForms(form, className)
     form.find('[name=other_data]').val(strings.join('&'));
 
     return true;
+}
+
+/**
+ * удаляем строку
+ *
+ * @param btn
+ */
+function deleteRow(btn)
+{
+    if(!confirm('Удаляем?')) {
+        return;
+    }
+
+    var fieldset = btn.closest('.can_delete');
+
+    fieldset.remove();
 }

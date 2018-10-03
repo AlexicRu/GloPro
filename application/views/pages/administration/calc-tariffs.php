@@ -68,7 +68,7 @@
         var block = $('.calc_tariffs_client_block');
 
         var params = {
-            iteration: block.find('fieldset').length + 1
+            iteration: block.find('.client_row').length + 1
         };
 
         $.post('/administration/calc-tariffs-render-client', params, function (data) {
@@ -96,12 +96,12 @@
 
         var flEmpty = true;
 
-        block.find('fieldset').each(function () {
+        block.find('.client_row').each(function () {
             var t = $(this);
 
             if (t.find('.btns .btn:visible').length == 0) {
 
-                var contractId = getComboboxValue(t.find('[name^=contract_]'));
+                var contractId = getComboBoxValue(t.find('[name^=contract_]'));
 
                 if (contractId) {
                     if (contractsInAction.indexOf(contractId) == -1) {
@@ -147,15 +147,15 @@
             return false;
         }
 
-        block.find('.btns .btn').hide();
-        block.find('.btns .calc_tariffs_client_go').show();
+        block.find('.badges .badge').hide();
+        block.find('.badges .calc_tariffs_client_go').show();
 
         $.post('/administration/calc-tariff', params, function (data) {
-            block.find('.btns .btn').hide();
+            block.find('.badges .badge').hide();
             if (data.success) {
-                block.find('.btns .calc_tariffs_client_ok').show();
+                block.find('.badges .calc_tariffs_client_ok').show();
             } else {
-                block.find('.btns .calc_tariffs_client_error').show();
+                block.find('.badges .calc_tariffs_client_error').show();
             }
         });
     }

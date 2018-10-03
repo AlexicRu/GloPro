@@ -8,7 +8,7 @@ $(function(){
     renderElements();
 
     $(window).on('resize', function () {
-        resetComboboxResultPositioning();
+        resetComboBoxResultPositioning();
     });
 });
 
@@ -514,7 +514,7 @@ function checkComboBoxResultPositioning(combo)
     combo.data('result-positioning', true);
 }
 
-function resetComboboxResultPositioning()
+function resetComboBoxResultPositioning()
 {
     $('.combobox').each(function () {
         $(this).data('result-positioning', false);

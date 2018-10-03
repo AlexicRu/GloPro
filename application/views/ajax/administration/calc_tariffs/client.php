@@ -1,4 +1,4 @@
-<div class="border-bottom m-b-20">
+<div class="border-bottom m-b-20 client_row can_delete">
     <div>
         <b class="font-20">Клиент</b>
 
@@ -31,9 +31,11 @@
                 <div class="col-sm-8 with-mb">
                     <span class="current_tariff"></span>
 
-                    <span class="calc_tariffs_client_ok btn btn_small btn_green btn_reverse dn"><i class="fa fa-check"></i> Ok</span>
-                    <span class="calc_tariffs_client_go btn btn_small btn_reverse dn">... Расчет</span>
-                    <span class="calc_tariffs_client_error btn btn_small btn_red btn_reverse dn">Ошибка</span>
+                    <span class="badges m-l-10">
+                        <span class="calc_tariffs_client_ok badge badge-success dn"><i class="fa fa-check"></i> Ok</span>
+                        <span class="calc_tariffs_client_go badge badge-info dn">... Расчет</span>
+                        <span class="calc_tariffs_client_error badge badge-danger dn">Ошибка</span>
+                    </span>
                 </div>
             </div>
 
@@ -61,7 +63,7 @@
 <script>
     function findTariffByContract(contractId)
     {
-        var row = $('[value=' + contractId + ']').closest('fieldset');
+        var row = $('[value=' + contractId + ']').closest('.client_row');
 
         $.post('/administration/get-tariff-by-contract', {contract_id: contractId}, function (data) {
             if (data.success) {
