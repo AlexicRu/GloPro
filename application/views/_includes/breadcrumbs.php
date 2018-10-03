@@ -8,7 +8,7 @@
                 <?if ($key == 0) {?>
                     <li class="breadcrumb-item"><a href="/"><?=$name?></a></li>
                 <?}else{?>
-                    <li class="breadcrumb-item <?=($key == count($title)-1 ? 'active' : '')?>"><?=$name?></li>
+                    <li class="breadcrumb-item <?=($key == count($title)-1 ? 'active' : '')?>"><i class="fa fa-chevron-right"></i> <?=$name?></li>
                 <?}?>
             <?}?>
         </ol>

@@ -394,10 +394,13 @@ Notify
             margin-bottom: 0px;
         }
         .breadcrumb-item+.breadcrumb-item::before {
-            content: "\e649";
-            font-family: themify;
+            content: "";
+            padding: 0;
+        }
+        .breadcrumb-item [data-fa-i2svg]{
             color: $light-text;
             font-size: 11px;
+            margin: 0 0.5rem;
         }
         .breadcrumb-item.active {
             color: $muted;

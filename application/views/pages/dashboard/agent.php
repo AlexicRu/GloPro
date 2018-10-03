@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="m-t-5">
-                    <span class="<?=Text::BTN?> btn-success" onclick="buildRealizationsByAgents()">Обновить</span>
+                    <span class="<?=Text::BTN?> btn-success" onclick="buildRealizationsByAgents()"><i class="fa fa-sync-alt"></i> Обновить</span>
                 </div>
             </div>
         </div>
