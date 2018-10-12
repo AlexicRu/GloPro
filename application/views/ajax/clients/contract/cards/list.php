@@ -4,6 +4,8 @@
 
 <script>
     var emptyMessage = '<li class="nav-item"><span class="nav-link"><i class="text-muted">Карты не найдены</i></span></li>';
+    var findCard = getUrlParameter('card');
+    var foundCard = false;
 
     $(function () {
         paginationAjax('/clients/cards-list/?contract_id=' + $('[name=contracts_list]').val(), 'ajax_block_cards_list', renderAjaxPaginationCardsList, {
@@ -108,9 +110,19 @@
             tpl.appendTo(block);
 
             contentBlock.append('<div class="tab-pane" id="card'+ data[i].CARD_ID +'" role="tabpanel" />');
+
+            if (findCard == data[i].CARD_ID) {
+                foundCard = true;
+            }
         }
 
-        if (!firstLoad) {
+        if (findCard) {
+            if (!foundCard) {
+                block.parent().find('.ajax_block_load').click();
+            } else {
+                block.find('.tab_v[tab="'+ findCard +'"]').click();
+            }
+        } else if (!firstLoad) {
             block.find('.nav-item:not(.no_content):first a').click();
         }
     }

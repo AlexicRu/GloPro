@@ -18,5 +18,10 @@ return [
             'web_hook'  => '__REPLACE__',
             'debug'     => false
         ]
+    ],
+    'shell' => [
+        'url'           => '__REPLACE__',
+        'login'         => '__REPLACE__',
+        'password'      => '__REPLACE__',
     ]
 ];

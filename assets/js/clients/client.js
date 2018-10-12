@@ -67,7 +67,8 @@ $(function(){
         });
     });
 
-    loadContract(location.hash ? location.hash.replace('#', '') : 'contract');
+    var tab = getUrlParameter('tab');
+    loadContract(tab ? tab.split('_')[0] : 'contract');
 
     $('[name=contracts_list]').on('change', function(){
         loadContract('contract');
@@ -89,7 +90,8 @@ function loadContract(tab, query, params)
     addLoader(block);
     var contractId = $('[name=contracts_list]').val();
 
-    location.hash = '#' + tab;
+    var search = getUrlParameter('card') && tab == 'cards' ? location.search : '?tab=' + tab;
+    history.pushState("","", location.pathname + search);
 
     $.post('/clients/contract/' + contractId, {tab:tab, query:query, params:params}, function(data){
         removeLoader(block);

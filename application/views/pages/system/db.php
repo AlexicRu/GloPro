@@ -39,7 +39,7 @@
 </div>
 
 <div class="result__block">
-    <h2 class="text-themecolor">Результат</h2>
+    <h2 class="text-themecolor">Результат <span class="text-muted time"></span></h2>
     <div class="card">
         <div class="card-body">
             <div class="result"></div>
