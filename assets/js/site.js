@@ -89,7 +89,7 @@ function paginationAjax(url, name, callback, params)
     var block = $('<div class="' + name + '" />');
     var btnBlock = $('<div class="ajax_block_more text-center p-t-10 p-b-10" />');
     var more = $('<button class="btn btn-sm waves-effect waves-light btn-outline-secondary ajax_block_load m-l-5 m-r-5">Загрузить еще...</button>');
-    var all = $('<button class="btn btn-sm waves-effect waves-light btn-outline-secondary m-l-5 m-r-5">Загрузить все</button>');
+    var all = $('<button class="btn btn-sm waves-effect waves-light btn-outline-secondary ajax_block_load_all m-l-5 m-r-5">Загрузить все</button>');
 
     addLoader(outer);
 
@@ -534,3 +534,25 @@ function deleteRow(btn)
 
     fieldset.remove();
 }
+
+/**
+ * get GET param from url
+ *
+ * @param sParam
+ * @returns {*}
+ */
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+    return '';
+};

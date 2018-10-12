@@ -58,9 +58,9 @@ class Model_Client extends Model
 
         if (!empty($params['pagination'])) {
             $more = true;
-            $items = array_slice($result, $params['offset'], Listing::$limit + 1);
+            $items = array_slice($result, $params['offset'], Oracle::$limit + 1);
 
-            if (count($items) != Listing::$limit + 1) {
+            if (count($items) != Oracle::$limit + 1) {
                 $more = false;
             }
 

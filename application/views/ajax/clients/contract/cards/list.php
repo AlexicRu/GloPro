@@ -120,7 +120,7 @@
             if (!foundCard) {
                 block.parent().find('.ajax_block_load').click();
             } else {
-                block.find('.tab_v[tab="'+ findCard +'"]').click();
+                block.find('.nav-item[tab="'+ findCard +'"] a').click();
             }
         } else if (!firstLoad) {
             block.find('.nav-item:not(.no_content):first a').click();
@@ -130,6 +130,8 @@
     function cardLoad(cardId, force)
     {
         var contentBlock = $("#card" + cardId);
+        var search = '?tab=cards&card=' + cardId;
+        history.pushState("","", location.pathname + search);
 
         if(contentBlock.text() == '' || force == true){
             addLoader(contentBlock);

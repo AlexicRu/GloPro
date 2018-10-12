@@ -6,6 +6,8 @@ class Oracle{
 	const CODE_ERROR        = 1;
 	const CODE_ERROR_EXISTS = 2;
 
+	public static $limit = 10;
+
     /**
      * @deprecated
      */
@@ -301,7 +303,7 @@ class Oracle{
 			$params['offset'] = 0;
 		}
 		if(empty($params['limit'])){
-			$params['limit'] = 10;
+			$params['limit'] = self::$limit;
 		}
 
 		$params['offset'] = (int)$params['offset'];
