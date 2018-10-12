@@ -1,201 +1,258 @@
-$import 'glopro.css';
+/*
+Template Name: Admin Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
 
-.logo{
-    background-image: url(/assets/img/projects/gpn/gpn-logo.png);
-}
+@import '../../variable';
 
+$themecolor: #007EC6;
+$themecolor-dark: #005EB8;
+$topbar: #262626;
+$sidebar:#1e1e1e;
+$sidebar-text: #687384;
+$sidebar-icons: #424a56;
+$sidebar-dark: #1c2128;
+$sidebar-alt:#1c2128;
+$sidebar-active:#007EC6;
+$sidebar-text:#e2e2e3;
+$themecolor-alt: #26c6da;
+$topbar-alt: #272c33;
+$topbar-text: #807f80;
 
-$colorBlueDark: #005EB8;
-$colorBlue: #007EC6;
-$colorBlueLight: #bee8fc;
-$colorBlack: #262626;
-$colorBlack1: #1e1e1e;
-$colorGrayDark: #404040;
-$colorGray: #807f80;
-$colorGrayLight: #b3b2b3;
-$colorWhiteDark: #e2e2e3;
-$colorWhiteMedium: #f6f6f6;
-$colorWhite: #fff;
-$colorOrange: #f18f1c;
-$colorGreen: #4fd166;
-$colorRed: #f13930;
+$danger: #f13930;
+$success: #4fd166;
+$warning: #f18f1c;
+$primary: #007EC6;
+$info: #17a2b8;
+$inverse: #404040;
+$secondary: #e2e2e3;
+$muted: #b3b2b3;
+$dark: #262626;
+$light: #f6f6f6;
+$extra-light: #ebf3f5;
 
-$import url(../fonts/DINPro/fonts.css);
-$import url(../fonts/DINPro-Cond/fonts.css);
+@import 'gpn-buttons';
+
+@import url(/assets/fonts/DINPro/fonts.css);
+@import url(/assets/fonts/DINPro-Cond/fonts.css);
 $DINPro: 'Conv_DINPro', sans-serif;
 $DINProCond: 'Conv_DINPro-Cond', sans-serif;
 
-.custom_view_gpn{
-    background: $colorWhiteDark url(../img/gpn/isometric.png);
+*, h1, h2, h3, h4, h5, h6 {
     font-family: $DINPro;
-    color:$colorBlack1;
+}
+.btn, .btn *{
+    font-family: $DINProCond;
+    text-transform: uppercase;
+}
+.logo{
+    background-image: url(/assets/img/projects/gpn.png);
+}
+.page-wrapper{
+    background: $secondary url(/assets/img/projects/gpn/isometric.png);
+}
 
-    a{
-        color: $colorBlue;
-        &:hover{
-            color:$colorBlue;
-        }
-    }
-    .ui-datepicker {
-        background: $colorBlue;
-        a {
-            color: white;
-        }
-    }
+.page-titles{
+    background: none;
+}
 
-    h1{
-        font-weight: bold; color: $colorGrayDark;
+.left-sidebar {
+    .ps > .ps__scrollbar-y-rail > .ps__scrollbar-y {
+        background-color: rgba(255, 255, 255, 0.4);
     }
+}
 
-    header{
-        background: $colorBlack; border-bottom-color: $colorBlack; box-shadow: 0 5px 5px rgba(0,0,0,.1);
-    }
-    .hamburger{
-        border-left: none; border-right: none;
-    }
 
-    .hamburger, .mail, .settings, .logout{
-        > a{
-            color: $colorGray;
-            &:hover{
-                background: $colorGrayDark; color: $colorGray;
+/*******************
+/*Top bar
+*******************/
+
+.topbar {
+    background: $topbar;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    .top-navbar .navbar-header .navbar-brand .dark-logo {
+        display: none;
+    }
+    .top-navbar .navbar-header .navbar-brand .light-logo {
+        display: inline-block;
+        color: $topbar-text;
+    }
+    .navbar-nav .nav-item > {
+        a.nav-link {
+            color: $topbar-text;
+            &:hover,
+            &:focus {
+                color:$white!important;
             }
         }
     }
-    .search{
-        input[type=text]{
-            background: $colorBlack; color: $colorWhiteDark;
-        }
+    .top-navbar .navbar-nav>.nav-item>span{
+        color:$white;
     }
-    .avatar{
-        background: $colorGrayDark;
-    }
-    .personal{
-        color: $colorWhiteDark;
-    }
+}
 
-    .logo{
-        a{
-            background-image: url(../img/projects/gpn.png); width: 170px; height: 50px;
+.logo-center .topbar {
+    .navbar-header {
+        background: transparent;
+        box-shadow: none;
+    }
+    .top-navbar .navbar-header .navbar-brand .dark-logo {
+        display: none;
+    }
+    .top-navbar .navbar-header .navbar-brand .light-logo {
+        display: inline-block;
+        color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+
+/*******************
+/*General Elements
+*******************/
+
+a {
+    color: $themecolor;
+}
+
+a.link {
+    &:hover,
+    &:focus {
+        color: $themecolor!important;
+    }
+}
+
+.bg-theme {
+    background-color: $themecolor !important;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: $themecolor;
+    border-color: $themecolor;
+}
+
+.right-sidebar {
+    .rpanel-title {
+        background: $themecolor;
+    }
+}
+
+.stylish-table {
+    tbody tr {
+        &:hover,
+        &.active {
+            border-left: 4px solid $themecolor;
         }
     }
-    aside{
-        background: $colorBlack1;
-        >a, .sub_menu_title{
-            color: white; font-family: $DINPro; font-weight: bold; padding-top: 12px;
-            &:hover, &.act{
-                background: $colorBlue; color: white;
-                span{
-                    color: white;
+}
+
+.text-themecolor {
+    color: $themecolor!important;
+}
+
+.profile-tab,
+.customtab {
+    li {
+        a.nav-link {
+            &.active {
+                border-bottom: 2px solid $themecolor;
+                color: $themecolor;
+            }
+            &:hover {
+                color: $themecolor;
+            }
+        }
+    }
+}
+
+
+/*******************
+/*sidebar navigation
+*******************/
+
+.card-no-border .left-sidebar,
+.card-no-border .sidebar-nav {
+    background: $sidebar;
+}
+
+.mini-sidebar .sidebar-nav {
+    background: transparent;
+}
+
+@media (min-width: 768px) {
+    .mini-sidebar .sidebar-nav #sidebarnav>li>ul {
+        background: $sidebar-dark;
+    }
+}
+
+.sidebar-nav {
+    background: $sidebar;
+}
+
+.user-profile .profile-text a {
+    color: $sidebar-text!important;
+}
+
+.card-no-border .sidebar-footer {
+    background: $sidebar-dark;
+}
+
+.label-themecolor {
+    background: $themecolor;
+}
+
+.sidebar-nav>ul>li.active{
+    ul{
+        background: rgba(255, 255, 255, 0.05);
+        >li{
+            a{
+                color: $sidebar-text;
+                &.active {
+                    background: none;
+                    color: $sidebar-active;
                 }
             }
-            [class^="icon-"]{
-                color: rgba(255,255,255,.5);
-            }
         }
     }
-    .sub_menu_items a {
-        color: $colorWhiteDark;
-        &.act{
-            color: $colorBlue;
-        }
-    }
-    .line_inner{
-        background: $colorWhiteMedium;
-    }
-    .tab{
-        background: $colorWhiteMedium;
-        &.active{
-            background: white;
-        }
-    }
+}
 
-    .tabs_managers, .tabs_tariffs{
-        .tab{
-            background: none;
+.sidebar-nav>ul>li.active>a {
+    color: $white;
+    border-color: $themecolor;
+    background: $sidebar-active;
+    i {
+        color: $white;
+    }
+}
+
+.sidebar-nav ul li a {
+    color: $white;
+    font-size: 16px;
+    i{
+        color: rgba(255,255,255,.5);
+    }
+    &.active,
+    &:hover {
+        color: $white;
+        background: $sidebar-active;
+        i {
+            color: $white;
         }
     }
-    .tabs_vertical_block{
-        background: $colorWhiteMedium;
-    }
+}
 
-    .gray{
-        color: $colorGray;
-    }
+.sidebar-nav ul li.nav-small-cap {
+    color: $sidebar-text;
+}
+@media (min-width: 768px){
+    .mini-sidebar .sidebar-nav #sidebarnav > li:hover > a {
 
-    .tab_v{
-        &.active{
-            background: $colorBlue;
-        }
-    }
-
-
-    .btn{
-        color: $colorWhite; border-color:$colorBlueDark; background: $colorBlueDark; font-family: $DINProCond; box-shadow: 0 3px 10px rgba(0,0,0,0.2); padding-top: 11px; padding-bottom: 12px; font-weight: normal; text-transform: uppercase;
-
-        &:hover, &.btn_reverse, &.active{
-            background: $colorBlue; border-color:$colorBlue; color:$colorWhite;
-        }
-        &:disabled{
-            color:$colorWhite!important; border-color:$colorGray!important; background: $colorGray!important;
-            &:hover{
-                color:$colorWhite!important; border-color:$colorGray!important; background:$colorGray!important;
-            }
-        }
-        &.btn_gray{
-            //color:$colorWhite; border-color:$colorGray; background: $colorGray;
-            color:$colorBlack; border-color:$colorWhite; background: $colorWhite;
-            &:hover, &.btn_reverse, &.active{
-                //background: $colorGray; border-color:$colorGray;
-                background: $colorWhite; border-color:$colorWhite;
-            }
-        }
-
-        &.btn_red{
-            color: $colorWhite; border-color: $colorRed; background: $colorRed;
-            &:hover, &.btn_reverse, &.active{
-                background: $colorRed; border-color:$colorRed;
-            }
-        }
-        &.btn_green{
-            //color: $colorWhite; border-color: $colorGreen; background: $colorGreen;
-            color: $colorWhite; border-color: $colorBlueDark; background: $colorBlueDark;
-            &:hover, &.btn_reverse, &.active{
-                //background: $colorGreen; border-color:$colorGreen;
-                background: $colorBlueDark; border-color:$colorBlueDark;
-            }
-        }
-        &.btn_orange{
-            //color: $colorWhite; border-color: $colorOrange; background: $colorOrange;
-            color: $colorWhite; border-color: $colorBlueDark; background: $colorBlueDark;
-            &:hover, &.btn_reverse, &.active{
-                //background:$colorOrange; border-color:$colorOrange;
-                background:$colorBlueDark; border-color:$colorBlueDark;
-            }
-        }
-        &.btn_small{
-            padding-top: 1px; padding-bottom: 5px;
-        }
-        .icon-pdf{
-            color: white;
-        }
-        .icon-exel1, .icon-exel2 {
-            color:white;
-        }
-    }
-    .label{
-        color: $colorGray;
-        &.label_success{
-            background: $colorGreen; color: white;
-        }
-        &.label_error{
-            background: $colorRed; color: white;
-        }
-        &.label_warning{
-            background: $colorOrange; color: white;
-        }
-        &.label_info{
-            background: $colorBlue; color: white;
-        }
+        background: $sidebar-alt;
     }
 }

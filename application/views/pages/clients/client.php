@@ -264,7 +264,7 @@
     <?}?>
 
     <?if(Access::allow('clients_client-delete')){?>
-        <button class="btn waves-effect waves-light btn-primary m-t-10" onclick="clientDelete($(this))"><i class="fa fa-trash-alt"></i> Удалить</button> &nbsp;
+        <button class="btn waves-effect waves-light btn-danger m-t-10" onclick="clientDelete($(this))"><i class="fa fa-trash-alt"></i> Удалить</button> &nbsp;
     <?}?>
 
     <span toggle_block="edit_client" class="dn nowrap">
