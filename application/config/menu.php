@@ -2,7 +2,7 @@
 
 return array(
     'dashboard'         => ['title' => 'Dashboard', 'icon' => 'fa-fw fal fa-tachometer-alt', 'children' => [
-        'index'         => 'Клиенты',
+        'index'         => 'Фирмы',
         'agent'         => 'Дистрибьюторы',
     ]],
     'info'              => ['title' => 'Инфо-портал', 'icon' => 'fa-fw fal fa-info', 'children' => [

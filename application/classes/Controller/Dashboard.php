@@ -11,7 +11,7 @@ class Controller_Dashboard extends Controller_Common {
 
 	public function action_index()
 	{
-        $this->title[] = 'Реализация по клиентам';
+        $this->title[] = 'Реализация по фирмам';
 
 	    //график
         $this->_initChart();
