@@ -29,7 +29,7 @@
                 '        </div>' +
                 '    </li>');
 
-            if(data[i]['MANAGER_ID'] == 0){
+            if(data[i]['MANAGER_WHO_CREATE'] == 0){
                 tpl.find('.n_title').prepend('<i class="fal fa-user fa-lg m-r-5"></i> ');
             }
             tpl.find('.n_title a').text(data[i]['NOTE_TITLE']).attr('href', '/news/' + data[i].NOTE_ID);
