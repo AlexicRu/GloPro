@@ -63,6 +63,22 @@ return array(
         ],
     ],
     'user' => [
+        'u_2617' => [
+            'title' => 'ГПН-КП',
+            'class' => 'gpn'
+        ],
+        'u_2618' => [
+            'title' => 'ГПН-КП',
+            'class' => 'gpn'
+        ],
+        'u_2619' => [
+            'title' => 'ГПН-КП',
+            'class' => 'gpn'
+        ],
+        'u_2620' => [
+            'title' => 'ГПН-КП',
+            'class' => 'gpn'
+        ],
         'a_21' => [
             'title' => 'GloPro :: Почта России',
             'class' => 'pochta'

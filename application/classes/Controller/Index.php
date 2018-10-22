@@ -1,6 +1,18 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Index extends Controller_Common {
+class Controller_Index extends Controller_Common
+{
+    /**
+     * авторизация под демо пользователем
+     *
+     * @throws HTTP_Exception
+     */
+    public function action_demo()
+    {
+        Auth::instance()->login('demo', 'demo');
+
+        $this->redirect('/');
+    }
 
 	/**
 	 * функция авторизации

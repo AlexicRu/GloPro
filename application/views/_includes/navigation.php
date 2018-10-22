@@ -99,9 +99,7 @@
                         </div>
                     </li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="/managers/settings"><i class="fa-fw far fa-user"></i> Профиль</a></li>
                     <li><a href="/messages"><i class="fa-fw far fa-envelope"></i> Сообщения</a></li>
-                    <li role="separator" class="divider"></li>
                     <li class="webtour-setting"><a href="/managers/settings"><i class="fa-fw far fa-cog"></i> Настройки</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/logout"><i class="fa-fw fa fa-power-off"></i> Выход</a></li>

@@ -121,7 +121,7 @@
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <div class="col-10 col-xxl-8">Мониторинг цен за сентебрь 2018</div>
+                <div class="col-10 col-xxl-8">Мониторинг цен за сентябрь 2018</div>
                 <div class="col-xxl-2 hidden-xl-down">
                     <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>

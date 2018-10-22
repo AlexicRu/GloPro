@@ -2,14 +2,14 @@
 $postfix = $card['CARD_ID'];
 ?>
 <div class="modal-body">
-    <div class="form form_card_edit_<?=$postfix?>">
+    <div class="form form_card_holder_edit_<?=$postfix?>">
         <div class="form-group row">
             <div class="col-sm-4">
                 <div class="text-right hidden-xs-down text-muted">Держатель:</div>
                 <span class="hidden-sm-up text-muted">Держатель:</span>
             </div>
             <div class="col-sm-8 with-mb">
-                <input type="text" name="card_edit_holder" class="form-control" value="<?=Text::quotesForForms($card['HOLDER'])?>" maxlength="200">
+                <input type="text" name="card_holder_edit" class="form-control" value="<?=Text::quotesForForms($card['HOLDER'])?>" maxlength="200">
             </div>
         </div>
 
@@ -19,7 +19,7 @@ $postfix = $card['CARD_ID'];
                 <span class="hidden-sm-up text-muted">Выдана держателю:</span>
             </div>
             <div class="col-sm-8 with-mb">
-                <input type="date" class="form-control" name="card_edit_date" value="<?=Date::formatToDefault($card['DATE_HOLDER'])?>">
+                <input type="date" class="form-control" name="card_holder_edit_date" value="<?=Date::formatToDefault($card['DATE_HOLDER'])?>">
             </div>
         </div>
 
@@ -29,7 +29,7 @@ $postfix = $card['CARD_ID'];
                 <span class="hidden-sm-up text-muted">Комментарий:</span>
             </div>
             <div class="col-sm-8 with-mb">
-                <textarea class="form-control" name="card_edit_holder_comment" style="width: 100%"><?=$card['CARD_COMMENT']?></textarea>
+                <textarea class="form-control" name="card_holder_edit_comment" style="width: 100%"><?=$card['CARD_COMMENT']?></textarea>
             </div>
         </div>
     </div>
@@ -42,13 +42,13 @@ $postfix = $card['CARD_ID'];
 <script>
     function cardEditHolderGo_<?=$postfix?>(t)
     {
-        var form = $('.form_card_edit_<?=$postfix?>');
+        var form = $('.form_card_holder_edit_<?=$postfix?>');
         var params = {
             contract_id : $('[name=contracts_list]').val(),
             card_id     : $('.tabs_cards .nav-link.active').closest('.nav-item').attr('tab'),
-            holder      : $('[name=card_edit_holder]', form).val(),
-            date        : $('[name=card_edit_date]', form).val(),
-            comment     : $('[name=card_edit_holder_comment]', form).val(),
+            holder      : $('[name=card_holder_edit]', form).val(),
+            date        : $('[name=card_holder_edit_date]', form).val(),
+            comment     : $('[name=card_holder_edit_comment]', form).val(),
         };
 
         if(params.date == false){
@@ -61,7 +61,7 @@ $postfix = $card['CARD_ID'];
             if (data.success) {
                 message(1, 'Держатель карты успешно обновлен');
                 modalClose();
-                cardLoad($('.tab_v.active').attr('tab'), true);
+                cardLoad($('.tabs_cards .nav-link.active').closest('[tab]').attr('tab'), true);
                 $('.tabs_cards .nav-link.active [holder]').text(params.holder);
             } else {
                 message(0, 'Ошибка обновления держателя карты');

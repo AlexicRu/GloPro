@@ -356,7 +356,7 @@ function initWYSIWYG(elem)
             ['foreColor', 'backColor'],
             ['horizontalRule'],
             ['removeformat'],
-            ['fullscreen']
+            //['fullscreen']
         ],
         plugins: {
             // Add imagur parameters to upload plugin

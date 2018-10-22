@@ -98,17 +98,30 @@
                     <div class="d-block d-sm-none">Блокировка:</div>
                 </div>
                 <div class="col-sm-7">
+
                     <span toggle_block="block2">
                         <?if($contractSettings['scheme'] == Model_Contract::PAYMENT_SCHEME_UNLIMITED){?>
                             Отсутствует
                         <?}else{?>
                             <?=$contractSettings['AUTOBLOCK_LIMIT']?>
                         <?}?>
+
+                        <?if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_UNLIMITED){?>
+                            <?=Text::RUR?>
+                        <?}?>
                     </span>
-                    <span toggle_block="block2" class="dn"><input type="number" name="AUTOBLOCK_LIMIT" class="form-control" value="<?=$contractSettings['AUTOBLOCK_LIMIT']?>" <?if ($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){echo 'disabled';}?>></span>
-                    <?if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_UNLIMITED){?>
-                        <?=Text::RUR?>
-                    <?}?>
+                    <span toggle_block="block2" class="dn">
+                        <div class="input-group">
+                            <input type="number" name="AUTOBLOCK_LIMIT" class="form-control" value="<?=$contractSettings['AUTOBLOCK_LIMIT']?>" <?if ($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){echo 'disabled';}?>>
+
+                            <?if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_UNLIMITED){?>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><?=Text::RUR?></span>
+                                </div>
+                            <?}?>
+                        </div>
+                    </span>
+
                 </div>
             </div>
 

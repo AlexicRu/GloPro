@@ -80,6 +80,7 @@ Buttons
 .btn-info.disabled,
 .btn-outline-info
 {
+    color: $white;
     background: $info;
     border: 1px solid $info;
     box-shadow: $info-shadow;
@@ -127,6 +128,7 @@ Buttons
 .btn-danger.disabled,
 .btn-outline-danger
 {
+    color: $white;
     background: $danger;
     border: 1px solid $danger;
     box-shadow: $danger-shadow;
