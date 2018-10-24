@@ -4,7 +4,7 @@
             <div class="text-right hidden-xs-down text-muted">Название группы:</div>
             <span class="hidden-sm-up text-muted">Название группы:</span>
         </div>
-        <div class="col-sm-8 with-mb">
+        <div class="col-sm-8 with-mt">
             <input type="text" name="edit_cards_group_name" class="form-control">
         </div>
     </div>
@@ -15,7 +15,7 @@
                 <div class="text-right hidden-xs-down text-muted">Тип группы:</div>
                 <span class="hidden-sm-up text-muted">Тип группы:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <select class="custom-select" name="edit_cards_group_type">
                     <?foreach (Model_Card::$cardsGroupsTypes as $id => $name) {?>
                         <option value="<?=$id?>"><?=$name?></option>

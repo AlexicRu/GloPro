@@ -5,7 +5,7 @@
             <span class="text-muted">Баланс по договору:</span>
             <b class="nowrap"><?=number_format($balance['BALANCE'], 2, ',', ' ')?> <?=Text::RUR?></b>
         </div>
-        <div class="col-md-6 text-right with-mb">
+        <div class="col-md-6 text-right with-mt">
             <?if(Access::allow('clients_bill-add')){?>
                 <a href="#" data-toggle="modal" data-target="#contract_bill_add" class="btn btn-outline-primary waves-effect waves-light">Выставить счет</a>
             <?}?>
@@ -158,8 +158,8 @@
             var tpl = $('<div class="row bg-light m-b-5 p-t-10 p-b-10">'+
                 '<div class="col-5 col-xl-3 text-muted" row_date />'+
                 '<div class="col-7 col-xl-3" row_num />'+
-                '<div class="with-mb col-xl-6" row_summ />'+
-                '<div class="with-mb col-12" row_comment />'+
+                '<div class="with-mt col-xl-6" row_summ />'+
+                '<div class="with-mt col-12" row_comment />'+
             '</div>');
 
             tpl.attr('guid', data[i].ORDER_GUID);

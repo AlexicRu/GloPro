@@ -10,7 +10,7 @@
                 <div class="text-right hidden-xs-down text-muted">Заголовок:</div>
                 <span class="hidden-sm-up text-muted">Заголовок:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="news_edit_title" class="form-control" value="<?=(empty($detail['NOTE_TITLE']) ? '' : $detail['NOTE_TITLE'])?>">
             </div>
         </div>
@@ -20,7 +20,7 @@
                 <div class="text-right hidden-xs-down text-muted">Дата:</div>
                 <span class="hidden-sm-up text-muted">Дата:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="date" name="news_edit_date" class="form-control" value="<?=(empty($detail['NOTE_DATE']) ? date('Y-m-d') : Date::formatToDefault($detail['NOTE_DATE']))?>">
             </div>
         </div>
@@ -31,7 +31,7 @@
                     <div class="text-right hidden-xs-down text-muted">Рассылки:</div>
                     <span class="hidden-sm-up text-muted">Рассылки:</span>
                 </div>
-                <div class="col-sm-8 with-mb">
+                <div class="col-sm-8 with-mt">
                     <div class="m-b-5">
                         <input type="radio" id="news_edit_subscribe" name="news_edit_subscribe" onclick="toggleSelectSubscribeAgent($(this))" value="all" checked>
                         <label for="news_edit_subscribe">По всем агнетам</label><br>
@@ -53,7 +53,7 @@
                 <div class="text-right hidden-xs-down text-muted">Фото:</div>
                 <span class="hidden-sm-up text-muted">Фото:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <div class="news_edit_image dropzone"></div>
             </div>
         </div>

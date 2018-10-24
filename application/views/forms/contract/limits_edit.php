@@ -25,10 +25,10 @@
                         </nobr>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-5 with-mb">
+                <div class="col-lg-2 col-md-5 with-mt">
                     <input type="text" name="limit_value" value="<?=$limitFirst['LIMIT_VALUE']?>" <?=($limitFirst['INFINITELY'] ? 'disabled' : '')?> placeholder="Объем / сумма" class="form-control">
                 </div>
-                <div class="col-lg-2 col-md-3 with-mb">
+                <div class="col-lg-2 col-md-3 with-mt">
                     <select name="limit_param" class="custom-select">
                         <?
                         $param = Model_Card::$cardLimitsParams[Model_Card::CARD_LIMIT_PARAM_VOLUME];
@@ -40,7 +40,7 @@
                         <?}?>
                     </select>
                 </div>
-                <div class="col-lg-3 col-md-4 with-mb">
+                <div class="col-lg-3 col-md-4 with-mt">
                     <input name="limit_unlim" id="limit_unlim_<?=$key?>" class="filled-in chk-col-purple" type="checkbox" <?=($limitFirst['INFINITELY'] ? 'checked' : '')?> onclick="contractLimitsEditCheckUnlim($(this))">
                     <label for="limit_unlim_<?=$key?>"> Без ограничений</label>
                 </div>
@@ -161,9 +161,9 @@
                     '</nobr>'+
                 '</div>' +
             '</div>' +
-            '<div class="col-lg-2 col-md-5 with-mb"><input type="text" name="limit_value" placeholder="Объем / сумма" class="form-control"></div>' +
-            '<div class="col-lg-2 col-md-3 with-mb"><select name="limit_param" class="custom-select" /></div>' +
-            '<div class="col-lg-3 col-md-4 with-mb">' +
+            '<div class="col-lg-2 col-md-5 with-mt"><input type="text" name="limit_value" placeholder="Объем / сумма" class="form-control"></div>' +
+            '<div class="col-lg-2 col-md-3 with-mt"><select name="limit_param" class="custom-select" /></div>' +
+            '<div class="col-lg-3 col-md-4 with-mt">' +
                 '<input name="limit_unlim" id="limit_unlim_'+ table.find('[limit_group]').length +'" type="checkbox" class="filled-in chk-col-purple">'+
                 '<label for="limit_unlim_'+ table.find('[limit_group]').length +'" onclick="contractLimitsEditCheckUnlim($(this))">Без ограничений</label>' +
             '</div>' +

@@ -16,7 +16,7 @@
 
                 <div class="services_list jsGrid"></div>
             </div>
-            <div class="col-xl-4 with-mb">
+            <div class="col-xl-4 with-mt">
                 <div class="card m-b-0">
                     <div class="card-body bg-light">
                         <b class="font-18">Добавление конвертации услуг</b>
@@ -26,7 +26,7 @@
                                 <div class="text-right hidden-xs-down text-muted">Ввод из источника:</div>
                                 <span class="hidden-sm-up text-muted">Ввод из источника:</span>
                             </div>
-                            <div class="col-sm-8 with-mb">
+                            <div class="col-sm-8 with-mt">
                                 <input type="text" name="add_service_in_source" class="form-control">
                             </div>
                         </div>
@@ -36,14 +36,14 @@
                                 <div class="text-right hidden-xs-down text-muted">Выбор из источника:</div>
                                 <span class="hidden-sm-up text-muted">Выбор из источника:</span>
                             </div>
-                            <div class="col-sm-8 with-mb">
+                            <div class="col-sm-8 with-mt">
                                 <?=Form::buildField('service_choose_single', 'add_service_in_service')?>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-4"></div>
-                            <div class="col-sm-8 with-mb">
+                            <div class="col-sm-8 with-mt">
                                 <span class="<?=Text::BTN?> btn-outline-primary" onclick="addService()">Добавить</span>
                             </div>
                         </div>

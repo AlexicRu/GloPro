@@ -21,7 +21,7 @@
                     <input type="number" name="client_add_bill_summ" class="form-control">
                 </div>
             </div>
-            <div class="col-md-6 with-mb">
+            <div class="col-md-6 with-mt">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">НДС</span>

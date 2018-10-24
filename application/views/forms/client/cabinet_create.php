@@ -6,7 +6,7 @@
                 <div class="text-right hidden-xs-down text-muted">Email:<br><small><i>куда отправить</i></small>:</div>
                 <span class="hidden-sm-up text-muted">Email:<br><small><i>куда отправить</i></small>:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="cabinet_create_email" class="form-control">
             </div>
         </div>
@@ -16,7 +16,7 @@
                 <div class="text-right hidden-xs-down text-muted">Роль:</div>
                 <span class="hidden-sm-up text-muted">Роль:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <select name="cabinet_create_role" class="form-control">
                     <?foreach(Access::$clientRoles as $roleId => $role){?>
                         <option value="<?=$roleId?>"><?=$role?></option>

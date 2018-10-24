@@ -6,7 +6,7 @@
                 <div class="text-right hidden-xs-down text-muted">Номер:</div>
                 <span class="hidden-sm-up text-muted">Номер:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="add_supplier_contract_name" class="form-control">
             </div>
         </div>
@@ -16,7 +16,7 @@
                 <div class="text-right hidden-xs-down text-muted">Дата начала:</div>
                 <span class="hidden-sm-up text-muted">Дата начала:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="date" class="form-control" name="add_supplier_contract_date_start" value="<?=date('Y-m-d')?>">
             </div>
         </div>
@@ -26,7 +26,7 @@
                 <div class="text-right hidden-xs-down text-muted">Дата окончания:</div>
                 <span class="hidden-sm-up text-muted">Дата окончания:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="date" class="form-control" name="add_supplier_contract_date_end">
             </div>
         </div>

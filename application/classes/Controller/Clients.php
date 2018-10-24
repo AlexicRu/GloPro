@@ -606,22 +606,17 @@ class Controller_Clients extends Controller_Common {
     public function action_cardsList()
     {
         $contractId = $this->request->query('contract_id');
-        $query = $this->request->post('query');
-        $status = $this->request->post('status');
 
         $params = [
             'CONTRACT_ID'   => $contractId,
             'offset' 		=> $this->request->post('offset'),
             'pagination'	=> true,
             'limit'	        => 20,
+            'query'	        => $this->request->post('query'),
+            'status'	    => $this->request->post('status'),
+            'sort'	        => $this->request->post('sort'),
+            'sortWay'       => $this->request->post('sortWay'),
         ];
-
-        if(!empty($query) ){
-            $params['query'] = $query;
-        }
-        if(!empty($status) ){
-            $params['status'] = $status;
-        }
 
         list($cards, $more) = Model_Card::getCards($contractId, false, $params);
 

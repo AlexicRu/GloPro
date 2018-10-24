@@ -5,7 +5,7 @@
                 <div class="text-right hidden-xs-down text-muted">Наименование:</div>
                 <span class="hidden-sm-up text-muted">Наименование:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="add_supplier_name" class="form-control">
             </div>
         </div>

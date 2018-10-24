@@ -4,7 +4,7 @@
             <div class="text-right hidden-xs-down text-muted">Название группы:</div>
             <span class="hidden-sm-up text-muted">Название группы:</span>
         </div>
-        <div class="col-sm-8 with-mb">
+        <div class="col-sm-8 with-mt">
             <input type="text" name="edit_firms_group_name" class="form-control">
         </div>
     </div>

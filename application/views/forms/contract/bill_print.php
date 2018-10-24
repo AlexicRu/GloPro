@@ -21,9 +21,9 @@
             var tpl = $('<div class="row bg-light m-b-5 p-t-10 p-b-10">' +
                     '<div class="col-5 col-xl-2 text-muted" row_date />'+
                     '<div class="col-7 col-xl-3" row_contract />'+
-                    '<div class="with-mb col-5 col-xl-2" row_num />'+
-                    '<div class="with-mb col-7 col-xl-2" row_summ />'+
-                    '<div class="with-mb col-xl-3" row_btns><div class="btn-group"></div>'+
+                    '<div class="with-mt col-5 col-xl-2" row_num />'+
+                    '<div class="with-mt col-7 col-xl-2" row_summ />'+
+                    '<div class="with-mt col-xl-3" row_btns><div class="btn-group"></div>'+
                 '</div>');
 
             tpl.find('[row_date]').text(data[i].DATE_WEB);

@@ -108,6 +108,22 @@ class Model_Card extends Model
             ->from('V_WEB_CRD_LIST')
         ;
 
+        if (!empty($params['sort'])) {
+            switch ($params['sort']) {
+                case 'card':
+                    $sql->orderBy('card_id ' . ($params['sortWay'] ?? 'desc'));
+                    break;
+                case 'holder':
+                    $sql->orderBy('holder ' . ($params['sortWay'] ?? 'desc'));
+                    break;
+                case 'change':
+                    //todo #985
+                    break;
+            }
+        } else {
+            $sql->orderBy('card_id desc');
+        }
+
 		if(!empty($contractId)){
 			$sql->where("contract_id = ".Oracle::quote($contractId));
 		}

@@ -15,7 +15,7 @@
     </div>
 
     <div class="vtabs customvtab tabs_reports tabs-floating">
-        <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="report_list">
+        <ul class="nav nav-tabs tabs-vertical bg-light p-t-10" role="tablist" toggle_block="report_list">
             <?foreach($reports as $reportGroupId => $reportsList){?>
                 <li class="nav-item" tab="<?=$reportGroupId?>">
                     <a class="nav-link nowrap" data-toggle="tab" href="#reports<?=$reportGroupId?>" role="tab">
@@ -35,7 +35,7 @@
                                 <div class="hidden-sm-down text-right">Шаблон отчета:</div>
                                 <div class="hidden-md-up">Шаблон отчета:</div>
                             </div>
-                            <div class="col-md-8 with-mb">
+                            <div class="col-md-8 with-mt">
                                 <select class="report_select custom-select">
                                     <?foreach($reportsList as $report){?>
                                         <option value="<?=$report['REPORT_ID']?>"><?=$report['WEB_NAME']?></option>

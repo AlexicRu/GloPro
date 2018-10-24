@@ -40,7 +40,7 @@
                             <i class="gray">- Дата платежа не может быть меньше текущей даты минус 2 месяца</i>
                         </small>
                     </div>
-                    <div class="col-xl-4 text-right with-mb">
+                    <div class="col-xl-4 text-right with-mt">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Формат:
@@ -51,7 +51,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-xl-4 text-right with-mb">
+                    <div class="col-xl-4 text-right with-mt">
                         <button disabled onclick="connect1cPayments_addPayments($(this))" class="<?=Text::BTN?> btn-outline-primary load_connect1c_payments_btn">Загрузить выделенные</button>
                     </div>
                 </div>

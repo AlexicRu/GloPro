@@ -11,11 +11,11 @@
             Кол-во:<br>
             <input type="text" name="add_bill_product_cnt_<?$iteration?>" onkeyup="calcRowSumm($(this))" class="form-control">
         </div>
-        <div class="col-md-6 col-lg-3 with-mb">
+        <div class="col-md-6 col-lg-3 with-mt">
             Цена:<br>
             <input type="text" name="add_bill_product_price_<?$iteration?>" onkeyup="calcRowSumm($(this))" class="form-control">
         </div>
-        <div class="col-md-6 col-lg-3 with-mb">
+        <div class="col-md-6 col-lg-3 with-mt">
             Сумма:<br>
             <input type="text" name="add_bill_product_summ_<?$iteration?>" disabled class="form-control">
         </div>

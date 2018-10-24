@@ -14,7 +14,7 @@
 
 
     <div class="vtabs customvtab tabs_managers tabs-floating">
-        <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="manager_list">
+        <ul class="nav nav-tabs tabs-vertical bg-light p-t-10" role="tablist" toggle_block="manager_list">
             <li class="nav-item no_content before_scroll">
                 <form class="p-r-10 p-l-10 p-b-10 border-bottom m-b-10">
                     <input type="text" name="filter[search]" class="form-control input_messages" placeholder="Поиск..." value="<?=(empty($filter['search']) ? '' : $filter['search'])?>">
@@ -27,7 +27,7 @@
                 </form>
             </li>
 
-            <li class="nav-item no_content d-none d-xl-block before_scroll">
+            <li class="nav-item no_content d-none d-md-block before_scroll">
                 <a class="nav-link nowrap" href="#" data-toggle="modal" data-target="#manager_add"><i class="fa fa-plus"></i> Добавить менеджера</a>
             </li>
 

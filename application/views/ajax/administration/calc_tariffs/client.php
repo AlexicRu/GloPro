@@ -28,7 +28,7 @@
                     <div class="text-right hidden-xs-down text-muted">Тариф по договору:</div>
                     <span class="hidden-sm-up text-muted">Тариф по договору:</span>
                 </div>
-                <div class="col-sm-8 with-mb">
+                <div class="col-sm-8 with-mt">
                     <span class="current_tariff"></span>
 
                     <span class="badges m-l-10">
@@ -44,7 +44,7 @@
                     <div class="text-right hidden-xs-down text-muted">Период:</div>
                     <span class="hidden-sm-up text-muted">Период:</span>
                 </div>
-                <div class="col-sm-8 with-mb">
+                <div class="col-sm-8 with-mt">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <input type="date" name="date_start_<?=$iteration?>" class="form-control" value="<?=date('Y-m-01')?>">

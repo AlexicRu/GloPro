@@ -9,7 +9,7 @@
                     <input type="text" name="filter[search]" class="form-control input_messages" placeholder="Поиск..." value="<?=(!empty($filter['search']) ? $filter['search'] : '')?>">
                 </form>
             </div>
-            <div class="col-sm-8 text-right with-mb">
+            <div class="col-sm-8 text-right with-mt">
                 <span toggle_block="dots_groups_block">
                     <a href="#" data-toggle="modal" data-target="#control_add_dots_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
                     <a href="#" data-toggle="modal" data-target="#control_add_dots" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить точки</a>
@@ -37,7 +37,7 @@
 </div>
 
 <div class="vtabs customvtab tabs_dots_groups bg-white tabs-floating">
-    <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="dots_groups_list">
+    <ul class="nav nav-tabs tabs-vertical bg-light p-t-10" role="tablist" toggle_block="dots_groups_list">
         <li class="nav-item no_content before_scroll">
             <form class="p-r-10 p-l-10 p-b-10 border-bottom m-b-10 form_groups_dots" onsubmit="return collectForms($(this), 'form_groups_dots')">
                 <?foreach(Model_Dot::$groupsTypesNames as $groupsType => $groupsTypesName){?>

@@ -43,7 +43,7 @@
             <?}?>
         </div>
 
-        <div class="col-xl-5 col-12 with-mb">
+        <div class="col-xl-5 col-12 with-mt">
             <?foreach($reference as $referenceBlock){
                 $referenceFirst = reset($referenceBlock);?>
                 <span class="web_form_element" style="display: none" condition_id="<?=$referenceFirst['CONDITION_ID']?>"><?=Form::buildField($referenceFirst['WEB_FORM'], $referenceFirst['WEB_FORM'])?></span>

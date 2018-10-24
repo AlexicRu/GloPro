@@ -1,67 +1,22 @@
-<div class="ajax_block_cards_list_out">
-
-</div>
+<div class="ajax_block_cards_list_out"></div>
 
 <script>
-    var emptyMessage = '<li class="nav-item"><span class="nav-link"><i class="text-muted">Карты не найдены</i></span></li>';
+    var cardsIcons = {};
+
+    <?foreach (Model_Card::$cardIcons as $template => $icon) {?>
+    cardsIcons['<?=$template?>'] = '<?=$icon?>';
+    <?}?>
+
     var findCard = getUrlParameter('card');
     var foundCard = false;
 
     $(function () {
-        paginationAjax('/clients/cards-list/?contract_id=' + $('[name=contracts_list]').val(), 'ajax_block_cards_list', renderAjaxPaginationCardsList, {
-            emptyMessage: emptyMessage
-        });
+        paginationAjax('/clients/cards-list/?contract_id=' + $('[name=contracts_list]').val(), 'ajax_block_cards_list', renderAjaxPaginationCardsList, cardsFilterParams);
 
         $(".cards_search").on('keypress', function(e){
-            if(e.keyCode == 13){
-                var params = {
-                    query: $(this).val(),
-                    emptyMessage: emptyMessage
-                };
-
-                reLoad(params);
-            }
+            cardsFilter();
         });
     });
-
-    function reLoad(params)
-    {
-        $('.ajax_block_cards_list_out').empty()
-            .closest('.tabs_cards').find('.tab-content').empty()
-        ;
-
-        paginationAjax('/clients/cards-list/?contract_id=' + $('[name=contracts_list]').val(), 'ajax_block_cards_list', renderAjaxPaginationCardsList, params);
-    }
-
-    /**
-     * фильтр
-     */
-    function filterCards(type)
-    {
-        var params = {
-            query: $(".cards_search").val(),
-            emptyMessage: emptyMessage
-        };
-
-        switch (type) {
-            case 'work':
-                params.status = 'work';
-                break;
-            case 'disabled':
-                params.status = 'disabled';
-                break;
-        }
-
-        reLoad(params);
-
-        return false;
-    }
-
-    var cardsIcons = {};
-
-    <?foreach (Model_Card::$cardIcons as $template => $icon) {?>
-        cardsIcons['<?=$template?>'] = '<?=$icon?>';
-    <?}?>
 
     function renderAjaxPaginationCardsList(data, block)
     {
@@ -124,23 +79,6 @@
             }
         } else if (!firstLoad) {
             block.find('.nav-item:not(.no_content):first a').click();
-        }
-    }
-
-    function cardLoad(cardId, force)
-    {
-        var contentBlock = $("#card" + cardId);
-        var search = '?tab=cards&card=' + cardId;
-        history.pushState("","", location.pathname + search);
-
-        if(contentBlock.text() == '' || force == true){
-            addLoader(contentBlock);
-
-            $.post('/clients/card/' + cardId + '/?contract_id=' + $('[name=contracts_list]').val(), {}, function(data){
-                removeLoader(contentBlock);
-                contentBlock.html(data);
-                renderVerticalTabsScroll($('.tabs_cards .ajax_pagination:first'));
-            });
         }
     }
 </script>

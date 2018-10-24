@@ -43,7 +43,7 @@
                         <div class="text-right hidden-xs-down text-muted">Юридический адрес:</div>
                         <span class="hidden-sm-up text-muted">Юридический адрес:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.Y_ADDRESS)"></span>
                         <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" v-model="supplier.Y_ADDRESS"></nobr></span>
                     </div>
@@ -54,7 +54,7 @@
                         <div class="text-right hidden-xs-down text-muted">Фактический адрес:</div>
                         <span class="hidden-sm-up text-muted">Фактический адрес:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.F_ADDRESS)"></span>
                         <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.F_ADDRESS"></span>
                     </div>
@@ -65,7 +65,7 @@
                         <div class="text-right hidden-xs-down text-muted">Почтовый адрес:</div>
                         <span class="hidden-sm-up text-muted">Почтовый адрес:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.P_ADDRESS)"></span>
                         <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.P_ADDRESS"></span>
                     </div>
@@ -76,7 +76,7 @@
                         <div class="text-right hidden-xs-down text-muted">Контактное лицо:</div>
                         <span class="hidden-sm-up text-muted">Контактное лицо:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.CONTACT_PERSON)"></span>
                         <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.CONTACT_PERSON"></span>
                     </div>
@@ -87,7 +87,7 @@
                         <div class="text-right hidden-xs-down text-muted">Комментарий:</div>
                         <span class="hidden-sm-up text-muted">Комментарий:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(comments_formatted)"></span>
                         <span toggle_block="edit_supplier" class="dn"><textarea class="form-control" v-model="supplier.COMMENTS"></textarea></span>
                     </div>
@@ -101,7 +101,7 @@
                         <div class="text-right hidden-xs-down text-muted">Телефон:</div>
                         <span class="hidden-sm-up text-muted">Телефон:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.PHONE)"></span>
                         <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" name="phone" v-model="supplier.PHONE"></nobr></span>
                     </div>
@@ -112,7 +112,7 @@
                         <div class="text-right hidden-xs-down text-muted">E-mail:</div>
                         <span class="hidden-sm-up text-muted">E-mail:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(email_formatted)"></span>
                         <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" v-model="supplier.EMAIL"></nobr></span>
                     </div>
@@ -123,7 +123,7 @@
                         <div class="text-right hidden-xs-down text-muted">ИНН:</div>
                         <span class="hidden-sm-up text-muted">ИНН:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.INN)"></span>
                         <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" v-model="supplier.INN"></nobr></span>
                     </div>
@@ -134,7 +134,7 @@
                         <div class="text-right hidden-xs-down text-muted">КПП:</div>
                         <span class="hidden-sm-up text-muted">КПП:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.KPP)"></span>
                         <span toggle_block="edit_supplier" class="dn"><nobr><input type="text" class="form-control" v-model="supplier.KPP"></nobr></span>
                     </div>
@@ -145,7 +145,7 @@
                         <div class="text-right hidden-xs-down text-muted">ОГРН:</div>
                         <span class="hidden-sm-up text-muted">ОГРН:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OGRN)"></span>
                         <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.OGRN"></span>
                     </div>
@@ -156,7 +156,7 @@
                         <div class="text-right hidden-xs-down text-muted">ОКПО:</div>
                         <span class="hidden-sm-up text-muted">ОКПО:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OKPO)"></span>
                         <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.OKPO"></span>
                     </div>
@@ -167,7 +167,7 @@
                         <div class="text-right hidden-xs-down text-muted">ОКОНХ:</div>
                         <span class="hidden-sm-up text-muted">ОКОНХ:</span>
                     </div>
-                    <div class="col-sm-8 with-mb">
+                    <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OKONH)"></span>
                         <span toggle_block="edit_supplier" class="dn"><input type="text" class="form-control" v-model="supplier.OKONH"></span>
                     </div>

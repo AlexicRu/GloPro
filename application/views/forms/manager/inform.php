@@ -5,7 +5,7 @@
                 <div class="text-right hidden-xs-down text-muted">Телефон для оповещений:</div>
                 <span class="hidden-sm-up text-muted">Телефон для оповещений:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_settings_phone_note" class="input_big" value="<?=$manager['PHONE_FOR_INFORM']?>">
             </div>
         </div>
@@ -23,7 +23,7 @@
                     </button>
                 </span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_settings_confirm_code" class="input_mini">
             </div>
         </div>

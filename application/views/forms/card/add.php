@@ -15,7 +15,7 @@
                 <div class="text-right hidden-xs-down text-muted">Владелец:</div>
                 <span class="hidden-sm-up text-muted">Владелец:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="add_card_holder" class="form-control">
             </div>
         </div>
@@ -25,7 +25,7 @@
                 <div class="text-right hidden-xs-down text-muted">Срок действия:</div>
                 <span class="hidden-sm-up text-muted">Срок действия:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="date" class="form-control" name="add_card_expire_date">
             </div>
         </div>

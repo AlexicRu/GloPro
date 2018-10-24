@@ -5,7 +5,7 @@
                 <div class="text-right hidden-xs-down text-muted">Роль<sup class="required">*</sup>:</div>
                 <span class="hidden-sm-up text-muted">Роль<sup class="required">*</sup>:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <select name="manager_add_role" class="custom-select">
                     <?foreach(Access::getAvailableRoles() as $role => $name){?>
                         <option value="<?=$role?>"><?=$name?></option>
@@ -19,7 +19,7 @@
                 <div class="text-right hidden-xs-down text-muted">Имя:</div>
                 <span class="hidden-sm-up text-muted">Имя:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_add_name" class="form-control">
             </div>
         </div>
@@ -29,7 +29,7 @@
                 <div class="text-right hidden-xs-down text-muted">Фамилия:</div>
                 <span class="hidden-sm-up text-muted">Фамилия:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_add_surname" class="form-control">
             </div>
         </div>
@@ -39,7 +39,7 @@
                 <div class="text-right hidden-xs-down text-muted">Отчество:</div>
                 <span class="hidden-sm-up text-muted">Отчество:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_add_middlename" class="form-control">
             </div>
         </div>
@@ -49,7 +49,7 @@
                 <div class="text-right hidden-xs-down text-muted">E-mail:</div>
                 <span class="hidden-sm-up text-muted">E-mail:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_add_email" class="form-control">
             </div>
         </div>
@@ -59,7 +59,7 @@
                 <div class="text-right hidden-xs-down text-muted">Телефон:</div>
                 <span class="hidden-sm-up text-muted">Телефон:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_add_phone" class="form-control">
             </div>
         </div>
@@ -69,7 +69,7 @@
                 <div class="text-right hidden-xs-down text-muted">Логин<sup class="required">*</sup>:</div>
                 <span class="hidden-sm-up text-muted">Логин<sup class="required">*</sup>:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_add_login" class="form-control">
             </div>
         </div>
@@ -79,7 +79,7 @@
                 <div class="text-right hidden-xs-down text-muted">Пароль<sup class="required">*</sup>:</div>
                 <span class="hidden-sm-up text-muted">Пароль<sup class="required">*</sup>:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="password" name="manager_add_password" class="form-control">
             </div>
         </div>
@@ -89,7 +89,7 @@
                 <div class="text-right hidden-xs-down text-muted">Повторите пароль<sup class="required">*</sup>:</div>
                 <span class="hidden-sm-up text-muted">Повторите пароль<sup class="required">*</sup>:</span>
             </div>
-            <div class="col-sm-8 with-mb">
+            <div class="col-sm-8 with-mt">
                 <input type="password" name="manager_add_password_again" class="form-control">
             </div>
         </div>

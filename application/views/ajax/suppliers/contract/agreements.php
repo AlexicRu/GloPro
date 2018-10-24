@@ -12,9 +12,9 @@
 </div>
 
 <div class="vtabs customvtab tabs_agreements tabs-floating">
-    <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="agreements_list">
+    <ul class="nav nav-tabs tabs-vertical bg-light p-t-10" role="tablist" toggle_block="agreements_list">
         <?if(Access::allow('suppliers_agreement-add')){?>
-            <li class="nav-item no_content d-none d-xl-block before_scroll">
+            <li class="nav-item no_content d-none d-md-block before_scroll">
                 <a class="nav-link nowrap" href="#" data-toggle="modal" data-target="#supplier_agreement_add"><i class="fa fa-plus"></i> Добавить соглашение</a>
             </li>
         <?}?>

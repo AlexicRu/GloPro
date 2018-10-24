@@ -34,7 +34,7 @@
                 '<th>' +
                     '<div class="btn-group">' +
                         '<input type="text" name="group_card_filter_description_ru" placeholder="Описание" class="form-control">' +
-                        '<button class="'+ BTN +' btn-sm btn-outline-primary" onclick="filterCards<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
+                        '<button class="'+ BTN +' btn-sm btn-outline-primary" onclick="cardsFilter<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
                     '</div>' +
                 '</th>' +
                 '<th class="td_edit" />' +
@@ -100,7 +100,7 @@
         }
     }
     
-    function filterCards<?=$postfix?>(btn)
+    function cardsFilter<?=$postfix?>(btn)
     {
         var block = btn.closest('.ajax_block_group_cards_list_<?=$postfix?>_out');
 

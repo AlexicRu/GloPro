@@ -9,7 +9,7 @@
                     <input type="text" name="filter[search]" class="form-control input_messages" placeholder="Поиск..." value="<?=(!empty($filter['search']) ? $filter['search'] : '')?>">
                 </form>
             </div>
-            <div class="col-sm-8 text-right with-mb">
+            <div class="col-sm-8 text-right with-mt">
                 <span toggle_block="cards_groups_block">
                     <a href="#" data-toggle="modal" data-target="#control_add_cards_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
                     <a href="#" data-toggle="modal" data-target="#control_add_cards" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить карты</a>
@@ -37,7 +37,7 @@
 </div>
 
 <div class="vtabs customvtab tabs_cards_groups bg-white tabs-floating">
-    <ul class="nav nav-tabs tabs-vertical p-t-10" role="tablist" toggle_block="cards_groups_list">
+    <ul class="nav nav-tabs tabs-vertical bg-light p-t-10" role="tablist" toggle_block="cards_groups_list">
         <div class="v-scroll">
         <?if(empty($cardsGroups)){?>
             <li class="nav-item">
