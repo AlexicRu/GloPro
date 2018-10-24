@@ -1,5 +1,6 @@
 var BTN = ' btn waves-effect waves-light ';
 var CHECKBOX = ' filled-in chk-col-purple ';
+var currentPaginationAjaxRequest;
 
 if (typeof Dropzone == 'function') {
     Dropzone.autoDiscover = false;
@@ -136,7 +137,7 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
         params.onError = false;
     }
 
-    $.post(url, params, function(data){
+    currentPaginationAjaxRequest = $.post(url, params, function(data){
         removeLoader(block.closest('.loading'));
         more.find('.fa-circle-notch').remove();
 

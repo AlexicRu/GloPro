@@ -2,6 +2,7 @@
 
 class Model_Client extends Model
 {
+    const STATE_CLIENT_IN_WORK = 1;
     const STATE_CLIENT_DELETED = 7;
 
     /**
@@ -20,7 +21,7 @@ class Model_Client extends Model
             unset($cacheKeyParams['pagination']);
             unset($cacheKeyParams['offset']);
         }
-        $key = 'getFullClientsList_' . implode('_', array_keys($cacheKeyParams)) . '_' . implode('_', $cacheKeyParams);
+        $key = 'getFullClientsList_' . md5(json_encode($cacheKeyParams));
         $result = $cache->get($key);
 
         if (empty($result)) {
@@ -31,9 +32,35 @@ class Model_Client extends Model
             $sql = (new Builder())->select()
                 ->from('v_web_clients_title v')
                 ->where("v.manager_id = " . (int)$user['MANAGER_ID'])
-                ->orderBy([
-                    'client_id desc'
-                ]);
+            ;
+
+            if (!empty($params['sort'])) {
+                switch ($params['sort']) {
+                    case 'id':
+                        //todo php7 $sql->orderBy('v.client_id ' . ($params['sortWay'] ?? 'desc'));
+                        $sql->orderBy('v.client_id ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
+                        break;
+                    case 'name':
+                        //todo php7 $sql->orderBy('v.client_name ' . ($params['sortWay'] ?? 'desc'));
+                        $sql->orderBy('v.client_name ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
+                        break;
+                }
+            } else {
+                $sql->orderBy('v.client_id desc');
+            }
+
+            if (!empty($params['statuses'])) {
+                $statuses = [];
+
+                if (!empty($params['statuses']['active'])) {
+                    $statuses[] = Model_Client::STATE_CLIENT_IN_WORK;
+                }
+                if (!empty($params['statuses']['inactive'])) {
+                    $statuses[] = Model_Client::STATE_CLIENT_DELETED;
+                }
+
+                $sql->whereIn('client_state', $statuses);
+            }
 
             if (!empty($params['search'])) {
                 $search = mb_strtoupper(Oracle::quote('%' . $params['search'] . '%'));

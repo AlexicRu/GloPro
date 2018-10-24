@@ -11,36 +11,41 @@ class Controller_Clients extends Controller_Common {
 
 	/**
 	 * титульная страница со списком клиентов
-     *
-     * был запил под многостраничность, но принудительно отключили, так как не взлетело
 	 */
 	public function action_index()
 	{
-        if ($this->request->is_ajax()) {
+        $this->_initEnjoyHint();
+        Common::addJs('clients/clients.js');
 
-            $params = [
-                'search'        => $this->request->query('search'),
-                'offset' 		=> $this->request->post('offset'),
-                'pagination'	=> true
-            ];
+        $popupClientAdd = Form::popup('Добавление нового клиента', 'client/add');
 
-            list($clients, $more) = Model_Client::getFullClientsList($params);
-
-            if(empty($clients)){
-                $this->jsonResult(false);
-            }
-
-            $this->jsonResult(true, ['items' => $clients, 'more' => $more]);
-        } else {
-            $this->_initEnjoyHint();
-
-            $popupClientAdd = Form::popup('Добавление нового клиента', 'client/add');
-
-            $this->tpl
-                ->bind('popupClientAdd', $popupClientAdd)
-            ;
-        }
+        $this->tpl
+            ->bind('popupClientAdd', $popupClientAdd)
+        ;
 	}
+
+    /**
+     * постраничная загрузка кдиентов
+     */
+	public function action_clientsList()
+    {
+        $params = [
+            'search'        => $this->request->post('search'),
+            'offset' 		=> $this->request->post('offset'),
+            'statuses'      => $this->request->post('statuses'),
+            'sort'	        => $this->request->post('sort'),
+            'sortWay'       => $this->request->post('sortWay'),
+            'pagination'	=> true
+        ];
+
+        list($clients, $more) = Model_Client::getFullClientsList($params);
+
+        if(empty($clients)){
+            $this->jsonResult(false);
+        }
+
+        $this->jsonResult(true, ['items' => $clients, 'more' => $more]);
+    }
 
 	/**
 	 * страница работы с клиентом

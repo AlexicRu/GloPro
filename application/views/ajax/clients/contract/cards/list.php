@@ -11,7 +11,7 @@
     var foundCard = false;
 
     $(function () {
-        paginationAjax('/clients/cards-list/?contract_id=' + $('[name=contracts_list]').val(), 'ajax_block_cards_list', renderAjaxPaginationCardsList, cardsFilterParams);
+        cardsReload();
 
         $(".cards_search").on('keypress', function(e){
             cardsFilter();

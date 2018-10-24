@@ -1,8 +1,50 @@
-<?if(Access::allow('clients_client-add')){?>
-    <div class="text-right m-b-30">
-        <a href="#" class="btn waves-effect waves-light btn-outline-primary" data-toggle="modal" data-target="#client_add"><i class="fa fa-plus"></i> Добавить клиента</a>
+<div class="card">
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-5 col-md-4">
+                <a href="#clientsFilter" data-toggle="collapse" class="<?=Text::BTN?> btn-outline-info">
+                    <i class="fa fa-filter"></i>
+                    <span class="d-none d-sm-inline-block">Фильтр</span>
+                </a>
+            </div>
+            <div class="col-5 col-md-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-sort-amount-up"></i></span>
+                    </div>
+                    <select class="custom-select" name="clients-sort" onchange="clientsFilter();">
+                        <option way="desc" sort="id">ID &downarrow;</option>
+                        <option way="asc" sort="id">ID &uparrow;</option>
+                        <option way="desc" sort="name">Название &downarrow;</option>
+                        <option way="asc" sort="name">Название &uparrow;</option>
+                    </select>
+                </div>
+            </div>
+            <?if(Access::allow('clients_client-add')){?>
+                <div class="col-2 col-md-4 d-none d-sm-block text-right">
+                    <a href="#" class="btn waves-effect waves-light btn-outline-primary" data-toggle="modal" data-target="#client_add">
+                        <i class="fa fa-plus"></i>
+                        <span class="d-none d-sm-inline-block">Добавить клиента</span>
+                    </a>
+                </div>
+            <?}?>
+        </div>
+
+        <div class="collapse" id="clientsFilter">
+            <div class="pt-4">
+                <input type="checkbox" name="clients_filter_status_active" class="<?=Text::CHECKBOX?>" id="clients_filter_status_active" checked>
+                <label for="clients_filter_status_active">В работе</label>
+                &nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="clients_filter_status_inactive" class="<?=Text::CHECKBOX?>" id="clients_filter_status_inactive" checked>
+                <label for="clients_filter_status_inactive">Удаленные</label>
+            </div>
+            <div class="pt-2">
+                <span class="<?=Text::BTN?> btn-outline-primary" onclick="clientsFilter()">Применить</span>
+            </div>
+        </div>
     </div>
-<?}?>
+</div>
+
 <?
 if(!empty($_REQUEST['search'])){?>
     <h3>Результаты поиска</h3>
@@ -14,10 +56,11 @@ if(!empty($_REQUEST['search'])){?>
     <?=$popupClientAdd?>
 <?}?>
 
-
 <script>
+    clientsFilterParams.search = '<?=(!empty($_REQUEST['search']) ? strip_tags($_REQUEST['search']) : '')?>';
+
     $(function(){
-        paginationAjax('/clients/?search=<?=(!empty($_REQUEST['search']) ? strip_tags($_REQUEST['search']) : '')?>', 'ajax_block_clients', renderAjaxPaginationClients, {show_all_btn: true});
+        clientsReload();
     });
 
     var fl = true;
