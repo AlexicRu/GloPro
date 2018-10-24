@@ -111,10 +111,12 @@ class Model_Card extends Model
         if (!empty($params['sort'])) {
             switch ($params['sort']) {
                 case 'card':
-                    $sql->orderBy('card_id ' . ($params['sortWay'] ?? 'desc'));
+                    //todo php7 $sql->orderBy('card_id ' . ($params['sortWay'] ?? 'desc'));
+                    $sql->orderBy('card_id ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
                     break;
                 case 'holder':
-                    $sql->orderBy('holder ' . ($params['sortWay'] ?? 'desc'));
+                    //todo php7 $sql->orderBy('holder ' . ($params['sortWay'] ?? 'desc'));
+                    $sql->orderBy('holder ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
                     break;
                 case 'change':
                     //todo #985

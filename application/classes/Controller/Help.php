@@ -245,7 +245,8 @@ class Controller_Help extends Controller_Common
      */
     public function action_listClientsContracts()
     {
-        $this->_params['client_id'] = $this->_params['client_id'] ?? $this->request->post('client_id');
+        //todo php7 $this->_params['client_id'] = $this->_params['client_id'] ?? $this->request->post('client_id');
+        $this->_params['client_id'] = !empty($this->_params['client_id']) ? $this->_params['client_id'] : $this->request->post('client_id');
 
         if(empty($this->_params['client_id']) && empty($this->_ids)){
             $this->after(false);

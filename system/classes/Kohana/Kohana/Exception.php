@@ -162,8 +162,10 @@ class Kohana_Kohana_Exception extends Exception {
      */
     public static function text($e)
     {
+        /* todo php7
         if ( ! $e instanceof Exception AND ! $e instanceof Throwable )
             throw InvalidArgumentException;
+        */
 
         return sprintf('%s [ %s ]: %s ~ %s [ %d ]',
             get_class($e), $e->getCode(), strip_tags($e->getMessage()), Debug::path($e->getFile()), $e->getLine());
@@ -178,8 +180,10 @@ class Kohana_Kohana_Exception extends Exception {
      */
     public static function response($e)
     {
+        /* todo php7
         if ( ! $e instanceof Exception AND ! $e instanceof Throwable )
             throw InvalidArgumentException;
+        */
 
         try
         {

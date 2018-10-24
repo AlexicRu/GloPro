@@ -5,15 +5,18 @@
     <div class="row font-20 align-items-center">
         <div class="col-xl-4 col-xxl-2">
             <span class="text-muted">Всего карт:</span>
-            <a href="#" onclick="cardsFilter('all')"><?=($cardsCounter['ALL_CARDS']??0)?></a>
+            <?/* todo php7?><a href="#" onclick="cardsFilter('all')"><?=($cardsCounter['ALL_CARDS'] ?? 0)?></a><?*/?>
+            <a href="#" onclick="cardsFilter('all')"><?=(!empty($cardsCounter['ALL_CARDS']) ? $cardsCounter['ALL_CARDS'] : 0)?>
         </div>
         <div class="col-xl-4 col-xxl-2">
             <span class="text-muted">В работе:</span>
-            <a href="#" onclick="cardsFilter('work')" class="cards_cnt_in_work"><?=($cardsCounter['CARDS_IN_WORK']??0)?></a>
+            <?/* todo php7?><a href="#" onclick="cardsFilter('work')" class="cards_cnt_in_work"><?=($cardsCounter['CARDS_IN_WORK'] ?? 0)?></a><?*/?>
+            <a href="#" onclick="cardsFilter('work')" class="cards_cnt_in_work"><?=(!empty($cardsCounter['CARDS_IN_WORK']) ? $cardsCounter['CARDS_IN_WORK'] : 0)?></a>
         </div>
         <div class="col-xl-4 col-xxl-2">
             <span class="text-muted">В блоке:</span>
-            <a href="#" onclick="cardsFilter('disabled')" class="cards_cnt_blocked"><?=($cardsCounter['CARDS_NOT_WORK']??0)?></a>
+            <?/* todo php7?><a href="#" onclick="cardsFilter('disabled')" class="cards_cnt_blocked"><?=($cardsCounter['CARDS_NOT_WORK'] ?? 0)?></a><?*/?>
+            <a href="#" onclick="cardsFilter('disabled')" class="cards_cnt_in_work"><?=(!empty($cardsCounter['CARDS_NOT_WORK']) ? $cardsCounter['CARDS_NOT_WORK'] : 0)?></a>
         </div>
         <div class="col-xl-6 col-xxl-3 with-mt">
             <div class="input-group">
