@@ -1,13 +1,13 @@
 <div class="card">
     <div class="card-body">
-        <div class="row align-items-center">
-            <div class="col-5 col-md-4">
+        <div class="row align-items-center no-gutters">
+            <div class="col-2 col-md-3">
                 <a href="#clientsFilter" data-toggle="collapse" class="<?=Text::BTN?> btn-outline-info">
                     <i class="fa fa-filter"></i>
-                    <span class="d-none d-sm-inline-block">Фильтр</span>
+                    <span class="d-none d-md-inline-block">Фильтр</span>
                 </a>
             </div>
-            <div class="col-5 col-md-4">
+            <div class="col-8 col-md-6">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-sort-amount-up"></i></span>
@@ -21,10 +21,11 @@
                 </div>
             </div>
             <?if(Access::allow('clients_client-add')){?>
-                <div class="col-2 col-md-4 d-none d-sm-block text-right">
+                <div class="col-2 col-md-3 text-right">
                     <a href="#" class="btn waves-effect waves-light btn-outline-primary" data-toggle="modal" data-target="#client_add">
                         <i class="fa fa-plus"></i>
-                        <span class="d-none d-sm-inline-block">Добавить клиента</span>
+                        <span class="d-none d-md-inline-block">Добавить</span>
+                        <span class="d-none d-xl-inline-block">клиента</span>
                     </a>
                 </div>
             <?}?>
