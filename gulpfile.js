@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     modifyCssUrls = require('gulp-modify-css-urls'),
     imagemin = require('gulp-imagemin'),
     uglify = require('gulp-uglify'),
-    sass = require('gulp-sass')
+    sass = require('gulp-sass'),
+    gutil = require('gulp-util')
 ;
 
 var
@@ -45,6 +46,7 @@ gulp.task('sass', function(){
 gulp.task('js', function(){
     return gulp.src(srcPath + 'js/**/*.js')
         .pipe(uglify())
+        //.on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
         .pipe(gulp.dest(buildPath + 'js'))
 });
 

@@ -210,7 +210,7 @@ abstract class Controller_Common extends Controller_Template {
             '/admin-pro/main/js/sidebarmenu.js',
             '/admin-pro/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',
             '/admin-pro/assets/plugins/sparkline/jquery.sparkline.min.js',
-            Common::getAssetsLink() . 'plugins/jquery.maskMoney.min.js',
+            '/assets/plugins/jquery.maskMoney.min.js',
             '/admin-pro/main/js/custom.js',
             Common::getAssetsLink() . 'fonts/font-awesome-5/fa-solid.min.js',
             Common::getAssetsLink() . 'fonts/font-awesome-5/fa-light.min.js',

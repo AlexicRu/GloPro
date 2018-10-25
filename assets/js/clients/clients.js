@@ -7,7 +7,7 @@ var clientsFilterParams = {
  */
 function clientsFilter()
 {
-    let sortSelect = $('[name=clients-sort] option:selected');
+    var sortSelect = $('[name=clients-sort] option:selected');
 
     clientsFilterParams.sort = sortSelect.attr('sort');
     clientsFilterParams.sortWay = sortSelect.attr('way');
