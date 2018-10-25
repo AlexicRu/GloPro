@@ -19,3 +19,9 @@
     background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
   }
 }
+
+@mixin bg-gradient-horizontal-variant($parent, $color) {
+  #{$parent} {
+    background: $color linear-gradient(45deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
+  }
+}

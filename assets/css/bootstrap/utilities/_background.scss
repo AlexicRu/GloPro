@@ -8,6 +8,9 @@
   @each $color, $value in $theme-colors {
     @include bg-gradient-variant(".bg-gradient-#{$color}", $value);
   }
+  @each $color, $value in $theme-colors {
+    @include bg-gradient-horizontal-variant(".bg-gradient-horizontal-#{$color}", $value);
+  }
 }
 
 .bg-white {

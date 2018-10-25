@@ -10,7 +10,10 @@
             <div class="col-8 col-md-6">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-sort-amount-up"></i></span>
+                        <span class="input-group-text">
+                            <i class="fa fa-sort-amount-up"></i>
+                            <span class="ml-1 d-none d-xl-inline-block">Сортировка:</span>
+                        </span>
                     </div>
                     <select class="custom-select" name="clients-sort" onchange="clientsFilter();">
                         <option way="desc" sort="id">ID &downarrow;</option>
