@@ -41,7 +41,7 @@
                 <?}else{?>
                     <?foreach($managers as $key => $manager){?>
                         <li class="nav-item" tab="manager<?=$manager['MANAGER_ID']?>">
-                            <a class="nav-link nowrap" data-toggle="tab" href="#manager<?=$manager['MANAGER_ID']?>" role="tab">
+                            <a class="nav-link" data-toggle="tab" href="#manager<?=$manager['MANAGER_ID']?>" role="tab">
                                 <span class="text-muted">[<?=$manager['MANAGER_ID']?>]</span>
                                 <?=$manager['M_NAME']?>
                             </a>

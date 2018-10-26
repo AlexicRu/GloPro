@@ -48,7 +48,7 @@
         <?}else{?>
             <?foreach($cardsGroups as $key => $group){?>
                 <li class="nav-item" tab="cards_group_<?=$group['GROUP_ID']?>">
-                    <a class="nav-link nowrap" data-toggle="tab" href="#cards_group_<?=$group['GROUP_ID']?>" role="tab">
+                    <a class="nav-link" data-toggle="tab" href="#cards_group_<?=$group['GROUP_ID']?>" role="tab">
                         <span class="check_span_hidden">
                             <input type="hidden" name="group_id" value="<?=$group['GROUP_ID']?>">
                             <input type="hidden" name="group_name" value="<?=$group['GROUP_NAME']?>">

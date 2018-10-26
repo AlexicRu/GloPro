@@ -34,7 +34,7 @@
                 <span class="hidden-sm-up text-muted">Сумма (<?=Text::RUR?>):</span>
             </div>
             <div class="col-sm-8 with-mt">
-                <input type="number" name="add_contract_payment_value" class="form-control">
+                <input type="text" name="add_contract_payment_value" class="form-control">
             </div>
         </div>
 

@@ -268,6 +268,9 @@ body{
     opacity: 1; left: 0;
   }
 }
+.nav-tabs{
+  min-width: 300px;
+}
 
 /*
 -----------------------------------
@@ -289,12 +292,18 @@ media queries
   .row [class*="col-xxl-"] + .with-mt[class*="col-xxl-"] {
     margin-top: 5px;
   }
+  .nav-tabs{
+    min-width: 250px;
+  }
 }
 
 // Large devices (desktops, less than 1200px) LG
 @media (max-width: 1199.98px) {
   .row [class*="col-xl-"] + .with-mt[class*="col-xl-"] {
     margin-top: 5px;
+  }
+  .nav-tabs{
+    min-width: 200px;
   }
 }
 
@@ -312,9 +321,10 @@ media queries
         left: -100%;
         display: block;
         width: auto;
+        max-width: 300px;
         background: white;
         box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-        z-index: 1;
+        z-index: 10;
         &.active {
           left: 0;
         }

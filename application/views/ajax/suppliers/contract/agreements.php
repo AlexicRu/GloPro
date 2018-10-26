@@ -20,7 +20,7 @@
         <?}?>
         <?foreach($agreements as $key => $agreement){?>
             <li class="nav-item" tab="<?=$agreement['AGREEMENT_ID']?>">
-                <a class="nav-link nowrap" data-toggle="tab" href="#agreement<?=$agreement['AGREEMENT_ID']?>" role="tab" onclick="loadAgreement($(this))">
+                <a class="nav-link" data-toggle="tab" href="#agreement<?=$agreement['AGREEMENT_ID']?>" role="tab" onclick="loadAgreement($(this))">
                     <span class="fal fa-file-alt fa-lg m-r-5"></span>
                     [<?=$agreement['AGREEMENT_ID']?>] <span class="agreement_name"><?=$agreement['AGREEMENT_NAME']?></span>
                 </a>

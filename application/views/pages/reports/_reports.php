@@ -18,7 +18,7 @@
         <ul class="nav nav-tabs tabs-vertical bg-light p-t-10" role="tablist" toggle_block="report_list">
             <?foreach($reports as $reportGroupId => $reportsList){?>
                 <li class="nav-item" tab="<?=$reportGroupId?>">
-                    <a class="nav-link nowrap" data-toggle="tab" href="#reports<?=$reportGroupId?>" role="tab">
+                    <a class="nav-link" data-toggle="tab" href="#reports<?=$reportGroupId?>" role="tab">
                         <span class="<?=Model_Report::$reportGroups[$reportGroupId]['icon']?> m-r-5"></span> <?=Model_Report::$reportGroups[$reportGroupId]['name']?>
                     </a>
                 </li>
