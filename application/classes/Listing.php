@@ -25,7 +25,7 @@ class Listing
         ;
 
         if(!empty($params['search'])){
-            $sql->where("upper(t.NAME_RU) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));
+            $sql->where("upper(t.NAME_RU) like ".mb_strtoupper(Oracle::quoteLike('%'.$params['search'].'%')));
         }
 
         if(!empty($params['ids'])){
@@ -72,7 +72,7 @@ class Listing
         } else {
 
             if (!empty($params['search'])) {
-                $sql->where("upper(t.long_desc) like " . mb_strtoupper(Oracle::quote('%' . $params['search'] . '%')));
+                $sql->where("upper(t.long_desc) like " . mb_strtoupper(Oracle::quoteLike('%' . $params['search'] . '%')));
             }
 
             if (!empty($params['TUBE_ID'])) {
@@ -118,7 +118,7 @@ class Listing
             $sql->whereIn("t.CARD_ID", $params['ids']);
         } else {
             if(!empty($params['search'])){
-                $sql->where("t.CARD_ID like ".Oracle::quote('%'.$params['search'].'%'));
+                $sql->where("t.CARD_ID like ".Oracle::quoteLike('%'.$params['search'].'%'));
             }
             if(!empty($params['contract_id'])){
                 $sql->where("t.contract_id = ".(int)$params['contract_id']);
@@ -155,7 +155,7 @@ class Listing
         ;
 
         if(!empty($params['search'])){
-            $sql->where("t.CARD_ID like ".Oracle::quote('%'.$params['search'].'%'));
+            $sql->where("t.CARD_ID like ".Oracle::quoteLike('%'.$params['search'].'%'));
         }
 
         if(!empty($params['ids'])){
@@ -187,7 +187,7 @@ class Listing
         ;
 
         if(!empty($params['search'])){
-            $sql->where("upper(t.SUPPLIER_NAME) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));
+            $sql->where("upper(t.SUPPLIER_NAME) like ".mb_strtoupper(Oracle::quoteLike('%'.$params['search'].'%')));
         }
 
         if(!empty($params['ids'])){
@@ -224,7 +224,7 @@ class Listing
         ;
 
         if (!empty($params['search'])) {
-            $sql->where("upper(t.CONTRACT_NAME) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));
+            $sql->where("upper(t.CONTRACT_NAME) like ".mb_strtoupper(Oracle::quoteLike('%'.$params['search'].'%')));
         }
 
         if (!empty($params['pagination'])) {
@@ -252,7 +252,7 @@ class Listing
         ;
 
         if(!empty($params['search'])){
-            $sql->where("upper(t.TUBE_NAME) like ".mb_strtoupper(Oracle::quote('%'.$params['search'].'%')));
+            $sql->where("upper(t.TUBE_NAME) like ".mb_strtoupper(Oracle::quoteLike('%'.$params['search'].'%')));
         }
 
         if(!empty($params['ids'])){
