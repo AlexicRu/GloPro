@@ -19,24 +19,21 @@ class Model_Client extends Model
         $sql = (new Builder())->select()
             ->from('v_web_title_clients clients')
             ->where("clients.manager_id = " . (int)$user['MANAGER_ID'])
-            ->orderBy([
-                'clients.client_id desc'
-            ]);
         ;
 
         if (!empty($params['sort'])) {
             switch ($params['sort']) {
                 case 'id':
                     //todo php7 $sql->orderBy('v.client_id ' . ($params['sortWay'] ?? 'desc'));
-                    $sql->orderBy('v.client_id ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
+                    $sql->orderBy('clients.client_id ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
                     break;
                 case 'name':
                     //todo php7 $sql->orderBy('v.client_name ' . ($params['sortWay'] ?? 'desc'));
-                    $sql->orderBy('v.client_name ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
+                    $sql->orderBy('clients.client_name ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
                     break;
             }
         } else {
-            $sql->orderBy('v.client_id desc');
+            $sql->orderBy('clients.client_id desc');
         }
 
         if (!empty($params['statuses'])) {
@@ -49,7 +46,7 @@ class Model_Client extends Model
                 $statuses[] = Model_Client::STATE_CLIENT_DELETED;
             }
 
-            $sql->whereIn('client_state', $statuses);
+            $sql->whereIn('clients.client_state', $statuses);
         }
 
         if (!empty($params['search'])) {

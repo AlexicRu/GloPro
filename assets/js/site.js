@@ -11,7 +11,6 @@ $(function(){
         $.post('/messages/make-read', {}, function (data) {
             if(data.success){
                 message(1, 'Сообщения отмечены прочитанными');
-                $('.mailbox').closest('.nav-item').find('.nav-link').click();
             }else{
                 message(0, 'Ошибка');
             }
@@ -142,6 +141,8 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
         more.find('.fa-circle-notch').remove();
 
         if(data.success){
+            params.more = data.data.more;
+
             callback(data.data.items, block, params);
 
             outer.data('offset', parseInt(outer.data('offset')) + data.data.items.length);
