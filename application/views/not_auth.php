@@ -11,9 +11,8 @@
 
         <div class="card">
             <div class="card-body">
-                <div class="d-flex">
 
-                    <form class="form-horizontal" id="login" method="post" action="/login">
+                <form class="form-horizontal" id="login" method="post" action="/login">
                         <div class="form-group row">
                             <div class="col-sm-4 col-form-label">
                                 <div class="text-right d-none d-sm-block">Логин</div>
@@ -55,7 +54,6 @@
                         </div>
                     </form>
 
-                </div>
             </div>
         </div>
 

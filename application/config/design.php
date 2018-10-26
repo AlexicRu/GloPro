@@ -63,29 +63,13 @@ return array(
         ],
     ],
     'user' => [
-        'u_2617' => [
+        'g_1' => [
             'title' => 'ГПН-КП',
             'class' => 'gpn'
-        ],
-        'u_2618' => [
-            'title' => 'ГПН-КП',
-            'class' => 'gpn'
-        ],
-        'u_2619' => [
-            'title' => 'ГПН-КП',
-            'class' => 'gpn'
-        ],
-        'u_2620' => [
-            'title' => 'ГПН-КП',
-            'class' => 'gpn'
-        ],
-        'a_21' => [
-            'title' => 'GloPro :: Почта России',
-            'class' => 'pochta'
         ],
         'a_22' => [
-            'title' => 'GloPro :: Почта России',
-            'class' => 'pochta'
+            'title' => 'ETS Trading',
+            'class' => 'ets'
         ],
         'u_2126' => [
             'title' => 'GloPro',
