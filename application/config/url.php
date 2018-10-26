@@ -32,5 +32,9 @@ return [
         '.*\.petrolpark\.ru',
         'ets-trading\.ru',
         '.*\.ets-trading\.ru',
+        'kec-oil\.ru',
+        '.*\.kec-oil\.ru',
+        'opti-24\.com',
+        '.*\.opti-24\.com',
     ],
 ];

@@ -53,6 +53,10 @@ return array(
             'title' => 'ГПН-КП',
             'class' => 'gpn'
         ],
+        'dealeropti24com' => [
+            'title' => 'ГПН-КП',
+            'class' => 'gpn'
+        ],
         'lkbinoilcom' => [
             'title' => 'ТК БИН-ОЙЛ',
             'class' => 'binoil'
@@ -115,6 +119,10 @@ return array(
             'title' => 'GloPro',
             'class' => 'ctpz',
             'url'   => 'demolkgloproru'
+        ],
+        'a_35' => [
+            'title' => 'КЕС ОЙЛ',
+            'class' => 'kec'
         ],
     ]
 );

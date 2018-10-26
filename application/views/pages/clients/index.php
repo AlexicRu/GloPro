@@ -69,7 +69,7 @@ if(!empty($_REQUEST['search'])){?>
 
     var fl = true;
 
-    function renderAjaxPaginationClients(data, block)
+    function renderAjaxPaginationClients(data, block, params)
     {
         for(var i in data){
             var client = data[i];
@@ -137,7 +137,12 @@ if(!empty($_REQUEST['search'])){?>
         if (fl) {
             EnjoyHintRun('clients');
             fl = false;
-            block.parent().find('.ajax_block_load_all:visible').click();
+
+            if (params.more) {
+                setTimeout(function () {
+                    block.parent().find('.ajax_block_load_all').click();
+                }, 1000);
+            }
         }
     }
 </script>

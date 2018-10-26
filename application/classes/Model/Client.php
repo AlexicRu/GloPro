@@ -12,119 +12,116 @@ class Model_Client extends Model
      */
     public static function getFullClientsList($params = [])
     {
-        /*
-         * костыльнем немного, будем держать кеш по сумме параметров, чтобы постраничность быстро отработала
-         */
-        $cache = Cache::instance();
-        $cacheKeyParams = $params;
-        if (!empty($cacheKeyParams['pagination'])) {
-            unset($cacheKeyParams['pagination']);
-            unset($cacheKeyParams['offset']);
-        }
-        $key = 'getFullClientsList_' . md5(json_encode($cacheKeyParams));
-        $result = []; //$cache->get($key);
-
-        if (empty($result)) {
-            $db = Oracle::init();
-
-            $user = User::current();
-
-            $sql = (new Builder())->select()
-                ->from('v_web_clients_title v')
-                ->where("v.manager_id = " . (int)$user['MANAGER_ID'])
-            ;
-
-            if (!empty($params['sort'])) {
-                switch ($params['sort']) {
-                    case 'id':
-                        //todo php7 $sql->orderBy('v.client_id ' . ($params['sortWay'] ?? 'desc'));
-                        $sql->orderBy('v.client_id ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
-                        break;
-                    case 'name':
-                        //todo php7 $sql->orderBy('v.client_name ' . ($params['sortWay'] ?? 'desc'));
-                        $sql->orderBy('v.client_name ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
-                        break;
-                }
-            } else {
-                $sql->orderBy('v.client_id desc');
-            }
-
-            if (!empty($params['statuses'])) {
-                $statuses = [];
-
-                if (!empty($params['statuses']['active'])) {
-                    $statuses[] = Model_Client::STATE_CLIENT_IN_WORK;
-                }
-                if (!empty($params['statuses']['inactive'])) {
-                    $statuses[] = Model_Client::STATE_CLIENT_DELETED;
-                }
-
-                $sql->whereIn('client_state', $statuses);
-            }
-
-            if (!empty($params['search'])) {
-                $search = mb_strtoupper(Oracle::quote('%' . $params['search'] . '%'));
-
-                $sql
-                    ->whereStart()
-                    ->where("upper(v.client_name) like " . $search)
-                    ->whereOr("upper(v.long_name) like " . $search)
-                    ->whereOr("upper(v.contract_name) like " . $search)
-                    ->whereOr("upper(v.CARD_ID) like " . $search)
-                    ->whereEnd();
-            }
-
-            $result = $db->tree($sql, 'CLIENT_ID');
-
-            $cache->set($key, $result, 30);
-        }
-
-        $clients = [];
+        $db = Oracle::init();
 
         $user = User::current();
 
-        foreach($result as $clientId => $rows){
-            $client = reset($rows);
+        $sql = (new Builder())->select()
+            ->from('v_web_title_clients clients')
+            ->where("clients.manager_id = " . (int)$user['MANAGER_ID'])
+            ->orderBy([
+                'clients.client_id desc'
+            ]);
+        ;
 
-            foreach($rows as $row){
-                if(!empty($row['CONTRACT_ID'])){
+        if (!empty($params['sort'])) {
+            switch ($params['sort']) {
+                case 'id':
+                    //todo php7 $sql->orderBy('v.client_id ' . ($params['sortWay'] ?? 'desc'));
+                    $sql->orderBy('v.client_id ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
+                    break;
+                case 'name':
+                    //todo php7 $sql->orderBy('v.client_name ' . ($params['sortWay'] ?? 'desc'));
+                    $sql->orderBy('v.client_name ' . (!empty($params['sortWay']) ? $params['sortWay'] : 'desc'));
+                    break;
+            }
+        } else {
+            $sql->orderBy('v.client_id desc');
+        }
 
-                    if (!empty($user['contracts'][$clientId])) {
-                        if (in_array($row['CONTRACT_ID'], $user['contracts'][$clientId])) {
-                            $client['contracts'][$row['CONTRACT_ID']] = $row;
-                        }
-                    } else {
-                        $client['contracts'][$row['CONTRACT_ID']] = $row;
-                    }
-                }
+        if (!empty($params['statuses'])) {
+            $statuses = [];
+
+            if (!empty($params['statuses']['active'])) {
+                $statuses[] = Model_Client::STATE_CLIENT_IN_WORK;
+            }
+            if (!empty($params['statuses']['inactive'])) {
+                $statuses[] = Model_Client::STATE_CLIENT_DELETED;
             }
 
-            if (!empty($client['contracts'])) {
-                $client['contracts'] = array_values($client['contracts']);
+            $sql->whereIn('client_state', $statuses);
+        }
 
-                foreach ($client['contracts'] as &$contract) {
-                    $contract['contract_state_class']   = Model_Contract::$statusContractClasses[$contract['CONTRACT_STATE']];
-                    $contract['contract_state_name']    = Model_Contract::$statusContractNames[$contract['CONTRACT_STATE']];
-                    $contract['balance_formatted']      = number_format($contract['BALANCE'], 2, ',', ' ') . ' ' . Text::RUR;
-                }
-            }
+        if (!empty($params['search'])) {
+            $search = mb_strtoupper(Oracle::quote('%' . $params['search'] . '%'));
 
-            $clients[] = $client;
+            $sql
+                ->join('v_web_title_contracts contracts', 'clients.client_id = contracts.client_id and clients.manager_id = contracts.manager_id')
+                ->join('v_web_title_cards cards', 'cards.contract_id = contracts.contract_id')
+                ->whereStart()
+                ->where("upper(clients.client_name) like " . $search)
+                ->whereOr("upper(clients.long_name) like " . $search)
+                ->whereOr("upper(contracts.contract_name) like " . $search)
+                ->whereOr("upper(cards.card_id) like " . $search)
+                ->whereEnd()
+                ->groupBy([
+                    'clients.MANAGER_ID',
+                    'clients.CLIENT_ID',
+                    'clients.CLIENT_NAME',
+                    'clients.LONG_NAME',
+                    'clients.CLIENT_STATE',
+                    'clients.AGENT_ID'
+                ])
+                ->select([
+                    'clients.MANAGER_ID',
+                    'clients.CLIENT_ID',
+                    'clients.CLIENT_NAME',
+                    'clients.LONG_NAME',
+                    'clients.CLIENT_STATE',
+                    'clients.AGENT_ID',
+                ])
+            ;
         }
 
         if (!empty($params['pagination'])) {
-            $more = true;
-            $items = array_slice($clients, $params['offset'], Oracle::$limit + 1);
-
-            if (count($items) != Oracle::$limit + 1) {
-                $more = false;
-            }
-
-            array_pop($items);
-
-            return [$clients, $more];
+            list($clients, $more) = $db->pagination($sql, $params);
+        } else {
+            $clients = $db->query($sql);
         }
 
+        //делаем выборку данных по контрактам
+        $sql = (new Builder())->select()
+            ->from('v_web_title_contracts')
+        ;
+
+        foreach ($clients as $client) {
+            $sql->whereOr('(client_id = '. $client['CLIENT_ID'] .' and manager_id = '. $client['MANAGER_ID'] .')');
+        }
+
+        $contracts = $db->query($sql);
+
+        //подставляем контракты к клиентам
+        foreach ($clients as &$client) {
+            $client['contracts'] = [];
+
+            foreach ($contracts as $contract) {
+                if ($contract['CLIENT_ID'] == $client['CLIENT_ID'] && $contract['MANAGER_ID'] == $client['MANAGER_ID']) {
+                    $client['contracts'][] = [
+                        'CONTRACT_ID'           => $contract['CONTRACT_ID'],
+                        'CONTRACT_NAME'         => $contract['CONTRACT_NAME'],
+                        'ALL_CARDS'             => $contract['ALL_CARDS'],
+                        'contract_state_class'  => Model_Contract::$statusContractClasses[$contract['CONTRACT_STATE']],
+                        'contract_state_name'   => Model_Contract::$statusContractNames[$contract['CONTRACT_STATE']],
+                        'balance_formatted'     => number_format($contract['BALANCE'], 2, ',', ' ') . ' ' . Text::RUR,
+                    ];
+                }
+            }
+        }
+
+        //возвращаем данные
+        if (!empty($params['pagination'])) {
+            return [$clients, $more];
+        }
         return $clients;
     }
 
