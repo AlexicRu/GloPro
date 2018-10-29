@@ -48,7 +48,7 @@
             <?}
         }?>
 
-        connect1cPayments_drawTable(rows);
+        sources_drawTable(rows);
     });
 
     function referenceSourcesTubeNameChange(btn, tubeId)
@@ -93,7 +93,7 @@
         });
     }
 
-    function connect1cPayments_drawTable(rows)
+    function sources_drawTable(rows)
     {
         var grid = $(".references_sources_jsGrid");
 

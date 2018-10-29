@@ -262,10 +262,14 @@ body{
 .mailbox .message-center{
   height: auto; max-height: 300px;
 }
-.jsgrid-cell{
-  input[type=checkbox]{
-    position: relative;
-    opacity: 1; left: 0;
+.jsGrid{
+  &-checkbox{
+    .jsgrid-cell{
+      input[type=checkbox]{
+        position: relative;
+        opacity: 1; left: 0;
+      }
+    }
   }
 }
 .nav-tabs{

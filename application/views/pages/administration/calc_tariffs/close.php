@@ -48,7 +48,7 @@
         <?}
         }?>
 
-        connect1cPayments_drawTable(rows);
+        closePeriod_drawTable(rows);
     });
 
     function referenceSourcesTubeNameChange(btn, tubeId)
@@ -93,14 +93,14 @@
         });
     }
 
-    function connect1cPayments_toggleSelectedItems(btn)
+    function closePeriod_toggleSelectedItems(btn)
     {
         var tbl = btn.closest('.jsGrid');
 
         tbl.find('[type=checkbox].add_element').prop('checked', btn.prop('checked')).trigger('change');
     }
 
-    function connect1cPayments_drawTable(rows)
+    function closePeriod_drawTable(rows)
     {
         var grid = $(".references_sources_jsGrid");
 
@@ -119,7 +119,7 @@
                             .addClass(CHECKBOX)
                             .prop('checked', true)
                             .on("change", function () {
-                                connect1cPayments_toggleSelectedItems($(this));
+                                closePeriod_toggleSelectedItems($(this));
                             });
 
                         var tpl = $('<span />');

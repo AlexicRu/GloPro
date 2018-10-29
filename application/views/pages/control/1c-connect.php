@@ -133,21 +133,43 @@
             fields: [
                 {
                     headerTemplate: function() {
-                        return $("<input>").attr("type", "checkbox").prop('checked', true)
+                        var input = $("<input>")
+                            .attr('id', 'connect_check_all')
+                            .attr("type", "checkbox")
+                            .addClass(CHECKBOX)
+                            .prop('checked', true)
                             .on("change", function () {
                                 connect1cPayments_toggleSelectedItems($(this));
                             });
+
+                        var tpl = $('<span />');
+
+                        tpl.append(input);
+                        tpl.append('<label for="connect_check_all" />');
+
+                        return tpl;
                     },
                     itemTemplate: function(_, item) {
                         if(item.CAN_ADD == 1) {
-                            return $("<input class='add_element'>").attr("type", "checkbox")
-                                    .prop("checked", true)
-                                    .data("contract_id", item.CONTRACT_ID)
-                                    .data("num", item.ORDER_NUM)
-                                    .data("date", item.ORDER_DATE)
-                                    .data("value", item.SUMPAY * (item.OPERATION == 50 ? 1 : -1))
-                                    .data("comment", item.COMMENT)
-                                ;
+                            var tpl = $('<span />');
+
+                            var input = $("<input>")
+                                .attr('id', 'connect_item_' + item.ORDER_NUM)
+                                .addClass(CHECKBOX)
+                                .addClass('add_element')
+                                .prop("checked", true)
+                                .attr("type", "checkbox")
+                                .data("contract_id", item.CONTRACT_ID)
+                                .data("num", item.ORDER_NUM)
+                                .data("date", item.ORDER_DATE)
+                                .data("value", item.SUMPAY * (item.OPERATION == 50 ? 1 : -1))
+                                .data("comment", item.COMMENT)
+                            ;
+
+                            tpl.append(input);
+                            tpl.append('<label for="connect_item_' + item.ORDER_NUM + '" />');
+
+                            return tpl;
                         }else{
                             return '';
                         }

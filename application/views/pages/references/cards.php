@@ -2,7 +2,7 @@
     <span class="btn waves-effect waves-light btn-outline-success btn_reverse" onclick="gridToXls()"><i class="fa fa-file-excel"></i> Выгрузить в Excel</span>
 </div>
 
-<div class="jsGrid references_cards_jsGrid"></div>
+<div class="jsGrid jsGrid-checkbox references_cards_jsGrid"></div>
 
 <script>
     var db = {
