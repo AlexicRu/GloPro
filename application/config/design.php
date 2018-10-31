@@ -53,6 +53,10 @@ return array(
             'title' => 'ГПН-КП',
             'class' => 'gpn'
         ],
+        'demoopti24com' => [
+            'title' => 'ГПН-КП',
+            'class' => 'gpn'
+        ],
         'dealeropti24com' => [
             'title' => 'ГПН-КП',
             'class' => 'gpn'
@@ -65,6 +69,10 @@ return array(
             'title' => 'ETS Trading',
             'class' => 'ets'
         ],
+        'lkkecoilru' => [
+            'title' => 'КЕС ОЙЛ',
+            'class' => 'kec'
+        ],
     ],
     'user' => [
         'g_1' => [
@@ -74,6 +82,11 @@ return array(
         'a_22' => [
             'title' => 'ETS Trading',
             'class' => 'ets'
+        ],
+        'u_1768' => [
+            'title' => 'ГПН-КП',
+            'class' => 'gpn',
+            'url'   => 'newlkgloproru'
         ],
         'u_2126' => [
             'title' => 'GloPro',
