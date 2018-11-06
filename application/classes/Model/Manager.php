@@ -113,6 +113,7 @@ class Model_Manager extends Model
                 ->whereEnd()
             ;
         }
+        unset($params['search']);
 
         $params['role_id'] = empty($params['role_id']) ? [] : (array)$params['role_id'];
         $params['roles_exclude'] = empty($params['roles_exclude']) ? [] : (array)$params['roles_exclude'];
