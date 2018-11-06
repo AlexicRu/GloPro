@@ -5,12 +5,12 @@
             <span class="hidden-sm-up text-muted">При блокировке карт:</span>
         </div>
         <div class="col-sm-7">
-            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_card" name="notice_email_card" <?=($settings['EML_CARD_BLOCK'] ? 'checked' : '')?>>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_card" name="notice_email_card" <?=(!empty($settings['EML_CARD_BLOCK']) ? 'checked' : '')?>>
             <label for="notice_email_card">E-mail</label>
 
             <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
                 <br>
-                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_card" name="notice_sms_card" <?=($settings['SMS_CARD_BLOCK'] ? 'checked' : '')?>>
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_card" name="notice_sms_card" <?=(!empty($settings['SMS_CARD_BLOCK']) ? 'checked' : '')?>>
                 <label for="notice_sms_card">
                     <?
                     $types = [];
@@ -29,12 +29,12 @@
             <span class="hidden-sm-up text-muted">При пополнении счета:</span>
         </div>
         <div class="col-sm-7">
-            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_payment" name="notice_email_payment" <?=($settings['EML_ADD_PAYMENT'] ? 'checked' : '')?>>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_payment" name="notice_email_payment" <?=(!empty($settings['EML_ADD_PAYMENT']) ? 'checked' : '')?>>
             <label for="notice_email_payment">E-mail</label>
 
             <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
                 <br>
-                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_payment" name="notice_sms_payment" <?=($settings['SMS_ADD_PAYMENT'] ? 'checked' : '')?>>
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_payment" name="notice_sms_payment" <?=(!empty($settings['SMS_ADD_PAYMENT']) ? 'checked' : '')?>>
                 <label for="notice_sms_payment">
                     <?
                     $types = [];
@@ -53,12 +53,12 @@
             <span class="hidden-sm-up text-muted">При блокировке фирмы:</span>
         </div>
         <div class="col-sm-7">
-            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_firm" name="notice_email_firm" <?=($settings['EML_CONTRACT_BLOCK'] ? 'checked' : '')?>>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_firm" name="notice_email_firm" <?=(!empty($settings['EML_CONTRACT_BLOCK']) ? 'checked' : '')?>>
             <label for="notice_email_firm">E-mail</label>
 
             <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
                 <br>
-                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_firm" name="notice_sms_firm" <?=($settings['SMS_CONTRACT_BLOCK'] ? 'checked' : '')?>>
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_firm" name="notice_sms_firm" <?=(!empty($settings['SMS_CONTRACT_BLOCK']) ? 'checked' : '')?>>
                 <label for="notice_sms_firm">
                     <?
                     $types = [];
@@ -77,13 +77,47 @@
             <span class="hidden-sm-up text-muted">При приближению к критическому порогу:</span>
         </div>
         <div class="col-sm-7">
-            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_barrier" name="notice_email_barrier" <?=($settings['EML_BLNC_CTRL'] ? 'checked' : '')?>>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_barrier" name="notice_email_barrier" <?=(!empty($settings['EML_BLNC_CTRL']) ? 'checked' : '')?>>
             <label for="notice_email_barrier">E-mail</label>
 
             <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
                 <br>
-                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_barrier" name="notice_sms_barrier" <?=($settings['SMS_BLNC_CTRL'] ? 'checked' : '')?>>
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_barrier" name="notice_sms_barrier" <?=(!empty($settings['SMS_BLNC_CTRL']) ? 'checked' : '')?>>
                 <label for="notice_sms_barrier">
+                    <?
+                    $types = [];
+                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
+                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
+                    ?>
+                    <?=implode(' / ', $types)?>
+                </label>
+            <?}?>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-5">
+            <div class="text-right hidden-xs-down text-muted">Порог:</div>
+            <span class="hidden-sm-up text-muted">Порог:</span>
+        </div>
+        <div class="col-sm-7">
+            <input type="text" name="notice_email_barrier_value" class="form-control" value="<?=(!empty($settings['EML_BLNC_CTRL_VALUE']) ? $settings['EML_BLNC_CTRL_VALUE'] : '')?>">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-5">
+            <div class="text-right hidden-xs-down text-muted">Уведомление о балансе:</div>
+            <span class="hidden-sm-up text-muted">Уведомление о балансе:</span>
+        </div>
+        <div class="col-sm-7">
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_balance" name="notice_email_balance" <?=(!empty($settings['EML_BALANCE']) ? 'checked' : '')?>>
+            <label for="notice_email_balance">E-mail</label>
+
+            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
+                <br>
+                <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_sms_balance" name="notice_sms_balance" <?=(!empty($settings['SMS_BALANCE']) ? 'checked' : '')?>>
+                <label for="notice_sms_balance">
                     <?
                     $types = [];
                     if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
@@ -97,47 +131,30 @@
 
     <div class="form-group row m-b-0">
         <div class="col-sm-5">
-            <div class="text-right hidden-xs-down text-muted">Порог:</div>
-            <span class="hidden-sm-up text-muted">Порог:</span>
+            <div class="text-right hidden-xs-down text-muted">В какие дни уведомлять о балансе:</div>
+            <span class="hidden-sm-up text-muted">В какие дни уведомлять о балансе:</span>
         </div>
         <div class="col-sm-7">
-            <input type="text" name="notice_email_barrier_value" class="form-control" value="<?=$settings['EML_BLNC_CTRL_VALUE']?>">
-        </div>
-    </div>
-
-    <tr>
-        <td class="gray right">Уведомление о балансе:</td>
-        <td>
-            <label><input type="checkbox" name="notice_email_balance" <?=(!empty($settings['EML_BALANCE']) ? 'checked' : '')?>> E-mail</label>
-            <?if ($manager['PHONE_FOR_INFORM'] && ($manager['SMS_IS_ON'] || $manager['TELEGRAM_IS_ON'])) {?>
-                <br>
-                <label>
-                    <input type="checkbox" name="notice_sms_balance" <?=(!empty($settings['SMS_BALANCE']) ? 'checked' : '')?>>
-                    <?
-                    $types = [];
-                    if ($manager['SENDER_SMS'] && $manager['SMS_IS_ON']) {$types[] = 'SMS';}
-                    if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
-                    ?>
-                    <?=implode(' / ', $types)?>
-                </label>
-            <?}?>
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">В какие дни уведомлять о балансе:</td>
-        <td>
             <?
             $days = str_split(!empty($settings['DAYS_NOTE']) ? $settings['DAYS_NOTE'] : '0000000');
             ?>
-            <label><input type="checkbox" name="notice_balance_days_monday"    <?=($days[0] ? 'checked' : '')?>> Понедельник</label><br>
-            <label><input type="checkbox" name="notice_balance_days_tuesday"   <?=($days[1] ? 'checked' : '')?>> Вторник</label><br>
-            <label><input type="checkbox" name="notice_balance_days_wednesday" <?=($days[2] ? 'checked' : '')?>> Среда</label><br>
-            <label><input type="checkbox" name="notice_balance_days_thursday"  <?=($days[3] ? 'checked' : '')?>> Черверг</label><br>
-            <label><input type="checkbox" name="notice_balance_days_friday"    <?=($days[4] ? 'checked' : '')?>> Пятница</label><br>
-            <label><input type="checkbox" name="notice_balance_days_saturday"  <?=($days[5] ? 'checked' : '')?>> Суббота</label><br>
-            <label><input type="checkbox" name="notice_balance_days_sunday"    <?=($days[6] ? 'checked' : '')?>> Воскресенье</label>
-        </td>
-    </tr>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_balance_days_monday" name="notice_balance_days_monday"    <?=($days[0] ? 'checked' : '')?>>
+            <label for="notice_balance_days_monday">Понедельник</label><br>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_balance_days_tuesday" name="notice_balance_days_tuesday"   <?=($days[1] ? 'checked' : '')?>>
+            <label for="notice_balance_days_tuesday">Вторник</label><br>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_balance_days_wednesday" name="notice_balance_days_wednesday" <?=($days[2] ? 'checked' : '')?>>
+            <label for="notice_balance_days_wednesday">Среда</label><br>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_balance_days_thursday" name="notice_balance_days_thursday"  <?=($days[3] ? 'checked' : '')?>>
+            <label for="notice_balance_days_thursday">Черверг</label><br>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_balance_days_friday" name="notice_balance_days_friday"    <?=($days[4] ? 'checked' : '')?>>
+            <label for="notice_balance_days_friday">Пятница</label><br>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_balance_days_saturday" name="notice_balance_days_saturday"  <?=($days[5] ? 'checked' : '')?>>
+            <label for="notice_balance_days_saturday">Суббота</label><br>
+            <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_balance_days_sunday" name="notice_balance_days_sunday"    <?=($days[6] ? 'checked' : '')?>>
+            <label for="notice_balance_days_sunday">Воскресенье</label><br>
+        </div>
+    </div>
+
 </div>
 
 <div class="modal-footer">
