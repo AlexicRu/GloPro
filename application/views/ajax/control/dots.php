@@ -119,7 +119,7 @@
 
     function filterDots<?=$postfix?>(btn)
     {
-        var block = btn.closest('.ajax_block_dots_list_<?=$postfix?>_out');
+        var block = btn.closest('.ajax_block_group_dots_list_<?=$postfix?>_out');
 
         var params = {
             PROJECT_NAME:   $('[name=dots_filter_project_name]', block).val(),
@@ -138,6 +138,6 @@
 
         block.empty();
 
-        paginationAjax('/control/load-dots/', 'ajax_block_dots_list_<?=$postfix?>', renderAjaxPaginationDotsList<?=$postfix?>, params);
+        paginationAjax('/control/load-dots/', 'ajax_block_group_dots_list_<?=$postfix?>', renderAjaxPaginationDotsList<?=$postfix?>, params);
     }
 </script>
