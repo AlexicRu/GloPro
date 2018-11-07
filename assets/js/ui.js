@@ -387,7 +387,7 @@ function getComboBoxMultiValue(combo)
     var hiddenField = wrapper.find('[name=combobox_value]');
     var hiddenValue = hiddenField.val();
 
-    if (hiddenValue == ''){
+    if (!hiddenValue){
         return [];
     }
 

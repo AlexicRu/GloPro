@@ -557,4 +557,15 @@ function getUrlParameter(sParam) {
         }
     }
     return '';
-};
+}
+
+function alarm(block) {
+    block.addClass('alarm');
+    block.addClass('alarm_show');
+    setTimeout(function () {
+        block.removeClass('alarm_show');
+        setTimeout(function () {
+            block.removeClass('alarm');
+        }, 500);
+    }, 2000);
+}

@@ -290,7 +290,7 @@ class Model_Tariff extends Model
                             'p_condition_num' => $conditionNum,
                             'p_condition_id' => $condition['CONDITION_ID'],
                             'p_compare_id' => $condition['COMPARE_ID'],
-                            'p_condition_value' => $condition['CONDITION_VALUE'],
+                            'p_condition_value' => implode(',', (array)$condition['CONDITION_VALUE']),
                             'p_manager_id' => $user['MANAGER_ID'],
                             'p_error_code' => 'out',
                         ];

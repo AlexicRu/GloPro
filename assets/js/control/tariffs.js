@@ -259,14 +259,14 @@ function saveTariff(btn)
             var formField = _t.find('.form_field:visible');
 
             if(formField.find('.combobox_multi').length){
-                conditionValue = formField.find('[name=combobox_multi_value]').val();
+                conditionValue = getComboBoxMultiValue(formField.find('.combobox_multi'));
             }else if(formField.find('.combobox').length){
-                conditionValue = formField.find('[name=combobox_value]').val();
+                conditionValue = getComboBoxValue(formField.find('.combobox'));
             }else{
                 conditionValue = formField.find('.custom_field').val();
             }
 
-            if(conditionValue == ''){
+            if(!conditionValue){
                 message(0, 'Добавьте значение условия секции тарифа');
                 alarm(_t);
                 breakOut = true;
@@ -293,12 +293,15 @@ function saveTariff(btn)
         return false;
     }
 
+    addLoader(wrapper);
+
     $.post('/control/edit-tariff', {tariff_id: tariffId, params: params}, function (data) {
         if(data.success){
             message(1, 'Тариф успешно сохранен');
         }else{
             message(0, 'Ошибка сохранения тарифа');
         }
+        removeLoader(wrapper);
     });
 }
 
