@@ -15,6 +15,7 @@
         </div>
     </div>
 
+    <?if (!empty($tariff['versions'])) {?>
     <div class="form-group row">
         <div class="col-sm-4">
             <div class="text-right hidden-xs-down text-muted">Версия:</div>
@@ -30,8 +31,10 @@
             </select>
         </div>
         <div class="col-sm-2">
-            <span class="<?=Text::BTN?> btn-sm btn-outline-success" onclick="loadTariffVersion($(this))">Загрузить</span>        </div>
+            <span class="<?=Text::BTN?> btn-sm btn-outline-success" onclick="loadTariffVersion($(this))">Загрузить</span>
+        </div>
     </div>
+    <?}?>
 
     <div class="t_sections_list">
         <?if(!empty($settings)){?>

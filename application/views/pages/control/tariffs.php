@@ -18,8 +18,8 @@
             </li>
 
             <div class="v-scroll">
-                <li class="nav-item no_content" tab="tariff-1">
-                    <a class="nav-link nowrap" href="#tariff-1" data-toggle="tab"><i class="fa fa-plus"></i> Добавить тариф</a>
+                <li class="nav-item no_content" tab="tariff_-1">
+                    <a class="nav-link nowrap" href="#tariff_-1" data-toggle="tab"><i class="fa fa-plus"></i> Добавить тариф</a>
                 </li>
                 <?if(empty($tariffs)){?>
                     <li class="nav-item">
@@ -43,7 +43,7 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane" id="tariff-1" role="tabpanel"></div>
+            <div class="tab-pane" id="tariff_-1" role="tabpanel"></div>
             <?if(!empty($tariffs)){?>
                 <?foreach($tariffs as $key => $tariff){?>
                     <div class="tab-pane" id="tariff_<?=$tariff['TARIF_ID']?>" role="tabpanel"></div>
