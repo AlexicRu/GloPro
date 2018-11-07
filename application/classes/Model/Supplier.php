@@ -28,8 +28,6 @@ class Model_Supplier extends Model
         }
 
         if (!empty($params['pagination'])) {
-            $params['limit'] = 15;
-
             return $db->pagination($sql, $params);
         }
         return $db->query($sql);

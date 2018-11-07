@@ -22,7 +22,7 @@
             block.append('<div class="row" />');
         }
 
-        block = block.find('.row');
+        block = block.find('>.row');
 
         for(var i in data){
             var tpl = $('<div class="col-md-6"><div class="card">' +
