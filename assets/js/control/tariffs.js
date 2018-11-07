@@ -145,7 +145,7 @@ function onChangeParam(t) {
 
 function addSection(t)
 {
-    var block = t.closest('.tariffs_block');
+    var block = t.closest('.tariff_wrapper');
     var list = block.find('.t_sections_list');
     var tariffId = block.find('[name=tarif_id]').val();
     var sectionNum = parseInt(block.find('[section_num]:last').attr('section_num')) + 1;
