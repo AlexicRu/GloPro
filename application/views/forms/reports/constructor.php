@@ -22,11 +22,11 @@ if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL])){?>
             <div class="hidden-md-up">Дополнительные параметры:</div>
         </div>
         <div class="col-md-8 with-mt report_additional_params">
-            <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL] as $field){?>
+            <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL] as $id => $field){?>
 
                 <div class="m-b-20">
                     <b class="m-b-5"><?=$field['PROPERTY_NAME']?>:</b><br>
-                    <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'], false, [
+                    <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'] . '_' . $field['REPORT_ID'] . '_' . $id, false, [
                         'weight' => $field['PROPERTY_WEIGHT'],
                         'show_all' => !empty($field['PROPERTY_ALL']) ? $field['PROPERTY_ALL'] : false
                     ])?>
