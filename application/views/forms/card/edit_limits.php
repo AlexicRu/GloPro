@@ -50,9 +50,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         var row = t.closest('[limit_group]');
 
         <?if ($settings['cntServiceForLimit'] != $settings['cntServiceForFirstLimit']) {?>
-            var tr = t.closest('tr');
-
-            if (tr.index() == 0) {
+            if (row.index() == 0) {
                 if (row.find('[limit_service]').length == <?=$settings['cntServiceForFirstLimit']?>) {
                     message(0, 'Максимум услуг на первый лимит: <?=$settings['cntServiceForFirstLimit']?>');
                     return false;
