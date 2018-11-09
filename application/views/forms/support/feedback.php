@@ -15,7 +15,7 @@
             <span class="hidden-sm-up text-muted">Тема сообщения:</span>
         </div>
         <div class="col-sm-8 col-lg-9">
-            <input type="text" name="feedback_email" class="form-control">
+            <input type="text" name="feedback_subject" class="form-control">
         </div>
     </div>
 
