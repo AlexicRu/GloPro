@@ -40,10 +40,12 @@
         <!-- ============================================================== -->
         <!-- Search -->
         <!-- ============================================================== -->
-        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="far fa-search"></i></a>
+        <li class="nav-item search-box">
             <form class="app-search" action="/clients" method="post">
                 <input type="text" class="form-control" placeholder="Поиск..." name="search" value="<?=(!empty($_REQUEST['search']) ? Text::quotesForForms($_REQUEST['search']) : '')?>"> <a class="srh-btn"><i class="far fa-times"></i></a>
             </form>
+            <a class="nav-link waves-effect waves-dark hidden-lg-up" href="javascript:void(0)"><i class="far fa-search"></i></a>
+            <div class="nav-link waves-effect waves-dark hidden-md-down text-white"><i class="far fa-search"></i></div>
         </li>
         <!-- ============================================================== -->
         <!-- Messages -->

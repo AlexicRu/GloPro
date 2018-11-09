@@ -318,6 +318,33 @@ media queries
   }
 }
 
+@media (min-width: 992px) {
+  .search-box{
+    .app-search{
+      box-shadow: none;
+      width: 300px;
+      top: 0;
+      left: initial;
+      position: relative;
+      display: inline-block!important;
+
+      input{
+        border: none;
+        width: 100%;
+        opacity: 0.5;
+        padding: 5px 10px;
+        .transition();
+
+        &:focus{
+          opacity: 1;
+        }
+      }
+    }
+    .srh-btn{
+      display: none;
+    }
+  }
+}
 // Medium devices (tablets, less than 992px) MD
 @media (max-width: 991.98px) {
   .row [class*="col-lg-"] + .with-mt[class*="col-lg-"] {
