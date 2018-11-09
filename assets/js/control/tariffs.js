@@ -185,6 +185,38 @@ function sectionMove(way, btn)
     }
 }
 
+function sectionCopy(btn)
+{
+    var section = btn.closest('.section_wrapper');
+    var tariff = btn.closest('.tariff_wrapper');
+    var version = tariff.find('[name=tariff_versions]').val();
+
+    var maximum = null;
+
+    $('.tariff_wrapper:visible [section_num]').each(function() {
+        var value = parseFloat($(this).attr('section_num'));
+        maximum = (value > maximum) ? value : maximum;
+    });
+
+    var params = {
+        uid: section.find('[uid_section]').attr('uid_section'),
+        version: version,
+        new_number: parseInt(maximum) + 1
+    };
+
+    $.post('/control/load-tariff-section', params, function (html) {
+        if (html) {
+            var newSection = $(html);
+
+            newSection.insertAfter(section);
+
+            alarm(newSection);
+        } else {
+            message(false, 'Копирование секции не удалось');
+        }
+    });
+}
+
 function deleteTariff(btn)
 {
     if (!confirm('Удаляем?')) {
@@ -202,6 +234,35 @@ function deleteTariff(btn)
         } else {
             message(0, 'Ошибка удаления тарифа');
         }
+    });
+}
+
+function copyTariff(btn)
+{
+    var wrapper = btn.closest('.tariff_wrapper');
+    var tariffId = wrapper.find('[name=tarif_id]').val();
+    var version = wrapper.find('[name=tariff_versions]').val();
+
+    var newTariffBlock = $('#tariff_-1');
+
+    $('[tab=tariff_-1] > a').click();
+
+    addLoader(newTariffBlock);
+
+    $.post('/control/load-tariff/' + tariffId, { version: version }, function(data){
+        newTariffBlock.empty();
+
+        removeLoader(newTariffBlock);
+
+        var newTariff = $(data);
+
+        newTariff.find('.remove-on-copy').remove();
+        newTariff.find('[name=tarif_name]').val('');
+        newTariff.find('[name=tarif_id]').val(0);
+
+        newTariffBlock.append(newTariff);
+
+        renderVerticalTabsScroll($('.tabs_tariffs .v-scroll'));
     });
 }
 

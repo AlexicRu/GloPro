@@ -13,10 +13,6 @@ class Listing
      */
     public static function getCountries($params)
     {
-        if(empty($params['search']) && empty($params['ids'])){
-            return false;
-        }
-
         $db = Oracle::init();
 
         $sql = (new Builder())->select()

@@ -4,13 +4,24 @@
             <span class="<?=Text::BTN?> btn-sm btn-outline-danger ts_remove"><i class="fa fa-times"></i></span>
         </div>
 
-        <legend>Секция <?=$section['SECTION_NUM']?> &nbsp; <span class="<?=Text::BTN?> btn-sm btn-outline-info" onclick="sectionMove('up', $(this))"><i class="fa fa-chevron-up"></i></span> <span class="<?=Text::BTN?> btn-sm btn-outline-info" onclick="sectionMove('down', $(this))"><i class="fa fa-chevron-down"></i></span></legend>
+        <legend>
+            Секция <span class="section_num"><?=$section['SECTION_NUM']?></span>
+
+            <div class="btn-group">
+                <span class="<?=Text::BTN?> btn-sm btn-outline-info" onclick="sectionMove('up', $(this))"><i class="fa fa-chevron-up"></i></span>
+                <span class="<?=Text::BTN?> btn-sm btn-outline-info" onclick="sectionMove('down', $(this))"><i class="fa fa-chevron-down"></i></span>
+            </div>
+
+            <?if ((isset($tariff['current_version']) && $tariff['current_version'] == $tariff['LAST_VERSION']) && !empty($tariff)) {?>
+                <span class="<?=Text::BTN?> btn-sm btn-outline-primary remove-on-copy" onclick="sectionCopy($(this))"><i class="far fa-copy"></i></span>
+            <?}?>
+        </legend>
 
 
         <b class="font-18">Условия:</b>
         <div class="ts_conditions m-b-20">
             <?foreach($conditions as $key => $condition){
-                $uid = $tariffId.'_'.$section['SECTION_NUM'].'_'.$condition['CONDITION_NUM'];
+                $uid = $tariff['TARIF_ID'].'_'.$section['SECTION_NUM'].'_'.$condition['CONDITION_NUM'];
                 ?>
                 <?=Model_Tariff::buildReference($uid, $reference)?>
                 <script>

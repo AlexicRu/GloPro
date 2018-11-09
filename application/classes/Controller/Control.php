@@ -410,6 +410,39 @@ class Controller_Control extends Controller_Common {
     }
 
     /**
+     * загружаем конкретную секцию, в частности для копирования
+     */
+    public function action_loadTariffSection()
+    {
+        list($tariffId, $sectionNumOld) = explode("_", $this->request->post('uid'));
+        $version = $this->request->post('version');
+        $sectionNum = $this->request->post('new_number');
+
+        $uidSection = $tariffId.'_'.$sectionNum;
+
+        $tariffs = Model_Tariff::getAvailableTariffs(['tariff_id' => $tariffId]);
+        $tariff = reset($tariffs);
+        $tariff['current_version'] = $version;
+
+        $tariffReference = Model_Tariff::getReference();
+        $tariffSettings = Model_Tariff::getTariffSettings($tariffId, $version);
+
+        $html = '';
+
+        foreach($tariffSettings as $conditions) {
+            $section = reset($conditions);
+
+            if ($section['SECTION_NUM'] == $sectionNumOld) {
+                $section['SECTION_NUM'] = $sectionNum;
+                $html = Model_Tariff::buildSection($uidSection, $section,  $tariff, $conditions, $tariffReference);
+                break;
+            }
+        }
+
+        $this->html($html);
+    }
+
+    /**
      * грузим свеженький шаблон шаблон условий
      */
     public function action_getTariffReferenceTpl()

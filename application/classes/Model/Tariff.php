@@ -221,14 +221,14 @@ class Model_Tariff extends Model
      * @param $conditions
      * @param $reference
      */
-    public static function buildSection($uidSection, $section, $tariffId = false, $conditions = [], $reference = [])
+    public static function buildSection($uidSection, $section, $tariff = [], $conditions = [], $reference = [])
     {
         $content = View::factory('forms/tariffs/section')
             ->bind('uidSection', $uidSection)
             ->bind('section', $section)
             ->bind('conditions', $conditions)
             ->bind('reference', $reference)
-            ->bind('tariffId', $tariffId)
+            ->bind('tariff', $tariff)
         ;
         return $content;
     }

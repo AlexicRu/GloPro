@@ -4,24 +4,25 @@
             <div class="text-right hidden-xs-down text-muted">Название:</div>
             <span class="hidden-sm-up text-muted">Название:</span>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 with-mt">
             <input type="hidden" name="tarif_id" value="<?=(!empty($tariff['TARIF_ID']) ? $tariff['TARIF_ID'] : 0)?>">
             <input type="text" name="tarif_name" class="form-control" value="<?=(!empty($tariff['TARIF_NAME']) ? Text::quotesForForms($tariff['TARIF_NAME']) : '')?>">
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2 with-mt remove-on-copy">
             <?if (!empty($tariff)) {?>
                 <span class="<?=Text::BTN?> btn-outline-danger" onclick="deleteTariff($(this))"><i class="fa fa-trash-alt"></i></span>
+                <span class="<?=Text::BTN?> btn-outline-primary" onclick="copyTariff($(this))"><i class="far fa-copy"></i></span>
             <?}?>
         </div>
     </div>
 
     <?if (!empty($tariff['versions'])) {?>
-    <div class="form-group row">
+    <div class="form-group row remove-on-copy">
         <div class="col-sm-4">
             <div class="text-right hidden-xs-down text-muted">Версия:</div>
             <span class="hidden-sm-up text-muted">Версия:</span>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 with-mt">
             <select name="tariff_versions" class="custom-select">
                 <?foreach ($tariff['versions'] as $version) {?>
                     <option value="<?=$version['VERSION_ID']?>" <?=($version['VERSION_ID'] == $tariff['current_version'] ? 'selected' : '')?>>
@@ -30,7 +31,7 @@
                 <?}?>
             </select>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2 with-mt">
             <span class="<?=Text::BTN?> btn-sm btn-outline-success" onclick="loadTariffVersion($(this))">Загрузить</span>
         </div>
     </div>
@@ -42,7 +43,7 @@
                 $section = reset($conditions);
                 $uidSection = $tariff['TARIF_ID'].'_'.$section['SECTION_NUM'];
                 ?>
-                <?=Model_Tariff::buildSection($uidSection, $section,  $tariff['TARIF_ID'], $conditions, $reference)?>
+                <?=Model_Tariff::buildSection($uidSection, $section,  $tariff, $conditions, $reference)?>
             <?}?>
         <?}?>
     </div>
