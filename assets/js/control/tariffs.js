@@ -7,20 +7,20 @@ $(function () {
         }
 
         var t = $(this);
-        var fieldset = t.parent();
         var uidSection;
         var btnAddCondition;
 
-        if(fieldset.hasClass('tsc_item')){
+        if(t.parents('.tsc_item').length){
             uidSection = t.closest('[uid_section]');
             btnAddCondition = uidSection.find('.btn_add_condition');
+            t = t.closest('.tsc_item');
         }else{
-            if(fieldset.closest('.section_wrapper')) {
-                fieldset = fieldset.closest('.section_wrapper');
+            if(t.closest('.section_wrapper').length) {
+                t = t.closest('.section_wrapper');
             }
         }
 
-        fieldset.remove();
+        t.remove();
 
         if(uidSection) {
             btnAddCondition.show();

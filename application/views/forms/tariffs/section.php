@@ -4,7 +4,7 @@
             <span class="<?=Text::BTN?> btn-sm btn-outline-danger ts_remove"><i class="fa fa-times"></i></span>
         </div>
 
-        <legend>Секция <?=$section['SECTION_NUM']?> &nbsp; <span class="up_arrow" onclick="sectionMove('up', $(this))"></span> <span class="down_arrow" onclick="sectionMove('down', $(this))"></span> &nbsp;</legend>
+        <legend>Секция <?=$section['SECTION_NUM']?> &nbsp; <span class="<?=Text::BTN?> btn-sm btn-outline-info" onclick="sectionMove('up', $(this))"><i class="fa fa-chevron-up"></i></span> <span class="<?=Text::BTN?> btn-sm btn-outline-info" onclick="sectionMove('down', $(this))"><i class="fa fa-chevron-down"></i></span></legend>
 
 
         <b class="font-18">Условия:</b>
