@@ -1,32 +1,32 @@
-<table class="table_form form_contract_tariff_edit">
-    <tr>
-        <td class="gray right" width="170">Тариф:</td>
-        <td>
-            <?=Form::buildField('contract_tariffs', 'TARIF_OFFLINE', $tariffId)?>
-        </td>
-    </tr>
-    <tr>
-        <td class="gray right">Дата начала действия тарифа:</td>
-        <td>
-            <input type="text" class="datepicker" readonly name="contract_tariff_edit_date">
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <span class="btn btn_reverse" onclick="submitForm($(this), contractTariffEditGo)"><i class="icon-ok"></i> Сохранить</span>
-            <span class="btn btn_red fancy_close">Отмена</span>
-        </td>
-    </tr>
-</table>
+<div class="modal-body">
+    <div class="form form_contract_tariff_edit">
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down text-muted">Тариф:</div>
+                <span class="hidden-sm-up text-muted">Тариф:</span>
+            </div>
+            <div class="col-sm-8 with-mt">
+                <?=Form::buildField('contract_tariffs', 'TARIF_OFFLINE', $tariffId)?>
+            </div>
+        </div>
+
+        <div class="form-group row m-b-0">
+            <div class="col-sm-4">
+                <div class="text-right hidden-xs-down text-muted">Дата начала действия тарифа:</div>
+                <span class="hidden-sm-up text-muted">Дата начала действия тарифа:</span>
+            </div>
+            <div class="col-sm-8 with-mt">
+                <input type="date" class="form-control" name="contract_tariff_edit_date">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),contractTariffEditGo)"><i class="fa fa-check"></i> Сохранить</span>
+    <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+</div>
 
 <script>
-    $(function () {
-        $('[name=card_edit_date]').each(function () {
-            renderDatePicker($(this));
-        });
-    });
-
     function contractTariffEditGo(t)
     {
         var form = t.closest('.form_contract_tariff_edit');

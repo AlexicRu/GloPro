@@ -96,9 +96,12 @@
                 </div>
             </div>
 
-            <tr class="contract-payment-scheme-limit-tr" <?if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){?>style="display: none"<?}?>>
-                <td class="gray right">Действует до:</td>
-                <td>
+            <div class="row m-b-10 contract-payment-scheme-limit-row" <?if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){?>style="display: none"<?}?>>
+                <div class="col-sm-5 text-muted">
+                    <div class="text-right d-none d-sm-block">Действует до:</div>
+                    <div class="d-block d-sm-none">Действует до:</div>
+                </div>
+                <div class="col-sm-7">
                     <span toggle_block="block2">
                         <?if ($contractSettings['AUTOBLOCK_FLAG_DATE'] == Date::DATE_MAX) {?>
                             Бессрочно
@@ -107,16 +110,15 @@
                         <?}?>
                     </span>
                     <span toggle_block="block2" class="dn">
-                        <input type="text" name="AUTOBLOCK_FLAG_DATE" class="datepicker" readonly
-                               value="<?=($contractSettings['AUTOBLOCK_FLAG_DATE'] == Date::DATE_MAX ? '' : $contractSettings['AUTOBLOCK_FLAG_DATE'])?>"
+                        <input type="date" name="AUTOBLOCK_FLAG_DATE" class="form-control"
+                               value="<?=($contractSettings['AUTOBLOCK_FLAG_DATE'] == Date::DATE_MAX ? '' : Date::formatToDefault($contractSettings['AUTOBLOCK_FLAG_DATE']))?>"
                         >
-                        <br>
-                        <label>
-                            <input type="checkbox" class="autoblock_flag_date_checkbox" onchange="checkAutoblockFlagDateIndefinitely($(this))"> Бессрочно
-                        </label>
+
+                        <input type="checkbox" id="autoblock_flag_date_checkbox" class="<?=Text::CHECKBOX?> autoblock_flag_date_checkbox" onchange="checkAutoblockFlagDateIndefinitely($(this))">
+                        <label for="autoblock_flag_date_checkbox">Бессрочно</label>
                     </span>
-                </td>
-            </tr>
+                </div>
+            </div>
 
             <div class="row m-b-10">
                 <div class="col-sm-5 text-muted">
@@ -273,24 +275,23 @@
 
                 <div class="row m-b-10">
                     <div class="col-sm-5 text-muted">
-                        <div class="text-right d-none d-sm-block">Тариф по договору:</div>
-                        <div class="d-block d-sm-none">Тариф по договору:</div>
+                        <div class="text-right d-none d-sm-block">Текущий тариф:</div>
+                        <div class="d-block d-sm-none">Текущий тариф:</div>
                     </div>
                     <div class="col-sm-7">
-                        <span toggle_block="block2">[<?=$contractSettings['TARIF_OFFLINE']?>] <?=$contractSettings['TARIF_NAME_OFFLINE']?></span>
-                        <span toggle_block="block2" class="dn">
-                            <?=Form::buildField('contract_tariffs', 'TARIF_OFFLINE', $contractSettings['TARIF_OFFLINE'])?>
-                        </span>
+                        [<?=$contractSettings['TARIF_OFFLINE']?>] <?=$contractSettings['TARIF_NAME_OFFLINE']?>
+
+                        <a href="#" data-toggle="modal" data-target="#contract_tariff_edit" class="<?=Text::BTN?> btn-outline-primary btn-sm"><i class="fa fa-pencil-alt"></i></a>
                     </div>
                 </div>
 
-                <b class="f18">История изменения тарифов</b>
-                <div class="ajax_block_contract_tariff_history_out block_loading"></div>
+                <div class="font-18 font-weight-bold m-b-10">История изменения тарифов</div>
+                <div class="ajax_block_contract_tariff_history_out"></div>
             <?}?>
 
-            <a href="#" class="btn waves-effect waves-light btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_history">История по договору</a>
+            <a href="#" class="<?=Text::BTN?> btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_history">История по договору</a>
 
-            <a href="#" class="btn waves-effect waves-light btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_notice_settings">Настройка уведомлений</a>
+            <a href="#" class="<?=Text::BTN?> btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_notice_settings">Настройка уведомлений</a>
 
             <?if(Access::allow('view_contract_managers')){?>
                 <div class="font-18 font-weight-bold m-b-10 m-t-20">Менеджеры:</div>
@@ -449,19 +450,26 @@
 
     function renderAjaxPaginationContractTariffHistory(data, block)
     {
+        if (block.is(':empty')) {
+            block.append('<table class="table bg-white table-sm m-b-0" />');
+        }
+
+        var block = block.find('.table');
+
         for(var i in data){
-            var tpl = $('<div class="line_inner">' +
-                '<span class="gray th_data_from"> c <span /></span>' +
-                '<span class="gray th_data_to">&nbsp;&nbsp;&nbsp; до <span /></span>' +
-                '&nbsp;&nbsp;&nbsp;'+
-                '<span class="th_name" />' +
-                '</div>');
+            var tpl = $('<tr>' +
+                '<td class=" text-muted">' +
+                    '<nobr class="th_data_from">c <span /></nobr>' +
+                    '<nobr class="th_data_to"><br>до <span /></nobr>' +
+                '</td>' +
+                '<td class=" th_name" />' +
+            '</tr>');
 
             tpl.find('.th_data_from span').text(data[i].DATE_FROM_STR);
             if (data[i].DATE_TO_STR != '<?=Date::DATE_MAX?>') {
                 tpl.find('.th_data_to span').text(data[i].DATE_TO_STR);
             } else {
-                tpl.find('.th_data_to').remove();
+                tpl.find('.th_data_to').text('');
             }
             tpl.find('.th_name').text(data[i].TARIF_NAME);
 
