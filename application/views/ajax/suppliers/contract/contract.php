@@ -6,7 +6,7 @@
                 <div class="col-9">
                     [<?=$contract['CONTRACT_ID']?>]
                     <span toggle_block="toggle_contract">
-                        <b><?=$contract['CONTRACT_NAME']?></b> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != '31.12.2099'){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
+                        <b><?=$contract['CONTRACT_NAME']?></b> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != Date::DATE_MAX){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
                         <span class="badge <?=Model_Supplier_Contract::$statusContractClasses[$contract['CONTRACT_STATE']]?>"><?=Model_Supplier_Contract::$statusContractNames[$contract['CONTRACT_STATE']]?></span>
                     </span>
                 </div>

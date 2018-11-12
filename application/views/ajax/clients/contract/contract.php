@@ -5,7 +5,7 @@
                 [<?=$contract['CONTRACT_ID']?>]
                 <b><?=$contract['CONTRACT_NAME']?></b>
                 <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
-                <?if($contract['DATE_END'] != '31.12.2099'){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
+                <?if($contract['DATE_END'] != Date::DATE_MAX){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
                 <span class="label label-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
             </div>
             <div class="col-3 text-right">
@@ -48,7 +48,11 @@
             <div class="col-md-4 m-b-20 p-b-5">
                 <select class="custom-select" name="STATE_ID">
                     <?
+                    $user = User::current();
                     foreach(Model_Contract::$statusContractNames as $id => $name){
+                        if ($id == Model_Contract::STATE_CONTRACT_DELETED && !in_array($user['ROLE_ID'], Model_Contract::$stateContractDeletedRolesAccess)) {
+                            continue;
+                        }
                         ?><option value="<?=$id?>" <?if($id == $contract['STATE_ID']){echo 'selected';}?>><?=$name?></option><?
                     }
                     ?>
@@ -91,6 +95,28 @@
                     </span>
                 </div>
             </div>
+
+            <tr class="contract-payment-scheme-limit-tr" <?if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){?>style="display: none"<?}?>>
+                <td class="gray right">Действует до:</td>
+                <td>
+                    <span toggle_block="block2">
+                        <?if ($contractSettings['AUTOBLOCK_FLAG_DATE'] == Date::DATE_MAX) {?>
+                            Бессрочно
+                        <?} else {?>
+                            <?=$contractSettings['AUTOBLOCK_FLAG_DATE']?>
+                        <?}?>
+                    </span>
+                    <span toggle_block="block2" class="dn">
+                        <input type="text" name="AUTOBLOCK_FLAG_DATE" class="datepicker" readonly
+                               value="<?=($contractSettings['AUTOBLOCK_FLAG_DATE'] == Date::DATE_MAX ? '' : $contractSettings['AUTOBLOCK_FLAG_DATE'])?>"
+                        >
+                        <br>
+                        <label>
+                            <input type="checkbox" class="autoblock_flag_date_checkbox" onchange="checkAutoblockFlagDateIndefinitely($(this))"> Бессрочно
+                        </label>
+                    </span>
+                </td>
+            </tr>
 
             <div class="row m-b-10">
                 <div class="col-sm-5 text-muted">
@@ -139,17 +165,6 @@
                     }
                     ?>
                     <?=$contractSettings['INVOICE_PERIOD_VALUE'].' '.$period?>
-                    <?/*<span toggle_block="block2"><?=$contractSettings['INVOICE_PERIOD_VALUE'].' '.$period?></span>
-                    <span toggle_block="block2" class="dn">
-                        <select name="INVOICE_PERIOD_TYPE">
-                            <?
-                            foreach(Model_Contract::$invoicePeriods as $id => $value){
-                                ?><option value="<?=$id?>" <?if($contractSettings['INVOICE_PERIOD_TYPE'] == $id){echo 'selected';}?>><?=$value?></option><?
-                            }
-                            ?>
-                        </select>
-                        <input type="text" name="INVOICE_PERIOD_VALUE" value="<?=$contractSettings['INVOICE_PERIOD_VALUE']?>">
-                    </span>*/?>
                 </div>
             </div>
 
@@ -268,6 +283,9 @@
                         </span>
                     </div>
                 </div>
+
+                <b class="f18">История изменения тарифов</b>
+                <div class="ajax_block_contract_tariff_history_out block_loading"></div>
             <?}?>
 
             <a href="#" class="btn waves-effect waves-light btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_history">История по договору</a>
@@ -326,13 +344,28 @@
 
 <?=$popupContractHistory?>
 <?=$popupContractNoticeSettings?>
+<?=$popupContractTariffEdit?>
 
 <script>
     $(function(){
         renderElements();
 
+        <?if(Access::allow('view_tariffs')){?>
+        paginationAjax('/clients/get-contract-tariff-change-history/', 'ajax_block_contract_tariff_history', renderAjaxPaginationContractTariffHistory, {
+            contract_id: <?=$contract['CONTRACT_ID']?>,
+            emptyMessage: '<span class="gray">История изменения тарифа отсутствует</span>'
+        });
+        <?}?>
+
+        <?if ($contractSettings['AUTOBLOCK_FLAG_DATE'] == Date::DATE_MAX) {?>
+        $('.autoblock_flag_date_checkbox').prop('checked', true).trigger('change');
+        <?}?>
+
         $("select[name=scheme]").on('change', function(){
             var t = $(this);
+            var row = $('.contract-payment-scheme-limit-row');
+
+            row.hide();
 
             if(t.val() == 1){ //безлимит
                 $("[name=AUTOBLOCK_LIMIT]").val(0).prop('disabled', true);
@@ -340,6 +373,8 @@
                 $("[name=AUTOBLOCK_LIMIT]").val(0).prop('disabled', true);
             }else{ //порог отключения
                 $("[name=AUTOBLOCK_LIMIT]").prop('disabled', false);
+
+                row.show();
             }
         });
     });
@@ -356,12 +391,10 @@
             },
             settings:{
                 TARIF_ONLINE:           getComboBoxValue($('[name=TARIF_ONLINE].combobox')),
-                TARIF_OFFLINE:          getComboBoxValue($('[name=TARIF_OFFLINE].combobox')),
                 AUTOBLOCK_LIMIT:        $("[name=AUTOBLOCK_LIMIT]").val(),
+                AUTOBLOCK_FLAG_DATE:    $("[name=AUTOBLOCK_FLAG_DATE]").prop('disabled') ? '<?=Date::DATE_MAX?>' : $("[name=AUTOBLOCK_FLAG_DATE]").val(),
                 PENALTIES:              $("[name=PENALTIES]").val(),
                 OVERDRAFT:              $("[name=OVERDRAFT]").val(),
-                //INVOICE_PERIOD_TYPE:    $("[name=INVOICE_PERIOD_TYPE]").val(),
-                //INVOICE_PERIOD_VALUE:   $("[name=INVOICE_PERIOD_VALUE]").val(),
                 GOODS_RECIEVER:         getComboBoxValue($("[name=GOODS_RECIEVER].combobox")),
                 CONTRACT_COMMENT:       $("[name=CONTRACT_COMMENT]").val(),
                 scheme:                 $("[name=scheme]").val()
@@ -404,4 +437,35 @@
         });
     }
     <?}?>
+
+    function checkAutoblockFlagDateIndefinitely(checkbox)
+    {
+        if (checkbox.is(':checked')) {
+            $('[name=AUTOBLOCK_FLAG_DATE]').prop('disabled', true).parent().find('img').hide();
+        } else {
+            $('[name=AUTOBLOCK_FLAG_DATE]').prop('disabled', false).parent().find('img').show();
+        }
+    }
+
+    function renderAjaxPaginationContractTariffHistory(data, block)
+    {
+        for(var i in data){
+            var tpl = $('<div class="line_inner">' +
+                '<span class="gray th_data_from"> c <span /></span>' +
+                '<span class="gray th_data_to">&nbsp;&nbsp;&nbsp; до <span /></span>' +
+                '&nbsp;&nbsp;&nbsp;'+
+                '<span class="th_name" />' +
+                '</div>');
+
+            tpl.find('.th_data_from span').text(data[i].DATE_FROM_STR);
+            if (data[i].DATE_TO_STR != '<?=Date::DATE_MAX?>') {
+                tpl.find('.th_data_to span').text(data[i].DATE_TO_STR);
+            } else {
+                tpl.find('.th_data_to').remove();
+            }
+            tpl.find('.th_name').text(data[i].TARIF_NAME);
+
+            block.append(tpl);
+        }
+    }
 </script>

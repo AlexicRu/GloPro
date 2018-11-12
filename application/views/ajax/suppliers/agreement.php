@@ -12,7 +12,7 @@ $toggle = 'agreement'.$agreement['AGREEMENT_ID'];
                     <span toggle_block="<?=$toggle?>">
                         <b><?=$agreement['AGREEMENT_NAME']?></b>
                         <span class="text-muted">от</span> <?=$agreement['WEB_DATE_BEGIN']?>
-                        <?if($agreement['WEB_DATE_END'] != '31.12.2099'){?><span class="text-muted">до</span> <?=$agreement['WEB_DATE_END']?><?}?> &nbsp;
+                        <?if($agreement['WEB_DATE_END'] != Date::DATE_MAX){?><span class="text-muted">до</span> <?=$agreement['WEB_DATE_END']?><?}?> &nbsp;
                     </span>
                 </div>
                 <div class="col-3 text-right">
