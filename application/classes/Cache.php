@@ -40,7 +40,7 @@ class Cache extends Kohana_Cache
 	{
 		$data = parent::get($this->_key($id), $default);
 		
-		$testArray = json_decode($default, true);
+		$testArray = json_decode($data, true);
 		
 		if(is_array($testArray)){
 			$data = $testArray;

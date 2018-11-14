@@ -2,11 +2,13 @@
 
 include '_log.php';
 include '_debug.php';
+include '_cache.php';
 
 class Shell
 {
     use Log;
     use Debug;
+    use Cache;
 
     const CARD_STATUS_ACTIVE    = 'Active';
     const CARD_STATUS_DECLINED  = 'Declined';
@@ -26,6 +28,7 @@ class Shell
         'setCustomerCardStatus'         => '/customer/__CUSTOMER__/card/__CARD__/status/__STATUS__',
     ];
     private $_currency      = 643; //руб
+    private $_pageSize      = 100;
     private $_connectDb     = null;
     private $_skipTransactionStatuses   = [];
     private $_loadedTransactions        = [];
@@ -67,7 +70,7 @@ class Shell
      */
     private function _dbExecute($sql)
     {
-        if (is_null($this->_connect)) {
+        if (is_null($this->_connectDb)) {
             $this->_connectDb = oci_connect($this->_configDb['name'], $this->_configDb['password'], $this->_configDb['db'], 'UTF8');
         }
 
@@ -104,7 +107,7 @@ class Shell
      * @param $url
      * @param string $method
      */
-    private function _request($url, $method = 'get')
+    private function _request($url, $method = 'get', $pagination = [])
     {
         $options = array(
             CURLOPT_HTTPHEADER => ['Content-Type:application/json'],
@@ -123,7 +126,16 @@ class Shell
             $options[CURLOPT_HTTPHEADER][] = $authorization;
         }
 
-        $ch      = curl_init( $this->_configShell['url'] . $url );
+        //pagination
+        if (!empty($pagination)) {
+            $sign = strpos($url, '?') === false ? '?' : '&';
+
+            $paginationStr = $sign . 'pageSize='. $this->_pageSize .'&page=' . (!empty($pagination['page']) ? $pagination['page'] : 1);
+        } else {
+            $paginationStr = '';
+        }
+
+        $ch      = curl_init( $this->_configShell['url'] . $url . $paginationStr );
 
         curl_setopt_array( $ch, $options );
         $content = curl_exec( $ch );
@@ -131,7 +143,17 @@ class Shell
 
         $response = json_decode($content, true);
 
-        $this->_debug($method . ': ' . $url);
+        $debugStr = $method . ': ' . $url . $paginationStr;
+
+        if (isset($response['errorMessage'])) {
+            $debugStr .= '; error = ' . $response['errorMessage'];
+        } else {
+            if (!empty($pagination)) {
+                $debugStr .= '; cnt = ' . (empty($response) ? 'EMPTY' : count($response));
+            }
+        }
+
+        $this->_debug($debugStr);
 
         if (isset($response['errorMessage'])) {
             if (in_array($response['errorMessage'], [
@@ -140,10 +162,25 @@ class Shell
                 'Transaction Details not found.',
             ])) {
                 $this->_log($response['errorMessage']);
-
-                return [];
+                $response = [];
+            } else {
+                die($this->_logErrorExecute);
             }
-            die($this->_logErrorExecute);
+        } else if (
+            !empty($pagination) &&
+            !empty($response) &&
+            count($response) == $this->_pageSize
+        ) {
+            $pagination = [
+                'page'      => empty($pagination['page']) ? 2 : ++$pagination['page'],
+            ];
+
+            //рекурсия
+            $responsePage = $this->_request($url, $method, $pagination);
+
+            if (!empty($responsePage)) {
+                $response = array_merge($response, $responsePage);
+            }
         }
 
         return $response;
@@ -178,7 +215,33 @@ class Shell
      */
     public function getCustomers()
     {
-        return $this->_request($this->_actions['getCustomers']) ?: [];
+        return $this->_request($this->_actions['getCustomers'], 'get', true) ?: [];
+    }
+
+    /**
+     * получаем детальные данные по карте
+     *
+     * @param $customerNumber
+     * @param $cardNumber
+     * @return array
+     */
+    public function getCustomerCard($customerNumber, $cardNumber)
+    {
+        if (empty($cardNumber) || empty($customerNumber)) {
+            return [];
+        }
+
+        $url = str_replace(['__CUSTOMER__', '__CARD__'], [$customerNumber, $cardNumber], $this->_actions['getCustomerCard']);
+
+        $response = $this->_cacheRead($url);
+
+        if (is_null($response)) {
+            $response = $this->_request($url) ?: [];
+
+            $this->_cacheWrite($url, $response);
+        }
+
+        return $response;
     }
 
     /**
@@ -195,7 +258,7 @@ class Shell
 
         $url = str_replace('__CUSTOMER__', $customerNumber, $this->_actions['getCustomerCards']);
 
-        return $this->_request($url) ?: [];
+        return $this->_request($url, 'get', true) ?: [];
     }
 
     /**
@@ -229,7 +292,7 @@ class Shell
             $params[] = 'endDate=' . $dateEnd;
         }
 
-        return $this->_request($url . implode('&', $params)) ?: [];
+        return $this->_request($url . implode('&', $params), 'get', true) ?: [];
     }
 
     /**
@@ -263,7 +326,6 @@ class Shell
 
         //unlim
         set_time_limit(0);
-        $cnt = 0;
 
         $customers = $this->getCustomers();
 
@@ -275,6 +337,14 @@ class Shell
             //cards
             foreach ($customerCards as $card) {
                 $this->_cardId = $card['cardNumber'];
+
+                $cardDetail = $this->getCustomerCard($card['customerNumber'], $card['cardNumber']);
+                $lastTransactionOn = !empty($cardDetail['lastTransactionOn']['value']) ? $cardDetail['lastTransactionOn']['value'] / 1000 : 0;
+
+                if ($dateStart && strtotime($dateStart) > $lastTransactionOn) {
+                    continue;
+                }
+
                 $cardTransactions = $this->getCustomerCardTransactions($card['customerNumber'], $card['cardNumber'], $dateStart, $dateEnd);
 
                 //transactions
@@ -381,7 +451,7 @@ class Shell
 
                     try {
                         //execute
-                        $this->_dbExecute($sql);
+                        //$this->_dbExecute($sql);
 
                         //for checking loaded
                         $this->_loadedTransactions[] = $transaction['transactionId'];
@@ -394,6 +464,7 @@ class Shell
             }
         }
 
-        $this->_log('loadTransactions finished: ' . $cnt);
+        $this->_log('loadTransactions finished: ' . count($this->_loadedTransactions));
+        $this->_debug('loadTransactions finished: ' . count($this->_loadedTransactions));
     }
 }

@@ -13,7 +13,7 @@ $params = [
     'tube_id'   => $tubeId,
     'config'    => ['url' => $shellUrl, 'login' => $shellConfig['login'], 'password' => $shellConfig['password']],
     'db'        => $database, // ['db' => '', 'name' => '', 'password' => '']
-    'log_file'  => __DIR__ . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR . '_shell_' . $agentId . '_' . $tubeId . '.log'
+    'log_file'  => __DIR__ . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR . 'shell_' . $agentId . '_' . $tubeId . '.log'
 ];
 
 if (!empty($argv[1])) {
