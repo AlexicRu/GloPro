@@ -379,6 +379,7 @@ class Controller_Clients extends Controller_Common {
         }
 
         foreach($payments as $payment){
+            $payment['date_format'] = $multi ? Date::$dateFormatRu : Date::$dateFormatDefault;
             list($result, $message) = Model_Contract::payment(Model_Contract::PAYMENT_ACTION_ADD, $payment);
 
             if(empty($result)){

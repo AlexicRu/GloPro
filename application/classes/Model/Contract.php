@@ -447,12 +447,14 @@ class Model_Contract extends Model
             }
         }
 
+        $date = !empty($params['date_format']) && $params['date_format'] == Date::$dateFormatRu ? $params['date'] : Date::format($params['date']);
+
 		$data = [
 			'p_contract_id' 	=> $params['contract_id'],
 			'p_action' 			=> $action,
 			'p_order_guid' 		=> $action != self::PAYMENT_ACTION_ADD ? $params['guid'] : null,
 			'p_order_num' 		=> $action == self::PAYMENT_ACTION_ADD ? $params['num'] : null,
-			'p_order_date' 		=> $action == self::PAYMENT_ACTION_ADD ? Date::format($params['date']): null,
+			'p_order_date' 		=> $action == self::PAYMENT_ACTION_ADD ? $date : null,
             'p_value' 			=> $action != self::PAYMENT_ACTION_DELETE ? $value : 0,
 			'p_payment_cur' 	=> $action == self::PAYMENT_ACTION_ADD ? Common::CURRENCY_RUR : null,
 			'p_comment' 		=> $action == self::PAYMENT_ACTION_ADD ? $params['comment'] : null,
