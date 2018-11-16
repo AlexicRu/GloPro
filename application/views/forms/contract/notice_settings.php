@@ -101,7 +101,7 @@
             <span class="hidden-sm-up text-muted">Порог:</span>
         </div>
         <div class="col-sm-7">
-            <input type="text" name="notice_email_barrier_value" class="form-control" value="<?=(!empty($settings['EML_BLNC_CTRL_VALUE']) ? $settings['EML_BLNC_CTRL_VALUE'] : '')?>">
+            <input type="number" name="notice_email_barrier_value" class="form-control" value="<?=(!empty($settings['EML_BLNC_CTRL_VALUE']) ? $settings['EML_BLNC_CTRL_VALUE'] : '')?>">
         </div>
     </div>
 
@@ -165,7 +165,7 @@
 <script>
     function editContractNoticesGo(btn)
     {
-        var form = btn.closest('.form_settings');
+        var form = btn.closest('.modal-content');
         var params = {
             notice_sms_card:            $('[name=notice_sms_card]', form).is(":checked") ? 1 : 0,
             notice_sms_firm:            $('[name=notice_sms_firm]', form).is(":checked") ? 1 : 0,

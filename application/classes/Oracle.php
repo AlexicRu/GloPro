@@ -339,6 +339,10 @@ class Oracle{
 
 		$items = $this->query($sql);
 
+		if (empty($items)) {
+		    $items = [];
+        }
+
 		$more = false;
 		if (count($items) == $params['limit'] + 1) {
 			$more = true;
