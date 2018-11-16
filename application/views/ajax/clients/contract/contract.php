@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-            <div class="row m-b-10 contract-payment-scheme-limit-row" <?if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){?>style="display: none"<?}?>>
+            <div class="row m-b-10 contract-payment-scheme-limit-row" <?/*if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){?>style="display: none"<?}*/?>>
                 <div class="col-sm-5 text-muted">
                     <div class="text-right d-none d-sm-block">Действует до:</div>
                     <div class="d-block d-sm-none">Действует до:</div>
@@ -366,7 +366,7 @@
             var t = $(this);
             var row = $('.contract-payment-scheme-limit-row');
 
-            row.hide();
+            //row.hide();
 
             if(t.val() == 1){ //безлимит
                 $("[name=AUTOBLOCK_LIMIT]").val(0).prop('disabled', true);
@@ -375,7 +375,7 @@
             }else{ //порог отключения
                 $("[name=AUTOBLOCK_LIMIT]").prop('disabled', false);
 
-                row.show();
+                //row.show();
             }
         });
     });
