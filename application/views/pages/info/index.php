@@ -3,21 +3,24 @@
         <div class="card-body">
             <h2>Материалы для работы через аукционы и конкурсы</h2>
 
-            <a href="/file/info/Материалы_АиК/Презентация_29.10.2018_вебинар.pptx" class="info__item" target="_blank">
-                <div>
-                    <div><span class="info__icon info__icon-ppt"></span></div>
-                    <div class="info__item-name">Презентация 29.10.2018 вебинар</div>
+            <a href="/file/info/Материалы_АиК/Презентация_29.10.2018_вебинар.pptx" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-powerpoint text-warning"></span>
                 </div>
-                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
-            </a>
-            <a href="/file/info/Материалы_АиК/Тех_Карта_по_подготовке_ТЗ.docx" class="info__item" target="_blank">
-                <div>
-                    <div><span class="info__icon info__icon-doc"></span></div>
-                    <div class="info__item-name">Тех. Карта по подготовке ТЗ</div>
+                <div class="col-10 col-xxl-8">Презентация 29.10.2018 вебинар</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
                 </div>
-                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
             </a>
-
+            <a href="/file/info/Материалы_АиК/Тех_Карта_по_подготовке_ТЗ.docx" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-word text-primary"></span>
+                </div>
+                <div class="col-10 col-xxl-8">Тех. Карта по подготовке ТЗ</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
+            </a>
             <a href="/file/info/Материалы_АиК/Алгоритм_действий_заказчика_при_принятии_решения_об_одностороннем_отказе.pptx" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-powerpoint text-warning"></span>
@@ -132,14 +135,15 @@
         <div class="card-body">
             <h2>Мониторинг цен</h2>
 
-            <a href="/file/info/Мониторинг_цен/Мониторинг_цен_ноябрь_2018.pdf" class="info__item" target="_blank">
-                <div>
-                    <div><span class="info__icon info__icon-pdf"></span></div>
-                    <div class="info__item-name">Мониторинг цен ноябрь 2018</div>
+            <a href="/file/info/Мониторинг_цен/Мониторинг_цен_ноябрь_2018.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
+                <div class="col-2 text-center">
+                    <span class="fa fa-2x fa-file-pdf text-danger"></span>
                 </div>
-                <span class="btn btn_icon btn_reverse info__item-btn"><i class="icon-download"></i></span>
+                <div class="col-10 col-xxl-8">Мониторинг цен ноябрь 2018</div>
+                <div class="col-xxl-2 hidden-xl-down">
+                    <span class="<?= Text::BTN ?> btn-primary info__item-btn"><i class="fa fa-download"></i></span>
+                </div>
             </a>
-
             <a href="/file/info/Мониторинг_цен/Price_Monitoring_03_08.pdf" class="info__item row m-t-20 p-b-20 border-bottom align-items-center" target="_blank">
                 <div class="col-2 text-center">
                     <span class="fa fa-2x fa-file-pdf text-danger"></span>
