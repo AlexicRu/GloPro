@@ -37,19 +37,15 @@
             }  else {
                 message(0, 'Ошибка добавления карт');
             }
-            $('.pre_fancy_close').click();
-        });
-    }
-
-    $(function(){
-        $('.pre_fancy_close').on('click', function () {
             modalClose();
             setTimeout(function () {
                 $('.popup_list').empty().hide();
                 $('.popup_list_preview').show();
             }, 500);
         });
+    }
 
+    $(function(){
         $('.popup_list_preview .btn').on('click', function () {
             var block = $('.popup_list');
 

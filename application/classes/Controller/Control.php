@@ -350,7 +350,7 @@ class Controller_Control extends Controller_Common {
      */
     public function action_addDotsToGroup()
     {
-        $posIds = $this->request->post('pos_ids');
+        $posIds = $this->request->post('dots_ids');
         $groupId = $this->request->post('group_id');
 
         $result = Model_Dot::editDotsToGroup($groupId, $posIds);

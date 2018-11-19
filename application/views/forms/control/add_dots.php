@@ -13,7 +13,7 @@
     function addGroupDotsToGroup(btn)
     {
         var block = $('.popup_list');
-        var groupId = $('.tabs_dots_groups .tab_v.active [name=group_id]').val();
+        var groupId = $('.tabs_dots_groups .nav-link.active [name=group_id]').val();
         var dotsIds = [];
 
         $('[name=pos_id]:checked', block).each(function () {
@@ -22,34 +22,31 @@
 
         if(dotsIds.length == 0){
             endSubmitForm();
-            message(0, 'Не выбрано ни одной карты');
+            message(0, 'Не выбрано ни одной точки');
             return false;
         }
 
         $.post('/control/add-dots-to-group', {dots_ids:dotsIds, group_id:groupId}, function (data) {
             endSubmitForm();
             if(data.success){
-                message(1, 'Карты успешно добавлены');
+                message(1, 'Точки успешно добавлены');
 
                 var tab = $('.tabs_dots_groups .tab_v.active');
 
                 loadGroupDots(tab, true);
             }  else {
-                message(0, 'Ошибка добавления карт');
+                message(0, 'Ошибка добавления точек');
             }
-            $('.pre_fancy_close').click();
-        });
-    }
 
-    $(function(){
-        $('.pre_fancy_close').on('click', function () {
             modalClose();
             setTimeout(function () {
                 $('.popup_list').empty().hide();
                 $('.popup_list_preview').show();
             }, 500);
         });
+    }
 
+    $(function(){
         $('.popup_list_preview .btn').on('click', function () {
             var block = $('.popup_list');
 
