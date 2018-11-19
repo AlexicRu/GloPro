@@ -111,6 +111,7 @@
                     </span>
                     <span toggle_block="block2" class="dn">
                         <input type="date" name="AUTOBLOCK_FLAG_DATE" class="form-control"
+                               min="<?=date(Date::$dateFormatDefault)?>" 
                                value="<?=($contractSettings['AUTOBLOCK_FLAG_DATE'] == Date::DATE_MAX ? '' : Date::formatToDefault($contractSettings['AUTOBLOCK_FLAG_DATE']))?>"
                         >
 

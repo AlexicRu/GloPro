@@ -397,6 +397,8 @@ class Controller_Clients extends Controller_Common {
 	{
 		$params = $this->request->post('params');
 
+        $params['date_format'] = Date::$dateFormatRu;
+
 		list($result, $message) = Model_Contract::payment(Model_Contract::PAYMENT_ACTION_DELETE, $params);
 
 		if(empty($result)){

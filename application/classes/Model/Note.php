@@ -27,16 +27,10 @@ class Model_Note extends Model
 
         $image = (!empty($params['image']) && is_file($path.$params['image'])) ? $params['image'] : '';
 
-        //todo костыль убрать
-        if (!empty($params['date'])) {
-            $params['date'] = explode(' ', $params['date']);
-            $params['date'] = $params['date'][0];
-        }
-
         if(!empty($params['id'])) {
             $data = [
                 'p_note_id' 		    => $params['id'],
-                'p_note_date' 		    => $params['date'],
+                'p_note_date' 		    => Date::format($params['date']),
                 'p_note_title' 		    => $params['title'],
                 'p_note_body' 		    => $params['body'],
                 'p_picture' 	        => $image,
@@ -50,7 +44,7 @@ class Model_Note extends Model
                 'p_agent_id' 	        => $user['AGENT_ID'],
                 'p_agent_group_id' 	    => !isset($params['subscribe']) || $params['subscribe'] == 'all' ? -1 : $params['subscribe_agent'],
                 'p_manager_id' 		    => null,
-                'p_note_date' 		    => $params['date'],
+                'p_note_date' 		    => Date::format($params['date']),
                 'p_note_type' 		    => $params['type'],
                 'p_note_title' 		    => $params['title'],
                 'p_note_body' 		    => $params['body'],
