@@ -8,10 +8,13 @@
     <?}?>
 
     var findCard = getUrlParameter('card');
-    var foundCard = false;
 
     $(function () {
-        cardsReload();
+        if (findCard) {
+            $(".cards_search").val(findCard);
+        }
+
+        cardsFilter();
 
         $(".cards_search").on('keypress', function(e){
             cardsFilter();
@@ -65,20 +68,8 @@
             tpl.appendTo(block);
 
             contentBlock.append('<div class="tab-pane" id="card'+ data[i].CARD_ID +'" role="tabpanel" />');
-
-            if (findCard == data[i].CARD_ID) {
-                foundCard = true;
-            }
         }
 
-        if (findCard) {
-            if (!foundCard) {
-                block.parent().find('.ajax_block_load').click();
-            } else {
-                block.find('.nav-item[tab="'+ findCard +'"] a').click();
-            }
-        } else if (!firstLoad) {
-            block.find('.nav-item:not(.no_content):first a').click();
-        }
+        block.find('.nav-item:not(.no_content):first a').click();
     }
 </script>

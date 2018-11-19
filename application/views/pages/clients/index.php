@@ -111,14 +111,15 @@ if(!empty($_REQUEST['search'])){?>
                 for (var j in client.contracts) {
                     var contract = client.contracts[j];
                     var link = '/clients/client/' + client.CLIENT_ID + '?contract_id=' + contract.CONTRACT_ID;
+                    var card = '';
 
                     if (contract.found_card !== false) {
-                        link = link + '&tab=cards&card=' + contract.found_card;
+                        card = '<a href="'+ link +'&tab=cards&card='+ contract.found_card +'" class="d-inline-block ml-2"><i class="far fa-credit-card-front"></i></a>';
                     }
 
                     $('<tr>' +
                         '<td><span class="label label-' + contract.contract_state_class + '">' + contract.contract_state_name + '</span></td>' +
-                        '<td><a href="'+ link +'">' + contract.CONTRACT_NAME + '</a></td>' +
+                        '<td><a href="'+ link +'">' + contract.CONTRACT_NAME + '</a>'+card+'</td>' +
                         '<td><span class="gray">Счет:</span> <b>' + contract.balance_formatted + '</b></td>' +
                         '<td><span class="gray">Карты:</span> <b>' + contract.ALL_CARDS + '</b></td>' +
                     '</tr>').appendTo(tpl.find('table'));
