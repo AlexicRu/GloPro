@@ -256,6 +256,8 @@
             params.filter[name] = t.val();
         });
 
+        block.empty();
+
         paginationAjax('/administration/transactions-history', 'ajax_block_administration_transactions_history', renderAjaxPaginationAdminTransactions, params);
     }
 </script>
