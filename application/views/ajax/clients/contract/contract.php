@@ -394,7 +394,7 @@
             settings:{
                 TARIF_ONLINE:           getComboBoxValue($('[name=TARIF_ONLINE].combobox')),
                 AUTOBLOCK_LIMIT:        $("[name=AUTOBLOCK_LIMIT]").val(),
-                AUTOBLOCK_FLAG_DATE:    $("[name=AUTOBLOCK_FLAG_DATE]").prop('disabled') ? '<?=Date::DATE_MAX?>' : $("[name=AUTOBLOCK_FLAG_DATE]").val(),
+                AUTOBLOCK_FLAG_DATE:    $("[name=AUTOBLOCK_FLAG_DATE]").prop('disabled') ? '<?=Date::DATE_MAX_DEFAULT?>' : $("[name=AUTOBLOCK_FLAG_DATE]").val(),
                 PENALTIES:              $("[name=PENALTIES]").val(),
                 OVERDRAFT:              $("[name=OVERDRAFT]").val(),
                 GOODS_RECIEVER:         getComboBoxValue($("[name=GOODS_RECIEVER].combobox")),

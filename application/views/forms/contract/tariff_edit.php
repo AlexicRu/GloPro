@@ -1,9 +1,8 @@
 <div class="modal-body">
     <div class="form form_contract_tariff_edit">
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Тариф:</div>
-                <span class="hidden-sm-up text-muted">Тариф:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Тариф:
             </div>
             <div class="col-sm-8 with-mt">
                 <?=Form::buildField('contract_tariffs', 'TARIF_OFFLINE', $tariffId)?>
@@ -11,12 +10,11 @@
         </div>
 
         <div class="form-group row m-b-0">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Дата начала действия тарифа:</div>
-                <span class="hidden-sm-up text-muted">Дата начала действия тарифа:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Дата начала действия тарифа:
             </div>
             <div class="col-sm-8 with-mt">
-                <input type="date" class="form-control" name="contract_tariff_edit_date">
+                <input type="date" class="form-control" name="contract_tariff_edit_date" min="<?=date('Y-m-01', strtotime("first day of previous month"))?>">
             </div>
         </div>
     </div>
