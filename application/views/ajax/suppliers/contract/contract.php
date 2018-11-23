@@ -72,9 +72,8 @@
         <div class="col-lg-6">
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right hidden-xs-down text-muted">Валюта:</div>
-                    <div class="hidden-sm-up">Валюта:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Валюта:
                 </div>
                 <div class="col-sm-7">
                     Российский Рубль – <?=Text::RUR?>
@@ -82,9 +81,8 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right hidden-xs-down text-muted">Тип источника:</div>
-                    <div class="hidden-sm-up">Тип источника:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Тип источника:
                 </div>
                 <div class="col-sm-7">
                     <div toggle_block="toggle_contract">
@@ -124,9 +122,8 @@
 
             <?if(Access::allow('view_supplier_contract_group_dots')){?>
                 <div class="row m-b-10">
-                    <div class="col-sm-5 text-muted">
-                        <div class="text-right hidden-xs-down text-muted">Группы точек:</div>
-                        <div class="hidden-sm-up">Группы точек:</div>
+                    <div class="col-sm-5 text-muted form__row__title">
+                        Группы точек:
                     </div>
                     <div class="col-sm-7">
                         <div toggle_block="toggle_contract" class="contract_pos_groups_render_value"></div>

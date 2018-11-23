@@ -2,9 +2,8 @@
 
     <div class="form form_add_client">
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Номер:</div>
-                <span class="hidden-sm-up text-muted">Номер:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Номер:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="text" name="add_contract_name" class="form-control">
@@ -12,9 +11,8 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Дата начала:</div>
-                <span class="hidden-sm-up text-muted">Дата начала:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Дата начала:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="date" class="form-control" name="add_contract_date_start" value="<?=date('Y-m-d')?>">
@@ -22,9 +20,8 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Дата окончания:</div>
-                <span class="hidden-sm-up text-muted">Дата окончания:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Дата окончания:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="date" class="form-control" name="add_contract_date_end">

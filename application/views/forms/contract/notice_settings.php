@@ -1,8 +1,7 @@
 <div class="modal-body">
     <div class="form-group row">
-        <div class="col-sm-5">
-            <div class="text-right hidden-xs-down text-muted">При блокировке карт:</div>
-            <span class="hidden-sm-up text-muted">При блокировке карт:</span>
+        <div class="col-sm-5 text-muted form__row__title">
+            При блокировке карт:
         </div>
         <div class="col-sm-7">
             <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_card" name="notice_email_card" <?=(!empty($settings['EML_CARD_BLOCK']) ? 'checked' : '')?>>
@@ -24,9 +23,8 @@
     </div>
 
     <div class="form-group row">
-        <div class="col-sm-5">
-            <div class="text-right hidden-xs-down text-muted">При пополнении счета:</div>
-            <span class="hidden-sm-up text-muted">При пополнении счета:</span>
+        <div class="col-sm-5 text-muted form__row__title">
+            При пополнении счета:
         </div>
         <div class="col-sm-7">
             <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_payment" name="notice_email_payment" <?=(!empty($settings['EML_ADD_PAYMENT']) ? 'checked' : '')?>>
@@ -48,9 +46,8 @@
     </div>
 
     <div class="form-group row">
-        <div class="col-sm-5">
-            <div class="text-right hidden-xs-down text-muted">При блокировке фирмы:</div>
-            <span class="hidden-sm-up text-muted">При блокировке фирмы:</span>
+        <div class="col-sm-5 text-muted form__row__title">
+            При блокировке фирмы:
         </div>
         <div class="col-sm-7">
             <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_firm" name="notice_email_firm" <?=(!empty($settings['EML_CONTRACT_BLOCK']) ? 'checked' : '')?>>
@@ -72,9 +69,8 @@
     </div>
 
     <div class="form-group row">
-        <div class="col-sm-5">
-            <div class="text-right hidden-xs-down text-muted">При приближению к критическому порогу:</div>
-            <span class="hidden-sm-up text-muted">При приближению к критическому порогу:</span>
+        <div class="col-sm-5 text-muted form__row__title">
+            При приближению к критическому порогу:
         </div>
         <div class="col-sm-7">
             <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_barrier" name="notice_email_barrier" <?=(!empty($settings['EML_BLNC_CTRL']) ? 'checked' : '')?>>
@@ -96,9 +92,8 @@
     </div>
 
     <div class="form-group row">
-        <div class="col-sm-5">
-            <div class="text-right hidden-xs-down text-muted">Порог:</div>
-            <span class="hidden-sm-up text-muted">Порог:</span>
+        <div class="col-sm-5 text-muted form__row__title">
+            Порог:
         </div>
         <div class="col-sm-7">
             <input type="number" name="notice_email_barrier_value" class="form-control" value="<?=(!empty($settings['EML_BLNC_CTRL_VALUE']) ? $settings['EML_BLNC_CTRL_VALUE'] : '')?>">
@@ -106,9 +101,8 @@
     </div>
 
     <div class="form-group row">
-        <div class="col-sm-5">
-            <div class="text-right hidden-xs-down text-muted">Уведомление о балансе:</div>
-            <span class="hidden-sm-up text-muted">Уведомление о балансе:</span>
+        <div class="col-sm-5 text-muted form__row__title">
+            Уведомление о балансе:
         </div>
         <div class="col-sm-7">
             <input type="checkbox" class="<?=Text::CHECKBOX?>" id="notice_email_balance" name="notice_email_balance" <?=(!empty($settings['EML_BALANCE']) ? 'checked' : '')?>>
@@ -130,9 +124,8 @@
     </div>
 
     <div class="form-group row m-b-0">
-        <div class="col-sm-5">
-            <div class="text-right hidden-xs-down text-muted">В какие дни уведомлять о балансе:</div>
-            <span class="hidden-sm-up text-muted">В какие дни уведомлять о балансе:</span>
+        <div class="col-sm-5 text-muted form__row__title">
+            В какие дни уведомлять о балансе:
         </div>
         <div class="col-sm-7">
             <?

@@ -1,7 +1,6 @@
 <div class="row m-b-10">
-    <div class="col-sm-6 text-muted">
-        <div class="text-right hidden-xs-down text-muted">Количество литров:</div>
-        <span class="hidden-sm-up text-muted">Количество литров:</span>
+    <div class="col-sm-6 text-muted form__row__title">
+        Количество литров:
     </div>
     <div class="col-sm-6">
         <?=number_format($data['SERVICE_AMOUNT'], 2, '.', '&nbsp;')?> л.
@@ -9,9 +8,8 @@
 </div>
 
 <div class="row m-b-10">
-    <div class="col-sm-6 text-muted">
-        <div class="text-right hidden-xs-down text-muted">Выручка:</div>
-        <span class="hidden-sm-up text-muted">Выручка:</span>
+    <div class="col-sm-6 text-muted form__row__title">
+        Выручка:
     </div>
     <div class="col-sm-6">
         <?=number_format($data['SUMPRICE_DISCOUNT'], 2, '.', '&nbsp;')?>&nbsp;<?=Text::RUR?>
@@ -20,36 +18,32 @@
 
 <?if (Access::allow('view_full_dashboard_clients_summary')) {?>
     <div class="row m-b-10">
-        <div class="col-sm-6 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Стоимость на АЗС:</div>
-            <span class="hidden-sm-up text-muted">Стоимость на АЗС:</span>
+        <div class="col-sm-6 text-muted form__row__title">
+            Стоимость на АЗС:
         </div>
         <div class="col-sm-6">
             <?=number_format($data['SERVICE_SUMPRICE'], 2, '.', '&nbsp;')?>&nbsp;<?=Text::RUR?>
         </div>
     </div>
     <div class="row m-b-10">
-        <div class="col-sm-6 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Закупки:</div>
-            <span class="hidden-sm-up text-muted">Закупки:</span>
+        <div class="col-sm-6 text-muted form__row__title">
+            Закупки:
         </div>
         <div class="col-sm-6">
             <?=number_format($data['SUMPRICE_BUY'], 2, '.', '&nbsp;')?>&nbsp;<?=Text::RUR?>
         </div>
     </div>
     <div class="row m-b-10">
-        <div class="col-sm-6 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Маржинальный доход:</div>
-            <span class="hidden-sm-up text-muted">Маржинальный доход:</span>
+        <div class="col-sm-6 text-muted form__row__title">
+            Маржинальный доход:
         </div>
         <div class="col-sm-6">
             <?=number_format($data['MARGINALITY'], 2, '.', '&nbsp;')?>&nbsp;<?=Text::RUR?>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Средняя скидка клиенту:</div>
-            <span class="hidden-sm-up text-muted">Средняя скидка клиенту:</span>
+        <div class="col-sm-6 text-muted form__row__title">
+            Средняя скидка клиенту:
         </div>
         <div class="col-sm-6">
             <?=number_format($data['AVG_DISCOUNT'], 2, '.', '&nbsp;')?>&nbsp;%

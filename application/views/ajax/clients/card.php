@@ -37,9 +37,8 @@
 <?if(Access::allow('view_card_info')){?>
 <div class="dn border-bottom m-b-20 p-b-10" toggle_block="card_info_block">
     <div class="row m-b-10">
-        <div class="col-sm-5 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Тип источника карты:</div>
-            <div class="hidden-sm-up">Тип источника карты:</div>
+        <div class="col-sm-5 text-muted form__row__title">
+            Тип источника карты:
         </div>
         <div class="col-sm-7">
             <?=$cardInfo['CARD_FROM']?>
@@ -47,9 +46,8 @@
     </div>
 
     <div class="row m-b-10">
-        <div class="col-sm-5 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Источник карты:</div>
-            <div class="hidden-sm-up">Источник карты:</div>
+        <div class="col-sm-5 text-muted form__row__title">
+            Источник карты:
         </div>
         <div class="col-sm-7">
             <?=$cardInfo['SOURCE_NAME']?>
@@ -57,9 +55,8 @@
     </div>
 
     <div class="row m-b-10">
-        <div class="col-sm-5 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Дата последнего изменения лимита:</div>
-            <div class="hidden-sm-up">Дата последнего изменения лимита:</div>
+        <div class="col-sm-5 text-muted form__row__title">
+            Дата последнего изменения лимита:
         </div>
         <div class="col-sm-7">
             <?=$cardInfo['RECORD_LIMIT_DATE']?>
@@ -67,9 +64,8 @@
     </div>
 
     <div class="row m-b-10">
-        <div class="col-sm-5 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Статус применения лимита в источнике:</div>
-            <div class="hidden-sm-up">Статус применения лимита в источнике:</div>
+        <div class="col-sm-5 text-muted form__row__title">
+            Статус применения лимита в источнике:
         </div>
         <div class="col-sm-7">
             <?=$cardInfo['LIMIT_SOURCE_STATUS']?>
@@ -77,9 +73,8 @@
     </div>
 
     <div class="row m-b-10">
-        <div class="col-sm-5 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Дата последнего изменения состояния:</div>
-            <div class="hidden-sm-up">Дата последнего изменения состояния:</div>
+        <div class="col-sm-5 text-muted form__row__title">
+            Дата последнего изменения состояния:
         </div>
         <div class="col-sm-7">
             <?=$cardInfo['RECORD_STATE_DATE']?>
@@ -87,9 +82,8 @@
     </div>
 
     <div class="row m-b-10">
-        <div class="col-sm-5 text-muted">
-            <div class="text-right hidden-xs-down text-muted">Статус применения состояния в источнике:</div>
-            <div class="hidden-sm-up">Статус применения состояния в источнике:</div>
+        <div class="col-sm-5 text-muted form__row__title">
+            Статус применения состояния в источнике:
         </div>
         <div class="col-sm-7">
             <?=$cardInfo['STATE_SOURCE_STATUS']?>

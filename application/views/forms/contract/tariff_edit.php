@@ -27,10 +27,10 @@
 <script>
     function contractTariffEditGo(t)
     {
-        var form = t.closest('.form_contract_tariff_edit');
+        var form = t.closest('.modal.show');
         var params = {
             contract_id : $('[name=contracts_list]').val(),
-            tariff_id : getComboboxValue($('[name=TARIF_OFFLINE]', form)),
+            tariff_id : getComboBoxValue($('[name=TARIF_OFFLINE]', form)),
             date_from : $('[name=contract_tariff_edit_date]', form).val(),
         };
 

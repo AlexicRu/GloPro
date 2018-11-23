@@ -4,9 +4,8 @@ $postfix = $card['CARD_ID'];
 <div class="modal-body">
     <div class="form form_card_holder_edit_<?=$postfix?>">
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Держатель:</div>
-                <span class="hidden-sm-up text-muted">Держатель:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Держатель:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="text" name="card_holder_edit" class="form-control" value="<?=Text::quotesForForms($card['HOLDER'])?>" maxlength="200">
@@ -14,9 +13,8 @@ $postfix = $card['CARD_ID'];
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Выдана держателю:</div>
-                <span class="hidden-sm-up text-muted">Выдана держателю:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Выдана держателю:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="date" class="form-control" name="card_holder_edit_date" value="<?=Date::formatToDefault($card['DATE_HOLDER'])?>">
@@ -24,9 +22,8 @@ $postfix = $card['CARD_ID'];
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Комментарий:</div>
-                <span class="hidden-sm-up text-muted">Комментарий:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Комментарий:
             </div>
             <div class="col-sm-8 with-mt">
                 <textarea class="form-control" name="card_holder_edit_comment" style="width: 100%"><?=$card['CARD_COMMENT']?></textarea>

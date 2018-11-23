@@ -10,9 +10,8 @@
     <div class="form-group row m-b-0">
         <div class="col-md-6">
             <div class="form-group row">
-                <div class="col-sm-4">
-                    <div class="text-right hidden-xs-down text-muted">Договор:</div>
-                    <span class="hidden-sm-up text-muted">Договор:</span>
+                <div class="col-sm-4 text-muted form__row__title">
+                    Договор:
                 </div>
                 <div class="col-sm-8">
                     <?=Form::buildField('contract_choose_single', 'contract_' . $iteration, false, [
@@ -24,9 +23,8 @@
         </div>
         <div class="col-md-6">
             <div class="form-group row">
-                <div class="col-sm-4">
-                    <div class="text-right hidden-xs-down text-muted">Тариф по договору:</div>
-                    <span class="hidden-sm-up text-muted">Тариф по договору:</span>
+                <div class="col-sm-4 text-muted form__row__title">
+                    Тариф по договору:
                 </div>
                 <div class="col-sm-8 with-mt">
                     <span class="current_tariff"></span>
@@ -40,9 +38,8 @@
             </div>
 
             <div class="form-group row">
-                <div class="col-sm-4">
-                    <div class="text-right hidden-xs-down text-muted">Период:</div>
-                    <span class="hidden-sm-up text-muted">Период:</span>
+                <div class="col-sm-4 text-muted form__row__title">
+                    Период:
                 </div>
                 <div class="col-sm-8 with-mt">
                     <div class="input-group mb-3">

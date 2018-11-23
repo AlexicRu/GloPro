@@ -2,9 +2,8 @@
 
     <div class="form form_contract_increase_limit">
         <div class="form-group row m-b-0">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Количество:</div>
-                <span class="hidden-sm-up text-muted">Количество:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Количество:
             </div>
             <div class="col-sm-8 with-mt">
                 <div class="input-group">
