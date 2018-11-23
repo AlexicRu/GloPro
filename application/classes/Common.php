@@ -217,6 +217,16 @@ class Common
             }
         }
 
+        if (!empty($design['user']['g_' . $user['AGENT_GROUP_ID']])) {
+            if (
+                empty($design['user']['g_' . $user['AGENT_GROUP_ID']]['url']) ||
+                $design['user']['g_' . $user['AGENT_GROUP_ID']]['url'] == $url
+            ) {
+                $customView = $design['user']['g_' . $user['AGENT_GROUP_ID']]['class'];
+                $title = $design['user']['g_' . $user['AGENT_GROUP_ID']]['title'];
+            }
+        }
+
         //если не смогли определить дизайн под конкретный урл, то грузим дефолтовый
         if(empty($customView)){
             $customView = $design['default']['class'];

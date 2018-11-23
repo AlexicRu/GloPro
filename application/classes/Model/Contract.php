@@ -952,7 +952,7 @@ class Model_Contract extends Model
         $data = [
             'p_contract_id' 	=> $contractId,
             'p_tarif_id'		=> $tariffId,
-            'p_date_from'		=> $dateFrom,
+            'p_date_from'		=> Date::format($dateFrom),
             'p_manager_id'		=> User::id(),
             'p_error_code'		=> 'out',
         ];

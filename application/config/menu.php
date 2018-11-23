@@ -36,7 +36,7 @@ return array(
     ]],
     'news'              => ['title' => 'Новости', 'icon' => 'fa-fw fal fa-bullhorn'],
     'support'           => ['title' => 'Поддержка', 'icon' => 'fa-fw fal fa-question-circle'],
-    'system'            => ['title' => 'System', 'icon' => 'fa-fw fa fa-poo', 'children' => [
+    'system'            => ['title' => 'System', 'icon' => 'fa-fw fal fa-puzzle-piece', 'children' => [
         'deploy'        => 'Deploy',
         'db'            => 'DB',
     ]],

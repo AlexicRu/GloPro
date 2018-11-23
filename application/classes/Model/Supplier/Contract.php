@@ -144,15 +144,15 @@ class Model_Supplier_Contract extends Model_Contract
         $data = [
             'p_supplier_id' 	=> $params['supplier_id'],
             'p_contract_name' 	=> $params['name'],
-            'p_date_begin' 		=> $params['date_start'],
-            'p_date_end' 		=> !empty($params['date_end']) ? $params['date_end'] : Date::DATE_MAX,
+            'p_date_begin' 		=> Date::format($params['date_start']),
+            'p_date_end' 		=> !empty($params['date_end']) ? Date::format($params['date_end']) : Date::DATE_MAX,
             'p_contract_cur'    => Common::CURRENCY_RUR,
             'p_manager_id' 		=> $user['MANAGER_ID'],
             'p_contract_id' 	=> 'out',
             'p_error_code' 		=> 'out',
         ];
 
-        $res = $db->procedure('splrs_contract_add', $data, true);
+        $res = $db->procedure('splrs_contract_add', $data);
 
         if($res == Oracle::CODE_ERROR){
             return [false, 'Договор не создался'];

@@ -569,3 +569,14 @@ function alarm(block) {
         }, 500);
     }, 2000);
 }
+
+/**
+ * достаем сырые данные из vue
+ *
+ * @param data
+ * @returns {any}
+ */
+function vueRawData(data)
+{
+    return JSON.parse(JSON.stringify(data));
+}
