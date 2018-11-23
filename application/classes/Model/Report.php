@@ -271,10 +271,15 @@ class Model_Report extends Model
 
         $db = Oracle::init();
 
-        $sql = "select * from ".Oracle::$prefix."V_WEB_REPORTS_PARAMS t where t.report_id = {$params['report_id']} and t.template_weight = {$weight}";
+        $sql = (new Builder())->select()
+            ->from('V_WEB_REPORTS_PARAMS')
+            ->where('report_id = ' . $params['report_id'])
+            ->where('template_weight = ' . $weight)
+        ;
 
         $report = $db->query($sql);
 
+        print_r($report);
 
         $row = reset($report);
         $settings['type'] = $row['FULL_PATH'];
@@ -306,7 +311,7 @@ class Model_Report extends Model
                 default:
                     if (!empty($params['additional'])) {
                         foreach ($params['additional'] as $additional) {
-                            if ($additional['name'] == $param['PARAM_NAME']) {
+                            if (strpos($additional['name'], $param['PARAM_NAME']) === 0) {
 
                                 if (!isset($additional['value'])) {
                                     continue;
