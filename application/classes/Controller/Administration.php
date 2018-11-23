@@ -298,6 +298,8 @@ class Controller_Administration extends Controller_Common
      */
     public function action_settings()
     {
+        $this->title[] = 'Настройки агента';
+
         $this->_initVueJs();
         $this->_initPhoneInputWithFlags();
 
