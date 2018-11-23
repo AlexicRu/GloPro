@@ -447,7 +447,9 @@ class Model_Contract extends Model
             }
         }
 
-        $date = !empty($params['date_format']) && $params['date_format'] == Date::$dateFormatRu ? $params['date'] : Date::format($params['date']);
+        if ($action != self::PAYMENT_ACTION_DELETE) {
+            $date = !empty($params['date_format']) && $params['date_format'] == Date::$dateFormatRu ? $params['date'] : Date::format($params['date']);
+        }
 
 		$data = [
 			'p_contract_id' 	=> $params['contract_id'],
