@@ -18,7 +18,7 @@
 
 <div toggle_block="block1" class="dn edit_client_block m-b-10">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <div class="row m-b-10">
                 <div class="col-sm-4">
                     <div class="text-right hidden-xs-down text-muted">Юридический адрес:</div>
@@ -152,7 +152,7 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-lg-6">
 
             <div class="row m-b-10">
                 <div class="col-sm-4">
@@ -177,9 +177,8 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-sm-4">
-                    <div class="text-right hidden-xs-down text-muted">Корреспондентский счет:</div>
-                    <span class="hidden-sm-up text-muted">Корреспондентский счет:</span>
+                <div class="col-sm-4 form__row__title text-muted">
+                    Кор. счет:
                 </div>
                 <div class="col-sm-8 with-mt">
                     <span toggle_block="edit_client" uid="bank_corr_account"><?=($client['BANK_CORR_ACCOUNT'] ?: '<span class="gray">Не заполнено</span>')?></span>
@@ -188,9 +187,8 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-sm-4">
-                    <div class="text-right hidden-xs-down text-muted">Корреспондентский счет:</div>
-                    <span class="hidden-sm-up text-muted">Корреспондентский счет:</span>
+                <div class="col-sm-4 form__row__title text-muted">
+                    Расчетный  счет:
                 </div>
                 <div class="col-sm-8 with-mt">
                     <span toggle_block="edit_client" uid="bank_account"><?=($client['BANK_ACCOUNT'] ?: '<span class="gray">Не заполнено</span>')?></span>
@@ -232,9 +230,8 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-sm-4">
-                    <div class="text-right hidden-xs-down text-muted">Генеральный бухгалтер:</div>
-                    <span class="hidden-sm-up text-muted">Генеральный бухгалтер:</span>
+                <div class="col-sm-4 text-muted form__row__title">
+                    Главный  бухгалтер:
                 </div>
                 <div class="col-sm-8 with-mt">
                     <span toggle_block="edit_client" uid="accountant"><?=($client['ACCOUNTANT'] ?: '<span class="gray">Не заполнено</span>')?></span>
