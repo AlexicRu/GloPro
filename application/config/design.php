@@ -73,6 +73,10 @@ return array(
             'title' => 'КЕС ОЙЛ',
             'class' => 'kec'
         ],
+        'lkpetrolparkru' => [
+            'title' => 'ПетролПарк',
+            'class' => 'petrolpark'
+        ],
     ],
     'user' => [
         'g_1' => [
@@ -136,6 +140,34 @@ return array(
         'a_35' => [
             'title' => 'КЕС ОЙЛ',
             'class' => 'kec'
+        ],
+        'a_2' => [
+            'title' => 'MODULCARD',
+            'class' => 'modulcard'
+        ],
+        'a_4' => [
+            'title' => 'ПитерОйл',
+            'class' => 'piteroil'
+        ],
+        'a_6' => [
+            'title' => 'Парламент-к',
+            'class' => 'neftregion'
+        ],
+        'a_7' => [
+            'title' => 'ИнтерОйл',
+            'class' => 'interoil'
+        ],
+        'a_15' => [
+            'title' => 'Алберит',
+            'class' => 'alberit'
+        ],
+        'a_24' => [
+            'title' => 'ТК БИН-ОЙЛ',
+            'class' => 'binoil'
+        ],
+        'a_21' => [
+            'title' => 'ПетролПарк',
+            'class' => 'petrolpark'
         ],
     ]
 );

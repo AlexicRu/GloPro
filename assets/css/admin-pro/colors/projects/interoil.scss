@@ -17,6 +17,7 @@ $sidebar-icons: #af4821;
 $sidebar-active: #f8f1e8;
 $sidebar-active-text: #af4821;
 $sidebar-text: #af4821;
+$logo-bg-color: #320a09;
 
 /*******************
 /*Top bar
@@ -30,6 +31,9 @@ $sidebar-text: #af4821;
     background: $topbar;
     .top-navbar .navbar-header .navbar-brand .light-logo {
         display: none;
+    }
+    .navbar-header{
+        background: $logo-bg-color;
     }
     .top-navbar{
         .navbar-nav>.nav-item>span {
