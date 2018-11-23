@@ -14,7 +14,7 @@
                     <a href="#" data-toggle="modal" data-target="#control_add_firms_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
                     <a href="#" data-toggle="modal" data-target="#control_add_firms" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить фирмы</a>
                     <span class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="groupFirmsToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
-                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" toggle="firms_groups_block"><i class="fa fa-pencil-alt"></i></span>
+                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" toggle="firms_groups_block"><i class="fa fa-pen"></i></span>
                 </span>
 
                 <span toggle_block="firms_groups_block" class="dn action_del">
@@ -55,7 +55,7 @@
                             <input type="hidden" name="group_type" value="<?=$group['GROUP_TYPE']?>">
 
                             <span class="<?=Text::BTN?> btn-outline-danger btn-sm" onclick="deleteFirmsGroup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-trash-alt"></i></span>
-                            <span class="<?=Text::BTN?> btn-outline-success btn-sm" onclick="showEditFirmsGroupPopup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-pencil-alt"></i></span>
+                            <span class="<?=Text::BTN?> btn-outline-success btn-sm" onclick="showEditFirmsGroupPopup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-pen"></i></span>
                         </span>
 
                             <span class="gray">[<?=$group['GROUP_ID']?>]</span>

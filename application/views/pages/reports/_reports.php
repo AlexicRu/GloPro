@@ -19,7 +19,7 @@
             <?foreach($reports as $reportGroupId => $reportsList){?>
                 <li class="nav-item" tab="<?=$reportGroupId?>">
                     <a class="nav-link" data-toggle="tab" href="#reports<?=$reportGroupId?>" role="tab">
-                        <span class="<?=Model_Report::$reportGroups[$reportGroupId]['icon']?> m-r-5"></span> <?=Model_Report::$reportGroups[$reportGroupId]['name']?>
+                        <span class="<?=Model_Report::$reportGroups[$reportGroupId]['icon']?> m-r-5 fa-fw"></span> <?=Model_Report::$reportGroups[$reportGroupId]['name']?>
                     </a>
                 </li>
             <?}?>

@@ -1,1 +1,1 @@
-<span class="<?=Text::BTN?> btn_toggle btn-outline-success btn-lg"><i class="fa fa-file-alt fa-lg"></i> CSV</span>
+<span class="<?=Text::BTN?> btn_toggle btn-outline-success"><i class="fa fa-file-alt fa-lg"></i> CSV</span>

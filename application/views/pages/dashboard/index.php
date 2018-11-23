@@ -2,7 +2,7 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body">
-                <b class="font-18 m-b-5">Выберите период:</b>
+                <h3 class="card-title"><span class="lstick"></span>Выберите период</h3>
 
                 <div class="row">
                     <div class="col-sm-7">

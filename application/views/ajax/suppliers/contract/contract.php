@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-3 text-right">
                     <?if(Access::allow('suppliers_contract-edit')){?>
-                        <div toggle_block="toggle_contract"><button class="<?=Text::BTN?> btn-outline-primary" toggle="toggle_contract"><i class="fa fa-pencil-alt"></i><span class="hidden-xs-down"> Редактировать</span></button></div>
+                        <div toggle_block="toggle_contract"><button class="<?=Text::BTN?> btn-outline-primary" toggle="toggle_contract"><i class="fa fa-pen"></i><span class="hidden-xs-down"> Редактировать</span></button></div>
                     <?}?>
                 </div>
             </div>

@@ -10,7 +10,7 @@
             foreach($tubesList as $tube) {?>
                 tpl = '<div class="reference_sources_tube_name_block">' +
                     '<span toggle_block="referenceSourcesTube<?=$tube['TUBE_ID']?>">' +
-                        '<span toggle="referenceSourcesTube<?=$tube['TUBE_ID']?>" class="'+ BTN +' btn-sm btn-outline-primary"><i class="fa fa-pencil-alt"></i></span> ' +
+                        '<span toggle="referenceSourcesTube<?=$tube['TUBE_ID']?>" class="'+ BTN +' btn-sm btn-outline-primary"><i class="fa fa-pen"></i></span> ' +
                         '<span class="reference_sources_tube_name"><?=$tube['TUBE_NAME']?></span>'+
                     '</span>' +
                     '<span toggle_block="referenceSourcesTube<?=$tube['TUBE_ID']?>" style="display:none;">' +

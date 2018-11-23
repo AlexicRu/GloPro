@@ -1,1 +1,1 @@
-<span class="btn_toggle <?=Text::BTN?> btn-outline-success btn-lg" format="xlsx"><i class="fa fa-file-excel fa-lg"></i> XLSX</span>
+<span class="btn_toggle <?=Text::BTN?> btn-outline-success" format="xlsx"><i class="fa fa-file-excel fa-lg"></i> XLSX</span>

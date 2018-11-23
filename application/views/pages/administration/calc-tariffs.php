@@ -3,17 +3,17 @@
     <ul class="nav nav-tabs customtab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#tabClient" role="tab">
-                Тариф клиента
+                <i class="far fa-clipboard fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Тариф клиента</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#tabClose" role="tab">
-                Закрытие периода
+                <i class="far fa-clipboard-check fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Закрытие периода</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#tabQueue" role="tab" onclick="loadQueueCalc()">
-                Очередь расчета
+                <i class="far fa-clipboard-list-check fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Очередь расчета</span>
             </a>
         </li>
     </ul>

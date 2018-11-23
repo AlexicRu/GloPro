@@ -87,7 +87,7 @@
             tpl.find('.group_firm_td_FIRM_ID').text(data[i].FIRM_ID);
             tpl.find('.group_firm_td_HOLDER').text(data[i].HOLDER);
             tpl.find('.group_firm_td_DESCRIPTION_RU').text(data[i].DESCRIPTION_RU);
-            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-sm btn-outline-success"><i class="fa fa-pencil-alt"></span>');
+            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-sm btn-outline-success"><i class="fa fa-pen"></span>');
 
             subBlock.append(tpl);
         }

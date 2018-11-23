@@ -1,1 +1,1 @@
-<span class="btn_toggle <?=Text::BTN?> btn-outline-success btn-lg" format="pdf"><i class="fa fa-file-pdf fa-lg"></i> PDF</span>
+<span class="btn_toggle <?=Text::BTN?> btn-outline-success" format="pdf"><i class="fa fa-file-pdf fa-lg"></i> PDF</span>

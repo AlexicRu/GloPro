@@ -9,13 +9,13 @@
     <ul class="nav nav-tabs customtab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#tabPayments" role="tab">
-                Загрузка платежей
+                <i class="far fa-download fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Загрузка платежей</span>
             </a>
         </li>
         <?if (Access::allow('control_1c-export')) {?>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#tabExport" role="tab">
-                Выгрузка в 1С
+                <i class="far fa-upload fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Выгрузка в 1С</span>
             </a>
         </li>
         <?}?>

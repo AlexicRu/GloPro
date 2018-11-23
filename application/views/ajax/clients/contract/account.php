@@ -7,7 +7,10 @@
         </div>
         <div class="col-md-6 text-right with-mt">
             <?if(Access::allow('clients_bill-add')){?>
-                <a href="#" data-toggle="modal" data-target="#contract_bill_add" class="btn btn-outline-primary waves-effect waves-light">Выставить счет</a>
+                <a href="#" data-toggle="modal" data-target="#contract_bill_add" class="btn btn-outline-primary waves-effect waves-light">
+                    <i class="fa fa-file-alt"></i>
+                    Выставить счет
+                </a>
             <?}?>
             <?if(Access::allow('clients_bill-print')){?>
                 <a href="#" data-toggle="modal" data-target="#contract_bill_print" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-print"></i><span class="hidden-md-down"> Печать счетов</span></a>
@@ -21,7 +24,7 @@
             <div class="card-body bg-light m-b-20">
                 <?if(Access::allow('view_contract_balances')){?>
                     <?if(Access::allow('clients-contract-limits-edit')){?>
-                        <div class="float-right"><a href="#" data-toggle="modal" data-target="#contract_limits_edit" class="waves-effect waves-light btn btn-outline-primary btn-sm"><i class="fa fa-pencil-alt"></i></a></div>
+                        <div class="float-right"><a href="#" data-toggle="modal" data-target="#contract_limits_edit" class="waves-effect waves-light btn btn-outline-primary btn-sm"><i class="fa fa-pen"></i></a></div>
                     <?}?>
 
                     <span class="font-18 font-weight-bold">Остатки по договору:</span>
@@ -52,7 +55,7 @@
 
                                         <?if(Access::allow('clients_contract_increase_limit')){?>
                                             <?if(!$restrict['INFINITELY']){?>
-                                                <span class="<?=Text::BTN?> btn-sm btn-outline-primary" onclick="openIncreaseLimitPopup(<?=$restrict['LIMIT_ID']?>)">+</span>
+                                                <span class="<?=Text::BTN?> btn-sm btn-outline-primary" onclick="openIncreaseLimitPopup(<?=$restrict['LIMIT_ID']?>)"><i class="fa fa-plus"></i></span>
                                             <?}?>
                                         <?}?>
                                     </td>

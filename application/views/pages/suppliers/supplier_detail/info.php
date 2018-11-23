@@ -182,7 +182,7 @@
         <a href="#" class="<?=Text::BTN?> btn-outline-secondary btn_min_width" toggle="supplier_info">Скрыть</a> &nbsp;
 
         <?if(Access::allow('suppliers_supplier-edit')){?>
-        <button class="<?=Text::BTN?> btn-primary" toggle="edit_supplier" toggle_block="edit_supplier"><i class="fa fa-pencil-alt"></i> Редактировать</button> &nbsp;
+        <button class="<?=Text::BTN?> btn-primary" toggle="edit_supplier" toggle_block="edit_supplier"><i class="fa fa-pen"></i> Редактировать</button> &nbsp;
 
         <button class="<?=Text::BTN?> btn-success dn" toggle_block="edit_supplier" onclick="saveSupplierInfo()"><i class="fa fa-check"></i> Сохранить</button>
         <button class="<?=Text::BTN?> btn-danger dn" toggle="edit_supplier" toggle_block="edit_supplier" v-on:click="cancelForm()"><i class="fa fa-times"></i> Отмена</button>

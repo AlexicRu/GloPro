@@ -7,28 +7,34 @@
         </div>
         <div class="col-sm-7 text-right">
             <?if(Access::allow('view_card_info')){?>
-                <span class="<?=Text::BTN?> btn-outline-secondary m-b-5" toggle="card_info_block">Инфо</span>
+                <span class="<?=Text::BTN?> btn-outline-secondary m-b-5" toggle="card_info_block">
+                    <i class="fa fa-info fa-fw"></i>
+                    <span class="d-none d-xl-inline-block">Инфо</span>
+                </span>
             <?}?>
             <?if(Access::allow('clients_card_toggle_full')){?>
                 <?if(in_array($card['BLOCK_AVAILABLE'], [1,2]) || Access::allow('clients_card-toggle')){?>
                     <?if($card['CARD_STATE'] == Model_Card::CARD_STATE_BLOCKED){?>
                         <button class="btn btn-outline-success waves-effect waves-light m-b-5" onclick="cardToggle($(this))" block_available="<?=$card['BLOCK_AVAILABLE']?>">
-                            <span style="display: none"><i class="fa fa-lock"></i> Заблокировать</span>
-                            <span><i class="fa fa-unlock"></i> Разблокировать</span>
+                            <span style="display: none"><i class="fa fa-lock"></i> <span class="d-none d-lg-inline-block">Заблокировать</span></span>
+                            <span><i class="fa fa-unlock"></i> <span class="d-none d-lg-inline-block">Разблокировать</span></span>
                         </button>
                     <?}else{?>
                         <button class="btn btn-outline-danger waves-effect waves-light m-b-5" onclick="cardToggle($(this))" block_available="<?=$card['BLOCK_AVAILABLE']?>">
-                            <span><i class="fa fa-lock"></i> Заблокировать</span>
-                            <span style="display: none"><i class="fa fa-unlock"></i> Разблокировать</span>
+                            <span><i class="fa fa-lock"></i> <span class="d-none d-lg-inline-block">Заблокировать</span></span>
+                            <span style="display: none"><i class="fa fa-unlock"></i> <span class="d-none d-lg-inline-block">Разблокировать</span></span>
                         </button>
                     <?}?>
                 <?}?>
             <?}?>
             <?if(Access::allow('clients_card-withdraw')){?>
-                <span class="btn btn-outline-warning waves-effect waves-light m-b-5" onclick="cardWithdraw('<?=$card['CARD_ID']?>', <?=$card['BLOCK_AVAILABLE']?>)"><i class="fa fa-times"></i> Изъять</span>
+                <span class="btn btn-outline-warning waves-effect waves-light m-b-5" onclick="cardWithdraw('<?=$card['CARD_ID']?>', <?=$card['BLOCK_AVAILABLE']?>)">
+                    <i class="fa fa-times"></i>
+                    <span class="d-none d-xl-inline-block">Изъять</span>
+                </span>
             <?}?>
             <?if(Access::allow('clients_card_edit')){?>
-                <a href="#" data-toggle="modal" data-target="#card_edit_holder_<?=$card['CARD_ID']?>" class="btn btn-outline-primary waves-effect waves-light m-b-5"><i class="fa fa-pencil-alt"></i></a>
+                <a href="#" data-toggle="modal" data-target="#card_edit_holder_<?=$card['CARD_ID']?>" class="btn btn-outline-primary waves-effect waves-light m-b-5"><i class="fa fa-pen"></i></a>
             <?}?>
         </div>
     </div>
@@ -136,7 +142,7 @@
 <?if(Access::allow('clients_card_edit')){?>
     <div class="float-right">
         <?if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-limits')){?>
-            <a href="#" data-toggle="modal" data-target="#card_edit_limits_<?=$card['CARD_ID']?>" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-pencil-alt"></i></a>
+            <a href="#" data-toggle="modal" data-target="#card_edit_limits_<?=$card['CARD_ID']?>" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-pen"></i></a>
         <?}?>
     </div>
 <?}?>

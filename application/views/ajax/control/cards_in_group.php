@@ -44,7 +44,7 @@
             tpl.find('.group_card_td_CARD_ID').text(data[i].CARD_ID);
             tpl.find('.group_card_td_HOLDER').text(data[i].HOLDER);
             tpl.find('.group_card_td_DESCRIPTION_RU').text(data[i].DESCRIPTION_RU);
-            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-outline-success btn-sm"><i class="fa fa-pencil-alt"></span>');
+            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-outline-success btn-sm"><i class="fa fa-pen"></span>');
 
             block.append(tpl);
         }

@@ -6,6 +6,14 @@ class Common
     const NEW_DESIGN_FOLDER     = 'admin-pro';
     const DESIGN_DEFAULT        = 'glopro';
 
+    public static $infoFilesIcons = [
+        'Pdf'   => 'far fa-2x fa-file-pdf text-danger',
+        'Xls'   => 'far fa-2x fa-file-excel text-success',
+        'Doc'   => 'far fa-2x fa-file-word text-primary',
+        'Ppt'   => 'far fa-2x fa-file-powerpoint text-warning',
+        'File'  => 'far fa-2x fa-file text-muted',
+    ];
+
     /**
      * favicon
      */

@@ -1,6 +1,6 @@
 <?if(Access::allow('news_news-edit', true) && ($detail['MANAGER_ID'] != 0 || ($detail['MANAGER_ID'] == 0 && $user['MANAGER_ID'] == 0))){?>
     <div class="text-right m-b-30">
-        <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#news_edit"><i class="fa fa-pencil-alt"></i> Редактировать новость</a>
+        <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#news_edit"><i class="fa fa-pen"></i> Редактировать новость</a>
     </div>
 <?}?>
 

@@ -11,7 +11,7 @@
             <div class="col-3 text-right">
                 <?if(Access::allow('clients_contract-edit')){?>
                     <div class="float-right">
-                        <button class="btn waves-effect waves-light btn-outline-primary" toggle="block2"><i class="fa fa-pencil-alt"></i><span class="hidden-md-down"> Редактировать</span></button>
+                        <button class="btn waves-effect waves-light btn-outline-primary" toggle="block2"><i class="fa fa-pen"></i><span class="hidden-md-down"> Редактировать</span></button>
                     </div>
                 <?}?>
             </div>
@@ -282,7 +282,7 @@
                     <div class="col-sm-7">
                         [<?=$contractSettings['TARIF_OFFLINE']?>] <?=$contractSettings['TARIF_NAME_OFFLINE']?>
 
-                        <a href="#" data-toggle="modal" data-target="#contract_tariff_edit" class="<?=Text::BTN?> btn-outline-primary btn-sm"><i class="fa fa-pencil-alt"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#contract_tariff_edit" class="<?=Text::BTN?> btn-outline-primary btn-sm"><i class="fa fa-pen"></i></a>
                     </div>
                 </div>
 

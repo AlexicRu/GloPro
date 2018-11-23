@@ -197,12 +197,12 @@ body{
 }
 .info{
   &__item{
-    &-btn{
+    &-icon{
       opacity: 0;
       .transition();
     }
     &:hover{
-      .info__item-btn{
+      .info__item-icon{
         opacity: 1;
       }
     }
@@ -294,6 +294,12 @@ input[type="date"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.hover-bg{
+  .transition();
+  &:hover{
+    background-color: #f9f9f9;
+  }
+}
 
 /*
 -----------------------------------
@@ -365,7 +371,7 @@ media queries
   .vtabs {
     &.tabs-floating {
       display: block;
-      .nav-tabs {
+      > .nav-tabs {
         position: absolute;
         top: 0;
         left: -100%;

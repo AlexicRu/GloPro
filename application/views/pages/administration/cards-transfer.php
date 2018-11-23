@@ -52,7 +52,7 @@
         </div>
 
         <div class="m-b-20">
-            <span class="<?=Text::BTN?> btn-outline-primary btn-lg" onclick="transferCards($(this))">Перенести</span>
+            <span class="<?=Text::BTN?> btn-primary" onclick="transferCards($(this))">Перенести</span>
         </div>
 
         <i class="text-muted">* - Выбор клиента и договора обязателен</i><br>

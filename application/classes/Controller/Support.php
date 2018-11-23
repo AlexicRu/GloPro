@@ -15,8 +15,22 @@ class Controller_Support extends Controller_Common {
 
         $this->_initDropZone();
 
+        $files = [
+            [
+                'title' => 'Инструкции',
+                'items' => [
+                    [
+                        'icon'  => Common::$infoFilesIcons['Doc'],
+                        'name'  => 'Инструкция по работе с ЛК системы',
+                        'file'  => '/file/Инструкция_по_работе_с_ЛК_системы_Администратор.docx'
+                    ],
+                ]
+            ],
+        ];
+
         $this->tpl
             ->bind('feedbackForm', $feedbackForm)
+            ->bind('files', $files)
         ;
 	}
 

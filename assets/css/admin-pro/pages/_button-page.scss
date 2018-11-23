@@ -296,7 +296,7 @@ Buttons
 
 .btn-outline-secondary {
     background-color: $white;
-    box-shadow: $default-shadow;
+    //box-shadow: $default-shadow;
     transition: 0.2s ease-in;
     border-color: $secondary;
     &:hover,
@@ -315,7 +315,7 @@ Buttons
     color: $primary;
     background-color: $white;
     border-color: $primary;
-    box-shadow: $primary-shadow;
+    //box-shadow: $primary-shadow;
     transition: 0.2s ease-in;
     &:hover,
     &:focus,
@@ -338,7 +338,7 @@ Buttons
     color: $success;
     background-color: $white;
     border-color: $success;
-    box-shadow: $success-shadow;
+    //box-shadow: $success-shadow;
     transition: 0.2s ease-in;
     &:hover,
     &:focus,
@@ -361,7 +361,7 @@ Buttons
     color: $info;
     background-color: $white;
     border-color: $info;
-    box-shadow: $info-shadow;
+    //box-shadow: $info-shadow;
     transition: 0.2s ease-in;
     &:hover,
     &:focus,
@@ -384,7 +384,7 @@ Buttons
     color: $warning;
     background-color: $white;
     border-color: $warning;
-    box-shadow: $warning-shadow;
+    //box-shadow: $warning-shadow;
     transition: 0.2s ease-in;
     &:hover,
     &:focus,
@@ -407,7 +407,7 @@ Buttons
     color: $danger;
     background-color: $white;
     border-color: $danger;
-    box-shadow: $danger-shadow;
+    //box-shadow: $danger-shadow;
     transition: 0.2s ease-in;
     &:hover,
     &:focus,

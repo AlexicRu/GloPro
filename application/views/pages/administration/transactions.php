@@ -3,22 +3,22 @@
     <ul class="nav nav-tabs customtab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#tabErrors" role="tab">
-                Отказные
+                <i class="far fa-ban fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Отказные</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#tabProcess" role="tab">
-                В обработке
+                <i class="far fa-spinner fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">В обработке</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#tabHistory" role="tab">
-                История загрузок
+                <i class="far fa-history fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">История загрузок</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#tabJournal" role="tab">
-                Загрузка ведомостей
+                <i class="far fa-download fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Загрузка ведомостей</span>
             </a>
         </li>
     </ul>

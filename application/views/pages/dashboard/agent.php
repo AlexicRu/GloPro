@@ -2,7 +2,7 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body">
-                <b class="font-18 m-b-5">Выберите период:</b>
+                <h3 class="card-title"><span class="lstick"></span>Выберите период</h3>
 
                 <div class="row">
                     <div class="col-sm-7">
@@ -28,12 +28,12 @@
         <ul class="nav nav-tabs customtab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#tabRealization" role="tab">
-                    Реализация
+                    <i class="far fa-table fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Реализация</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#tabCards" role="tab">
-                    Карты
+                    <i class="far fa-credit-card-front fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Карты</span>
                 </a>
             </li>
         </ul>
