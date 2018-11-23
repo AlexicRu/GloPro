@@ -32,7 +32,8 @@ return array(
     'administration'    => ['title' => 'Сервис', 'icon' => 'fa-fw fal fa-sitemap', 'children' => [
         'transactions'      => 'Транзакции',
         'calc-tariffs'      => 'Расчет тарифов',
-        'cards-transfer'    => 'Перенос карт'
+        'cards-transfer'    => 'Перенос карт',
+        'settings'          => 'Настройки',
     ]],
     'news'              => ['title' => 'Новости', 'icon' => 'fa-fw fal fa-bullhorn'],
     'support'           => ['title' => 'Поддержка', 'icon' => 'fa-fw fal fa-question-circle'],
