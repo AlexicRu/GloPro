@@ -7,13 +7,13 @@
         </div>
         <div class="col-md-6 text-right with-mt">
             <?if(Access::allow('clients_bill-add')){?>
-                <a href="#" data-toggle="modal" data-target="#contract_bill_add" class="btn btn-outline-primary waves-effect waves-light">
+                <a href="#" data-toggle="modal" data-target="#contract_bill_add" class="<?=Text::BTN?> btn-outline-primary">
                     <i class="fa fa-file-alt"></i>
                     Выставить счет
                 </a>
             <?}?>
             <?if(Access::allow('clients_bill-print')){?>
-                <a href="#" data-toggle="modal" data-target="#contract_bill_print" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-print"></i><span class="hidden-md-down"> Печать счетов</span></a>
+                <a href="#" data-toggle="modal" data-target="#contract_bill_print" class="<?=Text::BTN?> btn-outline-primary"><i class="fa fa-print"></i><span class="hidden-md-down"> Печать счетов</span></a>
             <?}?>
         </div>
     </div>
@@ -24,7 +24,7 @@
             <div class="card-body bg-light m-b-20">
                 <?if(Access::allow('view_contract_balances')){?>
                     <?if(Access::allow('clients-contract-limits-edit')){?>
-                        <div class="float-right"><a href="#" data-toggle="modal" data-target="#contract_limits_edit" class="waves-effect waves-light btn btn-outline-primary btn-sm"><i class="fa fa-pen"></i></a></div>
+                        <div class="float-right"><a href="#" data-toggle="modal" data-target="#contract_limits_edit" class="<?=Text::BTN?> btn-outline-primary btn-sm"><i class="fa fa-pen"></i></a></div>
                     <?}?>
 
                     <span class="font-18 font-weight-bold">Остатки по договору:</span>
@@ -81,7 +81,7 @@
         <div class="col-md-7 col-xl-8">
             <?if(Access::allow('clients_payment-add')){?>
                 <div class="float-right">
-                    <a href="#" data-toggle="modal" data-target="#contract_payment_add" class="waves-effect waves-light btn btn-outline-primary"><i class="fa fa-plus"></i><span class="hidden-xs-down"> Добавить платеж</span></a>
+                    <a href="#" data-toggle="modal" data-target="#contract_payment_add" class="<?=Text::BTN?> btn-outline-primary"><i class="fa fa-plus"></i><span class="hidden-xs-down"> Добавить платеж</span></a>
                 </div>
             <?}?>
 
@@ -179,7 +179,7 @@
             }
 
             <?if(Access::allow('clients_payment-del')){?>
-            tpl.find('[row_summ]').append('<div class="float-right"><a href="#" class="del link_del_contract_payment btn waves-effect waves-light btn-outline-danger btn-sm"><i class="fa fa-trash-alt"></i></a></div>');
+            tpl.find('[row_summ]').append('<div class="float-right"><a href="#" class="del link_del_contract_payment '+ BTN +' btn-outline-danger btn-sm"><i class="fa fa-trash-alt"></i></a></div>');
             <?}?>
 
             block.append(tpl);

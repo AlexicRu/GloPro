@@ -32,7 +32,7 @@ $postfix = $card['CARD_ID'];
     </div>
 </div>
 <div class="modal-footer">
-    <span class="btn btn-primary waves-effect waves-light" onclick="submitForm($(this), cardEditHolderGo_<?=$postfix?>)"><i class="fa fa-check"></i> Сохранить</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), cardEditHolderGo_<?=$postfix?>)"><i class="fa fa-check"></i> Сохранить</span>
     <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

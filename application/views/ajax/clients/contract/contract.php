@@ -11,7 +11,7 @@
             <div class="col-3 text-right">
                 <?if(Access::allow('clients_contract-edit')){?>
                     <div class="float-right">
-                        <button class="btn waves-effect waves-light btn-outline-primary" toggle="block2"><i class="fa fa-pen"></i><span class="hidden-md-down"> Редактировать</span></button>
+                        <button class="<?=Text::BTN?> btn-outline-primary" toggle="block2"><i class="fa fa-pen"></i><span class="hidden-md-down"> Редактировать</span></button>
                     </div>
                 <?}?>
             </div>
@@ -63,8 +63,8 @@
         <?if(Access::allow('clients_contract-edit')){?>
         <div class="form-group row m-b-0">
             <div class="col-sm-12">
-                <button class="btn waves-effect waves-light btn-success btn_reverse" onclick="saveContract()"><i class="fa fa-check"></i> Сохранить</button>
-                <button class="btn waves-effect waves-light btn-danger" toggle="block2"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+                <button class="<?=Text::BTN?> btn-success btn_reverse" onclick="saveContract()"><i class="fa fa-check"></i> Сохранить</button>
+                <button class="<?=Text::BTN?> btn-danger" toggle="block2"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
             </div>
         </div>
         <?}?>

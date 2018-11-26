@@ -12,10 +12,10 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 </div>
 <div class="modal-footer">
     <?if ($settings['canAddLimit']) {?>
-        <button class="btn btn-outline-success waves-effect waves-light" onclick="cardEditAddLimit_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> Добавить<span class="hidden-md-down"> ограничение</span></button>
+        <button class="<?=Text::BTN?> btn-outline-success" onclick="cardEditAddLimit_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> Добавить<span class="hidden-md-down"> ограничение</span></button>
     <?}?>
     <?if ($settings['canSave']) {?>
-        <span class="btn btn-primary waves-effect waves-light" onclick="submitForm($(this), cardEditGo_<?=$postfix?>)"><i class="fa fa-check"></i> Сохранить<span class="hidden-md-down"> лимиты</span></span>
+        <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), cardEditGo_<?=$postfix?>)"><i class="fa fa-check"></i> Сохранить<span class="hidden-md-down"> лимиты</span></span>
     <?}?>
     <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-sm-down"> Отмена</span></button>
 </div>

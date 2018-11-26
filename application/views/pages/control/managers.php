@@ -2,7 +2,7 @@
     <div class="card-body border-bottom d-lg-none">
         <div class="row">
             <div class="col-4">
-                <span class="btn btn-info" toggle_class="manager_list">
+                <span class="<?=Text::BTN?> btn-info" toggle_class="manager_list">
                     <i class="fa fa-bars"></i> <span class="d-none d-sm-inline-block">Список менеджеров</span>
                 </span>
             </div>

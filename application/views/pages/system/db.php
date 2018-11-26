@@ -20,7 +20,7 @@
         <textarea name="query" placeholder="Текст запроса" class="form-control"></textarea>
         <div class="row">
             <div class="col-4">
-                <span class="btn btn-primary" onclick="executeQuery()">Выполнить</span>
+                <span class="<?=Text::BTN?> btn-primary" onclick="executeQuery()">Выполнить</span>
             </div>
             <div class="col-4 text-right">
                 <div class="input-group">

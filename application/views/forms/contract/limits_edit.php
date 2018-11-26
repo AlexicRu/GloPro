@@ -14,14 +14,14 @@
                                 <?}?>
                             </select>
                             <div class="input-group-append">
-                                <button class="btn waves-effect waves-light btn-sm btn-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>
+                                <button class="<?=Text::BTN?> btn-sm btn-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>
                             </div>
                         </div>
                     <?}?>
                     <div limit_service_btns>
                         <nobr>
-                            <button class="btn waves-effect waves-light btn-sm btn-outline-success m-r-5" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>
-                            <button class="btn waves-effect waves-light btn-sm btn-outline-danger" onclick="contractLimitsEditDelLimit($(this))"><i class="fa fa-times"></i> удалить лимит</button>
+                            <button class="<?=Text::BTN?> btn-sm btn-outline-success m-r-5" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>
+                            <button class="<?=Text::BTN?> btn-sm btn-outline-danger" onclick="contractLimitsEditDelLimit($(this))"><i class="fa fa-times"></i> удалить лимит</button>
                         </nobr>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
         var tpl = $('<div limit_service class="input-group m-b-5">' +
             '  <select name="limit_service" class="custom-select" onchange="checkServices()" />' +
             '  <div class="input-group-append">' +
-            '    <button class="btn waves-effect waves-light btn-sm btn-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>' +
+            '    <button class="'+ BTN +'btn-sm btn-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>' +
             '  </div>' +
             '</div>');
 
@@ -156,8 +156,8 @@
             '<div class="col-lg-5 col-md-12">'+
                 '<div limit_service_btns>'+
                     '<nobr>' +
-                        '<button class="btn waves-effect waves-light btn-sm btn-outline-success m-r-5" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>' +
-                        '<button class="btn waves-effect waves-light btn-sm btn-outline-danger" onclick="contractLimitsEditDelLimit($(this))"><i class="fa fa-times"></i> удалить лимит</button>' +
+                        '<button class="'+ BTN +' btn-sm btn-outline-success m-r-5" onclick="contractLimitsEditAddService($(this))"><i class="fa fa-plus"></i> добавить услугу</button>' +
+                        '<button class="'+ BTN +' btn-sm btn-outline-danger" onclick="contractLimitsEditDelLimit($(this))"><i class="fa fa-times"></i> удалить лимит</button>' +
                     '</nobr>'+
                 '</div>' +
             '</div>' +

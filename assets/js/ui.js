@@ -102,7 +102,7 @@ function preRenderComboBox(combo, params)
     var resultList = $('<div class="combobox_result_list" />');
     resultList.appendTo(result);
 
-    var more = $('<div class="combobox_result_more"><span class="btn btn-outline-secondary btn-xs waves-effect waves-light">Загрузить еще...</span></div>');
+    var more = $('<div class="combobox_result_more"><span class="'+ BTN +' btn-outline-secondary btn-xs">Загрузить еще...</span></div>');
     more.appendTo(result);
 
     more.find('.btn').on('click', function () {

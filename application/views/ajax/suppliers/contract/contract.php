@@ -59,8 +59,8 @@
             <?if(Access::allow('suppliers_contract-edit')){?>
                 <div class="form-group row m-b-0">
                     <div class="col-sm-12">
-                        <button class="btn waves-effect waves-light btn-success" onclick="editSupplierContract()"><i class="fa fa-check"></i> Сохранить</button>
-                        <button class="btn waves-effect waves-light btn-danger" toggle="toggle_contract"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
+                        <button class="<?=Text::BTN?> btn-success" onclick="editSupplierContract()"><i class="fa fa-check"></i> Сохранить</button>
+                        <button class="<?=Text::BTN?> btn-danger" toggle="toggle_contract"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
                     </div>
                 </div>
             <?}?>

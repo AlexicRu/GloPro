@@ -10,10 +10,10 @@
         <div limit_group_btns>
             <nobr>
                 <?if ($settings['canAddService']) {?>
-                    <button class="btn btn-sm btn-outline-success waves-effect waves-light btn_card_edit_add_serviсe" onclick="cardEditAddService_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> добавить услугу</button>
+                    <button class="<?=Text::BTN?> btn-sm btn-outline-success btn_card_edit_add_serviсe" onclick="cardEditAddService_<?=$postfix?>($(this))"><i class="fa fa-plus"></i> добавить услугу</button>
                 <?}?>
                 <?if ($settings['canDelLimit']) {?>
-                    <button class="btn btn-sm btn-outline-danger waves-effect waves-light btn_card_edit_del_limit" onclick="cardEditDelLimit_<?=$postfix?>($(this))"><i class="fa fa-times"></i> удалить лимит</button>
+                    <button class="<?=Text::BTN?> btn-sm btn-outline-danger btn_card_edit_del_limit" onclick="cardEditDelLimit_<?=$postfix?>($(this))"><i class="fa fa-times"></i> удалить лимит</button>
                 <?}?>
             </nobr>
         </div>

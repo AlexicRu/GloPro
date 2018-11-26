@@ -104,12 +104,12 @@
                             <?if (Access::allow('clients_edit-login')) {?>
                                 <div toggle_block="edit_login">
                                     <span class="login_value"><?=$manager['LOGIN']?></span>
-                                    <span class="btn waves-effect waves-light btn_small" toggle="edit_login"><i class="icon icon-pen"></i></span>
+                                    <span class="<?=Text::BTN?> btn-sm btn-primary" toggle="edit_login"><i class="icon icon-pen"></i></span>
                                 </div>
                                 <div toggle_block="edit_login" style="display: none">
                                     <input type="text" value="<?=$manager['LOGIN']?>" name="edit_login" class="form-control">
-                                    <span class="btn waves-effect waves-light btn_small btn_green" onclick="editLogin($(this));"><i class="icon icon-ok"></i></span>
-                                    <span class="btn waves-effect waves-light btn_small btn_red" toggle="edit_login"><i class="icon icon-cancel"></i></span>
+                                    <span class="<?=Text::BTN?> btn-sm btn-success" onclick="editLogin($(this));"><i class="icon icon-ok"></i></span>
+                                    <span class="<?=Text::BTN?> btn-sm btn-danger" toggle="edit_login"><i class="icon icon-cancel"></i></span>
                                 </div>
                             <?} else {?>
                                 <?=$manager['LOGIN']?>

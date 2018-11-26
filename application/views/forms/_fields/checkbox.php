@@ -1,6 +1,8 @@
-<span class="form_field" field="<?=$type?>">
-    <input type="checkbox" class="custom_field filled-in chk-col-purple" name="<?=$name?>" id="field<?=$name?>"
-        <?=(isset($params['weight']) ? 'weight="'.$params['weight'].'"' : '')?>
-    >
-    <label for="field<?=$name?>"></label>
+<span class="custom-control custom-checkbox form_field" field="<?=$type?>">
+    <label>
+        <input type="checkbox" class="custom-control-input" name="<?=$name?>"
+            <?=(isset($params['weight']) ? 'weight="'.$params['weight'].'"' : '')?>
+        >
+        <span class="custom-control-label"></span>
+    </label>
 </span>

@@ -1,1 +1,5 @@
-<span class="btn_toggle <?=Text::BTN?> btn-outline-success" format="pdf"><i class="fa fa-file-pdf fa-lg"></i> PDF</span>
+<label class="<?=Text::BTN?> btn-success <?=(!empty($params['first']) ? 'active' : '')?>" format="pdf">
+    <input type="radio" name="format" autocomplete="off">
+    <i class="fa fa-file-pdf"></i>
+    <span class="ml-1">PDF</span>
+</label>

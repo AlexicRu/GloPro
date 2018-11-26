@@ -1,5 +1,5 @@
 <div class="text-right m-b-20">
-    <span class="btn waves-effect waves-light btn-outline-success btn_reverse" onclick="gridToXls()"><i class="fa fa-file-excel"></i> Выгрузить в Excel</span>
+    <span class="<?=Text::BTN?> btn-success" onclick="gridToXls()"><i class="fa fa-file-excel"></i> Выгрузить в Excel</span>
 </div>
 
 <div class="jsGrid jsGrid-checkbox references_cards_jsGrid"></div>

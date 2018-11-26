@@ -1,6 +1,6 @@
 <?if(Access::allow('suppliers_supplier-add')){?>
     <div class="text-right m-b-30">
-        <a href="#" class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal" data-target="#supplier_add"><i class="fa fa-plus"></i> Добавить поставщика</a>
+        <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#supplier_add"><i class="fa fa-plus"></i> Добавить поставщика</a>
     </div>
 <?}?>
 

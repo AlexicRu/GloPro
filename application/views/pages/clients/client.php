@@ -254,27 +254,27 @@
 </div>
 
 <div class="more_info dn" toggle_block="block1">
-    <a href="#" class="btn waves-effect waves-light btn-outline-secondary m-t-10" toggle="block1">Скрыть</a> &nbsp;
+    <span class="<?=Text::BTN?> btn-outline-secondary m-t-10" toggle="block1">Скрыть</span> &nbsp;
 
     <?if(Access::allow('clients_client-edit')){?>
-        <button class="btn waves-effect waves-light btn-primary m-t-10" toggle="edit_client" toggle_block="edit_client"><i class="fa fa-pen"></i> Редактировать</button> &nbsp;
+        <button class="<?=Text::BTN?> btn-primary m-t-10" toggle="edit_client" toggle_block="edit_client"><i class="fa fa-pen"></i> Редактировать</button> &nbsp;
     <?}?>
 
     <?if(Access::allow('clients_client-delete')){?>
-        <button class="btn waves-effect waves-light btn-danger m-t-10" onclick="clientDelete($(this))"><i class="fa fa-trash-alt"></i> Удалить</button> &nbsp;
+        <button class="<?=Text::BTN?> btn-danger m-t-10" onclick="clientDelete($(this))"><i class="fa fa-trash-alt"></i> Удалить</button> &nbsp;
     <?}?>
 
     <span toggle_block="edit_client" class="dn nowrap">
-        <button class="btn waves-effect waves-light btn-success m-t-10 client_edit_btn"><i class="fa fa-check"></i> Сохранить</button> &nbsp;
-        <button class="btn waves-effect waves-light btn-danger m-t-10" toggle="edit_client"><i class="fa fa-times"></i> Отмена</button> &nbsp;
+        <button class="<?=Text::BTN?> btn-success m-t-10 client_edit_btn"><i class="fa fa-check"></i> Сохранить</button> &nbsp;
+        <button class="<?=Text::BTN?> btn-danger m-t-10" toggle="edit_client"><i class="fa fa-times"></i> Отмена</button> &nbsp;
     </span>
 
     <?if(Access::allow('client_cabinet-create') && empty($client['EXISTS_OFFICE'])){?>
-        <a href="#" class="btn waves-effect waves-light btn-outline-primary m-t-10" data-toggle="modal" data-target="#client_cabinet_create"><i class="fa fa-plus"></i> Создать ЛК</a>
+        <a href="#" class="<?=Text::BTN?> btn-outline-primary m-t-10" data-toggle="modal" data-target="#client_cabinet_create"><i class="fa fa-plus"></i> Создать ЛК</a>
     <?}?>
 </div>
 <div class="more_info" toggle_block="block1">
-    <a href="#" class="btn waves-effect waves-light btn-outline-secondary" toggle="block1">Информация о компании</a>
+    <span class="<?=Text::BTN?> btn-outline-secondary" toggle="block1">Информация о компании</span>
 </div>
 
 <div class="row m-t-40">
@@ -297,7 +297,7 @@
     </div>
     <div class="col-md-4 text-right d-none d-md-block">
         <?if(Access::allow('clients_contract-add')){?>
-            <a href="#" class="btn waves-effect waves-light btn-outline-primary" data-toggle="modal" data-target="#contract_add"><i class="fa fa-plus"></i> Создать договор</a>
+            <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#contract_add"><i class="fa fa-plus"></i> Создать договор</a>
         <?}?>
     </div>
 </div>

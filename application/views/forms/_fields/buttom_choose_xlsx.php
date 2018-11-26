@@ -1,1 +1,5 @@
-<span class="btn_toggle <?=Text::BTN?> btn-outline-success" format="xlsx"><i class="fa fa-file-excel fa-lg"></i> XLSX</span>
+<label class="<?=Text::BTN?> btn-success <?=(!empty($params['first']) ? 'active' : '')?>" format="xlsx">
+    <input type="radio" name="format" autocomplete="off">
+    <i class="fa fa-file-excel"></i>
+    <span class="ml-1">XLSX</span>
+</label>

@@ -88,8 +88,8 @@ function paginationAjax(url, name, callback, params)
     var outer = $('.' + name + '_out');
     var block = $('<div class="' + name + '" />');
     var btnBlock = $('<div class="ajax_block_more text-center p-t-10 p-b-10" />');
-    var more = $('<button class="btn btn-sm waves-effect waves-light btn-outline-secondary ajax_block_load m-l-5 m-r-5">Загрузить еще...</button>');
-    var all = $('<button class="btn btn-sm waves-effect waves-light btn-outline-secondary ajax_block_load_all m-l-5 m-r-5">Загрузить все</button>');
+    var more = $('<button class="'+ BTN +' btn-sm btn-outline-secondary ajax_block_load m-l-5 m-r-5">Загрузить еще...</button>');
+    var all = $('<button class="'+ BTN +' btn-sm btn-outline-secondary ajax_block_load_all m-l-5 m-r-5">Загрузить все</button>');
 
     addLoader(outer);
 

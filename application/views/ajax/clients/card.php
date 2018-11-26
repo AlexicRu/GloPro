@@ -15,12 +15,12 @@
             <?if(Access::allow('clients_card_toggle_full')){?>
                 <?if(in_array($card['BLOCK_AVAILABLE'], [1,2]) || Access::allow('clients_card-toggle')){?>
                     <?if($card['CARD_STATE'] == Model_Card::CARD_STATE_BLOCKED){?>
-                        <button class="btn btn-outline-success waves-effect waves-light m-b-5" onclick="cardToggle($(this))" block_available="<?=$card['BLOCK_AVAILABLE']?>">
+                        <button class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="cardToggle($(this))" block_available="<?=$card['BLOCK_AVAILABLE']?>">
                             <span style="display: none"><i class="fa fa-lock"></i> <span class="d-none d-lg-inline-block">Заблокировать</span></span>
                             <span><i class="fa fa-unlock"></i> <span class="d-none d-lg-inline-block">Разблокировать</span></span>
                         </button>
                     <?}else{?>
-                        <button class="btn btn-outline-danger waves-effect waves-light m-b-5" onclick="cardToggle($(this))" block_available="<?=$card['BLOCK_AVAILABLE']?>">
+                        <button class="<?=Text::BTN?> btn-outline-danger m-b-5" onclick="cardToggle($(this))" block_available="<?=$card['BLOCK_AVAILABLE']?>">
                             <span><i class="fa fa-lock"></i> <span class="d-none d-lg-inline-block">Заблокировать</span></span>
                             <span style="display: none"><i class="fa fa-unlock"></i> <span class="d-none d-lg-inline-block">Разблокировать</span></span>
                         </button>
@@ -28,13 +28,13 @@
                 <?}?>
             <?}?>
             <?if(Access::allow('clients_card-withdraw')){?>
-                <span class="btn btn-outline-warning waves-effect waves-light m-b-5" onclick="cardWithdraw('<?=$card['CARD_ID']?>', <?=$card['BLOCK_AVAILABLE']?>)">
+                <span class="<?=Text::BTN?> btn-outline-warning m-b-5" onclick="cardWithdraw('<?=$card['CARD_ID']?>', <?=$card['BLOCK_AVAILABLE']?>)">
                     <i class="fa fa-times"></i>
                     <span class="d-none d-xl-inline-block">Изъять</span>
                 </span>
             <?}?>
             <?if(Access::allow('clients_card_edit')){?>
-                <a href="#" data-toggle="modal" data-target="#card_edit_holder_<?=$card['CARD_ID']?>" class="btn btn-outline-primary waves-effect waves-light m-b-5"><i class="fa fa-pen"></i></a>
+                <a href="#" data-toggle="modal" data-target="#card_edit_holder_<?=$card['CARD_ID']?>" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-pen"></i></a>
             <?}?>
         </div>
     </div>
@@ -109,7 +109,7 @@
         </div>
         <div class="col-2 text-right">
             <?if (count($transactions) > 1) {?>
-                <span class="btn btn-sm btn-outline-info waves-effect waves-light" toggle="last_transactions">
+                <span class="<?=Text::BTN?> btn-sm btn-outline-info" toggle="last_transactions">
                     <span toggle_block="last_transactions"><i class="fa fa-chevron-down"></i></span>
                     <span toggle_block="last_transactions" style="display: none"><i class="fa fa-chevron-up"></i></span>
                 </span>
@@ -142,7 +142,7 @@
 <?if(Access::allow('clients_card_edit')){?>
     <div class="float-right">
         <?if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-limits')){?>
-            <a href="#" data-toggle="modal" data-target="#card_edit_limits_<?=$card['CARD_ID']?>" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-pen"></i></a>
+            <a href="#" data-toggle="modal" data-target="#card_edit_limits_<?=$card['CARD_ID']?>" class="<?=Text::BTN?> btn-outline-primary"><i class="fa fa-pen"></i></a>
         <?}?>
     </div>
 <?}?>

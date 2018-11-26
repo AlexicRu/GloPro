@@ -29,7 +29,7 @@
 <div class="card-body border-bottom d-lg-none bg-white">
     <div class="row">
         <div class="col-12">
-            <span class="btn btn-info" toggle_class="cards_groups_list">
+            <span class="<?=Text::BTN?> btn-info" toggle_class="cards_groups_list">
                 <i class="fa fa-bars"></i> Группы карт
             </span>
         </div>

@@ -25,7 +25,8 @@ if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL])){?>
             <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL] as $id => $field){?>
 
                 <div class="m-b-20">
-                    <b class="m-b-5"><?=$field['PROPERTY_NAME']?>:</b><br>
+                    <b class="m-b-5"><?=$field['PROPERTY_NAME']?>:</b>
+                    <?if ($field['PROPERTY_FORM'] != 'checkbox') {?><br><?} else {?>&nbsp;<?}?>
                     <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'] . '_' . $field['REPORT_ID'] . '_' . $id, false, [
                         'weight' => $field['PROPERTY_WEIGHT'],
                         'show_all' => !empty($field['PROPERTY_ALL']) ? $field['PROPERTY_ALL'] : false
@@ -39,14 +40,19 @@ if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_ADDITIONAL])){?>
 
 if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT])){?>
     <div class="form-group row">
-        <div class="col-md-4 text-muted">
-            <div class="hidden-sm-down text-right">Формат:</div>
-            <div class="hidden-md-up">Формат:</div>
+        <div class="col-md-4 text-muted form__row__title">
+            Формат:
         </div>
         <div class="col-md-8 with-mt">
-            <?foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT] as $field){?>
-                <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'])?>
-            <?}?>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <?
+                $first = true;
+                foreach($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT] as $field){?>
+                    <?=Form::buildField($field['PROPERTY_FORM'], $field['PARAM_NAME'], false, ['first' => $first])?>
+                <?
+                $first = false;
+                }?>
+            </div>
         </div>
     </div>
 <?}?>
@@ -54,7 +60,7 @@ if(!empty($fields[Model_Report::REPORT_CONSTRUCTOR_TYPE_FORMAT])){?>
     <div class="form-group row m-b-0">
         <div class="col-md-4"></div>
         <div class="col-md-8 with-mt">
-            <span class="btn btn-outline-primary waves-effect waves-light" onclick="generateReport($(this))"><i class="icon-download"></i> Сформировать</span>
+            <span class="<?=Text::BTN?> btn-primary" onclick="generateReport($(this))"><i class="icon-download"></i> Сформировать</span>
         </div>
     </div>
 

@@ -49,7 +49,7 @@
                                 }
                             </script>
                             <?*/?>
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Войти</button>
+                            <button type="submit" class="<?=Text::BTN?> btn-primary">Войти</button>
                         </div>
                     </div>
                 </form>
