@@ -8,9 +8,9 @@ $toggle = 'agreement'.$agreement['AGREEMENT_ID'];
         <div toggle_block="<?=$toggle?>">
             <div class="row align-items-center font-20">
                 <div class="col-9">
-                    [<?=$agreement['AGREEMENT_ID']?>]
                     <span toggle_block="<?=$toggle?>">
                         <b><?=$agreement['AGREEMENT_NAME']?></b>
+                        <span class="text-muted">[<?=$agreement['AGREEMENT_ID']?>]</span>
                         <span class="text-muted">от</span> <?=$agreement['WEB_DATE_BEGIN']?>
                         <?if($agreement['WEB_DATE_END'] != Date::DATE_MAX){?><span class="text-muted">до</span> <?=$agreement['WEB_DATE_END']?><?}?> &nbsp;
                     </span>
@@ -24,10 +24,12 @@ $toggle = 'agreement'.$agreement['AGREEMENT_ID'];
         </div>
 
         <div class="dn" toggle_block="<?=$toggle?>">
-            <div class="form-group row font-20">
-                <label class="col-sm-2 col-form-label">[<?=$agreement['AGREEMENT_ID']?>]</label>
-                <div class="col-sm-10">
-                    <input type="text" name="AGREEMENT_NAME" value="<?=Text::quotesForForms($agreement['AGREEMENT_NAME'])?>" class="form-control" placeholder="Название">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" name="AGREEMENT_NAME" value="<?=Text::quotesForForms($agreement['AGREEMENT_NAME'])?>" class="form-control form-control-lg" placeholder="Название">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><?=$agreement['AGREEMENT_ID']?></span>
+                    </div>
                 </div>
             </div>
 
@@ -83,31 +85,27 @@ $toggle = 'agreement'.$agreement['AGREEMENT_ID'];
 
                 <div toggle_block="<?=$toggle?>" class="dn">
 
-                    <div class="m-b-5">
-                        <input type="radio"
-                               class="with-gap radio-col-purple"
-                               id="DISCOUNT_TYPE_<?=Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_LOAD?>_<?=$agreement['AGREEMENT_ID']?>"
+                    <label class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input"
                                name="DISCOUNT_TYPE"
                                value="<?=Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_LOAD?>"
-                               <?=($agreement['DISCOUNT_TYPE'] == Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_LOAD ? 'checked' : '')?>
+                                <?=($agreement['DISCOUNT_TYPE'] == Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_LOAD ? 'checked' : '')?>
                                onchange="checkAgreementDiscountType($(this))"
                         >
-                        <label for="DISCOUNT_TYPE_<?=Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_LOAD?>_<?=$agreement['AGREEMENT_ID']?>">Из данных загрузки</label>
-                    </div>
+                        <span class="custom-control-label">Из данных загрузки</span>
+                    </label>
 
-                    <div class="m-b-5">
-                        <input type="radio"
-                               class="with-gap radio-col-purple"
-                               id="DISCOUNT_TYPE_<?=Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_TARIFF?>_<?=$agreement['AGREEMENT_ID']?>"
+                    <label class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input"
                                name="DISCOUNT_TYPE"
                                value="<?=Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_TARIFF?>"
-                               <?=($agreement['DISCOUNT_TYPE'] == Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_TARIFF ? 'checked' : '')?>
+                            <?=($agreement['DISCOUNT_TYPE'] == Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_TARIFF ? 'checked' : '')?>
                                onchange="checkAgreementDiscountType($(this))"
                         >
-                        <label for="DISCOUNT_TYPE_<?=Model_Supplier_Agreement::DISCOUNT_TYPE_FROM_TARIFF?>_<?=$agreement['AGREEMENT_ID']?>">По тарифу</label>
+                        <span class="custom-control-label">По тарифу</span>
+                    </label>
 
-                        <?=Form::buildField('contract_tariffs', 'TARIF_ID', $agreement['TARIF_ID'])?>
-                    </div>
+                    <?=Form::buildField('contract_tariffs', 'TARIF_ID', $agreement['TARIF_ID'])?>
                 </div>
             </div>
         </div>

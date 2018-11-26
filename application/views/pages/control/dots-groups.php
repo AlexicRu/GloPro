@@ -76,8 +76,8 @@
                             <span class="<?=Text::BTN?> btn-outline-primary btn-sm" onclick="showEditDotsGroupPopup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-pen"></i></span>
                         </span>
 
-                            <span class="gray">[<?=$group['GROUP_ID']?>]</span>
                             <span class="group_name"><?=$group['GROUP_NAME']?></span>
+                            <span class="text-muted float-right">[<?=$group['GROUP_ID']?>]</span>
                         </a>
                     </li>
                 <?}?>

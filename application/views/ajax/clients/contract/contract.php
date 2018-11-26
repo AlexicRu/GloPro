@@ -2,8 +2,8 @@
     <div toggle_block="block2">
         <div class="row font-20 align-items-center">
             <div class="col-9">
-                [<?=$contract['CONTRACT_ID']?>]
                 <b><?=$contract['CONTRACT_NAME']?></b>
+                <span class="text-muted">[<?=$contract['CONTRACT_ID']?>]</span>
                 <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
                 <?if($contract['DATE_END'] != Date::DATE_MAX){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
                 <span class="label label-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
@@ -19,10 +19,13 @@
     </div>
 
     <div class="dn" toggle_block="block2">
-        <div class="form-group row font-20">
-            <label class="col-sm-2 col-form-label">[<?=$contract['CONTRACT_ID']?>]</label>
-            <div class="col-sm-10">
-                <input type="text" name="CONTRACT_NAME" value="<?=Text::quotesForForms($contract['CONTRACT_NAME'])?>" class="form-control">
+
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" name="CONTRACT_NAME" value="<?=Text::quotesForForms($contract['CONTRACT_NAME'])?>" class="form-control form-control-lg" placeholder="Название">
+                <div class="input-group-append">
+                    <span class="input-group-text"><?=$contract['CONTRACT_ID']?></span>
+                </div>
             </div>
         </div>
 
@@ -269,7 +272,10 @@
                         <div class="d-block d-sm-none">Online тариф:</div>
                     </div>
                     <div class="col-sm-7">
-                        <span toggle_block="block2">[<?=$contractSettings['TARIF_ONLINE']?>] <?=$contractSettings['TARIF_NAME_ONLINE']?></span>
+                        <span toggle_block="block2">
+                            <?=$contractSettings['TARIF_NAME_ONLINE']?>
+                            <span class="text-muted">[<?=$contractSettings['TARIF_ONLINE']?>]</span>
+                        </span>
                         <span toggle_block="block2" class="dn">
                             <?=Form::buildField('contract_tariffs', 'TARIF_ONLINE', $contractSettings['TARIF_ONLINE'])?>
                         </span>
@@ -282,7 +288,8 @@
                         <div class="d-block d-sm-none">Текущий тариф:</div>
                     </div>
                     <div class="col-sm-7">
-                        [<?=$contractSettings['TARIF_OFFLINE']?>] <?=$contractSettings['TARIF_NAME_OFFLINE']?>
+                        <?=$contractSettings['TARIF_NAME_OFFLINE']?>
+                        <span class="text-muted">[<?=$contractSettings['TARIF_OFFLINE']?>]</span>
 
                         <a href="#" data-toggle="modal" data-target="#contract_tariff_edit" class="<?=Text::BTN?> btn-outline-primary btn-sm"><i class="fa fa-pen"></i></a>
                     </div>
@@ -429,7 +436,7 @@
                     }, 500);
                 } else {
 
-                    var contractFullName = "Договор: [<?=$contractSettings['CONTRACT_ID']?>] " + params.contract.CONTRACT_NAME + " от " + params.contract.DATE_BEGIN + (params.contract.DATE_END != '31.12.2099' ? " до " + params.contract.DATE_END : '');
+                    var contractFullName = "Договор: " + params.contract.CONTRACT_NAME + " [<?=$contractSettings['CONTRACT_ID']?>] от " + params.contract.DATE_BEGIN + (params.contract.DATE_END != '31.12.2099' ? " до " + params.contract.DATE_END : '');
 
                     $("[name=contracts_list] option:selected").text(contractFullName);
 

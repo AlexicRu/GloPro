@@ -255,7 +255,7 @@ function loadClientList(input)
                 '<label class="custom-control custom-checkbox">' +
                     '<input type="checkbox" class="custom-control-input found_client" onchange="checkFoundItem($(this))">' +
                     '<span class="custom-control-label">' +
-                        '<span class="text-muted">[<span class="ifr_id" />]</span> <span class="ifr_name" />' +
+                        '<span class="ifr_name" /> <span class="text-muted float-right">[<span class="ifr_id" />]</span>' +
                     '</span>' +
                 '</label>' +
             '</div>');

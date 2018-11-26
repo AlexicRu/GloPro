@@ -31,8 +31,8 @@
                     <?foreach($tariffs as $key => $tariff){?>
                         <li class="nav-item" tab="tariff_<?=$tariff['TARIF_ID']?>" version="<?=$tariff['LAST_VERSION']?>">
                             <a class="nav-link" data-toggle="tab" href="#tariff_<?=$tariff['TARIF_ID']?>" role="tab">
-                                <span class="text-muted">[<?=$tariff['TARIF_ID']?>]</span>
                                 <?=$tariff['TARIF_NAME']?>
+                                <span class="text-muted float-right">[<?=$tariff['TARIF_ID']?>]</span>
                             </a>
                         </li>
                     <?}?>

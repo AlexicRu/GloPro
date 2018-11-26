@@ -4,9 +4,8 @@
         <div toggle_block="toggle_contract">
             <div class="row align-items-center font-20">
                 <div class="col-9">
-                    [<?=$contract['CONTRACT_ID']?>]
                     <span toggle_block="toggle_contract">
-                        <b><?=$contract['CONTRACT_NAME']?></b> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != Date::DATE_MAX){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
+                        <b><?=$contract['CONTRACT_NAME']?></b> <span class="text-muted">[<?=$contract['CONTRACT_ID']?>]</span> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != Date::DATE_MAX){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
                         <span class="badge <?=Model_Supplier_Contract::$statusContractClasses[$contract['CONTRACT_STATE']]?>"><?=Model_Supplier_Contract::$statusContractNames[$contract['CONTRACT_STATE']]?></span>
                     </span>
                 </div>
@@ -19,10 +18,12 @@
         </div>
 
         <div class="dn" toggle_block="toggle_contract">
-            <div class="form-group row font-20">
-                <label class="col-sm-2 col-form-label">[<?=$contract['CONTRACT_ID']?>]</label>
-                <div class="col-sm-10">
-                    <input type="text" name="CONTRACT_NAME" value="<?=Text::quotesForForms($contract['CONTRACT_NAME'])?>" class="form-control">
+            <div class="form-group font-20">
+                <div class="input-group">
+                    <input type="text" name="CONTRACT_NAME" value="<?=Text::quotesForForms($contract['CONTRACT_NAME'])?>" class="form-control form-control-lg" placeholder="Название">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><?=$contract['CONTRACT_ID']?></span>
+                    </div>
                 </div>
             </div>
 

@@ -22,7 +22,8 @@
             <li class="nav-item" tab="<?=$agreement['AGREEMENT_ID']?>">
                 <a class="nav-link" data-toggle="tab" href="#agreement<?=$agreement['AGREEMENT_ID']?>" role="tab" onclick="loadAgreement($(this))">
                     <span class="fal fa-file-alt fa-lg m-r-5"></span>
-                    [<?=$agreement['AGREEMENT_ID']?>] <span class="agreement_name"><?=$agreement['AGREEMENT_NAME']?></span>
+                    <span class="agreement_name"><?=$agreement['AGREEMENT_NAME']?></span>
+                    <span class="text-muted float-right">[<?=$agreement['AGREEMENT_ID']?>]</span>
                 </a>
             </li>
         <?}?>

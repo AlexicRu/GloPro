@@ -10,7 +10,8 @@
                     <a href="#" class="text-danger" onclick="delManagersClient($(this))"><i class="fa fa-trash-alt"></i></a>
                 </div>
 
-                <span class="text-muted">[<?=$client['CLIENT_ID']?>]</span> <b><?=$client['CLIENT_NAME']?></b>
+                <b><?=$client['CLIENT_NAME']?></b>
+                <span class="text-muted">[<?=$client['CLIENT_ID']?>]</span>
 
                 <?if(Access::allow('managers_edit-manager-clients-contract-binds')) {?>
                     <?

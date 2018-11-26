@@ -101,7 +101,7 @@ function editSupplierContract()
             loadSupplierContract();
 
             $('[name=suppliers_contracts_list] option:selected').text(
-                'Договор: [' + contractId + '] ' + params.CONTRACT_NAME + ' от ' + params.DATE_BEGIN +
+                'Договор: ' + params.CONTRACT_NAME + ' [' + contractId + '] от ' + params.DATE_BEGIN +
                 (params.DATE_END != '31.12.2099' ? ' от ' + params.DATE_END : '')
             );
         } else {

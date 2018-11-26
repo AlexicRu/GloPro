@@ -16,15 +16,15 @@
                         <span>
                             <?if (Access::allow('root')) {?>
                                 <span toggle_block="agentBlock">
+                                    <b v-html="checkEmpty(agent.title.WEB_NAME)"></b>
                                     <span class="text-muted">[<?=$agent['AGENT_ID']?>]</span>
-                                    <span v-html="checkEmpty(agent.title.WEB_NAME)"></span>
                                 </span>
                                 <span toggle_block="agentBlock" class="dn">
                                     <div class="input-group">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text">[<?=$agent['AGENT_ID']?>]</span>
-                                      </div>
-                                      <input type="text" class="form-control form-control-lg" v-model="agent.title.WEB_NAME" placeholder="Имя">
+                                        <input type="text" class="form-control form-control-lg" v-model="agent.title.WEB_NAME" placeholder="Имя">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><?=$agent['AGENT_ID']?></span>
+                                        </div>
                                     </div>
                                 </span>
                             <?} else {?>

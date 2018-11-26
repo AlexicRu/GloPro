@@ -206,8 +206,14 @@ function keyupComboBox(combo, params)
         for(var i in items){
             var tpl = $('<div class="combobox_result_item"></div>');
 
-            tpl.attr('value', items[i].value);
-            tpl.text(items[i].name);
+            tpl.data('value', items[i].value);
+            tpl.data('name', items[i].name);
+
+            if (items[i].hint) {
+                tpl.html(items[i].name + ' <span class="text-muted float-right">[' + items[i].hint + ']</span>');
+            } else {
+                tpl.text(items[i].name);
+            }
 
             if(items[i].disabled) {
                 tpl.attr('disabled', true);
@@ -245,7 +251,7 @@ function selectComboBoxMultiResult(item)
 {
     item.toggleClass('combobox_result_item_selected');
 
-    var value = item.attr('value');
+    var value = item.data('value');
 
     var wrapper = item.closest('.combobox_multi_wrapper');
     var selected = wrapper.find('.combobox_multi_selected');
@@ -261,7 +267,7 @@ function selectComboBoxMultiResult(item)
         //если выбрали все, то все остальное выключаем
         selected.find('.combobox_multi_selected_item[value!="'+ SHOW_ALL_VALUE +'"]').each(function () {
             var t = $(this);
-            wrapper.find('.combobox_result_item_selected[value='+ t.attr('value') +']').removeClass('combobox_result_item_selected');
+            wrapper.find('.combobox_result_item_selected[value='+ t.data('value') +']').removeClass('combobox_result_item_selected');
             uncheckComboBoxMultiItem(t);
         });
     } else {
@@ -284,7 +290,7 @@ function renderComboBoxMultiSelectedItem(value, text, wrapper)
     var tpl = $('<div class="combobox_multi_selected_item"><span class="combobox_multi_selected_item_name" /><span class="combobox_multi_selected_item_close" onclick="uncheckComboBoxMultiItem($(this))">×</span></div>');
 
     tpl.find('.combobox_multi_selected_item_name').text(text);
-    tpl.attr('value', value);
+    tpl.data('value', value);
 
     selected.append(tpl);
 
@@ -303,14 +309,14 @@ function uncheckComboBoxMultiItem(item)
     var selectedItem = item.closest('.combobox_multi_selected_item');
     var hiddenValue = wrapper.find('[name=combobox_value]');
 
-    checkRenderTo(wrapper.find('.combobox_multi'), {value:selectedItem.attr('value')}, true);
+    checkRenderTo(wrapper.find('.combobox_multi'), {value:selectedItem.data('value')}, true);
 
     selectedItem.remove();
 
     var values = [];
 
     selected.find('.combobox_multi_selected_item').each(function () {
-        values.push($(this).attr('value'));
+        values.push($(this).data('value'));
     });
 
     hiddenValue.val(values.join(','));
@@ -320,12 +326,12 @@ function selectComboBoxResult(item, params)
 {
     item.toggleClass('combobox_result_item_selected');
 
-    var value = item.attr('value');
+    var value = item.data('value');
     var outer = item.closest('.combobox_outer');
     var combo = outer.find('.combobox');
     var hiddenValue = outer.find('[name=combobox_value]');
 
-    combo.val(item.text());
+    combo.val(item.data('name'));
     hiddenValue.val(value);
 
     if (combo.data('onSelect')) {
@@ -451,7 +457,7 @@ function checkRenderTo(combo, item, isRemove) {
         } else {
             var tpl = $('<div class="combobox_multi_selected_item" />');
 
-            tpl.attr('value', item.value).text(item.text);
+            tpl.data('value', item.value).text(item.text);
 
             tpl.appendTo(block);
         }
@@ -462,7 +468,7 @@ function checkRenderTo(combo, item, isRemove) {
         } else {
             var tpl = $('<div class="combobox_multi_selected_item" />');
 
-            tpl.attr('value', item.value).text(item.text);
+            tpl.data('value', item.value).text(item.text);
 
             tpl.appendTo(block);
         }

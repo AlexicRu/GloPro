@@ -307,8 +307,9 @@ class Controller_Help extends Controller_Common
 
         foreach($result as $item){
             $this->_result[] = [
-                'name'  => '['. $item['ID'] .'] ' . $item['TARIF_NAME'],
+                'name'  => $item['TARIF_NAME'],
                 'value' => $item['ID'],
+                'hint'  => $item['ID'],
             ];
         }
     }
@@ -326,8 +327,9 @@ class Controller_Help extends Controller_Common
 
         foreach($result as $item){
             $this->_result[] = [
-                'name'  => ($item['CURRENT_STATE'] == Model_Tube::STATE_INACTIVE ? '[Не в работе] ' : '') . $item['TUBE_NAME'],
+                'name'  => $item['TUBE_NAME'],
                 'value' => $item['TUBE_ID'],
+                'hint'  => $item['CURRENT_STATE'] == Model_Tube::STATE_INACTIVE ? 'Не в работе' : '',
             ];
         }
     }
