@@ -1,9 +1,8 @@
 <div class="modal-body">
     <div class="form form_add_supplier">
         <div class="form-group row m-b-0">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Наименование:</div>
-                <span class="hidden-sm-up text-muted">Наименование:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Наименование:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="text" name="add_supplier_name" class="form-control">

@@ -212,7 +212,7 @@ class Model_Card extends Model
         }
 
         $sql = (new Builder())->select()
-            ->from('V_WEB_CARDS_SERVICE_AVAILABLE t')
+            ->from('V_API_CARDS_SERVICE_AVAILABLE t')
             ->where('t.card_id = ' . Oracle::quote($cardId))
         ;
 

@@ -1,8 +1,7 @@
 <div class="modal-body">
     <div class="form-group row m-b-0">
-        <div class="col-sm-4">
-            <div class="text-right hidden-xs-down text-muted">Название группы:</div>
-            <span class="hidden-sm-up text-muted">Название группы:</span>
+        <div class="col-sm-4 text-muted form__row__title">
+            Название группы:
         </div>
         <div class="col-sm-8 with-mt">
             <input type="text" name="edit_firms_group_name" class="form-control">

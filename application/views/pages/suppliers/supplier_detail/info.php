@@ -39,9 +39,8 @@
             <div class="col-md-6">
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Юридический адрес:</div>
-                        <span class="hidden-sm-up text-muted">Юридический адрес:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Юридический адрес:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.Y_ADDRESS)"></span>
@@ -50,9 +49,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Фактический адрес:</div>
-                        <span class="hidden-sm-up text-muted">Фактический адрес:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Фактический адрес:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.F_ADDRESS)"></span>
@@ -61,9 +59,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Почтовый адрес:</div>
-                        <span class="hidden-sm-up text-muted">Почтовый адрес:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Почтовый адрес:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.P_ADDRESS)"></span>
@@ -72,9 +69,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Контактное лицо:</div>
-                        <span class="hidden-sm-up text-muted">Контактное лицо:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Контактное лицо:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.CONTACT_PERSON)"></span>
@@ -83,9 +79,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Комментарий:</div>
-                        <span class="hidden-sm-up text-muted">Комментарий:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Комментарий:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(comments_formatted)"></span>
@@ -97,9 +92,8 @@
             <div class="col-md-6">
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Телефон:</div>
-                        <span class="hidden-sm-up text-muted">Телефон:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Телефон:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.PHONE)"></span>
@@ -108,9 +102,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">E-mail:</div>
-                        <span class="hidden-sm-up text-muted">E-mail:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        E-mail:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(email_formatted)"></span>
@@ -119,9 +112,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">ИНН:</div>
-                        <span class="hidden-sm-up text-muted">ИНН:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        ИНН:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.INN)"></span>
@@ -130,9 +122,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">КПП:</div>
-                        <span class="hidden-sm-up text-muted">КПП:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        КПП:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.KPP)"></span>
@@ -141,9 +132,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">ОГРН:</div>
-                        <span class="hidden-sm-up text-muted">ОГРН:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        ОГРН:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OGRN)"></span>
@@ -152,9 +142,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">ОКПО:</div>
-                        <span class="hidden-sm-up text-muted">ОКПО:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        ОКПО:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OKPO)"></span>
@@ -163,9 +152,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">ОКОНХ:</div>
-                        <span class="hidden-sm-up text-muted">ОКОНХ:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        ОКОНХ:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_supplier" v-html="checkEmpty(supplier.OKONH)"></span>

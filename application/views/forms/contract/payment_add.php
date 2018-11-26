@@ -1,9 +1,8 @@
 <div class="modal-body">
     <div class="form form_add_contract_payment">
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Номер:</div>
-                <span class="hidden-sm-up text-muted">Номер:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Номер:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="number" name="add_contract_payment_num" class="form-control">
@@ -11,9 +10,8 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Дата платежного поручения:</div>
-                <span class="hidden-sm-up text-muted">Дата платежного поручения:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Дата платежного поручения:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="date" name="add_contract_payment_date" class="form-control" maxDate="1" value="<?=date('Y-m-d')?>">
@@ -31,9 +29,8 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Сумма (<?=Text::RUR?>):</div>
-                <span class="hidden-sm-up text-muted">Сумма (<?=Text::RUR?>):</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Сумма (<?=Text::RUR?>):
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="text" name="add_contract_payment_value" class="form-control">
@@ -41,9 +38,8 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Комментарий:</div>
-                <span class="hidden-sm-up text-muted">Комментарий:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Комментарий:
             </div>
             <div class="col-sm-8 with-mt">
                 <textarea name="add_contract_payment_comment" class="form-control"></textarea>

@@ -1,8 +1,7 @@
 <div class="form tariff_wrapper">
     <div class="form-group row">
-        <div class="col-sm-4">
-            <div class="text-right hidden-xs-down text-muted">Название:</div>
-            <span class="hidden-sm-up text-muted">Название:</span>
+        <div class="col-sm-4 text-muted form__row__title">
+            Название:
         </div>
         <div class="col-sm-6 with-mt">
             <input type="hidden" name="tarif_id" value="<?=(!empty($tariff['TARIF_ID']) ? $tariff['TARIF_ID'] : 0)?>">
@@ -18,9 +17,8 @@
 
     <?if (!empty($tariff['versions'])) {?>
     <div class="form-group row remove-on-copy">
-        <div class="col-sm-4">
-            <div class="text-right hidden-xs-down text-muted">Версия:</div>
-            <span class="hidden-sm-up text-muted">Версия:</span>
+        <div class="col-sm-4 text-muted form__row__title">
+            Версия:
         </div>
         <div class="col-sm-6 with-mt">
             <select name="tariff_versions" class="custom-select">

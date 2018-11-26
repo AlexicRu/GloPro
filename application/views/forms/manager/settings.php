@@ -7,9 +7,8 @@
         <div class="col-md-6">
             <div class="form">
                 <div class="form-group row">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Имя:</div>
-                        <span class="hidden-sm-up text-muted">Имя:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Имя:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <input type="text" name="manager_settings_name" class="form-control" value="<?=$manager['MANAGER_NAME']?>">
@@ -17,9 +16,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Фамилия:</div>
-                        <span class="hidden-sm-up text-muted">Фамилия:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Фамилия:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <input type="text" name="manager_settings_surname" class="form-control" value="<?=$manager['MANAGER_SURNAME']?>">
@@ -27,9 +25,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Отчество:</div>
-                        <span class="hidden-sm-up text-muted">Отчество:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Отчество:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <input type="text" name="manager_settings_middlename" class="form-control" value="<?=$manager['MANAGER_MIDDLENAME']?>">
@@ -37,9 +34,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">E-mail:</div>
-                        <span class="hidden-sm-up text-muted">E-mail:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        E-mail:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <input type="text" name="manager_settings_email" class="form-control" value="<?=$manager['EMAIL']?>">
@@ -47,9 +43,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-4">
-                        <div class="text-right hidden-xs-down text-muted">Телефон:</div>
-                        <span class="hidden-sm-up text-muted">Телефон:</span>
+                    <div class="col-sm-4 text-muted form__row__title">
+                        Телефон:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <input type="text" name="manager_settings_phone" class="form-control" value="<?=$manager['CELLPHONE']?>">
@@ -58,9 +53,8 @@
 
                 <?if(!empty($changeRole)){?>
                     <div class="form-group row">
-                        <div class="col-sm-4">
-                            <div class="text-right hidden-xs-down text-muted">Роль:</div>
-                            <span class="hidden-sm-up text-muted">Роль:</span>
+                        <div class="col-sm-4 text-muted form__row__title">
+                            Роль:
                         </div>
                         <div class="col-sm-8 with-mt">
                             <select name="manager_settings_role" class="custom-select">
@@ -100,9 +94,8 @@
 
                 <div class="form">
                     <div class="form-group row">
-                        <div class="col-sm-4">
-                            <div class="text-right hidden-xs-down text-muted">Логин:</div>
-                            <span class="hidden-sm-up text-muted">Логин:</span>
+                        <div class="col-sm-4 text-muted form__row__title">
+                            Логин:
                         </div>
                         <div class="col-sm-8 with-mt">
                             <?if (Access::allow('clients_edit-login')) {?>
@@ -122,9 +115,8 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-sm-4">
-                            <div class="text-right hidden-xs-down text-muted">Пароль:</div>
-                            <span class="hidden-sm-up text-muted">Пароль:</span>
+                        <div class="col-sm-4 text-muted form__row__title">
+                            Пароль:
                         </div>
                         <div class="col-sm-8 with-mt">
                             <input type="password" name="manager_settings_password" class="form-control" <?=($manager['MANAGER_ID'] == Access::USER_TEST ? 'readonly' : '')?>>
@@ -132,9 +124,8 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-sm-4">
-                            <div class="text-right hidden-xs-down text-muted">Пароль еще раз:</div>
-                            <span class="hidden-sm-up text-muted">Пароль еще раз:</span>
+                        <div class="col-sm-4 text-muted form__row__title">
+                            Пароль еще раз:
                         </div>
                         <div class="col-sm-8 with-mt">
                             <input type="password" name="manager_settings_password_again" class="form-control" <?=($manager['MANAGER_ID'] == Access::USER_TEST ? 'readonly' : '')?>>

@@ -22,9 +22,8 @@
                         <b class="font-18">Добавление конвертации услуг</b>
 
                         <div class="form-group row m-t-20">
-                            <div class="col-sm-4">
-                                <div class="text-right hidden-xs-down text-muted">Ввод из источника:</div>
-                                <span class="hidden-sm-up text-muted">Ввод из источника:</span>
+                            <div class="col-sm-4 text-muted form__row__title">
+                                Ввод из источника:
                             </div>
                             <div class="col-sm-8 with-mt">
                                 <input type="text" name="add_service_in_source" class="form-control">
@@ -32,9 +31,8 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-sm-4">
-                                <div class="text-right hidden-xs-down text-muted">Выбор из источника:</div>
-                                <span class="hidden-sm-up text-muted">Выбор из источника:</span>
+                            <div class="col-sm-4 text-muted form__row__title">
+                                Выбор из источника:
                             </div>
                             <div class="col-sm-8 with-mt">
                                 <?=Form::buildField('service_choose_single', 'add_service_in_service')?>

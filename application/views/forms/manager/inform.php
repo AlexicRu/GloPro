@@ -1,9 +1,8 @@
 <div class="modal-body">
     <div class="form form_add_client">
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Телефон для оповещений:</div>
-                <span class="hidden-sm-up text-muted">Телефон для оповещений:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Телефон для оповещений:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_settings_phone_note" class="input_big" value="<?=$manager['PHONE_FOR_INFORM']?>">

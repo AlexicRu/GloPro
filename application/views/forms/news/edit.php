@@ -6,9 +6,8 @@
         <?}?>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Заголовок:</div>
-                <span class="hidden-sm-up text-muted">Заголовок:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Заголовок:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="text" name="news_edit_title" class="form-control" value="<?=(empty($detail['NOTE_TITLE']) ? '' : $detail['NOTE_TITLE'])?>">
@@ -16,9 +15,8 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Дата:</div>
-                <span class="hidden-sm-up text-muted">Дата:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Дата:
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="date" name="news_edit_date" class="form-control" value="<?=(empty($detail['NOTE_DATE']) ? date('Y-m-d') : Date::formatToDefault($detail['NOTE_DATE']))?>">
@@ -27,9 +25,8 @@
 
         <?if($user['AGENT_ID'] == 0 && empty($detail)){?>
             <div class="form-group row">
-                <div class="col-sm-4">
-                    <div class="text-right hidden-xs-down text-muted">Рассылки:</div>
-                    <span class="hidden-sm-up text-muted">Рассылки:</span>
+                <div class="col-sm-4 text-muted form__row__title">
+                    Рассылки:
                 </div>
                 <div class="col-sm-8 with-mt">
                     <div class="m-b-5">
@@ -49,9 +46,8 @@
         <?}?>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">Фото:</div>
-                <span class="hidden-sm-up text-muted">Фото:</span>
+            <div class="col-sm-4 text-muted form__row__title">
+                Фото:
             </div>
             <div class="col-sm-8 with-mt">
                 <div class="news_edit_image dropzone"></div>
