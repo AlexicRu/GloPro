@@ -279,8 +279,6 @@ class Model_Report extends Model
 
         $report = $db->query($sql);
 
-        print_r($report);
-
         $row = reset($report);
         $settings['type'] = $row['FULL_PATH'];
 
