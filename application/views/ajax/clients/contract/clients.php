@@ -25,7 +25,7 @@
                         'depend_postfix' => $client['CLIENT_ID']
                     ])?>
 
-                    <span class="<?=Text::BTN?> btn-outline-success btn-sm m-t-5" onclick="saveManagerClientContractBinds($(this))"><i class="fa fa-check"></i> Сохранить</span>
+                    <span class="<?=Text::BTN?> btn-success btn-sm m-t-5" onclick="saveManagerClientContractBinds($(this))"><i class="fa fa-check"></i> Сохранить</span>
                 <?}?>
             </div>
         </div>

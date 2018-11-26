@@ -30,10 +30,10 @@
             tpl.find('[row_contract]').text(data[i].CONTRACT_NAME);
             tpl.find('[row_num]').html('<b>' + data[i].NUM_REPORT + '</b>');
             tpl.find('[row_summ]').html('<nobr>' + number_format(data[i].INVOICE_SUM, 2, ',', ' ') + ' <?=Text::RUR?></nobr>');
-            tpl.find('[row_btns] .btn-group').html('<a href="/reports/generate?type=<?=Model_Report::REPORT_TYPE_BILL?>&format=pdf&contract_id=' + data[i].CONTRACT_ID + '&invoice_number=' + data[i].INVOICE_NUMBER + '" class="'+ BTN +' btn-sm btn-outline-primary" target="_blank"><i class="icon-download"></i> Скачать</a>');
+            tpl.find('[row_btns] .btn-group').html('<a href="/reports/generate?type=<?=Model_Report::REPORT_TYPE_BILL?>&format=pdf&contract_id=' + data[i].CONTRACT_ID + '&invoice_number=' + data[i].INVOICE_NUMBER + '" class="'+ BTN +' btn-sm btn-primary" target="_blank"><i class="icon-download"></i> Скачать</a>');
 
             <?if(Access::allow('download_bill_as_xls')){?>
-            tpl.find('[row_btns] .btn-group').append('<a href="/reports/generate?type=<?=Model_Report::REPORT_TYPE_BILL?>&format=xls&contract_id=' + data[i].CONTRACT_ID + '&invoice_number=' + data[i].INVOICE_NUMBER + '" class="'+ BTN +' btn-sm btn-outline-success" target="_blank">В Excel</a>');
+            tpl.find('[row_btns] .btn-group').append('<a href="/reports/generate?type=<?=Model_Report::REPORT_TYPE_BILL?>&format=xls&contract_id=' + data[i].CONTRACT_ID + '&invoice_number=' + data[i].INVOICE_NUMBER + '" class="'+ BTN +' btn-sm btn-success" target="_blank">В Excel</a>');
             <?}?>
 
             block.find('.card-body').append(tpl);

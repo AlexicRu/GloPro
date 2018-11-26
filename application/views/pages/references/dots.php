@@ -1,6 +1,6 @@
 <div class="block no_padding dots_info">
     <div class="text-right m-b-20">
-        <span class="<?=Text::BTN?> btn-outline-success" onclick="dotsInfoToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
+        <span class="<?=Text::BTN?> btn-success" onclick="dotsInfoToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
     </div>
 
     <div class="card">

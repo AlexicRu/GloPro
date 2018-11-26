@@ -14,7 +14,7 @@
                                 <?}?>
                             </select>
                             <div class="input-group-append">
-                                <button class="<?=Text::BTN?> btn-sm btn-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>
+                                <button class="<?=Text::BTN?> btn-sm btn-outline-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>
                             </div>
                         </div>
                     <?}?>
@@ -98,7 +98,7 @@
         var tpl = $('<div limit_service class="input-group m-b-5">' +
             '  <select name="limit_service" class="custom-select" onchange="checkServices()" />' +
             '  <div class="input-group-append">' +
-            '    <button class="'+ BTN +'btn-sm btn-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>' +
+            '    <button class="'+ BTN +'btn-sm btn-outline-danger" onclick="contractLimitsEditDelService($(this))"><i class="fa fa-times"></i></button>' +
             '  </div>' +
             '</div>');
 

@@ -21,7 +21,7 @@ $postfix = $card['CARD_ID'];
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-0">
             <div class="col-sm-4 text-muted form__row__title">
                 Комментарий:
             </div>

@@ -26,7 +26,7 @@
             <div class="<?=Text::BTN?> btn-outline-primary" onclick="addCalcTariffsClient()"><i class="fa fa-plus"></i> Добавить клиента</div>
 
             <div class="p-t-20 m-t-20 border-top">
-                <div class="<?=Text::BTN?> btn-outline-success" onclick="calcTariffsGo()"><i class="fa fa-check"></i> Рассчитать</div>
+                <div class="<?=Text::BTN?> btn-success" onclick="calcTariffsGo()"><i class="fa fa-check"></i> Рассчитать</div>
             </div>
             <br>
             <i class="text-muted">
@@ -47,7 +47,7 @@
                         <input type="date" name="close_by_day" class="form-control">
                     </td>
                     <td>
-                        <span class="<?=Text::BTN?> btn-outline-primary">Запуск</span>
+                        <span class="<?=Text::BTN?> btn-primary">Запуск</span>
                     </td>
                 </tr>
             </table>

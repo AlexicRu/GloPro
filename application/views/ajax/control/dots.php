@@ -35,7 +35,7 @@
                 '<th style="width:300px;">' +
                     '<div class="btn-group">' +
                         '<input type="text" name="dots_filter_address" placeholder="Адрес" class="form-control">'+
-                        '<button class="'+ BTN +' btn-sm btn-outline-primary" onclick="filterDots<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
+                        '<button class="'+ BTN +' btn-sm btn-primary" onclick="filterDots<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
                     '</div>' +
                 '</th>' +
                 '<th class="td_edit"></th>' +
@@ -104,7 +104,7 @@
             tpl.find('.dot_td_pos_name').text(data[i].POS_NAME);
             tpl.find('.dot_td_owner').text(data[i].OWNER);
             tpl.find('.dot_td_address').text(data[i].POS_ADDRESS);
-            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-sm btn-outline-success"><i class="fa fa-pen"></span>');
+            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-sm btn-outline-primary"><i class="fa fa-pen"></span>');
 
             subBlock.append(tpl);
         }

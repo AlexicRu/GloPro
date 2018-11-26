@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4 text-right with-mt">
-                        <button disabled onclick="connect1cPayments_addPayments($(this))" class="<?=Text::BTN?> btn-outline-primary load_connect1c_payments_btn">Загрузить выделенные</button>
+                        <button disabled onclick="connect1cPayments_addPayments($(this))" class="<?=Text::BTN?> btn-primary load_connect1c_payments_btn">Загрузить выделенные</button>
                     </div>
                 </div>
 

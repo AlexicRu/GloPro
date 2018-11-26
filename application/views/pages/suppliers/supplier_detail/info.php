@@ -179,17 +179,17 @@
     </div>
 
     <div class="more_info dn" toggle_block="supplier_info">
-        <a href="#" class="<?=Text::BTN?> btn-outline-secondary btn_min_width" toggle="supplier_info">Скрыть</a> &nbsp;
+        <span class="<?=Text::BTN?> btn-outline-secondary btn_min_width" toggle="supplier_info">Скрыть</span> &nbsp;
 
         <?if(Access::allow('suppliers_supplier-edit')){?>
-        <button class="<?=Text::BTN?> btn-primary" toggle="edit_supplier" toggle_block="edit_supplier"><i class="fa fa-pen"></i> Редактировать</button> &nbsp;
+        <button class="<?=Text::BTN?> btn-outline-primary" toggle="edit_supplier" toggle_block="edit_supplier"><i class="fa fa-pen"></i> Редактировать</button> &nbsp;
 
         <button class="<?=Text::BTN?> btn-success dn" toggle_block="edit_supplier" onclick="saveSupplierInfo()"><i class="fa fa-check"></i> Сохранить</button>
         <button class="<?=Text::BTN?> btn-danger dn" toggle="edit_supplier" toggle_block="edit_supplier" v-on:click="cancelForm()"><i class="fa fa-times"></i> Отмена</button>
         <?}?>
     </div>
     <div class="more_info" toggle_block="supplier_info">
-        <a href="#" class="<?=Text::BTN?> btn-outline-secondary" toggle="supplier_info">Информация о поставщике</a>
+        <span class="<?=Text::BTN?> btn-outline-secondary" toggle="supplier_info">Информация о поставщике</span>
     </div>
 
 </div>

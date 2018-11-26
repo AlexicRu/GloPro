@@ -42,7 +42,7 @@
 
     <div class="form-group row m-b-0">
         <div class="col-sm-8 offset-sm-4 col-lg-9 offset-lg-3">
-            <button class="<?=Text::BTN?> btn-outline-success btn_feedback" onclick="preFeedback($(this))"><i class="fa fa-check"></i> Отправить</button>
+            <button class="<?=Text::BTN?> btn-success btn_feedback" onclick="preFeedback($(this))"><i class="fa fa-check"></i> Отправить</button>
         </div>
     </div>
 </div>

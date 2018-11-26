@@ -85,7 +85,7 @@
                 <div class="form-group row hidden-md-down">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-8 with-mt">
-                        <button class="<?=Text::BTN?> btn-outline-success btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
+                        <button class="<?=Text::BTN?> btn-success btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
                     </div>
                 </div>
             </div>
@@ -104,12 +104,12 @@
                             <?if (Access::allow('clients_edit-login')) {?>
                                 <div toggle_block="edit_login">
                                     <span class="login_value"><?=$manager['LOGIN']?></span>
-                                    <span class="<?=Text::BTN?> btn-sm btn-primary" toggle="edit_login"><i class="icon icon-pen"></i></span>
+                                    <span class="<?=Text::BTN?> btn-sm btn-primary" toggle="edit_login"><i class="fa fa-pen"></i></span>
                                 </div>
                                 <div toggle_block="edit_login" style="display: none">
                                     <input type="text" value="<?=$manager['LOGIN']?>" name="edit_login" class="form-control">
-                                    <span class="<?=Text::BTN?> btn-sm btn-success" onclick="editLogin($(this));"><i class="icon icon-ok"></i></span>
-                                    <span class="<?=Text::BTN?> btn-sm btn-danger" toggle="edit_login"><i class="icon icon-cancel"></i></span>
+                                    <span class="<?=Text::BTN?> btn-sm btn-success" onclick="editLogin($(this));"><i class="fa fa-check"></i></span>
+                                    <span class="<?=Text::BTN?> btn-sm btn-danger" toggle="edit_login"><i class="fa fa-times"></i></span>
                                 </div>
                             <?} else {?>
                                 <?=$manager['LOGIN']?>

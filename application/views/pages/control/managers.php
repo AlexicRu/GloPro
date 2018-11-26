@@ -2,7 +2,7 @@
     <div class="card-body border-bottom d-lg-none">
         <div class="row">
             <div class="col-4">
-                <span class="<?=Text::BTN?> btn-info" toggle_class="manager_list">
+                <span class="<?=Text::BTN?> btn-outline-info" toggle_class="manager_list">
                     <i class="fa fa-bars"></i> <span class="d-none d-sm-inline-block">Список менеджеров</span>
                 </span>
             </div>
@@ -23,7 +23,7 @@
                         <input id="filter_only_managers" type="checkbox" class="<?=Text::CHECKBOX?>" name="filter[only_managers]" value="1" <?=(empty($filter['only_managers']) ? '' : 'checked')?>>
                         <label for="filter_only_managers" class="font-14">Только менеджеры</label>
                     </div>
-                    <button class="<?=Text::BTN?> btn-outline-primary btn-sm">Применить</button>
+                    <button class="<?=Text::BTN?> btn-primary btn-sm">Применить</button>
                 </form>
             </li>
 

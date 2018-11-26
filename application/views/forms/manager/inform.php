@@ -11,17 +11,10 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-4">
-                <div class="text-right hidden-xs-down text-muted">
-                    <button class="<?=Text::BTN?> btn-sm manager_settings_confirm_code_btn btn-outline-primary" onclick="getSmsConfirmCode($(this))">
-                        Получить код
-                    </button>
-                </div>
-                <span class="hidden-sm-up text-muted">
-                    <button class="<?=Text::BTN?> btn-sm manager_settings_confirm_code_btn btn-outline-primary" onclick="getSmsConfirmCode($(this))">
-                        Получить код
-                    </button>
-                </span>
+            <div class="col-sm-4 text-muted form__row__title">
+                <button class="<?=Text::BTN?> btn-sm manager_settings_confirm_code_btn btn-primary" onclick="getSmsConfirmCode($(this))">
+                    Получить код
+                </button>
             </div>
             <div class="col-sm-8 with-mt">
                 <input type="text" name="manager_settings_confirm_code" class="input_mini">

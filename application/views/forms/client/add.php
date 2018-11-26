@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),addClientGo)"><i class="fa fa-plus"></i> Добавить клиента</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), addClientGo)"><i class="fa fa-plus"></i> Добавить клиента</span>
     <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

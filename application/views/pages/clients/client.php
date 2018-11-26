@@ -257,7 +257,7 @@
     <span class="<?=Text::BTN?> btn-outline-secondary m-t-10" toggle="block1">Скрыть</span> &nbsp;
 
     <?if(Access::allow('clients_client-edit')){?>
-        <button class="<?=Text::BTN?> btn-primary m-t-10" toggle="edit_client" toggle_block="edit_client"><i class="fa fa-pen"></i> Редактировать</button> &nbsp;
+        <button class="<?=Text::BTN?> btn-outline-primary m-t-10" toggle="edit_client" toggle_block="edit_client"><i class="fa fa-pen"></i> Редактировать</button> &nbsp;
     <?}?>
 
     <?if(Access::allow('clients_client-delete')){?>

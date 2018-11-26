@@ -44,7 +44,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4"></div>
                             <div class="col-sm-8 with-mt">
-                                <span class="<?=Text::BTN?> btn-outline-primary" onclick="addService()">Добавить</span>
+                                <span class="<?=Text::BTN?> btn-primary" onclick="addService()">Добавить</span>
                             </div>
                         </div>
 

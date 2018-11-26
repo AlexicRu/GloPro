@@ -14,7 +14,7 @@
                         '<span class="reference_sources_tube_name"><?=$tube['TUBE_NAME']?></span>'+
                     '</span>' +
                     '<span toggle_block="referenceSourcesTube<?=$tube['TUBE_ID']?>" style="display:none;">' +
-                        '<span onclick="referenceSourcesTubeNameChange($(this), <?=$tube['TUBE_ID']?>)" class="'+ BTN +' btn-sm btn-outline-success"><i class="fa fa-check"></i></span>'+
+                        '<span onclick="referenceSourcesTubeNameChange($(this), <?=$tube['TUBE_ID']?>)" class="'+ BTN +' btn-sm btn-success"><i class="fa fa-check"></i></span>'+
                         '<input type="text" value="<?=$tube['TUBE_NAME']?>" class="form-control">'+
                     '</span>' +
                 '</div>';
@@ -29,7 +29,7 @@
                 };
 
                 <?if ($tube['CARDS_LIST_RECIEVE'] === "0") {?>
-                    row.CARDS_LIST_RECIEVE = '<button class="'+ BTN +' btn-sm btn-outline-primary" <?=(($tube['STATE_ID'] != 1 || $tube['IS_OWNER'] != 1)? 'disabled' : '')?> onclick="referenceSourcesCardListLoadStart($(this),<?=$tube['TUBE_ID']?>)">Загрузить</button>';
+                    row.CARDS_LIST_RECIEVE = '<button class="'+ BTN +' btn-sm btn-primary" <?=(($tube['STATE_ID'] != 1 || $tube['IS_OWNER'] != 1)? 'disabled' : '')?> onclick="referenceSourcesCardListLoadStart($(this),<?=$tube['TUBE_ID']?>)">Загрузить</button>';
                 <?} else if ($tube['CARDS_LIST_RECIEVE'] === "1") {?>
                     row.CARDS_LIST_RECIEVE = 'Идет загрузка...';
                 <?} else {?>
@@ -37,7 +37,7 @@
                 <?}?>
 
                 <?if ($tube['TUBE_ORDER_REPORT'] === "0") {?>
-                    row.TUBE_ORDER_REPORT = '<button class="'+ BTN +' btn-sm btn-outline-primary" <?=($tube['STATE_ID'] != 1 ? 'disabled' : '')?>>Загрузить</button>';
+                    row.TUBE_ORDER_REPORT = '<button class="'+ BTN +' btn-sm btn-primary" <?=($tube['STATE_ID'] != 1 ? 'disabled' : '')?>>Загрузить</button>';
                 <?} else if ($tube['TUBE_ORDER_REPORT'] === "1") {?>
                     row.TUBE_ORDER_REPORT = 'Идет загрузка...';
                 <?} else {?>

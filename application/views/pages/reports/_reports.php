@@ -7,7 +7,7 @@
     <div class="card-body border-bottom d-lg-none">
         <div class="row">
             <div class="col-12">
-                <span class="<?=Text::BTN?> btn-info" toggle_class="report_list">
+                <span class="<?=Text::BTN?> btn-outline-info" toggle_class="report_list">
                     <i class="fa fa-bars"></i> Список отчетов
                 </span>
             </div>

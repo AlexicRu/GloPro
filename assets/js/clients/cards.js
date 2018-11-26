@@ -12,7 +12,7 @@ function cardToggle(t)
 {
     var comment = '';
 
-    if(t.hasClass('btn-outline-danger')){
+    if(t.hasClass('btn-danger')){
         comment = prompt('Причина блокировки:');
     }
 
@@ -25,7 +25,7 @@ function cardToggle(t)
 
         $.post('/clients/card-toggle', {params:params}, function (data) {
             if (data.success) {
-                t.toggleClass('btn-outline-danger').toggleClass('btn-outline-success').find('span').toggle();
+                t.toggleClass('btn-danger').toggleClass('btn-success').find('span').toggle();
 
                 var tab = $('.tabs_cards [tab='+ params.card_id +'] > a');
                 var cnt_in_work = $('.cards_cnt_in_work');

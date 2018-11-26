@@ -11,7 +11,7 @@
     </select>
     <?if ($settings['canDelService']) {?>
     <div class="input-group-append">
-        <button class="<?=Text::BTN?> btn-sm btn-danger" onclick="cardEditDelService_<?=$postfix?>($(this))"><i class="fa fa-times"></i></button>
+        <button class="<?=Text::BTN?> btn-sm btn-outline-danger" onclick="cardEditDelService_<?=$postfix?>($(this))"><i class="fa fa-times"></i></button>
     </div>
     <?}?>
 </div>

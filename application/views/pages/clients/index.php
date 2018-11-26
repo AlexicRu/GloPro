@@ -43,7 +43,7 @@
                 <label for="clients_filter_status_inactive">Удаленные</label>
             </div>
             <div class="pt-2">
-                <span class="<?=Text::BTN?> btn-outline-primary" onclick="clientsFilter()">Применить</span>
+                <span class="<?=Text::BTN?> btn-primary" onclick="clientsFilter()">Применить</span>
             </div>
         </div>
     </div>

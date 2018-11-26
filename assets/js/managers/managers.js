@@ -7,7 +7,7 @@ function managerStateToggle(managerId, t)
 {
     var comment = '';
 
-    if(t.hasClass('btn-outline-danger')){
+    if(t.hasClass('btn-danger')){
         comment = prompt('Причина блокировки:');
     }
 
@@ -19,7 +19,7 @@ function managerStateToggle(managerId, t)
 
         $.post('/managers/manager-toggle', {params:params}, function (data) {
             if (data.success) {
-                t.toggleClass('btn-outline-danger').toggleClass('btn-outline-success').find('span').toggle();
+                t.toggleClass('btn-danger').toggleClass('btn-success').find('span').toggle();
 
                 message(1, 'Статус менеджера изменен');
             } else {

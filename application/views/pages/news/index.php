@@ -25,7 +25,7 @@
                 '            <h4 class="mt-0 mb-1 n_title"><a /></h4>' +
                 '            <div class="n_date text-muted" />' +
                 '            <div class="n_body m-t-10 m-b-20" />' +
-                '            <div class="n_link"><a class="'+ BTN +' btn-outline-primary"><i class="fas fa-book-open"></i> Подробнее</a></div>' +
+                '            <div class="n_link"><a class="'+ BTN +' btn-primary"><i class="fas fa-book-open"></i> Подробнее</a></div>' +
                 '        </div>' +
                 '    </li>');
 

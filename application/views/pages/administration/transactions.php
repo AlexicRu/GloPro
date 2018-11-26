@@ -27,13 +27,13 @@
     <div class="tab-content p-20 bg-white">
         <div class="tab-pane active" id="tabErrors" role="tabpanel">
             <div class="text-right border-bottom p-b-20 m-b-20">
-                <span class="<?=Text::BTN?> btn-outline-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
+                <span class="<?=Text::BTN?> btn-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
             </div>
             <div class="ajax_block_administration_transactions_errors_out"></div>
         </div>
         <div class="tab-pane" id="tabProcess" role="tabpanel">
             <div class="text-right border-bottom p-b-20 m-b-20">
-                <span class="<?=Text::BTN?> btn-outline-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
+                <span class="<?=Text::BTN?> btn-success" onclick="transactionCancelToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
             </div>
             <div class="ajax_block_administration_transactions_process_out"></div>
         </div>

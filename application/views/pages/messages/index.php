@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6">
-                <a href="#" class="mark_read btn-outline-primary <?=Text::BTN?>"><i class="fa fa-check"></i> Отметить прочитанным</a>
+                <span class="mark_read btn-primary <?=Text::BTN?>"><i class="fa fa-check"></i> Отметить прочитанным</span>
             </div>
             <div class="col-sm-6">
                 <form class="input-group">

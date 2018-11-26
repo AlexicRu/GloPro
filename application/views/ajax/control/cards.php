@@ -34,7 +34,7 @@
                 '<th>' +
                     '<div class="btn-group">' +
                         '<input type="text" name="group_card_filter_description_ru" placeholder="Описание" class="form-control">' +
-                        '<button class="'+ BTN +' btn-sm btn-outline-primary" onclick="cardsFilter<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
+                        '<button class="'+ BTN +' btn-sm btn-primary" onclick="cardsFilter<?=$postfix?>($(this))"><i class="fa fa-search"></i></button>'+
                     '</div>' +
                 '</th>' +
                 '<th class="td_edit" />' +
@@ -87,7 +87,7 @@
             tpl.find('.group_card_td_CARD_ID').text(data[i].CARD_ID);
             tpl.find('.group_card_td_HOLDER').text(data[i].HOLDER);
             tpl.find('.group_card_td_DESCRIPTION_RU').text(data[i].DESCRIPTION_RU);
-            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-sm btn-outline-success"><i class="fa fa-pen"></span>');
+            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-sm btn-outline-primary"><i class="fa fa-pen"></span>');
 
             subBlock.append(tpl);
         }

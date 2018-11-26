@@ -63,7 +63,7 @@
         <?if(Access::allow('clients_contract-edit')){?>
         <div class="form-group row m-b-0">
             <div class="col-sm-12">
-                <button class="<?=Text::BTN?> btn-success btn_reverse" onclick="saveContract()"><i class="fa fa-check"></i> Сохранить</button>
+                <button class="<?=Text::BTN?> btn-success" onclick="saveContract()"><i class="fa fa-check"></i> Сохранить</button>
                 <button class="<?=Text::BTN?> btn-danger" toggle="block2"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
             </div>
         </div>

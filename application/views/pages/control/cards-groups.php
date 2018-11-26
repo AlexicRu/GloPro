@@ -13,13 +13,13 @@
                 <span toggle_block="cards_groups_block">
                     <a href="#" data-toggle="modal" data-target="#control_add_cards_group" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить группу</a>
                     <a href="#" data-toggle="modal" data-target="#control_add_cards" class="<?=Text::BTN?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить карты</a>
-                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" onclick="groupCardsToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
-                    <span class="<?=Text::BTN?> btn-outline-success m-b-5" toggle="cards_groups_block"><i class="fa fa-pen"></i></span>
+                    <span class="<?=Text::BTN?> btn-success m-b-5" onclick="groupCardsToXls()"><i class="fa fa-file-excel"></i> Выгрузить</span>
+                    <span class="<?=Text::BTN?> btn-outline-primary m-b-5" toggle="cards_groups_block"><i class="fa fa-pen"></i></span>
                 </span>
 
                 <span toggle_block="cards_groups_block" class="dn action_del">
-                    <a href="#" class="<?=Text::BTN?> btn-outline-danger btn_del_cards m-b-5"><i class="fa fa-trash-alt"></i> Удалить выделенные карты</a>
-                    <span class="<?=Text::BTN?> btn-outline-warning m-b-5" toggle="cards_groups_block"><i class="fa fa-times"></i></span>
+                    <span class="<?=Text::BTN?> btn-danger btn_del_cards m-b-5"><i class="fa fa-trash-alt"></i> Удалить выделенные карты</span>
+                    <span class="<?=Text::BTN?> btn-danger m-b-5" toggle="cards_groups_block"><i class="fa fa-times"></i></span>
                 </span>
             </div>
         </div>
@@ -29,7 +29,7 @@
 <div class="card-body border-bottom d-lg-none bg-white">
     <div class="row">
         <div class="col-12">
-            <span class="<?=Text::BTN?> btn-info" toggle_class="cards_groups_list">
+            <span class="<?=Text::BTN?> btn-outline-info" toggle_class="cards_groups_list">
                 <i class="fa fa-bars"></i> Группы карт
             </span>
         </div>
@@ -54,8 +54,8 @@
                             <input type="hidden" name="group_name" value="<?=$group['GROUP_NAME']?>">
                             <input type="hidden" name="group_type" value="<?=$group['GROUP_TYPE']?>">
 
-                            <span class="<?=Text::BTN?> btn-outline-danger btn-sm" onclick="deleteCardsGroup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-trash-alt"></i></span>
-                            <span class="<?=Text::BTN?> btn-outline-success btn-sm" onclick="showEditCardsGroupPopup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-pen"></i></span>
+                            <span class="<?=Text::BTN?> btn-danger btn-sm" onclick="deleteCardsGroup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-trash-alt"></i></span>
+                            <span class="<?=Text::BTN?> btn-outline-primary btn-sm" onclick="showEditCardsGroupPopup(<?=$group['GROUP_ID']?>, event)"><i class="fa fa-pen"></i></span>
                         </span>
 
                         <span class="gray">[<?=$group['GROUP_ID']?>]</span>

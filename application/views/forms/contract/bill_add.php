@@ -40,7 +40,7 @@
     <?if(Access::allow('client_add_bill_add_product')){?>
         <span class="<?=Text::BTN?> btn-outline-success" onclick="renderProduct()"><i class="fa fa-plus"></i><span class="hidden-xs-down"> Добавить товар</span></span>
     <?}?>
-    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this),addBill)">Выставить счет</span>
+    <span class="<?=Text::BTN?> btn-primary" onclick="submitForm($(this), addBill)">Выставить счет</span>
     <button type="button" class="<?=Text::BTN?> btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
 </div>
 

@@ -10,8 +10,8 @@
         </div>
         <div class="col-sm-2 with-mt remove-on-copy">
             <?if (!empty($tariff)) {?>
-                <span class="<?=Text::BTN?> btn-outline-danger" onclick="deleteTariff($(this))"><i class="fa fa-trash-alt"></i></span>
-                <span class="<?=Text::BTN?> btn-outline-primary" onclick="copyTariff($(this))"><i class="far fa-copy"></i></span>
+                <span class="<?=Text::BTN?> btn-danger" onclick="deleteTariff($(this))"><i class="fa fa-trash-alt"></i></span>
+                <span class="<?=Text::BTN?> btn-primary" onclick="copyTariff($(this))"><i class="far fa-copy"></i></span>
             <?}?>
         </div>
     </div>
@@ -32,7 +32,7 @@
             </select>
         </div>
         <div class="col-sm-2 with-mt">
-            <span class="<?=Text::BTN?> btn-sm btn-outline-success" onclick="loadTariffVersion($(this))">Загрузить</span>
+            <span class="<?=Text::BTN?> btn-sm btn-success" onclick="loadTariffVersion($(this))">Загрузить</span>
         </div>
     </div>
     <?}?>
@@ -57,7 +57,7 @@
 
     <div class="form-group row">
         <div class="col-12">
-            <span class="<?=Text::BTN?> btn-outline-success" onclick="saveTariff($(this))"><i class="fa fa-check"></i> Сохранить</span>
+            <span class="<?=Text::BTN?> btn-success" onclick="saveTariff($(this))"><i class="fa fa-check"></i> Сохранить</span>
         </div>
     </div>
     <?} else {?>

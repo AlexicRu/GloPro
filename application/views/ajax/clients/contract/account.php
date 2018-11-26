@@ -179,7 +179,7 @@
             }
 
             <?if(Access::allow('clients_payment-del')){?>
-            tpl.find('[row_summ]').append('<div class="float-right"><a href="#" class="del link_del_contract_payment '+ BTN +' btn-outline-danger btn-sm"><i class="fa fa-trash-alt"></i></a></div>');
+            tpl.find('[row_summ]').append('<div class="float-right"><span class="del link_del_contract_payment '+ BTN +' btn-danger btn-sm"><i class="fa fa-trash-alt"></i></span></div>');
             <?}?>
 
             block.append(tpl);
