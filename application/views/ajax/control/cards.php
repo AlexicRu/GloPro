@@ -28,7 +28,7 @@
             block = block.find('table');
 
             block.append('<tr>' +
-                '<th class="td_check"><input class="'+ CHECKBOX +'" id="cards_check_all" type="checkbox" onchange="checkAllRows($(this), \'card_id\')"><label for="cards_check_all" /></th>' +
+                '<th class="td_check"><label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" onchange="checkAllRows($(this), \'card_id\')"><span class="custom-control-label"></span></label></th>' +
                 '<th><input type="text" name="group_card_filter_card_id" placeholder="CARD ID" class="form-control"></th>' +
                 '<th><input type="text" name="group_card_filter_holder" placeholder="Владелец" class="form-control"></th>' +
                 '<th>' +
@@ -81,8 +81,7 @@
             '</tr>');
 
             tpl.find('.td_check').html(
-                '<input type="checkbox" class="'+ CHECKBOX +'" name="card_id" id="group_cards_add_card_'+ data[i].CARD_ID +'" value="'+ data[i].CARD_ID +'">' +
-                '<label for="group_cards_add_card_'+ data[i].CARD_ID +'" />'
+                '<label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" name="card_id" value="'+ data[i].CARD_ID +'"><span class="custom-control-label"></span></label>'
             );
             tpl.find('.group_card_td_CARD_ID').text(data[i].CARD_ID);
             tpl.find('.group_card_td_HOLDER').text(data[i].HOLDER);

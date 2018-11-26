@@ -46,9 +46,18 @@
         </div>
 
         <div class="m-b-20">
-            <input type="checkbox" class="<?=Text::CHECKBOX?>" checked name="transfer_cards" id="transfer_cards"> <label for="transfer_cards">Перенос карт</label><br>
-            <input type="checkbox" class="<?=Text::CHECKBOX?>" checked name="transfer_trn" id="transfer_trn"> <label for="transfer_trn">Перенос транзакций<sup>**</sup></label><br>
-            <input type="checkbox" class="<?=Text::CHECKBOX?>" checked name="save_holder" id="save_holder"> <label for="save_holder">С сохранением держателей</label>
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" checked name="transfer_cards">
+                <span class="custom-control-label">Перенос карт</span>
+            </label>
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" checked name="transfer_trn">
+                <span class="custom-control-label">Перенос транзакций<sup>**</sup></span>
+            </label>
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" checked name="save_holder">
+                <span class="custom-control-label">С сохранением держателей</span>
+            </label>
         </div>
 
         <div class="m-b-20">

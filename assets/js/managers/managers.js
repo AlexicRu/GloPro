@@ -160,10 +160,12 @@ function loadReportList(input)
         removeLoader(list);
 
         for(var i in data.data){
-            var tpl = $('<div class="item_found_row p-t-10 p-l-10 p-r-10 border-bottom">'+
-                '<input id="ifr_'+ i +'" type="checkbox" class="found_report '+ CHECKBOX +'" onchange="checkFoundItem($(this))">' +
-                '<label for="ifr_'+ i +'">' +
-                    '<span class="ifr_label badge" /> <span class="ifr_name" />' +
+            var tpl = $('<div class="item_found_row p-t-10 p-l-10 p-r-10 border-bottom">' +
+                '<label class="custom-control custom-checkbox">' +
+                    '<input type="checkbox" class="custom-control-input found_report" onchange="checkFoundItem($(this))">' +
+                    '<span class="custom-control-label">' +
+                        '<span class="ifr_label badge" /> <span class="ifr_name" />' +
+                    '</span>' +
                 '</label>' +
             '</div>');
 
@@ -249,13 +251,14 @@ function loadClientList(input)
         removeLoader(list);
 
         for(var i in data.data){
-            var tpl = $('<div class="item_found_row p-t-10 p-l-10 p-r-10 border-bottom">'+
-                '<input id="ifr_'+ i +'" type="checkbox" class="found_client '+ CHECKBOX +'" onchange="checkFoundItem($(this))">' +
-                '<label for="ifr_'+ i +'">' +
-                    '<span class="text-muted">[<span class="ifr_id" />]</span> <span class="ifr_name" />' +
+            var tpl = $('<div class="item_found_row p-t-10 p-l-10 p-r-10 border-bottom">' +
+                '<label class="custom-control custom-checkbox">' +
+                    '<input type="checkbox" class="custom-control-input found_client" onchange="checkFoundItem($(this))">' +
+                    '<span class="custom-control-label">' +
+                        '<span class="text-muted">[<span class="ifr_id" />]</span> <span class="ifr_name" />' +
+                    '</span>' +
                 '</label>' +
             '</div>');
-
 
             tpl.find('.ifr_id').text(data.data[i].CLIENT_ID);
             tpl.find('.ifr_name').text(data.data[i].CLIENT_NAME);

@@ -76,8 +76,12 @@
                     <div class="form-group row">
                         <div class="col-sm-4"></div>
                         <div class="col-sm-8 with-mt">
-                            <input type="checkbox" id="manager_settings_limit_<?=$manager['MANAGER_ID']?>" name="manager_settings_limit" <?if ($manager['LIMIT_RESTRICTION'] == 1) {?>checked<?}?> class="<?=Text::CHECKBOX?>">
-                            <label for="manager_settings_limit_<?=$manager['MANAGER_ID']?>">Ограничение в 1000 литров и 30000 рублей на лимит</label>
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="manager_settings_limit"
+                                       <?if ($manager['LIMIT_RESTRICTION'] == 1) {?>checked<?}?>
+                                >
+                                <span class="custom-control-label">Ограничение в 1000 литров и 30000 рублей на лимит</span>
+                            </label>
                         </div>
                     </div>
                 <?}?>
@@ -160,19 +164,32 @@
                     </div>
 
                     <div class="p-3 manager_settings_inform_checkboxes">
-                        <input type="checkbox" class="<?=Text::CHECKBOX?>" name="manager_sms_is_on" <?=($manager['SMS_IS_ON'] ? 'checked' : '')?> <?=(($manager['PHONE_FOR_INFORM'] && $manager['SENDER_SMS']) || Access::allow('root') ? '' : 'disabled')?> id="manager_sms_is_on<?=$manager['MANAGER_ID']?>">
-                        <label for="manager_sms_is_on<?=$manager['MANAGER_ID']?>">
-                            SMS  <?=(!$manager['SENDER_SMS'] ? '<span class="text-muted">Недоступно. Обратитесь к менеджеру.</span>' : '')?>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                                   name="manager_sms_is_on"
+                                <?=($manager['SMS_IS_ON'] ? 'checked' : '')?>
+                                <?=(($manager['PHONE_FOR_INFORM'] && $manager['SENDER_SMS']) || Access::allow('root') ? '' : 'disabled')?>
+                            >
+                            <span class="custom-control-label">
+                                SMS  <?=(!$manager['SENDER_SMS'] ? '<span class="text-muted">Недоступно. Обратитесь к менеджеру.</span>' : '')?>
+                            </span>
                         </label>
+
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                                   name="manager_telegram_is_on"
+                                <?=($manager['TELEGRAM_IS_ON'] ? 'checked' : '')?>
+                                <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?>
+                            >
+                            <span class="custom-control-label">
+                                Telegram
+                                <?if (empty($manager['TELEGRAM_CHAT_ID'])) {?>
+                                    <span class="text-muted">Необходима авторизация через Telegram бота</span>
+                                <?}?>
+                            </span>
+                        </label>
+
                         <br>
-                        <input type="checkbox" class="<?=Text::CHECKBOX?>" name="manager_telegram_is_on" <?=($manager['TELEGRAM_IS_ON'] ? 'checked' : '')?> <?=($manager['PHONE_FOR_INFORM'] ? '' : 'disabled')?> id="manager_telegram_is_on_<?=$manager['MANAGER_ID']?>">
-                        <label for="manager_telegram_is_on_<?=$manager['MANAGER_ID']?>">
-                            Telegram
-                            <?if (empty($manager['TELEGRAM_CHAT_ID'])) {?>
-                                <span class="text-muted">Необходима авторизация через Telegram бота</span>
-                            <?}?>
-                        </label>
-                        <br><br>
                         <a href="https://t.me/GloProInfo_bot" target="_blank">@GloProInfo_bot</a> - наш телеграм бот.<br>
                         <i class="text-muted">Перейдите по ссылке или найдите его через поиск в Telegram.</i><br>
                         <i class="text-muted">Авторизация в телеграм боте автоматически установит галочку Telegram информирования.</i>

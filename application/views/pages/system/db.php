@@ -31,8 +31,10 @@
                 </div>
             </div>
             <div class="col-4">
-                <input type="checkbox" name="raw" id="raw" class="<?=Text::CHECKBOX?>">
-                <label for="raw">Raw</label>
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="raw">
+                    <span class="custom-control-label">Raw</span>
+                </label>
             </div>
         </div>
     </div>

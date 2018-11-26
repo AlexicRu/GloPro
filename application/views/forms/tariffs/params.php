@@ -37,8 +37,11 @@
             </div>
         </div>
         <div class="col-sm-6 col-lg-4 with-mt p-t-10">
-            <input class="<?=Text::CHECKBOX?>" id="<?=$uid?>_close_calculation" type="checkbox" name="CLOSE_CALCULATION" <?=(!isset($params['CLOSE_CALCULATION']) || !empty($params['CLOSE_CALCULATION']) ? 'checked' : '')?>>
-            <label for="<?=$uid?>_close_calculation" class="m-b-0">Завершить расчет</label>
+            <label class="custom-control custom-checkbox mb-0">
+                <input type="checkbox" class="custom-control-input" name="CLOSE_CALCULATION"
+                    <?=(!isset($params['CLOSE_CALCULATION']) || !empty($params['CLOSE_CALCULATION']) ? 'checked' : '')?>>
+                <span class="custom-control-label">Завершить расчет</span>
+            </label>
         </div>
     </div>
 </div>

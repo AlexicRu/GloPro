@@ -20,7 +20,11 @@
             block = block.find('table');
 
             block.append('<tr>' +
-                (canEdit ? '<th class="td_check"><input type="checkbox" class="'+ CHECKBOX +'" id="cig_all<?=$groupId?>" onchange="checkAllRows($(this), \'firm_id\')"><label for="cig_all<?=$groupId?>"/></th>' : '') +
+                (
+                    canEdit ?
+                        '<th class="td_check"><label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" onchange="checkAllRows($(this), \'firm_id\')"><span class="custom-control-label"></span></label></th>' :
+                        ''
+                ) +
                 '<th><nobr>FIRM ID</nobr></th>' +
                 '<th>Владелец</th>' +
                 '<th>Описание</th>' +
@@ -40,7 +44,7 @@
                 '</tr>');
 
             tpl.attr('id', data[i].FIRM_ID);
-            tpl.find('.td_check').html('<input type="checkbox" class="'+ CHECKBOX +'" name="firm_id" id="cig_'+ data[i].FIRM_ID +'" value="'+ data[i].FIRM_ID +'"><label for="cig_'+ data[i].FIRM_ID +'" />');
+            tpl.find('.td_check').html('<label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" name="firm_id" value="'+ data[i].FIRM_ID +'"><span class="custom-control-label"></span></label>');
             tpl.find('.group_firm_td_FIRM_ID').text(data[i].FIRM_ID);
             tpl.find('.group_firm_td_HOLDER').text(data[i].HOLDER);
             tpl.find('.group_firm_td_DESCRIPTION_RU').text(data[i].DESCRIPTION_RU);

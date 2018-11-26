@@ -26,7 +26,7 @@
             block = block.find('table');
 
             block.append('<tr>' +
-                '<th class="td_check"><input class="'+ CHECKBOX +'" id="dots_check_all" type="checkbox" onchange="checkAllRows($(this), \'pos_id\')"><label for="dots_check_all" /></th>' +
+                '<th class="td_check"><label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" onchange="checkAllRows($(this), \'pos_id\')"><span class="custom-control-label"></span></label></th>' +
                 '<th><input type="text" name="dots_filter_project_name" placeholder="Шаблон ТО" class="form-control"></th>' +
                 '<th><input type="text" name="dots_filter_id_emi" placeholder="Эмитент" class="form-control"></th>' +
                 '<th><input type="text" name="dots_filter_id_to" placeholder="Номер ТО" class="form-control"></th>' +
@@ -95,9 +95,9 @@
 
             tpl.attr('POS_ID', data[i].POS_ID);
             tpl.find('.td_check').html(
-                '<input type="checkbox" class="'+ CHECKBOX +'" name="pos_id" id="group_dots_add_dot_'+ data[i].POS_ID +'" value="'+ data[i].POS_ID +'">' +
-                '<label for="group_dots_add_dot_'+ data[i].POS_ID +'" />'
+                '<label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" name="pos_id" value="'+ data[i].POS_ID +'"><span class="custom-control-label"></span></label>'
             );
+
             tpl.find('.dot_td_project_name').text(data[i].PROJECT_NAME);
             tpl.find('.dot_td_id_emi').text(data[i].ID_EMITENT);
             tpl.find('.dot_td_id_to').text(data[i].ID_TO);

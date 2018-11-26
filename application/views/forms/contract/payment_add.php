@@ -23,8 +23,10 @@
         <div class="form-group row">
             <div class="col-sm-4"></div>
             <div class="col-sm-8 with-mt">
-                <input type="checkbox" class="<?=Text::CHECKBOX?>" name="add_contract_payment_minus" id="add_contract_payment_minus">
-                <label for="add_contract_payment_minus">Списание</label>
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="add_contract_payment_minus">
+                    <span class="custom-control-label">Списание</span>
+                </label>
             </div>
         </div>
 

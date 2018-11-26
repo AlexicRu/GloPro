@@ -36,11 +36,14 @@
 
         <div class="collapse" id="clientsFilter">
             <div class="pt-4">
-                <input type="checkbox" name="clients_filter_status_active" class="<?=Text::CHECKBOX?>" id="clients_filter_status_active" checked>
-                <label for="clients_filter_status_active">В работе</label>
-                &nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="clients_filter_status_inactive" class="<?=Text::CHECKBOX?>" id="clients_filter_status_inactive" checked>
-                <label for="clients_filter_status_inactive">Удаленные</label>
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" checked name="clients_filter_status_active">
+                    <span class="custom-control-label">В работе</span>
+                </label>
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" checked name="clients_filter_status_inactive">
+                    <span class="custom-control-label">Удаленные</span>
+                </label>
             </div>
             <div class="pt-2">
                 <span class="<?=Text::BTN?> btn-primary" onclick="clientsFilter()">Применить</span>

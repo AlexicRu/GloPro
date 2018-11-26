@@ -4,7 +4,6 @@ class Text extends Kohana_Text
 {
     const RUR = '₽';
     const BTN = ' btn waves-effect waves-light ';
-    const CHECKBOX = ' filled-in chk-col-purple ';
     const RADIO = ' with-gap radio-col-purple ';
 
     /**

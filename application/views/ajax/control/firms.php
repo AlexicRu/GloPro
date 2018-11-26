@@ -28,7 +28,7 @@
             block = block.find('table');
 
             block.append('<tr>' +
-                '<th class="td_check"><input class="'+ CHECKBOX +'" id="firms_check_all" type="checkbox" onchange="checkAllRows($(this), \'firm_id\')"><label for="firms_check_all" /></th>' +
+                '<th class="td_check"><label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" onchange="checkAllRows($(this), \'firm_id\')"><span class="custom-control-label"></span></label></th>' +
                 '<th><input type="text" name="group_firm_filter_firm_id" placeholder="FIRM ID" class="form-control"></th>' +
                 '<th><input type="text" name="group_firm_filter_holder" placeholder="Владелец" class="form-control"></th>' +
                 '<th>' +
@@ -81,8 +81,7 @@
                 '</tr>');
 
             tpl.find('.td_check').html(
-                '<input type="checkbox" class="'+ CHECKBOX +'" name="firm_id" id="group_firms_add_firm_'+ data[i].FIRM_ID +'" value="'+ data[i].FIRM_ID +'">' +
-                '<label for="group_firms_add_firm_'+ data[i].FIRM_ID +'" />'
+                '<label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" name="firm_id" value="'+ data[i].FIRM_ID +'"><span class="custom-control-label"></span></label>'
             );
             tpl.find('.group_firm_td_FIRM_ID').text(data[i].FIRM_ID);
             tpl.find('.group_firm_td_HOLDER').text(data[i].HOLDER);

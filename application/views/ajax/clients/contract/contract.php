@@ -115,8 +115,10 @@
                                value="<?=($contractSettings['AUTOBLOCK_FLAG_DATE'] == Date::DATE_MAX ? '' : Date::formatToDefault($contractSettings['AUTOBLOCK_FLAG_DATE']))?>"
                         >
 
-                        <input type="checkbox" id="autoblock_flag_date_checkbox" class="<?=Text::CHECKBOX?> autoblock_flag_date_checkbox" onchange="checkAutoblockFlagDateIndefinitely($(this))">
-                        <label for="autoblock_flag_date_checkbox">Бессрочно</label>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input autoblock_flag_date_checkbox" onchange="checkAutoblockFlagDateIndefinitely($(this))">
+                            <span class="custom-control-label">Бессрочно</span>
+                        </label>
                     </span>
                 </div>
             </div>

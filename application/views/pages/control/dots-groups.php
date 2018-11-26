@@ -42,13 +42,12 @@
             <form class="p-r-10 p-l-10 p-b-10 border-bottom m-b-10 form_groups_dots" onsubmit="return collectForms($(this), 'form_groups_dots')">
                 <?foreach(Model_Dot::$groupsTypesNames as $groupsType => $groupsTypesName){?>
                     <div class="m-b-5">
-                        <input type="checkbox" name="filter[group_type][]" value="<?=$groupsType?>"
-                            <?=(!empty($filter['group_type']) && in_array($groupsType, $filter['group_type']) ? 'checked' : '')?>
-                            id="group_type_<?=$groupsType?>"
-                            class="<?=Text::CHECKBOX?>"
-                        >
-                        <label for="group_type_<?=$groupsType?>" class="font-14">
-                            <?=$groupsTypesName?>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="filter[group_type][]"
+                                   value="<?=$groupsType?>"
+                                <?=(!empty($filter['group_type']) && in_array($groupsType, $filter['group_type']) ? 'checked' : '')?>
+                            >
+                            <span class="custom-control-label"><?=$groupsTypesName?></span>
                         </label>
                     </div>
                 <?}?>

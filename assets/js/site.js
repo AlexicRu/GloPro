@@ -1,5 +1,4 @@
 var BTN = ' btn waves-effect waves-light ';
-var CHECKBOX = ' filled-in chk-col-purple ';
 var currentPaginationAjaxRequest;
 
 if (typeof Dropzone == 'function') {

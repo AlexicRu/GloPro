@@ -113,43 +113,23 @@
             fields: [
                 {
                     headerTemplate: function() {
-                        var input = $("<input>")
-                            .attr('id', 'close_check_all')
-                            .attr("type", "checkbox")
-                            .addClass(CHECKBOX)
-                            .prop('checked', true)
-                            .on("change", function () {
-                                closePeriod_toggleSelectedItems($(this));
-                            });
-
-                        var tpl = $('<span />');
-
-                        tpl.append(input);
-                        tpl.append('<label for="close_check_all" />');
-
-                        return tpl;
+                        return $('<label class="custom-control custom-checkbox">' +
+                            '<input type="checkbox" class="custom-control-input" checked onchange="closePeriod_toggleSelectedItems($(this))">' +
+                            '<span class="custom-control-label"></span>' +
+                        '</label>');
                     },
                     itemTemplate: function(_, item) {
                         if(item.CAN_ADD == 1) {
-                            var tpl = $('<span />');
-
-                            var input = $("<input>")
-                                .attr('id', 'close_item_' + item.ORDER_NUM)
-                                .addClass(CHECKBOX)
-                                .addClass('add_element')
-                                .attr("type", "checkbox")
-                                .prop("checked", true)
+                            return $('<label class="custom-control custom-checkbox">' +
+                                    '<input type="checkbox" class="custom-control-input add_element" checked>' +
+                                    '<span class="custom-control-label"></span>' +
+                                '</label>')
                                 .data("contract_id", item.CONTRACT_ID)
                                 .data("num", item.ORDER_NUM)
                                 .data("date", item.ORDER_DATE)
                                 .data("value", item.SUMPAY * (item.OPERATION == 50 ? 1 : -1))
                                 .data("comment", item.COMMENT)
                             ;
-
-                            tpl.append(input);
-                            tpl.append('<label for="close_item_' + item.ORDER_NUM + '" />');
-
-                            return tpl;
                         }else{
                             return '';
                         }

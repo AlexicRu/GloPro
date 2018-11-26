@@ -60,7 +60,7 @@
     <?if (Access::allow('managers_load-reports')) {?>
     <div class="tab-pane" id="tabReports<?=$managerId?>" role="tabpanel">
         <div class="p-3 border-bottom text-right">
-            <a href="#" data-toggle="modal" data-target="#manager_add_reports" class="<?=Text::BTN?> btn-outline-primary">Добавить отчеты</a>
+            <a href="#" data-toggle="modal" data-target="#manager_add_reports" class="<?=Text::BTN?> btn-outline-primary"><i class="fa fa-plus"></i> Добавить отчеты</a>
         </div>
         <div class="p-3">
             <div class="report_list"></div>

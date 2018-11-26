@@ -20,8 +20,10 @@
                     <input type="text" name="filter[search]" class="form-control input_messages" placeholder="Поиск..." value="<?=(empty($filter['search']) ? '' : $filter['search'])?>">
 
                     <div class="m-t-5 m-b-5">
-                        <input id="filter_only_managers" type="checkbox" class="<?=Text::CHECKBOX?>" name="filter[only_managers]" value="1" <?=(empty($filter['only_managers']) ? '' : 'checked')?>>
-                        <label for="filter_only_managers" class="font-14">Только менеджеры</label>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="filter[only_managers]" value="1" <?=(empty($filter['only_managers']) ? '' : 'checked')?>>
+                            <span class="custom-control-label">Только менеджеры</span>
+                        </label>
                     </div>
                     <button class="<?=Text::BTN?> btn-primary btn-sm">Применить</button>
                 </form>

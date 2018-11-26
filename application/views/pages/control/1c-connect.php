@@ -133,43 +133,23 @@
             fields: [
                 {
                     headerTemplate: function() {
-                        var input = $("<input>")
-                            .attr('id', 'connect_check_all')
-                            .attr("type", "checkbox")
-                            .addClass(CHECKBOX)
-                            .prop('checked', true)
-                            .on("change", function () {
-                                connect1cPayments_toggleSelectedItems($(this));
-                            });
-
-                        var tpl = $('<span />');
-
-                        tpl.append(input);
-                        tpl.append('<label for="connect_check_all" />');
-
-                        return tpl;
+                        return $('<label class="custom-control custom-checkbox">' +
+                            '<input type="checkbox" class="custom-control-input" checked onchange="connect1cPayments_toggleSelectedItems($(this))">' +
+                            '<span class="custom-control-label"></span>' +
+                        '</label>');
                     },
                     itemTemplate: function(_, item) {
                         if(item.CAN_ADD == 1) {
-                            var tpl = $('<span />');
-
-                            var input = $("<input>")
-                                .attr('id', 'connect_item_' + item.ORDER_NUM)
-                                .addClass(CHECKBOX)
-                                .addClass('add_element')
-                                .prop("checked", true)
-                                .attr("type", "checkbox")
+                            return $('<label class="custom-control custom-checkbox">' +
+                                    '<input type="checkbox" class="custom-control-input add_element" checked>' +
+                                    '<span class="custom-control-label"></span>' +
+                                '</label>')
                                 .data("contract_id", item.CONTRACT_ID)
                                 .data("num", item.ORDER_NUM)
                                 .data("date", item.ORDER_DATE)
                                 .data("value", item.SUMPAY * (item.OPERATION == 50 ? 1 : -1))
                                 .data("comment", item.COMMENT)
                             ;
-
-                            tpl.append(input);
-                            tpl.append('<label for="connect_item_' + item.ORDER_NUM + '" />');
-
-                            return tpl;
                         }else{
                             return '';
                         }
@@ -207,7 +187,7 @@
         var payments = [];
         
         tbl.find('.add_element:checked').each(function () {
-            var t = $(this);
+            var t = $(this).closest('.custom-control');
 
             payments.push({
                 contract_id: t.data('contract_id'),

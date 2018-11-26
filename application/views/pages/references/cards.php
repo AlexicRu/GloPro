@@ -54,7 +54,25 @@
             { name: "SOURCE_NAME", type: "text", title: 'Имя источника', width:'auto'},
             { name: "SOURCE_STATE", type: "select", title: 'Статус в источнике', width:200, items: db.statuses, valueField: "name", textField: "name" },
             { name: "ISSUE_STATE", type: "text", title: 'Статус выдачи', width:250 },
-            { name: "status", type: "checkbox", title: 'Не выдано', width:80}
+            {
+                title: 'Не выдано',
+                width: 80,
+                name: 'status',
+                type: 'checkbox',
+                itemTemplate: function(_, item) {
+                    var tpl = $('<label class="custom-control custom-checkbox">' +
+                            '<input type="checkbox" class="custom-control-input" disabled>' +
+                            '<span class="custom-control-label"></span>' +
+                        '</label>')
+                    ;
+
+                    if (item.status) {
+                        tpl.find('[type=checkbox]').prop('checked', true);
+                    }
+
+                    return tpl;
+                },
+            }
         ]
     });
 

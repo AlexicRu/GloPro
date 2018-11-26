@@ -20,7 +20,11 @@
             block = block.find('table');
 
             block.append('<tr>' +
-                (canEdit ? '<th class="td_check"><input type="checkbox" class="'+ CHECKBOX +'" id="cig_all<?=$groupId?>" onchange="checkAllRows($(this), \'card_id\')"><label for="cig_all<?=$groupId?>"/></th>' : '') +
+                (
+                    canEdit ?
+                        '<th class="td_check"><label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" onchange="checkAllRows($(this), \'card_id\')"><span class="custom-control-label"></span></label></th>' :
+                        ''
+                ) +
                 '<th><nobr>CARD ID</nobr></th>' +
                 '<th>Владелец</th>' +
                 '<th>Описание</th>' +
@@ -40,7 +44,7 @@
             '</tr>');
 
             tpl.attr('id', data[i].CARD_ID);
-            tpl.find('.td_check').html('<input type="checkbox" class="'+ CHECKBOX +'" name="card_id" id="cig_'+ data[i].CARD_ID +'" value="'+ data[i].CARD_ID +'"><label for="cig_'+ data[i].CARD_ID +'" />');
+            tpl.find('.td_check').html('<label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" name="card_id" value="'+ data[i].CARD_ID +'"><span class="custom-control-label"></span></label>');
             tpl.find('.group_card_td_CARD_ID').text(data[i].CARD_ID);
             tpl.find('.group_card_td_HOLDER').text(data[i].HOLDER);
             tpl.find('.group_card_td_DESCRIPTION_RU').text(data[i].DESCRIPTION_RU);
