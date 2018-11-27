@@ -13,10 +13,10 @@
     }
 </style>
 
-<h2 class="text-themecolor">Запрос</h2>
-
 <div class="card">
     <div class="card-body">
+        <h3 class="card-title"><span class="lstick"></span>Запрос</h3>
+
         <textarea name="query" placeholder="Текст запроса" class="form-control"></textarea>
         <div class="row">
             <div class="col-4">
@@ -41,7 +41,8 @@
 </div>
 
 <div class="result__block">
-    <h2 class="text-themecolor">Результат <span class="text-muted time"></span></h2>
+    <h3 class="card-title"><span class="lstick"></span>Результат <span class="text-muted time"></span></h3>
+
     <div class="card">
         <div class="card-body">
             <div class="result"></div>

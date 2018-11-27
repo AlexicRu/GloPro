@@ -4,10 +4,10 @@
             <span class="<?=Text::BTN?> btn-sm btn-outline-danger ts_remove"><i class="fa fa-times"></i></span>
         </div>
 
-        <legend>
-            Секция <span class="section_num"><?=$section['SECTION_NUM']?></span>
+        <h3 class="card-title">
+            <span class="lstick"></span>Секция <span class="section_num"><?=$section['SECTION_NUM']?></span>
 
-            <div class="btn-group">
+            <div class="btn-group ml-2">
                 <span class="<?=Text::BTN?> btn-sm btn-outline-info" onclick="sectionMove('up', $(this))"><i class="fa fa-chevron-up"></i></span>
                 <span class="<?=Text::BTN?> btn-sm btn-outline-info" onclick="sectionMove('down', $(this))"><i class="fa fa-chevron-down"></i></span>
             </div>
@@ -15,7 +15,7 @@
             <?if ((isset($tariff['current_version']) && $tariff['current_version'] == $tariff['LAST_VERSION']) && !empty($tariff)) {?>
                 <span class="<?=Text::BTN?> btn-sm btn-outline-primary remove-on-copy" onclick="sectionCopy($(this))"><i class="far fa-copy"></i></span>
             <?}?>
-        </legend>
+        </h3>
 
 
         <b class="font-18">Условия:</b>

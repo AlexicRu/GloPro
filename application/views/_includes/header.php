@@ -30,6 +30,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+    <script defer src="https://pro.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-3yBLeJ4waqGSAf4A8pjZ13UF7GuhgbdKnBQvIp/TkWoXtQbtwjlIPNjkDRJ46UCn" crossorigin="anonymous"></script>
     <?if (!empty($scripts)) {
         foreach($scripts as $script){?>
             <script src="<?=$script?>"></script>

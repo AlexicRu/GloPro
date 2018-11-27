@@ -47,19 +47,21 @@ class Controller_References extends Controller_Common {
     }
 
     /**
-     * Курсы валют
+     * Номенклатура
      */
-    public function action_services()
+    public function action_nomenclature()
     {
-        $this->title[] = 'Услуги';
+        $this->title[] = 'Номенклатура';
 
         $this->_initJsGrid();
 
         $tubesList = Model_Tube::getTubes(['is_owner' => 1]);
+        $tubesList2 = Model_Tube::getTubes(['card_limit_change_id' => 1]);
         $servicesList = Listing::getServices();
 
         $this->tpl
             ->bind('tubesList', $tubesList)
+            ->bind('tubesList2', $tubesList2)
             ->bind('servicesList', $servicesList)
         ;
     }

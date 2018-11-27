@@ -24,6 +24,9 @@ class Model_Tube extends Model
         if (isset($params['is_owner'])) {
             $sql->where('is_owner = ' . $params['is_owner']);
         }
+        if (isset($params['card_limit_change_id '])) {
+            $sql->where('card_limit_change_id = ' . $params['card_limit_change_id ']);
+        }
 
         return $db->query($sql);
     }

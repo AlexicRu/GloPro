@@ -199,9 +199,9 @@
 
 <br>
 
-<div class="ajax_block_operations_history_<?=$card['CARD_ID']?>_out">
-    <div class="font-weight-bold font-18 m-b-10">История операций:</div>
-</div>
+<div class="font-weight-bold font-18 m-b-10">История операций:</div>
+
+<div class="ajax_block_operations_history_<?=$card['CARD_ID']?>_out pl-3 pr-3"></div>
 
 <?if(Access::allow('clients_card_edit')){?>
     <?=$popupCardHolderEdit?>

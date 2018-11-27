@@ -87,11 +87,7 @@
 
             <div class="font-18 font-weight-bold">Платежи:</div><br>
 
-            <div class="p-r-3 p-l-3">
-                <div class="ajax_block_payments_history_out">
-
-                </div>
-            </div>
+            <div class="ajax_block_payments_history_out pr-3 pl-3"></div>
         </div>
     </div>
 </div>

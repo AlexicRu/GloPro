@@ -12,10 +12,10 @@
     </div>
 </div>
 
-<h2 class="text-themecolor">Версия</h2>
-
 <div class="card">
     <div class="card-body">
+        <h3 class="card-title"><span class="lstick"></span>Версия</h3>
+
         <a href="/system/version-refresh" class="ajax <?=Text::BTN?> btn-primary m-b-20">Обновить</a>
 
         <div class="result">
@@ -24,10 +24,10 @@
     </div>
 </div>
 
-<h2 class="text-themecolor">Сборка frontend</h2>
-
 <div class="card">
     <div class="card-body">
+        <h3 class="card-title"><span class="lstick"></span>Сборка frontend</h3>
+
         <a href="/system/gulp/build" class="<?=Text::BTN?> btn-primary ajax"><b>gulp build</b> - css, js, fonts, image</a> &nbsp;&nbsp;&nbsp;
         <a href="/system/gulp/fast" class="<?=Text::BTN?> btn-primary ajax"><b>gulp fast</b> - css, js</a> &nbsp;&nbsp;&nbsp;
         <a href="/system/gulp/images" class="<?=Text::BTN?> btn-primary ajax"><b>gulp images</b></a>
@@ -36,10 +36,10 @@
     </div>
 </div>
 
-<h2 class="text-themecolor">Сборка backend</h2>
-
 <div class="card">
     <div class="card-body">
+        <h3 class="card-title"><span class="lstick"></span>Сборка backend</h3>
+
         <a href="/system/deploy" class="ajax <?=Text::BTN?> btn-primary"><b>deploy</b> - git</a>
 
         <div class="result"></div>

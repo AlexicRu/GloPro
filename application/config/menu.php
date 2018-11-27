@@ -25,7 +25,7 @@ return array(
         'sources'       => 'Источники данных',
         'addresses'     => 'Адреса',
         'currency'      => 'Валюты',
-        'services'      => 'Услуги',
+        'nomenclature'  => 'Номенклатура',
         'cards'         => 'Список карт',
         'dots'          => 'Точки обслуживания',
     ]],

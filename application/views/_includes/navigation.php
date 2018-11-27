@@ -24,7 +24,7 @@
                     <?foreach ($user['managers_binds'] as $manager) {?>
                         <a href="/force-login/<?=Common::encrypt($user['MANAGER_ID'] . ' ' . $manager['MANAGER_TO'])?>">
                             <div class="mail-contnet">
-                                <h5><i class="far fa-sign-in fa-lg m-r-5"></i> <?=$manager['WEB_NAME_TO']?></h5>
+                                <h5><i class="far fa-sign-in-alt fa-lg m-r-5"></i> <?=$manager['WEB_NAME_TO']?></h5>
                             </div>
                         </a>
                     <?}?>

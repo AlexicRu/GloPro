@@ -27,12 +27,12 @@
         for(var i in data){
             var tpl = $('<div class="col-md-6"><div class="card">' +
                 '    <div class="card-body">' +
+                '        <h3 class="card-title"><span class="lstick"></span><span /></h3>' +
                 '        <div class="row">' +
                 '            <div class="col-lg-3 col-md-4 align-top text-center">' +
                 '                <div class="s_logo" />' +
                 '            </div>' +
                 '            <div class="col-lg-9 col-md-8">' +
-                '                <h5 class="card-title" />' +
                 '                <p class="card-text" />' +
                 '                <a class="'+ BTN +' btn-primary">Подробнее</a>' +
                 '            </div>' +
@@ -41,7 +41,7 @@
                 '</div></div>');
 
             tpl.data('supplier_id', data[i].ID);
-            tpl.find('.card-title').text(data[i].SUPPLIER_NAME);
+            tpl.find('.card-title span:last').text(data[i].SUPPLIER_NAME);
             tpl.find('.btn').attr('href', '/suppliers/' + data[i].ID);
             tpl.find('.card-text').text(data[i].LONG_NAME);
 

@@ -12,7 +12,7 @@
         <div class="p-20 bg-white">
             <div id="vue_agent_info">
                 <div class="border-bottom mb-3 pb-3 row font-20">
-                    <div class="col-9">
+                    <div class="col-9 col-sm-8">
                         <span>
                             <?if (Access::allow('root')) {?>
                                 <span toggle_block="agentBlock">
@@ -32,9 +32,13 @@
                             <?}?>
                         </span>
                     </div>
-                    <div class="col-3 text-right">
-                        <span toggle_block="agentBlock" toggle="agentBlock"><span class="<?=Text::BTN?> btn-outline-primary"><i class="fa fa-pen"></i> Редактировать</span></span>
-                        <span toggle_block="agentBlock" toggle="agentBlock" class="dn"><span class="<?=Text::BTN?> btn-danger" v-on:click="cancelForm()"><i class="fa fa-times"></i> Закрыть</span></span>
+                    <div class="col-3 col-sm-4 text-right">
+                        <span toggle_block="agentBlock" toggle="agentBlock">
+                            <span class="<?=Text::BTN?> btn-outline-primary"><i class="fa fa-pen"></i><span class="d-none d-sm-inline-block ml-1">Редактировать</span></span>
+                        </span>
+                        <span toggle_block="agentBlock" toggle="agentBlock" class="dn">
+                            <span class="<?=Text::BTN?> btn-danger" v-on:click="cancelForm()"><i class="fa fa-times"></i><span class="d-none d-sm-inline-block ml-1">Закрыть</span></span>
+                        </span>
                     </div>
                 </div>
 

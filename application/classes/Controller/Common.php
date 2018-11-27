@@ -216,10 +216,6 @@ abstract class Controller_Common extends Controller_Template {
             '/admin-pro/assets/plugins/sparkline/jquery.sparkline.min.js',
             '/assets/plugins/jquery.maskMoney.min.js',
             '/admin-pro/main/js/custom.js',
-            Common::getAssetsLink() . 'fonts/font-awesome-5/fa-solid.min.js',
-            Common::getAssetsLink() . 'fonts/font-awesome-5/fa-light.min.js',
-            Common::getAssetsLink() . 'fonts/font-awesome-5/fa-regular.min.js',
-            Common::getAssetsLink() . 'fonts/font-awesome-5/fontawesome.min.js',
         ];
 
         $this->template->scriptsRaw = [];
