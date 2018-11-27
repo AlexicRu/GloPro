@@ -149,4 +149,39 @@ class Controller_References extends Controller_Common {
     {
         $this->title[] = 'Точки обслуживания';
     }
+
+    /**
+     * загружаем данные по трубе
+     */
+    public function action_loadTubeServicesData()
+    {
+        $tubeId = $this->request->post('tube_id');
+
+        $servicesOpen = Listing::getServices(['TUBE_ID' => $tubeId]);
+        $servicesAvailable = Model_Tube::getTubeServiceAvailable($tubeId);
+
+        $html = View::factory('ajax/references/tube-services')
+            ->bind('servicesOpen', $servicesOpen)
+            ->bind('servicesAvailable', $servicesAvailable)
+        ;
+
+        $this->html($html);
+    }
+
+    /**
+     * редактирования услуги в трубе
+     */
+    public function action_editTubeService()
+    {
+        $tubeId = $this->request->post('tube_id');
+        $serviceId = $this->request->post('service_id');
+        $action = $this->request->post('action');
+
+        $result = Model_Tube::editTubeService($tubeId, $serviceId, $action);
+
+        if (empty($result)) {
+            $this->jsonResult(0);
+        }
+        $this->jsonResult(1);
+    }
 }

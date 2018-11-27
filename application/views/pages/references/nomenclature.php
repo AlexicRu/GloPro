@@ -6,7 +6,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#fence" role="tab">
+        <a class="nav-link" data-toggle="tab" href="#fence" role="tab" onclick="checkLoadedTubeServicesData()">
             <i class="far fa-credit-card-front fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Для лимитов</span>
         </a>
     </li>
@@ -77,7 +77,20 @@
     <div class="tab-pane" id="fence" role="tabpanel">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title"><span class="lstick"></span>Выберите трубу</h3>
+                <div class="font-weight-bold font-18 mb-2">Выберите трубу:</div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Источник:</span>
+                    </div>
+                    <select class="tubes_list_limits custom-select" onchange="loadTubeServicesData($(this))">
+                        <?foreach ($tubesList2 as $tube) {?>
+                            <option value="<?=$tube['TUBE_ID']?>"><?=$tube['TUBE_NAME']?></option>
+                        <?}?>
+                    </select>
+                </div>
+
+                <div class="tube-data"></div>
             </div>
         </div>
     </div>
@@ -180,6 +193,26 @@
                 { name: "FULL_DESC", type: "text", title: 'Полное наименование', width:150},
                 { name: "SERVICE_IN_TUBE", type: "text", title: 'Наименование в источнике', width:160},
             ]
+        });
+    }
+
+    function checkLoadedTubeServicesData()
+    {
+        if ($('.tube-data').is(':empty')) {
+            loadTubeServicesData($('.tubes_list_limits'));
+        }
+    }
+
+    function loadTubeServicesData(select)
+    {
+        var value = select.val();
+        var block = $('.tube-data');
+
+        addLoader(block);
+
+        $.post('/references/load-tube-services-data/', {tube_id: value}, function(data){
+            removeLoader(block);
+            block.html(data);
         });
     }
 </script>
