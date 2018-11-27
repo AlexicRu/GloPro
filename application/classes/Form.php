@@ -42,6 +42,10 @@ class Form extends Kohana_Form
 
         $content->bind('popupClass', $popupClass);
 
+        if (!empty($data['backdrop'])) {
+            $content->bind('backdrop', $data['backdrop']);
+        }
+
         return $content;
     }
 

@@ -446,8 +446,9 @@ abstract class Controller_Common extends Controller_Template {
         if (!empty($globalMessages)) {
             $globalMessages = Model_Note::parseBBCodes($globalMessages, false);
 
-            $popupGlobalMessages = Form::popup('ВАЖНО!', 'common/global_messages', [
-                'globalMessages' => $globalMessages
+            $popupGlobalMessages = Form::popupLarge('ВАЖНО!', 'common/global_messages', [
+                'globalMessages' => $globalMessages,
+                'backdrop' => 'static'
             ]);
 
             View::set_global('popupGlobalMessages', $popupGlobalMessages);

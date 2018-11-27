@@ -12,4 +12,13 @@
 
 <?=$content?>
 
+<?if (!empty($popupGlobalMessages)){?>
+    <?=$popupGlobalMessages?>
+    <script>
+        $(function () {
+            $('#common_global_messages').modal('show');
+        });
+    </script>
+<?}?>
+
 <?include '_includes/footer.php'?>
