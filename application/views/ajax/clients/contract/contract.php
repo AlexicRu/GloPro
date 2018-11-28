@@ -1,21 +1,10 @@
 <div class="p-20 border-bottom">
-    <div toggle_block="block2">
-        <div class="row font-20 align-items-center">
-            <div class="col-9">
-                <b><?=$contract['CONTRACT_NAME']?></b>
-                <span class="text-muted">[<?=$contract['CONTRACT_ID']?>]</span>
-                <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
-                <?if($contract['DATE_END'] != Date::DATE_MAX){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
-                <span class="label label-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
-            </div>
-            <div class="col-3 text-right">
-                <?if(Access::allow('clients_contract-edit')){?>
-                    <div class="float-right">
-                        <button class="<?=Text::BTN?> btn-outline-primary" toggle="block2"><i class="fa fa-pen"></i><span class="hidden-md-down"> Редактировать</span></button>
-                    </div>
-                <?}?>
-            </div>
-        </div>
+    <div toggle_block="block2" class="font-20 align-items-center">
+        <b><?=$contract['CONTRACT_NAME']?></b>
+        <span class="text-muted">[<?=$contract['CONTRACT_ID']?>]</span>
+        <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
+        <?if($contract['DATE_END'] != Date::DATE_MAX){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
+        <span class="label label-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
     </div>
 
     <div class="dn" toggle_block="block2">
@@ -29,8 +18,8 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4 m-b-20 p-b-5">
+        <div class="row mb-0">
+            <div class="col-md-4 p-b-5">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">от</div>
@@ -39,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 m-b-20 p-b-5">
+            <div class="col-md-4 p-b-5">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">до</div>
@@ -48,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 m-b-20 p-b-5">
+            <div class="col-md-4 p-b-5">
                 <select class="custom-select" name="STATE_ID">
                     <?
                     $user = User::current();
@@ -63,17 +52,26 @@
             </div>
         </div>
 
-        <?if(Access::allow('clients_contract-edit')){?>
-        <div class="form-group row m-b-0">
-            <div class="col-sm-12">
-                <button class="<?=Text::BTN?> btn-success" onclick="saveContract()"><i class="fa fa-check"></i> Сохранить</button>
-                <button class="<?=Text::BTN?> btn-danger" toggle="block2"><i class="fa fa-times"></i><span class="hidden-xs-down"> Отмена</span></button>
-            </div>
-        </div>
-        <?}?>
-
     </div>
 </div>
+
+<?if(Access::allow('clients_contract-edit')){?>
+    <div class="row p-20 border-bottom">
+        <div class="col-2">
+            <span class="dn" toggle_block="block2"><button class="<?=Text::BTN?> btn-success" onclick="saveContract()"><i class="fa fa-check"></i> Сохранить</button></span>
+        </div>
+
+        <div class="col-10 text-right">
+            <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#contract_history"><i class="fa fa-history"></i> <span class="hidden-md-down">История по договору</span></a>
+
+            <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#contract_notice_settings"><i class="fa fa-cog"></i> <span class="hidden-md-down">Настройка уведомлений</span></a>
+
+            <span class="<?=Text::BTN?> btn-outline-primary" toggle="block2" toggle_block="block2"><i class="fa fa-pen"></i> <span class="hidden-md-down"> Редактировать</span></span>
+
+            <span class="dn" toggle_block="block2"><span class="<?=Text::BTN?> btn-danger" toggle="block2"><i class="fa fa-times"></i> <span class="hidden-xs-down"> Отмена</span></span></span>
+        </div>
+    </div>
+<?}?>
 
 <div class="row p-20">
     <div class="col-lg-6">
@@ -298,10 +296,6 @@
                 <div class="font-18 font-weight-bold m-b-10">История изменения тарифов</div>
                 <div class="ajax_block_contract_tariff_history_out"></div>
             <?}?>
-
-            <a href="#" class="<?=Text::BTN?> btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_history">История по договору</a>
-
-            <a href="#" class="<?=Text::BTN?> btn-outline-primary m-t-10" data-toggle="modal" data-target="#contract_notice_settings">Настройка уведомлений</a>
 
             <?if(Access::allow('view_contract_managers')){?>
                 <div class="font-18 font-weight-bold m-b-10 m-t-20">Менеджеры:</div>
