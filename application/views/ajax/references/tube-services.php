@@ -4,7 +4,7 @@
         <?foreach ($servicesOpen as $service) {?>
             <h3 service="<?=$service['SERVICE_ID']?>">
                 <span class="badge badge-primary"><?=$service['FOREIGN_DESC']?></span>
-                <span class="btn btn-xs btn-danger" onclick="deleteServiceFromTube(<?=$service['SERVICE_ID']?>)"><i class="fa fa-trash-alt"></i></span>
+                <a href="#" class="text-danger" onclick="deleteServiceFromTube(<?=$service['SERVICE_ID']?>)"><i class="fa fa-trash-alt font-16"></i></a>
             </h3>
         <?}?>
     </div>
@@ -13,7 +13,7 @@
         <?foreach ($servicesAvailable as $service) {?>
             <h3 service="<?=$service['SERVICE_ID']?>">
                 <span class="badge badge-success"><?=$service['SYSTEM_SERVICE_NAME']?></span>
-                <span class="btn btn-xs btn-primary" onclick="addServiceToTube(<?=$service['SERVICE_ID']?>)"><i class="fa fa-plus"></i></span>
+                <a href="#" class="text-primary" onclick="addServiceToTube(<?=$service['SERVICE_ID']?>)"><i class="fa fa-plus font-16"></i></a>
             </h3>
         <?}?>
     </div>
@@ -40,7 +40,7 @@
 
                 var badge = $('<h3 service="'+ serviceId +'">' +
                     '    <span class="badge badge-success">'+ $('h3[service='+ serviceId +'] .badge').text() +'</span>' +
-                    '    <span class="btn btn-xs btn-primary" onclick="addServiceToTube('+ serviceId +')"><i class="fa fa-plus"></i></span>' +
+                    '    <a href="#" class="text-primary" onclick="addServiceToTube('+ serviceId +')"><i class="fa fa-plus font-16"></i></a>' +
                     '</h3>');
 
                 $('h3[service='+ serviceId +']').remove();
@@ -49,6 +49,8 @@
                 message(false, 'Ошибка удаления услуги');
             }
         });
+
+        return false;
     }
 
     function addServiceToTube(serviceId)
@@ -71,7 +73,7 @@
 
                 var badge = $('<h3 service="'+ serviceId +'">' +
                     '    <span class="badge badge-primary">'+ $('h3[service='+ serviceId +'] .badge').text() +'</span>' +
-                    '    <span class="btn btn-xs btn-danger" onclick="deleteServiceFromTube('+ serviceId +')"><i class="fa fa-trash-alt"></i></span>' +
+                    '    <a href="#" class="text-danger" onclick="deleteServiceFromTube('+ serviceId +')"><i class="fa fa-trash-alt font-16"></i></a>' +
                     '</h3>');
 
                 $('h3[service='+ serviceId +']').remove();
@@ -79,6 +81,8 @@
             } else {
                 message(false, 'Ошибка добавления услуги');
             }
-        })
+        });
+
+        return false;
     }
 </script>

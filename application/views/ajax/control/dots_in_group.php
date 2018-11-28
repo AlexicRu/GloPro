@@ -55,7 +55,7 @@
             tpl.find('.dot_td_pos_name').text(data[i].POS_NAME);
             tpl.find('.dot_td_owner').text(data[i].OWNER);
             tpl.find('.dot_td_address').text(data[i].POS_ADDRESS);
-            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-outline-primary btn-sm"><i class="icon-pen"></span>');
+            tpl.find('.td_edit').html('<span class="'+ BTN +' btn-outline-primary btn-sm"><i class="fa fa-pencil"></span>');
 
             block.append(tpl);
         }

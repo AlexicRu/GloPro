@@ -112,34 +112,33 @@
 <script>
     $(function(){
         paginationAjax('/clients/account-payments-history/' + $('[name=contracts_list]').val(), 'ajax_block_payments_history', renderAjaxPaginationPaymentsHistory);
-
-        <?if(Access::allow('clients_payment-del')){?>
-            $(document).off('click', '.link_del_contract_payment').on('click', '.link_del_contract_payment', function(){
-                var t = $(this);
-                var row = t.closest('[guid]');
-
-                if(!confirm('Удалить платеж ' + row.find('b.line_inner_150').text())){
-                    return false;
-                }
-
-                var params = {
-                    contract_id:    $('[name=contracts_list]').val(),
-                    guid:           row.attr('guid')
-                };
-
-                $.post('/clients/contract-payment-delete', {params:params}, function(data){
-                    if(data.success){
-                        message(1, 'Платеж успешно удален');
-                        loadContract('account');
-                    }else{
-                        message(0, 'Ошибка удаления платежа');
-                    }
-                });
-
-                return false;
-            });
-        <?}?>
     });
+
+    <?if(Access::allow('clients_payment-del')){?>
+    function delContractPayment(btn) {
+        var row = btn.closest('[guid]');
+
+        if(!confirm('Удалить платеж ' + row.find('b.line_inner_150').text())){
+            return false;
+        }
+
+        var params = {
+            contract_id:    $('[name=contracts_list]').val(),
+            guid:           row.attr('guid')
+        };
+
+        $.post('/clients/contract-payment-delete', {params:params}, function(data){
+            if(data.success){
+                message(1, 'Платеж успешно удален');
+                loadContract('account');
+            }else{
+                message(0, 'Ошибка удаления платежа');
+            }
+        });
+
+        return false;
+    }
+    <?}?>
 
     <?if(Access::allow('clients_contract_increase_limit')){?>
     var increaseLimitId = 0;
@@ -175,7 +174,7 @@
             }
 
             <?if(Access::allow('clients_payment-del')){?>
-            tpl.find('[row_summ]').append('<div class="float-right"><span class="del link_del_contract_payment '+ BTN +' btn-danger btn-sm"><i class="fa fa-trash-alt"></i></span></div>');
+            tpl.find('[row_summ]').append('<div class="float-right"><a href="#" class="text-danger" onclick="delContractPayment($(this))"><i class="fa fa-trash-alt"></i></a></div>');
             <?}?>
 
             block.append(tpl);
