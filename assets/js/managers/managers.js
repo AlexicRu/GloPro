@@ -244,7 +244,7 @@ function loadClientList(input)
     var params = {
         search: input.val(),
         add_clients:1,
-        manager_id: $('.tab_content[manager_id]:visible').attr('manager_id')
+        manager_id: $('.nav-link.active').closest('.nav-item').attr('tab').replace('manager', '')
     };
 
     ajax = $.post('/managers/managers-clients', {params:params}, function (data) {
@@ -284,7 +284,7 @@ function managerAddClients(btn)
 
     var params = {
         ids:        collectFoundIds(block),
-        manager_id: $('.tab_content[manager_id]:visible').attr('manager_id')
+        manager_id: $('.nav-link.active').closest('.nav-item').attr('tab').replace('manager', '')
     };
 
     if(params.ids.length == 0){
@@ -293,6 +293,8 @@ function managerAddClients(btn)
     }
 
     $.post('/managers/add-clients', {params:params}, function (data) {
+        endSubmitForm();
+
         if(data.success){
             message(1, 'Клиенты успешно добавлены');
             modalClose();
