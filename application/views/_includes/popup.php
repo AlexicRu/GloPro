@@ -1,6 +1,6 @@
 <!-- sample modal content -->
 <div id="<?=$popupId?>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-     data-backdrop="<?=(!empty($backdrop) ? $backdrop : '')?>"
+     <?=(!empty($backdrop) ? 'data-backdrop="' . $backdrop . '"' : '')?>
 >
     <div class="modal-dialog <?=(!empty($popupClass) ? $popupClass : '')?>">
         <div class="modal-content">

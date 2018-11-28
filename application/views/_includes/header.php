@@ -14,6 +14,8 @@
 
     <title><?=(!empty($title) ? implode(' :: ', $title) : '')?></title>
 
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-j8y0ITrvFafF4EkV1mPW0BKm6dp3c+J9Fky22Man50Ofxo2wNe5pT1oZejDH9/Dt" crossorigin="anonymous">
+
     <?if (!empty($styles)) {
         foreach($styles as $style){?>
             <link href="<?=$style?>" rel="stylesheet">
@@ -30,7 +32,6 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script defer src="https://pro.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-3yBLeJ4waqGSAf4A8pjZ13UF7GuhgbdKnBQvIp/TkWoXtQbtwjlIPNjkDRJ46UCn" crossorigin="anonymous"></script>
     <?if (!empty($scripts)) {
         foreach($scripts as $script){?>
             <script src="<?=$script?>"></script>
