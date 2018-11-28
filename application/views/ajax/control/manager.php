@@ -26,10 +26,10 @@
             <h2>ID: <?=$managerId?></h2>
 
             <?if(Access::allow('manager_toggle')) {?>
-                <button class="<?=Text::BTN?> <?=($manager['STATE_ID'] != Model_Manager::STATE_MANAGER_ACTIVE ? 'btn-success' : 'btn-danger')?>" onclick="managerStateToggle(<?=$manager['MANAGER_ID']?>, $(this))">
-                    <span <?=($manager['STATE_ID'] != Model_Manager::STATE_MANAGER_ACTIVE ? 'style="display:none"' : '')?>><i class="fa fa-lock-alt"></i> Заблокировать</span>
-                    <span <?=($manager['STATE_ID'] == Model_Manager::STATE_MANAGER_ACTIVE ? 'style="display:none"' : '')?>><i class="fa fa-unlock-alt"></i> Разблокировать</span>
-                </button>
+                <div>
+                    <span class="<?=Text::BTN?> btn-danger <?=($manager['STATE_ID'] != Model_Manager::STATE_MANAGER_ACTIVE ? 'dn' : '')?>" onclick="managerStateToggle(<?=$manager['MANAGER_ID']?>, $(this))"><i class="fa fa-lock-alt"></i> Заблокировать</span>
+                    <span class="<?=Text::BTN?> btn-success <?=($manager['STATE_ID'] != Model_Manager::STATE_MANAGER_ACTIVE ? '' : 'dn')?>" onclick="managerStateToggle(<?=$manager['MANAGER_ID']?>, $(this))"><i class="fa fa-unlock-alt"></i> Разблокировать</span>
+                </div>
             <?}?>
         </div>
 

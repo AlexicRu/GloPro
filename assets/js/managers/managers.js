@@ -19,7 +19,7 @@ function managerStateToggle(managerId, t)
 
         $.post('/managers/manager-toggle', {params:params}, function (data) {
             if (data.success) {
-                t.toggleClass('btn-danger').toggleClass('btn-success').find('span').toggle();
+                t.closest('div').find('.btn').toggleClass('dn');
 
                 message(1, 'Статус менеджера изменен');
             } else {
