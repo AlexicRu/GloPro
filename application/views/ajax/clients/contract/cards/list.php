@@ -28,22 +28,35 @@
         var contentBlock = block.closest('.tabs_cards').find('.tab-content');
 
         for (var i in data) {
-            var tpl = $('<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card'+ data[i].CARD_ID +'" role="tab"><span class="nowrap" /></a></li>');
+            var tpl = $('<li class="nav-item">' +
+                '<a class="nav-link" data-toggle="tab" href="#card'+ data[i].CARD_ID +'" role="tab">' +
+                '   <div class="card-tab">' +
+                '       <div class="text-center mr-2">' +
+                '           <div pic />' +
+                '           <div ban />' +
+                '       </div>' +
+                '       <div>' +
+                '           <div card />' +
+                '           <div holder class="text-muted font-14" />' +
+                '       </div>' +
+                '   </div>' +
+                '</a>' +
+            '</li>');
 
             if (cardsIcons[data[i].CARD_TEMPLATE]) {
-                tpl.find('span').prepend('<span class="card__picture m-r-10" style="background-image: url(<?=Common::getAssetsLink()?>img/cards/'+ cardsIcons[data[i].CARD_TEMPLATE] +')"></span>');
+                tpl.find('[pic]').prepend('<span class="card__picture" style="background-image: url(<?=Common::getAssetsLink()?>img/cards/'+ cardsIcons[data[i].CARD_TEMPLATE] +')"></span>');
             } else {
-                tpl.find('span').prepend('<i class="fa fa-credit-card-front m-r-10"></i>');
+                tpl.find('[pic]').prepend('<i class="far fa-credit-card-front fa-2x align-middle"></i>');
             }
 
             tpl.attr('tab', data[i].CARD_ID);
-            tpl.find('.nowrap').append(data[i].CARD_ID);
+            tpl.find('[card]').text(data[i].CARD_ID);
             if (data[i].HOLDER) {
-                tpl.find('a').append('<div><small holder>' + data[i].HOLDER + '</small></div>');
+                tpl.find('[holder]').text(data[i].HOLDER);
             }
 
             if (data[i].CARD_STATE == <?=Model_Card::CARD_STATE_BLOCKED?>) {
-                tpl.find('a').append('<div><span class="label label-danger label_small"><i class="fa fa-lock-alt"></i></span></div>');
+                tpl.find('[ban]').append('<span class="mt-1 label label-danger"><i class="fa fa-lock-alt"></i></span>');
             }
 
             tpl.find('a').on('click', function () {

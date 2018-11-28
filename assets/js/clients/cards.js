@@ -31,8 +31,8 @@ function cardToggle(t)
                 var cnt_in_work = $('.cards_cnt_in_work');
                 var cnt_blocked = $('.cards_cnt_blocked');
 
-                if(t.hasClass('btn-outline-success')){
-                    tab.append('<div><span class="label label-danger label_small"><i class="fa fa-lock-alt"></i></span></div>');
+                if(t.hasClass('btn-success')){
+                    tab.find('[ban]').append('<span class="mt-1 label label-danger"><i class="fa fa-lock-alt"></i></span>');
                     cnt_in_work.text(parseInt(cnt_in_work.text()) - 1);
                     cnt_blocked.text(parseInt(cnt_blocked.text()) + 1);
 
