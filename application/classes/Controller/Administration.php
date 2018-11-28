@@ -203,8 +203,8 @@ class Controller_Administration extends Controller_Common
         }
 
         //дата начала и дата окончания расчета тарифа не старше чем 3 месяца от текущей даты (указать в примечании, что расчет тарифа старше 3х месяцав через поддержку)
-        $dateStart = DateTime::createFromFormat('d.m.Y', $start);
-        $dateEnd = DateTime::createFromFormat('d.m.Y', $end);
+        $dateStart = DateTime::createFromFormat('Y-m-d', $start);
+        $dateEnd = DateTime::createFromFormat('Y-m-d', $end);
 
         if (
             !$dateEnd ||

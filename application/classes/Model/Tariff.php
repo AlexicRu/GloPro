@@ -398,8 +398,8 @@ class Model_Tariff extends Model
             'p_contract_id' 	=> $contractId,
             'p_tarif_id' 	    => $tariffId,
             'p_tarif_version' 	=> null,
-            'p_date_begin' 	    => !empty($params['start']) ? $params['start'] : date('01.m.Y'),
-            'p_date_end' 	    => !empty($params['end']) ? $params['end'] : date('d.m.Y'),
+            'p_date_begin' 	    => !empty($params['start']) ? Date::format($params['start']) : date('01.m.Y'),
+            'p_date_end' 	    => !empty($params['end']) ? Date::format($params['end']) : date('d.m.Y'),
             'p_manager_id' 	    => User::id(),
             'p_error_code' 	    => 'out',
         ];
