@@ -1,4 +1,4 @@
-<script src="<?=Common::getAssetsLink()?>js/reports/reports.js"></script>
+<?=Common::drawJs('reports/reports.js')?>
 
 <?if(empty($reports)){?>
     <div class="error_block text-center p-5">Нет доступных отчетов</div>

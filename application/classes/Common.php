@@ -104,6 +104,28 @@ class Common
     }
 
     /**
+     * вставляем в код JS файл с меткой версии
+     *
+     * @param $file
+     * @return string
+     */
+    public static function drawJs($file)
+    {
+        return '<script src="' . self::getAssetsLink() . 'js/' . $file . '?t=' . Common::getVersion() . '"></script>';
+    }
+
+    /**
+     * вставляем в код CSS файл с меткой версии
+     *
+     * @param $file
+     * @return string
+     */
+    public static function drawCss($file)
+    {
+        return '<link href="' . self::getAssetsLink() . 'css/' . $file . '?t=' . Common::getVersion() . '" rel="stylesheet">';
+    }
+
+    /**
      * получаем ссылку на файлы
      *
      * @param $type

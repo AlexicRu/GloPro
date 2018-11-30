@@ -1,4 +1,4 @@
-<script src="<?=Common::getAssetsLink()?>js/clients/client.js"></script>
+<?=Common::drawJs('clients/client.js')?>
 
 <h2>
     <span toggle_block="edit_client" uid="client_name"><?=$client['NAME']?></span>

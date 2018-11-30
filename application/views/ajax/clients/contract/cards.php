@@ -1,5 +1,4 @@
-<script src="<?=Common::getAssetsLink() . 'js/clients/cards.js'?>"></script>
-
+<?=Common::drawJs('clients/cards.js')?>
 
 <div class="card-body border-bottom">
     <div class="row font-20 align-items-center">

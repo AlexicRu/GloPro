@@ -1,4 +1,4 @@
-<script src="<?=Common::getAssetsLink()?>js/suppliers/supplier_detail.js"></script>
+<?=Common::drawJs('suppliers/supplier_detail.js')?>
 
 <input type="hidden" name="supplier_id" value="<?=$supplier['ID']?>">
 
