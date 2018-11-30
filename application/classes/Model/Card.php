@@ -1032,7 +1032,7 @@ class Model_Card extends Model
                         where vmc.MANAGER_ID = {$user['MANAGER_ID']}
                          and vmc.card_id = vc.card_id
                    )
-            order by vc.card_id
+            
             ";
 
         if(!empty($params['CARD_ID'])){
@@ -1046,6 +1046,8 @@ class Model_Card extends Model
         if(!empty($params['DESCRIPTION_RU'])){
             $sql .= ' and vc.DESCRIPTION_RU like '.Oracle::quoteLike('%'.$params['DESCRIPTION_RU'].'%');
         }
+
+        $sql .= ' order by vc.card_id ';
 
         return $db->pagination($sql, $params);
     }
