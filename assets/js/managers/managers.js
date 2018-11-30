@@ -153,7 +153,7 @@ function loadReportList(input)
     var params = {
         search: input.val(),
         add_reports:1,
-        manager_id: $('.tab_content[manager_id]:visible').attr('manager_id')
+        manager_id: $('.nav-link.active').closest('.nav-item').attr('tab').replace('manager', '')
     };
 
     ajax = $.post('/managers/managers-reports', {params:params}, function (data) {
@@ -193,7 +193,7 @@ function managerAddReports(btn)
 
     var params = {
         ids:        collectFoundIds(block),
-        manager_id: $('.tab_content[manager_id]:visible').attr('manager_id')
+        manager_id: $('.nav-link.active').closest('.nav-item').attr('tab').replace('manager', '')
     };
 
     if(params.ids.length == 0){

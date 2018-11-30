@@ -13,7 +13,7 @@
     function addGroupCardsToGroup(btn)
     {
         var block = $('.popup_list');
-        var groupId = $('.tabs_cards_groups .tab_v.active [name=group_id]').val();
+        var groupId = $('.tabs_cards_groups .nav-link.active [name=group_id]').val();
         var cardsIds = [];
 
         $('[name=card_id]:checked', block).each(function () {
@@ -31,7 +31,7 @@
             if(data.success){
                 message(1, 'Карты успешно добавлены');
 
-                var tab = $('.tabs_cards_groups .tab_v.active');
+                var tab = $('.tabs_cards_groups .nav-link.active');
 
                 loadGroupCards(tab, true);
             }  else {

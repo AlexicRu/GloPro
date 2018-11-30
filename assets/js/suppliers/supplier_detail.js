@@ -47,7 +47,7 @@ function _saveSupplierInfo()
 
             $("[toggle='edit_supplier']:first", block).click();
         }else{
-            message(0, 'Сохранение не удалось');
+            message(0, 'Сохранение не удалось' + (data.data ? '. ' + data.data : ''));
         }
 
         vueSupplierInfo.cacheForm();

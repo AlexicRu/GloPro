@@ -137,7 +137,8 @@ function cardsFilter(type)
 function cardLoad(cardId, force)
 {
     var contentBlock = $("#card" + cardId);
-    var search = '?tab=cards&card=' + cardId;
+    //var search = '?tab=cards&card=' + cardId;
+    var search = '?tab=cards';
     history.pushState("","", location.pathname + search);
 
     if(contentBlock.text() == '' || force == true){

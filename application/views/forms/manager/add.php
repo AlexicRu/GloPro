@@ -136,7 +136,6 @@
                     .attr('tab', 'manager' + managerId)
                     .find('div').html('<span class="gray">['+ managerId +']</span> '+ data.data.M_NAME)
                 ;
-                tplContent.attr('tab_content', 'manager' + managerId);
 
                 tpl.on('click', function () {
                     loadManager($(this));

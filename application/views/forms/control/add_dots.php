@@ -31,7 +31,7 @@
             if(data.success){
                 message(1, 'Точки успешно добавлены');
 
-                var tab = $('.tabs_dots_groups .tab_v.active');
+                var tab = $('.tabs_dots_groups .nav-link.active');
 
                 loadGroupDots(tab, true);
             }  else {

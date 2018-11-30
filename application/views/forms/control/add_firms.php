@@ -13,7 +13,7 @@
     function addGroupFirmsToGroup(btn)
     {
         var block = $('.popup_list');
-        var groupId = $('.tabs_firms_groups .tab_v.active [name=group_id]').val();
+        var groupId = $('.tabs_firms_groups .nav-link.active [name=group_id]').val();
         var firmsIds = [];
 
         $('[name=firm_id]:checked', block).each(function () {
@@ -31,7 +31,7 @@
             if(data.success){
                 message(1, 'Фирмы успешно добавлены');
 
-                var tab = $('.tabs_firms_groups .tab_v.active');
+                var tab = $('.tabs_firms_groups .nav-link.active');
 
                 loadGroupFirms(tab, true);
             }  else {

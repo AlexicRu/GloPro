@@ -11,35 +11,23 @@
     <div class="tab-pane active" id="main" role="tabpanel">
         <div class="p-20 bg-white">
             <div id="vue_agent_info">
-                <div class="border-bottom mb-3 pb-3 row font-20">
-                    <div class="col-9 col-sm-8">
-                        <span>
-                            <?if (Access::allow('root')) {?>
-                                <span toggle_block="agentBlock">
-                                    <b v-html="checkEmpty(agent.title.WEB_NAME)"></b>
-                                    <span class="text-muted">[<?=$agent['AGENT_ID']?>]</span>
-                                </span>
-                                <span toggle_block="agentBlock" class="dn">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-lg" v-model="agent.title.WEB_NAME" placeholder="Имя">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><?=$agent['AGENT_ID']?></span>
-                                        </div>
-                                    </div>
-                                </span>
-                            <?} else {?>
-                                <span v-html="checkEmpty(agent.title.WEB_NAME)"></span>
-                            <?}?>
+                <div class="border-bottom mb-3 pb-3 font-20">
+                    <?if (Access::allow('root')) {?>
+                        <span toggle_block="agentBlock1">
+                            <b v-html="checkEmpty(agent.title.WEB_NAME)"></b>
+                            <span class="text-muted">[<?=$agent['AGENT_ID']?>]</span>
                         </span>
-                    </div>
-                    <div class="col-3 col-sm-4 text-right">
-                        <span toggle_block="agentBlock" toggle="agentBlock">
-                            <span class="<?=Text::BTN?> btn-outline-primary"><i class="fa fa-pen"></i><span class="d-none d-sm-inline-block ml-1">Редактировать</span></span>
+                        <span toggle_block="agentBlock1" class="dn">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-lg" v-model="agent.title.WEB_NAME" placeholder="Имя">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><?=$agent['AGENT_ID']?></span>
+                                </div>
+                            </div>
                         </span>
-                        <span toggle_block="agentBlock" toggle="agentBlock" class="dn">
-                            <span class="<?=Text::BTN?> btn-danger" v-on:click="cancelForm()"><i class="fa fa-times"></i><span class="d-none d-sm-inline-block ml-1">Закрыть</span></span>
-                        </span>
-                    </div>
+                    <?} else {?>
+                        <span v-html="checkEmpty(agent.title.WEB_NAME)"></span>
+                    <?}?>
                 </div>
 
                 <div class="row m-b-10">
@@ -48,8 +36,8 @@
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
-                            <span toggle_block="agentBlock" v-html="checkEmpty(agent.title.FULL_NAME)"></span>
-                            <span toggle_block="agentBlock" class="dn">
+                            <span toggle_block="agentBlock1" v-html="checkEmpty(agent.title.FULL_NAME)"></span>
+                            <span toggle_block="agentBlock1" class="dn">
                                 <input class="form-control" type="text" v-model="agent.title.FULL_NAME">
                             </span>
                         <?} else {?>
@@ -64,8 +52,8 @@
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
-                            <span toggle_block="agentBlock" v-html="statusFormatted"></span>
-                            <span toggle_block="agentBlock" class="dn">
+                            <span toggle_block="agentBlock1" v-html="statusFormatted"></span>
+                            <span toggle_block="agentBlock1" class="dn">
                                 <select class="custom-select" type="text" v-model="agent.title.STATE_ID">
                                     <?foreach (Model_Agent::$agentStatuses as $status => $statusName) {?>
                                         <option value="<?=$status?>"><?=$statusName?></option>
@@ -84,8 +72,8 @@
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
-                            <span toggle_block="agentBlock" v-html="checkEmpty(agent.title.GP_CONTRACT)"></span>
-                            <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.title.GP_CONTRACT"></span>
+                            <span toggle_block="agentBlock1" v-html="checkEmpty(agent.title.GP_CONTRACT)"></span>
+                            <span toggle_block="agentBlock1" class="dn"><input class="form-control" type="text" v-model="agent.title.GP_CONTRACT"></span>
                         <?} else {?>
                             <span v-html="checkEmpty(agent.title.GP_CONTRACT)"></span>
                         <?}?>
@@ -98,8 +86,8 @@
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
-                            <span toggle_block="agentBlock" v-html="checkEmpty(agent.title.GP_CONTRACT_DATE)"></span>
-                            <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.title.GP_CONTRACT_DATE"></span>
+                            <span toggle_block="agentBlock1" v-html="checkEmpty(agent.title.GP_CONTRACT_DATE)"></span>
+                            <span toggle_block="agentBlock1" class="dn"><input class="form-control" type="text" v-model="agent.title.GP_CONTRACT_DATE"></span>
                         <?} else {?>
                             <span v-html="checkEmpty(agent.title.GP_CONTRACT_DATE)"></span>
                         <?}?>
@@ -107,9 +95,15 @@
                 </div>
 
                 <?if (Access::allow('root')) {?>
-                <div class="row m-b-10 dn" toggle_block="agentBlock">
+                <div class="row m-b-10">
                     <div class="col-sm-8 offset-sm-4">
-                        <button class="<?=Text::BTN?> btn-success" onclick="saveAgentTitleInfo()"><i class="fa fa-check"></i> Сохранить</button>
+                        <span toggle_block="agentBlock1">
+                            <span class="<?=Text::BTN?> btn-outline-primary" toggle="agentBlock1"><i class="fa fa-pen"></i><span class="d-none d-sm-inline-block ml-1">Редактировать</span></span>
+                        </span>
+                        <span toggle_block="agentBlock1" class="dn">
+                            <button class="<?=Text::BTN?> btn-success" onclick="saveAgentTitleInfo()"><i class="fa fa-check"></i> Сохранить</button>
+                            <span class="<?=Text::BTN?> btn-danger" v-on:click="cancelForm('agentBlock1')"><i class="fa fa-times"></i><span class="d-none d-sm-inline-block ml-1">Закрыть</span></span>
+                        </span>
                     </div>
                 </div>
                 <?}?>
@@ -121,8 +115,8 @@
                         ИНН агента:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_INN)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_INN"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_INN)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_INN"></span>
                     </div>
                 </div>
 
@@ -131,8 +125,8 @@
                         КПП агента:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_KPP)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_KPP"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_KPP)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_KPP"></span>
                     </div>
                 </div>
 
@@ -141,8 +135,8 @@
                         Юридический адрес:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_Y_ADDRESS)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_Y_ADDRESS"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_Y_ADDRESS)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_Y_ADDRESS"></span>
                     </div>
                 </div>
 
@@ -151,8 +145,8 @@
                         Почтовый адрес:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_P_ADDRESS)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_P_ADDRESS"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_P_ADDRESS)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_P_ADDRESS"></span>
                     </div>
                 </div>
 
@@ -161,8 +155,8 @@
                         Фактический адрес:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_F_ADDRESS)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_F_ADDRESS"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_F_ADDRESS)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_F_ADDRESS"></span>
                     </div>
                 </div>
 
@@ -171,8 +165,8 @@
                         Email:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(emailFormatted)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_EMAIL"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(emailFormatted)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_EMAIL"></span>
                     </div>
                 </div>
 
@@ -181,8 +175,8 @@
                         Телефон:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_PHONE)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" name="phone" type="text" v-model="agent.info.AGENT_PHONE"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_PHONE)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" name="phone" type="text" v-model="agent.info.AGENT_PHONE"></span>
                     </div>
                 </div>
 
@@ -191,8 +185,8 @@
                         Город:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_CITY)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_CITY"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_CITY)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_CITY"></span>
                     </div>
                 </div>
 
@@ -201,8 +195,8 @@
                         Должность подписанта в именительном падеже:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_SIGNER_POST_1)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_SIGNER_POST_1"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_SIGNER_POST_1)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_SIGNER_POST_1"></span>
                     </div>
                 </div>
 
@@ -211,8 +205,8 @@
                         Имя подписанта в именительном падеже:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_SIGNER_NAME_1)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_SIGNER_NAME_1"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_SIGNER_NAME_1)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_SIGNER_NAME_1"></span>
                     </div>
                 </div>
 
@@ -221,8 +215,8 @@
                         Должность подписанта в родительном падеже:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_SIGNER_POST_2)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_SIGNER_POST_2"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_SIGNER_POST_2)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_SIGNER_POST_2"></span>
                     </div>
                 </div>
 
@@ -231,18 +225,22 @@
                         Имя подписанта в родительном падеже:
                     </div>
                     <div class="col-sm-8 with-mt">
-                        <span toggle_block="agentBlock" v-html="checkEmpty(agent.info.AGENT_SIGNER_NAME_2)"></span>
-                        <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_SIGNER_NAME_2"></span>
+                        <span toggle_block="agentBlock2" v-html="checkEmpty(agent.info.AGENT_SIGNER_NAME_2)"></span>
+                        <span toggle_block="agentBlock2" class="dn"><input class="form-control" type="text" v-model="agent.info.AGENT_SIGNER_NAME_2"></span>
                     </div>
                 </div>
 
-                <?if (Access::allow('root')) {?>
-                    <div class="row m-b-10 dn" toggle_block="agentBlock">
-                        <div class="col-sm-8 offset-sm-4">
+                <div class="row m-b-10">
+                    <div class="col-sm-8 offset-sm-4">
+                        <span toggle_block="agentBlock2">
+                            <span class="<?=Text::BTN?> btn-outline-primary" toggle="agentBlock2"><i class="fa fa-pen"></i><span class="d-none d-sm-inline-block ml-1">Редактировать</span></span>
+                        </span>
+                        <span toggle_block="agentBlock2" class="dn">
                             <button class="<?=Text::BTN?> btn-success" onclick="saveAgentInfoInfo()"><i class="fa fa-check"></i> Сохранить</button>
-                        </div>
+                            <span class="<?=Text::BTN?> btn-danger" v-on:click="cancelForm('agentBlock2')"><i class="fa fa-times"></i><span class="d-none d-sm-inline-block ml-1">Закрыть</span></span>
+                        </span>
                     </div>
-                <?}?>
+                </div>
 
                 <div class="font-weight-bold mb-3 font-18 mt-5">Сервисные настройки:</div>
 
@@ -252,8 +250,8 @@
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
-                            <span toggle_block="agentBlock" v-html="checkEmpty(agent.service.SEND_FROM)"></span>
-                            <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.service.SEND_FROM"></span>
+                            <span toggle_block="agentBlock3" v-html="checkEmpty(agent.service.SEND_FROM)"></span>
+                            <span toggle_block="agentBlock3" class="dn"><input class="form-control" type="text" v-model="agent.service.SEND_FROM"></span>
                         <?} else {?>
                             <span v-html="checkEmpty(agent.service.SEND_FROM)"></span>
                         <?}?>
@@ -266,8 +264,8 @@
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
-                            <span toggle_block="agentBlock" v-html="checkEmpty(agent.service.BILL_PREFIX)"></span>
-                            <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.service.BILL_PREFIX"></span>
+                            <span toggle_block="agentBlock3" v-html="checkEmpty(agent.service.BILL_PREFIX)"></span>
+                            <span toggle_block="agentBlock3" class="dn"><input class="form-control" type="text" v-model="agent.service.BILL_PREFIX"></span>
                         <?} else {?>
                             <span v-html="checkEmpty(agent.service.BILL_PREFIX)"></span>
                         <?}?>
@@ -280,8 +278,8 @@
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
-                            <span toggle_block="agentBlock" v-html="checkEmpty(agent.service.DEFAULT_GOOD_NAME)"></span>
-                            <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.service.DEFAULT_GOOD_NAME"></span>
+                            <span toggle_block="agentBlock3" v-html="checkEmpty(agent.service.DEFAULT_GOOD_NAME)"></span>
+                            <span toggle_block="agentBlock3" class="dn"><input class="form-control" type="text" v-model="agent.service.DEFAULT_GOOD_NAME"></span>
                         <?} else {?>
                             <span v-html="checkEmpty(agent.service.DEFAULT_GOOD_NAME)"></span>
                         <?}?>
@@ -294,8 +292,8 @@
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
-                            <span toggle_block="agentBlock" v-html="checkEmpty(agent.service.OFFICE_LINK)"></span>
-                            <span toggle_block="agentBlock" class="dn"><input class="form-control" type="text" v-model="agent.service.OFFICE_LINK"></span>
+                            <span toggle_block="agentBlock3" v-html="checkEmpty(agent.service.OFFICE_LINK)"></span>
+                            <span toggle_block="agentBlock3" class="dn"><input class="form-control" type="text" v-model="agent.service.OFFICE_LINK"></span>
                         <?} else {?>
                             <span v-html="checkEmpty(agent.service.OFFICE_LINK)"></span>
                         <?}?>
@@ -308,8 +306,8 @@
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
-                            <span toggle_block="agentBlock" v-html="smsSubscriptionFormatted"></span>
-                            <span toggle_block="agentBlock" class="dn">
+                            <span toggle_block="agentBlock3" v-html="smsSubscriptionFormatted"></span>
+                            <span toggle_block="agentBlock3" class="dn">
                                 <label class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" v-model="agent.service.SENDER_SMS">
                                     <span class="custom-control-label"></span>
@@ -322,9 +320,15 @@
                 </div>
 
                 <?if (Access::allow('root')) {?>
-                    <div class="row dn" toggle_block="agentBlock">
+                    <div class="row m-b-10">
                         <div class="col-sm-8 offset-sm-4">
-                            <button class="<?=Text::BTN?> btn-success" onclick="saveAgentServiceInfo()"><i class="fa fa-check"></i> Сохранить</button>
+                            <span toggle_block="agentBlock3">
+                                <span class="<?=Text::BTN?> btn-outline-primary" toggle="agentBlock2"><i class="fa fa-pen"></i><span class="d-none d-sm-inline-block ml-1">Редактировать</span></span>
+                            </span>
+                            <span toggle_block="agentBlock3" class="dn">
+                                <button class="<?=Text::BTN?> btn-success" onclick="saveAgentServiceInfo()"><i class="fa fa-check"></i> Сохранить</button>
+                                <span class="<?=Text::BTN?> btn-danger" v-on:click="cancelForm('agentBlock3')"><i class="fa fa-times"></i><span class="d-none d-sm-inline-block ml-1">Закрыть</span></span>
+                            </span>
                         </div>
                     </div>
                 <?}?>
@@ -366,7 +370,7 @@
                     BILL_PREFIX:            '<?=$agent['BILL_PREFIX']?>',
                     DEFAULT_GOOD_NAME:      '<?=$agent['DEFAULT_GOOD_NAME']?>',
                     OFFICE_LINK:            '<?=$agent['OFFICE_LINK']?>',
-                    SENDER_SMS:             '<?=$agent['SENDER_SMS']?>'
+                    SENDER_SMS:             <?=($agent['SENDER_SMS'] ? 'true' : 'false')?>
                 }
             }
         },
@@ -391,8 +395,10 @@
             checkEmpty: function (val) {
                 return val ? val : '<i class="text-muted">Не заполнено</i>';
             },
-            cancelForm: function () {
+            cancelForm: function (toggle) {
                 this.agent = JSON.parse(JSON.stringify(this._cache));
+
+                $('[toggle='+ toggle +']:first').click();
             },
             cacheForm: function () {
                 this._cache = JSON.parse(JSON.stringify(this.agent));
@@ -417,6 +423,7 @@
             }
 
             vueAgentInfo.cacheForm();
+            vueAgentInfo.cancelForm('agentBlock1');
         });
     }
 
@@ -432,6 +439,7 @@
             }
 
             vueAgentInfo.cacheForm();
+            vueAgentInfo.cancelForm('agentBlock3');
         });
     }
     <?}?>
@@ -448,6 +456,7 @@
             }
 
             vueAgentInfo.cacheForm();
+            vueAgentInfo.cancelForm('agentBlock2');
         });
     }
 </script>
