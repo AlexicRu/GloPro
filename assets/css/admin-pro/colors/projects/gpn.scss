@@ -44,8 +44,10 @@ $DINProCond: 'Conv_DINPro-Cond', sans-serif;
     font-family: $DINPro;
 }
 .btn, .btn *{
-    font-family: $DINProCond;
-    text-transform: uppercase;
+    :not(i) {
+        font-family: $DINProCond;
+        text-transform: uppercase;
+    }
 }
 .logo{
     background-image: url(/assets/img/projects/gpn.png);
