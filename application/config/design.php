@@ -61,6 +61,10 @@ return array(
             'title' => 'ГПН-КП',
             'class' => 'gpn'
         ],
+        'demodealeropti24com' => [
+            'title' => 'ГПН-КП',
+            'class' => 'gpn'
+        ],
         'lkbinoilcom' => [
             'title' => 'ТК БИН-ОЙЛ',
             'class' => 'binoil'
