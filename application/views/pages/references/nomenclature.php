@@ -191,7 +191,7 @@
                 { name: "SERVICE_ID", type: "text", title: 'ID', width:50},
                 { name: "SERVICE_NAME", type: "text", title: 'Наименование в справочнике', width:90},
                 { name: "FULL_NAME", type: "text", title: 'Полное наименование', width:150},
-                { name: "SERVICE_IN_TUBE", type: "text", title: 'Наименование в источнике', width:160},
+                { name: "FOREIGN_DESC", type: "text", title: 'Наименование в источнике', width:160},
             ]
         });
     }
