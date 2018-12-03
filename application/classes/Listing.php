@@ -49,11 +49,11 @@ class Listing
             't.SERVICE_ID',
             't.MEASURE',
             't.SYSTEM_SERVICE_CATEGORY',
-            't.LONG_DESC'
+            't.FOREIGN_DESC'
         ])->distinct()
             ->from('V_WEB_SERVICE_LIST t')
             ->where('t.agent_id = ' . $user['AGENT_ID'])
-            ->orderBy('t.LONG_DESC')
+            ->orderBy('t.FOREIGN_DESC')
         ;
 
         if(!empty($params['ids'])){

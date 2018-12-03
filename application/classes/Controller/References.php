@@ -157,7 +157,7 @@ class Controller_References extends Controller_Common {
     {
         $tubeId = $this->request->post('tube_id');
 
-        $servicesOpen = Listing::getServicesForConversion(['TUBE_ID' => $tubeId]);
+        $servicesOpen = Listing::getServicesForCardLimits(['TUBE_ID' => $tubeId]);
         $servicesAvailable = Model_Tube::getTubeServiceAvailable($tubeId);
 
         $html = View::factory('ajax/references/tube-services')
