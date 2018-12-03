@@ -243,7 +243,6 @@ class Controller_Clients extends Controller_Common {
         $cardInfo = Model_Card::getCardInfo($cardId, $contractId);
 
 		$servicesList = Listing::getServices([
-		    'qq'=> 1,
 		    'SYSTEM_SERVICE_CATEGORY' => true,
 		    'TUBE_ID' => $card['TUBE_ID']
         ]);
