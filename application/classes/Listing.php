@@ -45,24 +45,54 @@ class Listing
     {
         $user = Auth::instance()->get_user();
 
-        if (!empty($params['description'])) {
-            $description = $params['description'];
-        }else{
-            $description = 'LONG_DESC';
-            if (array_key_exists('TUBE_ID', $params)) {
-                $description = 'FOREIGN_DESC';
-            }
-        }
-
         $sql = (new Builder())->select([
             't.SERVICE_ID',
             't.MEASURE',
             't.SYSTEM_SERVICE_CATEGORY',
-            't.' . $description
+            't.LONG_DESC'
         ])->distinct()
             ->from('V_WEB_SERVICE_LIST t')
             ->where('t.agent_id = ' . $user['AGENT_ID'])
-            ->orderBy('t.' . $description)
+            ->orderBy('t.LONG_DESC')
+        ;
+
+        if(!empty($params['ids'])){
+            $sql->where('t.SERVICE_ID in ('.implode(',', $params['ids']).')');
+        } else {
+
+            if (!empty($params['search'])) {
+                $sql->where("upper(t.long_desc) like " . mb_strtoupper(Oracle::quoteLike('%' . $params['search'] . '%')));
+            }
+
+            if (!empty($params['TUBE_ID'])) {
+                $sql->where("t.TUBE_ID = " . intval($params['TUBE_ID']));
+            }
+        }
+
+        $db = Oracle::init();
+
+        if (!empty($params['pagination'])) {
+            return $db->pagination($sql, $params);
+        }
+
+        return $db->query($sql);
+    }
+
+    /**
+     * список услуг для конвертации
+     *
+     * @param $params
+     * @return array|bool|int
+     */
+    public static function getServicesForConversion($params = [])
+    {
+        $sql = (new Builder())->select([
+            't.SERVICE_ID',
+            't.MEASURE',
+            't.FOREIGN_DESC'
+        ])->distinct()
+            ->from('V_WEB_SERVICE_CONVERSION t')
+            ->orderBy('t.FOREIGN_DESC')
         ;
 
         if(!empty($params['ids'])){
@@ -99,9 +129,6 @@ class Listing
             $description = $params['description'];
         }else{
             $description = 'LONG_DESC';
-            if (array_key_exists('TUBE_ID', $params)) {
-                $description = 'FOREIGN_DESC';
-            }
         }
 
         $sql = (new Builder())->select([
@@ -119,10 +146,6 @@ class Listing
 
             if (!empty($params['search'])) {
                 $sql->where("upper(t.long_desc) like " . mb_strtoupper(Oracle::quoteLike('%' . $params['search'] . '%')));
-            }
-
-            if (!empty($params['TUBE_ID'])) {
-                //$sql->where("t.TUBE_ID = " . intval($params['TUBE_ID']));
             }
         }
 

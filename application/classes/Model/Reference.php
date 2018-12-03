@@ -14,7 +14,7 @@ class Model_Reference extends Model
         $user = User::current();
 
         $sql = (new Builder())->select()
-            ->from('V_WEB_SERVICE_CONVERTION')
+            ->from('V_WEB_SERVICE_CONVERSION')
             ->where('agent_id = '.$user['AGENT_ID'])
         ;
 
