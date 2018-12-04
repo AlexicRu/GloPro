@@ -15,7 +15,7 @@
         <div class="col-xl-4 col-xxl-2">
             <span class="text-muted">В блоке:</span>
             <?/* todo php7?><a href="#" onclick="cardsFilter('disabled')" class="cards_cnt_blocked"><?=($cardsCounter['CARDS_NOT_WORK'] ?? 0)?></a><?*/?>
-            <a href="#" onclick="cardsFilter('disabled')" class="cards_cnt_in_work"><?=(!empty($cardsCounter['CARDS_NOT_WORK']) ? $cardsCounter['CARDS_NOT_WORK'] : 0)?></a>
+            <a href="#" onclick="cardsFilter('disabled')" class="cards_cnt_blocked"><?=(!empty($cardsCounter['CARDS_NOT_WORK']) ? $cardsCounter['CARDS_NOT_WORK'] : 0)?></a>
         </div>
         <div class="col-xl-6 col-xxl-3 with-mt">
             <div class="input-group">

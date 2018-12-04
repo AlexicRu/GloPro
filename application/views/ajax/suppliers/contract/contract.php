@@ -99,15 +99,23 @@
                     </div>
                     <div toggle_block="toggle_contract" class="dn">
                         <div class="supplier-contract__contract-data-source">
-                            <label>
-                                <input type="radio" name="DATA_SOURCE" value="<?=Model_Supplier_Contract::DATA_SOURCE_INSIDE?>" <?=($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_INSIDE ? 'checked' : '')?> onchange="checkSupplierContractDataSource()">
-                                Цепочка договоров внутри системы
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="DATA_SOURCE" class="custom-control-input"
+                                       value="<?=Model_Supplier_Contract::DATA_SOURCE_INSIDE?>"
+                                    <?=($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_INSIDE ? 'checked' : '')?>
+                                       onchange="checkSupplierContractDataSource()"
+                                >
+                                <span class="custom-control-label">Цепочка договоров внутри системы</span>
                             </label>
                         </div>
                         <div class="supplier-contract__contract-data-source">
-                            <label>
-                                <input type="radio" name="DATA_SOURCE" value="<?=Model_Supplier_Contract::DATA_SOURCE_OUTSIDE?>" <?=($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_OUTSIDE ? 'checked' : '')?> onchange="checkSupplierContractDataSource()">
-                                Внешний источник
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="DATA_SOURCE" class="custom-control-input"
+                                       value="<?=Model_Supplier_Contract::DATA_SOURCE_OUTSIDE?>"
+                                    <?=($contract['DATA_SOURCE'] == Model_Supplier_Contract::DATA_SOURCE_OUTSIDE ? 'checked' : '')?>
+                                       onchange="checkSupplierContractDataSource()"
+                                >
+                                <span class="custom-control-label">Внешний источник</span>
                             </label>
                             <select class="custom-select" name="TUBE_ID" <?=($contract['DATA_SOURCE'] != Model_Supplier_Contract::DATA_SOURCE_OUTSIDE ? 'disabled' : '')?>>
                                 <?foreach ($tubes as $tube) {?>
