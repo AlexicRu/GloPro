@@ -27,6 +27,10 @@ class Controller_Help extends Controller_Common
         $this->_params['ids']           = $this->_ids;
         $this->_params['offset']        = $this->request->post('offset');
         $this->_params['pagination']    = true;
+
+        if (!empty($this->_ids)) {
+            $this->_params['limit']     = count($this->_ids);
+        }
     }
 
     public function after($success = true)

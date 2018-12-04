@@ -41,15 +41,23 @@
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-4 with-mt">
-                    <input name="limit_unlim" id="limit_unlim_<?=$key?>" class="filled-in chk-col-purple" type="checkbox" <?=($limitFirst['INFINITELY'] ? 'checked' : '')?> onclick="contractLimitsEditCheckUnlim($(this))">
-                    <label for="limit_unlim_<?=$key?>"> Без ограничений</label>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input"
+                               name="limit_unlim"
+                            <?=($limitFirst['INFINITELY'] ? 'checked' : '')?>
+                               onchange="contractLimitsEditCheckUnlim($(this))"
+                        >
+                        <span class="custom-control-label">Без ограничений</span>
+                    </label>
                 </div>
             </div>
         <?}?>
     </div>
 
-    <input type="checkbox" name="recalc" id="recalc" checked class="filled-in chk-col-purple">
-    <label for="recalc">Пересчет остатков по договору</label>
+    <label class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" name="recalc" checked>
+        <span class="custom-control-label">Пересчет остатков по договору</span>
+    </label>
 
 </div>
 <div class="modal-footer">
@@ -142,7 +150,7 @@
         var limitGroup = t.closest('[limit_group]');
         var inputValue = limitGroup.find('[name=limit_value]');
 
-        if (!check.prop('checked')){
+        if (check.prop('checked')){
             inputValue.prop('disabled', true);
         } else {
             inputValue.prop('disabled', false);
@@ -164,8 +172,7 @@
             '<div class="col-lg-2 col-md-5 with-mt"><input type="text" name="limit_value" placeholder="Объем / сумма" class="form-control"></div>' +
             '<div class="col-lg-2 col-md-3 with-mt"><select name="limit_param" class="custom-select" /></div>' +
             '<div class="col-lg-3 col-md-4 with-mt">' +
-                '<input name="limit_unlim" id="limit_unlim_'+ table.find('[limit_group]').length +'" type="checkbox" class="filled-in chk-col-purple">'+
-                '<label for="limit_unlim_'+ table.find('[limit_group]').length +'" onclick="contractLimitsEditCheckUnlim($(this))">Без ограничений</label>' +
+                '<label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" name="limit_unlim" onchange="contractLimitsEditCheckUnlim($(this))"><span class="custom-control-label">Без ограничений</span></label>' +
             '</div>' +
         '</div>');
 

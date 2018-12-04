@@ -1,20 +1,30 @@
 <div class="row mt-4">
     <div class="col-sm-6 services-open">
         <div class="font-weight-bold font-18 mb-2">Установлено для управления лимитами:</div>
-        <?foreach ($servicesOpen as $service) {?>
-            <h3 service="<?=$service['SERVICE_ID']?>">
-                <span class="badge badge-primary"><?=$service['FOREIGN_DESC']?></span>
-                <a href="#" class="text-danger" onclick="deleteServiceFromTube(<?=$service['SERVICE_ID']?>)"><i class="fa fa-trash-alt font-16"></i></a>
-            </h3>
+
+        <?if (!empty($servicesOpen)) {?>
+            <?foreach ($servicesOpen as $service) {?>
+                <h3 service="<?=$service['SERVICE_ID']?>">
+                    <span class="badge badge-primary"><?=$service['FOREIGN_DESC']?></span>
+                    <a href="#" class="text-danger" onclick="deleteServiceFromTube(<?=$service['SERVICE_ID']?>)"><i class="fa fa-trash-alt font-16"></i></a>
+                </h3>
+            <?}?>
+        <?} else {?>
+            <i class="text-muted">Нет установленных услуг</i>
         <?}?>
     </div>
     <div class="col-sm-6 with-mt services-available">
         <div class="font-weight-bold font-18 mb-2">Доступно для добавления:</div>
-        <?foreach ($servicesAvailable as $service) {?>
-            <h3 service="<?=$service['SERVICE_ID']?>">
-                <span class="badge badge-success"><?=$service['SYSTEM_SERVICE_NAME']?></span>
-                <a href="#" class="text-primary" onclick="addServiceToTube(<?=$service['SERVICE_ID']?>)"><i class="fa fa-plus font-16"></i></a>
-            </h3>
+
+        <?if (!empty($servicesAvailable)) {?>
+            <?foreach ($servicesAvailable as $service) {?>
+                <h3 service="<?=$service['SERVICE_ID']?>">
+                    <span class="badge badge-success"><?=$service['SYSTEM_SERVICE_NAME']?></span>
+                    <a href="#" class="text-primary" onclick="addServiceToTube(<?=$service['SERVICE_ID']?>)"><i class="fa fa-plus font-16"></i></a>
+                </h3>
+            <?}?>
+        <?} else {?>
+            <i class="text-muted">Нет услуг для добавления</i>
         <?}?>
     </div>
 </div>

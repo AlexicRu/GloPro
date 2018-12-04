@@ -55,23 +55,25 @@
     </div>
 </div>
 
-<?if(Access::allow('clients_contract-edit')){?>
-    <div class="row p-20 border-bottom">
-        <div class="col-2">
+<div class="row p-20 border-bottom">
+    <div class="col-2">
+        <?if(Access::allow('clients_contract-edit')){?>
             <span class="dn" toggle_block="block2"><button class="<?=Text::BTN?> btn-success" onclick="saveContract()"><i class="fa fa-check"></i> Сохранить</button></span>
-        </div>
+        <?}?>
+    </div>
 
-        <div class="col-10 text-right">
-            <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#contract_history"><i class="fa fa-history"></i> <span class="hidden-md-down">История по договору</span></a>
+    <div class="col-10 text-right">
+        <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#contract_history"><i class="fa fa-history"></i> <span class="hidden-md-down">История по договору</span></a>
 
-            <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#contract_notice_settings"><i class="fa fa-cog"></i> <span class="hidden-md-down">Настройка уведомлений</span></a>
+        <a href="#" class="<?=Text::BTN?> btn-outline-primary" data-toggle="modal" data-target="#contract_notice_settings"><i class="fa fa-cog"></i> <span class="hidden-md-down">Настройка уведомлений</span></a>
 
+        <?if(Access::allow('clients_contract-edit')){?>
             <span class="<?=Text::BTN?> btn-outline-primary" toggle="block2" toggle_block="block2"><i class="fa fa-pen"></i> <span class="hidden-md-down"> Редактировать</span></span>
 
             <span class="dn" toggle_block="block2"><span class="<?=Text::BTN?> btn-danger" toggle="block2"><i class="fa fa-times"></i> <span class="hidden-xs-down"> Отмена</span></span></span>
-        </div>
+        <?}?>
     </div>
-<?}?>
+</div>
 
 <div class="row p-20">
     <div class="col-lg-6">

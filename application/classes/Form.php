@@ -127,8 +127,7 @@ class Form extends Kohana_Form
 
         $card = Model_Card::getCard($cardId);
 
-        $servicesList = Listing::getServices([
-            'SYSTEM_SERVICE_CATEGORY' => true,
+        $servicesList = Listing::getServicesForCardLimits([
             'TUBE_ID' => $card['TUBE_ID']
         ]);
 

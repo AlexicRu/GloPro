@@ -57,7 +57,7 @@ class Controller_References extends Controller_Common {
 
         $tubesList = Model_Tube::getTubes(['is_owner' => 1]);
         $tubesList2 = Model_Tube::getTubes(['card_limit_change_id' => 1]);
-        $servicesList = Listing::getServices();
+        $servicesList = Listing::getServicesForConversion();
 
         $this->tpl
             ->bind('tubesList', $tubesList)
@@ -157,7 +157,7 @@ class Controller_References extends Controller_Common {
     {
         $tubeId = $this->request->post('tube_id');
 
-        $servicesOpen = Listing::getServices(['TUBE_ID' => $tubeId]);
+        $servicesOpen = Listing::getServicesForCardLimits(['TUBE_ID' => $tubeId]);
         $servicesAvailable = Model_Tube::getTubeServiceAvailable($tubeId);
 
         $html = View::factory('ajax/references/tube-services')
