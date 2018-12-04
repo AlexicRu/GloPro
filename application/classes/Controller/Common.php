@@ -326,7 +326,7 @@ abstract class Controller_Common extends Controller_Template {
         $this->template->scriptsRaw[] = 'var scenarios = ' . json_encode($script) . ' ;';
 
         if (!isset($user['tours'])) {
-            $user['tours'] = [];//User::getWebTours();
+            $user['tours'] = User::getWebTours();
 
             Auth::instance()->saveSession($user);
         }

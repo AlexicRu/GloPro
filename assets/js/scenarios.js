@@ -2,12 +2,13 @@ var WebToursLoaded = false;
 
 function EnjoyHintRun(scenario)
 {
+    return false;
     if (WebToursLoaded == false) {
         $.post('/index/check-webtours', {}, function (data) {
             if (data.success) {
 
                 for (var i in data.data) {
-                    //delete scenarios[data.data[i]];
+                    delete scenarios[data.data[i]];
                 }
 
                 _EnjoyHintRun(scenario);
