@@ -82,6 +82,7 @@
     function doFeedback()
     {
         var btn = $('.btn_feedback');
+        var block = btn.closest('.form');
         var params = {
             email:      $('[name=feedback_email]').val(),
             subject:    $('[name=feedback_subject]').val(),
@@ -91,11 +92,13 @@
 
         if(params.email == '' || params.email.indexOf('@') == -1){
             message(0, 'Введите корректный email');
+            removeLoader(block);
             return false;
         }
 
         if(params.subject == ''){
             message(0, 'Введите тему сообщения');
+            removeLoader(block);
             return false;
         }
 
@@ -112,7 +115,7 @@
             $('[name=feedback_subject]').val('');
             $('[name=feedback_text]').val('');
 
-            removeLoader(btn.closest('.form'))
+            removeLoader(block);
         });
     }
 

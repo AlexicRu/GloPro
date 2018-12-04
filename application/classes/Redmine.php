@@ -16,7 +16,7 @@ class Redmine
     {
         $config = Kohana::$config->load('config');
 
-        $this->_client = new Redmine\Client('http://cp.webwalks.ru', $config['redmine_key']);
+        $this->_client = new Redmine\Client('https://cp.webwalks.ru', $config['redmine_key']);
     }
 
     /**
