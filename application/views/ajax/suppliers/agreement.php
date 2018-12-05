@@ -10,9 +10,10 @@ $toggle = 'agreement'.$agreement['AGREEMENT_ID'];
                 <div class="col-9">
                     <span toggle_block="<?=$toggle?>">
                         <b><?=$agreement['AGREEMENT_NAME']?></b>
-                        <span class="text-muted">[<?=$agreement['AGREEMENT_ID']?>]</span>
-                        <span class="text-muted">от</span> <?=$agreement['WEB_DATE_BEGIN']?>
-                        <?if($agreement['WEB_DATE_END'] != Date::DATE_MAX){?><span class="text-muted">до</span> <?=$agreement['WEB_DATE_END']?><?}?> &nbsp;
+                        <span class="nowrap"><span class="text-muted">от</span> <?=$agreement['WEB_DATE_BEGIN']?></span>
+                        <?if($agreement['WEB_DATE_END'] != Date::DATE_MAX){?><span class="nowrap"><span class="text-muted">до</span> <?=$agreement['WEB_DATE_END']?></span><?}?> &nbsp;
+
+                        <span class="badge badge-light">ID <?=$agreement['AGREEMENT_ID']?></span>
                     </span>
                 </div>
                 <div class="col-3 text-right">

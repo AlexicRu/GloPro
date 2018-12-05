@@ -1,10 +1,10 @@
 <div class="p-20 border-bottom">
     <div toggle_block="block2" class="font-20 align-items-center">
         <b><?=$contract['CONTRACT_NAME']?></b>
-        <span class="text-muted">[<?=$contract['CONTRACT_ID']?>]</span>
         <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
         <?if($contract['DATE_END'] != Date::DATE_MAX){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
         <span class="badge badge-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
+        <span class="badge badge-light">ID <?=$contract['CONTRACT_ID']?></span>
     </div>
 
     <div class="dn" toggle_block="block2">

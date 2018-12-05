@@ -23,7 +23,7 @@
 <div class="tab-content">
     <div class="tab-pane active p-3" id="tabInfo<?=$managerId?>" role="tabpanel">
         <div class="d-flex justify-content-between m-b-20">
-            <h2>ID: <?=$managerId?></h2>
+            <h2>ID <?=$managerId?></h2>
 
             <?if(Access::allow('manager_toggle')) {?>
                 <div>

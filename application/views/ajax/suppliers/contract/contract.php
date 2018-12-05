@@ -5,8 +5,11 @@
             <div class="row align-items-center font-20">
                 <div class="col-9">
                     <span toggle_block="toggle_contract">
-                        <b><?=$contract['CONTRACT_NAME']?></b> <span class="text-muted">[<?=$contract['CONTRACT_ID']?>]</span> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != Date::DATE_MAX){?>до <?=$contract['DATE_END']?><?}?> &nbsp;
+                        <b><?=$contract['CONTRACT_NAME']?></b>
+                        <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
+                        <?if($contract['DATE_END'] != Date::DATE_MAX){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
                         <span class="badge <?=Model_Supplier_Contract::$statusContractClasses[$contract['CONTRACT_STATE']]?>"><?=Model_Supplier_Contract::$statusContractNames[$contract['CONTRACT_STATE']]?></span>
+                        <span class="badge badge-light">ID <?=$contract['CONTRACT_ID']?></span>
                     </span>
                 </div>
                 <div class="col-3 text-right">

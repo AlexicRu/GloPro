@@ -12,7 +12,7 @@
                     <span>{{ supplier.SUPPLIER_NAME }}</span>
 
                     <div class="float-right">
-                        <span class="badge badge-secondary">ID: <?=$supplier['ID']?></span>
+                        <span class="badge badge-secondary">ID <?=$supplier['ID']?></span>
                     </div>
                 </h2>
 

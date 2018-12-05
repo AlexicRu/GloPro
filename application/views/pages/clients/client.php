@@ -1,7 +1,13 @@
 <?=Common::drawJs('clients/client.js')?>
 
 <h2>
-    <span toggle_block="edit_client" uid="client_name"><?=$client['NAME']?></span>
+    <span toggle_block="edit_client" uid="client_name">
+        <?=$client['NAME']?>
+
+        <div class="float-right">
+            <span class="badge badge-secondary">ID <?=$client['CLIENT_ID']?></span>
+        </div>
+    </span>
     <span toggle_block="edit_client" uid="client_name" class="dn">
         <nobr>
             <input type="text" class="form-control form-control-lg" name="NAME" value="<?=Text::quotesForForms($client['NAME'])?>"
