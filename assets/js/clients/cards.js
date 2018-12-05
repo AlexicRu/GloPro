@@ -38,7 +38,7 @@ function cardToggle(t)
 
                     var blockAvailableText = 'Заявка на блокировку отправлена менеджеру. Карта будет заблокирована в течение 48 часов!';
                 }else{
-                    tab.find('.label-danger').remove();
+                    tab.find('.badge-danger').remove();
                     cnt_in_work.text(parseInt(cnt_in_work.text()) + 1);
                     cnt_blocked.text(parseInt(cnt_blocked.text()) - 1);
 
