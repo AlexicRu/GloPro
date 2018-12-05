@@ -4,7 +4,7 @@
         <span class="text-muted">[<?=$contract['CONTRACT_ID']?>]</span>
         <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
         <?if($contract['DATE_END'] != Date::DATE_MAX){?><span class="nowrap"><span class="text-muted">до</span> <?=$contract['DATE_END']?></span><?}?> &nbsp;
-        <span class="label label-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
+        <span class="badge badge-<?=Model_Contract::$statusContractClasses[$contract['STATE_ID']]?>"><?=Model_Contract::$statusContractNames[$contract['STATE_ID']]?></span>
     </div>
 
     <div class="dn" toggle_block="block2">
@@ -432,7 +432,7 @@
                     }, 500);
                 } else {
 
-                    var contractFullName = "Договор: " + params.contract.CONTRACT_NAME + " [<?=$contractSettings['CONTRACT_ID']?>] от " + params.contract.DATE_BEGIN + (params.contract.DATE_END != '31.12.2099' ? " до " + params.contract.DATE_END : '');
+                    var contractFullName = "Договор: " + params.contract.CONTRACT_NAME + " от " + params.contract.DATE_BEGIN + (params.contract.DATE_END != '31.12.2099' ? " до " + params.contract.DATE_END : '') + " [<?=$contractSettings['CONTRACT_ID']?>]";
 
                     $("[name=contracts_list] option:selected").text(contractFullName);
 

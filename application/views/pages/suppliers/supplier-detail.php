@@ -19,7 +19,7 @@
             <?}else{
                 foreach($supplierContracts as $contract){?>
                     <option value="<?=$contract['CONTRACT_ID']?>">
-                        Договор: <?=$contract['CONTRACT_NAME']?> [<?=$contract['CONTRACT_ID']?>] от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != Date::DATE_MAX){?>до <?=$contract['DATE_END']?><?}?>
+                        Договор: <?=$contract['CONTRACT_NAME']?> от <?=$contract['DATE_BEGIN']?> <?if($contract['DATE_END'] != Date::DATE_MAX){?>до <?=$contract['DATE_END']?><?}?> [<?=$contract['CONTRACT_ID']?>]
                     </option>
                 <?}}?>
         </select>

@@ -388,7 +388,7 @@
             statusFormatted: function () {
                 var status = this.agent.title.STATUS_ID;
 
-                return status == <?=Model_Agent::AGENT_STATUS_ACTIVE?> ? '<span class="label label-success">В работе</span>' : '<span class="label label-danger">Заблокирован</span>';
+                return status == <?=Model_Agent::AGENT_STATUS_ACTIVE?> ? '<span class="badge badge-success">В работе</span>' : '<span class="badge badge-danger">Заблокирован</span>';
             }
         },
         methods: {

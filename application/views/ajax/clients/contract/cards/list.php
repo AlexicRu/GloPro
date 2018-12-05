@@ -56,7 +56,7 @@
             }
 
             if (data[i].CARD_STATE == <?=Model_Card::CARD_STATE_BLOCKED?>) {
-                tpl.find('[ban]').append('<span class="mt-1 label label-danger"><i class="fa fa-lock-alt"></i></span>');
+                tpl.find('[ban]').append('<span class="mt-1 badge badge-danger"><i class="fa fa-lock-alt"></i></span>');
             }
 
             tpl.find('a').on('click', function () {

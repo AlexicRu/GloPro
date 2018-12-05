@@ -82,7 +82,7 @@ if(!empty($_REQUEST['search'])){?>
                         '<h3 class="card-title"><span class="lstick"></span><a href="/clients/client/' + client.CLIENT_ID + '">' + client.CLIENT_NAME + '</a></h3>' +
                     '</div>' +
                     '<div class="ml-auto">' +
-                        '<span class="label label-light-inverse p-2 font-16 m-b-10 nowrap">ID ' + client.CLIENT_ID + '</span>'+
+                        '<span class="badge badge-light p-2 font-16 m-b-10 nowrap">ID ' + client.CLIENT_ID + '</span>'+
                     '</div>' +
                 '</div>' +
             '</div></div>');
@@ -121,7 +121,7 @@ if(!empty($_REQUEST['search'])){?>
                     }
 
                     $('<tr>' +
-                        '<td><span class="label label-' + contract.contract_state_class + '">' + contract.contract_state_name + '</span></td>' +
+                        '<td><span class="badge badge-' + contract.contract_state_class + '">' + contract.contract_state_name + '</span></td>' +
                         '<td><a href="'+ link +'">' + contract.CONTRACT_NAME + '</a>'+card+'</td>' +
                         '<td><span class="gray">Счет:</span> <b>' + contract.balance_formatted + '</b></td>' +
                         '<td><span class="gray">Карты:</span> <b>' + contract.ALL_CARDS + '</b></td>' +

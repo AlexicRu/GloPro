@@ -32,7 +32,7 @@ function cardToggle(t)
                 var cnt_blocked = $('.cards_cnt_blocked');
 
                 if(t.hasClass('btn-success')){
-                    tab.find('[ban]').append('<span class="mt-1 label label-danger"><i class="fa fa-lock-alt"></i></span>');
+                    tab.find('[ban]').append('<span class="mt-1 badge badge-danger"><i class="fa fa-lock-alt"></i></span>');
                     cnt_in_work.text(parseInt(cnt_in_work.text()) - 1);
                     cnt_blocked.text(parseInt(cnt_blocked.text()) + 1);
 
