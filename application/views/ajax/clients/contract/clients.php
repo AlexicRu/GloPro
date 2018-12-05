@@ -11,7 +11,7 @@
                 </div>
 
                 <b><?=$client['CLIENT_NAME']?></b>
-                <span class="text-muted">[<?=$client['CLIENT_ID']?>]</span>
+                <span class="badge badge-secondary ml-1">ID <?=$client['CLIENT_ID']?></span>
 
                 <?if(Access::allow('managers_edit-manager-clients-contract-binds')) {?>
                     <?

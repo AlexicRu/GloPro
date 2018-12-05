@@ -15,7 +15,8 @@
                     <?if (Access::allow('root')) {?>
                         <span toggle_block="agentBlock1">
                             <b v-html="checkEmpty(agent.title.WEB_NAME)"></b>
-                            <span class="text-muted">[<?=$agent['AGENT_ID']?>]</span>
+                            &nbsp;
+                            <span class="badge badge-light">ID <?=$agent['AGENT_ID']?></span>
                         </span>
                         <span toggle_block="agentBlock1" class="dn">
                             <div class="input-group">

@@ -274,7 +274,7 @@
                     <div class="col-sm-7">
                         <span toggle_block="block2">
                             <?=$contractSettings['TARIF_NAME_ONLINE']?>
-                            <span class="text-muted">[<?=$contractSettings['TARIF_ONLINE']?>]</span>
+                            <span class="badge badge-secondary ml-1">ID <?=$contractSettings['TARIF_ONLINE']?></span>
                         </span>
                         <span toggle_block="block2" class="dn">
                             <?=Form::buildField('contract_tariffs', 'TARIF_ONLINE', $contractSettings['TARIF_ONLINE'])?>
@@ -289,7 +289,7 @@
                     </div>
                     <div class="col-sm-7">
                         <?=$contractSettings['TARIF_NAME_OFFLINE']?>
-                        <span class="text-muted">[<?=$contractSettings['TARIF_OFFLINE']?>]</span>
+                        <span class="badge badge-secondary ml-1">ID <?=$contractSettings['TARIF_OFFLINE']?></span>
 
                         <a href="#" data-toggle="modal" data-target="#contract_tariff_edit" class="<?=Text::BTN?> btn-outline-primary btn-sm"><i class="fa fa-pen"></i></a>
                     </div>
