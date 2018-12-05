@@ -6,6 +6,14 @@ if (typeof Dropzone == 'function') {
 }
 
 $(function(){
+    $(document).ajaxSuccess(function (e, t, o) {
+        if (t.responseJSON && t.responseJSON.messages && t.responseJSON.messages.length) {
+            for (var n in t.responseJSON.messages) {
+                message(t.responseJSON.messages[n].type, t.responseJSON.messages[n].text);
+            }
+        }
+    });
+
     $('.mark_read').on('click', function () {
         $.post('/messages/make-read', {}, function (data) {
             if(data.success){

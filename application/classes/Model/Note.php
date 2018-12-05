@@ -16,7 +16,10 @@ class Model_Note extends Model
      */
     public static function editNote($params)
     {
-        if(empty($params)){
+        if(
+            empty($params) ||
+            empty($params['date'])
+        ){
             return false;
         }
 

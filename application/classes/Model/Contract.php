@@ -226,10 +226,16 @@ class Model_Contract extends Model
 	{
 		if(
 			empty($contractId) ||
-			empty($params['contract']['CONTRACT_NAME'])
+			empty($params['contract']['CONTRACT_NAME']) ||
+			empty($params['contract']['DATE_BEGIN'])
 		){
 			return false;
 		}
+
+        if(!empty($params['contract']['DATE_END']) && Date::dateDifference($params['contract']['DATE_BEGIN'], $params['contract']['DATE_END']) > 0) {
+            Messages::put('Дата начала не может быть позже даты окончания');
+            return false;
+        }
 
 		$db = Oracle::init();
 
@@ -239,7 +245,7 @@ class Model_Contract extends Model
 			'p_contract_id'		=> $contractId,
 			'p_contract_name' 	=> $params['contract']['CONTRACT_NAME'],
 			'p_date_begin' 		=> Date::format($params['contract']['DATE_BEGIN']),
-			'p_date_end' 		=> Date::format($params['contract']['DATE_END']),
+            'p_date_end' 		=> !empty($params['contract']['DATE_END']) ? Date::format($params['contract']['DATE_END']) : Date::DATE_MAX,
 			'p_currency' 		=> Common::CURRENCY_RUR,
 			'p_state_id' 		=> $params['contract']['STATE_ID'],
 			'p_manager_id' 		=> $user['MANAGER_ID'],
@@ -337,7 +343,7 @@ class Model_Contract extends Model
 			return false;
 		}
 
-		if(!empty($params['date_end']) && Date::dateDifference($params['date_start'], $params['date_end'])) {
+		if(!empty($params['date_end']) && Date::dateDifference($params['date_start'], $params['date_end']) > 0) {
 			return ['error' => 'Дата начала не может быть позже даты окончания'];
 		}
 

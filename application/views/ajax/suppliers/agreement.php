@@ -49,7 +49,9 @@ $toggle = 'agreement'.$agreement['AGREEMENT_ID'];
                         <div class="input-group-prepend">
                             <div class="input-group-text">до</div>
                         </div>
-                        <input type="date" name="DATE_END" value="<?=Date::formatToDefault($agreement['WEB_DATE_END'])?>" class="form-control">
+                        <input type="date" name="DATE_END" value="<?=Date::formatToDefault($agreement['WEB_DATE_END'])?>" class="form-control"
+                               min="<?=Date::formatToDefault($agreement['WEB_DATE_BEGIN'])?>"
+                        >
                     </div>
                 </div>
             </div>

@@ -91,7 +91,7 @@
             },
             queuecomplete: function ()
             {
-                goAddNews();initWYSIWYG
+                _goEditNews();
             }
         });
 
@@ -107,7 +107,7 @@
         if(dropzone.getAcceptedFiles().length){
             dropzone.processQueue();
         }else{
-            goAddNews();
+            _goEditNews();
         }
     }
 
@@ -116,7 +116,7 @@
         $('[name=news_edit_subscribe_agent]').prop('disabled', radio.val() == 'all');
     }
 
-    function goAddNews()
+    function _goEditNews()
     {
         var params = {
             id:                 $('[name=news_edit_id]').val(),
@@ -137,7 +137,7 @@
 
         $.post('/news/note-edit', {params:params}, function(data){
             if(data.success){
-                <?if(!empty($detail['NEWS_ID'])){?>
+                <?if(!empty($detail['NOTE_ID'])){?>
                     message(1, 'Новость успешно отредактированна');
                 <?}else{?>
                     message(1, 'Новость успешно добавлена');
@@ -147,7 +147,7 @@
                     window.location.reload();
                 }, 500);
             }else{
-                <?if(!empty($detail['NEWS_ID'])){?>
+                <?if(!empty($detail['NOTE_ID'])){?>
                     message(0, 'Ошибка редактирования новости');
                 <?}else{?>
                     message(0, 'Ошибка добавления новости');

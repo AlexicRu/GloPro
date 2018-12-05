@@ -61,7 +61,16 @@ class Model_Supplier_Agreement extends Model
      */
     public static function edit($params)
     {
-        if(empty($params['contract_id']) || empty($params['agreement_id'])){
+        if(
+            empty($params['contract_id']) ||
+            empty($params['agreement_id']) ||
+            empty($params['date_begin'])
+        ){
+            return false;
+        }
+
+        if(!empty($params['date_end']) && Date::dateDifference($params['date_begin'], $params['date_end']) > 0) {
+            Messages::put('Дата начала не может быть позже даты окончания');
             return false;
         }
 
