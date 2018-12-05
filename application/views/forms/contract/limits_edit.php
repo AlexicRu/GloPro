@@ -185,7 +185,7 @@
 
     function contractLimitsEditGo(t)
     {
-        var form = $('.form_contract_limits_edit');
+        var form = $('.modal');
         var limits = [];
 
         var canEdit = true;
