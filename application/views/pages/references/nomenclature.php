@@ -10,6 +10,11 @@
             <i class="far fa-credit-card-front fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Для лимитов</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#full" role="tab">
+            <i class="far fa-list-ul fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Полный справочник</span>
+        </a>
+    </li>
 </ul>
 
 <!-- Tab panes -->
@@ -92,6 +97,11 @@
 
                 <div class="tube-data"></div>
             </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="full" role="tabpanel">
+        <div class="p-3 bg-white">
+            <?include('_servicesListFull.php')?>
         </div>
     </div>
 </div>

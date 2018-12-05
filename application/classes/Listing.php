@@ -45,12 +45,7 @@ class Listing
     {
         $user = Auth::instance()->get_user();
 
-        $sql = (new Builder())->select([
-            't.SERVICE_ID',
-            't.MEASURE',
-            't.SYSTEM_SERVICE_CATEGORY',
-            't.FOREIGN_DESC'
-        ])->distinct()
+        $sql = (new Builder())->select()
             ->from('V_WEB_SERVICE_LIST t')
             ->where('t.agent_id = ' . $user['AGENT_ID'])
             ->orderBy('t.FOREIGN_DESC')
@@ -86,11 +81,7 @@ class Listing
      */
     public static function getServicesForConversion($params = [])
     {
-        $sql = (new Builder())->select([
-            't.SERVICE_ID',
-            't.MEASURE',
-            't.FOREIGN_DESC'
-        ])->distinct()
+        $sql = (new Builder())->select()
             ->from('V_WEB_SERVICE_CONVERSION t')
             ->orderBy('t.FOREIGN_DESC')
         ;
@@ -131,11 +122,7 @@ class Listing
             $description = 'LONG_DESC';
         }
 
-        $sql = (new Builder())->select([
-                't.SERVICE_ID',
-                't.MEASURE',
-                't.' . $description
-            ])->distinct()
+        $sql = (new Builder())->select()
             ->from('V_WEB_SERVICE_LIST_FULL t')
             ->orderBy('t.' . $description)
         ;

@@ -58,11 +58,13 @@ class Controller_References extends Controller_Common {
         $tubesList = Model_Tube::getTubes(['is_owner' => 1]);
         $tubesList2 = Model_Tube::getTubes(['card_limit_change_id' => 1]);
         $servicesList = Listing::getServicesForConversion();
+        $servicesListFull = Listing::getServices();
 
         $this->tpl
             ->bind('tubesList', $tubesList)
             ->bind('tubesList2', $tubesList2)
             ->bind('servicesList', $servicesList)
+            ->bind('servicesListFull', $servicesListFull)
         ;
     }
 
