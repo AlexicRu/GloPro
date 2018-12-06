@@ -202,7 +202,6 @@ abstract class Controller_Common extends Controller_Template {
             Common::getAssetsLink() . 'css/google-sans.css',
             Common::getAssetsLink() . 'css/loader.css',
             '/admin-pro/assets/plugins/prism/prism.css',
-            Common::getAssetsLink() . 'fonts/fontawesome-pro/css/all.min.css',
         ];
 
         $this->template->scripts = [
@@ -218,6 +217,12 @@ abstract class Controller_Common extends Controller_Template {
             '/assets/plugins/jquery.maskMoney.min.js',
             '/admin-pro/main/js/custom.js',
         ];
+
+        if (Common::checkOldOS()) {
+            $this->template->scripts[] = Common::getAssetsLink() . 'fonts/fontawesome-pro/js/all.min.js';
+        } else {
+            $this->template->styles[] = Common::getAssetsLink() . 'fonts/fontawesome-pro/css/all.min.css';
+        }
 
         $this->template->scriptsRaw = [];
 
@@ -246,10 +251,10 @@ abstract class Controller_Common extends Controller_Template {
         );
 
         foreach($styles as $style){
-            $this->template->styles[] = $style . '?t=' . Common::getVersion();
+            $this->template->styles[] = $style;
         }
         foreach($scripts as $script){
-            $this->template->scripts[] = $script . '?t=' . Common::getVersion();
+            $this->template->scripts[] = $script;
         }
         foreach($this->scriptsRaw as $script){
             $this->template->scriptsRaw[] =  $script;
@@ -262,13 +267,13 @@ abstract class Controller_Common extends Controller_Template {
     private function _appendFilesAfter()
     {
         if(Auth::instance()->logged_in()) {
-            $this->template->styles[] = Common::getAssetsLink() . 'css/ui.css?t=' . Common::getVersion();
+            $this->template->styles[] = Common::getAssetsLink() . 'css/ui.css';
 
             $this->template->scripts[] = Common::getAssetsLink() . 'js/ui.js';
-            $this->template->scripts[] = Common::getAssetsLink() . 'js/site.js?t=' . Common::getVersion();
+            $this->template->scripts[] = Common::getAssetsLink() . 'js/site.js';
         }
 
-        $this->template->styles[] = Common::getAssetsLink() . 'css/style.css?t=' . Common::getVersion();
+        $this->template->styles[] = Common::getAssetsLink() . 'css/style.css';
     }
 
     /**

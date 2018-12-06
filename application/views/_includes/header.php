@@ -16,7 +16,7 @@
 
     <?if (!empty($styles)) {
         foreach($styles as $style){?>
-            <link href="<?=$style?>" rel="stylesheet">
+            <link href="<?=$style?>?t=<?=Common::getVersion()?>" rel="stylesheet">
         <?}
     }?>
 
@@ -44,7 +44,7 @@
     <?}?>
 </head>
 
-<body class="fix-header card-no-border fix-sidebar design__<?=(!empty($customView) ? $customView : Common::DESIGN_DEFAULT)?> <?=(User::loggedIn() ? 'logged-in' : 'logged-out')?>">
+<body class="fix-header card-no-border fix-sidebar design__<?=(!empty($customView) ? $customView : Common::DESIGN_DEFAULT)?> <?=(User::loggedIn() ? 'logged-in' : 'logged-out')?> <?=(Common::checkOldOS() ? 'old-os' : '')?>">
 <!-- ============================================================== -->
 <!-- Preloader - style you can find in spinners.css -->
 <!-- ============================================================== -->
