@@ -17,7 +17,7 @@ return array(
             'title' => 'MODULCARD',
             'class' => 'modulcard'
         ],
-        'mo-47gloproru' => [
+        'mo47gloproru' => [
             'title' => 'ФСК Мостоотряд-47',
             'class' => 'mo47'
         ],

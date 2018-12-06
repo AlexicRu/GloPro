@@ -202,6 +202,7 @@ abstract class Controller_Common extends Controller_Template {
             Common::getAssetsLink() . 'css/google-sans.css',
             Common::getAssetsLink() . 'css/loader.css',
             '/admin-pro/assets/plugins/prism/prism.css',
+            Common::getAssetsLink() . 'fonts/fontawesome-pro/css/all.min.css',
         ];
 
         $this->template->scripts = [

@@ -13,13 +13,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@fortawesome/fontawesome-pro": "^5.5.0",
     "gulp": "3.9.1",
-    "gulp-less": "4.0.0",
     "gulp-csso": "3.0.1",
-    "gulp-uglify": "3.0.0",
-    "gulp-modify-css-urls": "1.1.0",
     "gulp-imagemin": "4.1.0",
+    "gulp-less": "4.0.0",
+    "gulp-modify-css-urls": "1.1.0",
     "gulp-sass": "4.0.1",
+    "gulp-uglify": "3.0.0",
     "gulp-util": "3.0.8"
   },
   "dependencies": {

@@ -14,8 +14,6 @@
 
     <title><?=(!empty($title) ? implode(' :: ', $title) : '')?></title>
 
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-j8y0ITrvFafF4EkV1mPW0BKm6dp3c+J9Fky22Man50Ofxo2wNe5pT1oZejDH9/Dt" crossorigin="anonymous">
-
     <?if (!empty($styles)) {
         foreach($styles as $style){?>
             <link href="<?=$style?>" rel="stylesheet">
