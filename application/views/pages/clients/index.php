@@ -82,7 +82,7 @@ if(!empty($_REQUEST['search'])){?>
                         '<h3 class="card-title"><span class="lstick"></span><a href="/clients/client/' + client.CLIENT_ID + '">' + client.CLIENT_NAME + '</a></h3>' +
                     '</div>' +
                     '<div class="ml-auto">' +
-                        '<span class="badge badge-light p-2 font-16 m-b-10 nowrap">ID ' + client.CLIENT_ID + '</span>'+
+                        '<span class="badge badge-light font-16">ID ' + client.CLIENT_ID + '</span>'+
                     '</div>' +
                 '</div>' +
             '</div></div>');
