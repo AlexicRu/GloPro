@@ -81,6 +81,11 @@ class Controller_Info extends Controller_Common
                 'items' => [
                     [
                         'icon'  => Common::$infoFilesIcons['Doc'],
+                        'name'  => 'Specification VIP API v.1.1.10',
+                        'file'  => '/file/info/API/Specification_VIP_API_v.1.1.10.docx'
+                    ],
+                    [
+                        'icon'  => Common::$infoFilesIcons['Doc'],
                         'name'  => 'Specification VIP API v.1.1.9',
                         'file'  => '/file/info/API/Specification_VIP_API_v.1.1.9.docx'
                     ],
