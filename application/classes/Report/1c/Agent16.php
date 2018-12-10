@@ -30,8 +30,8 @@ class Report_1c_Agent16 extends Report_1c_Common
                 'decode(pi.country_id, 643, 18, 0) as vat_rate',
                 '0 as recharge_vat',
                 'sum(v.service_amount) as volume',
-                'sum(v.sumprice_buy) as cost',
-                'sum(v.sumprice_discount) as sale'
+                'sum(v2.sumprice_buy) as cost',
+                'sum(v2.sumprice_discount) as sale'
             ])
             ->from('v_rep_transaction v')
             ->join('v_rep_transaction v2', 'v2.trn_key = v.link_key')
