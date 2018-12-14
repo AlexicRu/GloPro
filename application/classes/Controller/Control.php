@@ -145,12 +145,14 @@ class Controller_Control extends Controller_Common {
         if(is_null($offset) && !$this->toXls){
 
             $groupId = $this->request->param('id');
+            $postfix = 'exist';
+            $renderVerticalScroll = true;
 
-            $canEdit = true;
-
-            $html = View::factory('ajax/control/dots_in_group')
+            $html = View::factory('ajax/control/dots')
+                ->bind('postfix', $postfix)
                 ->bind('groupId', $groupId)
-                ->bind('canEdit', $canEdit);
+                ->bind('renderVerticalScroll', $renderVerticalScroll)
+            ;
 
             $this->html($html);
         }else{
@@ -289,11 +291,13 @@ class Controller_Control extends Controller_Common {
         $postfix = $this->request->post('postfix') ?: '';
         $showCheckbox = $this->request->post('show_checkbox') ?: '';
         $groupId = $this->request->post('group_id') ?: '';
+        $showAllBtn = true;
 
         $html = View::factory('ajax/control/dots')
             ->bind('postfix', $postfix)
             ->bind('showCheckbox', $showCheckbox)
             ->bind('groupId', $groupId)
+            ->bind('showAllBtn', $showAllBtn)
         ;
 
         $this->html($html);
@@ -626,17 +630,14 @@ class Controller_Control extends Controller_Common {
         if(is_null($offset) && !$this->toXls){
 
             $groupId = $this->request->param('id');
+            $postfix = 'exist';
+            $renderVerticalScroll = true;
 
-            $user = User::current();
-
-            $canEdit = true;
-            if (!in_array($user['ROLE_ID'], Access::$adminRoles)) {
-                $canEdit = false;
-            }
-
-            $html = View::factory('ajax/control/firms_in_group')
+            $html = View::factory('ajax/control/firms')
+                ->bind('postfix', $postfix)
                 ->bind('groupId', $groupId)
-                ->bind('canEdit', $canEdit);
+                ->bind('renderVerticalScroll', $renderVerticalScroll)
+            ;
 
             $this->html($html);
         }else{
@@ -677,12 +678,14 @@ class Controller_Control extends Controller_Common {
         if(is_null($offset) && !$this->toXls){
 
             $groupId = $this->request->param('id');
+            $postfix = 'exist';
+            $renderVerticalScroll = true;
 
-            $canEdit = true;
-
-            $html = View::factory('ajax/control/cards_in_group')
+            $html = View::factory('ajax/control/cards')
+                ->bind('postfix', $postfix)
                 ->bind('groupId', $groupId)
-                ->bind('canEdit', $canEdit);
+                ->bind('renderVerticalScroll', $renderVerticalScroll)
+            ;
 
             $this->html($html);
         }else{
@@ -734,11 +737,13 @@ class Controller_Control extends Controller_Common {
         $postfix = $this->request->post('postfix') ?: '';
         $showCheckbox = $this->request->post('show_checkbox') ?: '';
         $groupId = $this->request->post('group_id') ?: '';
+        $showAllBtn = true;
 
         $html = View::factory('ajax/control/cards')
             ->bind('postfix', $postfix)
             ->bind('showCheckbox', $showCheckbox)
             ->bind('groupId', $groupId)
+            ->bind('showAllBtn', $showAllBtn)
         ;
 
         $this->html($html);

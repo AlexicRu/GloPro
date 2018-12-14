@@ -9,7 +9,7 @@
 <script>
     $(function(){
         var params = {
-            show_all_btn:true
+            show_all_btn: <?=(!empty($showAllBtn) ? 1 : 0)?>,
         };
 
         if($('[name=group_id_<?=$postfix?>]').length){
@@ -109,12 +109,16 @@
             subBlock.append(tpl);
         }
 
-        if($('.tabs_dots_groups .action_del', block).is(':visible')){
+        if($('.action_del').is(':visible')){
             $('.td_edit', block).show();
         }
-        if($('.tabs_dots_groups .action_del', block).is(':visible') || $('[name=show_checkboxes<?=$postfix?>]').length){
+        if($('.action_del').is(':visible') || $('[name=show_checkboxes<?=$postfix?>]').length){
             $('.td_check', block).show();
         }
+
+        <?if($renderVerticalScroll) {?>
+        renderVerticalTabsScroll($('.tabs_dots_groups .v-scroll'));
+        <?}?>
     }
 
     function filterDots<?=$postfix?>(btn)
@@ -128,7 +132,7 @@
             POS_NAME:       $('[name=dots_filter_pos_name]', block).val(),
             OWNER:          $('[name=dots_filter_owner]', block).val(),
             POS_ADDRESS:    $('[name=dots_filter_address]', block).val(),
-            show_all_btn:   true,
+            show_all_btn:   <?=(!empty($showAllBtn) ? 1 : 0)?>,
             onError:        renderAjaxPaginationDotsListError<?=$postfix?>
         };
 

@@ -11,7 +11,7 @@
 <script>
     $(function(){
         var params = {
-            show_all_btn:true
+            show_all_btn:   <?=(!empty($showAllBtn) ? 1 : 0)?>,
         };
 
         if($('[name=group_id_<?=$postfix?>]').length){
@@ -91,12 +91,16 @@
             subBlock.append(tpl);
         }
 
-        if($('.tabs_firms_groups .action_del', block).is(':visible')){
+        if($('.action_del').is(':visible')){
             $('.td_edit', block).show();
         }
-        if($('.tabs_firms_groups .action_del', block).is(':visible') || $('[name=show_checkboxes<?=$postfix?>]').length){
+        if($('.action_del').is(':visible') || $('[name=show_checkboxes<?=$postfix?>]').length){
             $('.td_check', block).show();
         }
+
+        <?if($renderVerticalScroll) {?>
+        renderVerticalTabsScroll($('.tabs_firms_groups .v-scroll'));
+        <?}?>
     }
 
     function filterFirms<?=$postfix?>(btn)
@@ -104,7 +108,7 @@
         var block = btn.closest('.ajax_block_group_firms_list_<?=$postfix?>_out');
 
         var params = {
-            show_all_btn:       true,
+            show_all_btn:       <?=(!empty($showAllBtn) ? 1 : 0)?>,
             FIRM_ID:            $('[name=group_firm_filter_firm_id]', block).val(),
             HOLDER:             $('[name=group_firm_filter_holder]', block).val(),
             DESCRIPTION_RU:     $('[name=group_firm_filter_description_ru]', block).val(),

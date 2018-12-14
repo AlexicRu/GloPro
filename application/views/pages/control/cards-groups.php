@@ -103,7 +103,7 @@
             var group = $('.tab-pane.active');
             var group_id = group.attr('group_id');
 
-            $('.td_check [type=checkbox][name=card_id]:checked').each(function () {
+            $('.td_check [type=checkbox][name=card_id]:checked', group).each(function () {
                 cards.push($(this).val());
             });
 
