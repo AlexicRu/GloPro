@@ -50,14 +50,17 @@
 
         if(params.name == ''){
             message(0, 'Введите название договора');
+            endSubmitForm();
             return false;
         }
         if(params.date_start == ''){
             message(0, 'Введите начала действия');
+            endSubmitForm();
             return false;
         }
 
         $.post('/suppliers/contract-add', {params:params}, function(data){
+            endSubmitForm();
             if(data.success){
                 message(1, 'Договор успешно добавлен');
                 setTimeout(function(){

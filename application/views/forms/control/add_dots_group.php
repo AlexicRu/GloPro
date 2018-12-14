@@ -36,10 +36,12 @@
 
         if(params.name == ''){
             message(0, 'Введите название группы');
+            endSubmitForm();
             return false;
         }
 
         $.post('/control/add-dots-group', {params:params}, function(data){
+            endSubmitForm();
             if(data.success){
                 message(1, 'Группа успешно добавлена');
                 setTimeout(function () {

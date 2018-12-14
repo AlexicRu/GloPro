@@ -45,11 +45,13 @@
 
         if (phoneNote.intlTelInput('isValidNumber') == false) {
             message(0, 'Некорректный номер телефона для оповещений');
+            endSubmitForm();
             return false;
         }
 
         if (!confirmCode || confirmCode.length != 4) {
             message(0, 'Некорректный код подтверждения');
+            endSubmitForm();
             return false;
         }
 
@@ -59,6 +61,8 @@
         };
 
         $.post('/inform/enable-inform', params, function (data) {
+            endSubmitForm();
+
             if (data.success) {
                 message(1, 'Информирование успешно подключено');
                 $.fancybox.close();

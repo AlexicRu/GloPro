@@ -82,16 +82,19 @@
         }
 
         if (error) {
+            endSubmitForm();
             return false;
         }
 
         if(params.sum == '' || params.sum <= 0){
             message(0, 'Введите корректную сумму');
+            endSubmitForm();
             return false;
         }
 
         window.location.href = '/clients/add-bill?' + $.param(params);
         modalClose();
+        endSubmitForm();
 
         setTimeout(function () {
             paginationAjaxRefresh('ajax_block_client_bills_list');

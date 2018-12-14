@@ -289,6 +289,7 @@ function managerAddClients(btn)
 
     if(params.ids.length == 0){
         message(0, 'Выберите клиентов');
+        endSubmitForm();
         return false;
     }
 

@@ -26,10 +26,12 @@
 
         if(params.name == ''){
             message(0, 'Введите наименование поставщика');
+            endSubmitForm();
             return false;
         }
 
         $.post('/suppliers/supplier-add', {params:params}, function(data){
+            endSubmitForm();
             if(data.success){
                 message(1, 'Поставщик успешно добавлен');
                 setTimeout(function(){
