@@ -14,7 +14,7 @@
                 Дата начала действия тарифа:
             </div>
             <div class="col-sm-8 with-mt">
-                <input type="date" class="form-control" name="contract_tariff_edit_date" min="<?=date('Y-m-01', strtotime("first day of previous month"))?>">
+                <input type="date" class="form-control" name="contract_tariff_edit_date" min="<?=(!empty($contractDateBegin) ? Date::formatToDefault($contractDateBegin) : date('Y-m-01', strtotime("first day of previous month")))?>">
             </div>
         </div>
     </div>

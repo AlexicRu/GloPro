@@ -54,7 +54,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-sm-4 text-muted form__row__title">
-                                        Выбор из источника:
+                                        Выбор из справочника:
                                     </div>
                                     <div class="col-sm-8 with-mt">
                                         <?=Form::buildField('service_choose_single', 'add_service_in_service')?>

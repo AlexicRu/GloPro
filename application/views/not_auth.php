@@ -14,18 +14,16 @@
 
                 <form class="form-horizontal" id="login" method="post" action="/login">
                     <div class="form-group row">
-                        <div class="col-sm-4 col-form-label">
-                            <div class="text-right d-none d-sm-block">Логин</div>
-                            <div class="d-block d-sm-none">Логин</div>
+                        <div class="col-sm-4 text-muted form__row__title">
+                            Логин
                         </div>
                         <div class="col-sm-8 with-mt">
                             <input type="text" placeholder="Логин" name="login" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-4 col-form-label">
-                            <div class="text-right d-none d-sm-block">Пароль</div>
-                            <div class="d-block d-sm-none">Пароль</div>
+                        <div class="col-sm-4 text-muted form__row__title">
+                            Пароль
                         </div>
                         <div class="col-sm-8 with-mt">
                             <input type="password" placeholder="Пароль" name="password" class="form-control">

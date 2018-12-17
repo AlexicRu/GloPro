@@ -131,6 +131,7 @@ class Controller_Clients extends Controller_Common {
 				$popupContractHistory = Form::popupLarge('История по договору', 'contract/history');
                 $popupContractTariffEdit = Form::popup('Тариф по договору', 'contract/tariff_edit', [
                     'tariffId' => $contractSettings['TARIF_OFFLINE'],
+                    'contractDateBegin' => $contract['DATE_BEGIN'],
                     'contractId' => $contractId,
                 ]);
 

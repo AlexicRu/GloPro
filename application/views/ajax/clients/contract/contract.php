@@ -83,9 +83,8 @@
             <div class="font-18 font-weight-bold m-b-10">Оплата:</div>
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right d-none d-sm-block">Схема оплаты:</div>
-                    <div class="d-block d-sm-none">Схема оплаты:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Схема оплаты:
                 </div>
                 <div class="col-sm-7">
                     <span toggle_block="block2"><?=Model_Contract::$paymentSchemes[$contractSettings['scheme']]?></span>
@@ -102,9 +101,8 @@
             </div>
 
             <div class="row m-b-10 contract-payment-scheme-limit-row" <?/*if($contractSettings['scheme'] != Model_Contract::PAYMENT_SCHEME_LIMIT){?>style="display: none"<?}*/?>>
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right d-none d-sm-block">Действует до:</div>
-                    <div class="d-block d-sm-none">Действует до:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Действует до:
                 </div>
                 <div class="col-sm-7">
                     <span toggle_block="block2">
@@ -129,9 +127,8 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right d-none d-sm-block">Блокировка:</div>
-                    <div class="d-block d-sm-none">Блокировка:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Блокировка:
                 </div>
                 <div class="col-sm-7">
 
@@ -162,9 +159,8 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right d-none d-sm-block">Периодичность выставления счетов:</div>
-                    <div class="d-block d-sm-none">Периодичность выставления счетов:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Периодичность выставления счетов:
                 </div>
                 <div class="col-sm-7">
                     <?
@@ -179,9 +175,8 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right d-none d-sm-block">Валюта:</div>
-                    <div class="d-block d-sm-none">Валюта:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Валюта:
                 </div>
                 <div class="col-sm-7">
                     Российский Рубль – <?=Text::RUR?>
@@ -193,9 +188,8 @@
             <div class="font-18 font-weight-bold m-b-10 m-t-20">Грузополучатель:</div>
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right d-none d-sm-block">Грузополучатель:</div>
-                    <div class="d-block d-sm-none">Грузополучатель:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Грузополучатель:
                 </div>
                 <div class="col-sm-7">
                     <span toggle_block="block2" class="goods_reciever_span"></span>
@@ -208,9 +202,8 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right d-none d-sm-block">Комментарий к договору:</div>
-                    <div class="d-block d-sm-none">Комментарий к договору:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Комментарий к договору:
                 </div>
                 <div class="col-sm-7">
                     <span toggle_block="block2"><?=($contractSettings['CONTRACT_COMMENT'] ?
@@ -227,9 +220,8 @@
             <div class="font-18 font-weight-bold m-b-10 m-t-20">Штрафы по счету:</div>
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right d-none d-sm-block">Пени:</div>
-                    <div class="d-block d-sm-none">Пени:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Пени:
                 </div>
                 <div class="col-sm-7">
                     <span toggle_block="block2"><?=$contractSettings['PENALTIES']?> %</span>
@@ -245,9 +237,8 @@
             </div>
 
             <div class="row m-b-10">
-                <div class="col-sm-5 text-muted">
-                    <div class="text-right d-none d-sm-block">Овердрафт:</div>
-                    <div class="d-block d-sm-none">Овердрафт:</div>
+                <div class="col-sm-5 text-muted form__row__title">
+                    Овердрафт:
                 </div>
                 <div class="col-sm-7">
                     <span toggle_block="block2"><?=$contractSettings['OVERDRAFT']?> <?=Text::RUR?></span>
@@ -269,9 +260,8 @@
                 <div class="font-18 font-weight-bold m-b-10">Тарификация:</div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-5 text-muted">
-                        <div class="text-right d-none d-sm-block">Online тариф:</div>
-                        <div class="d-block d-sm-none">Online тариф:</div>
+                    <div class="col-sm-5 text-muted form__row__title">
+                        Online тариф:
                     </div>
                     <div class="col-sm-7">
                         <span toggle_block="block2">
@@ -285,9 +275,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-5 text-muted">
-                        <div class="text-right d-none d-sm-block">Текущий тариф:</div>
-                        <div class="d-block d-sm-none">Текущий тариф:</div>
+                    <div class="col-sm-5 text-muted form__row__title">
+                        Тариф договора:
                     </div>
                     <div class="col-sm-7">
                         <?=$contractSettings['TARIF_NAME_OFFLINE']?>
@@ -305,9 +294,8 @@
                 <div class="font-18 font-weight-bold m-b-10 m-t-20">Менеджеры:</div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-5 text-muted">
-                        <div class="text-right d-none d-sm-block">Менеджер по продажам:</div>
-                        <div class="d-block d-sm-none">Менеджер по продажам:</div>
+                    <div class="col-sm-5 text-muted form__row__title">
+                        Менеджер по продажам:
                     </div>
                     <div class="col-sm-7">
                         <?
@@ -326,9 +314,8 @@
                 </div>
 
                 <div class="row m-b-10">
-                    <div class="col-sm-5 text-muted">
-                        <div class="text-right d-none d-sm-block">Менеджер по сопровождению:</div>
-                        <div class="d-block d-sm-none">Менеджер по сопровождению:</div>
+                    <div class="col-sm-5 text-muted form__row__title">
+                        Менеджер по сопровождению:
                     </div>
                     <div class="col-sm-7">
                         <?
