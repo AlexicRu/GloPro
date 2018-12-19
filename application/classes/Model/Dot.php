@@ -10,7 +10,7 @@ class Model_Dot extends Model
 
     public static $groupsTypesNames = [
         self::GROUP_TYPE_USER       => 'Пользовательская группа',
-        self::GROUP_TYPE_SUPPLIER   => 'Группа точек поставщика',
+        self::GROUP_TYPE_SUPPLIER   => 'Сервисная группа',
     ];
 
     /**
