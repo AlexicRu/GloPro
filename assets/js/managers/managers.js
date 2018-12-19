@@ -37,7 +37,14 @@ function showManagersClients(managerId, params, force)
         return true;
     }
 
-    paginationAjax('/managers/load-clients', 'ajax_manager_clients_list_' + managerId, renderAjaxPaginationManagerClients, {manager_id: managerId});
+    if (force) {
+        block.empty();
+    }
+
+    paginationAjax('/managers/load-clients', 'ajax_manager_clients_list_' + managerId, renderAjaxPaginationManagerClients, {
+        search: params && params.search ? params.search : '',
+        manager_id: managerId
+    });
 }
 
 function renderAjaxPaginationManagerClients(data, block, params)
