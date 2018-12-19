@@ -80,11 +80,15 @@ class Controller_Managers extends Controller_Common {
     public function action_loadClients()
     {
         $managerId = $this->request->post('manager_id');
-        $params = $this->request->post('params');
 
-        $search = !empty($params['search']) ? $params['search'] : null;
+        $params = [
+            'search'        => !empty($this->request->post('search')) ? $this->request->post('search') : null,
+            'manager_id'    => $managerId,
+            'offset'        => $this->request->post('offset'),
+            'pagination'    => true
+        ];
 
-        $clients = Model_Manager::getClientsList(['search' => $search, 'manager_id' => $managerId]);
+        list($clients, $more) = Model_Manager::getClientsList($params);
 
         $contractsTree = Model_Manager::getContractsTree($managerId);
 
@@ -94,7 +98,11 @@ class Controller_Managers extends Controller_Common {
             ->bind('contractsTree', $contractsTree)
         ;
 
-        $this->html($html);
+        $this->jsonResult(true, [
+            'items' => strval($html),
+            'more'  => $more,
+            'count' => count($clients)
+        ]);
     }
 
 

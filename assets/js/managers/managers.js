@@ -31,20 +31,20 @@ function managerStateToggle(managerId, t)
 
 function showManagersClients(managerId, params, force)
 {
-    var block = $('#tabClients'+ managerId +' .client_list');
+    var block = $('.ajax_manager_clients_list_'+ managerId +'_out');
 
     if(block.html() != '' && !force){
         return true;
     }
 
-    addLoader(block);
+    paginationAjax('/managers/load-clients', 'ajax_manager_clients_list_' + managerId, renderAjaxPaginationManagerClients, {manager_id: managerId});
+}
 
-    $.post('/managers/load-clients', { manager_id: managerId, params: params }, function (data) {
-        removeLoader(block);
-        block.html(data);
+function renderAjaxPaginationManagerClients(data, block, params)
+{
+    block.append(data);
 
-        renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
-    });
+    renderVerticalTabsScroll($('.tabs_managers .v-scroll'));
 }
 
 function showManagersReports(managerId, params, force)

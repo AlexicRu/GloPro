@@ -152,7 +152,7 @@ function _paginationAjaxLoad(url, outer, block, callback, params)
 
             callback(data.data.items, block, params);
 
-            outer.data('offset', parseInt(outer.data('offset')) + data.data.items.length);
+            outer.data('offset', parseInt(outer.data('offset')) + (data.data.count != undefined ? data.data.count : data.data.items.length));
 
             if(data.data.more){
                 //ALL

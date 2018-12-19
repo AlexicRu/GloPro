@@ -53,9 +53,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-3">
-            <div class="client_list"></div>
-        </div>
+        <div class="ajax_manager_clients_list_<?=$managerId?>_out card-columns p-3"></div>
     </div>
     <?if (Access::allow('managers_load-reports')) {?>
     <div class="tab-pane" id="tabReports<?=$managerId?>" role="tabpanel">

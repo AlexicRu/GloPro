@@ -1,8 +1,4 @@
-<?if (empty($clients)) {?>
-    <div class="line_inner">Клиенты не найдены</div>
-<?} else {?>
-
-    <div class="card-columns">
+<?if (!empty($clients)) {?>
     <?foreach ($clients as $client) {?>
         <div class="card" manager_id="<?=$managerId?>" client_id="<?=$client['CLIENT_ID']?>">
             <div class="card-body bg-light">
@@ -31,5 +27,4 @@
             </div>
         </div>
     <?}?>
-    </div>
 <?}?>
