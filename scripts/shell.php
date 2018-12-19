@@ -285,11 +285,11 @@ class Shell
         $params = [];
 
         if (!empty($dateStart)) {
-            $params[] = 'startDate=' . $dateStart;
+            $params[] = 'effectiveStartDate=' . $dateStart;
         }
 
         if (!empty($dateEnd)) {
-            $params[] = 'endDate=' . $dateEnd;
+            $params[] = 'effectiveEndDate=' . $dateEnd;
         }
 
         return $this->_request($url . implode('&', $params), 'get', true) ?: [];
@@ -328,6 +328,8 @@ class Shell
         set_time_limit(0);
 
         $customers = $this->getCustomers();
+
+        //$customers = [['customerNumber' => 'RU23030040']];
 
         //customers
         foreach ($customers as $customer) {
@@ -413,8 +415,8 @@ class Shell
                         'invoice_date'          => $this->_quote(''), //varchar2(50) -- дата инвойса (не обязательно)
                         'card_group'            => $this->_quote(''), //varchar2(500) -- группа карт (не обязательно)
                         'card_number'           => $this->_quote($transactionDetail['cardNumber']), //varchar2(20) -- номер карты
-                        'date_trn'              => $this->_date($transactionDetail['effectiveAt']['value'] / 1000), //date -- дата транзакции
-                        'time_trn'              => $this->_quote(date('H:i:s', $transactionDetail['effectiveAt']['value'] / 1000)), //varchar2(10) -- время транзакции (формат hh24:mi:ss)
+                        'date_trn'              => $this->_date($transactionDetail['effectiveAt']['value'] / 1000 - 60*60*3), //date -- дата транзакции
+                        'time_trn'              => $this->_quote(date('H:i:s', $transactionDetail['effectiveAt']['value'] / 1000  - 60*60*3)), //varchar2(10) -- время транзакции (формат hh24:mi:ss)
                         'holder'                => $this->_quote(isset($transactionDetail['embossingName']) ? $transactionDetail['embossingName'] : ''), //varchar2(500) -- держатель карты (не обязательно)
                         'vrn'                   => $this->_quote(''), //varchar2(10) -- (не обязательно)
                         'fleet_id'              => $this->_quote(isset($transactionDetail['fleetId']) ? $transactionDetail['fleetId'] : ''), //varchar2(50) -- (не обязательно)
@@ -451,7 +453,7 @@ class Shell
 
                     try {
                         //execute
-                        //$this->_dbExecute($sql);
+                        $this->_dbExecute($sql);
 
                         //for checking loaded
                         $this->_loadedTransactions[] = $transaction['transactionId'];

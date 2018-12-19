@@ -1,8 +1,10 @@
 <?php
 
-if (!preg_match('/shell_(\d+)_(\d+)_report.php/', $argv[0], $m)) {
+$m = [0, 4, 70183602];
+
+/*if (!preg_match('/shell_(\d+)_(\d+)_report.php/', $argv[0], $m)) {
     die("valid filename: shell_{agentId}_{tubeId}_report.php\n");
-}
+}*/
 
 include ('shell.php');
 include ('shell_config.php');
@@ -13,12 +15,13 @@ $params = [
     'tube_id'   => $tubeId,
     'config'    => ['url' => $shellUrl, 'login' => $shellConfig['login'], 'password' => $shellConfig['password']],
     'db'        => $database, // ['db' => '', 'name' => '', 'password' => '']
-    'log_file'  => __DIR__ . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR . 'shell_' . $agentId . '_' . $tubeId . '.log'
+    //'log_file'  => __DIR__ . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR . 'shell_' . $agentId . '_' . $tubeId . '.log'
+    'debug'     => true
 ];
 
 if (!empty($argv[1])) {
     $date = DateTime::createFromFormat('Ym', $argv[1]);
-    $dateStart = $date->format('Y-m-01');
+    $dateStart = '2018-11-30'; //$date->format('Y-m-01');
     $dateEnd = $date->format('Y-m-t');
 } else {
     $cntDays = isset($cntDays) ? $cntDays : 5; //из конфига

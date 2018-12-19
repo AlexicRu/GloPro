@@ -232,7 +232,7 @@
 
             <div class="row m-b-10">
                 <div class="col-sm-4 text-muted form__row__title">
-                    Генеральный бухгалтер (кратко):
+                    Главный бухгалтер (кратко):
                 </div>
                 <div class="col-sm-8 with-mt">
                     <span toggle_block="edit_client" uid="accountant_short"><?=($client['ACCOUNTANT_SHORT'] ?: '<span class="gray">Не заполнено</span>')?></span>
