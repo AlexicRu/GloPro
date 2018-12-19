@@ -6,7 +6,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#fence" role="tab" onclick="checkLoadedTubeServicesData()">
+        <a class="nav-link" data-toggle="tab" href="#limit" role="tab" onclick="checkLoadedTubeServicesData()">
             <i class="far fa-credit-card-front fa-lg"></i> <span class="hidden-xs-down d-inline-block m-l-5">Для лимитов</span>
         </a>
     </li>
@@ -29,9 +29,9 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Источник:</span>
                             </div>
-                            <select class="sources_list custom-select">
+                            <select class="sources_list custom-select select-limit_change" onchange="checkLimitChange($(this))">
                                 <?foreach ($tubesList as $tube) {?>
-                                    <option value="<?=$tube['TUBE_ID']?>" <?=($tube['CARD_LIMIT_CHANGE_ID'] == 1 ? 'disabled' : '')?>><?=$tube['TUBE_NAME']?></option>
+                                    <option value="<?=$tube['TUBE_ID']?>" <?=($tube['CARD_LIMIT_CHANGE_ID'] != 1 || Access::allow('anytime_add_convert_service') ? 'selected' : 'limit_change="1"')?>><?=$tube['TUBE_NAME']?></option>
                                 <?}?>
                             </select>
                         </div>
@@ -39,7 +39,7 @@
                         <div class="services_list jsGrid"></div>
                     </div>
                     <div class="col-xl-4 with-mt">
-                        <div class="card m-b-0">
+                        <div class="card m-b-0 card-block-save">
                             <div class="card-body bg-light">
                                 <h3 class="card-title"><span class="lstick"></span>Добавление конвертации услуг</h3>
 
@@ -64,7 +64,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-4"></div>
                                     <div class="col-sm-8 with-mt">
-                                        <span class="<?=Text::BTN?> btn-primary" onclick="addService()">Добавить</span>
+                                        <span class="<?=Text::BTN?> btn-primary" onclick="addService($(this))">Добавить</span>
                                     </div>
                                 </div>
 
@@ -79,7 +79,7 @@
             </div>
         </div>
     </div>
-    <div class="tab-pane" id="fence" role="tabpanel">
+    <div class="tab-pane" id="limit" role="tabpanel">
         <div class="card">
             <div class="card-body">
                 <div class="font-weight-bold font-18 mb-2">Выберите трубу:</div>
@@ -89,7 +89,7 @@
                         <span class="input-group-text">Источник:</span>
                     </div>
                     <select class="tubes_list_limits custom-select" onchange="loadTubeServicesData($(this))">
-                        <?foreach ($tubesList2 as $tube) {?>
+                        <?foreach ($tubesListLimits as $tube) {?>
                             <option value="<?=$tube['TUBE_ID']?>"><?=$tube['TUBE_NAME']?></option>
                         <?}?>
                     </select>
@@ -110,7 +110,8 @@
 
 <script>
     $(function () {
-        changeSource($('.sources_list option:first').attr('value'));
+        checkLimitChange($('.select-limit_change'));
+        changeSource($('.sources_list option:selected').attr('value'));
 
         $('.sources_list').on('change', function () {
             changeSource($(this).val());
@@ -118,9 +119,9 @@
     });
 
     var isAjax = false;
-    function addService()
+    function addService(btn)
     {
-        if (isAjax) {
+        if (isAjax || btn.hasClass('disabled')) {
             return false;
         }
 
@@ -224,5 +225,18 @@
             removeLoader(block);
             block.html(data);
         });
+    }
+
+    function checkLimitChange(select)
+    {
+        var option = select.find('option:selected');
+
+        if (option.attr('limit_change')) {
+            $('.card-block-save .btn').addClass('disabled');
+            $('.card-block-save input').prop('disabled', true);
+        } else {
+            $('.card-block-save .btn').removeClass('disabled');
+            $('.card-block-save input').prop('disabled', false);
+        }
     }
 </script>

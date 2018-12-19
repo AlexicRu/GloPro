@@ -281,6 +281,9 @@ return [
             Access::ROLE_MANAGER,
             Access::ROLE_MANAGER_SALE_SUPPORT,
         ],
+        'anytime_add_convert_service' => [
+            Access::ROLE_ROOT
+        ]
     ],
     'deny' => [ //для всех остальных ролей будет разрешено
         // functions

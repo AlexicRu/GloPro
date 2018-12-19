@@ -56,13 +56,13 @@ class Controller_References extends Controller_Common {
         $this->_initJsGrid();
 
         $tubesList = Model_Tube::getTubes(['is_owner' => 1]);
-        $tubesList2 = Model_Tube::getTubes(['card_limit_change_id' => 1]);
+        $tubesListLimits = Model_Tube::getTubes(['card_limit_change_id' => 1]);
         $servicesList = Listing::getServicesForConversion();
         $servicesListFull = Listing::getServices();
 
         $this->tpl
             ->bind('tubesList', $tubesList)
-            ->bind('tubesList2', $tubesList2)
+            ->bind('tubesListLimits', $tubesListLimits)
             ->bind('servicesList', $servicesList)
             ->bind('servicesListFull', $servicesListFull)
         ;
@@ -88,6 +88,15 @@ class Controller_References extends Controller_Common {
         $serviceId = $this->request->post('service_id');
         $tubeId = $this->request->post('tube_id');
         $name = $this->request->post('name');
+
+        if (Access::deny('anytime_add_convert_service')) {
+            $tubes = Model_Tube::getTubes(['tube_id' => $tubeId]);
+            $tube = !empty($tubes[0]) ? $tubes[0] : false;
+
+            if (empty($tube) || !empty($tube['CARD_LIMIT_CHANGE_ID'])) {
+                $this->jsonResult(0);
+            }
+        }
 
         list($result, $error) = Model_Reference::addConvertService($serviceId, $tubeId, $name);
 

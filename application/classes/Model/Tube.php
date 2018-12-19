@@ -24,6 +24,9 @@ class Model_Tube extends Model
             ->where('agent_id = '.$user['AGENT_ID'])
         ;
 
+        if (isset($params['tube_id'])) {
+            $sql->where('tube_id = ' . $params['tube_id']);
+        }
         if (isset($params['is_owner'])) {
             $sql->where('is_owner = ' . $params['is_owner']);
         }
