@@ -308,9 +308,14 @@ class Model_Manager extends Model
 
         $res = $db->procedure('ctrl_manager_add', $data, true);
 
-        if($res['p_error_code'] == Oracle::CODE_ERROR){
+        if ($res['p_error_code'] == Oracle::CODE_ERROR_EXISTS) {
+            Messages::put('Данный логин уже используется');
+        }
+
+        if ($res['p_error_code'] != Oracle::CODE_SUCCESS) {
             return false;
         }
+
         return $res['p_new_manager_id'];
     }
 

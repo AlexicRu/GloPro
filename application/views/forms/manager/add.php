@@ -148,8 +148,8 @@
                     })
                 ;
 
-                $('.tabs_managers .v-scroll').prepend(tpl);
-                tplContent.insertAfter($('.tabs_managers .tab-pane:last'));
+                $('.tabs_managers > .nav-tabs .v-scroll').prepend(tpl);
+                tplContent.insertAfter($('.tabs_managers > .tab-content > .tab-pane:last'));
 
                 tpl.find('a').click();
             }else{

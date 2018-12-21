@@ -42,7 +42,7 @@ function message(type, text, sticky)
 {
     var header;
 
-    if(type == 0 || type == 'error'){
+    if (type == 0 || type == 'danger') {
         header = 'Ошибка!';
         type = 'error';
     }
