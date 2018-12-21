@@ -129,20 +129,29 @@
                 modalClose();
 
                 var managerId = data.data.MANAGER_ID;
-                var tpl = $('<div class="tab_v tab_v_small"><div></div></div>');
-                var tplContent = $('<div class="tab_v_content"></div>');
+                var tpl = $('<li class="nav-item">' + '<a class="nav-link" data-toggle="tab" href="#manager' + managerId + '" role="tab" />' + '</li>');
+                var tplContent = $('<div class="tab-pane" id="manager' + managerId + '" role="tabpanel"></div>');
 
                 tpl
                     .attr('tab', 'manager' + managerId)
-                    .find('div').html('<span class="gray">['+ managerId +']</span> '+ data.data.M_NAME)
+                    .find('a').html(data.data.M_NAME + '<span class="text-muted float-right">[' + managerId + ']</span>')
+                    .on('click', function () {
+                        var t = $(this);
+
+                        $('.tabs_managers > .nav-tabs .nav-link.active').removeClass('active');
+
+                        t.tab('show');
+
+                        loadManager(t);
+
+                        return false;
+                    })
                 ;
 
-                tpl.on('click', function () {
-                    loadManager($(this));
-                });
+                $('.tabs_managers .v-scroll').prepend(tpl);
+                tplContent.insertAfter($('.tabs_managers .tab-pane:last'));
 
-                $('.tabs_managers .tabs_v .scroll').prepend(tpl);
-                $('.tabs_managers .tabs_v_content').prepend(tplContent);
+                tpl.find('a').click();
             }else{
                 message(0, 'Ошибка добавления менеджера');
             }
