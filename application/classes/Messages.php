@@ -2,7 +2,7 @@
 
 class Messages
 {
-    const MESSAGE_TYPE_DANGER   = 'error';
+    const MESSAGE_TYPE_DANGER   = 'danger';
     const MESSAGE_TYPE_INFO     = 'info';
     const MESSAGE_TYPE_WARNING  = 'warning';
     const MESSAGE_TYPE_SUCCESS  = 'success';

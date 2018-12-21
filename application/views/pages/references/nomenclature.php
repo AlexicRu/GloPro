@@ -132,7 +132,7 @@
         };
 
         if (params.service_id == '' || params.name == '' || params.tube_id == '') {
-            message('error', 'Заполните все поля');
+            message('danger', 'Заполните все поля');
             return false;
         }
 
@@ -142,7 +142,7 @@
 
                 changeSource($('.sources_list option:selected').attr('value'));
             } else {
-                message('error', 'Ошибка добавления услуги');
+                message('danger', 'Ошибка добавления услуги');
             }
         });
     }
@@ -155,7 +155,7 @@
 
         if (!source) {
             removeLoader(block);
-            message('error', 'Список услуг пуст');
+            message('danger', 'Список услуг пуст');
             return false;
         }
 
@@ -164,7 +164,7 @@
                 drawTable(data.data);
                 //changeSelect(data.data);
             } else {
-                message('error', 'Ошибка загрузки списка услуг');
+                message('danger', 'Ошибка загрузки списка услуг');
             }
 
             removeLoader(block);
