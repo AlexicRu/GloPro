@@ -2,8 +2,7 @@
 
 class Listing
 {
-    const SERVICE_GROUP_FUEL = 'Топливо';
-    const SERVICE_GROUP_WASH = 'Услуги мойки';
+    const SERVICE_GROUP_ITEMS = 'SERVICES';
 
     /**
      * список стран

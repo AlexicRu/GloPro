@@ -21,6 +21,9 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 </div>
 
 <script>
+    var CARD_LIMIT_PARAM_RUR = <?=Model_Card::CARD_LIMIT_PARAM_RUR?>;
+    var SERVICE_GROUP_ITEMS = '<?=Listing::SERVICE_GROUP_ITEMS?>';
+
     $(function () {
         checkServices_<?=$postfix?>();
     });
@@ -207,7 +210,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         });
     }
 
-    function checkServices_<?=$postfix?>()
+    function checkServices_<?=$postfix?>(selectChanged)
     {
         var form = $('.form_card_limits_edit_<?=$postfix?>');
 
@@ -237,5 +240,28 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
                 }
             });
         });
+
+        if (selectChanged) {
+            var row = selectChanged.closest('[limit_group]');
+
+            if (selectChanged.find('option:selected').attr('group') == SERVICE_GROUP_ITEMS) {
+                $('[name=unit_type] option', row).each(function () {
+                    var option = $(this);
+
+                    if (option.attr('value') == CARD_LIMIT_PARAM_RUR) {
+                        option.prop('disabled', false);
+                    } else {
+                        option.prop('disabled', true);
+                        if (option.prop('selected')) {
+                            option.prop('selected', false);
+                        }
+                    }
+                });
+            } else {
+                $('[name=unit_type] option', row).each(function () {
+                    $(this).prop('disabled', false);
+                });
+            }
+        }
     }
 </script>

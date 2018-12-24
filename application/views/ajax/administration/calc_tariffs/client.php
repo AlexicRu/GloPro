@@ -42,13 +42,20 @@
                     Период:
                 </div>
                 <div class="col-sm-8 with-mt">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <input type="date" name="date_start_<?=$iteration?>" class="form-control" value="<?=date('Y-m-01')?>">
+                    <div class="row">
+                        <div class="col-xxl-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text">от</span></div>
+                                <input type="date" name="date_start_<?= $iteration ?>" class="form-control"
+                                       value="<?= date('Y-m-01') ?>">
+                            </div>
                         </div>
-                        <span class="input-group-text">-</span>
-                        <div class="input-group-append">
-                            <input type="date" name="date_end_<?=$iteration?>" class="form-control" value="<?=date('Y-m-d')?>">
+                        <div class="col-xxl-6 with-mt">
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text">до</span></div>
+                                <input type="date" name="date_end_<?= $iteration ?>" class="form-control"
+                                       value="<?= date('Y-m-d') ?>">
+                            </div>
                         </div>
                     </div>
                 </div>

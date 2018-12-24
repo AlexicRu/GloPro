@@ -9,19 +9,28 @@
 
 <div class="export_1c">
     <div class="row m-b-20">
-        <div class="col-sm-2">
+        <div class="col-sm-2 text-muted form__row__title">
             Период:
         </div>
-        <div class="col-sm-4">
-            <input type="date" name="date_from" class="form-control">
-        </div>
-        <div class="col-sm-2 text-center">-</div>
-        <div class="col-sm-4">
-            <input type="date" name="date_to" class="form-control">
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">от</span></div>
+                        <input type="date" name="date_from" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6 with-mt">
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">до</span></div>
+                        <input type="date" name="date_to" class="form-control">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row m-b-20">
-        <div class="col-sm-2">
+        <div class="col-sm-2 text-muted form__row__title">
             Клиент,<br class="hidden-sm-down">
             Договор:
         </div>

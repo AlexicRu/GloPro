@@ -1,4 +1,6 @@
-<div class="p-20 border-bottom">
+<div class="p-3">
+    <div class="row border-bottom pb-3">
+        <div class="col-12">
     <div toggle_block="block2" class="font-20 align-items-center">
         <b><?=$contract['CONTRACT_NAME']?></b>
         <span class="nowrap"><span class="text-muted">от</span> <?=$contract['DATE_BEGIN']?></span>
@@ -55,9 +57,10 @@
         </div>
 
     </div>
+        </div>
 </div>
 
-<div class="row p-20 border-bottom">
+    <div class="row pt-3 pb-3 border-bottom">
     <div class="col-2">
         <?if(Access::allow('clients_contract-edit')){?>
             <span class="dn" toggle_block="block2"><button class="<?=Text::BTN?> btn-success" onclick="saveContract()"><i class="fa fa-check"></i> Сохранить</button></span>
@@ -77,7 +80,7 @@
     </div>
 </div>
 
-<div class="row p-20">
+    <div class="row pt-3">
     <div class="col-lg-6">
         <?if(Access::allow('view_payment_block')){?>
             <div class="font-18 font-weight-bold m-b-10">Оплата:</div>
@@ -336,7 +339,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 <?=$popupContractHistory?>
 <?=$popupContractNoticeSettings?>
