@@ -28,7 +28,6 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         checkServices_<?=$postfix?>();
     });
 
-    var services_cnt_<?=$postfix?> = <?=count($servicesList)?>;
     var services_<?=$postfix?> = {
         <?foreach($servicesList as $service){?>
             "<?=$service['SERVICE_ID']?>": {
@@ -76,23 +75,42 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
             postfix:    '<?=$postfix?>'
         };
 
+        var rowsCnt = row.find('[limit_service]').length;
+
         $.get('/clients/card-limit-service-template/', params, function(tpl){
             tpl = $(tpl);
             var selectFirst = $('.form_card_limits_edit_<?=$postfix?> [name=limit_service]:first');
             var group = selectFirst.find('option:selected').attr('group');
+            var servicesGroupCnt = selectFirst.find('option[group=' + group + ']').length;
+            var servicesCnt = selectFirst.find('option').length;
             var disabled = [
+                selectFirst.val()
+            ];
+            var disabledGroup = [
                 selectFirst.val()
             ];
             $('option', selectFirst).each(function () {
                 var t = $(this);
-                if (t.is(":disabled") || t.attr('group') != group) {
+                if (t.is(":disabled") && t.attr('group') == group) {
+                    disabledGroup.push(t.attr('value'));
+                }
+                if (t.is(":disabled")) {
                     disabled.push(t.attr('value'));
                 }
             });
 
-            if (disabled.length == services_cnt_<?=$postfix?>) {
-                message(0, 'Доступные услуги закончились');
-                return false;
+            if (rowsCnt > 0) {
+                //если уже есть строчки
+                if (disabledGroup.length == servicesGroupCnt) {
+                    message(0, 'Доступные услуги в группе закончились');
+                    return false;
+                }
+            } else {
+                //если добавление в новый блок
+                if (disabled.length == servicesCnt) {
+                    message(0, 'Все доступные услуги закончились');
+                    return false;
+                }
             }
 
             var flSetSelected = false;

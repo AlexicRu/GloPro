@@ -556,6 +556,48 @@ class Model_Card extends Model
                 }
             }
 
+            $card = Model_Card::getCard($cardId, $contractId);
+            $servicesList = Listing::getServicesForCardLimits([
+                'TUBE_ID' => $card['TUBE_ID']
+            ]);
+
+            //проверка одинаковости группы сервисов
+            foreach ($limits as $limit) {
+                if (count($limit['services']) > 1) {
+                    $group = null;
+
+                    foreach ($limit['services'] as $serviceId) {
+                        foreach ($servicesList as $service) {
+                            if ($service['SERVICE_ID'] == $serviceId) {
+                                if (is_null($group)) {
+                                    $group = $service['SYSTEM_SERVICE_CATEGORY'];
+                                } elseif ($group != $service['SYSTEM_SERVICE_CATEGORY']) {
+                                    throw new Exception('В одном блоке запрещено использовать услуги разных групп');
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //проверка: сервисные услуги только в рублях
+            foreach ($limits as $limit) {
+                foreach ($limit['services'] as $serviceId) {
+                    foreach ($servicesList as $service) {
+                        if ($service['SERVICE_ID'] == $serviceId) {
+                            if (
+                                $service['SYSTEM_SERVICE_CATEGORY'] == Listing::SERVICE_GROUP_ITEMS &&
+                                $limit['unit_type'] != Model_Card::CARD_LIMIT_PARAM_RUR
+                            ) {
+                                throw new Exception('Сервисные услуги могут быть только в рублях');
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+
             //проверка в зависимости от системы карт
             $firstFl = true;
             foreach($limits as $limit){
