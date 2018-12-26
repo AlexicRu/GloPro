@@ -273,7 +273,7 @@
 
     function editLogin(btn)
     {
-        var td = btn.closest('td');
+        var td = btn.closest('div');
         var txt = td.find('.login_value');
         var input = td.find('[name=edit_login]');
         var form = btn.closest('form');

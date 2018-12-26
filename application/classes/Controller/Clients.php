@@ -644,7 +644,7 @@ class Controller_Clients extends Controller_Common {
     public function action_editLogin()
     {
         $login = $this->request->post('login');
-        $managerId = $this->request->post('manager_id');
+        $managerId = $this->request->post('manager_id') ?: User::id();
 
         $result = Model_Manager::editLogin($managerId, $login);
 
