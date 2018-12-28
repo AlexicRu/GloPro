@@ -28,6 +28,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         checkServices_<?=$postfix?>();
     });
 
+    var servicesCnt_<?=$postfix?> = <?=count($servicesList)?>;
     var services_<?=$postfix?> = {
         <?foreach($servicesList as $service){?>
             "<?=$service['SERVICE_ID']?>": {
@@ -50,6 +51,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
     function cardEditAddService_<?=$postfix?>(t)
     {
         var row = t.closest('[limit_group]');
+        var form = t.closest('[limit_form]');
 
         <?if ($settings['cntServiceForLimit'] != $settings['cntServiceForFirstLimit']) {?>
             if (row.index() == 0) {
@@ -76,46 +78,48 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         };
 
         var rowsCnt = row.find('[limit_service]').length;
+        var selectFirst = $('.form_card_limits_edit_<?=$postfix?> [name=limit_service]:first');
+        var group = selectFirst.find('option:selected').attr('group');
+        var servicesGroupCnt = selectFirst.find('option[group=' + group + ']').length;
+        var selected = [];
+        var disabledGroup = [
+            selectFirst.val()
+        ];
+
+        $('select[name=limit_service] option:selected', form).each(function () {
+            selected.push($(this).attr('value'));
+        });
+
+        $('option', selectFirst).each(function () {
+            var t = $(this);
+            if (t.is(":disabled") && t.attr('group') == group) {
+                disabledGroup.push(t.attr('value'));
+            }
+        });
+
+        if (rowsCnt > 0) {
+            //если уже есть строчки
+            if (disabledGroup.length == servicesGroupCnt) {
+                message(0, 'Доступные услуги в группе закончились');
+                return false;
+            }
+        } else {
+            /*
+             * если добавление в новый блок
+             * смотрим общее кол-во :selected элементов, так как :disabled будет некорректнет из-за разных групп
+             */
+            if (selected.length == servicesCnt_<?=$postfix?>) {
+                message(0, 'Все доступные услуги закончились');
+                return false;
+            }
+        }
 
         $.get('/clients/card-limit-service-template/', params, function(tpl){
             tpl = $(tpl);
-            var selectFirst = $('.form_card_limits_edit_<?=$postfix?> [name=limit_service]:first');
-            var group = selectFirst.find('option:selected').attr('group');
-            var servicesGroupCnt = selectFirst.find('option[group=' + group + ']').length;
-            var servicesCnt = selectFirst.find('option').length;
-            var disabled = [
-                selectFirst.val()
-            ];
-            var disabledGroup = [
-                selectFirst.val()
-            ];
-            $('option', selectFirst).each(function () {
-                var t = $(this);
-                if (t.is(":disabled") && t.attr('group') == group) {
-                    disabledGroup.push(t.attr('value'));
-                }
-                if (t.is(":disabled")) {
-                    disabled.push(t.attr('value'));
-                }
-            });
-
-            if (rowsCnt > 0) {
-                //если уже есть строчки
-                if (disabledGroup.length == servicesGroupCnt) {
-                    message(0, 'Доступные услуги в группе закончились');
-                    return false;
-                }
-            } else {
-                //если добавление в новый блок
-                if (disabled.length == servicesCnt) {
-                    message(0, 'Все доступные услуги закончились');
-                    return false;
-                }
-            }
 
             var flSetSelected = false;
             for (var i in services_<?=$postfix?>) {
-                if (disabled.indexOf(i) != -1) {
+                if (selected.indexOf(i) != -1 || (rowsCnt > 0 && services_<?=$postfix?>[i].group != group)) {
                     tpl.find('select option[value="'+ i +'"]').prop('disabled', true);
                 } else {
                     flSetSelected = true;
