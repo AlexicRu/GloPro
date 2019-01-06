@@ -283,6 +283,11 @@ class Model_Tariff extends Model
                     foreach ($section['conditions'] as $conditionNum => $condition) {
                         $conditionNum += 1; //так как начали с 0, а нужны нормальные числа
 
+                        //дату переводим в русский формат
+                        if ($condition['CONDITION_ID'] == 5) {
+                            $condition['CONDITION_VALUE'] = Date::format($condition['CONDITION_VALUE']);
+                        }
+
                         $data = [
                             'p_tarif_id' => $tariffId,
                             'p_version_id' => $versionId,
