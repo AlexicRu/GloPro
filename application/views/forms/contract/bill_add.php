@@ -172,7 +172,7 @@
     }
 
     /**
-     * 4) НДС считается как "Общая сумма" * 18 / 118 и округляется до 2х знаков
+     * 4) НДС считается как "Общая сумма" * 20 / 120 и округляется до 2х знаков
      */
     function recalcNDS()
     {
@@ -180,7 +180,7 @@
         var nds = 0;
 
         if ($('.form_client_add_bill_product').length == 0) {
-            nds = parseFloat($('[name=client_add_bill_summ]').val()) * 18 / 118;
+            nds = parseFloat($('[name=client_add_bill_summ]').val()) * 20 / 120;
         } else {
             $('[name^=add_bill_product_summ_]').each(function () {
                 var t = $(this);
@@ -190,7 +190,7 @@
                 }
             });
 
-            nds = nds * 18 / 118;
+            nds = nds * 20 / 120;
         }
 
         ndsInput.val(parseInt(nds*100) / 100);
