@@ -97,7 +97,7 @@ class Controller_Control extends Controller_Common {
 
         $dotsGroups = Model_Dot::getGroups($filter);
 
-        $popupAddDots = Form::popupLarge('Добавление точек', 'control/add_dots');
+        $popupAddDots = Form::popupXLarge('Добавление точек', 'control/add_dots');
         $popupAddDotsGroup = Form::popup('Добавление группы точек', 'control/add_dots_group');
         $popupEditDotsGroup = Form::popup('Редактирование группы точек', 'control/edit_dots_group');
 
@@ -145,7 +145,7 @@ class Controller_Control extends Controller_Common {
         if(is_null($offset) && !$this->toXls){
 
             $groupId = $this->request->param('id');
-            $postfix = 'exist';
+            $postfix = 'exist_' . $groupId;
             $renderVerticalScroll = true;
 
             $html = View::factory('ajax/control/dots')
@@ -292,12 +292,14 @@ class Controller_Control extends Controller_Common {
         $showCheckbox = $this->request->post('show_checkbox') ?: '';
         $groupId = $this->request->post('group_id') ?: '';
         $showAllBtn = true;
+        $showAvailableDots = true;
 
         $html = View::factory('ajax/control/dots')
             ->bind('postfix', $postfix)
             ->bind('showCheckbox', $showCheckbox)
             ->bind('groupId', $groupId)
             ->bind('showAllBtn', $showAllBtn)
+            ->bind('showAvailableDots', $showAvailableDots)
         ;
 
         $this->html($html);
@@ -327,7 +329,11 @@ class Controller_Control extends Controller_Common {
             $params['POS_ID'] = explode(',', $this->request->query('pos_id'));
         }
 
-        $result = Model_Dot::getDots($params);
+        if ($this->request->post('show_available_dots')) {
+            $result = Model_Dot::getDots($params);
+        } else {
+            $result = Model_Dot::getGroupDots($params);
+        }
 
         if ($this->toXls){
             $this->showXls('dots', $result, [
@@ -566,7 +572,7 @@ class Controller_Control extends Controller_Common {
 
         $firmsGroups = Model_Firm::getFirmsGroups($filter);
 
-        $popupAddFirms = Form::popupLarge('Добавление фирм', 'control/add_firms');
+        $popupAddFirms = Form::popupXLarge('Добавление фирм', 'control/add_firms');
         $popupAddFirmsGroup = Form::popup('Добавление группы фирм', 'control/add_firms_group');
         $popupEditFirmsGroup = Form::popup('Редактирование группы фирм', 'control/edit_firms_group');
 
@@ -590,7 +596,7 @@ class Controller_Control extends Controller_Common {
 
         $cardsGroups = Model_Card::getGroups($filter);
 
-        $popupAddCards = Form::popupLarge('Добавление карт', 'control/add_cards');
+        $popupAddCards = Form::popupXLarge('Добавление карт', 'control/add_cards');
         $popupAddCardsGroup = Form::popup('Добавление группы карт', 'control/add_cards_group');
         $popupEditCardsGroup = Form::popup('Редактирование группы карт', 'control/edit_cards_group');
 
@@ -630,7 +636,7 @@ class Controller_Control extends Controller_Common {
         if(is_null($offset) && !$this->toXls){
 
             $groupId = $this->request->param('id');
-            $postfix = 'exist';
+            $postfix = 'exist_' . $groupId;
             $renderVerticalScroll = true;
 
             $html = View::factory('ajax/control/firms')
@@ -738,12 +744,14 @@ class Controller_Control extends Controller_Common {
         $showCheckbox = $this->request->post('show_checkbox') ?: '';
         $groupId = $this->request->post('group_id') ?: '';
         $showAllBtn = true;
+        $showAvailableCards = true;
 
         $html = View::factory('ajax/control/cards')
             ->bind('postfix', $postfix)
             ->bind('showCheckbox', $showCheckbox)
             ->bind('groupId', $groupId)
             ->bind('showAllBtn', $showAllBtn)
+            ->bind('showAvailableCards', $showAvailableCards)
         ;
 
         $this->html($html);
@@ -763,7 +771,11 @@ class Controller_Control extends Controller_Common {
             'pagination'        => true
         ];
 
-        list($dots, $more) = Model_Card::getAvailableGroupCards($params);
+        if ($this->request->post('show_available_cards')) {
+            list($dots, $more) = Model_Card::getAvailableGroupCards($params);
+        } else {
+            list($dots, $more) = Model_Card::getGroupCards($params);
+        }
 
         if(empty($dots)){
             $this->jsonResult(false);

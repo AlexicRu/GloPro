@@ -10,6 +10,7 @@
     $(function(){
         var params = {
             show_all_btn: <?=(!empty($showAllBtn) ? 1 : 0)?>,
+            show_available_dots:     <?=(!empty($showAvailableDots) ? 1 : 0)?>,
         };
 
         if($('[name=group_id_<?=$postfix?>]').length){
@@ -116,7 +117,7 @@
             $('.td_check', block).show();
         }
 
-        <?if($renderVerticalScroll) {?>
+        <?if(!empty($renderVerticalScroll)) {?>
         renderVerticalTabsScroll($('.tabs_dots_groups .v-scroll'));
         <?}?>
     }
@@ -133,7 +134,8 @@
             OWNER:          $('[name=dots_filter_owner]', block).val(),
             POS_ADDRESS:    $('[name=dots_filter_address]', block).val(),
             show_all_btn:   <?=(!empty($showAllBtn) ? 1 : 0)?>,
-            onError:        renderAjaxPaginationDotsListError<?=$postfix?>
+            show_available_dots:     <?=(!empty($showAvailableDots) ? 1 : 0)?>,
+            onError: renderAjaxPaginationDotsListError<?=$postfix?>,
         };
 
         if($('[name=group_id_<?=$postfix?>]').length){

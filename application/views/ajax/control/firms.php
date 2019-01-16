@@ -12,6 +12,7 @@
     $(function(){
         var params = {
             show_all_btn:   <?=(!empty($showAllBtn) ? 1 : 0)?>,
+            show_available_firms:     <?=(!empty($showAvailableFirms) ? 1 : 0)?>,
         };
 
         if($('[name=group_id_<?=$postfix?>]').length){
@@ -98,7 +99,7 @@
             $('.td_check', block).show();
         }
 
-        <?if($renderVerticalScroll) {?>
+        <?if(!empty($renderVerticalScroll)) {?>
         renderVerticalTabsScroll($('.tabs_firms_groups .v-scroll'));
         <?}?>
     }
@@ -109,6 +110,7 @@
 
         var params = {
             show_all_btn:       <?=(!empty($showAllBtn) ? 1 : 0)?>,
+            show_available_firms:     <?=(!empty($showAvailableFirms) ? 1 : 0)?>,
             FIRM_ID:            $('[name=group_firm_filter_firm_id]', block).val(),
             HOLDER:             $('[name=group_firm_filter_holder]', block).val(),
             DESCRIPTION_RU:     $('[name=group_firm_filter_description_ru]', block).val(),

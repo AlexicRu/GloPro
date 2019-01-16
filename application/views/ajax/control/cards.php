@@ -11,7 +11,8 @@
 <script>
     $(function(){
         var params = {
-            show_all_btn: <?=(!empty($showAllBtn) ? 1 : 0)?>
+            show_all_btn: <?=(!empty($showAllBtn) ? 1 : 0)?>,
+            show_available_cards:     <?=(!empty($showAvailableCards) ? 1 : 0)?>,
         };
 
         if($('[name=group_id_<?=$postfix?>]').length){
@@ -98,7 +99,7 @@
             $('.td_check', block).show();
         }
 
-        <?if($renderVerticalScroll) {?>
+        <?if(!empty($renderVerticalScroll)) {?>
         renderVerticalTabsScroll($('.tabs_cards_groups .v-scroll'));
         <?}?>
     }
@@ -109,6 +110,7 @@
 
         var params = {
             show_all_btn:       <?=(!empty($showAllBtn) ? 1 : 0)?>,
+            show_available_cards:     <?=(!empty($showAvailableCards) ? 1 : 0)?>,
             CARD_ID:            $('[name=group_card_filter_card_id]', block).val(),
             HOLDER:             $('[name=group_card_filter_holder]', block).val(),
             DESCRIPTION_RU:     $('[name=group_card_filter_description_ru]', block).val(),
