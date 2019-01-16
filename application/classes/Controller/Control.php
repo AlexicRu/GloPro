@@ -678,7 +678,7 @@ class Controller_Control extends Controller_Common {
         if(is_null($offset) && !$this->toXls){
 
             $groupId = $this->request->param('id');
-            $postfix = 'exist';
+            $postfix = 'exist_' . $groupId;
             $renderVerticalScroll = true;
 
             $html = View::factory('ajax/control/cards')
@@ -690,7 +690,7 @@ class Controller_Control extends Controller_Common {
             $this->html($html);
         }else{
             $params = [
-                'group_id'      => $this->request->post('group_id') ?: $this->request->param('id'),
+                'group_id' => $this->request->post('group_id') ?: $this->request->query('group_id'),
                 'offset'        => $offset,
                 'pagination'    => $this->toXls ? false : true
             ];
