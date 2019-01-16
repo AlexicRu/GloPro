@@ -48,6 +48,17 @@
         <div class="form-group row">
             <div class="col-sm-4 text-muted form__row__title">
                 Фото:
+                <? if (!empty($detail['PICTURE'])) { ?>
+                    <div class="news-edit-picture-block">
+                        <div class="news-edit-picture" style="background-image: url(<?= $detail['PICTURE'] ?>)"></div>
+                        <div class="news-edit-picture-delete">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="news_edit_delete_picture">
+                                <span class="custom-control-label">Удалить</span>
+                            </label>
+                        </div>
+                    </div>
+                <? } ?>
             </div>
             <div class="col-sm-8 with-mt">
                 <div class="news_edit_image dropzone"></div>
@@ -118,12 +129,13 @@
 
     function _goEditNews()
     {
+        var imageDel = $('[name=news_edit_delete_picture]').is(':checked');
         var params = {
             id:                 $('[name=news_edit_id]').val(),
             title:              $('[name=news_edit_title]').val(),
             date:               $('[name=news_edit_date]').val(),
             body:               editor.trumbowyg('html'),
-            image:              image ? image : $('[name=news_edit_image_path]').val(),
+            image: image ? image : (imageDel ? '' : $('[name=news_edit_image_path]').val()),
             subscribe:          $('[name=news_edit_subscribe]:checked').val(),
             subscribe_agent:    $('[name=news_edit_subscribe_agent]').val(),
             type:               <?=Model_Note::NOTE_TYPE_NEWS?>

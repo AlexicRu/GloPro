@@ -40,14 +40,13 @@ $extra-light: #ebf3f5;
 $DINPro: 'Conv_DINPro', sans-serif;
 $DINProCond: 'Conv_DINPro-Cond', sans-serif;
 
-*, h1, h2, h3, h4, h5, h6 {
+body, h1, h2, h3, h4, h5, h6 {
     font-family: $DINPro;
 }
-.btn, .btn *{
-    :not(i) {
-        font-family: $DINProCond;
-        text-transform: uppercase;
-    }
+
+.btn {
+    font-family: $DINProCond;
+    text-transform: uppercase;
 }
 .logo{
     background-image: url(/assets/img/projects/gpn.png);

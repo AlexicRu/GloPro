@@ -50,6 +50,24 @@ class Form extends Kohana_Form
     }
 
     /**
+     * очень большой попап
+     */
+    public static function popupXLarge($header, $form, $data = [], $formName = '')
+    {
+        $content = self::popup($header, $form, $data, $formName);
+
+        $popupClass = 'modal-xl';
+
+        $content->bind('popupClass', $popupClass);
+
+        if (!empty($data['backdrop'])) {
+            $content->bind('backdrop', $data['backdrop']);
+        }
+
+        return $content;
+    }
+
+    /**
      * генерация шаблона конкретного типа поля
      *
      * @param $type

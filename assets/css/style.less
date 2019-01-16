@@ -351,6 +351,25 @@ input[type="date"] {
   }
 }
 
+.news-edit-picture {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: no-repeat center / cover;
+  border-radius: 5px;
+  margin-top: 5px;
+
+  &-block {
+    position: relative;
+  }
+
+  &-delete {
+    position: absolute;
+    top: 0;
+    right: 90px;
+  }
+}
+
 /*
 -----------------------------------
 media queries
@@ -443,6 +462,23 @@ media queries
   .card-columns{
     column-count: 2;
   }
+
+  .news-edit-picture {
+    width: 50px;
+    height: 50px;
+    margin-top: 0;
+
+    &-delete {
+      position: relative;
+      right: 0;
+    }
+
+    &-block {
+      .custom-control {
+        display: inline-block;
+      }
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -467,5 +503,13 @@ media queries
   }
   .form__row__title{
     text-align: left;
+  }
+
+  .news-edit-picture {
+    display: none;
+
+    &-block {
+      float: right;
+    }
   }
 }

@@ -250,7 +250,7 @@ class Controller_Clients extends Controller_Common {
 		$popupCardHolderEdit = Form::popup('Редактирование держателя карты', 'card/edit_holder', [
             'card' 				=> $card,
 		], 'card_edit_holder_'.$cardId);
-        $popupCardLimitsEdit = Form::popupLarge('Редактирование лимитов карты', 'card/edit_limits', [
+        $popupCardLimitsEdit = Form::popupXLarge('Редактирование лимитов карты', 'card/edit_limits', [
             'card' 				=> $card,
             'oilRestrictions' 	=> $oilRestrictions,
             'servicesList'		=> $servicesList,

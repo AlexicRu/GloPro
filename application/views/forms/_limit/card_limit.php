@@ -18,7 +18,7 @@
             </nobr>
         </div>
     </div>
-    <div class="col-lg-3 align-top">
+    <div class="col-lg-3 align-top with-mt">
         <div class="input-group">
             <input type="number" name="limit_value" value="<?=(isset($limit['LIMIT_VALUE']) ? $limit['LIMIT_VALUE'] : '')?>" placeholder="Объем / сумма" class="form-control"
                    <?if (!$settings['canUseFloat']) {?>onkeypress="$(this).val(parseInt($(this).val()))"<?}?>
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 align-top">
+    <div class="col-lg-4 align-top with-mt">
         <div class="input-group">
             <?if ($settings['cntTypes']) {?>
                 <input type="text" name="duration_value"
