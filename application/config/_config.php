@@ -19,4 +19,5 @@ return [
             'debug'     => false
         ]
     ],
+    'zachestnyibiznes_apiKey' => '__REPLACE__',
 ];
