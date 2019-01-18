@@ -180,7 +180,7 @@
             removeLoader(graphBlock);
 
             if (response.data.length == 0) {
-                graphBlock.removeClass('graph').html('<div class="center"><i class="gray">Нет данных</i></div>');
+                graphBlock.removeClass('graph').html('<div class="text-center"><i class="text-muted">Нет данных</i></div>');
                 return;
             } else {
                 graphBlock.addClass('graph');
@@ -274,7 +274,7 @@
             removeLoader(graphBlock);
 
             if (response.data.length == 0) {
-                graphBlock.removeClass('graph').html('<div class="center"><i class="gray">Нет данных</i></div>');
+                graphBlock.removeClass('graph').html('<div class="text-center"><i class="text-muted">Нет данных</i></div>');
                 return;
             } else {
                 graphBlock.addClass('graph');

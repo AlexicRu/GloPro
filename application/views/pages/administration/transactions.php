@@ -215,7 +215,7 @@
         var subBlock = block.find('table');
 
         var tpl = $('<tr>' +
-            '<td colspan="'+Object.keys(params['filter']).length+'" class="center"><i>Данные отсутствуют</i></td>' +
+            '<td colspan="' + Object.keys(params['filter']).length + '" class="text-center"><i class="text-muted">Данные отсутствуют</i></td>' +
             '</tr>');
 
         subBlock.append(tpl);

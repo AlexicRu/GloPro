@@ -70,7 +70,7 @@
         var subBlock = block.find('table');
 
         var tpl = $('<tr>' +
-            '<td colspan="8" class="center"><i>Данные отсутствуют</i></td>' +
+            '<td colspan="8" class="text-center"><i class="text-muted">Данные отсутствуют</i></td>' +
             '</tr>');
 
         subBlock.append(tpl);

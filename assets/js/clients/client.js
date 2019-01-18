@@ -1,87 +1,52 @@
 $(function(){
     renderPhoneInput($('[name=PHONE]'));
 
-    $(".client_edit_btn").on('click', function(){
-        var block = $(".edit_client_block");
-
-        var params = {
-            NAME:                   $('[name=NAME]').val(),
-            LONG_NAME:              $('[name=LONG_NAME]').val(),
-            Y_ADDRESS:              $('[name=Y_ADDRESS]', block).val(),
-            F_ADDRESS:              $('[name=F_ADDRESS]', block).val(),
-            P_ADDRESS:              $('[name=P_ADDRESS]', block).val(),
-            COMMENTS:               $('[name=COMMENTS]', block).val(),
-            PHONE:                  $('[name=PHONE]', block).val(),
-            EMAIL:                  $('[name=EMAIL]', block).val(),
-            INN:                    $('[name=INN]', block).val(),
-            KPP:                    $('[name=KPP]', block).val(),
-            OGRN:                   $('[name=OGRN]', block).val(),
-            OKPO:                   $('[name=OKPO]', block).val(),
-            BANK:                   $('[name=BANK]', block).val(),
-            BANK_BIK:               $('[name=BANK_BIK]', block).val(),
-            BANK_CORR_ACCOUNT:      $('[name=BANK_CORR_ACCOUNT]', block).val(),
-            BANK_ACCOUNT:           $('[name=BANK_ACCOUNT]', block).val(),
-            BANK_ADDRESS:           $('[name=BANK_ADDRESS]', block).val(),
-            CEO:                    $('[name=CEO]', block).val(),
-            CEO_SHORT:              '', //$('[name=CEO_SHORT]', block).val(),
-            ACCOUNTANT:             $('[name=ACCOUNTANT]', block).val(),
-            ACCOUNTANT_SHORT:       '', //$('[name=ACCOUNTANT_SHORT]', block).val(),
-        };
-
-        if(params.NAME == ''){
-            message(0, 'Заполните название фирмы');
-            return false;
-        }
-
-        if(params.Y_ADDRESS == ''){
-            message(0, 'Заполните юридический адрес');
-            return false;
-        }
-
-        if(params.INN == ''){
-            message(0, 'Заполните ИНН');
-            return false;
-        }
-
-        $.post('/clients/client-edit/' + clientId, { params:params }, function(data){
-            if(data.success){
-                message(1, 'Клиент обновлен');
-
-                $.each( params, function( key, value ) {
-                    var uid = $('[name='+ key +']').closest('[uid]');
-
-                    if(key == 'EMAIL'){
-                        $("[uid=" + uid.attr('uid') + "]").not(uid).html("<a href='mailto:"+value+"'>"+ value +"</a>");
-                    } else if(key == 'COMMENTS') {
-                        $("[uid=" + uid.attr('uid') + "]").not(uid).html(value.replace(/\n/g, "<br>"));
-                    } else {
-                        $("[uid=" + uid.attr('uid') + "]").not(uid).text(value);
-                    }
-                });
-
-                $("[toggle='edit_client']:first").click();
-
-            }else{
-                message(0, 'Сохранение не удалось');
-            }
-        });
-    });
-
     var tab = getUrlParameter('tab');
     loadContract(tab ? tab.split('_')[0] : 'contract');
 
-    $('[name=contracts_list]').on('change', function(){
+    $('[name=contracts_list]').on('change', function () {
         loadContract('contract');
     });
 
-    $(document).on('click', '[ajax_tab]', function(e){
+    $(document).on('click', '[ajax_tab]', function (e) {
         var t = $(this);
-        if(t.hasClass('active')){
+        if (t.hasClass('active')) {
             return false;
         }
         loadContract(t.attr('href').replace('#', ''));
     });
 });
+
+function saveClientInfo() {
+    var block = $(".edit_client_block");
+
+    var params = vueRawData(vueClientInfo.client);
+
+    if (params.NAME == '') {
+        message(0, 'Заполните название фирмы');
+        return false;
+    }
+
+    if (params.Y_ADDRESS == '') {
+        message(0, 'Заполните юридический адрес');
+        return false;
+    }
+
+    if (params.INN == '') {
+        message(0, 'Заполните ИНН');
+        return false;
+    }
+
+    $.post('/clients/client-edit/' + clientId, {params: params}, function (data) {
+        if (data.success) {
+            message(1, 'Клиент обновлен');
+
+            $("[toggle='edit_client']:first").click();
+        } else {
+            message(0, 'Сохранение не удалось');
+        }
+    });
+}
 
 function loadContract(tab, query, params)
 {
@@ -123,6 +88,35 @@ function clientDelete(btn) {
                 window.location.href = '/clients';
             } else {
                 message(0, 'Удаление не удалось')
+            }
+        });
+    }
+}
+
+function loadClientInfoByInn() {
+    if (confirm('Загруженные данные заменят данные в текущей форме? Если заполнен БИК, то данные будут более полные.')) {
+        var params = {
+            inn: vueClientInfo.client.INN,
+            bik: vueClientInfo.client.BANK_BIK,
+        };
+
+        $.post('/clients/client-load-info-by-inn', params, function (data) {
+            if (data.success) {
+
+                vueClientInfo.client.NAME = data.data.NAME ? data.data.NAME : vueClientInfo.client.NAME;
+                vueClientInfo.client.LONG_NAME = data.data.LONG_NAME ? data.data.LONG_NAME : vueClientInfo.client.LONG_NAME;
+                vueClientInfo.client.KPP = data.data.KPP ? data.data.KPP : vueClientInfo.client.KPP;
+                vueClientInfo.client.OGRN = data.data.OGRN ? data.data.OGRN : vueClientInfo.client.OGRN;
+                vueClientInfo.client.OKPO = data.data.OKPO ? data.data.OKPO : vueClientInfo.client.OKPO;
+                vueClientInfo.client.Y_ADDRESS = data.data.Y_ADDRESS ? data.data.Y_ADDRESS : vueClientInfo.client.Y_ADDRESS;
+                vueClientInfo.client.F_ADDRESS = data.data.F_ADDRESS ? data.data.F_ADDRESS : vueClientInfo.client.F_ADDRESS;
+                vueClientInfo.client.BANK = data.data.BANK ? data.data.BANK : vueClientInfo.client.BANK;
+                vueClientInfo.client.BANK_CORR_ACCOUNT = data.data.BANK_CORR_ACCOUNT ? data.data.BANK_CORR_ACCOUNT : vueClientInfo.client.BANK_CORR_ACCOUNT;
+                vueClientInfo.client.CEO = data.data.CEO ? data.data.CEO : vueClientInfo.client.CEO;
+
+                message(1, 'Данные успешно загружены');
+            } else {
+                message(0, 'Не удалось загрузить данные');
             }
         });
     }

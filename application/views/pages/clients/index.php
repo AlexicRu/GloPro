@@ -123,8 +123,8 @@ if(!empty($_REQUEST['search'])){?>
                     $('<tr>' +
                         '<td><span class="badge badge-' + contract.contract_state_class + '">' + contract.contract_state_name + '</span></td>' +
                         '<td><a href="'+ link +'">' + contract.CONTRACT_NAME + '</a>'+card+'</td>' +
-                        '<td><span class="gray">Счет:</span> <b>' + contract.balance_formatted + '</b></td>' +
-                        '<td><span class="gray">Карты:</span> <b>' + contract.ALL_CARDS + '</b></td>' +
+                        '<td><span class="text-muted">Счет:</span> <b>' + contract.balance_formatted + '</b></td>' +
+                        '<td><span class="text-muted">Карты:</span> <b>' + contract.ALL_CARDS + '</b></td>' +
                     '</tr>').appendTo(tpl.find('table'));
 
                     $('<ul class="list-group m-b-10">' +
@@ -133,8 +133,8 @@ if(!empty($_REQUEST['search'])){?>
                             '<a href="/clients/client/' + client.CLIENT_ID + '?contract_id=' + contract.CONTRACT_ID + '">' + contract.CONTRACT_NAME + '</a>' +
                         '</li>' +
                         '<li class="list-group-item">' +
-                            '<span class="float-right"><span class="gray">Карты:</span> <b>' + contract.ALL_CARDS + '</b></span>' +
-                            '<span class="gray">Счет:</span> <b>' + contract.balance_formatted + '</b>' +
+                        '<span class="float-right"><span class="text-muted">Карты:</span> <b>' + contract.ALL_CARDS + '</b></span>' +
+                        '<span class="text-muted">Счет:</span> <b>' + contract.balance_formatted + '</b>' +
                         '</li>' +
                     '</ul>').appendTo(tpl.find('.client-contractData'));
                 }

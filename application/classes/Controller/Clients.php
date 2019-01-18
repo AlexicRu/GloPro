@@ -66,6 +66,7 @@ class Controller_Clients extends Controller_Common {
 
         $this->_initEnjoyHint();
         $this->_initPhoneInputWithFlags();
+        $this->_initVueJs();
 
 		$popupContractAdd = Form::popup('Добавление нового договора', 'contract/add');
 		$popupCabinetCreate = Form::popup('Создание личного кабинета', 'client/cabinet_create');
@@ -789,5 +790,22 @@ class Controller_Clients extends Controller_Common {
         }
 
         $this->jsonResult(true, ['items' => $items, 'more' => $more]);
+    }
+
+    /**
+     * с помощью сервиса "ЗаЧестныйБизнес" подгружаем инфу по компании
+     */
+    public function action_clientLoadInfoByInn()
+    {
+        $inn = $this->request->post('inn');
+        $bik = $this->request->post('bik');
+
+        $data = Model_Client::loadInfoByInn($inn, $bik);
+
+        if (empty($data)) {
+            $this->jsonResult(false);
+        }
+
+        $this->jsonResult(true, $data);
     }
 }

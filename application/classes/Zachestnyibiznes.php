@@ -73,6 +73,32 @@ class Zachestnyibiznes
             return false;
         }
 
-        return $this->_request('card', ['id' => $inn]);
+        $response = $this->_request('card', ['id' => trim($inn)]);
+
+        if (!empty($response['status']) && $response['status'] == 200) {
+            return $response['body']['docs'][0];
+        }
+
+        return false;
+    }
+
+    /**
+     * получение реквизитов компании по ИНН и БИК
+     *
+     * @param $inn
+     */
+    public function requisites($inn, $bik)
+    {
+        if (empty($inn) || empty($bik)) {
+            return false;
+        }
+
+        $response = $this->_request('requisites', ['id' => trim($inn), 'bik' => trim($bik)]);
+
+        if (!empty($response['status']) && $response['status'] == 200) {
+            return $response['body'];
+        }
+
+        return false;
     }
 }

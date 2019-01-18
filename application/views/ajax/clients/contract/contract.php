@@ -211,7 +211,7 @@
                 <div class="col-sm-7">
                     <span toggle_block="block2"><?=($contractSettings['CONTRACT_COMMENT'] ?
                             Text::parseUrl($contractSettings['CONTRACT_COMMENT'])
-                            : '<i class="gray">отсутствует</i>')?></span>
+                            : '<i class="text-muted">отсутствует</i>') ?></span>
                     <span toggle_block="block2" class="dn">
                         <textarea class="form-control" name="CONTRACT_COMMENT"><?=$contractSettings['CONTRACT_COMMENT']?></textarea>
                     </span>
@@ -352,7 +352,7 @@
         <?if(Access::allow('view_tariffs')){?>
         paginationAjax('/clients/get-contract-tariff-change-history/', 'ajax_block_contract_tariff_history', renderAjaxPaginationContractTariffHistory, {
             contract_id: <?=$contract['CONTRACT_ID']?>,
-            emptyMessage: '<span class="gray">История изменения тарифа отсутствует</span>'
+            emptyMessage: '<span class="text-muted">История изменения тарифа отсутствует</span>'
         });
         <?}?>
 

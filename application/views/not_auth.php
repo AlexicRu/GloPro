@@ -47,7 +47,9 @@
                                 }
                             </script>
                             <?*/?>
-                            <button type="submit" class="<?=Text::BTN?> btn-primary">Войти</button>
+                            <button type="submit" class="<?= Text::BTN ?> btn-primary"><i class="far fa-door-open"></i>
+                                Войти
+                            </button>
                         </div>
                     </div>
                 </form>

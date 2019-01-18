@@ -385,4 +385,52 @@ class Model_Client extends Model
 
         return false;
     }
+
+    /**
+     * с помощью сервиса "ЗаЧестныйБизнес" подгружаем инфу по компании
+     *
+     * @param $inn
+     * @param $bik
+     */
+    public static function loadInfoByInn($inn, $bik = false)
+    {
+        if (empty($inn)) {
+            return false;
+        }
+
+        $data = (new Zachestnyibiznes())->card($inn);
+
+        $clientArray = [
+            'NAME' => !empty($data['НаимЮЛСокр']) ? $data['НаимЮЛСокр'] : '',
+            'LONG_NAME' => !empty($data['НаимЮЛПолн']) ? $data['НаимЮЛПолн'] : '',
+            'KPP' => !empty($data['КПП']) ? $data['КПП'] : '',
+            'OGRN' => !empty($data['ОГРН']) ? $data['ОГРН'] : '',
+            'OKPO' => !empty($data['ОКПО']) ? $data['ОКПО'] : '',
+        ];
+
+        if (!empty($data['Руководители'])) {
+            foreach ($data['Руководители'] as $item) {
+                if ($item['post'] == 'ГЕНЕРАЛЬНЫЙ ДИРЕКТОР') {
+                    $clientArray['CEO'] = $item['fl'];
+                    break;
+                }
+            }
+        }
+
+        //если передали бик, то тянем еще инфу по банку
+        if (!empty($bik)) {
+            $data = (new Zachestnyibiznes())->requisites($inn, $bik);
+
+            $clientArray['Y_ADDRESS'] = !empty($data['Юридический адрес']) ? $data['Юридический адрес'] : '';
+            $clientArray['F_ADDRESS'] = !empty($data['Фактический адрес']) ? $data['Фактический адрес'] : '';
+            $clientArray['OGRN'] = !empty($data['ОГРН']) ? $data['ОГРН'] : '';
+            $clientArray['KPP'] = !empty($data['КПП']) ? $data['КПП'] : '';
+            $clientArray['ОКПО'] = !empty($data['ОКПО']) ? $data['ОКПО'] : '';
+            $clientArray['BANK'] = !empty($data['Наименование банка']) ? $data['Наименование банка'] : '';
+            $clientArray['BANK_CORR_ACCOUNT'] = !empty($data['Корреспондентский счет']) ? $data['Корреспондентский счет'] : '';
+            $clientArray['CEO'] = !empty($data['Руководитель']) ? $data['Руководитель'] : '';
+        }
+
+        return array_filter($clientArray);
+    }
 }

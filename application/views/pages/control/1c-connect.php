@@ -36,8 +36,8 @@
                 <div class="row m-b-20">
                     <div class="col-xl-4">
                         <small>
-                            <i class="gray">- Дата платежа не может быть больше текущей даты</i><br>
-                            <i class="gray">- Дата платежа не может быть меньше текущей даты минус 2 месяца</i>
+                            <i class="text-muted">- Дата платежа не может быть больше текущей даты</i><br>
+                            <i class="text-muted">- Дата платежа не может быть меньше текущей даты минус 2 месяца</i>
                         </small>
                     </div>
                     <div class="col-xl-4 text-right with-mt">

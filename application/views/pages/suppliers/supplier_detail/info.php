@@ -223,7 +223,7 @@
         },
         methods: {
             checkEmpty: function (val) {
-                return val ? val : '<i class="gray">Не заполнено</i>';
+                return val ? val : '<i class="text-muted">Не заполнено</i>';
             },
             cancelForm: function () {
                 Object.assign(this.supplier, this._cache);

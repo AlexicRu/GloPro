@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <i class="gray">
+    <i class="text-muted">
         Запросить новый код можно через (секунды): <b class="sms_code_renew">0</b><br>
         Время жизни кода (секунды): <b class="sms_code_lifetime">0</b>
     </i>
