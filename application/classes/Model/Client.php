@@ -404,8 +404,9 @@ class Model_Client extends Model
             'NAME' => !empty($data['НаимЮЛСокр']) ? $data['НаимЮЛСокр'] : '',
             'LONG_NAME' => !empty($data['НаимЮЛПолн']) ? $data['НаимЮЛПолн'] : '',
             'KPP' => !empty($data['КПП']) ? $data['КПП'] : '',
-            'OGRN' => !empty($data['ОГРН']) ? $data['ОГРН'] : '',
+            'OGRN' => !empty($data['ОГРН']) ? $data['ОГРН'] : (!empty($data['ОГРНИП']) ? $data['ОГРНИП'] : ''),
             'OKPO' => !empty($data['ОКПО']) ? $data['ОКПО'] : '',
+            'Y_ADDRESS' => !empty($data['Адрес']) ? $data['Адрес'] : '',
         ];
 
         if (!empty($data['Руководители'])) {
@@ -425,7 +426,7 @@ class Model_Client extends Model
             $clientArray['F_ADDRESS'] = !empty($data['Фактический адрес']) ? $data['Фактический адрес'] : '';
             $clientArray['OGRN'] = !empty($data['ОГРН']) ? $data['ОГРН'] : '';
             $clientArray['KPP'] = !empty($data['КПП']) ? $data['КПП'] : '';
-            $clientArray['ОКПО'] = !empty($data['ОКПО']) ? $data['ОКПО'] : '';
+            $clientArray['OKPO'] = !empty($data['ОКПО']) ? $data['ОКПО'] : '';
             $clientArray['BANK'] = !empty($data['Наименование банка']) ? $data['Наименование банка'] : '';
             $clientArray['BANK_CORR_ACCOUNT'] = !empty($data['Корреспондентский счет']) ? $data['Корреспондентский счет'] : '';
             $clientArray['CEO'] = !empty($data['Руководитель']) ? $data['Руководитель'] : '';
