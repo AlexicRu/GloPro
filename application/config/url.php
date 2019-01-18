@@ -36,5 +36,7 @@ return [
         '.*\.kec-oil\.ru',
         'opti-24\.com',
         '.*\.opti-24\.com',
+        'azs-kpd.ru',
+        '.*\.azs-kpd\.ru',
     ],
 ];

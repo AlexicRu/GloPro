@@ -45,6 +45,7 @@ class Model_Card extends Model
     const CARD_ICON_PEREKRESTOK = 'CommonPerekrestok';
     const CARD_ICON_NNK         = 'ITOil_NNK';
     const CARD_ICON_SHELL       = 'ShellPartnerCard';
+    const CARD_ICON_PETROL_KPD = 'Petrol KPD';
 
     const CARD_SYSTEM_GPN = 5;
     const CARD_SYSTEM_NINE = 9;
@@ -69,6 +70,7 @@ class Model_Card extends Model
         self::CARD_ICON_PEREKRESTOK => 'perekrestokoil.jpg',
         self::CARD_ICON_NNK         => 'nnk.png',
         self::CARD_ICON_SHELL       => 'shell.png',
+        self::CARD_ICON_PETROL_KPD => 'petrol-kpd.png',
     ];
 
 	public static $cardLimitsParams = [

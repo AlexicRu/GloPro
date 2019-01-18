@@ -81,6 +81,10 @@ return array(
             'title' => 'ПетролПарк',
             'class' => 'petrolpark'
         ],
+        'lkazskpdru' => [
+            'title' => 'Petrol KPD',
+            'class' => 'petrolkpd'
+        ],
     ],
     'user' => [
         'g_1' => [
