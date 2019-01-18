@@ -94,7 +94,7 @@ class Access
             return false;
         }
 
-        //если нет явного запрета или наоборот, доступа только конкретной роли
+        //если нет явного запрета и нет доступа по роли, то запрет
 
         if(!$allowToReadOnly && in_array($user['ROLE_ID'], self::$readonlyRoles)){
             return false;
