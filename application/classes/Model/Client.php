@@ -434,6 +434,8 @@ class Model_Client extends Model
             $clientArray['CEO'] = !empty($data['Руководитель']) ? $data['Руководитель'] : '';
         }
 
+        Oracle::init()->procedure('stat_check_customer', ['p_manager_id' => User::id()]);
+
         return array_filter($clientArray);
     }
 }
