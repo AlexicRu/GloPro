@@ -224,6 +224,9 @@ return [
         'administration_settings' => [
             Access::ROLE_ADMIN,
         ],
+        'control_bank-statement' => [
+            Access::ROLE_ROOT
+        ],
         // custom
         'view_contract_balances' => [
 			Access::ROLE_SUPERVISOR,

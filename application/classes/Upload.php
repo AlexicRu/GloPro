@@ -54,10 +54,12 @@ class Upload extends Kohana_Upload
     /**
      * убираем метку BOM и читаем файл
      *
-     * @param $text
+     * @param $file
+     * @param $txtDelimiter
+     * @param $convertToUTF
      * @return mixed
      */
-    public static function readFile($file)
+    public static function readFile($file, $txtDelimiter = ';', $convertToUTF = false)
     {
         $mimeType = mime_content_type($file);
 
@@ -87,14 +89,20 @@ class Upload extends Kohana_Upload
                         
                         $mimeType = self::MIME_TYPE_JSON; //немного костыль
                     } else {
-                        //csv
+                        //csv || txt
                         $data = explode("\n", $data);
 
                         if (!empty($data)) {
                             $data = array_filter($data);
 
                             foreach ($data as &$row) {
-                                $row = explode(';', trim($row));
+                                $row = trim($row);
+
+                                if ($convertToUTF) {
+                                    $row = mb_convert_encoding($row, "utf-8", "windows-1251"); // Конвертируем значение в utf-8 так как изначальная кодировка файла windows-1251
+                                }
+
+                                $row = explode($txtDelimiter, $row);
                             }
                         }
                     }

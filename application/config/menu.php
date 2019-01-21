@@ -20,6 +20,7 @@ return array(
         'cards-groups'  => 'Группы карт',
         'firms-groups'  => 'Группы фирм',
         'dots-groups'   => 'Группы ТО',
+        'bank-statement' => 'Загрузка банковских выписок',
     ]],
     'references'        => ['title' => 'Справочники', 'icon' => 'fa-fw fal fa-clipboard-list', 'children' => [
         'sources'       => 'Источники данных',

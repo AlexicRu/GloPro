@@ -911,4 +911,39 @@ class Controller_Control extends Controller_Common {
         }
         $this->jsonResult(true);
     }
+
+    /**
+     * страница загрузки банковских выписок
+     */
+    public function action_bankStatement()
+    {
+        $this->title[] = 'Загрузка банковских выписок';
+
+        $this->_initDropZone();
+        $this->_initJsGrid();
+    }
+
+    /**
+     * считываем файл с платежами
+     */
+    public function action_uploadBankStatement()
+    {
+        $file = Upload::uploadFile('bank-statement');
+
+        if (empty($file)) {
+            $this->jsonResult(false);
+        }
+
+        list($data, $mimeType) = Upload::readFile($_SERVER["DOCUMENT_ROOT"] . $file['file'], '=', true);
+
+        if (empty($data)) {
+            $this->jsonResult(false);
+        }
+
+        $parser = new Model_Parser_BankStatement($data);
+
+        $rows = $parser->getDocs();
+
+        $this->jsonResult(true, ['rows' => $rows]);
+    }
 }
