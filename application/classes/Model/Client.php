@@ -401,6 +401,7 @@ class Model_Client extends Model
         $data = (new Zachestnyibiznes())->card($inn);
 
         $clientArray = [
+            'INN' => $inn,
             'NAME' => !empty($data['НаимЮЛСокр']) ? $data['НаимЮЛСокр'] : '',
             'LONG_NAME' => !empty($data['НаимЮЛПолн']) ? $data['НаимЮЛПолн'] : '',
             'KPP' => !empty($data['КПП']) ? $data['КПП'] : '',
@@ -422,6 +423,7 @@ class Model_Client extends Model
         if (!empty($bik)) {
             $data = (new Zachestnyibiznes())->requisites($inn, $bik);
 
+            $clientArray['BANK_BIK'] = $bik;
             $clientArray['Y_ADDRESS'] = !empty($data['Юридический адрес']) ? $data['Юридический адрес'] : '';
             $clientArray['F_ADDRESS'] = !empty($data['Фактический адрес']) ? $data['Фактический адрес'] : '';
             $clientArray['OGRN'] = !empty($data['ОГРН']) ? $data['ОГРН'] : '';

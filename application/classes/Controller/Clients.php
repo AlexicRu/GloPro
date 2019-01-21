@@ -70,6 +70,7 @@ class Controller_Clients extends Controller_Common {
 
 		$popupContractAdd = Form::popup('Добавление нового договора', 'contract/add');
 		$popupCabinetCreate = Form::popup('Создание личного кабинета', 'client/cabinet_create');
+        $popupClientLoadByInn = Form::popup('Загрузка данных клиента по ИНН', 'client/load_by_inn');
 
 		$this->tpl
 			->bind('client', $client)
@@ -77,6 +78,7 @@ class Controller_Clients extends Controller_Common {
 			->bind('contracts', $contracts)
 			->bind('popupContractAdd', $popupContractAdd)
 			->bind('popupCabinetCreate', $popupCabinetCreate)
+            ->bind('popupClientLoadByInn', $popupClientLoadByInn)
 		;
 	}
 

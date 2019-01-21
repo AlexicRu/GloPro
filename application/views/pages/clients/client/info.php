@@ -105,19 +105,11 @@
                     <div class="col-sm-8 with-mt">
                         <span toggle_block="edit_client" v-html="checkEmpty(client.INN)"></span>
                         <span toggle_block="edit_client" class="dn">
-                            <div class="row">
-                                <div class="col-7">
-                                    <nobr>
-                                        <input type="text" v-model="client.INN" class="form-control"
-                                            <?= (!empty($client['INN']) && Access::deny('edit_client_full') ? 'disabled' : '') ?>
-                                        >*
-                                    </nobr>
-                                </div>
-                                <div class="col-5 text-right">
-                                    <span class="<?= Text::BTN ?> btn-primary btn-sm" onclick="loadClientInfoByInn()"><i
-                                                class="far fa-cloud-download"></i> Загрузить</span>
-                                </div>
-                            </div>
+                            <nobr>
+                                <input type="text" v-model="client.INN" class="form-control"
+                                    <?= (!empty($client['INN']) && Access::deny('edit_client_full') ? 'disabled' : '') ?>
+                                >*
+                            </nobr>
                         </span>
                     </div>
                 </div>
@@ -270,30 +262,38 @@
     </div>
 
     <div class="more_info dn" toggle_block="block1">
-        <span class="<?= Text::BTN ?> btn-outline-secondary m-t-10" toggle="block1">Скрыть</span> &nbsp;
+        <div class="d-flex justify-content-between">
+            <span class="<?= Text::BTN ?> btn-outline-secondary mt-1" toggle="block1">Скрыть</span>
 
-        <? if (Access::allow('clients_client-edit')) { ?>
-            <button class="<?= Text::BTN ?> btn-outline-primary m-t-10" toggle="edit_client" toggle_block="edit_client">
-                <i class="fa fa-pen"></i> Редактировать
-            </button> &nbsp;
-        <? } ?>
+            <a href="#" data-toggle="modal" data-target="#client_load_by_inn"
+               class="<?= Text::BTN ?> btn-outline-primary mt-1"><i
+                        class="far fa-cloud-download"></i> <span class="d-none d-md-inline-block">Загрузка данных</span>
+                по ИНН</a>
 
-        <? if (Access::allow('clients_client-delete')) { ?>
-            <button class="<?= Text::BTN ?> btn-danger m-t-10" onclick="clientDelete($(this))"><i
-                        class="fa fa-trash-alt"></i> Удалить
-            </button> &nbsp;
-        <? } ?>
+            <? if (Access::allow('clients_client-edit')) { ?>
+                <button class="<?= Text::BTN ?> btn-outline-primary mt-1" toggle="edit_client"
+                        toggle_block="edit_client">
+                    <i class="fa fa-pen"></i> Редактировать
+                </button>
+            <? } ?>
 
-        <span toggle_block="edit_client" class="dn nowrap">
-            <button class="<?= Text::BTN ?> btn-success m-t-10" onclick="saveClientInfo()"><i class="fa fa-check"></i> Сохранить</button> &nbsp;
-            <button class="<?= Text::BTN ?> btn-danger m-t-10" toggle="edit_client" @click="cancelForm()"><i
-                        class="fa fa-times"></i> Отмена</button> &nbsp;
-        </span>
+            <span toggle_block="edit_client" class="dn nowrap">
+                <button class="<?= Text::BTN ?> btn-success mt-1" onclick="saveClientInfo()"><i class="fa fa-check"></i> Сохранить</button>
+                <button class="<?= Text::BTN ?> btn-danger mt-1" toggle="edit_client" @click="cancelForm()"><i
+                            class="fa fa-times"></i> Отмена</button>
+            </span>
 
-        <? if (Access::allow('client_cabinet-create') && empty($client['EXISTS_OFFICE'])) { ?>
-            <a href="#" class="<?= Text::BTN ?> btn-outline-primary m-t-10" data-toggle="modal"
-               data-target="#client_cabinet_create"><i class="fa fa-plus"></i> Создать ЛК</a>
-        <? } ?>
+            <? if (Access::allow('client_cabinet-create') && empty($client['EXISTS_OFFICE'])) { ?>
+                <a href="#" class="<?= Text::BTN ?> btn-outline-primary mt-1" data-toggle="modal"
+                   data-target="#client_cabinet_create"><i class="fa fa-plus"></i> Создать ЛК</a>
+            <? } ?>
+
+            <? if (Access::allow('clients_client-delete')) { ?>
+                <button class="<?= Text::BTN ?> btn-danger mt-1" onclick="clientDelete($(this))"><i
+                            class="fa fa-trash-alt"></i> Удалить
+                </button>
+            <? } ?>
+        </div>
     </div>
 
     <div class="more_info" toggle_block="block1">
@@ -301,6 +301,8 @@
     </div>
 
 </div>
+
+<?= $popupClientLoadByInn ?>
 
 <script>
     var vueClientInfo = new Vue({

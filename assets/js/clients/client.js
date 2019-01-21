@@ -92,32 +92,3 @@ function clientDelete(btn) {
         });
     }
 }
-
-function loadClientInfoByInn() {
-    if (confirm('Загруженные данные заменят данные в текущей форме? Если заполнен БИК, то данные будут более полные.')) {
-        var params = {
-            inn: vueClientInfo.client.INN,
-            bik: vueClientInfo.client.BANK_BIK,
-        };
-
-        $.post('/clients/client-load-info-by-inn', params, function (data) {
-            if (data.success) {
-
-                vueClientInfo.client.NAME = data.data.NAME ? data.data.NAME : vueClientInfo.client.NAME;
-                vueClientInfo.client.LONG_NAME = data.data.LONG_NAME ? data.data.LONG_NAME : vueClientInfo.client.LONG_NAME;
-                vueClientInfo.client.KPP = data.data.KPP ? data.data.KPP : vueClientInfo.client.KPP;
-                vueClientInfo.client.OGRN = data.data.OGRN ? data.data.OGRN : vueClientInfo.client.OGRN;
-                vueClientInfo.client.OKPO = data.data.OKPO ? data.data.OKPO : vueClientInfo.client.OKPO;
-                vueClientInfo.client.Y_ADDRESS = data.data.Y_ADDRESS ? data.data.Y_ADDRESS : vueClientInfo.client.Y_ADDRESS;
-                vueClientInfo.client.F_ADDRESS = data.data.F_ADDRESS ? data.data.F_ADDRESS : vueClientInfo.client.F_ADDRESS;
-                vueClientInfo.client.BANK = data.data.BANK ? data.data.BANK : vueClientInfo.client.BANK;
-                vueClientInfo.client.BANK_CORR_ACCOUNT = data.data.BANK_CORR_ACCOUNT ? data.data.BANK_CORR_ACCOUNT : vueClientInfo.client.BANK_CORR_ACCOUNT;
-                vueClientInfo.client.CEO = data.data.CEO ? data.data.CEO : vueClientInfo.client.CEO;
-
-                message(1, 'Данные успешно загружены');
-            } else {
-                message(0, 'Не удалось загрузить данные');
-            }
-        });
-    }
-}
