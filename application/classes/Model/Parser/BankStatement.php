@@ -25,7 +25,10 @@ class Model_Parser_BankStatement extends Model
                 }
             } else { //Если разбивка не прошла
                 if ($result[0] == 'КонецДокумента') { //То проверяем конец ли это документа
-                    $documents[] = $workflow; //Добавляем в массив документов новый документ
+
+                    if (!empty($workflow) && $workflow->doctype == 'Платежное поручение') {
+                        $documents[] = $workflow; //Добавляем в массив документов новый документ
+                    }
                 }
             }
         }
