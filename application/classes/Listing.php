@@ -118,7 +118,7 @@ class Listing
         if (!empty($params['description'])) {
             $description = $params['description'];
         }else{
-            $description = 'LONG_DESC';
+            $description = 'SERVICE_ID';
         }
 
         $sql = (new Builder())->select()

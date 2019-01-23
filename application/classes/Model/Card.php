@@ -474,7 +474,7 @@ class Model_Card extends Model
     public static function editCardLimits($cardId, $contractId, $limits = [])
     {
         if(empty($cardId) || empty($contractId)){
-            return [false, 'Ошибка'];
+            return [false, 'Недостаточно данных'];
         }
 
         $currentLimits = self::getOilRestrictions($cardId);
@@ -853,7 +853,7 @@ class Model_Card extends Model
             $res = Oracle::init()->procedure('card_limit_del', $data);
 
             if ($res != Oracle::CODE_SUCCESS) {
-                throw new Exception('Ошибка');
+                throw new Exception('Лимит не удалился');
             }
         } catch (Exception $e) {
             return [false, $e->getMessage()];
