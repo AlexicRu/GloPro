@@ -959,7 +959,7 @@ class Model_Contract extends Model
 
         $contract = Model_Contract::getContract($contractId);
 
-        if(Date::dateDifference($dateFrom, $contract['DATE_BEGIN']) < 0) {
+        if(Date::dateDifference($dateFrom, Date::formatToDefault($contract['DATE_BEGIN'])) < 0) {
             Messages::put('Дата начала не может быть раньше даты начала действия договора');
             return false;
         }

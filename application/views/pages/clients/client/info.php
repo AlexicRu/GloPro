@@ -314,7 +314,7 @@
                 Y_ADDRESS: '<?=$client['Y_ADDRESS']?>',
                 F_ADDRESS: '<?=$client['F_ADDRESS']?>',
                 P_ADDRESS: '<?=$client['P_ADDRESS']?>',
-                COMMENTS: '<?=$client['COMMENTS']?>',
+                COMMENTS: "<?=preg_replace("/\n/", '\n',  $client['COMMENTS'])?>",
                 PHONE: '<?=$client['PHONE']?>',
                 EMAIL: '<?=$client['EMAIL']?>',
                 INN: '<?=$client['INN']?>',

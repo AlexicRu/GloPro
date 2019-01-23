@@ -194,7 +194,7 @@
                 F_ADDRESS: '<?=$supplier['F_ADDRESS']?>',
                 P_ADDRESS: '<?=$supplier['P_ADDRESS']?>',
                 CONTACT_PERSON: '<?=$supplier['CONTACT_PERSON']?>',
-                COMMENTS: '<?=$supplier['COMMENTS']?>',
+                COMMENTS: "<?=preg_replace("/\n/", '\n',  $supplier['COMMENTS'])?>",
                 PHONE: '<?=$supplier['PHONE']?>',
                 EMAIL: '<?=$supplier['EMAIL']?>',
                 INN: '<?=$supplier['INN']?>',

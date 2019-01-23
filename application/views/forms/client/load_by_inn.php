@@ -50,7 +50,7 @@
             if (data.success) {
                 vueClientInfo.client.INN = data.data.INN ? data.data.INN : vueClientInfo.client.INN;
                 vueClientInfo.client.BANK_BIK = data.data.BANK_BIK ? data.data.BANK_BIK : vueClientInfo.client.BANK_BIK;
-                vueClientInfo.client.NAME = data.data.NAME ? data.data.NAME : vueClientInfo.client.NAME;
+                //vueClientInfo.client.NAME = data.data.NAME ? data.data.NAME : vueClientInfo.client.NAME;
                 vueClientInfo.client.LONG_NAME = data.data.LONG_NAME ? data.data.LONG_NAME : vueClientInfo.client.LONG_NAME;
                 vueClientInfo.client.KPP = data.data.KPP ? data.data.KPP : vueClientInfo.client.KPP;
                 vueClientInfo.client.OGRN = data.data.OGRN ? data.data.OGRN : vueClientInfo.client.OGRN;
