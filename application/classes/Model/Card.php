@@ -1292,7 +1292,8 @@ class Model_Card extends Model
         $settings = [
             /*+*/'canDelService'             => true,
             /*+*/'canAddService'             => true,
-            /*+*/'canDelLimit'               => !in_array($systemId, Model_Card::$cantDelCardLimitSystems),
+            /*+*/
+            'canDelLimit' => true,
             /*+*/'canAddLimit'               => true,
             /*+*/'canSave'                   => true,
             /*+*/'editSelect'                => true,
@@ -1315,21 +1316,24 @@ class Model_Card extends Model
                 $settings['canDelService']  = false;
                 $settings['canAddService']  = false;
                 $settings['canAddLimit']    = false;
+                $settings['canDelLimit'] = false;
                 $settings['canSave']        = false;
                 break;
             case 3:
                 $settings['canAddLimit']        = false;
+                $settings['canDelLimit'] = false;
                 $settings['canDelService']      = false;
                 $settings['canAddService']      = false;
                 $settings['editSelect']         = false;
                 $settings['editServiceSelect']  = false;
                 break;
-            case 4:
+            /*case 4:
                 $settings['canDelService']  = false;
                 $settings['canAddService']  = false;
                 $settings['canAddLimit']    = false;
+                $settings['canDelLimit']    = false;
                 $settings['canSave']        = false;
-                break;
+                break;*/
             case self::CARD_SYSTEM_NINE:
                 $settings['cntServiceForFirstLimit'] = 999;
                 $settings['limitTypes']         = Model_Card::$cardLimitsTypes;
