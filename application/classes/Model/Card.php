@@ -1008,9 +1008,22 @@ class Model_Card extends Model
 
         $db = Oracle::init();
 
-        $sql = "
-            select * from ".Oracle::$prefix."V_WEB_CARDS_GROUP_ITEMS t where t.group_id = ".$params['group_id'];
+        $sql = (new Builder()) > select()
+                ->from('V_WEB_CARDS_GROUP_ITEMS vc')
+                ->where('vc.group_id = ' . (int)$params['group_id'])
         ;
+
+        if (!empty($params['CARD_ID'])) {
+            $sql->where('vc.CARD_ID like ' . Oracle::quoteLike('%' . $params['CARD_ID'] . '%'));
+        }
+
+        if (!empty($params['HOLDER'])) {
+            $sql->where('vc.HOLDER like ' . Oracle::quoteLike('%' . $params['HOLDER'] . '%'));
+        }
+
+        if (!empty($params['DESCRIPTION_RU'])) {
+            $sql->where('vc.DESCRIPTION_RU like ' . Oracle::quoteLike('%' . $params['DESCRIPTION_RU'] . '%'));
+        }
 
         if (!empty($params['pagination'])) {
             return $db->pagination($sql, $params);

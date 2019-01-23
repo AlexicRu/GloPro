@@ -138,7 +138,7 @@
                     message(1, 'Точки удалены');
 
                     for(var i in dots){
-                        $('.dot_row[id="'+ dots[i] +'"]', group).remove();
+                        $('[pos_id="' + dots[i] + '"]', group).remove();
                     }
                 } else {
                     message(0, 'Ошибка удаления');

@@ -88,8 +88,34 @@ class Model_Dot extends Model
         $db = Oracle::init();
 
         $user = Auth::instance()->get_user();
-        $sql = "
-            select * from ".Oracle::$prefix."V_WEB_POS_GROUP_ITEMS t where t.group_id = ".$params['group_id']." and t.agent_id = ".$user['AGENT_ID']." order by id_to";
+
+        $sql = (new Builder())->select()
+            ->from('V_WEB_POS_GROUP_ITEMS t')
+            ->where('t.group_id = ' . (int)$params['group_id'])
+            ->where('t.agent_id = ' . (int)$user['AGENT_ID'])
+            ->orderBy('t.id_to');
+
+        if (!empty($params['POS_ID'])) {
+            $sql->whereIn('t.POS_ID', $params['POS_ID']);
+        }
+        if (!empty($params['PROJECT_NAME'])) {
+            $sql->where("upper(t.PROJECT_NAME) like " . mb_strtoupper(Oracle::quoteLike('%' . $params['PROJECT_NAME'] . '%')));
+        }
+        if (!empty($params['ID_EMITENT'])) {
+            $sql->where('t.ID_EMITENT = ' . intval($params['ID_EMITENT']));
+        }
+        if (!empty($params['ID_TO'])) {
+            $sql->where("upper(t.ID_TO) like " . mb_strtoupper(Oracle::quoteLike('%' . $params['ID_TO'] . '%')));
+        }
+        if (!empty($params['POS_NAME'])) {
+            $sql->where("upper(t.POS_NAME) like " . mb_strtoupper(Oracle::quoteLike('%' . $params['POS_NAME'] . '%')));
+        }
+        if (!empty($params['OWNER'])) {
+            $sql->where("upper(t.OWNER) like " . mb_strtoupper(Oracle::quoteLike('%' . $params['OWNER'] . '%')));
+        }
+        if (!empty($params['POS_ADDRESS'])) {
+            $sql->where("upper(t.POS_ADDRESS) like " . mb_strtoupper(Oracle::quoteLike('%' . $params['POS_ADDRESS'] . '%')));
+        }
 
         if (!empty($params['pagination'])) {
             return $db->pagination($sql, $params);
@@ -155,7 +181,7 @@ class Model_Dot extends Model
      * @param $posIds
      * @param $action
      */
-    public static function editDotsToGroup($groupId, $posIds, $action = self::ACTION_ADD)
+    public static function editGroupDots($groupId, $posIds, $action = self::ACTION_ADD)
     {
         if(empty($groupId) || empty($posIds)){
             return false;

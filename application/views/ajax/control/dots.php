@@ -94,7 +94,7 @@
                 '<td class="td_edit"/>' +
                 '</tr>');
 
-            tpl.attr('POS_ID', data[i].POS_ID);
+            tpl.attr('pos_id', data[i].POS_ID);
             tpl.find('.td_check').html(
                 '<label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" name="pos_id" value="'+ data[i].POS_ID +'"><span class="custom-control-label"></span></label>'
             );

@@ -225,12 +225,12 @@ class Controller_Control extends Controller_Common {
     /**
      * удаление точек из группы
      */
-    public function action_delDots()
+    public function action_delDotsFromGroup()
     {
         $groupId = $this->request->post('group_id');
-        $dots = $this->request->post('dots');
+        $dots = $this->request->post('dots_numbers');
 
-        $result = Model_Dot::editDotsToGroup($groupId, $dots, Model_Dot::ACTION_DEL);
+        $result = Model_Dot::editGroupDots($groupId, $dots, Model_Dot::ACTION_DEL);
 
         $this->jsonResult($result);
     }
@@ -363,7 +363,7 @@ class Controller_Control extends Controller_Common {
         $posIds = $this->request->post('dots_ids');
         $groupId = $this->request->post('group_id');
 
-        $result = Model_Dot::editDotsToGroup($groupId, $posIds);
+        $result = Model_Dot::editGroupDots($groupId, $posIds);
 
         $this->jsonResult((bool) $result);
     }

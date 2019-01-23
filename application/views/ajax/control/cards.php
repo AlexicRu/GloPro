@@ -81,6 +81,7 @@
                 '<td class="td_edit"/>' +
             '</tr>');
 
+            tpl.attr('card_id', data[i].CARD_ID);
             tpl.find('.td_check').html(
                 '<label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" name="card_id" value="'+ data[i].CARD_ID +'"><span class="custom-control-label"></span></label>'
             );

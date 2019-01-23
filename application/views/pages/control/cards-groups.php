@@ -120,7 +120,7 @@
                     message(1, 'Карты удалены');
 
                     for(var i in cards){
-                        $('.card_row[id="'+ cards[i] +'"]', group).remove();
+                        $('[card_id="' + cards[i] + '"]', group).remove();
                     }
                 } else {
                     message(0, 'Ошибка удаления');
