@@ -165,7 +165,7 @@ abstract class Controller_Common extends Controller_Template {
         exit;
     }
 
-    public function jsonResult($result, $data = [])
+    public function jsonResult($result, $data = false)
     {
         $this->json(['success' => $result, 'data' => $data, 'messages' => Messages::get()]);
     }
