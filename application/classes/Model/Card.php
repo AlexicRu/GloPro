@@ -1008,7 +1008,7 @@ class Model_Card extends Model
 
         $db = Oracle::init();
 
-        $sql = (new Builder()) > select()
+        $sql = (new Builder())->select()
                 ->from('V_WEB_CARDS_GROUP_ITEMS vc')
                 ->where('vc.group_id = ' . (int)$params['group_id'])
         ;
