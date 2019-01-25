@@ -671,7 +671,7 @@ class Model_Card extends Model
                 }
 
                 //проверка возможности изменения сервисов
-                if ($settings['editServiceSelect'] == false && !$isNew) {
+                if ($settings['canEditServiceSelect'] == false && !$isNew) {
                     if (
                         !empty(array_diff($servicesCurrentIds, $servicesIds))
                         || count($servicesCurrentIds) != count($servicesIds)
@@ -681,7 +681,7 @@ class Model_Card extends Model
                 }
 
                 //проверка возможности изменения limitParams (unit_type) и limitTypes (duration_type)
-                if ($settings['editSelect'] == false && !$isNew) {
+                if ($settings['canEditSelect'] == false && !$isNew) {
                     if ($limit['unit_type'] != $currentLimits[$limit['limit_id']]['UNIT_TYPE']) {
                         throw new Exception('Запрещено изменение unit_type');
                     }
@@ -692,9 +692,15 @@ class Model_Card extends Model
                 }
 
                 //проверка возможности изменения duration_value
-                if ($settings['editDurationValue'] == false && !$isNew) {
-                    if (isset($limit['duration_value']) && $limit['duration_value'] != $currentLimits[$limit['limit_id']]['DURATION_VALUE']) {
-                        throw new Exception('Запрещено изменение duration_value');
+                if ($settings['canEditDurationValue'] == false && !$isNew) {
+                    if (!empty($settings['durationValues'])) {
+                        if (!isset($limit['duration_value']) || !in_array($limit['duration_value'], $settings['durationValues'])) {
+                            throw new Exception('Недопустимое значение duration_value');
+                        }
+                    } else {
+                        if (isset($limit['duration_value']) && $limit['duration_value'] != $currentLimits[$limit['limit_id']]['DURATION_VALUE']) {
+                            throw new Exception('Запрещено изменение duration_value');
+                        }
                     }
                 }
 
@@ -711,7 +717,7 @@ class Model_Card extends Model
                 }
 
                 //проверка возможности установки duration_value
-                if ($settings['cntTypes'] == false && $isNew) {
+                if ($settings['canViewDurationValue'] == false && $isNew) {
                     if (!empty($limit['duration_value'])) {
                         throw new Exception('Запрещена установка duration_value');
                     }
@@ -1290,25 +1296,26 @@ class Model_Card extends Model
          * + значит, что учтено в проверке
          */
         $settings = [
-            /*+*/'canDelService'             => true,
-            /*+*/'canAddService'             => true,
-            /*+*/
+            'canDelService' => true,
+            'canAddService' => true,
             'canDelLimit' => true,
-            /*+*/'canAddLimit'               => true,
-            /*+*/'canSave'                   => true,
-            /*+*/'editSelect'                => true,
-            /*+*/'editServiceSelect'         => true,
-            /*+*/'cntServiceForLimit'        => 1,
-            /*+*/'cntServiceForFirstLimit'   => 1,
-            /*+*/'limitParams'               => self::$cardLimitsParams,
-            /*+*/'limitTypes'                => self::$cardLimitsTypes,
-            /*+*/'cntTypes'                  => false,
-            /*+*/'canUseFloat'               => true,
-            /*+*/'cntLimits'                 => 999,
-            /*+*/'editDurationValue'         => false,
-            /*+*/'minValue'                  => 0,
-            /*+*/'minDurationValue'          => false,
-            /*+*/'maxDurationValue'          => false,
+            'canAddLimit' => true,
+            'canSave' => true,
+            'canEditSelect' => true,
+            'canEditServiceSelect' => true,
+            'cntServiceForLimit' => 1,
+            'cntServiceForFirstLimit' => 1,
+            'limitParams' => self::$cardLimitsParams,
+            'limitTypes' => self::$cardLimitsTypes,
+            'canViewDurationValue' => false,
+            'canUseFloat' => true,
+            'cntLimits' => 999,
+            'canEditDurationValue' => false,
+            'minValue' => 0,
+            'minDurationValue' => false,
+            'maxDurationValue' => false,
+            'durationValues' => [],
+            'checkUniqueServicesThroughEachService' => false
         ];
 
         switch ($systemId) {
@@ -1320,30 +1327,39 @@ class Model_Card extends Model
                 $settings['canSave']        = false;
                 break;
             case 3:
-                $settings['canAddLimit']        = false;
+                $settings['canAddLimit'] = false;
                 $settings['canDelLimit'] = false;
-                $settings['canDelService']      = false;
-                $settings['canAddService']      = false;
-                $settings['editSelect']         = false;
-                $settings['editServiceSelect']  = false;
+                $settings['canDelService'] = false;
+                $settings['canAddService'] = false;
+                $settings['canEditSelect'] = false;
+                $settings['canEditServiceSelect'] = false;
                 break;
             case 4:
+                $settings['limitTypes'] = [self::CARD_LIMIT_TYPE_DAY => Model_Card::$cardLimitsTypes[self::CARD_LIMIT_TYPE_DAY]];
+                $settings['limitParams'] = [self::CARD_LIMIT_PARAM_VOLUME => Model_Card::$cardLimitsParams[self::CARD_LIMIT_PARAM_VOLUME]];
+                $settings['canViewDurationValue'] = true;
+                $settings['canEditDurationValue'] = true;
+                $settings['durationValues'] = [0 => 'Без ограничений', 1 => 1, 3 => 3, 5 => 5, 7 => 7, 9 => 9, 12 => 12, 15 => 15, 20 => 20, 30 => 30];
+                $settings['cntServiceForLimit'] = 999;
+                $settings['cntServiceForFirstLimit'] = 999;
+                $settings['checkUniqueServicesThroughEachService'] = true;
+                break;
             case self::CARD_SYSTEM_NINE:
                 $settings['cntServiceForFirstLimit'] = 999;
                 $settings['limitTypes']         = Model_Card::$cardLimitsTypes;
-                $settings['editSelect']         = false;
+                $settings['canEditSelect'] = false;
                 $settings['canUseFloat']        = false;
                 $settings['minValue']           = 1;
                 break;
             case self::CARD_SYSTEM_GPN:
                 $settings['cntServiceForFirstLimit'] = 999;
-                $settings['limitTypes']         = Model_Card::$cardLimitsTypesFull;
-                $settings['cntTypes']           = true;
-                $settings['editSelect']         = false;
-                $settings['canUseFloat']        = false;
-                $settings['minValue']           = 1;
-                $settings['minDurationValue']   = 1;
-                $settings['maxDurationValue']   = 99;
+                $settings['limitTypes'] = Model_Card::$cardLimitsTypesFull;
+                $settings['canViewDurationValue'] = true;
+                $settings['canEditSelect'] = false;
+                $settings['canUseFloat'] = false;
+                $settings['minValue'] = 1;
+                $settings['minDurationValue'] = 1;
+                $settings['maxDurationValue'] = 99;
                 break;
             case 6:
                 $settings['cntServiceForLimit'] = 999;

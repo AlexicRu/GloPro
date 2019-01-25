@@ -1,6 +1,6 @@
 <div limit_service class="input-group m-b-5">
     <select name="limit_service" class="custom-select"
-            onchange="checkServices_<?= $postfix ?>($(this))" <?= (empty($settings['editServiceSelect']) ? 'disabled' : '') ?>>
+            onchange="checkServices_<?= $postfix ?>($(this))" <?= (empty($settings['canEditServiceSelect']) ? 'disabled' : '') ?>>
         <?foreach($servicesList as $service){?>
             <option
                     measure="<?=$service['MEASURE']?>"

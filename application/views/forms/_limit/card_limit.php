@@ -25,7 +25,8 @@
                    min="<?=$settings['minValue']?>"
             >
             <div class="input-group-append">
-                <select name="unit_type" class="custom-select" <?=(empty($settings['editSelect']) ? 'disabled' : '')?>>
+                <select name="unit_type"
+                        class="custom-select" <?= (empty($settings['canEditSelect']) ? 'disabled' : '') ?>>
                     <?foreach($settings['limitParams'] as $limitParam => $value){?>
                         <option value="<?=$limitParam?>" <?if(isset($limit['UNIT_TYPE']) && $limitParam == $limit['UNIT_TYPE']){?>selected<?}?>><?=$value?></option>
                     <?}?>
@@ -35,17 +36,26 @@
     </div>
     <div class="col-lg-4 align-top with-mt">
         <div class="input-group">
-            <?if ($settings['cntTypes']) {?>
-                <input type="text" name="duration_value"
-                       value="<?=(isset($limit['DURATION_VALUE']) ? $limit['DURATION_VALUE'] : '')?>"
-                       placeholder="Кол-во"
-                       class="form-control" <?=(empty($settings['editDurationValue']) ? 'disabled' : '')?>
-                    <?=($settings['minDurationValue'] !== false ? 'min="'. $settings['minDurationValue'] .'"' : '')?>
-                    <?=($settings['maxDurationValue'] !== false ? 'min="'. $settings['maxDurationValue'] .'"' : '')?>
-                >
+            <? if ($settings['canViewDurationValue']) { ?>
+                <? if (!empty($settings['durationValues'])) { ?>
+                    <select name="duration_value" class="custom-select">
+                        <? foreach ($settings['durationValues'] as $key => $durationValue) { ?>
+                            <option value="<?= $key ?>"><?= $durationValue ?></option>
+                        <? } ?>
+                    </select>
+                <? } else { ?>
+                    <input type="text" name="duration_value"
+                           value="<?= (isset($limit['DURATION_VALUE']) ? $limit['DURATION_VALUE'] : '') ?>"
+                           placeholder="Кол-во"
+                           class="form-control" <?= (empty($settings['canEditDurationValue']) ? 'disabled' : '') ?>
+                        <?= ($settings['minDurationValue'] !== false ? 'min="' . $settings['minDurationValue'] . '"' : '') ?>
+                        <?= ($settings['maxDurationValue'] !== false ? 'min="' . $settings['maxDurationValue'] . '"' : '') ?>
+                    >
+                <? } ?>
             <?}?>
             <div class="input-group-append">
-                <select name="duration_type" class="custom-select" <?=(empty($settings['editSelect']) ? 'disabled' : '')?>>
+                <select name="duration_type"
+                        class="custom-select" <?= (empty($settings['canEditSelect']) ? 'disabled' : '') ?>>
                     <?foreach($settings['limitTypes'] as $limitType => $value){?>
                         <option value="<?=$limitType?>" <?if(isset($limit['DURATION_TYPE']) && $limitType == $limit['DURATION_TYPE']){?>selected<?}?>><?=$value?></option>
                     <?}?>

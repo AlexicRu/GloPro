@@ -117,8 +117,8 @@ class Form extends Kohana_Form
 
         //добавление нового
         if (empty($limit)) {
-            $settings['editSelect'] = true;
-            $settings['editDurationValue'] = true;
+            $settings['canEditSelect'] = true;
+            $settings['canEditDurationValue'] = true;
         }
 
         $content = View::factory('forms/_limit/card_limit')

@@ -23,6 +23,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 <script>
     var CARD_LIMIT_PARAM_RUR = <?=Model_Card::CARD_LIMIT_PARAM_RUR?>;
     var SERVICE_GROUP_ITEMS = '<?=Listing::SERVICE_GROUP_ITEMS?>';
+    var checkUniqueServicesThroughEachService = <?=$settings['checkUniqueServicesThroughEachService']?>;
 
     $(function () {
         checkServices_<?=$postfix?>();
@@ -78,7 +79,11 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         };
 
         var rowsCnt = row.find('[limit_service]').length;
-        var selectFirst = $('.form_card_limits_edit_<?=$postfix?> [name=limit_service]:first');
+        if (checkUniqueServicesThroughEachService) {
+            var selectFirst = $('[name=limit_service]:first', row);
+        } else {
+            var selectFirst = $('[name=limit_service]:first', form);
+        }
         var group = selectFirst.find('option:selected').attr('group');
         var servicesGroupCnt = selectFirst.find('option[group=' + group + ']').length;
         var selected = [];
@@ -86,7 +91,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
             selectFirst.val()
         ];
 
-        $('select[name=limit_service] option:selected', form).each(function () {
+        $('select[name=limit_service] option:selected', checkUniqueServicesThroughEachService ? row : form).each(function () {
             selected.push($(this).attr('value'));
         });
 
@@ -236,15 +241,23 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
     {
         var form = $('.form_card_limits_edit_<?=$postfix?>');
 
-        var services = [];
+        if (!checkUniqueServicesThroughEachService) {
+            var services = [];
 
-        $('[name=limit_service]', form).each(function () {
-            services.push($(this).val());
-        });
+            $('[name=limit_service]', form).each(function () {
+                services.push($(this).val());
+            });
+        }
 
         $('[name=limit_service]', form).each(function () {
             var select = $(this);
             var selectVal = select.val();
+            if (checkUniqueServicesThroughEachService) {
+                var services = [];
+                $('[name=limit_service]', select.closest('[limit_group]')).each(function () {
+                    services.push($(this).val());
+                });
+            }
             var selected = select.closest('[limit_group]').find('[name=limit_service]:first option:selected');
             var group = selected.attr('group');
             var measure = selected.attr('measure').split(';');

@@ -23,10 +23,6 @@ function clientsFilter()
  */
 function clientsReload()
 {
-    if (currentPaginationAjaxRequest) {
-        currentPaginationAjaxRequest.abort();
-    }
-
     $('.ajax_block_clients_out').empty();
 
     paginationAjax('/clients/clients-list', 'ajax_block_clients', renderAjaxPaginationClients, clientsFilterParams);
