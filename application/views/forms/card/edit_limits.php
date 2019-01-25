@@ -178,7 +178,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         var form = $('.form_card_limits_edit_<?=$postfix?>');
         var params = {
             contract_id : $('[name=contracts_list]').val(),
-            card_id     : $('.tabs_cards .nav-link.active').closest('[tab]').attr('tab'),
+            card_id: $('.tabs_cards .tab-pane.active [name=card_id]').val(),
             limits      : []
         };
 
@@ -220,7 +220,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
             if (data.success) {
                 message(1, 'Лимиты карты успешно обновлена');
                 modalClose();
-                cardLoad($('.tabs_cards .nav-link.active').closest('[tab]').attr('tab'), true);
+                cardLoad($('.tabs_cards .tab-pane.active [name=card_id]').val(), true);
             } else {
                 message(0, 'Ошибка обновления лимитов карты');
 

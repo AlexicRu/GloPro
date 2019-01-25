@@ -58,7 +58,7 @@ $postfix = $card['CARD_ID'];
             if (data.success) {
                 message(1, 'Держатель карты успешно обновлен');
                 modalClose();
-                cardLoad($('.tabs_cards .nav-link.active').closest('[tab]').attr('tab'), true);
+                cardLoad($('.tabs_cards .tab-pane.active [name=card_id]').val(), true);
                 $('.tabs_cards .nav-link.active [holder]').text(params.holder);
             } else {
                 message(0, 'Ошибка обновления держателя карты');
