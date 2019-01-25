@@ -10,6 +10,10 @@ RewriteBase /
 	Deny From All
 </Files>
 
+<IfModule setenvif_module>
+    SetEnvIf X-Forwarded-Proto https HTTPS=on
+</IfModule>
+
 # Protect application and system files from being viewed
 RewriteRule ^(?:application|modules|system|vendor|deploy)\b.* index.php/$0 [L]
 

@@ -309,12 +309,12 @@
         el: '#vue_client_info',
         data: {
             client: {
-                NAME: '<?=$client['NAME']?>',
-                LONG_NAME: '<?=$client['LONG_NAME']?>',
-                Y_ADDRESS: '<?=$client['Y_ADDRESS']?>',
-                F_ADDRESS: '<?=$client['F_ADDRESS']?>',
-                P_ADDRESS: '<?=$client['P_ADDRESS']?>',
-                COMMENTS: "<?=preg_replace("/\n/", '\n',  $client['COMMENTS'])?>",
+                NAME: "<?=str_replace('"', '\"', $client['NAME'])?>",
+                LONG_NAME: "<?=str_replace('"', '\"', $client['LONG_NAME'])?>",
+                Y_ADDRESS: "<?=str_replace('"', '\"', $client['Y_ADDRESS'])?>",
+                F_ADDRESS: "<?=str_replace('"', '\"', $client['F_ADDRESS'])?>",
+                P_ADDRESS: "<?=str_replace('"', '\"', $client['P_ADDRESS'])?>",
+                COMMENTS: "<?=preg_replace("/\n/", '\n', str_replace('"', '\"', $client['COMMENTS']))?>",
                 PHONE: '<?=$client['PHONE']?>',
                 EMAIL: '<?=$client['EMAIL']?>',
                 INN: '<?=$client['INN']?>',

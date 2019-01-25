@@ -98,7 +98,7 @@ class Model_Card extends Model
 	private static $_selectedCards = [];
 
 	public static $cantDelCardLimitSystems = [
-	    1, 3, 4
+        1, 3
     ];
 
 	public static $cardsGroupsTypes = [
@@ -1327,13 +1327,7 @@ class Model_Card extends Model
                 $settings['editSelect']         = false;
                 $settings['editServiceSelect']  = false;
                 break;
-            /*case 4:
-                $settings['canDelService']  = false;
-                $settings['canAddService']  = false;
-                $settings['canAddLimit']    = false;
-                $settings['canDelLimit']    = false;
-                $settings['canSave']        = false;
-                break;*/
+            case 4:
             case self::CARD_SYSTEM_NINE:
                 $settings['cntServiceForFirstLimit'] = 999;
                 $settings['limitTypes']         = Model_Card::$cardLimitsTypes;

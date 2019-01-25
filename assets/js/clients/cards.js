@@ -1,6 +1,7 @@
 var cardsFilterParams = {
     emptyMessage: '<li class="nav-item"><span class="nav-link"><i class="text-muted">Карты не найдены</i></span></li>'
 };
+var ajaxCard = false;
 
 /*
      0 - не отображать кнопку "Блокировать"/"Разблокировать"
@@ -136,6 +137,10 @@ function cardsFilter(type)
 
 function cardLoad(cardId, force)
 {
+    if (ajaxCard) {
+        ajaxCard.abort();
+    }
+
     var contentBlock = $("#card" + cardId);
     //var search = '?tab=cards&card=' + cardId;
     var search = '?tab=cards';
@@ -144,7 +149,7 @@ function cardLoad(cardId, force)
     if(contentBlock.text() == '' || force == true){
         addLoader(contentBlock);
 
-        $.post('/clients/card/' + cardId + '/?contract_id=' + $('[name=contracts_list]').val(), {}, function(data){
+        ajaxCard = $.post('/clients/card/' + cardId + '/?contract_id=' + $('[name=contracts_list]').val(), {}, function (data) {
             removeLoader(contentBlock);
             contentBlock.html(data);
             renderVerticalTabsScroll($('.tabs_cards .ajax_pagination:first'));
