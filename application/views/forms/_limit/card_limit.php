@@ -39,8 +39,11 @@
             <? if ($settings['canViewDurationValue']) { ?>
                 <? if (!empty($settings['durationValues'])) { ?>
                     <select name="duration_value" class="custom-select">
-                        <? foreach ($settings['durationValues'] as $key => $durationValue) { ?>
-                            <option value="<?= $key ?>"><?= $durationValue ?></option>
+                        <? foreach ($settings['durationValues'] as $value => $durationTitle) { ?>
+                            <option
+                                    value="<?= $value ?>"
+                                <?= (isset($limit['DURATION_VALUE']) && $value == $limit['DURATION_VALUE'] ? 'selected' : '') ?>
+                            ><?= $durationTitle ?></option>
                         <? } ?>
                     </select>
                 <? } else { ?>

@@ -600,6 +600,26 @@ class Model_Card extends Model
                 }
             }
 
+            //проверка уникальности услуг в рамках одного лимита
+            foreach ($limits as $key => $limit) {
+                if (count($limit['services']) != count(array_unique($limit['services']))) {
+                    throw new Exception('Повторение сервисных услуг внутри одного лимита');
+                }
+            }
+
+            //проверка уникальности услуг среди всех лимитов
+            if (!$settings['checkUniqueServicesThroughEachService']) {
+                foreach ($limits as $key1 => $limit1) {
+                    foreach ($limits as $key2 => $limit2) {
+                        if ($key1 != $key2) {
+                            if (array_intersect($limit1['services'], $limit2['services'])) {
+                                throw new Exception('Сервисные услуги не могут повторяться');
+                            }
+                        }
+                    }
+                }
+            }
+
             //проверка в зависимости от системы карт
             $firstFl = true;
             foreach($limits as $limit){
@@ -780,7 +800,8 @@ class Model_Card extends Model
 
                 $str =
                     /*dt*/ (int)$limit['duration_type'] . ':' .
-                    /*dv*/ (int)(!empty($limit['duration_value']) ? $limit['duration_value'] : 1) . ':' .
+                    /*dv*/
+                    (int)(isset($limit['duration_value']) ? $limit['duration_value'] : 1) . ':' .
                     /*ut*/ (int)$limit['unit_type'] . ':' .
                     /*uc*/ ($limit['unit_type'] == self::CARD_LIMIT_PARAM_VOLUME ? 'LIT' : Common::CURRENCY_RUR) . ':' .
                     /*tc*/ '-1:' .

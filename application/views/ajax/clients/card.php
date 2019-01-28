@@ -175,15 +175,9 @@
                     <?}?>
                 </td>
                 <td class="bg-light">
-                    <?if ($systemId == 5) {?>
-                        <?=$restriction['LIMIT_VALUE']?>
-                        <?=Model_Card::$cardLimitsParams[$restriction['UNIT_TYPE']]?>,
-                        <?=$limitTypes[$restriction['DURATION_TYPE']]?>: <?=$restriction['DURATION_VALUE']?>
-                    <?}else{?>
-                        <?=$restriction['LIMIT_VALUE']?>
-                        <?=Model_Card::$cardLimitsParams[$restriction['UNIT_TYPE']]?>
-                        <?=$limitTypes[$restriction['DURATION_TYPE']]?>
-                    <?}?>
+                    <?= $restriction['LIMIT_VALUE'] ?>
+                    <?= Model_Card::$cardLimitsParams[$restriction['UNIT_TYPE']] ?>,
+                    <?= $limitTypes[$restriction['DURATION_TYPE']] ?><? if ($restriction['DURATION_VALUE']) { ?>: <?= $restriction['DURATION_VALUE'] ?><? } ?>
                 </td>
                 <td class="bg-light">
                     <?=$restriction['REST_LIMIT']?>
