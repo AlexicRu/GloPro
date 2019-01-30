@@ -942,7 +942,7 @@ class Controller_Control extends Controller_Common {
 
         $parser = new Model_Parser_BankStatement($data);
 
-        $rows = $parser->getDocs();
+        $rows = $parser->getTransactions();
 
         $this->jsonResult(true, ['rows' => $rows]);
     }

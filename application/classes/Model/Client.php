@@ -191,6 +191,23 @@ class Model_Client extends Model
         return $clients;
     }
 
+    /**
+     * получаем список клиентоы
+     *
+     * @param array $params
+     */
+    public static function getClients($params = [])
+    {
+        $sql = (new Builder())->select()
+            ->from('V_WEB_CLIENTS_PROFILE');
+
+        if (!empty($params['client_id'])) {
+            $sql->whereIn('client_id', $params['client_id']);
+        }
+
+        return Oracle::init()->query($sql);
+    }
+
 	/**
 	 * получаем данные по клиенту
 	 *
@@ -202,16 +219,9 @@ class Model_Client extends Model
 			return false;
 		}
 
-		$db = Oracle::init();
+        $clients = self::getClients(['client_id' => $clientId]);
 
-		$sql = (new Builder())->select()
-            ->from('V_WEB_CLIENTS_PROFILE')
-            ->where('client_id = ' . (int)$clientId)
-        ;
-
-		$client = $db->row($sql);
-
-		return $client;
+        return !empty($clients) ? current($clients) : false;
 	}
 
 	/**

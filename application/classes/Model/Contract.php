@@ -87,11 +87,13 @@ class Model_Contract extends Model
                 $params['contract_id'] = [(int)$params['contract_id']];
             }
         } else {
-            //ограничение по договорам пользователя
-            $user = User::current();
+            if (empty($params['skip_user_contract_check'])) {
+                //ограничение по договорам пользователя
+                $user = User::current();
 
-            if (!empty($user['contracts'][$params['client_id']])) {
-                $params['contract_id'] = $user['contracts'][$params['client_id']];
+                if (!empty($user['contracts'][$params['client_id']])) {
+                    $params['contract_id'] = $user['contracts'][$params['client_id']];
+                }
             }
         }
 
