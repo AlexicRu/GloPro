@@ -32,6 +32,7 @@
 
         $.post('/suppliers/supplier-add', {params:params}, function(data){
             endSubmitForm();
+
             if(data.success){
                 message(1, 'Поставщик успешно добавлен');
                 setTimeout(function(){

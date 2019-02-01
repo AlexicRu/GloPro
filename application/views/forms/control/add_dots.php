@@ -28,6 +28,7 @@
 
         $.post('/control/add-dots-to-group', {dots_ids:dotsIds, group_id:groupId}, function (data) {
             endSubmitForm();
+
             if(data.success){
                 message(1, 'Точки успешно добавлены');
 
@@ -39,6 +40,7 @@
             }
 
             modalClose();
+
             setTimeout(function () {
                 $('.popup_list').empty().hide();
                 $('.popup_list_preview').show();

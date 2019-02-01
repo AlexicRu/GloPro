@@ -124,6 +124,8 @@
         }
 
         $.post('/managers/add-manager', {params:params}, function (data) {
+            endSubmitForm();
+
             if(data.success){
                 message(1, 'Менеджер успешно добавлен');
                 modalClose();
@@ -155,7 +157,6 @@
             }else{
                 message(0, 'Ошибка добавления менеджера');
             }
-            endSubmitForm();
         });
     }
 </script>

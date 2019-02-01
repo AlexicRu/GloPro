@@ -50,13 +50,14 @@
         }
 
         $.post('/clients/card-add', {params:params}, function(data){
+            endSubmitForm();
+
             if(data.success){
                 message(1, 'Карта успешно добавлена');
                 loadContract('cards');
             }else{
                 message(0, data.data ? data.data : 'Ошибка добавления карты');
             }
-            endSubmitForm();
         });
     }
 </script>

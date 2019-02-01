@@ -51,8 +51,10 @@ function saveClientInfo() {
 function loadContract(tab, query, params)
 {
     modalClose();
+
     var block = $('.ajax_contract_block');
     addLoader(block);
+
     var contractId = $('[name=contracts_list]').val();
 
     var search = getUrlParameter('card') && tab == 'cards' ? location.search : '?tab=' + tab;

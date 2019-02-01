@@ -23,7 +23,7 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 <script>
     var CARD_LIMIT_PARAM_RUR = <?=Model_Card::CARD_LIMIT_PARAM_RUR?>;
     var SERVICE_GROUP_ITEMS = '<?=Listing::SERVICE_GROUP_ITEMS?>';
-    var checkUniqueServicesThroughEachService = <?=$settings['checkUniqueServicesThroughEachService']?>;
+    var checkUniqueServicesThroughEachService = <?=(int)$settings['checkUniqueServicesThroughEachService']?>;
 
     $(function () {
         checkServices_<?=$postfix?>();
@@ -222,8 +222,10 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         }
 
         $.post('/clients/card-edit-limits', params, function (data) {
+            endSubmitForm();
+
             if (data.success) {
-                message(1, 'Лимиты карты успешно обновлена');
+                message(1, 'Лимиты карты успешно обновлены');
                 modalClose();
                 cardLoad($('.tabs_cards .tab-pane.active [name=card_id]').val(), true);
             } else {
@@ -233,17 +235,15 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
                     message(0, data.data);
                 }
             }
-            endSubmitForm();
         });
     }
 
     function checkServices_<?=$postfix?>(selectChanged)
     {
         var form = $('.form_card_limits_edit_<?=$postfix?>');
+        var services = [];
 
-        if (!checkUniqueServicesThroughEachService) {
-            var services = [];
-
+        if (checkUniqueServicesThroughEachService == 0) {
             $('[name=limit_service]', form).each(function () {
                 services.push($(this).val());
             });
@@ -252,8 +252,8 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
         $('[name=limit_service]', form).each(function () {
             var select = $(this);
             var selectVal = select.val();
-            if (checkUniqueServicesThroughEachService) {
-                var services = [];
+            if (checkUniqueServicesThroughEachService == 1) {
+                services = [];
                 $('[name=limit_service]', select.closest('[limit_group]')).each(function () {
                     services.push($(this).val());
                 });

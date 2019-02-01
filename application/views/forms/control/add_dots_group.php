@@ -42,6 +42,7 @@
 
         $.post('/control/add-dots-group', {params:params}, function(data){
             endSubmitForm();
+
             if(data.success){
                 message(1, 'Группа успешно добавлена');
                 setTimeout(function () {

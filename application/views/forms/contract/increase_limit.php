@@ -43,13 +43,14 @@
         }
 
         $.post('/clients/contract-increase-limit', params, function(data){
+            endSubmitForm();
+
             if (data.success) {
                 message(1, 'Лимит успешно изменен');
                 loadContract('account');
             } else {
                 message(0, 'Ошибка изменения лимита');
             }
-            endSubmitForm();
         });
     }
 </script>

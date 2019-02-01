@@ -47,6 +47,8 @@
         }
 
         $.post('/clients/client-load-info-by-inn', params, function (data) {
+            endSubmitForm();
+
             if (data.success) {
                 vueClientInfo.client.INN = data.data.INN ? data.data.INN : vueClientInfo.client.INN;
                 vueClientInfo.client.BANK_BIK = data.data.BANK_BIK ? data.data.BANK_BIK : vueClientInfo.client.BANK_BIK;
@@ -70,7 +72,6 @@
             } else {
                 message(0, data.data ? data.data : 'Ошибка загрузки данных');
             }
-            endSubmitForm();
         });
     }
 </script>

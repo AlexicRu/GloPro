@@ -28,6 +28,7 @@
 
         $.post('/control/add-firms-to-group', {firms_ids:firmsIds, group_id:groupId}, function (data) {
             endSubmitForm();
+
             if(data.success){
                 message(1, 'Фирмы успешно добавлены');
 
@@ -37,7 +38,9 @@
             }  else {
                 message(0, 'Ошибка добавления фирм');
             }
+
             modalClose();
+
             setTimeout(function () {
                 $('.popup_list').empty().hide();
                 $('.popup_list_preview').show();

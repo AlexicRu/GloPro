@@ -59,6 +59,8 @@
         }
 
         $.post('/clients/contract-add', {params:params}, function(data){
+            endSubmitForm();
+
             if(data.success){
                 message(1, 'Договор успешно добавлен');
                 setTimeout(function(){
@@ -67,7 +69,6 @@
             }else{
                 message(0, data.data ? data.data : 'Ошибка добавления договора');
             }
-            endSubmitForm();
         });
     }
 </script>

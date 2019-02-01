@@ -33,6 +33,8 @@
         }
 
         $.post('/suppliers/agreement-add', {params:params}, function(data){
+            endSubmitForm();
+
             if(data.success){
                 modalClose();
                 message(1, 'Соглашение успешно добавлено');
@@ -40,7 +42,6 @@
             }else{
                 message(0, data.data ? data.data : 'Ошибка добавления соглашения');
             }
-            endSubmitForm();
         });
     }
 </script>

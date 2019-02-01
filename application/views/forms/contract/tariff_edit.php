@@ -42,6 +42,7 @@
 
         $.post('/clients/contract-tariff-edit', params, function (data) {
             endSubmitForm();
+
             if (data.success) {
                 message(1, 'Тариф успешно обновлен');
 

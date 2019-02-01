@@ -55,6 +55,8 @@ $postfix = $card['CARD_ID'];
         }
 
         $.post('/clients/card-edit-holder', params, function (data) {
+            endSubmitForm();
+
             if (data.success) {
                 message(1, 'Держатель карты успешно обновлен');
                 modalClose();
@@ -69,7 +71,6 @@ $postfix = $card['CARD_ID'];
                     }
                 }
             }
-            endSubmitForm();
         });
     }
 </script>

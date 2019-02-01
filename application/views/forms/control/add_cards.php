@@ -28,6 +28,7 @@
 
         $.post('/control/add-cards-to-group', {cards_ids:cardsIds, group_id:groupId}, function (data) {
             endSubmitForm();
+
             if(data.success){
                 message(1, 'Карты успешно добавлены');
 
@@ -37,7 +38,9 @@
             }  else {
                 message(0, 'Ошибка добавления карт');
             }
+
             modalClose();
+
             setTimeout(function () {
                 $('.popup_list').empty().hide();
                 $('.popup_list_preview').show();

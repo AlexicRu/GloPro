@@ -28,6 +28,8 @@
         }
 
         $.post('/clients/client-add', {params:params}, function(data){
+            endSubmitForm();
+
             if(data.success){
                 message(1, 'Клиент успешно добавлен');
                 setTimeout(function(){
@@ -36,7 +38,6 @@
             }else{
                 message(0, 'Ошибка добавления клиента');
             }
-            endSubmitForm();
         });
     }
 </script>

@@ -93,8 +93,8 @@
         }
 
         window.location.href = '/clients/add-bill?' + $.param(params);
-        modalClose();
         endSubmitForm();
+        modalClose();
 
         setTimeout(function () {
             paginationAjaxRefresh('ajax_block_client_bills_list');

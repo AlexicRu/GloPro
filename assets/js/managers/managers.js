@@ -210,6 +210,8 @@ function managerAddReports(btn)
     }
 
     $.post('/managers/add-reports', {params:params}, function (data) {
+        endSubmitForm();
+
         if(data.success){
             message(1, 'Отчеты успешно добавлены');
             modalClose();
@@ -227,7 +229,6 @@ function managerAddReports(btn)
 
             message(0, 'Ошибка добавления отчетов' + txt);
         }
-        endSubmitForm();
     });
 }
 

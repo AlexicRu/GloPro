@@ -225,6 +225,7 @@
 
         $.post('/clients/contract-limits-edit', params, function (data) {
             endSubmitForm();
+
             if (data.success) {
                 message(1, 'Ограничения по договору успешно обновлены');
                 loadContract('account');

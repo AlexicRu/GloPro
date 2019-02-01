@@ -182,13 +182,14 @@ if ($manager['TELEGRAM_IS_ON']) {$types[] = 'Telegram';}
         };
 
         $.post('/clients/edit-contract-notices', {contract_id: $('[name=contracts_list]').val(), params:params}, function (data) {
+            endSubmitForm();
+
             if(data.success){
                 message(1, 'Настройки уведомлений обновлены');
                 modalClose();
             }else{
                 message(0, 'Ошибка настройки уведомлений');
             }
-            endSubmitForm();
         });
     }
 </script>

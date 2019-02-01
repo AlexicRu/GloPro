@@ -148,6 +148,8 @@
         }
 
         $.post('/news/note-edit', {params:params}, function(data){
+            endSubmitForm();
+
             if(data.success){
                 <?if(!empty($detail['NOTE_ID'])){?>
                     message(1, 'Новость успешно отредактированна');
@@ -167,7 +169,6 @@
             }
             dropzone.removeAllFiles();
             image = false;
-            endSubmitForm();
         });
     }
 </script>

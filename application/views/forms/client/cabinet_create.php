@@ -45,13 +45,14 @@
         }
 
         $.post('/clients/cabinet-create', {params:params}, function(data){
+            endSubmitForm();
+
             if(data.success){
                 message(1, 'Личный кабинет успешно создан');
                 modalClose();
             }else{
                 message(0, data.data ? data.data : 'Ошибка создания личного кабинета');
             }
-            endSubmitForm();
         });
     }
 </script>
