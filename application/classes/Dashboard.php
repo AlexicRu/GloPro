@@ -325,6 +325,7 @@ class Dashboard
             'nvl(crc.all_cards,0) as all_cards',
             'nvl(crc.cards_in_work,0) as cards_in_work',
             'nvl(cl.cl_count,0) as cl_count',
+            'nvl(t.users_count,0) as users_count',
         ])
             ->from('v_web_agents_list a')
             ->joinLeft(['cl' => $sqlJoin], 'a.agent_id = cl.agent_id')
