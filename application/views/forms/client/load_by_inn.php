@@ -6,7 +6,8 @@
                 ИНН:
             </div>
             <div class="col-sm-8 with-mt">
-                <input type="text" name="load_by_inn_inn" class="form-control">
+                <nobr><input type="text" name="load_by_inn_inn" class="form-control"><sup class="required">*</sup>
+                </nobr>
             </div>
         </div>
 
@@ -18,8 +19,8 @@
                 <input type="text" name="load_by_inn_bik" class="form-control">
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 <div class="modal-footer">
     <span class="<?= Text::BTN ?> btn-primary" onclick="submitForm($(this), loadByInnGo)"><i
@@ -40,11 +41,11 @@
             endSubmitForm();
             return false;
         }
-        if (params.bik == '') {
+        /*if (params.bik == '') {
             message(0, 'Введите БИК банка');
             endSubmitForm();
             return false;
-        }
+        }*/
 
         $.post('/clients/client-load-info-by-inn', params, function (data) {
             endSubmitForm();

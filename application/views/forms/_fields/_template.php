@@ -21,7 +21,7 @@ if ($withDepend) {?>
             $valueDepend = false;
             if (!empty($params['depend_values'][$params['depend_on']['param']])) {
                 $valueDepend = $params['depend_values'][$params['depend_on']['param']];
-                $data['hidden'] = true;
+                $data['hidden'] = isset($params['depend_hidden']) ? $params['depend_hidden'] : true;
                 $data['depend_values'] = $params['depend_values'];
             }
 

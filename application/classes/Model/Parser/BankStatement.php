@@ -59,7 +59,10 @@ class Model_Parser_BankStatement extends Model
          */
 
         $sql = (new Builder())->select()
-            ->from('V_WEB_CLIENTS_PROFILE');
+            ->from('V_WEB_CLIENTS_PROFILE t1')
+            ->join('V_WEB_CLIENTS_LIST t2', 't1.client_id = t2.client_id')
+            ->where('t2.manager_id = ' . User::id())
+            ->whereStart();
 
         $found = false;
 
@@ -76,14 +79,16 @@ class Model_Parser_BankStatement extends Model
 
             $sql
                 ->whereStart('or')
-                ->where('inn = ' . Oracle::quote($inn))
-                ->where('kpp = ' . Oracle::quote($kpp))
+                ->where('t1.inn = ' . Oracle::quote($inn))
+                ->where('t1.kpp = ' . Oracle::quote($kpp))
                 ->whereEnd();
         }
 
         if (!$found) {
             return [];
         }
+
+        $sql->whereEnd();
 
         $db = Oracle::init();
 
@@ -96,8 +101,39 @@ class Model_Parser_BankStatement extends Model
             'client_id' => $clientsIds
         ]);
 
-        print_r($clients);
-        print_r($contracts);
-        die;
+        foreach ($this->documents as $key => &$row) {
+            $row->foundClientId = false;
+            $row->foundClientName = '<span class="badge badge-danger">Клиент не определен</span>';
+            $row->foundContractId = false;
+            $row->foundContractName = '<span class="badge badge-danger">Договор не определен</span>';
+
+            foreach ($clients as $client) {
+                if ($row->payerinn == $client['INN'] && $row->payerkpp == $client['KPP']) {
+                    $row->foundClientId = $client['CLIENT_ID'];
+                    $row->foundClientName = $client['NAME'];
+                    break;
+                }
+            }
+
+            if ($row->foundClientId) {
+                foreach ($contracts as $contract) {
+                    if (strpos($row->paydirection, $contract['CONTRACT_NAME']) !== false) {
+                        $row->foundContractId = $contract['CONTRACT_ID'];
+                        $row->foundContractName = $contract['CONTRACT_NAME'];
+                        break;
+                    }
+                }
+            }
+
+            $row->html = strval(Form::buildField('contract_choose_single', 'contract_choose_single_' . $key, $row->foundContractId, [
+                'depend_values' => ['client_id' => $row->foundClientId],
+                'depend_postfix' => $key,
+                'depend_hidden' => false
+            ]));
+
+            $row->found = $row->foundClientName . '<hr>' . $row->foundContractName;
+        }
+
+        return $this->documents;
     }
 }

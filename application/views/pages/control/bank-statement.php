@@ -76,7 +76,7 @@
             'ПолучательРасчСчет' => 'recieverdealaccount',
             'ПолучательБанк1' => 'recieverbank1',
             'ПолучательБанк2' => 'recieverbank2',
-            'ПолучательБИК' => 'recieverbik',
+            'ПолучательБИК' => 'recieverbik',овый договор:
             'ПолучательКорсчет' => 'recieverfixaccount',
             'ВидОплаты' => 'paytype',
             'НазначениеПлатежа' => 'paydirection',
@@ -92,46 +92,23 @@
             'ПоказательТипа' => 'showertype',
             'СрокПлатежа' => 'paymentperiod',
             'Очередность' => 'quenue',
+
+1) галочку "занести платеж"
+2) дату платежа
+3) номер платежа
+4) клиент
+5) договор
+5) назначение
+
+Form::buildField('contract_choose_single', 'contract_new')
              */
             fields: [
-                {name: "doctype", type: "text", title: 'СекцияДокумент', width: 150},
-                {name: "inbankid", type: "text", title: 'Номер', width: 80},
                 {name: "docdate", type: "text", title: 'Дата', width: 100},
-                {name: "summ", type: "text", title: 'Сумма', width: 150},
-                {name: "outdate", type: "text", title: 'ДатаСписано', width: 150},
-                {name: "indate", type: "text", title: 'ДатаПоступило', width: 150},
-                {name: "payeraccount", type: "text", title: 'ПлательщикСчет', width: 250},
-                {name: "payerinfo", type: "text", title: 'Плательщик', width: 300},
-                {name: "payerinn", type: "text", title: 'ПлательщикИНН', width: 150},
-                {name: "payer", type: "text", title: 'Плательщик1', width: 300},
-                {name: "payerdealaccount", type: "text", title: 'ПлательщикРасчСчет', width: 250},
-                {name: "payerbank1", type: "text", title: 'ПлательщикБанк1', width: 150},
-                {name: "payerbank2", type: "text", title: 'ПлательщикБанк2', width: 150},
-                {name: "payerbik", type: "text", title: 'ПлательщикБИК', width: 150},
-                {name: "payerfixaccount", type: "text", title: 'ПлательщикКорсчет', width: 250},
-                {name: "recieveraccount", type: "text", title: 'ПолучательСчет', width: 250},
-                {name: "recieverinfo", type: "text", title: 'Получатель', width: 150},
-                {name: "recieverinn", type: "text", title: 'ПолучательИНН', width: 150},
-                {name: "reciever1", type: "text", title: 'Получатель1', width: 150},
-                {name: "recieverdealaccount", type: "text", title: 'ПолучательРасчСчет', width: 250},
-                {name: "recieverbank1", type: "text", title: 'ПолучательБанк1', width: 150},
-                {name: "recieverbank2", type: "text", title: 'ПолучательБанк2', width: 150},
-                {name: "recieverbik", type: "text", title: 'ПолучательБИК', width: 150},
-                {name: "recieverfixaccount", type: "text", title: 'ПолучательКорсчет', width: 250},
-                {name: "paytype", type: "text", title: 'ВидОплаты', width: 150},
-                {name: "paydirection", type: "text", title: 'НазначениеПлатежа', width: 300},
-                {name: "makerstatus", type: "text", title: 'СтатусСоставителя', width: 200},
-                {name: "payerkpp", type: "text", title: 'ПлательщикКПП', width: 150},
-                {name: "recieverkpp", type: "text", title: 'ПолучательКПП', width: 150},
-                {name: "showerkbk", type: "text", title: 'ПоказательКБК', width: 150},
-                {name: "okato", type: "text", title: 'ОКАТО', width: 150},
-                {name: "showerfundament", type: "text", title: 'ПоказательОснования', width: 200},
-                {name: "showerperiod", type: "text", title: 'ПоказательПериода', width: 200},
-                {name: "showernumber", type: "text", title: 'ПоказательНомера', width: 200},
-                {name: "showerdate", type: "text", title: 'ПоказательДаты', width: 200},
-                {name: "showertype", type: "text", title: 'ПоказательТипа', width: 200},
-                {name: "paymentperiod", type: "text", title: 'СрокПлатежа', width: 150},
-                {name: "quenue", type: "text", title: 'Очередность', width: 150},
+                {name: "inbankid", type: "text", title: 'Номер', width: 80},
+                {name: "summ", type: "text", title: 'Сумма', width: 100},
+                {name: 'html', type: 'text', title: 'Клиент / Договор', width: 250},
+                {name: 'found', type: 'text', title: 'Автоматически', width: 200},
+                {name: "paydirection", type: "text", title: 'НазначениеПлатежа', width: 'auto'},
             ]
         });
     }
