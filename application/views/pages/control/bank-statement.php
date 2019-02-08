@@ -80,7 +80,7 @@
                     },
                     itemTemplate: function (_, item) {
                         return $('<label class="custom-control custom-checkbox">' +
-                            '<input type="checkbox" class="custom-control-input add_element" checked>' +
+                            '<input type="checkbox" class="custom-control-input add_element" ' + (item.foundContractId ? 'checked' : '') + '>' +
                             '<span class="custom-control-label"></span>' +
                             '</label>')
                             .data("summ", item.summ)

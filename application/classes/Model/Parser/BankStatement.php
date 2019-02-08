@@ -131,7 +131,8 @@ class Model_Parser_BankStatement extends Model
                 'depend_hidden' => false
             ]));
 
-            $row->found = $row->foundClientName . '<hr>' . $row->foundContractName;
+            $row->found = /*$row->foundClientName . '<hr>' .*/
+                $row->foundContractName;
         }
 
         return $this->documents;
