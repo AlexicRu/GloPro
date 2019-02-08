@@ -1,4 +1,6 @@
 <div class="modal-body">
+    <input type="hidden" name="edit_firms_group_id">
+
     <div class="form-group row m-b-0">
         <div class="col-sm-4 text-muted form__row__title">
             Название группы:
