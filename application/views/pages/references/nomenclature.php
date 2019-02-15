@@ -82,7 +82,7 @@
     <div class="tab-pane" id="limit" role="tabpanel">
         <div class="card">
             <div class="card-body">
-                <div class="font-weight-bold font-18 mb-2">Выберите трубу:</div>
+                <div class="font-weight-bold font-18 mb-2">Выберите источник:</div>
 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">

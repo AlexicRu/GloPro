@@ -325,6 +325,21 @@ class Controller_Info extends Controller_Common
                 'title' => 'Центральный регион',
                 'items' => [
                     [
+                        'icon' => Common::$infoFilesIcons['Pdf'],
+                        'name' => 'Паспорт 92 от 05.02.2019',
+                        'file' => '/file/info/Паспорта_качества/Сибирь/Паспорт_92_от_05.02.2019.pdf'
+                    ],
+                    [
+                        'icon' => Common::$infoFilesIcons['Pdf'],
+                        'name' => 'Паспорт 95 от 07.02.2019',
+                        'file' => '/file/info/Паспорта_качества/Сибирь/Паспорт_95_от_07.02.2019.pdf'
+                    ],
+                    [
+                        'icon' => Common::$infoFilesIcons['Pdf'],
+                        'name' => 'Паспорт ДтЗ от 07.02.2019',
+                        'file' => '/file/info/Паспорта_качества/Сибирь/Паспорт_ДтЗ_от_07.02.2019.pdf'
+                    ],
+                    [
                         'icon'  => Common::$infoFilesIcons['Pdf'],
                         'name'  => '№3536 ДТ-Л-К5 от 05.09.2018',
                         'file'  => '/file/info/Паспорта_качества/Центральный_регион/3536_ДТ-Л-К5от05.09.2018.pdf'
@@ -359,6 +374,21 @@ class Controller_Info extends Controller_Common
             [
                 'title' => 'Сибирь',
                 'items' => [
+                    [
+                        'icon' => Common::$infoFilesIcons['Pdf'],
+                        'name' => 'Паспорт 92 от 04.02.2019',
+                        'file' => '/file/info/Паспорта_качества/Сибирь/Паспорт_92_от_04.02.2019.pdf'
+                    ],
+                    [
+                        'icon' => Common::$infoFilesIcons['Pdf'],
+                        'name' => 'Паспорт 95 от 06.02.2019',
+                        'file' => '/file/info/Паспорта_качества/Сибирь/Паспорт_95_от_06.02.2019.pdf'
+                    ],
+                    [
+                        'icon' => Common::$infoFilesIcons['Pdf'],
+                        'name' => 'Паспорт ДтЗ от 06.02.2019',
+                        'file' => '/file/info/Паспорта_качества/Сибирь/Паспорт_ДтЗ_от_06.02.2019.pdf'
+                    ],
                     [
                         'icon'  => Common::$infoFilesIcons['Pdf'],
                         'name'  => '№1504 G-Drive 100 от 03.08.2018',
