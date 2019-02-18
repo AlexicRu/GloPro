@@ -106,6 +106,11 @@ class Controller_Info extends Controller_Common
                 'items' => [
                     [
                         'icon'  => Common::$infoFilesIcons['Pdf'],
+                        'name' => 'Мониторинг цен февраль 2019',
+                        'file' => '/file/info/Мониторинг_цен/Мониторинг_цен_февраль_2019.pdf'
+                    ],
+                    [
+                        'icon' => Common::$infoFilesIcons['Pdf'],
                         'name' => 'Мониторинг цен январь 2019',
                         'file' => '/file/info/Мониторинг_цен/Мониторинг_цен_январь_2019.pdf'
                     ],
