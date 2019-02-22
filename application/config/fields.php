@@ -4,6 +4,10 @@ return [
     'card_available_choose_single' => [
         'url'       => '/help/list-cards-available'
     ],
+    'card_available_choose_multi' => [
+        'multi' => true,
+        'url' => '/help/list-cards-available'
+    ],
     'tube_choose_multi' => [
         'multi'     => true,
         'url'       => '/help/list-tube'

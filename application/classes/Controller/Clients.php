@@ -149,7 +149,7 @@ class Controller_Clients extends Controller_Common {
 				;
 				break;
 			case 'cards':
-				$popupCardAdd = Form::popup('Добавление новой карты', 'card/add');
+                $popupCardAdd = Form::popupLarge('Добавление новой карты', 'card/add');
 
 				$cardsCounter = Model_Contract::getCardsCounter($contractId);
 
@@ -308,31 +308,49 @@ class Controller_Clients extends Controller_Common {
 	}
 
 	/**
-	 * добавляем новую карту
+     * добавляем новые карты
 	 */
-	public function action_cardAdd()
+    public function action_cardsAdd()
 	{
 		$params = $this->request->post('params');
 
-		$result = Model_Card::editCard($params, Model_Card::CARD_ACTION_ADD);
+        $cards = !empty($params['cards']) ? $params['cards'] : [];
+        $cardsList = !empty($params['cards_list']) ? $params['cards_list'] : [];
 
-		if($result === true){
-			$this->jsonResult(true);
-		}
+        if (!empty($cardsList)) {
+            $cardsList = array_filter(explode("\n", preg_replace("/[^\d\n]/", '', $cardsList)));
 
-		$error = '';
-		switch($result){
-			case Oracle::CODE_ERROR :
-				break;
-			case 2:
-				$error = 'Карта уже существует';
-				break;
-			case 3:
-				$error = 'Неверный номер карты';
-				break;
-		}
+            $cards = array_merge($cards, $cardsList);
+        }
 
-		$this->jsonResult(false, $error);
+        $return = [];
+        $globalResult = true;
+
+        foreach ($cards as $card) {
+            $params['card_id'] = $card;
+            $result = Model_Card::editCard($params, Model_Card::CARD_ACTION_ADD);
+
+            if ($result !== true) {
+                $globalResult = false;
+
+                $error = '';
+                switch ($result) {
+                    case Oracle::CODE_ERROR :
+                        $error = 'Ошибка';
+                        break;
+                    case Oracle::CODE_ERROR_EXISTS:
+                        $error = 'Карта уже существует';
+                        break;
+                    case 3:
+                        $error = 'Неверный номер карты';
+                        break;
+                }
+
+                $return[] = ['card' => $card, 'error' => $error];
+            }
+        }
+
+        $this->jsonResult($globalResult, $return);
 	}
     /**
      * редактирование лимитов карты

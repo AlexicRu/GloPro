@@ -313,7 +313,7 @@ return [
             Access::ROLE_USER_SECOND,
             Access::ROLE_MANAGER_SALE,
         ],
-        'clients_card-add' => [
+        'clients_cards-add' => [
             Access::ROLE_USER,
             Access::ROLE_USER_SECOND,
             Access::ROLE_MANAGER_SALE,
