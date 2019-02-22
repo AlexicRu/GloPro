@@ -1,4 +1,4 @@
-<div class="ajax_block_cards_list_out"></div>
+<div class="ajax_block_cards_list_out webtour-cards-list"></div>
 
 <script>
     var cardsIcons = {};

@@ -1,4 +1,4 @@
-<div class="webtour-account">
+<div class="webtour-account-block">
 <div class="card-body border-bottom">
     <div class="row font-20 align-items-center">
         <div class="col-md-6">

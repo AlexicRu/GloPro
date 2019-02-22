@@ -64,8 +64,6 @@ function loadContract(tab, query, params)
         removeLoader(block);
         block.html(data);
 
-        /*
-        todo
         if (tab == 'contract') {
             EnjoyHintRun('contract');
         } else if (tab == 'cards') {
@@ -74,7 +72,7 @@ function loadContract(tab, query, params)
             EnjoyHintRun('account');
         } else if (tab == 'reports') {
             EnjoyHintRun('reports');
-        }*/
+        }
     });
 }
 

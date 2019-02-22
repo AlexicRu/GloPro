@@ -97,7 +97,7 @@ if(!empty($_REQUEST['search'])){?>
 
             if (client.contracts && client.contracts.length) {
                 tpl.find('.client-contractsBtn').html(
-                    '<span class="'+ BTN+' btn-outline-info" toggle="client' + client.CLIENT_ID + '">' +
+                    '<span class="' + BTN + ' btn-outline-info webtour-toggle" toggle="client' + client.CLIENT_ID + '">' +
 
                         '<span toggle_block="client' + client.CLIENT_ID + '"><i class="fa fa-chevron-down"></i><span class="d-none d-sm-inline"> Договоры</span></span>' +
                         '<span toggle_block="client' + client.CLIENT_ID + '" class="dn"><i class="fa fa-chevron-up"></i><span class="d-none d-sm-inline"> Свернуть</span></span>' +
@@ -122,15 +122,15 @@ if(!empty($_REQUEST['search'])){?>
 
                     $('<tr>' +
                         '<td><span class="badge badge-' + contract.contract_state_class + '">' + contract.contract_state_name + '</span></td>' +
-                        '<td><a href="'+ link +'">' + contract.CONTRACT_NAME + '</a>'+card+'</td>' +
+                        '<td class="webtour-elem"><a href="' + link + '" >' + contract.CONTRACT_NAME + '</a>' + card + '</td>' +
                         '<td><span class="text-muted">Счет:</span> <b>' + contract.balance_formatted + '</b></td>' +
                         '<td><span class="text-muted">Карты:</span> <b>' + contract.ALL_CARDS + '</b></td>' +
                     '</tr>').appendTo(tpl.find('table'));
 
                     $('<ul class="list-group m-b-10">' +
-                        '<li class="list-group-item">' +
+                        '<li class="list-group-item webtour-elem">' +
                             '<span class="float-right badge badge-'+ contract.contract_state_class +' badge-pill">'+ contract.contract_state_name +'</span>' +
-                            '<a href="/clients/client/' + client.CLIENT_ID + '?contract_id=' + contract.CONTRACT_ID + '">' + contract.CONTRACT_NAME + '</a>' +
+                        '<a href="' + link + '">' + contract.CONTRACT_NAME + '</a>' +
                         '</li>' +
                         '<li class="list-group-item">' +
                         '<span class="float-right"><span class="text-muted">Карты:</span> <b>' + contract.ALL_CARDS + '</b></span>' +

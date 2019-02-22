@@ -2,7 +2,6 @@ var WebToursLoaded = false;
 
 function EnjoyHintRun(scenario)
 {
-    return false;
     if (WebToursLoaded == false) {
         $.post('/index/check-webtours', {}, function (data) {
             if (data.success) {

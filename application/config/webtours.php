@@ -4,19 +4,23 @@ return [
     'dashboard' => [
         'roles' => array_keys(Access::$clientRoles),
         'scenario' => [
-            ['click .menu_item_clients' => 'Посмотреть список закрепленных фирм']
+            [
+                'selector' => '.sidebar-nav .menu_item_clients',
+                'event' => 'click',
+                'description' => 'Посмотреть список закрепленных фирм'
+            ]
         ]
     ],
     'clients' => [
         'roles' => array_keys(Access::$clientRoles),
         'scenario' => [
             [
-                'selector' => '.client:first [toggle]',
+                'selector' => '.webtour-toggle:first',
                 'event' => 'click',
                 'description' => 'Посмотреть список закрепленных фирм'
             ],
             [
-                'selector' => '.client:first tr:first a',
+                'selector' => '.webtour-elem:visible:first',
                 'event' => 'click',
                 'description' => 'Открыть реквизиты договора'
             ]
@@ -25,31 +29,32 @@ return [
     'contract' => [
         'roles' => array_keys(Access::$clientRoles),
         'scenario' => [
-            ['next [ajax_tab="contract"]' => 'Настроки договора'],
-            ['click [ajax_tab="cards"]' => 'Список карт, закрепленных за договором']
+            ['next .webtour-contract' => 'Настроки договора'],
+            ['click .webtour-cards' => 'Список карт, закрепленных за договором']
         ]
     ],
     'cards' => [
-        'roles' => [Access::ROLE_ROOT],//array_keys(Access::$clientRoles),
+        'roles' => array_keys(Access::$clientRoles),
         'scenario' => [
-            ['next .ajax_block_cards_list_out' => 'Полный список карт'],
-            ['click [ajax_tab="account"]' => 'Данные по лицевому счету договора']
+            ['next .webtour-cards-list:visible' => 'Полный список карт'],
+            ['click .webtour-account' => 'Данные по лицевому счету договора']
         ]
     ],
     'account' => [
-        'roles' => [Access::ROLE_ROOT],//array_keys(Access::$clientRoles),
+        'roles' => array_keys(Access::$clientRoles),
         'scenario' => [
-            ['next .webtour-account' => 'Баланс по договору, платежи и обороты'],
-            ['click [ajax_tab="reports"]' => 'Построить отчеты']
+            ['next .webtour-account-block' => 'Баланс по договору, платежи и обороты'],
+            ['click .webtour-reports' => 'Построить отчеты']
         ]
     ],
     'reports' => [
-        'roles' => [Access::ROLE_ROOT],//array_keys(Access::$clientRoles),
+        'roles' => array_keys(Access::$clientRoles),
         'scenario' => [
             ['next .webtour-reports' => 'Выбрать шаблон, дату, формат и сформировать'],
             ['click .webtour-profile' => 'Настройки пользователя'],
             [
-                'click .webtour-setting' => 'Настройки пользователя',
+                'click .webtour-settings' => 'Настройки пользователя',
+                'timeout' => 1000,
                 'showNext' => false,
                 'skipButton' => ['text' => "End"]
             ],
