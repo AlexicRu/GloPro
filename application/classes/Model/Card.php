@@ -364,7 +364,7 @@ class Model_Card extends Model
 
 		$res = $db->procedure('client_contract_card', $data);
 
-        if ($res !== Oracle::CODE_SUCCESS) {
+        if ($res != Oracle::CODE_SUCCESS) {
 			return $res;
 		}
 

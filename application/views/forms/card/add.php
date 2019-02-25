@@ -71,7 +71,7 @@
             expire_date:    $('[name=add_card_expire_date]').val()
         };
 
-        if (!params.cards || params.cards_list == '') {
+        if (params.cards.length == 0 && params.cards_list == '') {
             message(0, 'Выберите карты для добавления');
             endSubmitForm();
             return false;

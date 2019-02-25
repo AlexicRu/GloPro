@@ -53,7 +53,8 @@
         </div>
         <div class="col-8 text-right">
             <? if (Access::allow('clients_cards-add')) { ?>
-                <a class="<?=Text::BTN?> btn-outline-primary" href="#" data-toggle="modal" data-target="#card_add"><i class="fa fa-plus"></i> Добавить карту</a>
+                <a class="<?= Text::BTN ?> btn-outline-primary" href="#" data-toggle="modal" data-target="#card_add"><i
+                            class="fa fa-plus"></i> Добавить карты</a>
             <?}?>
         </div>
     </div>
@@ -63,7 +64,8 @@
     <ul class="nav nav-tabs tabs-vertical bg-light p-t-10" role="tablist" toggle_block="card_list">
         <? if (Access::allow('clients_cards-add')) { ?>
             <li class="nav-item no_content d-none d-md-block before_scroll">
-                <a class="nav-link nowrap" href="#" data-toggle="modal" data-target="#card_add"><i class="fa fa-plus"></i> Добавить карту</a>
+                <a class="nav-link nowrap" href="#" data-toggle="modal" data-target="#card_add"><i
+                            class="fa fa-plus"></i> Добавить карты</a>
             </li>
         <?}?>
         <?include('cards/list.php')?>

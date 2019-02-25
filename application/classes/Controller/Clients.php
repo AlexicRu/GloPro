@@ -149,7 +149,7 @@ class Controller_Clients extends Controller_Common {
 				;
 				break;
 			case 'cards':
-                $popupCardAdd = Form::popupLarge('Добавление новой карты', 'card/add');
+                $popupCardAdd = Form::popupLarge('Добавление новых карт', 'card/add');
 
 				$cardsCounter = Model_Contract::getCardsCounter($contractId);
 
