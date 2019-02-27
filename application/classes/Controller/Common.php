@@ -35,12 +35,7 @@ abstract class Controller_Common extends Controller_Template {
             }
             $this->template = 'not_auth';
         }else{
-            //подключаем меню
-            $menu = Kohana::$config->load('menu');
-            $content = View::factory('_includes/menu')
-                ->bind('menu', $menu);
-
-            View::set_global('menu', $content);
+            Model_Menu::buildMenu();
         }
 
         parent::before();

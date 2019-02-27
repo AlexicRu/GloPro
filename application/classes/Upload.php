@@ -81,7 +81,7 @@ class Upload extends Kohana_Upload
                     $bom = pack('H*','EFBBBF');
                     $data = preg_replace("/^$bom/", '', $text);
 
-                    if (Text::isJson($data)) {
+                    if (Common::isJson($data)) {
                         //json
                         $data = json_decode($data, true);
 

@@ -233,6 +233,27 @@ body{
   }
 }
 
+.asLink {
+  cursor: pointer;
+}
+
+.dropdown-float {
+  position: absolute;
+
+  .dropdown {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    .transition();
+  }
+
+  &:hover {
+    .dropdown {
+      opacity: 1;
+    }
+  }
+}
 .td_check, .td_edit, .check_span_hidden{
   display: none;
 }
