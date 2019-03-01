@@ -22,6 +22,16 @@ class Model_Info extends Model
         'ppt' => 'far fa-2x fa-file-powerpoint text-warning',
         'pptx' => 'far fa-2x fa-file-powerpoint text-warning',
         'file' => 'far fa-2x fa-file text-muted',
+        'jpg' => 'far fa-2x fa-file-image text-info',
+        'png' => 'far fa-2x fa-file-image text-info',
+        'zip' => 'far fa-2x fa-file-archive text-dark',
+        'rar' => 'far fa-2x fa-file-archive text-dark',
+    ];
+
+    public static $infoRootSections = [
+        self::INFO_CATEGORY_ID_INFO,
+        self::INFO_CATEGORY_ID_RIM,
+        self::INFO_CATEGORY_ID_PASSPORTS,
     ];
 
     /**
@@ -50,9 +60,9 @@ class Model_Info extends Model
         }
 
         if (!empty($params['order_by_is_category'])) {
-            $sql->orderBy(['is_category', 'sort']);
+            $sql->orderBy(['is_category', 'sort', 'id']);
         } else {
-            $sql->orderBy('sort');
+            $sql->orderBy(['sort', 'id']);
         }
 
         return $db->query($sql);
@@ -91,6 +101,11 @@ class Model_Info extends Model
         }
 
         if ($action == self::INFO_ACTION_DELETE) {
+            if (Access::deny('can_del_root_info_portal') && $element['CATEGORY_ID'] === 0) {
+                Messages::put('Запрещено удаление корневых разделов');
+                return false;
+            }
+
             $params['category_id'] = $element['CATEGORY_ID'];
             $params['name'] = $element['NAME'];
             $params['is_category'] = $element['IS_CATEGORY'];
@@ -99,12 +114,23 @@ class Model_Info extends Model
         } else {
             $params['is_category'] = isset($params['is_category']) ? (int)(bool)$params['is_category'] : $element['IS_CATEGORY'];
             $params['file_path'] = $params['is_category'] ? false : (!empty($params['file']) ? $params['file'] : $element['FILE_PATH']);
+            $params['category_id'] = isset($params['category_id']) ? $params['category_id'] : $element['CATEGORY_ID'];
+
+            if (Access::deny('can_edit_root_info_portal') && $params['category_id'] === 0) {
+                Messages::put('Запрещено редактирование корневых разделов');
+                return false;
+            }
+
+            if (in_array($params['category_id'], self::$infoRootSections) && $params['is_category'] === 0) {
+                Messages::put('В корневых разделах могут быть только подразделы');
+                return false;
+            }
         }
 
         $data = [
             'p_id' => $id ?: -1,
             'p_action' => $action,
-            'p_category_id' => isset($params['category_id']) ? $params['category_id'] : $element['CATEGORY_ID'],
+            'p_category_id' => $params['category_id'],
             'p_name' => !empty($params['name']) ? $params['name'] : $element['NAME'],
             'p_is_category' => $params['is_category'],
             'p_file_path' => $params['file_path'],

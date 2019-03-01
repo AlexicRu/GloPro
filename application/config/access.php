@@ -286,6 +286,12 @@ return [
         ],
         'anytime_add_convert_service' => [
             Access::ROLE_ROOT
+        ],
+        'can_edit_root_info_portal' => [
+            Access::ROLE_ROOT
+        ],
+        'can_del_root_info_portal' => [
+            Access::ROLE_ROOT
         ]
     ],
     'deny' => [ //для всех остальных ролей будет разрешено

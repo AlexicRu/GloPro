@@ -32,7 +32,11 @@
                 </h3>
 
                 <? if (!empty($block['children'])) { ?>
-                    <? foreach ($block['children'] as $fileId => $file) { ?>
+                    <? foreach ($block['children'] as $fileId => $file) {
+                        if (empty($file['FILE_PATH'])) {
+                            continue;
+                        }
+                        ?>
                         <div class="row border-bottom align-items-center hover-bg pt-3 pb-3 info__item">
                             <div class="col-2 text-center">
                                 <span class="<?= $file['icon'] ?>"></span>

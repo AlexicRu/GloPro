@@ -47,7 +47,7 @@ class Controller_Info extends Controller_Common
 
         $popupInfoAddElement = $this->_prepare();
 
-        $files = Model_Info::getFiles(['category_id' => Model_Info::INFO_CATEGORY_ID_RIM]);
+        $files = Model_Info::getTree(Model_Info::INFO_CATEGORY_ID_RIM);
 
         $this->tpl
             ->bind('popupInfoAddElement', $popupInfoAddElement)
@@ -64,7 +64,7 @@ class Controller_Info extends Controller_Common
 
         $popupInfoAddElement = $this->_prepare();
 
-        $files = Model_Info::getFiles(['category_id' => Model_Info::INFO_CATEGORY_ID_PASSPORTS]);
+        $files = Model_Info::getTree(Model_Info::INFO_CATEGORY_ID_PASSPORTS);
 
         $this->tpl
             ->bind('popupInfoAddElement', $popupInfoAddElement)

@@ -47,7 +47,9 @@
                             </optgroup>
                         <? } ?>
                     <? } ?>
-                    <option value="0">-- корневой раздел --</option>
+                    <? if (Access::allow('can_add_in_root_info_portal')) { ?>
+                        <option value="0">-- корневой раздел --</option>
+                    <? } ?>
                 </select>
             </div>
         </div>
@@ -131,7 +133,7 @@
             endSubmitForm();
 
             if (data.success) {
-                message(1, 'Элемент успешно добавлен');
+                message(1, 'Элемент успешно добавлен. Для отображения обновите страницу.');
                 modalClose();
             } else {
                 message(0, 'Ошибка добавления элемента');
