@@ -126,10 +126,24 @@ abstract class Controller_Common extends Controller_Template {
         exit;
     }
 
+    /**
+     * отдаем файл на скачивание
+     *
+     * @param $file
+     * @throws HTTP_Exception_404
+     */
     public function showFile($file)
     {
         $path = $_SERVER['DOCUMENT_ROOT'];
-        $directory = DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR;
+
+        if (is_array($file)) {
+            $name = $file['name'];
+            $file = $file['path'];
+            $directory = '';
+        } else {
+            $directory = DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR;
+            $name = basename($file);
+        }
 
         if (!file_exists($path . $directory . $file)) {
             throw new HTTP_Exception_404();
@@ -137,7 +151,7 @@ abstract class Controller_Common extends Controller_Template {
 
         header("X-Accel-Redirect: " . $directory . $file);
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($file));
+        header('Content-Disposition: attachment; filename=' . $name);
         die;
     }
 

@@ -163,6 +163,9 @@ class Controller_Index extends Controller_Common
             if (!Access::file($file)) {
                 throw new HTTP_Exception_403();
             }
+        } else {
+            //для инфопортала надо на скачивание выдавать корректные имена файлов, а не "загрузочные"
+            $file = Model_Info::prepareFileForDownLoad($file);
         }
 
         $this->showFile($file);

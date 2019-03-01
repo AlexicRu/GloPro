@@ -59,13 +59,26 @@ class Model_Info extends Model
             $sql->where('is_category = ' . (int)$params['is_category']);
         }
 
+        if (isset($params['file_path'])) {
+            $sql->where('file_path = ' . Oracle::quote($params['file_path']));
+        }
+
         if (!empty($params['order_by_is_category'])) {
             $sql->orderBy(['is_category', 'sort', 'id']);
         } else {
             $sql->orderBy(['sort', 'id']);
         }
 
-        return $db->query($sql);
+        $files = $db->query($sql);
+
+        if (empty($params['skipFilePathReplace'])) {
+            //для настройки доступов на скачивание корректтируем ссылки
+            foreach ($files as &$file) {
+                $file['FILE_PATH'] = str_replace('/upload', '/file', $file['FILE_PATH']);
+            }
+        }
+
+        return $files;
     }
 
     /**
@@ -219,5 +232,30 @@ class Model_Info extends Model
         }
 
         return $branch;
+    }
+
+    /**
+     *
+     *
+     * @param $file
+     * @return array
+     */
+    public static function prepareFileForDownLoad($file)
+    {
+        $files = self::getFiles([
+            'skipFilePathReplace' => true,
+            'file_path' => '/upload/' . $file
+        ]);
+
+        if (empty($files)) {
+            throw new HTTP_Exception_404();
+        }
+
+        $extension = explode('.', $files[0]['FILE_PATH']);
+
+        return [
+            'path' => $files[0]['FILE_PATH'],
+            'name' => preg_replace("/[^a-zа-яё\d]+/ui", '_', $files[0]['NAME']) . '.' . end($extension),
+        ];
     }
 }
