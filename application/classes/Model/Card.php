@@ -13,6 +13,10 @@ class Model_Card extends Model
 	const CARD_LIMIT_PARAM_RUR 		= 2;
 	const CARD_LIMIT_PARAM_ITEMS 	= 3;
 
+    const CARD_LIMIT_PARAM_NAME_VOLUME = 'LIT';
+    const CARD_LIMIT_PARAM_NAME_RUR = 'CUR';
+    const CARD_LIMIT_PARAM_NAME_ITEMS = 'PCS';
+
 	const CARD_LIMIT_TYPE_DAY		    = 1;
 	const CARD_LIMIT_TYPE_WEEK		    = 2;
 	const CARD_LIMIT_TYPE_MONTH		    = 3;
@@ -78,6 +82,12 @@ class Model_Card extends Model
 		self::CARD_LIMIT_PARAM_RUR 		=> Text::RUR,
 		self::CARD_LIMIT_PARAM_ITEMS 	=> 'шт.',
 	];
+
+    public static $cardLimitsParamsNames = [
+        self::CARD_LIMIT_PARAM_NAME_VOLUME => self::CARD_LIMIT_PARAM_VOLUME,
+        self::CARD_LIMIT_PARAM_NAME_RUR => self::CARD_LIMIT_PARAM_RUR,
+        self::CARD_LIMIT_PARAM_NAME_ITEMS => self::CARD_LIMIT_PARAM_ITEMS,
+    ];
 
 	public static $cardLimitsTypes = [
 		self::CARD_LIMIT_TYPE_DAY 	=> 'в сутки',
@@ -587,12 +597,20 @@ class Model_Card extends Model
             foreach ($limits as $limit) {
                 foreach ($limit['services'] as $serviceId) {
                     foreach ($servicesList as $service) {
+
                         if ($service['SERVICE_ID'] == $serviceId) {
+                            $measures = [self::$cardLimitsParamsNames[self::CARD_LIMIT_PARAM_NAME_RUR]];
                             if (
-                                $service['SYSTEM_SERVICE_CATEGORY'] == Listing::SERVICE_GROUP_ITEMS &&
-                                $limit['unit_type'] != Model_Card::CARD_LIMIT_PARAM_RUR
+                                isset(self::$cardLimitsParamsNames[$service['MEASURE']]) &&
+                                $service['MEASURE'] != self::CARD_LIMIT_PARAM_NAME_RUR
                             ) {
-                                throw new Exception('Сервисные услуги могут быть только в рублях');
+                                $measures[] = self::$cardLimitsParamsNames[$service['MEASURE']];
+                            }
+
+                            if (
+                            !in_array($limit['unit_type'], $measures)
+                            ) {
+                                throw new Exception('Размерность значения лимита не соответствует выбранной услуге');
                             }
                             break;
                         }
@@ -682,12 +700,12 @@ class Model_Card extends Model
 
                 //проверка доступных limitParams (unit_type)
                 if (!in_array($limit['unit_type'], array_keys($settings['limitParams']))) {
-                    throw new Exception('Использован недопустимый unit_type');
+                    throw new Exception('Использована недопустимая размерность значения лимита');
                 }
 
                 //проверка доступных limitTypes (duration_type)
                 if (!in_array($limit['duration_type'], array_keys($settings['limitTypes']))) {
-                    throw new Exception('Использован недопустимый duration_type');
+                    throw new Exception('Использована недопустимая размерность значения периода');
                 }
 
                 //проверка возможности изменения сервисов
@@ -703,11 +721,11 @@ class Model_Card extends Model
                 //проверка возможности изменения limitParams (unit_type) и limitTypes (duration_type)
                 if ($settings['canEditSelect'] == false && !$isNew) {
                     if ($limit['unit_type'] != $currentLimits[$limit['limit_id']]['UNIT_TYPE']) {
-                        throw new Exception('Запрещено изменение unit_type');
+                        throw new Exception('Запрещено изменение размерности лимита');
                     }
 
                     if ($limit['duration_type'] != $currentLimits[$limit['limit_id']]['DURATION_TYPE']) {
-                        throw new Exception('Запрещено изменение duration_type');
+                        throw new Exception('Запрещено изменение размерности периода');
                     }
                 }
 
@@ -715,11 +733,11 @@ class Model_Card extends Model
                 if ($settings['canEditDurationValue'] == false && !$isNew) {
                     if (!empty($settings['durationValues'])) {
                         if (!isset($limit['duration_value']) || !in_array($limit['duration_value'], $settings['durationValues'])) {
-                            throw new Exception('Недопустимое значение duration_value');
+                            throw new Exception('Недопустимое значение периода');
                         }
                     } else {
                         if (isset($limit['duration_value']) && $limit['duration_value'] != $currentLimits[$limit['limit_id']]['DURATION_VALUE']) {
-                            throw new Exception('Запрещено изменение duration_value');
+                            throw new Exception('Запрещено изменение значения периода');
                         }
                     }
                 }
@@ -727,19 +745,19 @@ class Model_Card extends Model
                 //проверка duration_value
                 if ($settings['minDurationValue'] !== false) {
                     if (isset($limit['duration_value']) && $limit['duration_value'] < $settings['minDurationValue']) {
-                        throw new Exception('Значение duration_value меньше разрешенного');
+                        throw new Exception('Значение периода меньше разрешенного');
                     }
                 }
                 if ($settings['maxDurationValue'] !== false) {
                     if (isset($limit['duration_value']) && $limit['duration_value'] > $settings['maxDurationValue']) {
-                        throw new Exception('Значение duration_value больше разрешенного');
+                        throw new Exception('Значение периода больше разрешенного');
                     }
                 }
 
                 //проверка возможности установки duration_value
                 if ($settings['canViewDurationValue'] == false && $isNew) {
                     if (!empty($limit['duration_value'])) {
-                        throw new Exception('Запрещена установка duration_value');
+                        throw new Exception('Запрещена установка значения периода');
                     }
                 }
 
@@ -803,7 +821,8 @@ class Model_Card extends Model
                     /*dv*/
                     (int)(isset($limit['duration_value']) ? $limit['duration_value'] : 1) . ':' .
                     /*ut*/ (int)$limit['unit_type'] . ':' .
-                    /*uc*/ ($limit['unit_type'] == self::CARD_LIMIT_PARAM_VOLUME ? 'LIT' : Common::CURRENCY_RUR) . ':' .
+                    /*uc*/
+                    ($limit['unit_type'] == self::CARD_LIMIT_PARAM_RUR ? Common::CURRENCY_RUR : self::CARD_LIMIT_PARAM_NAME_VOLUME) . ':' .
                     /*tc*/ '-1:' .
                     /*v*/  $limit['value'] . ':' .
                     /*dwt*/'0:' .

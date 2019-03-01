@@ -21,8 +21,15 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
 </div>
 
 <script>
-    var CARD_LIMIT_PARAM_RUR = <?=Model_Card::CARD_LIMIT_PARAM_RUR?>;
-    var SERVICE_GROUP_ITEMS = '<?=Listing::SERVICE_GROUP_ITEMS?>';
+    var CARD_LIMIT_PARAM_NAME_RUR = '<?=Model_Card::CARD_LIMIT_PARAM_NAME_RUR?>';
+
+    var CARD_LIMIT_UNITS = {
+    <?foreach(Model_Card::$cardLimitsParamsNames as $key => $value){?>
+    <?=$key?> : <?=$value?>,
+    <?}?>
+    }
+    ;
+
     var checkUniqueServicesThroughEachService = <?=(int)$settings['checkUniqueServicesThroughEachService']?>;
 
     $(function () {
@@ -276,27 +283,31 @@ if(!empty($card['CHANGE_LIMIT_AVAILABLE']) && Access::allow('clients_card-edit-l
             });
         });
 
-        if (selectChanged) {
-            var row = selectChanged.closest('[limit_group]');
+        //проверяем селект размерностей
+        $('[name=unit_type]', form).each(function () {
+            var select = $(this);
+            var measure = select.closest('[limit_group]').find('[limit_service]:first option:selected').attr('measure');
 
-            if (selectChanged.find('option:selected').attr('group') == SERVICE_GROUP_ITEMS) {
-                $('[name=unit_type] option', row).each(function () {
-                    var option = $(this);
+            var measures = [CARD_LIMIT_UNITS.<?=Model_Card::CARD_LIMIT_PARAM_NAME_RUR?>];
 
-                    if (option.attr('value') == CARD_LIMIT_PARAM_RUR) {
-                        option.prop('disabled', false);
-                    } else {
-                        option.prop('disabled', true);
-                        if (option.prop('selected')) {
-                            option.prop('selected', false);
-                        }
-                    }
-                });
-            } else {
-                $('[name=unit_type] option', row).each(function () {
-                    $(this).prop('disabled', false);
-                });
+            if (CARD_LIMIT_UNITS[measure] && measure != CARD_LIMIT_PARAM_NAME_RUR) {
+                measures.push(CARD_LIMIT_UNITS[measure]);
             }
-        }
+
+            select.find('option').each(function () {
+                var option = $(this);
+                var value = parseInt(option.attr('value'));
+
+                if (measures.indexOf(value) != -1) {
+                    option.prop('disabled', false);
+                } else {
+                    option.prop('disabled', true);
+                    if (option.prop('selected')) {
+                        option.prop('selected', false);
+                    }
+                }
+            });
+        });
+
     }
 </script>
