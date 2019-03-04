@@ -38,9 +38,9 @@
             <div class="col-sm-8 with-mt">
                 <select name="add_info_element_category_id" class="custom-select">
                     <? foreach ($tree as $leaf) { ?>
-                        <option value="<?= $leaf['ID'] ?>"><?= $leaf['NAME'] ?></option>
+                        <option value="<?= $leaf['ID'] ?>">Раздел: <?= $leaf['NAME'] ?></option>
                         <? if (!empty($leaf['children'])) { ?>
-                            <optgroup label="раздел: <?= $leaf['NAME'] ?>">
+                            <optgroup label="подразделы:">
                                 <? foreach ($leaf['children'] as $category) { ?>
                                     <option value="<?= $category['ID'] ?>"><?= $category['NAME'] ?></option>
                                 <? } ?>
@@ -51,6 +51,7 @@
                         <option value="0">-- корневой раздел --</option>
                     <? } ?>
                 </select>
+                <i class="text-muted font-10">При добавлении раздела внутрь подраздела он не будет отображен</i>
             </div>
         </div>
 
