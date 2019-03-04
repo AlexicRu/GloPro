@@ -23,6 +23,7 @@ class Model_Card extends Model
 	const CARD_LIMIT_TYPE_QUARTER	    = 4;
 	const CARD_LIMIT_TYPE_YEAR	        = 5;
 	const CARD_LIMIT_TYPE_TRANSACTION	= 10;
+    const CARD_LIMIT_TYPE_FOREVER = 99;
 
     const CARDS_GROUP_ACTION_EDIT = 1;
     const CARDS_GROUP_ACTION_DEL = 0;
@@ -90,10 +91,9 @@ class Model_Card extends Model
     ];
 
 	public static $cardLimitsTypes = [
-		self::CARD_LIMIT_TYPE_DAY 	=> 'в сутки',
-		self::CARD_LIMIT_TYPE_WEEK 	=> 'в неделю',
-		self::CARD_LIMIT_TYPE_MONTH => 'в месяц',
-		//self::CARD_LIMIT_TYPE_ONCE 	=> 'единовременно',
+        self::CARD_LIMIT_TYPE_DAY => 'сутки',
+        self::CARD_LIMIT_TYPE_WEEK => 'неделя',
+        self::CARD_LIMIT_TYPE_MONTH => 'месяц',
 	];
 
     public static $cardLimitsTypesFull = [
@@ -102,7 +102,8 @@ class Model_Card extends Model
         self::CARD_LIMIT_TYPE_MONTH         => 'месяц',
         self::CARD_LIMIT_TYPE_QUARTER       => 'квартал',
         self::CARD_LIMIT_TYPE_YEAR          => 'год',
-        self::CARD_LIMIT_TYPE_TRANSACTION   => 'транзакций'
+        self::CARD_LIMIT_TYPE_TRANSACTION => 'транзакций',
+        self::CARD_LIMIT_TYPE_FOREVER => 'навсегда'
     ];
 
 	private static $_selectedCards = [];
@@ -1375,8 +1376,8 @@ class Model_Card extends Model
                 $settings['canEditServiceSelect'] = false;
                 break;
             case 4:
-                $settings['limitTypes'] = [self::CARD_LIMIT_TYPE_DAY => Model_Card::$cardLimitsTypes[self::CARD_LIMIT_TYPE_DAY]];
-                $settings['limitParams'] = [self::CARD_LIMIT_PARAM_VOLUME => Model_Card::$cardLimitsParams[self::CARD_LIMIT_PARAM_VOLUME]];
+                $settings['limitTypes'] = [self::CARD_LIMIT_TYPE_DAY => self::$cardLimitsTypes[self::CARD_LIMIT_TYPE_DAY]];
+                $settings['limitParams'] = [self::CARD_LIMIT_PARAM_VOLUME => self::$cardLimitsParams[self::CARD_LIMIT_PARAM_VOLUME]];
                 $settings['canViewDurationValue'] = true;
                 $settings['canEditDurationValue'] = true;
                 $settings['durationValues'] = [0 => 'Без ограничений', 1 => 1, 3 => 3, 5 => 5, 7 => 7, 9 => 9, 12 => 12, 15 => 15, 20 => 20, 30 => 30];
@@ -1387,19 +1388,23 @@ class Model_Card extends Model
             case self::CARD_SYSTEM_NINE:
                 $settings['cntServiceForFirstLimit'] = 999;
                 $settings['limitTypes']         = Model_Card::$cardLimitsTypes;
+                $settings['limitTypes'][self::CARD_LIMIT_TYPE_QUARTER] = self::$cardLimitsTypesFull[self::CARD_LIMIT_TYPE_QUARTER];
+                $settings['limitTypes'][self::CARD_LIMIT_TYPE_FOREVER] = self::$cardLimitsTypesFull[self::CARD_LIMIT_TYPE_FOREVER];
                 $settings['canEditSelect'] = false;
                 $settings['canUseFloat']        = false;
                 $settings['minValue']           = 1;
                 break;
             case self::CARD_SYSTEM_GPN:
                 $settings['cntServiceForFirstLimit'] = 999;
-                $settings['limitTypes'] = Model_Card::$cardLimitsTypesFull;
+                $settings['limitTypes'] = self::$cardLimitsTypesFull;
                 $settings['canViewDurationValue'] = true;
                 $settings['canEditSelect'] = false;
                 $settings['canUseFloat'] = false;
                 $settings['minValue'] = 1;
                 $settings['minDurationValue'] = 1;
                 $settings['maxDurationValue'] = 99;
+
+                unset($settings['limitTypes'][self::CARD_LIMIT_TYPE_FOREVER]);
                 break;
             case 6:
                 $settings['cntServiceForLimit'] = 999;
@@ -1408,7 +1413,7 @@ class Model_Card extends Model
                 break;
             case 7:
                 $settings['limitParams'] = [
-                    self::CARD_LIMIT_PARAM_RUR => $settings['limitParams'][self::CARD_LIMIT_PARAM_RUR]
+                    self::CARD_LIMIT_PARAM_RUR => self::$cardLimitsParams[self::CARD_LIMIT_PARAM_RUR]
                 ];
                 $settings['limitTypes'] = [
                     self::CARD_LIMIT_TYPE_DAY => $settings['limitTypes'][self::CARD_LIMIT_TYPE_DAY]
@@ -1418,10 +1423,10 @@ class Model_Card extends Model
                 $settings['cntLimits'] = 1;
                 $settings['cntServiceForFirstLimit'] = 999;
                 $settings['limitParams'] = [
-                    self::CARD_LIMIT_PARAM_RUR => $settings['limitParams'][self::CARD_LIMIT_PARAM_RUR]
+                    self::CARD_LIMIT_PARAM_RUR => self::$cardLimitsParams[self::CARD_LIMIT_PARAM_RUR]
                 ];
                 $settings['limitTypes'] = [
-                    self::CARD_LIMIT_TYPE_DAY => $settings['limitTypes'][self::CARD_LIMIT_TYPE_DAY]
+                    self::CARD_LIMIT_TYPE_DAY => self::$cardLimitsTypes[self::CARD_LIMIT_TYPE_DAY],
                 ];
                 break;
         }

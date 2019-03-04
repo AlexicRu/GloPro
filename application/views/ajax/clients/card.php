@@ -150,16 +150,8 @@
 <span class="font-18 font-weight-bold">Ограничения по топливу:</span>
 <div class="clearfix"></div>
 <?if(!empty($oilRestrictions)){
-    $systemId = $card['SYSTEM_ID'];
 
-    switch ($systemId){
-        case Model_Card::CARD_SYSTEM_GPN:
-            $limitTypes = Model_Card::$cardLimitsTypesFull;
-            break;
-        default:
-            $limitTypes = Model_Card::$cardLimitsTypes;
-    }
-
+    $limitTypes = Model_Card::$cardLimitsTypesFull;
     ?>
     <table class="table m-t-10 table-width-auto">
         <tr>
