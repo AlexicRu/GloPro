@@ -30,7 +30,7 @@ class Report_1c_Agent2 extends Report_1c_Common
                 'pi.country_id as territory_id',
                 'v.supplier_contract as supplier_id',
                 'v.service_id as unit_type',
-                'decode(v.supplier_contract, 33, 18, decode(pi.country_id, 643, 18, 0)) as vat_rate',
+                'decode(v.supplier_contract, 3, 18, decode(pi.country_id, 643, 18, 0)) as vat_rate',
                 '0 as recharge_vat',
                 'sum(v.service_amount) as volume',
                 'sum(v.sumprice_buy) as cost',
