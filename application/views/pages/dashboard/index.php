@@ -62,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            <?if (Access::allow('dashboard_get-realization-by-clients-summary')) {?>
+            <? if (Access::allow('dashboard_get-realization-by-clients-summary', true)) { ?>
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
@@ -107,7 +107,7 @@
         //buildRealizationByClientsNomenclature();
         buildRealizationByClientsNomenclatureGraph();
         buildRealizationByClientsPayments();
-        <?if (Access::allow('dashboard_get-realization-by-clients-summary')) {?>
+        <?if (Access::allow('dashboard_get-realization-by-clients-summary', true)) {?>
         buildRealizationByClientsSummary();
         <?}?>
     }
@@ -158,7 +158,7 @@
         })
     }
 
-    <?if (Access::allow('dashboard_get-realization-by-clients-summary')) {?>
+    <?if (Access::allow('dashboard_get-realization-by-clients-summary', true)) {?>
     function buildRealizationByClientsSummary()
     {
         var block = $('.realization_by_clients_summary');
