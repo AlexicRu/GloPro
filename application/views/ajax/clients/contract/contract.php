@@ -82,7 +82,7 @@
 
     <div class="row pt-3">
     <div class="col-lg-6">
-        <?if(Access::allow('view_payment_block')){?>
+        <? if (Access::allow('view_payment_block', true)) { ?>
             <div class="font-18 font-weight-bold m-b-10">Оплата:</div>
 
             <div class="row m-b-10">
@@ -187,7 +187,7 @@
             </div>
         <?}?>
 
-        <?if(Access::allow('view_goods_receiver')){?>
+        <? if (Access::allow('view_goods_receiver', true)) { ?>
             <div class="font-18 font-weight-bold m-b-10 m-t-20">Грузополучатель:</div>
 
             <div class="row m-b-10">
@@ -219,7 +219,7 @@
             </div>
         <?}?>
 
-        <?if(Access::allow('view_penalties')){?>
+        <? if (Access::allow('view_penalties', true)) { ?>
             <div class="font-18 font-weight-bold m-b-10 m-t-20">Штрафы по счету:</div>
 
             <div class="row m-b-10">
@@ -259,7 +259,7 @@
     </div>
     <div class="col-lg-6">
         <div class="card-body bg-light">
-            <?if(Access::allow('view_tariffs')){?>
+            <? if (Access::allow('view_tariffs', true)) { ?>
                 <div class="font-18 font-weight-bold m-b-10">Тарификация:</div>
 
                 <div class="row m-b-10">
@@ -293,7 +293,7 @@
                 <div class="ajax_block_contract_tariff_history_out"></div>
             <?}?>
 
-            <?if(Access::allow('view_contract_managers')){?>
+            <? if (Access::allow('view_contract_managers', true)) { ?>
                 <div class="font-18 font-weight-bold m-b-10 m-t-20">Менеджеры:</div>
 
                 <div class="row m-b-10">
