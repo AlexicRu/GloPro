@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<?if (Access::allow('view_full_dashboard_clients_summary')) {?>
+<? if (Access::allow('view_full_dashboard_clients_summary', true)) { ?>
     <div class="row m-b-10">
         <div class="col-sm-6 text-muted form__row__title">
             Стоимость на АЗС:
