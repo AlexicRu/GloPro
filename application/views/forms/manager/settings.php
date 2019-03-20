@@ -83,7 +83,7 @@
                 <div class="form-group row hidden-md-down">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-8 with-mt">
-                        <button class="<?=Text::BTN?> btn-success btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
+                        <button class="<?= Text::BTN ?> btn-success"><i class="fa fa-check"></i> Сохранить</button>
                     </div>
                 </div>
             </div>
@@ -193,7 +193,7 @@
     <div class="form-group row hidden-lg-up m-t-20 m-b-0">
         <div class="col-sm-4"></div>
         <div class="col-sm-8 with-mt">
-            <button class="<?=Text::BTN?> btn-success btn_manager_settings_go"><i class="fa fa-check"></i> Сохранить</button>
+            <button class="<?= Text::BTN ?> btn-success"><i class="fa fa-check"></i> Сохранить</button>
         </div>
     </div>
 </form>

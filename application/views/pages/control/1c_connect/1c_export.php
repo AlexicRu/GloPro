@@ -42,7 +42,8 @@
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-10">
-            <button class="<?=Text::BTN?> btn-success btn_manager_settings_go" onclick="export1c()"><i class="fa fa-file-excel"></i> Выгрузить</button>
+            <button class="<?= Text::BTN ?> btn-success" onclick="export1c()"><i class="fa fa-file-excel"></i> Выгрузить
+            </button>
         </div>
     </div>
 </div>

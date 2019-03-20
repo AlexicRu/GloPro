@@ -32,6 +32,7 @@ return [
             Access::ROLE_CLIENT,
             Access::ROLE_USER_SECOND,
             Access::ROLE_USER,
+            Access::ROLE_ADMIN_READONLY,
             'u_7',
         ],
         'clients_card-withdraw' => [
@@ -75,16 +76,8 @@ return [
         'control_tariffs' => [
             Access::ROLE_ADMIN,
             Access::ROLE_SUPERVISOR,
+            Access::ROLE_ADMIN_READONLY,
             'u_7',
-        ],
-        'control_dots' => [
-            Access::ROLE_ADMIN,
-            Access::ROLE_SUPERVISOR,
-            'u_7',
-        ],
-        'control_connect-1c' => [
-            Access::ROLE_ADMIN,
-            Access::ROLE_SUPERVISOR,
         ],
         'administration_index' => [
             Access::ROLE_ADMIN,
@@ -153,6 +146,7 @@ return [
         'control_dots-groups' => [
             Access::ROLE_ADMIN,
             Access::ROLE_SUPERVISOR,
+            Access::ROLE_ADMIN_READONLY,
         ],
         'control_1c-connect' => [
             Access::ROLE_ADMIN,
