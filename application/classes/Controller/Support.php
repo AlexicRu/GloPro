@@ -20,7 +20,7 @@ class Controller_Support extends Controller_Common {
                 'title' => 'Инструкции',
                 'items' => [
                     [
-                        'icon'  => Common::$infoFilesIcons['Doc'],
+                        'icon' => Model_Info::$infoFilesIcons['doc'],
                         'name'  => 'Инструкция по работе с ЛК системы',
                         'file'  => '/file/Инструкция_по_работе_с_ЛК_системы_Администратор.docx'
                     ],
