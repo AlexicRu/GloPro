@@ -1,7 +1,9 @@
+<? if (Access::allow('info_edit-element')) { ?>
 <div class="pb-3 text-right">
     <a href="#" data-toggle="modal" data-target="#info_add_element"
        class="<?= Text::BTN ?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить элемент</a>
 </div>
+<? } ?>
 
 <?= $popupInfoAddElement ?>
 
@@ -12,23 +14,38 @@
                 <h3 class="card-title dropdown-float">
                     <span class="lstick"></span><?= $block['NAME'] ?>
 
-                    <div class="dropdown">
+                    <?
+                    $edit = false;
+                    $delete = false;
+                    if (Access::allow('info_edit-element')) {
+                        $edit = true;
+                    }
+                    if (Access::allow('info_delete-element') && empty($block['children'])) {
+                        $delete = true;
+                    }
+                    ?>
+
+                    <? if ($edit || $delete) { ?>
+                        <div class="dropdown">
                         <span id="infoElem<?= $blockId ?>" class="btn <?= Text::BTN ?> btn-light"
                               data-toggle="dropdown">
                             <i class="far fa-ellipsis-v"></i>
                         </span>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="infoElem<?= $blockId ?>">
-                            <span class="dropdown-item asLink"
-                                  onclick="editInfoElem(<?= $block['ID'] ?>, '<?= $block['NAME'] ?>', 1, <?= $block['CATEGORY_ID'] ?>, <?= $block['SORT'] ?>)"><i
-                                        class="far fa-pen fa-fw text-primary"></i> Редактировать</span>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="infoElem<?= $blockId ?>">
+                                <? if ($edit) { ?>
+                                    <span class="dropdown-item asLink"
+                                          onclick="editInfoElem(<?= $block['ID'] ?>, '<?= $block['NAME'] ?>', 1, <?= $block['CATEGORY_ID'] ?>, <?= $block['SORT'] ?>)"><i
+                                                class="far fa-pen fa-fw text-primary"></i> Редактировать</span>
+                                <? } ?>
 
-                            <? if (empty($block['children'])) { ?>
-                                <span class="dropdown-item asLink"
-                                      onclick="deleteInfoElem(<?= $block['ID'] ?>, '<?= $block['NAME'] ?>', $(this), true)"><i
-                                            class="far fa-trash-alt fa-fw text-danger"></i> Удалить</span>
-                            <? } ?>
+                                <? if ($delete) { ?>
+                                    <span class="dropdown-item asLink"
+                                          onclick="deleteInfoElem(<?= $block['ID'] ?>, '<?= $block['NAME'] ?>', $(this), true)"><i
+                                                class="far fa-trash-alt fa-fw text-danger"></i> Удалить</span>
+                                <? } ?>
+                            </div>
                         </div>
-                    </div>
+                    <? } ?>
                 </h3>
 
                 <? if (!empty($block['children'])) { ?>
@@ -55,12 +72,16 @@
                                         <a class="dropdown-item" href="<?= $file['FILE_PATH'] ?>" target="_blank">
                                             <i class="far fa-download fa-fw text-warning"></i> Скачать
                                         </a>
-                                        <span class="dropdown-item asLink"
-                                              onclick="editInfoElem(<?= $file['ID'] ?>, '<?= $file['NAME'] ?>', 0, <?= $file['CATEGORY_ID'] ?>, <?= $file['SORT'] ?>)"><i
-                                                    class="far fa-pen fa-fw text-primary"></i> Редактировать</span>
-                                        <span class="dropdown-item asLink"
-                                              onclick="deleteInfoElem(<?= $file['ID'] ?>, '<?= $file['NAME'] ?>', $(this))"><i
-                                                    class="far fa-trash-alt fa-fw text-danger"></i> Удалить</span>
+                                        <? if (Access::allow('info_edit-element')) { ?>
+                                            <span class="dropdown-item asLink"
+                                                  onclick="editInfoElem(<?= $file['ID'] ?>, '<?= $file['NAME'] ?>', 0, <?= $file['CATEGORY_ID'] ?>, <?= $file['SORT'] ?>)"><i
+                                                        class="far fa-pen fa-fw text-primary"></i> Редактировать</span>
+                                        <? } ?>
+                                        <? if (Access::allow('info_delete-element')) { ?>
+                                            <span class="dropdown-item asLink"
+                                                  onclick="deleteInfoElem(<?= $file['ID'] ?>, '<?= $file['NAME'] ?>', $(this))"><i
+                                                        class="far fa-trash-alt fa-fw text-danger"></i> Удалить</span>
+                                        <? } ?>
                                     </div>
                                 </div>
                             </div>

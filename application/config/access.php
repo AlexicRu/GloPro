@@ -208,17 +208,26 @@ return [
         ],
         'info_index' => [
             'g_1',
+            Access::ROLE_INFOPORTAL
         ],
         'info_marketing' => [
             'g_1',
+            Access::ROLE_INFOPORTAL
         ],
         'info_passports' => [
             'g_1',
+            Access::ROLE_INFOPORTAL
         ],
         'administration_settings' => [
             Access::ROLE_ADMIN,
         ],
         'control_bank-statement' => [
+            Access::ROLE_ROOT
+        ],
+        'info_edit-element' => [
+            Access::ROLE_ROOT
+        ],
+        'info_delete-element' => [
             Access::ROLE_ROOT
         ],
         // custom
@@ -336,9 +345,11 @@ return [
             Access::ROLE_USER,
             Access::ROLE_USER_SECOND,
             Access::ROLE_CLIENT,
+            Access::ROLE_INFOPORTAL
         ],
         'manager_setting' => [
             Access::ROLE_MANAGER_SALE,
+            Access::ROLE_INFOPORTAL
         ],
         'clients_client-edit' => [
             Access::ROLE_CLIENT,
@@ -347,6 +358,19 @@ return [
             Access::ROLE_USER,
             Access::ROLE_USER_SECOND,
             Access::ROLE_CLIENT,
+            Access::ROLE_INFOPORTAL
+        ],
+        'dashboard_index' => [
+            Access::ROLE_INFOPORTAL
+        ],
+        'clients_index' => [
+            Access::ROLE_INFOPORTAL
+        ],
+        'news_index' => [
+            Access::ROLE_INFOPORTAL
+        ],
+        'messages_index' => [
+            Access::ROLE_INFOPORTAL
         ],
         'suppliers_supplier-add' => [
             'a_10',

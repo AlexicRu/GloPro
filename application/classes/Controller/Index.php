@@ -179,8 +179,11 @@ class Controller_Index extends Controller_Common
         if (User::loggedIn()) {
             if (Access::allow('dashboard_index', true)) {
                 $this->redirect('/dashboard');
+            } else if (Access::allow('info_index', true)) {
+                $this->redirect('/info');
+            } else {
+                $this->redirect('/clients');
             }
-            $this->redirect('/clients');
         }
     }
 

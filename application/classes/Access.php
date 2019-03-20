@@ -13,6 +13,7 @@ class Access
     const ROLE_MANAGER_SALE_SUPPORT		= 6;
     const ROLE_ADMIN_READONLY		    = 7;
     const ROLE_CLIENT		            = 97;
+    const ROLE_INFOPORTAL = 90;
     const ROLE_USER_SECOND		        = 98;
     const ROLE_USER		                = 99;
 
@@ -24,6 +25,12 @@ class Access
         self::ROLE_USER                 => 'Клиент',
         self::ROLE_USER_SECOND          => 'Клиент (без редактирования лимитов)',
         self::ROLE_CLIENT               => 'Клиент (только просмотр)',
+    ];
+
+    public static $rolesSecret = [
+        self::ROLE_ADMIN => 'Администратор',
+        self::ROLE_ADMIN_READONLY => 'Супервайзер группы агентов',
+        self::ROLE_INFOPORTAL => 'Клиент инфо-портала'
     ];
 
     public static $clientRoles = [
@@ -229,8 +236,7 @@ class Access
         $user = User::current();
 
         if ($user['ROLE_ID'] == self::ROLE_ROOT) {
-            $roles[self::ROLE_ADMIN] = 'Администратор';
-            $roles[self::ROLE_ADMIN_READONLY] = 'Супервайзер группы агентов';
+            $roles += self::$rolesSecret;
         }
 
         return $roles;
