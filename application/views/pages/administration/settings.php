@@ -33,7 +33,7 @@
 
                 <div class="row m-b-10">
                     <div class="col-sm-4 form__row__title text-muted">
-                        WEB имя:
+                        Полное наименование:
                     </div>
                     <div class="col-sm-8 with-mt">
                         <?if (Access::allow('root')) {?>
@@ -324,7 +324,8 @@
                     <div class="row m-b-10">
                         <div class="col-sm-8 offset-sm-4">
                             <span toggle_block="agentBlock3">
-                                <span class="<?=Text::BTN?> btn-outline-primary" toggle="agentBlock2"><i class="fa fa-pen"></i><span class="d-none d-sm-inline-block ml-1">Редактировать</span></span>
+                                <span class="<?= Text::BTN ?> btn-outline-primary" toggle="agentBlock3"><i
+                                            class="fa fa-pen"></i><span class="d-none d-sm-inline-block ml-1">Редактировать</span></span>
                             </span>
                             <span toggle_block="agentBlock3" class="dn">
                                 <button class="<?=Text::BTN?> btn-success" onclick="saveAgentServiceInfo()"><i class="fa fa-check"></i> Сохранить</button>
@@ -387,7 +388,7 @@
                 return email ? '<a href="mailto:' + email + '">' + email + '</a>' : '';
             },
             statusFormatted: function () {
-                var status = this.agent.title.STATUS_ID;
+                var status = this.agent.title.STATE_ID;
 
                 return status == <?=Model_Agent::AGENT_STATUS_ACTIVE?> ? '<span class="badge badge-success">В работе</span>' : '<span class="badge badge-danger">Заблокирован</span>';
             }
