@@ -40,7 +40,7 @@
         <!-- ============================================================== -->
         <!-- Search -->
         <!-- ============================================================== -->
-        <? if (Access::allow('clients_index')) { ?>
+        <? if (Access::allow('clients_index', true)) { ?>
             <li class="nav-item search-box">
                 <form class="app-search" action="/clients" method="post">
                     <input type="text" class="form-control" placeholder="Поиск..." name="search" value="<?=(!empty($_REQUEST['search']) ? Text::quotesForForms($_REQUEST['search']) : '')?>"> <a class="srh-btn"><i class="far fa-times"></i></a>
@@ -52,7 +52,7 @@
         <!-- ============================================================== -->
         <!-- Messages -->
         <!-- ============================================================== -->
-        <? if (Access::allow('news_index')) { ?>
+        <? if (Access::allow('news_index', true)) { ?>
             <li class="nav-item dropdown">
                 <?if(count($notices)){?>
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown"> <i class="fas fa-envelope"></i>
@@ -105,10 +105,10 @@
                         </div>
                     </li>
                     <li role="separator" class="divider"></li>
-                    <? if (Access::allow('news_index')) { ?>
+                    <? if (Access::allow('news_index', true)) { ?>
                         <li><a href="/messages"><i class="fa-fw far fa-envelope"></i> Сообщения</a></li>
                     <? } ?>
-                    <? if (Access::allow('manager_setting')) { ?>
+                    <? if (Access::allow('manager_setting', true)) { ?>
                         <li class="webtour-settings"><a href="/managers/settings"><i class="fa-fw far fa-cog"></i>
                                 Настройки</a></li>
                     <li role="separator" class="divider"></li>

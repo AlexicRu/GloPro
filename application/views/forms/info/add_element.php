@@ -42,7 +42,7 @@
                         <? if (!empty($leaf['children'])) { ?>
                             <optgroup label="подразделы:">
                                 <? foreach ($leaf['children'] as $category) { ?>
-                                    <option value="<?= $category['ID'] ?>"><?= $category['NAME'] ?></option>
+                                    <option value="<?= $category['ID'] ?>" <?= ($parentCategoryId == $leaf['ID'] ? 'selected' : '') ?>><?= $category['NAME'] ?></option>
                                 <? } ?>
                             </optgroup>
                         <? } ?>
@@ -75,7 +75,7 @@
 </div>
 
 <script>
-    var infoFile = false;
+    var infoFile = 0;
     var dropzone = false;
     var modal = false;
 
@@ -102,7 +102,7 @@
             modal.find('[name=add_info_element_name]').val('');
             modal.find('[name=add_info_element_sort]').val(100);
             modal.find('[name=add_info_element_is_category]').prop('checked', false);
-            modal.find('[name=add_info_element_category_id] option:first').prop('selected', true);
+            //сбрасывать выбранный раздел не надо
         })
     });
 

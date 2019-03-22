@@ -2,9 +2,9 @@
 
 class Model_Info extends Model
 {
-    const INFO_CATEGORY_ID_INFO = 23;
-    const INFO_CATEGORY_ID_RIM = 24;
-    const INFO_CATEGORY_ID_PASSPORTS = 25;
+    const INFO_CATEGORY_ID_INFO = 1;
+    const INFO_CATEGORY_ID_RIM = 2;
+    const INFO_CATEGORY_ID_PASSPORTS = 3;
 
     const INFO_STATUS_VISIBLE = 1;
     const INFO_STATUS_DELETED = 7;
@@ -64,9 +64,9 @@ class Model_Info extends Model
         }
 
         if (!empty($params['order_by_is_category'])) {
-            $sql->orderBy(['is_category', 'sort', 'id']);
+            $sql->orderBy(['is_category', 'sort', 'id desc']);
         } else {
-            $sql->orderBy(['sort', 'id']);
+            $sql->orderBy(['sort', 'id desc']);
         }
 
         $files = $db->query($sql);
@@ -144,10 +144,10 @@ class Model_Info extends Model
             'p_id' => $id ?: -1,
             'p_action' => $action,
             'p_category_id' => $params['category_id'],
-            'p_name' => !empty($params['name']) ? $params['name'] : $element['NAME'],
+            'p_name' => !empty($params['name']) ? trim($params['name']) : $element['NAME'],
             'p_is_category' => $params['is_category'],
             'p_file_path' => $params['file_path'],
-            'p_sort' => !empty($params['sort']) ? $params['sort'] : $element['SORT'],
+            'p_sort' => !empty($params['sort']) ? (int)$params['sort'] : $element['SORT'],
             'p_manager_id' => $user['MANAGER_ID'],
             'p_error_code' => 'out',
         ];
@@ -255,7 +255,7 @@ class Model_Info extends Model
 
         return [
             'path' => $files[0]['FILE_PATH'],
-            'name' => preg_replace("/[^a-zа-яё\d]+/ui", '_', $files[0]['NAME']) . '.' . end($extension),
+            'name' => preg_replace("/[^a-zа-яё\d]+/ui", '_', trim($files[0]['NAME'])) . '.' . end($extension),
         ];
     }
 }

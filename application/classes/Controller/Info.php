@@ -10,14 +10,15 @@ class Controller_Info extends Controller_Common
         $this->title[] = 'Информационный портал';
     }
 
-    private function _prepare()
+    private function _prepare($parentCategoryId)
     {
         $this->_initDropZone();
 
         $tree = Model_Info::getSectionsTree();
 
         $popupInfoAddElement = Form::popupLarge('Добавление/редактирование  элемента', 'info/add_element', [
-            'tree' => $tree
+            'tree' => $tree,
+            'parentCategoryId' => $parentCategoryId
         ]);
 
         return $popupInfoAddElement;
@@ -28,13 +29,16 @@ class Controller_Info extends Controller_Common
      */
 	public function action_index()
 	{
-        $popupInfoAddElement = $this->_prepare();
+        $parentCategoryId = Model_Info::INFO_CATEGORY_ID_INFO;
 
-        $files = Model_Info::getTree(Model_Info::INFO_CATEGORY_ID_INFO);
+        $popupInfoAddElement = $this->_prepare($parentCategoryId);
+
+        $files = Model_Info::getTree($parentCategoryId);
 
         $this->tpl
             ->bind('popupInfoAddElement', $popupInfoAddElement)
             ->bind('files', $files)
+            ->bind('parentCategoryId', $parentCategoryId)
         ;
 	}
 
@@ -45,13 +49,16 @@ class Controller_Info extends Controller_Common
     {
         $this->title[] = 'Рекламно-информационные материалы';
 
-        $popupInfoAddElement = $this->_prepare();
+        $parentCategoryId = Model_Info::INFO_CATEGORY_ID_RIM;
 
-        $files = Model_Info::getTree(Model_Info::INFO_CATEGORY_ID_RIM);
+        $popupInfoAddElement = $this->_prepare($parentCategoryId);
+
+        $files = Model_Info::getTree($parentCategoryId);
 
         $this->tpl
             ->bind('popupInfoAddElement', $popupInfoAddElement)
             ->bind('files', $files)
+            ->bind('parentCategoryId', $parentCategoryId)
         ;
     }
 
@@ -62,13 +69,16 @@ class Controller_Info extends Controller_Common
     {
         $this->title[] = 'Паспорта качества';
 
-        $popupInfoAddElement = $this->_prepare();
+        $parentCategoryId = Model_Info::INFO_CATEGORY_ID_PASSPORTS;
 
-        $files = Model_Info::getTree(Model_Info::INFO_CATEGORY_ID_PASSPORTS);
+        $popupInfoAddElement = $this->_prepare($parentCategoryId);
+
+        $files = Model_Info::getTree($parentCategoryId);
 
         $this->tpl
             ->bind('popupInfoAddElement', $popupInfoAddElement)
             ->bind('files', $files)
+            ->bind('parentCategoryId', $parentCategoryId)
         ;
     }
 
