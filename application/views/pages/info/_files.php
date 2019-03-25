@@ -1,4 +1,5 @@
-<? if (Access::allow('info_edit-element')) { ?>
+<?
+if (Access::allow('info_edit-element', true)) { ?>
 <div class="pb-3 text-right">
     <a href="#" data-toggle="modal" data-target="#info_add_element"
        class="<?= Text::BTN ?> btn-outline-primary m-b-5"><i class="fa fa-plus"></i> Добавить элемент</a>
@@ -17,10 +18,10 @@
                     <?
                     $edit = false;
                     $delete = false;
-                    if (Access::allow('info_edit-element')) {
+                    if (Access::allow('info_edit-element', true)) {
                         $edit = true;
                     }
-                    if (Access::allow('info_delete-element') && empty($block['children'])) {
+                    if (Access::allow('info_delete-element', true) && empty($block['children'])) {
                         $delete = true;
                     }
                     ?>
@@ -72,12 +73,12 @@
                                         <a class="dropdown-item" href="<?= $file['FILE_PATH'] ?>" target="_blank">
                                             <i class="far fa-download fa-fw text-warning"></i> Скачать
                                         </a>
-                                        <? if (Access::allow('info_edit-element')) { ?>
+                                        <? if (Access::allow('info_edit-element', true)) { ?>
                                             <span class="dropdown-item asLink"
                                                   onclick="editInfoElem(<?= $file['ID'] ?>, '<?= $file['NAME'] ?>', 0, <?= $file['CATEGORY_ID'] ?>, <?= $file['SORT'] ?>)"><i
                                                         class="far fa-pen fa-fw text-primary"></i> Редактировать</span>
                                         <? } ?>
-                                        <? if (Access::allow('info_delete-element')) { ?>
+                                        <? if (Access::allow('info_delete-element', true)) { ?>
                                             <span class="dropdown-item asLink"
                                                   onclick="deleteInfoElem(<?= $file['ID'] ?>, '<?= $file['NAME'] ?>', $(this))"><i
                                                         class="far fa-trash-alt fa-fw text-danger"></i> Удалить</span>

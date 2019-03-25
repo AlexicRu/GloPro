@@ -17,7 +17,7 @@ $postfix = $card['CARD_ID'];
                 Выдана держателю:
             </div>
             <div class="col-sm-8 with-mt">
-                <input type="date" class="form-control" name="card_holder_edit_date" value="<?=Date::formatToDefault($card['DATE_HOLDER'])?>">
+                <input type="date" class="form-control" name="card_holder_edit_date" value="<?=(!empty($card['DATE_HOLDER']) ? Date::formatToDefault($card['DATE_HOLDER']): '')?>">
             </div>
         </div>
 

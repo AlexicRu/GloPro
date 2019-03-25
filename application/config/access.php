@@ -208,15 +208,18 @@ return [
         ],
         'info_index' => [
             'g_1',
-            Access::ROLE_INFOPORTAL
+            Access::ROLE_INFOPORTAL,
+            Access::ROLE_ADMIN_READONLY,
         ],
         'info_marketing' => [
             'g_1',
-            Access::ROLE_INFOPORTAL
+            Access::ROLE_INFOPORTAL,
+            Access::ROLE_ADMIN_READONLY,
         ],
         'info_passports' => [
             'g_1',
-            Access::ROLE_INFOPORTAL
+            Access::ROLE_INFOPORTAL,
+            Access::ROLE_ADMIN_READONLY,
         ],
         'administration_settings' => [
             Access::ROLE_ADMIN,
@@ -225,10 +228,12 @@ return [
             Access::ROLE_ROOT
         ],
         'info_edit-element' => [
-            Access::ROLE_ROOT
+            Access::ROLE_ROOT,
+            Access::ROLE_ADMIN_READONLY
         ],
         'info_delete-element' => [
-            Access::ROLE_ROOT
+            Access::ROLE_ROOT,
+            Access::ROLE_ADMIN_READONLY,
         ],
         // custom
         'view_contract_balances' => [
@@ -464,6 +469,8 @@ return [
             'web_manager_site_tour',
             'note_add',
             'note_edit',
+            'info_edit-element',
+            'info_delete-element'
         ]
     ],
     /*
