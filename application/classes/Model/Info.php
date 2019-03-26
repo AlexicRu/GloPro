@@ -111,6 +111,12 @@ class Model_Info extends Model
             }
 
             $element = reset($elements);
+        } else {
+            $element = [
+                'FILE_PATH' => false,
+                'IS_CATEGORY' => 0,
+                'CATEGORY_ID' => 0,
+            ];
         }
 
         if ($action == self::INFO_ACTION_DELETE) {
