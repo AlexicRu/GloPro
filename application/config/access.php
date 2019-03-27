@@ -225,7 +225,11 @@ return [
             Access::ROLE_ADMIN,
         ],
         'control_bank-statement' => [
-            Access::ROLE_ROOT
+            'u_1894',
+            'u_710',
+            'u_2',
+            'u_427',
+            'u_428',
         ],
         'info_edit-element' => [
             Access::ROLE_ROOT,
@@ -469,8 +473,7 @@ return [
             'web_manager_site_tour',
             'note_add',
             'note_edit',
-            'info_edit-element',
-            'info_delete-element'
+            'info_portal_edit'
         ]
     ],
     /*
