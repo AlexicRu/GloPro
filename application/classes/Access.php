@@ -81,23 +81,65 @@ class Access
 
         $allow = $access['allow'];
         $deny = $access['deny'];
+        $allowFl = $denyFl = true;
 
-        if(
-            // если задано разрешение и нет роли/агента/юзера, то нельзя
-            (isset($allow[$action]) && (
-                !in_array($user['ROLE_ID'], $allow[$action]) &&
-                !in_array('u_'.$user['MANAGER_ID'], $allow[$action]) &&
-                !in_array('g_'.$user['AGENT_GROUP_ID'], $allow[$action]) &&
-                !in_array('a_'.$user['AGENT_ID'], $allow[$action])
-            )) ||
-            // если задан запрет на действие и хоть где-то роль/агент/юзер, то нельзя
-            (isset($deny[$action]) && (
-                in_array($user['ROLE_ID'], $deny[$action]) ||
-                in_array('u_'.$user['MANAGER_ID'], $deny[$action]) ||
-                in_array('g_'.$user['AGENT_GROUP_ID'], $deny[$action]) ||
-                in_array('a_'.$user['AGENT_ID'], $deny[$action])
-            ))
-        ){
+        // если задано разрешение и нет роли/агента/юзера, то нельзя
+        if (isset($allow[$action])) {
+
+            //проходим по всем доступам
+            foreach ($allow[$action] as &$allowArray) {
+                $allowArray = (array)$allowArray;
+
+                // если хотя бы по одной части доступа нет совпадения, то нельзя
+                foreach ($allowArray as $allow) {
+                    if (
+                        $user['ROLE_ID'] != $allow &&
+                        'u_' . $user['MANAGER_ID'] != $allow &&
+                        'g_' . $user['AGENT_GROUP_ID'] != $allow &&
+                        'a_' . $user['AGENT_ID'] != $allow
+                    ) {
+                        $allowArray = false;
+                        break;
+                    }
+                    $allowArray = true;
+                }
+            }
+
+            //и если хотя бы по одному можно, то можно
+            if (empty(array_filter($allow[$action]))) {
+                $allowFl = false;
+            }
+        }
+
+        // если задан запрет на действие и хоть где-то роль/агент/юзер, то нельзя
+        if (isset($deny[$action])) {
+
+            //проходим по всем доступам
+            foreach ($deny[$action] as &$denyArray) {
+                $denyArray = (array)$denyArray;
+
+                // если хотя бы по одной части доступа нет совпадения, то нельзя
+                foreach ($denyArray as $deny) {
+                    if (
+                        $user['ROLE_ID'] == $deny ||
+                        'u_' . $user['MANAGER_ID'] == $deny ||
+                        'g_' . $user['AGENT_GROUP_ID'] == $deny ||
+                        'a_' . $user['AGENT_ID'] == $deny
+                    ) {
+                        $denyArray = false;
+                        break;
+                    }
+                    $denyArray = true;
+                }
+            }
+
+            //и если хотя бы по $deny можно, то можно
+            if (empty(array_filter($allow[$action]))) {
+                $denyFl = false;
+            }
+        }
+
+        if(!$allowFl || !$denyFl){
             return false;
         }
 
@@ -120,6 +162,8 @@ class Access
             return false;
         }
 
+        $file = str_replace('/file/', '', $file);
+
         $user = User::current();
 
         if(in_array($user['ROLE_ID'], [self::ROLE_ROOT])){
@@ -128,16 +172,32 @@ class Access
 
         $access = Kohana::$config->load('access')['files'];
 
-        if(
-            // если задано разрешение и есть роль/агент/юзер, то можно
-            isset($access[$file]) && (
-                    in_array($user['ROLE_ID'], $access[$file]) ||
-                    in_array('u_'.$user['MANAGER_ID'], $access[$file]) ||
-                    in_array('g_'.$user['AGENT_GROUP_ID'], $access[$file]) ||
-                    in_array('a_'.$user['AGENT_ID'], $access[$file])
-                )
-        ){
-            return true;
+        // если задано разрешение и нет роли/агента/юзера, то нельзя
+        if (isset($access[$file])) {
+
+            //проходим по всем доступам
+            foreach ($access[$file] as &$allowArray) {
+                $allowArray = (array)$allowArray;
+
+                // по всем частям доступа должно быть совпадение
+                foreach ($allowArray as $allow) {
+                    if (
+                        $user['ROLE_ID'] != $allow &&
+                        'u_' . $user['MANAGER_ID'] != $allow &&
+                        'g_' . $user['AGENT_GROUP_ID'] != $allow &&
+                        'a_' . $user['AGENT_ID'] != $allow
+                    ) {
+                        $allowArray = false;
+                        break;
+                    }
+                    $allowArray = true;
+                }
+            }
+
+            //и если хотя бы по одному можно, то можно
+            if (!empty(array_filter($access[$file]))) {
+                return true;
+            }
         }
 
         return false;

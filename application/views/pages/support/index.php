@@ -5,7 +5,7 @@
             <i class="far fa-comments fa-lg"></i> <span class="hidden-xs-down m-l-5">Обратная связь</span>
         </a>
     </li>
-    <?if (Access::file('Инструкция_по_работе_с_ЛК_системы_Администратор.docx')){?>
+    <?if (!empty($files)){?>
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#documents" role="tab">
             <i class="far fa-file-alt fa-lg"></i> <span class="hidden-xs-down m-l-5">Документы</span>
@@ -20,7 +20,8 @@
             <?=$feedbackForm?>
         </div>
     </div>
-    <?if (Access::file('Инструкция_по_работе_с_ЛК_системы_Администратор.docx')){?>
+
+    <?if (!empty($files)){?>
     <div class="tab-pane pt-3" id="documents" role="tabpanel">
         <div class="card-columns">
         <?foreach ($files as $block) {?>

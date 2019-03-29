@@ -26,7 +26,38 @@ class Controller_Support extends Controller_Common {
                     ],
                 ]
             ],
+            [
+                'title' => 'Заявки',
+                'items' => [
+                    [
+                        'icon' => Model_Info::$infoFilesIcons['doc'],
+                        'name'  => 'Заявка подключение к API',
+                        'file'  => '/file/Заявка_подключение_к_API.docx'
+                    ],
+                    [
+                        'icon' => Model_Info::$infoFilesIcons['doc'],
+                        'name'  => 'Заявка подключение к источнику данных',
+                        'file'  => '/file/Заявка_подключение_к_источнику_данных.docx'
+                    ],
+                    [
+                        'icon' => Model_Info::$infoFilesIcons['doc'],
+                        'name'  => 'Заявка подключение к источнику данных ГПН',
+                        'file'  => '/file/Заявка_подключение_к_источнику_данных_ГПН.docx'
+                    ],
+                ]
+            ],
         ];
+
+        foreach ($files as $key1 => $block) {
+            foreach ($block['items'] as $key2 => $file) {
+                if (!Access::file($file['file'])) {
+                    unset($files[$key1]['items'][$key2]);
+                }
+            }
+            if (empty($files[$key1]['items'])) {
+                unset($files[$key1]);
+            }
+        }
 
         $this->tpl
             ->bind('feedbackForm', $feedbackForm)
