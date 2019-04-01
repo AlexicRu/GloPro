@@ -135,14 +135,14 @@
                     headerTemplate: function() {
                         return $('<label class="custom-control custom-checkbox">' +
                             '<input type="checkbox" class="custom-control-input" checked onchange="connect1cPayments_toggleSelectedItems($(this))">' +
-                            '<span class="custom-control-label"></span>' +
+                            '<span class="custom-control-label">&#8239;</span>' +
                         '</label>');
                     },
                     itemTemplate: function(_, item) {
                         if(item.CAN_ADD == 1) {
                             return $('<label class="custom-control custom-checkbox">' +
                                     '<input type="checkbox" class="custom-control-input add_element" checked>' +
-                                    '<span class="custom-control-label"></span>' +
+                                    '<span class="custom-control-label">&#8239;</span>' +
                                 '</label>')
                                 .data("contract_id", item.CONTRACT_ID)
                                 .data("num", item.ORDER_NUM)

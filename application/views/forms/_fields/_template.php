@@ -15,7 +15,8 @@ if ($withDepend) {?>
             $data = [
                 'placeholder' => !empty($params['depend_on']['placeholder']) ? $params['depend_on']['placeholder'] : 'Поиск...',
                 'depend_to' => $name,
-                'onSelect' => !empty($params['depend_on']['onSelect']) ? $params['depend_on']['onSelect'] : false
+                'onSelect' => !empty($params['depend_on']['onSelect']) ? $params['depend_on']['onSelect'] : false,
+                'colored_empty' => $params['colored_empty'] ?? false
             ];
 
             $valueDepend = false;
@@ -72,6 +73,14 @@ if ($withDepend) {?>
             <?}?>
             <?if (!empty($value)) {?>
                 setFormFieldValue(t.parent(), '<?=$value?>');
+            <?}?>
+
+            <?
+                //принудительно помечаем пустые
+                if (!empty($params['colored_empty'])) {?>
+                <?if (empty($value)) {?>
+                    t.addClass('is-invalid');
+                <?}?>
             <?}?>
         });
     });

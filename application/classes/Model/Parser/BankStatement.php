@@ -128,7 +128,8 @@ class Model_Parser_BankStatement extends Model
             $row->html = strval(Form::buildField('contract_choose_single', 'contract_choose_single_' . $key, $row->foundContractId, [
                 'depend_values' => ['client_id' => $row->foundClientId],
                 'depend_postfix' => $key,
-                'depend_hidden' => false
+                'depend_hidden' => false,
+                'colored_empty' => true,
             ]));
 
             $row->found = /*$row->foundClientName . '<hr>' .*/

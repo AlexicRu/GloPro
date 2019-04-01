@@ -168,6 +168,14 @@ function keyupComboBox(combo, params)
         postParams[params['depend_on']['param']] = value;
     }
 
+    if (params['colored_empty']) {
+        if (val == '') {
+            combo.addClass('is-invalid');
+        } else {
+            combo.removeClass('is-invalid');
+        }
+    }
+
     checkRenderTo(combo, {}, true);
 
     combo.addClass('loading');
@@ -338,6 +346,9 @@ function selectComboBoxResult(item, params)
         window[combo.data('onSelect')](value);
     }
 
+    //при любом выбранной варианте уже непусто
+    combo.removeClass('is-invalid');
+
     $('.combobox_result', outer).hide();
 }
 
@@ -349,6 +360,10 @@ function setComboBoxValue(combo, value)
     if(!value || value == ''){
         combo.val('');
         hiddenValue.val('');
+
+        if(combo.data('colored_empty')) {
+            combo.addClass('is-invalid');
+        }
     }else{
         if (value == SHOW_ALL_VALUE && combo.data('show_all')){
             combo.val(SHOW_ALL_NAME);
@@ -365,6 +380,10 @@ function setComboBoxValue(combo, value)
                     checkRenderTo(combo, {value:data.data.items[0].value, text:data.data.items[0].name});
                 }
             });
+        }
+
+        if(combo.data('colored_empty')) {
+            combo.removeClass('is-invalid');
         }
     }
 }
